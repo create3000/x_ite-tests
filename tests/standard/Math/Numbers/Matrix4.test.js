@@ -15,7 +15,7 @@ test ("constructor", () =>
 test ("inverse", () =>
 {
    // https://www.wolframalpha.com/calculators/matrix-inverse-calculator
-   
+
    const m = new Matrix4 (3,2,1,0.1, 2,3,1,0.2, 2,1,3,0.3, 1,2,3,4) .inverse ();
 
    expect (m [0]) .toBeCloseTo (0.678241)
