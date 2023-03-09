@@ -27,3 +27,11 @@ test ("nextPowerOfTwo", () =>
    expect (Algorithm .nextPowerOfTwo (7)) .toBe (8)
    expect (Algorithm .nextPowerOfTwo (8)) .toBe (8)
 })
+
+test ("bitCount", () =>
+{
+   expect (Algorithm .bitCount (0)) .toBe (0)
+   expect (Algorithm .bitCount (0xffffffff)) .toBe (32)
+   expect (Algorithm .bitCount (0b1010101)) .toBe (4)
+   expect (Algorithm .bitCount (0b1100110011)) .toBe (6)
+})
