@@ -120,3 +120,12 @@ test ("determinant", () =>
 
    expect (d) .toBe (-40)
 })
+
+test ("determinant3", () =>
+{
+   // https://www.wolframalpha.com/calculators/determinant-calculator
+
+   const d = new Matrix4 (1,2,3,4, 3,2,1,4, 2,1,3,4) .determinant3 ()
+
+   expect (d) .toBe (-12)
+})
