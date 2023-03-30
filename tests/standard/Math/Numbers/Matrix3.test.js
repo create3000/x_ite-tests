@@ -6,11 +6,16 @@ const
 
 test ("constructor", () =>
 {
-   expect (new Matrix3 ()) .toEqual ({
+   const m = new Matrix3 ()
+
+   expect (m) .toEqual ({
       0:1, 1:0, 2:0,
       3:0, 4:1, 5:0,
       6:0, 7:0, 8:1,
    })
+
+   expect (m .length) .toBe (9)
+   expect (m .order)  .toBe (3)
 })
 
 test ("inverse", () =>

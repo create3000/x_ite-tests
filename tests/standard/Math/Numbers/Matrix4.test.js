@@ -6,12 +6,17 @@ const
 
 test ("constructor", () =>
 {
-   expect (new Matrix4 ()) .toEqual ({
+   const m = new Matrix4 ()
+
+   expect (m) .toEqual ({
       0:1, 1:0, 2:0, 3:0,
       4:0, 5:1, 6:0, 7:0,
       8:0, 9:0, 10:1, 11:0,
       12:0, 13:0, 14:0, 15:1,
    })
+
+   expect (m .length) .toBe (16)
+   expect (m .order)  .toBe (4)
 })
 
 test ("inverse", () =>
