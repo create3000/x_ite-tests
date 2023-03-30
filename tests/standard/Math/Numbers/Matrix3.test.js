@@ -1,0 +1,80 @@
+const
+   X3D     = require ("../../../X3D"),
+   Matrix3 = X3D .require ("standard/Math/Numbers/Matrix3")
+
+test ("constructor", () =>
+{
+   expect (new Matrix3 ()) .toEqual ({
+      0:1, 1:0, 2:0,
+      3:0, 4:1, 5:0,
+      6:0, 7:0, 8:1,
+   })
+})
+
+test ("inverse", () =>
+{
+   // https://www.wolframalpha.com/calculators/matrix-inverse-calculator
+
+   const m = new Matrix3 (1,2,3, 3,2,1, 2,1,3) .inverse ()
+
+   expect (m [0]) .toBeCloseTo (-5 / 12)
+   expect (m [1]) .toBeCloseTo ( 3 / 12)
+   expect (m [2]) .toBeCloseTo ( 4 / 12)
+   expect (m [3]) .toBeCloseTo ( 7 / 12)
+   expect (m [4]) .toBeCloseTo ( 3 / 12)
+   expect (m [5]) .toBeCloseTo (-8 / 12)
+   expect (m [6]) .toBeCloseTo ( 1 / 12)
+   expect (m [7]) .toBeCloseTo (-3 / 12)
+   expect (m [8]) .toBeCloseTo ( 4 / 12)
+})
+
+test ("multRight", () =>
+{
+   const
+      m1 = new Matrix3 (1, 2, 3, 4, 5, 6, 7, 8, 9),
+      m2 = new Matrix3 (10, 11, 12, 13, 14, 15, 16, 17, 18),
+      m  = m1 .multRight (m2)
+
+   expect (m [0]) .toBe (84)
+   expect (m [1]) .toBe (90)
+   expect (m [2]) .toBe (96)
+   expect (m [3]) .toBe (201)
+   expect (m [4]) .toBe (216)
+   expect (m [5]) .toBe (231)
+   expect (m [6]) .toBe (318)
+   expect (m [7]) .toBe (342)
+   expect (m [8]) .toBe (366)
+})
+
+test ("multLeft", () =>
+{
+   const
+      m1 = new Matrix3 (10, 11, 12, 13, 14, 15, 16, 17, 18),
+      m2 = new Matrix3 (1, 2, 3, 4, 5, 6, 7, 8, 9),
+      m  = m1 .multLeft (m2)
+
+   expect (m [0]) .toBe (84)
+   expect (m [1]) .toBe (90)
+   expect (m [2]) .toBe (96)
+   expect (m [3]) .toBe (201)
+   expect (m [4]) .toBe (216)
+   expect (m [5]) .toBe (231)
+   expect (m [6]) .toBe (318)
+   expect (m [7]) .toBe (342)
+   expect (m [8]) .toBe (366)
+})
+
+test ("transpose", () =>
+{
+   const m = new Matrix3 (1, 2, 3, 4, 5, 6, 7, 8, 9) .transpose ()
+
+   expect (m [0]) .toBe (1)
+   expect (m [1]) .toBe (4)
+   expect (m [2]) .toBe (7)
+   expect (m [3]) .toBe (2)
+   expect (m [4]) .toBe (5)
+   expect (m [5]) .toBe (8)
+   expect (m [6]) .toBe (3)
+   expect (m [7]) .toBe (6)
+   expect (m [8]) .toBe (9)
+})
