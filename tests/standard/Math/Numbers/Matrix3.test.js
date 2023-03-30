@@ -30,6 +30,8 @@ test ("inverse", () =>
 
 test ("multRight", () =>
 {
+   // https://www.matopt.de/werkzeuge/grundlagen/matrixmultiplikation.html
+
    const
       m1 = new Matrix3 (1, 2, 3, 4, 5, 6, 7, 8, 9),
       m2 = new Matrix3 (10, 11, 12, 13, 14, 15, 16, 17, 18),
@@ -48,6 +50,8 @@ test ("multRight", () =>
 
 test ("multLeft", () =>
 {
+   // https://www.matopt.de/werkzeuge/grundlagen/matrixmultiplikation.html
+
    const
       m1 = new Matrix3 (10, 11, 12, 13, 14, 15, 16, 17, 18),
       m2 = new Matrix3 (1, 2, 3, 4, 5, 6, 7, 8, 9),
