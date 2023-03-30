@@ -188,7 +188,7 @@ test ("translate", () =>
    expect (m [8]) .toBe (1)
 })
 
-test ("trarotateslate", () =>
+test ("rotate", () =>
 {
    const m = new Matrix3 (1, 2, 0, 4, 5, 0, 7, 8, 1) .rotate (Math .PI / 4)
 
@@ -218,6 +218,36 @@ test ("scale", () =>
    expect (m [6]) .toBe (7)
    expect (m [7]) .toBe (8)
    expect (m [8]) .toBe (1)
+})
+
+test ("skewX", () =>
+{
+   const m = new Matrix3 (1, 2, 0, 4, 5, 0, 7, 8, 1) .skewX (Math .PI / 2)
+
+   expect (m [0]) .toBeCloseTo (1)
+   expect (m [1]) .toBeCloseTo (2)
+   expect (m [2]) .toBeCloseTo (0)
+   expect (m [3]) .toBeCloseTo (16331239353195374)
+   expect (m [4]) .toBeCloseTo (32662478706390744)
+   expect (m [5]) .toBeCloseTo (0)
+   expect (m [6]) .toBeCloseTo (7)
+   expect (m [7]) .toBeCloseTo (8)
+   expect (m [8]) .toBeCloseTo (1)
+})
+
+test ("skewY", () =>
+{
+   const m = new Matrix3 (1, 2, 0, 4, 5, 0, 7, 8, 1) .skewY (Math .PI / 2)
+
+   expect (m [0]) .toBeCloseTo (65324957412781480)
+   expect (m [1]) .toBeCloseTo (81656196765976850)
+   expect (m [2]) .toBeCloseTo (0)
+   expect (m [3]) .toBeCloseTo (4)
+   expect (m [4]) .toBeCloseTo (5)
+   expect (m [5]) .toBeCloseTo (0)
+   expect (m [6]) .toBeCloseTo (7)
+   expect (m [7]) .toBeCloseTo (8)
+   expect (m [8]) .toBeCloseTo (1)
 })
 
 test ("copy", () =>
