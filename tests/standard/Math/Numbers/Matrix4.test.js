@@ -65,6 +65,25 @@ test ("inverse", () =>
    expect (m [13]) .toBeCloseTo (-0.277778)
    expect (m [14]) .toBeCloseTo (-0.277778)
    expect (m [15]) .toBeCloseTo (0.277778)
+
+   const m2 = new Matrix4 (1,2,4,0.4, 5,6,8,0.8, 9,10,12,0.12, 14,15,16,17) .inverse ()
+
+   expect (m2 [ 0]) .toBeCloseTo (-932/27)
+   expect (m2 [ 1]) .toBeCloseTo (1729/27)
+   expect (m2 [ 2]) .toBeCloseTo (-770/27)
+   expect (m2 [ 3]) .toBeCloseTo (-2)
+   expect (m2 [ 4]) .toBeCloseTo (457/9)
+   expect (m2 [ 5]) .toBeCloseTo (-860/9)
+   expect (m2 [ 6]) .toBeCloseTo (385/9)
+   expect (m2 [ 7]) .toBeCloseTo (3)
+   expect (m2 [ 8]) .toBeCloseTo (-197/12)
+   expect (m2 [ 9]) .toBeCloseTo (379/12)
+   expect (m2 [10]) .toBeCloseTo (-85/6)
+   expect (m2 [11]) .toBeCloseTo (-1)
+   expect (m2 [12]) .toBeCloseTo (-25/27)
+   expect (m2 [13]) .toBeCloseTo (50/27)
+   expect (m2 [14]) .toBeCloseTo (-25/27)
+   expect (m2 [15]) .toBeCloseTo (0)
 })
 
 test ("multRight", () =>
