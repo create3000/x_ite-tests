@@ -78,3 +78,12 @@ test ("transpose", () =>
    expect (m [7]) .toBe (6)
    expect (m [8]) .toBe (9)
 })
+
+test ("determinant", () =>
+{
+   // https://www.wolframalpha.com/calculators/determinant-calculator
+
+   const d = new Matrix3 (1,2,3, 3,2,1, 2,1,3) .determinant ()
+
+   expect (d) .toBe (-12)
+})

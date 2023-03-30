@@ -107,3 +107,12 @@ test ("transpose", () =>
    expect (m [14]) .toBe (12)
    expect (m [15]) .toBe (16)
 })
+
+test ("determinant", () =>
+{
+   // https://www.wolframalpha.com/calculators/determinant-calculator
+
+   const d = new Matrix4 (1,2,3,4, 4,3,2,1, 2,1,3,4, 3,4,1,2) .determinant ()
+
+   expect (d) .toBe (-40)
+})
