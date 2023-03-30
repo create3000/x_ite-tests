@@ -216,4 +216,13 @@ test ("equals", () =>
       b = new Matrix3 (2,3,4, 5,6,7, 8,9,10)
 
    expect (a .equals (b)) .toBe (true)
+
+   for (let i = 0; i < a .length; ++ i)
+   {
+      const c = a .copy ()
+
+      c [i] = 0
+
+      expect (a .equals (c)) .toBe (false)
+   }
 })
