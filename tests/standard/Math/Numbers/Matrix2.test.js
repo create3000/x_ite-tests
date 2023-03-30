@@ -5,15 +5,34 @@ const
 
 test ("constructor", () =>
 {
-   const m = new Matrix2 ()
+   const m1 = new Matrix2 ()
 
-   expect (m) .toEqual ({
+   expect (m1) .toEqual ({
       0:1, 1:0,
       2:0, 3:1,
    })
 
-   expect (m .length) .toBe (4)
-   expect (m .order)  .toBe (2)
+   expect ([... m1]) .toEqual ([
+      1, 0,
+      0, 1,
+   ])
+
+   expect (m1 .length) .toBe (4)
+   expect (m1 .order)  .toBe (2)
+
+   const m2 = new Matrix2 (2,3, 4,5)
+
+   expect (m2) .toEqual ({
+      0:2, 1:3,
+      2:4, 3:5,
+   })
+
+   expect ([... m2]) .toEqual ([
+      2,3, 4,5
+   ])
+
+   expect (m2 .length) .toBe (4)
+   expect (m2 .order)  .toBe (2)
 })
 
 test ("inverse", () =>
