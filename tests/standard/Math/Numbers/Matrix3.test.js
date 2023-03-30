@@ -103,7 +103,7 @@ test ("determinant2", () =>
    expect (d) .toBe (-5)
 })
 
-test ("multVecMatrix2", () =>
+test ("multVecMatrix3", () =>
 {
    // https://www.wolframalpha.com/calculators/determinant-calculator
 
@@ -177,4 +177,43 @@ test ("scale", () =>
    expect (m [6]) .toBe (7)
    expect (m [7]) .toBe (8)
    expect (m [8]) .toBe (1)
+})
+
+test ("copy", () =>
+{
+   const m = new Matrix3 (2,3,4, 5,6,7, 8,9,10) .copy ()
+
+   expect (m [0]) .toBe (2)
+   expect (m [1]) .toBe (3)
+   expect (m [2]) .toBe (4)
+   expect (m [3]) .toBe (5)
+   expect (m [4]) .toBe (6)
+   expect (m [5]) .toBe (7)
+   expect (m [6]) .toBe (8)
+   expect (m [7]) .toBe (9)
+   expect (m [8]) .toBe (10)
+})
+
+test ("assign", () =>
+{
+   const m = new Matrix3 () .assign (new Matrix3 (2,3,4, 5,6,7, 8,9,10))
+
+   expect (m [0]) .toBe (2)
+   expect (m [1]) .toBe (3)
+   expect (m [2]) .toBe (4)
+   expect (m [3]) .toBe (5)
+   expect (m [4]) .toBe (6)
+   expect (m [5]) .toBe (7)
+   expect (m [6]) .toBe (8)
+   expect (m [7]) .toBe (9)
+   expect (m [8]) .toBe (10)
+})
+
+test ("equals", () =>
+{
+   const
+      a = new Matrix3 (2,3,4, 5,6,7, 8,9,10),
+      b = new Matrix3 (2,3,4, 5,6,7, 8,9,10)
+
+   expect (a .equals (b)) .toBe (true)
 })

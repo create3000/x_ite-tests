@@ -225,3 +225,56 @@ test ("scale", () =>
    expect (m [14]) .toBe (15)
    expect (m [15]) .toBe (1)
 })
+
+test ("copy", () =>
+{
+   const m = new Matrix4 (2,3,4,5, 6,7,8,9, 10,11,12,13, 14,15,16,17) .copy ()
+
+   expect (m [ 0]) .toBe (2)
+   expect (m [ 1]) .toBe (3)
+   expect (m [ 2]) .toBe (4)
+   expect (m [ 3]) .toBe (5)
+   expect (m [ 4]) .toBe (6)
+   expect (m [ 5]) .toBe (7)
+   expect (m [ 6]) .toBe (8)
+   expect (m [ 7]) .toBe (9)
+   expect (m [ 8]) .toBe (10)
+   expect (m [ 9]) .toBe (11)
+   expect (m [10]) .toBe (12)
+   expect (m [11]) .toBe (13)
+   expect (m [12]) .toBe (14)
+   expect (m [13]) .toBe (15)
+   expect (m [14]) .toBe (16)
+   expect (m [15]) .toBe (17)
+})
+
+test ("assign", () =>
+{
+   const m = new Matrix4 () .assign (new Matrix4 (2,3,4,5, 6,7,8,9, 10,11,12,13, 14,15,16,17))
+
+   expect (m [ 0]) .toBe (2)
+   expect (m [ 1]) .toBe (3)
+   expect (m [ 2]) .toBe (4)
+   expect (m [ 3]) .toBe (5)
+   expect (m [ 4]) .toBe (6)
+   expect (m [ 5]) .toBe (7)
+   expect (m [ 6]) .toBe (8)
+   expect (m [ 7]) .toBe (9)
+   expect (m [ 8]) .toBe (10)
+   expect (m [ 9]) .toBe (11)
+   expect (m [10]) .toBe (12)
+   expect (m [11]) .toBe (13)
+   expect (m [12]) .toBe (14)
+   expect (m [13]) .toBe (15)
+   expect (m [14]) .toBe (16)
+   expect (m [15]) .toBe (17)
+})
+
+test ("equals", () =>
+{
+   const
+      a = new Matrix4 (2,3,4,5, 6,7,8,9, 10,11,12,13, 14,15,16,17),
+      b = new Matrix4 (2,3,4,5, 6,7,8,9, 10,11,12,13, 14,15,16,17)
+
+   expect (a .equals (b)) .toBe (true)
+})

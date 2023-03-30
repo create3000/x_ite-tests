@@ -118,3 +118,32 @@ test ("multMatrixVec2", () =>
    expect (v [0]) .toBe (17)
    expect (v [1]) .toBe (39)
 })
+
+test ("copy", () =>
+{
+   const m = new Matrix2 (2,3, 4,5) .copy ()
+
+   expect (m [0]) .toBe (2)
+   expect (m [1]) .toBe (3)
+   expect (m [2]) .toBe (4)
+   expect (m [3]) .toBe (5)
+})
+
+test ("assign", () =>
+{
+   const m = new Matrix2 () .assign (new Matrix2 (2,3, 4,5))
+
+   expect (m [0]) .toBe (2)
+   expect (m [1]) .toBe (3)
+   expect (m [2]) .toBe (4)
+   expect (m [3]) .toBe (5)
+})
+
+test ("equals", () =>
+{
+   const
+      a = new Matrix2 (2,3, 4,5),
+      b = new Matrix2 (2,3, 4,5)
+
+   expect (a .equals (b)) .toBe (true)
+})
