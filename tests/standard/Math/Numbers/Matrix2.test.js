@@ -71,7 +71,7 @@ test ("determinant", () =>
    expect (d) .toBe (-5)
 })
 
-test ("determinan1", () =>
+test ("determinant1", () =>
 {
    // https://www.wolframalpha.com/calculators/determinant-calculator
 
