@@ -188,6 +188,21 @@ test ("translate", () =>
    expect (m [8]) .toBe (1)
 })
 
+test ("trarotateslate", () =>
+{
+   const m = new Matrix3 (1, 2, 0, 4, 5, 0, 7, 8, 1) .rotate (Math .PI / 4)
+
+   expect (m [0]) .toBeCloseTo (3.5355339059327373)
+   expect (m [1]) .toBeCloseTo (4.949747468305833)
+   expect (m [2]) .toBeCloseTo (0)
+   expect (m [3]) .toBeCloseTo (2.121320343559643)
+   expect (m [4]) .toBeCloseTo (2.121320343559643)
+   expect (m [5]) .toBeCloseTo (0)
+   expect (m [6]) .toBeCloseTo (7)
+   expect (m [7]) .toBeCloseTo (8)
+   expect (m [8]) .toBeCloseTo (1)
+})
+
 test ("scale", () =>
 {
    // https://www.wolframalpha.com/calculators/determinant-calculator

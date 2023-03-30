@@ -1,8 +1,9 @@
 const
-   X3D     = require ("../../../X3D"),
-   Matrix4 = X3D .require ("standard/Math/Numbers/Matrix4"),
-   Vector3 = X3D .require ("standard/Math/Numbers/Vector3"),
-   Vector4 = X3D .require ("standard/Math/Numbers/Vector4")
+   X3D       = require ("../../../X3D"),
+   Matrix4   = X3D .require ("standard/Math/Numbers/Matrix4"),
+   Vector3   = X3D .require ("standard/Math/Numbers/Vector3"),
+   Vector4   = X3D .require ("standard/Math/Numbers/Vector4"),
+   Rotation4 = X3D .require ("standard/Math/Numbers/Rotation4")
 
 test ("constructor", () =>
 {
@@ -228,6 +229,28 @@ test ("translate", () =>
    expect (m [13]) .toBe (346)
    expect (m [14]) .toBe (401)
    expect (m [15]) .toBe (1)
+})
+
+test ("rotate", () =>
+{
+   const m = new Matrix4 (1, 2, 3, 0, 5, 6, 7, 0, 9, 10, 11, 0, 13, 14, 15, 1) .rotate (new Rotation4 (2, 3, 4, 5))
+
+   expect (m [ 0]) .toBeCloseTo (4.14847477640317)
+   expect (m [ 1]) .toBeCloseTo (4.698692665488432)
+   expect (m [ 2]) .toBeCloseTo (5.248910554573694)
+   expect (m [ 3]) .toBeCloseTo (0)
+   expect (m [ 4]) .toBeCloseTo (2.852869510717036)
+   expect (m [ 5]) .toBeCloseTo (4.159602437757459)
+   expect (m [ 6]) .toBeCloseTo (5.4663353647978825)
+   expect (m [ 7]) .toBeCloseTo (0)
+   expect (m [ 8]) .toBeCloseTo (9.036110478760637)
+   expect (m [ 9]) .toBeCloseTo (10.030951838937689)
+   expect (m [10]) .toBeCloseTo (11.02579319911474)
+   expect (m [11]) .toBeCloseTo (0)
+   expect (m [12]) .toBeCloseTo (13)
+   expect (m [13]) .toBeCloseTo (14)
+   expect (m [14]) .toBeCloseTo (15)
+   expect (m [15]) .toBeCloseTo (1)
 })
 
 test ("scale", () =>
