@@ -144,3 +144,37 @@ test ("multMatrixVec3", () =>
    expect (v [1]) .toBe (167)
    expect (v [2]) .toBe (266)
 })
+
+test ("translate", () =>
+{
+   // https://www.wolframalpha.com/calculators/determinant-calculator
+
+   const m = new Matrix3 (1, 2, 0, 4, 5, 0, 7, 8, 1) .translate (new Vector2 (10, 11))
+
+   expect (m [0]) .toBe (1)
+   expect (m [1]) .toBe (2)
+   expect (m [2]) .toBe (0)
+   expect (m [3]) .toBe (4)
+   expect (m [4]) .toBe (5)
+   expect (m [5]) .toBe (0)
+   expect (m [6]) .toBe (61)
+   expect (m [7]) .toBe (83)
+   expect (m [8]) .toBe (1)
+})
+
+test ("scale", () =>
+{
+   // https://www.wolframalpha.com/calculators/determinant-calculator
+
+   const m = new Matrix3 (1, 2, 0, 4, 5, 0, 7, 8, 1) .scale (new Vector2 (10, 11))
+
+   expect (m [0]) .toBe (10)
+   expect (m [1]) .toBe (20)
+   expect (m [2]) .toBe (0)
+   expect (m [3]) .toBe (44)
+   expect (m [4]) .toBe (55)
+   expect (m [5]) .toBe (0)
+   expect (m [6]) .toBe (7)
+   expect (m [7]) .toBe (8)
+   expect (m [8]) .toBe (1)
+})
