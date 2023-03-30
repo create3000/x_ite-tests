@@ -1,6 +1,8 @@
 const
    X3D     = require ("../../../X3D"),
-   Matrix3 = X3D .require ("standard/Math/Numbers/Matrix3")
+   Matrix3 = X3D .require ("standard/Math/Numbers/Matrix3"),
+   Vector2 = X3D .require ("standard/Math/Numbers/Vector2"),
+   Vector3 = X3D .require ("standard/Math/Numbers/Vector3")
 
 test ("constructor", () =>
 {
@@ -99,4 +101,46 @@ test ("determinant2", () =>
    const d = new Matrix3 (1,2,3, 4,3,1, 2,1,3) .determinant2 ()
 
    expect (d) .toBe (-5)
+})
+
+test ("multVecMatrix2", () =>
+{
+   // https://www.wolframalpha.com/calculators/determinant-calculator
+
+   const v = new Matrix3 (1, 2, 3, 4, 5, 6, 7, 8, 9) .multVecMatrix (new Vector2 (10, 11))
+
+   expect (v [0]) .toBeCloseTo (61 / 105)
+   expect (v [1]) .toBeCloseTo (83 / 105)
+})
+
+test ("multVecMatrix3", () =>
+{
+   // https://www.wolframalpha.com/calculators/determinant-calculator
+
+   const v = new Matrix3 (1, 2, 3, 4, 5, 6, 7, 8, 9) .multVecMatrix (new Vector3 (10, 11, 12))
+
+   expect (v [0]) .toBe (138)
+   expect (v [1]) .toBe (171)
+   expect (v [2]) .toBe (204)
+})
+
+test ("multMatrixVec2", () =>
+{
+   // https://www.wolframalpha.com/calculators/determinant-calculator
+
+   const v = new Matrix3 (1, 2, 3, 4, 5, 6, 7, 8, 9) .multMatrixVec (new Vector2 (10, 11))
+
+   expect (v [0]) .toBeCloseTo (35  / 167)
+   expect (v [1]) .toBeCloseTo (101 / 167)
+})
+
+test ("multMatrixVec3", () =>
+{
+   // https://www.wolframalpha.com/calculators/determinant-calculator
+
+   const v = new Matrix3 (1, 2, 3, 4, 5, 6, 7, 8, 9) .multMatrixVec (new Vector3 (10, 11, 12))
+
+   expect (v [0]) .toBe (68)
+   expect (v [1]) .toBe (167)
+   expect (v [2]) .toBe (266)
 })
