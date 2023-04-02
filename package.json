@@ -17,9 +17,9 @@
   },
   "homepage": "https://github.com/create3000/unit-tests#readme",
   "dependencies": {
-    "@webcomponents/custom-elements": "^1.5.1",
+    "@webcomponents/custom-elements": "^1.6.0",
     "canvas": "^2.11.0",
-    "jest": "^29.4.3",
+    "jest": "^29.5.0",
     "jsdom-global": "^3.0.2"
   }
 }
