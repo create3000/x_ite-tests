@@ -70,6 +70,15 @@ test ("negate", () =>
    expect (v1 [1]) .toBe (-3)
    expect (v1 [2]) .toBe (-4)
    expect (v1 [3]) .toBe (-5)
+
+   const v2 = new Vector4 (-2, -3, -4, -5)
+
+   v2 .negate ()
+
+   expect (v2 [0]) .toBe (2)
+   expect (v2 [1]) .toBe (3)
+   expect (v2 [2]) .toBe (4)
+   expect (v2 [3]) .toBe (5)
 })
 
 test ("inverse", () =>
