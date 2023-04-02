@@ -72,6 +72,30 @@ test ("set2", () =>
       0, 6, 0,
       2, 3, 1,
    ])
+
+   m1 .set (t, 2, s)
+
+   expect (m1 [0]) .toBeCloseTo (-2.080734182735712)
+   expect (m1 [1]) .toBeCloseTo (4.546487134128409)
+   expect (m1 [2]) .toBeCloseTo (0)
+   expect (m1 [3]) .toBeCloseTo (-5.45578456095409)
+   expect (m1 [4]) .toBeCloseTo (-2.4968810192828546)
+   expect (m1 [5]) .toBeCloseTo (0)
+   expect (m1 [6]) .toBeCloseTo (2)
+   expect (m1 [7]) .toBeCloseTo (3)
+   expect (m1 [8]) .toBeCloseTo (1)
+
+   m1 .set (null, 5, null)
+
+   expect (m1 [0]) .toBeCloseTo ( Math .cos (5))
+   expect (m1 [1]) .toBeCloseTo ( Math .sin (5))
+   expect (m1 [2]) .toBeCloseTo (0)
+   expect (m1 [3]) .toBeCloseTo (-Math .sin (5))
+   expect (m1 [4]) .toBeCloseTo ( Math .cos (5))
+   expect (m1 [5]) .toBeCloseTo (0)
+   expect (m1 [6]) .toBeCloseTo (0)
+   expect (m1 [7]) .toBeCloseTo (0)
+   expect (m1 [8]) .toBeCloseTo (1)
 })
 
 test ("inverse", () =>

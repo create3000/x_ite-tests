@@ -68,6 +68,7 @@ test ("set2", () =>
    const
       m1 = new Matrix4 (),
       t  = new Vector3 (2, 3, 4),
+      r  = new Rotation4 (2, 3, 4, 5),
       s  = new Vector3 (5, 6, 7)
 
    m1 .set (t, null, s)
@@ -78,6 +79,25 @@ test ("set2", () =>
       0, 0, 7, 0,
       2, 3, 4, 1,
    ])
+
+   m1 .set (t, r, s)
+
+   expect (m1 [ 0]) .toBeCloseTo (1.91233700630701)
+   expect (m1 [ 1]) .toBeCloseTo (-2.820316230908796)
+   expect (m1 [ 2]) .toBeCloseTo (3.6590686700280917)
+   expect (m1 [ 3]) .toBeCloseTo (0)
+   expect (m1 [ 4]) .toBeCloseTo (5.1628733614577165)
+   expect (m1 [ 5]) .toBeCloseTo (3.03584352605473)
+   expect (m1 [ 6]) .toBeCloseTo (-0.35831932526990584)
+   expect (m1 [ 7]) .toBeCloseTo (0)
+   expect (m1 [ 8]) .toBeCloseTo (-2.356150095690409)
+   expect (m1 [ 9]) .toBeCloseTo (4.567858276338269)
+   expect (m1 [10]) .toBeCloseTo (4.752181340591503)
+   expect (m1 [11]) .toBeCloseTo (0)
+   expect (m1 [12]) .toBeCloseTo (2)
+   expect (m1 [13]) .toBeCloseTo (3)
+   expect (m1 [14]) .toBeCloseTo (4)
+   expect (m1 [15]) .toBeCloseTo (1)
 })
 
 test ("inverse", () =>
