@@ -96,6 +96,19 @@ test ("set2", () =>
    expect (m1 [6]) .toBeCloseTo (0)
    expect (m1 [7]) .toBeCloseTo (0)
    expect (m1 [8]) .toBeCloseTo (1)
+
+   m1 .set (null, Math .PI / 4, null)
+
+   expect (m1 [0]) .toBeCloseTo (Math .sqrt (1/2))
+   expect (m1 [1]) .toBeCloseTo (Math .sqrt (1/2))
+   expect (m1 [2]) .toBeCloseTo (0)
+   expect (m1 [3]) .toBeCloseTo (-Math .sqrt (1/2))
+   expect (m1 [4]) .toBeCloseTo ( Math .sqrt (1/2))
+   expect (m1 [5]) .toBeCloseTo (0)
+   expect (m1 [6]) .toBeCloseTo (0)
+   expect (m1 [7]) .toBeCloseTo (0)
+   expect (m1 [8]) .toBeCloseTo (1)
+
 })
 
 test ("inverse", () =>
