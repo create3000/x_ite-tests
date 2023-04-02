@@ -35,6 +35,24 @@ test ("constructor", () =>
    expect (m2 .order)  .toBe (2)
 })
 
+test ("set", () =>
+{
+   const m1 = new Matrix2 (2,3, 4,5)
+
+   m1 .set ()
+
+   expect ([... m1]) .toEqual ([
+      1, 0,
+      0, 1,
+   ])
+
+   m1 .set (2,3, 4,5)
+
+   expect ([... m1]) .toEqual ([
+      2,3, 4,5
+   ])
+})
+
 test ("inverse", () =>
 {
    // https://www.wolframalpha.com/calculators/matrix-inverse-calculator
