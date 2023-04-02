@@ -43,7 +43,7 @@ test ("constructor", () =>
    expect (m2 .order)  .toBe (4)
 })
 
-test ("set", () =>
+test ("set1", () =>
 {
    const m1 = new Matrix4 (2,3,4,5, 6,7,8,9, 10,11,12,13, 14,15,16,17)
 
@@ -60,6 +60,23 @@ test ("set", () =>
 
    expect ([... m1]) .toEqual ([
       2,3,4,5, 6,7,8,9, 10,11,12,13, 14,15,16,17
+   ])
+})
+
+test ("set2", () =>
+{
+   const
+      m1 = new Matrix4 (),
+      t  = new Vector3 (2, 3, 4),
+      s  = new Vector3 (5, 6, 7)
+
+   m1 .set (t, null, s)
+
+   expect ([... m1]) .toEqual ([
+      5, 0, 0, 0,
+      0, 6, 0, 0,
+      0, 0, 7, 0,
+      2, 3, 4, 1,
    ])
 })
 
