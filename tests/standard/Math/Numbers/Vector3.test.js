@@ -150,6 +150,19 @@ test ("divVec", () =>
    expect (v1 [2]) .toBeCloseTo (4 / 8)
 })
 
+test ("cross", () =>
+{
+   const
+      v1 = new Vector3 (2, 3, 4),
+      v2 = new Vector3 (6, 7, 8)
+
+   v1 .cross (v2)
+
+   expect (v1 [0]) .toBeCloseTo (-4)
+   expect (v1 [1]) .toBeCloseTo (8)
+   expect (v1 [2]) .toBeCloseTo (-4)
+})
+
 test ("normalize", () =>
 {
    const
