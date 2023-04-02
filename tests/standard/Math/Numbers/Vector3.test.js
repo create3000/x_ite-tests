@@ -158,9 +158,9 @@ test ("cross", () =>
 
    v1 .cross (v2)
 
-   expect (v1 [0]) .toBeCloseTo (-4)
-   expect (v1 [1]) .toBeCloseTo (8)
-   expect (v1 [2]) .toBeCloseTo (-4)
+   expect (v1 [0]) .toBe (-4)
+   expect (v1 [1]) .toBe (8)
+   expect (v1 [2]) .toBe (-4)
 })
 
 test ("normalize", () =>
