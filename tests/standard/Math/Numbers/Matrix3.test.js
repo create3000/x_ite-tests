@@ -39,6 +39,22 @@ test ("constructor", () =>
    expect (m2 .order)  .toBe (3)
 })
 
+test ("get1", () =>
+{
+   const
+      m1 = new Matrix3 (2,0,0, 0,6,0, 8,9,1),
+      t  = new Vector2 (0, 0),
+      s  = new Vector2 (1, 1)
+
+   m1 .get (t, null, s)
+
+   expect (t [0]) .toBeCloseTo (8)
+   expect (t [1]) .toBeCloseTo (9)
+
+   expect (s [0]) .toBeCloseTo (2)
+   expect (s [1]) .toBeCloseTo (6)
+})
+
 test ("set1", () =>
 {
    const m1 = new Matrix3 (2,3,4, 5,6,7, 8,9,10)
