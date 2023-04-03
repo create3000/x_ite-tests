@@ -2,7 +2,8 @@ const
    X3D     = require ("../../../X3D"),
    Matrix3 = X3D .require ("standard/Math/Numbers/Matrix3"),
    Vector2 = X3D .require ("standard/Math/Numbers/Vector2"),
-   Vector3 = X3D .require ("standard/Math/Numbers/Vector3")
+   Vector3 = X3D .require ("standard/Math/Numbers/Vector3"),
+   Complex = X3D .require ("standard/Math/Numbers/Complex")
 
 test ("constructor", () =>
 {
@@ -53,6 +54,20 @@ test ("get1", () =>
 
    expect (s [0]) .toBeCloseTo (2)
    expect (s [1]) .toBeCloseTo (6)
+
+   const
+      m2 = new Matrix3 (),
+      r  = new Vector3 (0, 0, 0),
+      c  = new Complex .Polar (1, 5)
+
+   m2 .rotate (5)
+   m2 .get (null, r)
+
+   expect (r [0]) .toBeCloseTo (c .real)
+   expect (r [1]) .toBeCloseTo (c .imag)
+   expect (r [0]) .toBeCloseTo (0.2836621854632263)
+   expect (r [1]) .toBeCloseTo (-0.9589242746631387)
+   expect (r [2]) .toBeCloseTo (-1.2831853071795865)
 })
 
 test ("set1", () =>

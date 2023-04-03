@@ -59,6 +59,19 @@ test ("get1", () =>
    expect (s [0]) .toBeCloseTo (2)
    expect (s [1]) .toBeCloseTo (7)
    expect (s [2]) .toBeCloseTo (12)
+
+   const
+      m2 = new Matrix4 (),
+      a  = new Vector3 (2, 3, 4) .normalize (),
+      r  = new Rotation4 ()
+
+   m2 .rotate (new Rotation4 (... a, 5))
+   m2 .get (null, r)
+
+   expect (r [0]) .toBeCloseTo (-0.3713906763541037)
+   expect (r [1]) .toBeCloseTo (-0.5570860145311556)
+   expect (r [2]) .toBeCloseTo (-0.7427813527082074)
+   expect (r [3]) .toBeCloseTo (1.2831853071795865)
 })
 
 test ("set1", () =>
