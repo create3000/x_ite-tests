@@ -67,7 +67,7 @@ test ("get1", () =>
    expect (r [1]) .toBeCloseTo (c .imag)
    expect (r [0]) .toBeCloseTo (0.2836621854632263)
    expect (r [1]) .toBeCloseTo (-0.9589242746631387)
-   expect (r [2]) .toBeCloseTo (-1.2831853071795865)
+   expect (r [2]) .toBeCloseTo (-Math.PI * 2 + 5)
 })
 
 test ("set1", () =>
