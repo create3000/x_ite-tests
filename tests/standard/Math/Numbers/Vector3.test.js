@@ -43,7 +43,7 @@ test ("set", () =>
 {
    const v1 = new Vector3 (0, 0, 0)
 
-   expect (v1 .set (2, 3, 4, 5)) .toEqual ({ x:2, y:3, z:4 })
+   expect (v1 .set (2, 3, 4)) .toEqual ({ x:2, y:3, z:4 })
 })
 
 test ("negate", () =>
@@ -264,4 +264,22 @@ test ("max", () =>
    expect (v1 [0]) .toBe (6)
    expect (v1 [1]) .toBe (7)
    expect (v1 [2]) .toBe (8)
+})
+
+test ("equals", () =>
+{
+   const
+      a = new Vector3 (2,3,4),
+      b = new Vector3 (2,3,4)
+
+   expect (a .equals (b)) .toBe (true)
+
+   for (let i = 0; i < a .length; ++ i)
+   {
+      const c = a .copy ()
+
+      c [i] = 0
+
+      expect (a .equals (c)) .toBe (false)
+   }
 })

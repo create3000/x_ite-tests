@@ -1,0 +1,116 @@
+const
+   X3D    = require ("../../../X3D"),
+   Color4 = X3D .require ("standard/Math/Numbers/Color4")
+
+test ("constructor", () =>
+{
+   const c1 = new Color4 (0, 0, 0, 0)
+
+   expect (c1 .r) .toBe (0)
+   expect (c1 .g) .toBe (0)
+   expect (c1 .b) .toBe (0)
+   expect (c1 .a) .toBe (0)
+   expect (c1 [0]) .toBe (0)
+   expect (c1 [1]) .toBe (0)
+   expect (c1 [2]) .toBe (0)
+   expect (c1 [3]) .toBe (0)
+   expect ([... c1]) .toEqual ([0, 0, 0, 0])
+   expect (c1 .length) .toBe (4)
+
+   const c2 = new Color4 (0.1, 0.2, 0.3, 0.4)
+
+   expect (c2 .r) .toBe (0.1)
+   expect (c2 .g) .toBe (0.2)
+   expect (c2 .b) .toBe (0.3)
+   expect (c2 .a) .toBe (0.4)
+   expect (c2 [0]) .toBe (0.1)
+   expect (c2 [1]) .toBe (0.2)
+   expect (c2 [2]) .toBe (0.3)
+   expect (c2 [3]) .toBe (0.4)
+   expect ([... c2]) .toEqual ([0.1, 0.2, 0.3, 0.4])
+   expect (c2 .length) .toBe (4)
+
+   const c3 = new Color4 (2, 3, 4, 5)
+
+   expect (c3 .r) .toBe (1)
+   expect (c3 .g) .toBe (1)
+   expect (c3 .b) .toBe (1)
+   expect (c3 .a) .toBe (1)
+   expect (c3 [0]) .toBe (1)
+   expect (c3 [1]) .toBe (1)
+   expect (c3 [2]) .toBe (1)
+   expect (c3 [3]) .toBe (1)
+   expect ([... c3]) .toEqual ([1, 1, 1, 1])
+   expect (c3 .length) .toBe (4)
+
+   const c4 = new Color4 (0, 0, 0, 0)
+
+   c4 .r = 0.1
+   c4 .g = 0.2
+   c4 .b = 0.3
+   c4 .a = 0.4
+
+   expect (c4 .r) .toBe (0.1)
+   expect (c4 .g) .toBe (0.2)
+   expect (c4 .b) .toBe (0.3)
+   expect (c4 .a) .toBe (0.4)
+   expect (c4 [0]) .toBe (0.1)
+   expect (c4 [1]) .toBe (0.2)
+   expect (c4 [2]) .toBe (0.3)
+   expect (c4 [3]) .toBe (0.4)
+
+   c4 .r = 2
+   c4 .g = 3
+   c4 .b = 4
+   c4 .a = 5
+
+   expect (c4 .r) .toBe (1)
+   expect (c4 .g) .toBe (1)
+   expect (c4 .b) .toBe (1)
+   expect (c4 .a) .toBe (1)
+   expect (c4 [0]) .toBe (1)
+   expect (c4 [1]) .toBe (1)
+   expect (c4 [2]) .toBe (1)
+   expect (c4 [3]) .toBe (1)
+})
+
+test ("copy", () =>
+{
+   const v1 = new Color4 (0.1, 0.2, 0.3, 0.4)
+
+   expect ([... v1 .copy ()]) .toEqual ([0.1, 0.2, 0.3, 0.4])
+})
+
+test ("assign", () =>
+{
+   const
+      v1 = new Color4 (0, 0, 0, 0),
+      v2 = new Color4 (0.1, 0.2, 0.3, 0.4)
+
+   expect ([... v1 .assign (v2)]) .toEqual ([0.1, 0.2, 0.3, 0.4])
+})
+
+test ("set", () =>
+{
+   const v1 = new Color4 (0, 0, 0, 0)
+
+   expect ([... v1 .set (0.1, 0.2, 0.3, 0.4)]) .toEqual ([0.1, 0.2, 0.3, 0.4])
+})
+
+test ("equals", () =>
+{
+   const
+      a = new Color4 (0.1, 0.2, 0.3, 0.4),
+      b = new Color4 (0.1, 0.2, 0.3, 0.4)
+
+   expect (a .equals (b)) .toBe (true)
+
+   for (let i = 0; i < a .length; ++ i)
+   {
+      const c = a .copy ()
+
+      c [i] = 0
+
+      expect (a .equals (c)) .toBe (false)
+   }
+})

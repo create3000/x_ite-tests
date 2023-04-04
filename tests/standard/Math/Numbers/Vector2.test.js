@@ -235,3 +235,21 @@ test ("max", () =>
    expect (v1 [0]) .toBe (6)
    expect (v1 [1]) .toBe (7)
 })
+
+test ("equals", () =>
+{
+   const
+      a = new Vector2 (2,3),
+      b = new Vector2 (2,3)
+
+   expect (a .equals (b)) .toBe (true)
+
+   for (let i = 0; i < a .length; ++ i)
+   {
+      const c = a .copy ()
+
+      c [i] = 0
+
+      expect (a .equals (c)) .toBe (false)
+   }
+})
