@@ -82,6 +82,22 @@ test ("get1", () =>
    expect (r [1]) .toBeCloseTo (0)
    expect (r [2]) .toBeCloseTo (-1)
    expect (r [3]) .toBeCloseTo (Math.PI * 2 - 5)
+
+   const
+      m4 = new Matrix4 (),
+      so = new Rotation4 ()
+
+   m4 .set (null, null, new Vector3 (1, 2, 1), new Rotation4 (0, 0, 1, Math .PI / 4))
+   m4 .get (null, null, s, so)
+
+   expect (s [0]) .toBeCloseTo (2)
+   expect (s [1]) .toBeCloseTo (1)
+   expect (s [2]) .toBeCloseTo (1)
+
+   expect (so [0]) .toBeCloseTo (0)
+   expect (so [1]) .toBeCloseTo (0)
+   expect (so [2]) .toBeCloseTo (-1)
+   expect (so [3]) .toBeCloseTo (Math .PI / 4)
 })
 
 test ("set1", () =>
