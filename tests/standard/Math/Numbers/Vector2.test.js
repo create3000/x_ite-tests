@@ -9,6 +9,8 @@ test ("constructor", () =>
    expect (v1) .toEqual ({ x:0, y:0 })
    expect (v1 [0]) .toBe (0)
    expect (v1 [1]) .toBe (0)
+   expect (v1 .x) .toBe (0)
+   expect (v1 .y) .toBe (0)
    expect ([... v1]) .toEqual ([ 0, 0 ])
    expect (v1 .length) .toBe (2)
 
@@ -17,6 +19,8 @@ test ("constructor", () =>
    expect (v2) .toEqual ({ x:2, y:3 })
    expect (v2 [0]) .toBe (2)
    expect (v2 [1]) .toBe (3)
+   expect (v2 .x) .toBe (2)
+   expect (v2 .y) .toBe (3)
    expect ([... v2]) .toEqual ([ 2, 3 ])
    expect (v2 .length) .toBe (2)
 })
