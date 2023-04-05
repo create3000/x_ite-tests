@@ -98,6 +98,19 @@ test ("get1", () =>
    expect (so [1]) .toBeCloseTo (0)
    expect (so [2]) .toBeCloseTo (-1)
    expect (so [3]) .toBeCloseTo (Math .PI / 4)
+
+   m3 .set (new Vector3 (1, 2, 3), new Rotation4 (1,2,3,4), new Vector3 (1,2,3), new Rotation4 (1,2,3,4))
+
+   const v1 = m3 .multVecMatrix (new Vector3 (2,3,4))
+
+   m3 .get (t, r, s, so)
+   m4 .set (t, r, s, so)
+
+   const v2 = m4 .multVecMatrix (new Vector3 (2,3,4))
+
+   expect (v1 [0]) .toBeCloseTo (v2 [0])
+   expect (v1 [1]) .toBeCloseTo (v2 [1])
+   expect (v1 [2]) .toBeCloseTo (v2 [2])
 })
 
 test ("set1", () =>
