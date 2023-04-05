@@ -1,6 +1,7 @@
 const
    X3D       = require ("../../../X3D"),
-   Rotation4 = X3D .require ("standard/Math/Numbers/Rotation4")
+   Rotation4 = X3D .require ("standard/Math/Numbers/Rotation4"),
+   Vector3   = X3D .require ("standard/Math/Numbers/Vector3")
 
 test ("constructor", () =>
 {
@@ -65,4 +66,26 @@ test ("equals", () =>
 
       expect (a .equals (c)) .toBe (false)
    }
+})
+
+test ("multVecRot", () =>
+{
+   const
+      r1 = new Rotation4 (0,0,1, Math.PI / 4),
+      v1 = r1 .multVecRot (new Vector3 (1, 0, 0))
+
+   expect (v1 [0]) .toBeCloseTo (Math .SQRT1_2)
+   expect (v1 [1]) .toBeCloseTo (Math .SQRT1_2)
+   expect (v1 [2]) .toBeCloseTo (0)
+})
+
+test ("multRotVec", () =>
+{
+   const
+      r1 = new Rotation4 (0,0,1, Math.PI / 4),
+      v1 = r1 .multRotVec (new Vector3 (1, 0, 0))
+
+   expect (v1 [0]) .toBeCloseTo (Math .SQRT1_2)
+   expect (v1 [1]) .toBeCloseTo (-Math .SQRT1_2)
+   expect (v1 [2]) .toBeCloseTo (0)
 })
