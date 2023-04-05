@@ -1,6 +1,7 @@
 const
    X3D       = require ("../../../X3D"),
    Rotation4 = X3D .require ("standard/Math/Numbers/Rotation4"),
+   Matrix4   = X3D .require ("standard/Math/Numbers/Matrix4"),
    Vector3   = X3D .require ("standard/Math/Numbers/Vector3")
 
 test ("constructor", () =>
@@ -72,52 +73,102 @@ test ("multVecRot", () =>
 {
    const
       r1 = new Rotation4 (0,0,1, Math.PI / 4),
-      v1 = r1 .multVecRot (new Vector3 (1, 0, 0))
+      v1 = r1 .multVecRot (new Vector3 (1, 0, 0)),
+      m1 = new Matrix4 () .rotate (r1),
+      w1 = m1 .multVecMatrix (new Vector3 (1, 0, 0))
 
    expect (v1 [0]) .toBeCloseTo (Math .SQRT1_2)
    expect (v1 [1]) .toBeCloseTo (Math .SQRT1_2)
    expect (v1 [2]) .toBeCloseTo (0)
+   expect (v1 [0]) .toBeCloseTo (w1 [0])
+   expect (v1 [1]) .toBeCloseTo (w1 [1])
+   expect (v1 [2]) .toBeCloseTo (w1 [2])
 
    const
       r2 = new Rotation4 (0,1,0, Math.PI / 4),
-      v2 = r2 .multVecRot (new Vector3 (1, 0, 0))
+      v2 = r2 .multVecRot (new Vector3 (1, 0, 0)),
+      m2 = new Matrix4 () .rotate (r2),
+      w2 = m2 .multVecMatrix (new Vector3 (1, 0, 0))
 
    expect (v2 [0]) .toBeCloseTo (Math .SQRT1_2)
    expect (v2 [1]) .toBeCloseTo (0)
    expect (v2 [2]) .toBeCloseTo (-Math .SQRT1_2)
+   expect (v2 [0]) .toBeCloseTo (w2 [0])
+   expect (v2 [1]) .toBeCloseTo (w2 [1])
+   expect (v2 [2]) .toBeCloseTo (w2 [2])
 
    const
       r3 = new Rotation4 (1,0,0, Math.PI / 4),
-      v3 = r3 .multVecRot (new Vector3 (0, 0, 1))
+      v3 = r3 .multVecRot (new Vector3 (0, 0, 1)),
+      m3 = new Matrix4 () .rotate (r3),
+      w3 = m3 .multVecMatrix (new Vector3 (0, 0, 1))
 
    expect (v3 [0]) .toBeCloseTo (0)
    expect (v3 [1]) .toBeCloseTo (-Math .SQRT1_2)
    expect (v3 [2]) .toBeCloseTo (Math .SQRT1_2)
+   expect (v3 [0]) .toBeCloseTo (w3 [0])
+   expect (v3 [1]) .toBeCloseTo (w3 [1])
+   expect (v3 [2]) .toBeCloseTo (w3 [2])
+
+   const
+      r4 = new Rotation4 (1,2,3,4),
+      v4 = r4 .multVecRot (new Vector3 (2,3,4)),
+      m4 = new Matrix4 () .rotate (r4),
+      w4 = m4 .multVecMatrix (new Vector3 (2,3,4))
+
+   expect (v4 [0]) .toBeCloseTo (w4 [0])
+   expect (v4 [1]) .toBeCloseTo (w4 [1])
+   expect (v4 [2]) .toBeCloseTo (w4 [2])
 })
 
 test ("multRotVec", () =>
 {
    const
       r1 = new Rotation4 (0,0,1, Math.PI / 4),
-      v1 = r1 .multRotVec (new Vector3 (1, 0, 0))
+      v1 = r1 .multRotVec (new Vector3 (1, 0, 0)),
+      m1 = new Matrix4 () .rotate (r1),
+      w1 = m1 .multMatrixVec (new Vector3 (1, 0, 0))
 
    expect (v1 [0]) .toBeCloseTo (Math .SQRT1_2)
    expect (v1 [1]) .toBeCloseTo (-Math .SQRT1_2)
    expect (v1 [2]) .toBeCloseTo (0)
+   expect (v1 [0]) .toBeCloseTo (w1 [0])
+   expect (v1 [1]) .toBeCloseTo (w1 [1])
+   expect (v1 [2]) .toBeCloseTo (w1 [2])
 
    const
       r2 = new Rotation4 (0,1,0, Math.PI / 4),
-      v2 = r2 .multRotVec (new Vector3 (1, 0, 0))
+      v2 = r2 .multRotVec (new Vector3 (1, 0, 0)),
+      m2 = new Matrix4 () .rotate (r2),
+      w2 = m2 .multMatrixVec (new Vector3 (1, 0, 0))
 
    expect (v2 [0]) .toBeCloseTo (Math .SQRT1_2)
    expect (v2 [1]) .toBeCloseTo (0)
    expect (v2 [2]) .toBeCloseTo (Math .SQRT1_2)
+   expect (v2 [0]) .toBeCloseTo (w2 [0])
+   expect (v2 [1]) .toBeCloseTo (w2 [1])
+   expect (v2 [2]) .toBeCloseTo (w2 [2])
 
    const
       r3 = new Rotation4 (1,0,0, Math.PI / 4),
-      v3 = r3 .multRotVec (new Vector3 (0, 0, 1))
+      v3 = r3 .multRotVec (new Vector3 (0, 0, 1)),
+      m3 = new Matrix4 () .rotate (r3),
+      w3 = m3 .multMatrixVec (new Vector3 (0, 0, 1))
 
    expect (v3 [0]) .toBeCloseTo (0)
    expect (v3 [1]) .toBeCloseTo (Math .SQRT1_2)
    expect (v3 [2]) .toBeCloseTo (Math .SQRT1_2)
+   expect (v3 [0]) .toBeCloseTo (w3 [0])
+   expect (v3 [1]) .toBeCloseTo (w3 [1])
+   expect (v3 [2]) .toBeCloseTo (w3 [2])
+
+   const
+      r4 = new Rotation4 (1,2,3,4),
+      v4 = r4 .multRotVec (new Vector3 (2,3,4)),
+      m4 = new Matrix4 () .rotate (r4),
+      w4 = m4 .multMatrixVec (new Vector3 (2,3,4))
+
+   expect (v4 [0]) .toBeCloseTo (w4 [0])
+   expect (v4 [1]) .toBeCloseTo (w4 [1])
+   expect (v4 [2]) .toBeCloseTo (w4 [2])
 })
