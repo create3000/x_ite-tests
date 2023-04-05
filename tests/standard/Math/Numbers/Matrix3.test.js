@@ -244,7 +244,7 @@ test ("determinant2", () =>
    expect (d) .toBe (-5)
 })
 
-test ("multVecMatrix3", () =>
+test ("multVecMatrix2", () =>
 {
    // https://www.wolframalpha.com/calculators/determinant-calculator
 

@@ -294,7 +294,7 @@ test ("determinant3", () =>
    expect (d) .toBe (-12)
 })
 
-test ("multVecMatrix4", () =>
+test ("multVecMatrix3", () =>
 {
    // https://www.wolframalpha.com/calculators/determinant-calculator
 
@@ -305,7 +305,7 @@ test ("multVecMatrix4", () =>
    expect (v [2]) .toBeCloseTo (401 / 456)
 })
 
-test ("multVec4Matrix", () =>
+test ("multVec4Matrix4", () =>
 {
    // https://www.wolframalpha.com/calculators/determinant-calculator
 
@@ -317,7 +317,7 @@ test ("multVec4Matrix", () =>
    expect (v [3]) .toBe (760)
 })
 
-test ("multMatrixVec4", () =>
+test ("multMatrixVec3", () =>
 {
    // https://www.wolframalpha.com/calculators/determinant-calculator
 
