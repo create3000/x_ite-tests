@@ -68,6 +68,21 @@ test ("get1", () =>
    expect (r [0]) .toBeCloseTo (0.2836621854632263)
    expect (r [1]) .toBeCloseTo (-0.9589242746631387)
    expect (r [2]) .toBeCloseTo (-Math.PI * 2 + 5)
+
+   const
+      m3 = new Matrix3 (),
+      so = new Vector3 (0, 0, 0)
+
+   m3 .rotate (5)
+   m3 .set (null, null, new Vector2 (1, 2), Math .PI / 4)
+   m3 .get (null, null, s, so)
+
+   expect (s [0]) .toBeCloseTo (2)
+   expect (s [1]) .toBeCloseTo (1)
+
+   expect (so [0]) .toBeCloseTo (Math .SQRT1_2)
+   expect (so [1]) .toBeCloseTo (-Math .SQRT1_2)
+   expect (so [2]) .toBeCloseTo (-Math .PI / 4)
 })
 
 test ("set1", () =>
