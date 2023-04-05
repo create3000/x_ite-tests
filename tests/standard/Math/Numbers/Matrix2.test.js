@@ -70,6 +70,13 @@ test ("inverse", () =>
    expect (m2 [1]) .toBeCloseTo ( 3/7)
    expect (m2 [2]) .toBeCloseTo ( 4/7)
    expect (m2 [3]) .toBeCloseTo (-1/7)
+
+   const m3 = new Matrix2 (1,3, 4,5) .inverse () .inverse ()
+
+   expect (m3 [0]) .toBeCloseTo (1)
+   expect (m3 [1]) .toBeCloseTo (3)
+   expect (m3 [2]) .toBeCloseTo (4)
+   expect (m3 [3]) .toBeCloseTo (5)
 })
 
 test ("multRight", () =>
@@ -110,6 +117,13 @@ test ("transpose", () =>
    expect (m [1]) .toBe (3)
    expect (m [2]) .toBe (2)
    expect (m [3]) .toBe (4)
+
+   const m1 = new Matrix2 (1, 2, 3, 4) .transpose () .transpose ()
+
+   expect (m1 [0]) .toBe (1)
+   expect (m1 [1]) .toBe (2)
+   expect (m1 [2]) .toBe (3)
+   expect (m1 [3]) .toBe (4)
 })
 
 test ("determinant", () =>

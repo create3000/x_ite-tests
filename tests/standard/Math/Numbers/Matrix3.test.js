@@ -250,6 +250,18 @@ test ("inverse", () =>
    expect (m2 [6]) .toBeCloseTo (-5)
    expect (m2 [7]) .toBeCloseTo (65/3)
    expect (m2 [8]) .toBeCloseTo (-35/3)
+
+   const m3 = new Matrix3 (1,3,0.3, 4,5,0.6, 7,8,0.9) .inverse () .inverse ()
+
+   expect (m3 [0]) .toBeCloseTo (1)
+   expect (m3 [1]) .toBeCloseTo (3)
+   expect (m3 [2]) .toBeCloseTo (0.3)
+   expect (m3 [3]) .toBeCloseTo (4)
+   expect (m3 [4]) .toBeCloseTo (5)
+   expect (m3 [5]) .toBeCloseTo (0.6)
+   expect (m3 [6]) .toBeCloseTo (7)
+   expect (m3 [7]) .toBeCloseTo (8)
+   expect (m3 [8]) .toBeCloseTo (0.9)
 })
 
 test ("multRight", () =>
@@ -305,6 +317,18 @@ test ("transpose", () =>
    expect (m [6]) .toBe (3)
    expect (m [7]) .toBe (6)
    expect (m [8]) .toBe (9)
+
+   const m1 = new Matrix3 (1, 2, 3, 4, 5, 6, 7, 8, 9) .transpose () .transpose ()
+
+   expect (m1 [0]) .toBe (1)
+   expect (m1 [1]) .toBe (2)
+   expect (m1 [2]) .toBe (3)
+   expect (m1 [3]) .toBe (4)
+   expect (m1 [4]) .toBe (5)
+   expect (m1 [5]) .toBe (6)
+   expect (m1 [6]) .toBe (7)
+   expect (m1 [7]) .toBe (8)
+   expect (m1 [8]) .toBe (9)
 })
 
 test ("determinant", () =>

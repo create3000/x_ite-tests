@@ -269,6 +269,25 @@ test ("inverse", () =>
    expect (m2 [13]) .toBeCloseTo (50/27)
    expect (m2 [14]) .toBeCloseTo (-25/27)
    expect (m2 [15]) .toBeCloseTo (0)
+
+   const m3 = new Matrix4 (3,2,1,0.1, 2,3,1,0.2, 2,1,3,0.3, 1,2,3,4) .inverse () .inverse ()
+
+   expect (m3 [ 0]) .toBeCloseTo (3)
+   expect (m3 [ 1]) .toBeCloseTo (2)
+   expect (m3 [ 2]) .toBeCloseTo (1,)
+   expect (m3 [ 3]) .toBeCloseTo (0.1)
+   expect (m3 [ 4]) .toBeCloseTo (2)
+   expect (m3 [ 5]) .toBeCloseTo (3)
+   expect (m3 [ 6]) .toBeCloseTo (1)
+   expect (m3 [ 7]) .toBeCloseTo (0.2)
+   expect (m3 [ 8]) .toBeCloseTo (2)
+   expect (m3 [ 9]) .toBeCloseTo (1)
+   expect (m3 [10]) .toBeCloseTo (3)
+   expect (m3 [11]) .toBeCloseTo (0.3)
+   expect (m3 [12]) .toBeCloseTo (1)
+   expect (m3 [13]) .toBeCloseTo (2)
+   expect (m3 [14]) .toBeCloseTo (3)
+   expect (m3 [15]) .toBeCloseTo (4)
 })
 
 test ("multRight", () =>
@@ -345,6 +364,25 @@ test ("transpose", () =>
    expect (m [13]) .toBe (8)
    expect (m [14]) .toBe (12)
    expect (m [15]) .toBe (16)
+
+   const m1 = new Matrix4 (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16) .transpose () .transpose ()
+
+   expect (m1 [ 0]) .toBe (1)
+   expect (m1 [ 1]) .toBe (2)
+   expect (m1 [ 2]) .toBe (3)
+   expect (m1 [ 3]) .toBe (4)
+   expect (m1 [ 4]) .toBe (5)
+   expect (m1 [ 5]) .toBe (6)
+   expect (m1 [ 6]) .toBe (7)
+   expect (m1 [ 7]) .toBe (8)
+   expect (m1 [ 8]) .toBe (9)
+   expect (m1 [ 9]) .toBe (10)
+   expect (m1 [10]) .toBe (11)
+   expect (m1 [11]) .toBe (12)
+   expect (m1 [12]) .toBe (13)
+   expect (m1 [13]) .toBe (14)
+   expect (m1 [14]) .toBe (15)
+   expect (m1 [15]) .toBe (16)
 })
 
 test ("determinant", () =>
