@@ -13,11 +13,20 @@ test ("radians", () =>
 
 test ("degrees", () =>
 {
-   expect (Algorithm .degrees (0)) .toBe (0)
+   expect (Algorithm .degrees (0))            .toBe (0)
    expect (Algorithm .degrees (Math .PI / 2)) .toBeCloseTo (90)
    expect (Algorithm .degrees (Math .PI))     .toBeCloseTo (180)
    expect (Algorithm .degrees (Math .PI * 2)) .toBeCloseTo (360)
    expect (Algorithm .degrees (Math .PI * 4)) .toBeCloseTo (720)
+})
+
+test ("fract", () =>
+{
+   expect (Algorithm .fract (0))    .toBe (0)
+   expect (Algorithm .fract (1.5))  .toBeCloseTo (0.5)
+   expect (Algorithm .fract (2.4))  .toBeCloseTo (0.4)
+   expect (Algorithm .fract (-3.3)) .toBeCloseTo (-0.3)
+   expect (Algorithm .fract (-0.5)) .toBeCloseTo (-0.5)
 })
 
 test ("isPowerOfTwo", () =>
