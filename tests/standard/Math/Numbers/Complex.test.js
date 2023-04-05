@@ -63,6 +63,11 @@ test ("setPolar", () =>
 
    expect (c1 .real) .toBeCloseTo (Math .SQRT1_2)
    expect (c1 .imag) .toBeCloseTo (Math .SQRT1_2)
+
+   c1 .setPolar (1, Math .PI * 5 / 4)
+
+   expect (c1 .real) .toBeCloseTo (-Math .SQRT1_2)
+   expect (c1 .imag) .toBeCloseTo (-Math .SQRT1_2)
 })
 
 test ("equals", () =>
