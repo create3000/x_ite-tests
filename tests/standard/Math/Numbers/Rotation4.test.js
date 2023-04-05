@@ -12,6 +12,18 @@ test ("constructor", () =>
    expect (r1 .angle) .toBe (4)
    expect (r1 .length) .toBe (4)
    expect ([... r1]) .toEqual ([1,2,3,4])
+
+   r1 .x = 5
+   r1 .y = 6
+   r1 .z = 7
+   r1 .angle = 8
+
+   expect (r1 .x) .toBe (5)
+   expect (r1 .y) .toBe (6)
+   expect (r1 .z) .toBe (7)
+   expect (r1 .angle) .toBe (8)
+   expect (r1 .length) .toBe (4)
+   expect ([... r1]) .toEqual ([5,6,7,8])
 })
 
 test ("copy", () =>
