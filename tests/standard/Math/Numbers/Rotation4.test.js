@@ -13,3 +13,44 @@ test ("constructor", () =>
    expect (r1 .length) .toBe (4)
    expect ([... r1]) .toEqual ([1,2,3,4])
 })
+
+test ("copy", () =>
+{
+   const v1 = new Rotation4 (1,2,3,4)
+
+   expect ([... v1 .copy ()]) .toEqual ([1,2,3,4])
+})
+
+test ("assign", () =>
+{
+   const
+      v1 = new Rotation4 (0, 0, 0, 0),
+      v2 = new Rotation4 (1,2,3,4)
+
+   expect ([... v1 .assign (v2)]) .toEqual ([1,2,3,4])
+})
+
+test ("set", () =>
+{
+   const v1 = new Rotation4 (0, 0, 0, 0)
+
+   expect ([... v1 .set (1,2,3,4)]) .toEqual ([1,2,3,4])
+})
+
+test ("equals", () =>
+{
+   const
+      a = new Rotation4 (1,2,3,4),
+      b = new Rotation4 (1,2,3,4)
+
+   expect (a .equals (b)) .toBe (true)
+
+   for (let i = 0; i < a .length; ++ i)
+   {
+      const c = a .copy ()
+
+      c [i] = 0
+
+      expect (a .equals (c)) .toBe (false)
+   }
+})
