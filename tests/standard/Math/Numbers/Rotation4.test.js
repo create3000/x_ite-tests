@@ -77,6 +77,22 @@ test ("multVecRot", () =>
    expect (v1 [0]) .toBeCloseTo (Math .SQRT1_2)
    expect (v1 [1]) .toBeCloseTo (Math .SQRT1_2)
    expect (v1 [2]) .toBeCloseTo (0)
+
+   const
+      r2 = new Rotation4 (0,1,0, Math.PI / 4),
+      v2 = r2 .multVecRot (new Vector3 (1, 0, 0))
+
+   expect (v2 [0]) .toBeCloseTo (Math .SQRT1_2)
+   expect (v2 [1]) .toBeCloseTo (0)
+   expect (v2 [2]) .toBeCloseTo (-Math .SQRT1_2)
+
+   const
+      r3 = new Rotation4 (1,0,0, Math.PI / 4),
+      v3 = r3 .multVecRot (new Vector3 (0, 0, 1))
+
+   expect (v3 [0]) .toBeCloseTo (0)
+   expect (v3 [1]) .toBeCloseTo (-Math .SQRT1_2)
+   expect (v3 [2]) .toBeCloseTo (Math .SQRT1_2)
 })
 
 test ("multRotVec", () =>
@@ -88,4 +104,20 @@ test ("multRotVec", () =>
    expect (v1 [0]) .toBeCloseTo (Math .SQRT1_2)
    expect (v1 [1]) .toBeCloseTo (-Math .SQRT1_2)
    expect (v1 [2]) .toBeCloseTo (0)
+
+   const
+      r2 = new Rotation4 (0,1,0, Math.PI / 4),
+      v2 = r2 .multRotVec (new Vector3 (1, 0, 0))
+
+   expect (v2 [0]) .toBeCloseTo (Math .SQRT1_2)
+   expect (v2 [1]) .toBeCloseTo (0)
+   expect (v2 [2]) .toBeCloseTo (Math .SQRT1_2)
+
+   const
+      r3 = new Rotation4 (1,0,0, Math.PI / 4),
+      v3 = r3 .multRotVec (new Vector3 (0, 0, 1))
+
+   expect (v3 [0]) .toBeCloseTo (0)
+   expect (v3 [1]) .toBeCloseTo (Math .SQRT1_2)
+   expect (v3 [2]) .toBeCloseTo (Math .SQRT1_2)
 })
