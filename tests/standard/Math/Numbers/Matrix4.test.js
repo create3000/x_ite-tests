@@ -437,6 +437,40 @@ test ("multMatrixVec4", () =>
    expect (v1 [3]) .toBe (760)
 })
 
+test ("multDirMatrix", () =>
+{
+   // https://www.wolframalpha.com/calculators/determinant-calculator
+
+   const v = new Matrix4 (1, 2, 3, 0, 4, 5, 6, 0, 7, 8, 9, 0, 0, 0, 0, 1) .multDirMatrix (new Vector3 (10, 11, 12))
+
+   expect (v [0]) .toBe (138)
+   expect (v [1]) .toBe (171)
+   expect (v [2]) .toBe (204)
+
+   const v1 = new Matrix4 (1, 2, 3, 0, 4, 5, 6, 0, 7, 8, 9, 0, 0, 0, 0, 1) .transpose () .multDirMatrix (new Vector3 (10, 11, 12))
+
+   expect (v1 [0]) .toBe (68)
+   expect (v1 [1]) .toBe (167)
+   expect (v1 [2]) .toBe (266)
+})
+
+test ("multMatrixDir", () =>
+{
+   // https://www.wolframalpha.com/calculators/determinant-calculator
+
+   const v = new Matrix4 (1, 2, 3, 0, 4, 5, 6, 0, 7, 8, 9, 0, 0, 0, 0, 1) .multMatrixDir (new Vector3 (10, 11, 12))
+
+   expect (v [0]) .toBe (68)
+   expect (v [1]) .toBe (167)
+   expect (v [2]) .toBe (266)
+
+   const v1 = new Matrix4 (1, 2, 3, 0, 4, 5, 6, 0, 7, 8, 9, 0, 0, 0, 0, 1) .transpose () .multMatrixDir (new Vector3 (10, 11, 12))
+
+   expect (v1 [0]) .toBe (138)
+   expect (v1 [1]) .toBe (171)
+   expect (v1 [2]) .toBe (204)
+})
+
 test ("translate", () =>
 {
    // https://www.wolframalpha.com/calculators/determinant-calculator
