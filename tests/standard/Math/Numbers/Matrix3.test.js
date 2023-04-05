@@ -84,14 +84,68 @@ test ("get1", () =>
    expect (so [1]) .toBeCloseTo (-Math .SQRT1_2)
    expect (so [2]) .toBeCloseTo (-Math .PI / 4)
 
+   let v1, v2
+
+   m2 .set ()
+
+   expect ([... m2]) .toEqual ([1, 0, 0,  0, 1, 0,  0, 0, 1])
+
+   m2 .set (new Vector2 (1, 2))
+
+   v1 = m2 .multVecMatrix (new Vector2 (2,3))
+
+   m2 .get (t)
+   m3 .set (t)
+
+   v2 = m3 .multVecMatrix (new Vector2 (2,3))
+
+   expect (v1 [0]) .toBeCloseTo (v2 [0])
+   expect (v1 [1]) .toBeCloseTo (v2 [1])
+
+   m2 .set (new Vector2 (1, 2), 1)
+
+   v1 = m2 .multVecMatrix (new Vector2 (2,3))
+
+   m2 .get (t, r)
+   m3 .set (t, r [2])
+
+   v2 = m3 .multVecMatrix (new Vector2 (2,3))
+
+   expect (v1 [0]) .toBeCloseTo (v2 [0])
+   expect (v1 [1]) .toBeCloseTo (v2 [1])
+
+   m2 .set (new Vector2 (1, 2), 1, new Vector2 (1, 2))
+
+   v1 = m2 .multVecMatrix (new Vector2 (2,3))
+
+   m2 .get (t, r, s)
+   m3 .set (t, r [2], s)
+
+   v2 = m3 .multVecMatrix (new Vector2 (2,3))
+
+   expect (v1 [0]) .toBeCloseTo (v2 [0])
+   expect (v1 [1]) .toBeCloseTo (v2 [1])
+
+   m2 .set (new Vector2 (1, 2), 1, new Vector2 (1, 2), 1)
+
+   v1 = m2 .multVecMatrix (new Vector2 (2,3))
+
+   m2 .get (t, r, s, so)
+   m3 .set (t, r [2], s, so [2])
+
+   v2 = m3 .multVecMatrix (new Vector2 (2,3))
+
+   expect (v1 [0]) .toBeCloseTo (v2 [0])
+   expect (v1 [1]) .toBeCloseTo (v2 [1])
+
    m2 .set (new Vector2 (1, 2), 1, new Vector2 (1, 2), 1, new Vector2 (1, 2))
 
-   const v1 = m2 .multVecMatrix (new Vector2 (2,3))
+   v1 = m2 .multVecMatrix (new Vector2 (2,3))
 
    m2 .get (t, r, s, so, new Vector2 (1, 2))
    m3 .set (t, r [2], s, so [2], new Vector2 (1, 2))
 
-   const v2 = m3 .multVecMatrix (new Vector2 (2,3))
+   v2 = m3 .multVecMatrix (new Vector2 (2,3))
 
    expect (v1 [0]) .toBeCloseTo (v2 [0])
    expect (v1 [1]) .toBeCloseTo (v2 [1])

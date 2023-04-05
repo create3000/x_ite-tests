@@ -99,14 +99,72 @@ test ("get1", () =>
    expect (so [2]) .toBeCloseTo (-1)
    expect (so [3]) .toBeCloseTo (Math .PI / 4)
 
+   let v1, v2
+
+   m3 .set ()
+
+   expect ([... m3]) .toEqual ([1, 0, 0, 0,  0, 1, 0, 0,  0, 0, 1, 0,  0, 0, 0, 1])
+
+   m3 .set (new Vector3 (1, 2, 3))
+
+   v1 = m3 .multVecMatrix (new Vector3 (2,3,4))
+
+   m3 .get (t)
+   m4 .set (t)
+
+   v2 = m4 .multVecMatrix (new Vector3 (2,3,4))
+
+   expect (v1 [0]) .toBeCloseTo (v2 [0])
+   expect (v1 [1]) .toBeCloseTo (v2 [1])
+   expect (v1 [2]) .toBeCloseTo (v2 [2])
+
+   m3 .set (new Vector3 (1, 2, 3), new Rotation4 (1,2,3,4))
+
+   v1 = m3 .multVecMatrix (new Vector3 (2,3,4))
+
+   m3 .get (t, r)
+   m4 .set (t, r)
+
+   v2 = m4 .multVecMatrix (new Vector3 (2,3,4))
+
+   expect (v1 [0]) .toBeCloseTo (v2 [0])
+   expect (v1 [1]) .toBeCloseTo (v2 [1])
+   expect (v1 [2]) .toBeCloseTo (v2 [2])
+
+   m3 .set (new Vector3 (1, 2, 3), new Rotation4 (1,2,3,4), new Vector3 (1,2,3))
+
+   v1 = m3 .multVecMatrix (new Vector3 (2,3,4))
+
+   m3 .get (t, r, s)
+   m4 .set (t, r, s)
+
+   v2 = m4 .multVecMatrix (new Vector3 (2,3,4))
+
+   expect (v1 [0]) .toBeCloseTo (v2 [0])
+   expect (v1 [1]) .toBeCloseTo (v2 [1])
+   expect (v1 [2]) .toBeCloseTo (v2 [2])
+
+   m3 .set (new Vector3 (1, 2, 3), new Rotation4 (1,2,3,4), new Vector3 (1,2,3), new Rotation4 (1,2,3,4))
+
+   v1 = m3 .multVecMatrix (new Vector3 (2,3,4))
+
+   m3 .get (t, r, s, so)
+   m4 .set (t, r, s, so)
+
+   v2 = m4 .multVecMatrix (new Vector3 (2,3,4))
+
+   expect (v1 [0]) .toBeCloseTo (v2 [0])
+   expect (v1 [1]) .toBeCloseTo (v2 [1])
+   expect (v1 [2]) .toBeCloseTo (v2 [2])
+
    m3 .set (new Vector3 (1, 2, 3), new Rotation4 (1,2,3,4), new Vector3 (1,2,3), new Rotation4 (1,2,3,4), new Vector3 (1,2,3))
 
-   const v1 = m3 .multVecMatrix (new Vector3 (2,3,4))
+   v1 = m3 .multVecMatrix (new Vector3 (2,3,4))
 
    m3 .get (t, r, s, so, new Vector3 (1,2,3))
    m4 .set (t, r, s, so, new Vector3 (1,2,3))
 
-   const v2 = m4 .multVecMatrix (new Vector3 (2,3,4))
+   v2 = m4 .multVecMatrix (new Vector3 (2,3,4))
 
    expect (v1 [0]) .toBeCloseTo (v2 [0])
    expect (v1 [1]) .toBeCloseTo (v2 [1])
