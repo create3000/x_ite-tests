@@ -137,6 +137,10 @@ test ("multVecMatrix1", () =>
    const v = new Matrix2 (1, 2, 3, 4) .multVecMatrix (5)
 
    expect (v) .toBeCloseTo (8 / 14)
+
+   const v1 = new Matrix2 (1, 2, 3, 4) .transpose () .multVecMatrix (5)
+
+   expect (v1) .toBeCloseTo (7 / 19)
 })
 
 test ("multVecMatrix2", () =>
@@ -147,6 +151,11 @@ test ("multVecMatrix2", () =>
 
    expect (v [0]) .toBe (23)
    expect (v [1]) .toBe (34)
+
+   const v1 = new Matrix2 (1, 2, 3, 4) .transpose () .multVecMatrix (new Vector2 (5, 6))
+
+   expect (v1 [0]) .toBe (17)
+   expect (v1 [1]) .toBe (39)
 })
 
 test ("multMatrixVec1", () =>
@@ -156,6 +165,10 @@ test ("multMatrixVec1", () =>
    const v = new Matrix2 (1, 2, 3, 4) .multMatrixVec (5)
 
    expect (v) .toBeCloseTo (7 / 19)
+
+   const v1 = new Matrix2 (1, 2, 3, 4) .transpose () .multMatrixVec (5)
+
+   expect (v1) .toBeCloseTo (8 / 14)
 })
 
 test ("multMatrixVec2", () =>
@@ -166,6 +179,11 @@ test ("multMatrixVec2", () =>
 
    expect (v [0]) .toBe (17)
    expect (v [1]) .toBe (39)
+
+   const v1 = new Matrix2 (1, 2, 3, 4) .transpose () .multMatrixVec (new Vector2 (5, 6))
+
+   expect (v1 [0]) .toBe (23)
+   expect (v1 [1]) .toBe (34)
 })
 
 test ("copy", () =>
