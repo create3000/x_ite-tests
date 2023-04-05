@@ -20,6 +20,17 @@ test ("degrees", () =>
    expect (Algorithm .degrees (Math .PI * 4)) .toBeCloseTo (720)
 })
 
+test ("random", () =>
+{
+   for (let i = 0; i < 10; ++ i)
+   {
+      const v = Algorithm .random (-2, 2)
+
+      expect (v) .toBeGreaterThanOrEqual (-2)
+      expect (v) .toBeLessThanOrEqual (2)
+   }
+})
+
 test ("fract", () =>
 {
    expect (Algorithm .fract (0))    .toBe (0)
