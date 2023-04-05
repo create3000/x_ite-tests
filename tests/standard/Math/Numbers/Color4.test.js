@@ -114,3 +114,12 @@ test ("equals", () =>
       expect (a .equals (c)) .toBe (false)
    }
 })
+
+test ("getHSVA", () =>
+{
+   const c = new Color4 (0, 0, 0, 0)
+
+   expect (c .set (0, 0, 0, 0) .getHSVA ([ ])) .toEqual ([0, 0, 0, 0])
+   expect (c .set (1, 1, 1, 1) .getHSVA ([ ])) .toEqual ([0, 0, 1, 1])
+   expect (c .set (1, 0, 0, 1) .getHSVA ([ ])) .toEqual ([0, 1, 1, 1])
+})
