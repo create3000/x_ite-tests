@@ -107,5 +107,7 @@ test ("getHSV", () =>
 {
    const c = new Color3 (0, 0, 0)
 
+   expect (c .set (0, 0, 0) .getHSV ([ ])) .toEqual ([0, 0, 0])
+   expect (c .set (1, 1, 1) .getHSV ([ ])) .toEqual ([0, 0, 1])
    expect (c .set (1, 0, 0) .getHSV ([ ])) .toEqual ([0, 1, 1])
 })
