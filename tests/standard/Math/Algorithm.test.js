@@ -9,6 +9,11 @@ test ("radians", () =>
    expect (Algorithm .radians (180)) .toBeCloseTo (Math .PI)
    expect (Algorithm .radians (360)) .toBeCloseTo (Math .PI * 2)
    expect (Algorithm .radians (720)) .toBeCloseTo (Math .PI * 4)
+
+   expect (Algorithm .radians (-90))  .toBeCloseTo (-Math .PI / 2)
+   expect (Algorithm .radians (-180)) .toBeCloseTo (-Math .PI)
+   expect (Algorithm .radians (-360)) .toBeCloseTo (-Math .PI * 2)
+   expect (Algorithm .radians (-720)) .toBeCloseTo (-Math .PI * 4)
 })
 
 test ("degrees", () =>
@@ -18,6 +23,11 @@ test ("degrees", () =>
    expect (Algorithm .degrees (Math .PI))     .toBeCloseTo (180)
    expect (Algorithm .degrees (Math .PI * 2)) .toBeCloseTo (360)
    expect (Algorithm .degrees (Math .PI * 4)) .toBeCloseTo (720)
+
+   expect (Algorithm .degrees (-Math .PI / 2)) .toBeCloseTo (-90)
+   expect (Algorithm .degrees (-Math .PI))     .toBeCloseTo (-180)
+   expect (Algorithm .degrees (-Math .PI * 2)) .toBeCloseTo (-360)
+   expect (Algorithm .degrees (-Math .PI * 4)) .toBeCloseTo (-720)
 })
 
 test ("random", () =>
