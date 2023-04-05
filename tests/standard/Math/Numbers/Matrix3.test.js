@@ -95,7 +95,6 @@ test ("get1", () =>
 
    expect (v1 [0]) .toBeCloseTo (v2 [0])
    expect (v1 [1]) .toBeCloseTo (v2 [1])
-
 })
 
 test ("set1", () =>
