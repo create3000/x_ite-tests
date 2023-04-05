@@ -84,12 +84,12 @@ test ("get1", () =>
    expect (so [1]) .toBeCloseTo (-Math .SQRT1_2)
    expect (so [2]) .toBeCloseTo (-Math .PI / 4)
 
-   m2 .set (new Vector2 (1, 2), 1, new Vector2 (1, 2), 1)
+   m2 .set (new Vector2 (1, 2), 1, new Vector2 (1, 2), 1, new Vector2 (1, 2))
 
    const v1 = m2 .multVecMatrix (new Vector2 (2,3))
 
-   m2 .get (t, r, s, so)
-   m3 .set (t, r [2], s, so [2])
+   m2 .get (t, r, s, so, new Vector2 (1, 2))
+   m3 .set (t, r [2], s, so [2], new Vector2 (1, 2))
 
    const v2 = m3 .multVecMatrix (new Vector2 (2,3))
 
