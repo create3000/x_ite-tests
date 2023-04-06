@@ -69,6 +69,24 @@ test ("equals", () =>
    }
 })
 
+test ("inverse", () =>
+{
+   const
+      r1 = new Rotation4 (2,3,4,5) .inverse (),
+      r2 = r1 .copy () .inverse (),
+      r3 = r2 .copy () .inverse ()
+
+   expect (r1 [0]) .not .toBe (r2 [0])
+   expect (r1 [1]) .not .toBe (r2 [1])
+   expect (r1 [2]) .not .toBe (r2 [2])
+   expect (r1 [3]) .toBe (r2 [3])
+
+   expect (r1 [0]) .toBe (r3 [0])
+   expect (r1 [1]) .toBe (r3 [1])
+   expect (r1 [2]) .toBe (r3 [2])
+   expect (r1 [3]) .toBe (r3 [3])
+})
+
 test ("multVecRot", () =>
 {
    const
