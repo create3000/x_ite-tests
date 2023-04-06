@@ -1,6 +1,7 @@
 const
-   X3D    = require ("../../../X3D"),
-   Color4 = X3D .require ("standard/Math/Numbers/Color4")
+   X3D       = require ("../../../X3D"),
+   Color4    = X3D .require ("standard/Math/Numbers/Color4"),
+   Algorithm = X3D .require ("standard/Math/Algorithm")
 
 test ("constructor", () =>
 {
@@ -122,4 +123,64 @@ test ("getHSVA", () =>
    expect (c .set (0, 0, 0, 0) .getHSVA ([ ])) .toEqual ([0, 0, 0, 0])
    expect (c .set (1, 1, 1, 1) .getHSVA ([ ])) .toEqual ([0, 0, 1, 1])
    expect (c .set (1, 0, 0, 1) .getHSVA ([ ])) .toEqual ([0, 1, 1, 1])
+
+   expect (c .set (1, 0.5, 0, 1) .getHSVA ([ ]) [0]) .toBeCloseTo (Algorithm .radians (30))
+   expect (c .set (1, 0.5, 0, 1) .getHSVA ([ ]) [1]) .toBeCloseTo (1)
+   expect (c .set (1, 0.5, 0, 1) .getHSVA ([ ]) [2]) .toBeCloseTo (1)
+   expect (c .set (1, 0.5, 0, 1) .getHSVA ([ ]) [3]) .toBe (1)
+
+   expect (c .set (1, 1, 0, 1) .getHSVA ([ ]) [0]) .toBeCloseTo (Algorithm .radians (60))
+   expect (c .set (1, 1, 0, 1) .getHSVA ([ ]) [1]) .toBeCloseTo (1)
+   expect (c .set (1, 1, 0, 1) .getHSVA ([ ]) [2]) .toBeCloseTo (1)
+   expect (c .set (1, 0.5, 0, 1) .getHSVA ([ ]) [3]) .toBe (1)
+
+   expect (c .set (0.5, 1, 0, 1) .getHSVA ([ ]) [0]) .toBeCloseTo (Algorithm .radians (90))
+   expect (c .set (0.5, 1, 0, 1) .getHSVA ([ ]) [1]) .toBeCloseTo (1)
+   expect (c .set (0.5, 1, 0, 1) .getHSVA ([ ]) [2]) .toBeCloseTo (1)
+   expect (c .set (1, 0.5, 0, 1) .getHSVA ([ ]) [3]) .toBe (1)
+
+   expect (c .set (0, 1, 0, 1) .getHSVA ([ ]) [0]) .toBeCloseTo (Algorithm .radians (120))
+   expect (c .set (0, 1, 0, 1) .getHSVA ([ ]) [1]) .toBeCloseTo (1)
+   expect (c .set (0, 1, 0, 1) .getHSVA ([ ]) [2]) .toBeCloseTo (1)
+   expect (c .set (1, 0.5, 0, 1) .getHSVA ([ ]) [3]) .toBe (1)
+
+   expect (c .set (0, 1, 0.5, 1) .getHSVA ([ ]) [0]) .toBeCloseTo (Algorithm .radians (150))
+   expect (c .set (0, 1, 0.5, 1) .getHSVA ([ ]) [1]) .toBeCloseTo (1)
+   expect (c .set (0, 1, 0.5, 1) .getHSVA ([ ]) [2]) .toBeCloseTo (1)
+   expect (c .set (1, 0.5, 0, 1) .getHSVA ([ ]) [3]) .toBe (1)
+
+   expect (c .set (0, 1, 1, 1) .getHSVA ([ ]) [0]) .toBeCloseTo (Algorithm .radians (180))
+   expect (c .set (0, 1, 1, 1) .getHSVA ([ ]) [1]) .toBeCloseTo (1)
+   expect (c .set (0, 1, 1, 1) .getHSVA ([ ]) [2]) .toBeCloseTo (1)
+   expect (c .set (1, 0.5, 0, 1) .getHSVA ([ ]) [3]) .toBe (1)
+
+   expect (c .set (0, 0.5, 1, 1) .getHSVA ([ ]) [0]) .toBeCloseTo (Algorithm .radians (210))
+   expect (c .set (0, 0.5, 1, 1) .getHSVA ([ ]) [1]) .toBeCloseTo (1)
+   expect (c .set (0, 0.5, 1, 1) .getHSVA ([ ]) [2]) .toBeCloseTo (1)
+   expect (c .set (1, 0.5, 0, 1) .getHSVA ([ ]) [3]) .toBe (1)
+
+   expect (c .set (0, 0, 1, 1) .getHSVA ([ ]) [0]) .toBeCloseTo (Algorithm .radians (240))
+   expect (c .set (0, 0, 1, 1) .getHSVA ([ ]) [1]) .toBeCloseTo (1)
+   expect (c .set (0, 0, 1, 1) .getHSVA ([ ]) [2]) .toBeCloseTo (1)
+   expect (c .set (1, 0.5, 0, 1) .getHSVA ([ ]) [3]) .toBe (1)
+
+   expect (c .set (0.5, 0, 1, 1) .getHSVA ([ ]) [0]) .toBeCloseTo (Algorithm .radians (270))
+   expect (c .set (0.5, 0, 1, 1) .getHSVA ([ ]) [1]) .toBeCloseTo (1)
+   expect (c .set (0.5, 0, 1, 1) .getHSVA ([ ]) [2]) .toBeCloseTo (1)
+   expect (c .set (1, 0.5, 0, 1) .getHSVA ([ ]) [3]) .toBe (1)
+
+   expect (c .set (1, 0, 1, 1) .getHSVA ([ ]) [0]) .toBeCloseTo (Algorithm .radians (300))
+   expect (c .set (1, 0, 1, 1) .getHSVA ([ ]) [1]) .toBeCloseTo (1)
+   expect (c .set (1, 0, 1, 1) .getHSVA ([ ]) [2]) .toBeCloseTo (1)
+   expect (c .set (1, 0.5, 0, 1) .getHSVA ([ ]) [3]) .toBe (1)
+
+   expect (c .set (1, 0, 0.5, 1) .getHSVA ([ ]) [0]) .toBeCloseTo (Algorithm .radians (330))
+   expect (c .set (1, 0, 0.5, 1) .getHSVA ([ ]) [1]) .toBeCloseTo (1)
+   expect (c .set (1, 0, 0.5, 1) .getHSVA ([ ]) [2]) .toBeCloseTo (1)
+   expect (c .set (1, 0.5, 0, 1) .getHSVA ([ ]) [3]) .toBe (1)
+
+   expect (c .set (0.5, 0.5, 0.5, 1) .getHSVA ([ ]) [0]) .toBeCloseTo (0)
+   expect (c .set (0.5, 0.5, 0.5, 1) .getHSVA ([ ]) [1]) .toBeCloseTo (0)
+   expect (c .set (0.5, 0.5, 0.5, 1) .getHSVA ([ ]) [2]) .toBeCloseTo (0.5)
+   expect (c .set (0.5, 0.5, 0.5, 1) .getHSVA ([ ]) [3]) .toBe (1)
 })
