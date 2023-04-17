@@ -27,6 +27,15 @@ test ("constructor", () =>
    expect (r1 .angle) .toBe (8)
    expect (r1 .length) .toBe (4)
    expect ([... r1]) .toEqual ([5,6,7,8])
+
+   const r2 = new Rotation4 ()
+
+   expect (r2 .x) .toBe (0)
+   expect (r2 .y) .toBe (0)
+   expect (r2 .z) .toBe (1)
+   expect (r2 .angle) .toBe (0)
+   expect (r2 .length) .toBe (4)
+   expect ([... r2]) .toEqual ([0,0,1,0])
 })
 
 test ("copy", () =>
@@ -269,4 +278,14 @@ test ("getMatrix", () =>
    expect (m2 [6]) .toBeCloseTo (m3 [6])
    expect (m2 [7]) .toBeCloseTo (m3 [7])
    expect (m2 [8]) .toBeCloseTo (m3 [8])
+
+   const r2 = new Rotation4 () .setMatrix (r1 .inverse () .getMatrix ())
+
+   if (r1 .getQuaternion () .dot (r2 .getQuaternion ()) < 0)
+      r1 .setQuaternion (r1 .getQuaternion () .negate ())
+
+   expect (r1 [0]) .toBeCloseTo (r2 [0])
+   expect (r1 [1]) .toBeCloseTo (r2 [1])
+   expect (r1 [2]) .toBeCloseTo (r2 [2])
+   expect (r1 [3]) .toBeCloseTo (r2 [3])
 })
