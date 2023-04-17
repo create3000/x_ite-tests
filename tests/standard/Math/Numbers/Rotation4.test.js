@@ -256,9 +256,13 @@ test ("getAxis", () =>
       r1 = new Rotation4 (1,2,3,4),
       a  = r1 .getAxis ()
 
-   expect (r1 [0]) .toBeCloseTo (a [0])
-   expect (r1 [1]) .toBeCloseTo (a [1])
-   expect (r1 [2]) .toBeCloseTo (a [2])
+   expect (a [0]) .toBeCloseTo (1)
+   expect (a [1]) .toBeCloseTo (2)
+   expect (a [2]) .toBeCloseTo (3)
+
+   expect (a [0]) .toBeCloseTo (r1 [0])
+   expect (a [1]) .toBeCloseTo (r1 [1])
+   expect (a [2]) .toBeCloseTo (r1 [2])
 })
 
 test ("getMatrix", () =>
