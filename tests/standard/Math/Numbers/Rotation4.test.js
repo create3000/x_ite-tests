@@ -279,7 +279,7 @@ test ("getMatrix", () =>
    expect (m2 [7]) .toBeCloseTo (m3 [7])
    expect (m2 [8]) .toBeCloseTo (m3 [8])
 
-   const r2 = new Rotation4 () .setMatrix (r1 .inverse () .getMatrix ())
+   const r2 = new Rotation4 () .setMatrix (r1 .normalize () .getMatrix ())
 
    if (r1 .getQuaternion () .dot (r2 .getQuaternion ()) < 0)
       r1 .setQuaternion (r1 .getQuaternion () .negate ())
