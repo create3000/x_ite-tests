@@ -1,8 +1,9 @@
 const
-   X3D       = require ("../../../X3D"),
-   Rotation4 = X3D .require ("standard/Math/Numbers/Rotation4"),
-   Matrix4   = X3D .require ("standard/Math/Numbers/Matrix4"),
-   Vector3   = X3D .require ("standard/Math/Numbers/Vector3")
+   X3D        = require ("../../../X3D"),
+   Rotation4  = X3D .require ("standard/Math/Numbers/Rotation4"),
+   Quaternion = X3D .require ("standard/Math/Numbers/Quaternion"),
+   Matrix4    = X3D .require ("standard/Math/Numbers/Matrix4"),
+   Vector3    = X3D .require ("standard/Math/Numbers/Vector3")
 
 test ("constructor", () =>
 {
@@ -194,4 +195,48 @@ test ("multRotVec", () =>
    expect (v4 [0]) .toBeCloseTo (w4 [0])
    expect (v4 [1]) .toBeCloseTo (w4 [1])
    expect (v4 [2]) .toBeCloseTo (w4 [2])
+})
+
+test ("multLeft", () =>
+{
+   const
+      r  = new Rotation4 (),
+      r1 = new Rotation4 (1,2,3,4),
+      m1 = new Matrix4 () .rotate (r1),
+      r2 = new Rotation4 (2,3,4,5),
+      m2 = new Matrix4 () .rotate (r2)
+
+   r1 .multLeft (r2)
+   m1 .multLeft (m2)
+   m1 .get (null, r)
+
+   if (r1 .getQuaternion (new Quaternion ()) .dot (r .getQuaternion (new Quaternion ())) < 0)
+      r1 .setQuaternion (r1 .getQuaternion (new Quaternion ()) .negate ())
+
+   expect (r1 [0]) .toBeCloseTo (r [0])
+   expect (r1 [1]) .toBeCloseTo (r [1])
+   expect (r1 [2]) .toBeCloseTo (r [2])
+   expect (r1 [3]) .toBeCloseTo (r [3])
+})
+
+test ("multRight", () =>
+{
+   const
+      r  = new Rotation4 (),
+      r1 = new Rotation4 (1,2,3,4),
+      m1 = new Matrix4 () .rotate (r1),
+      r2 = new Rotation4 (2,3,4,5),
+      m2 = new Matrix4 () .rotate (r2)
+
+   r1 .multRight (r2)
+   m1 .multRight (m2)
+   m1 .get (null, r)
+
+   if (r1 .getQuaternion (new Quaternion ()) .dot (r .getQuaternion (new Quaternion ())) < 0)
+      r1 .setQuaternion (r1 .getQuaternion (new Quaternion ()) .negate ())
+
+   expect (r1 [0]) .toBeCloseTo (r [0])
+   expect (r1 [1]) .toBeCloseTo (r [1])
+   expect (r1 [2]) .toBeCloseTo (r [2])
+   expect (r1 [3]) .toBeCloseTo (r [3])
 })
