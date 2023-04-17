@@ -210,8 +210,8 @@ test ("multLeft", () =>
    m1 .multLeft (m2)
    m1 .get (null, r)
 
-   if (r1 .getQuaternion (new Quaternion ()) .dot (r .getQuaternion (new Quaternion ())) < 0)
-      r1 .setQuaternion (r1 .getQuaternion (new Quaternion ()) .negate ())
+   if (r1 .getQuaternion () .dot (r .getQuaternion ()) < 0)
+      r1 .setQuaternion (r1 .getQuaternion () .negate ())
 
    expect (r1 [0]) .toBeCloseTo (r [0])
    expect (r1 [1]) .toBeCloseTo (r [1])
@@ -232,11 +232,41 @@ test ("multRight", () =>
    m1 .multRight (m2)
    m1 .get (null, r)
 
-   if (r1 .getQuaternion (new Quaternion ()) .dot (r .getQuaternion (new Quaternion ())) < 0)
-      r1 .setQuaternion (r1 .getQuaternion (new Quaternion ()) .negate ())
+   if (r1 .getQuaternion () .dot (r .getQuaternion ()) < 0)
+      r1 .setQuaternion (r1 .getQuaternion () .negate ())
 
    expect (r1 [0]) .toBeCloseTo (r [0])
    expect (r1 [1]) .toBeCloseTo (r [1])
    expect (r1 [2]) .toBeCloseTo (r [2])
    expect (r1 [3]) .toBeCloseTo (r [3])
+})
+
+test ("getAxis", () =>
+{
+   const
+      r1 = new Rotation4 (1,2,3,4),
+      a  = r1 .getAxis ()
+
+   expect (r1 [0]) .toBeCloseTo (a [0])
+   expect (r1 [1]) .toBeCloseTo (a [1])
+   expect (r1 [2]) .toBeCloseTo (a [2])
+})
+
+test ("getMatrix", () =>
+{
+   const
+      r1 = new Rotation4 (1,2,3,4),
+      m1 = new Matrix4 () .rotate (r1),
+      m2 = r1 .getMatrix (),
+      m3 = m1 .submatrix
+
+   expect (m2 [0]) .toBeCloseTo (m3 [0])
+   expect (m2 [1]) .toBeCloseTo (m3 [1])
+   expect (m2 [2]) .toBeCloseTo (m3 [2])
+   expect (m2 [3]) .toBeCloseTo (m3 [3])
+   expect (m2 [4]) .toBeCloseTo (m3 [4])
+   expect (m2 [5]) .toBeCloseTo (m3 [5])
+   expect (m2 [6]) .toBeCloseTo (m3 [6])
+   expect (m2 [7]) .toBeCloseTo (m3 [7])
+   expect (m2 [8]) .toBeCloseTo (m3 [8])
 })
