@@ -2,98 +2,63 @@ const
    X3D       = require ("../../X3D"),
    Generator = X3D .require ("x_ite/InputOutput/Generator")
 
+const values = [
+   [NaN, "NaN"],
+   [Infinity, "Infinity"],
+   [-Infinity, "-Infinity"],
+   [0, "0"],
+   [0.00000123456789, "1.234568e-6"],
+   [0.00000123, "1.23e-6"],
+   [0.0000123, "1.23e-5"],
+   [0.000123, "0.000123"],
+   [0.00123, "0.00123"],
+   [0.0123, "0.0123"],
+   [0.123, "0.123"],
+   [1.123, "1.123"],
+   [12.123, "12.123"],
+   [123.123, "123.123"],
+   [1234.123, "1234.123"],
+   [12345.123, "12345.12"],
+   [123456.123, "123456.1"],
+   [1234567.123, "1234567"],
+   [12345678.123, "1.234568e7"],
+   [123456789.123, "1.234568e8"],
+   [1234567890.123, "1.234568e9"],
+   [12345678901.123, "1.234568e10"],
+   [123456789012.123, "1.234568e11"],
+   [-0, "-0"],
+   [-0.00000123, "-1.23e-6"],
+   [-0.0000123, "-1.23e-5"],
+   [-0.000123, "-0.000123"],
+   [-0.00123, "-0.00123"],
+   [-0.0123, "-0.0123"],
+   [-0.123, "-0.123"],
+   [-1.123, "-1.123"],
+   [-12.123, "-12.123"],
+   [-123.123, "-123.123"],
+   [-1234.123, "-1234.123"],
+   [-12345.123, "-12345.12"],
+   [-123456.123, "-123456.1"],
+   [-1234567.123, "-1234567"],
+   [-12345678.123, "-1.234568e7"],
+   [-123456789.123, "-1.234568e8"],
+   [-1234567890.123, "-1.234568e9"],
+   [-12345678901.123, "-1.234568e10"],
+   [-123456789012.123, "-1.234568e11"],
+];
+
 test ("Precision", () =>
 {
    const generator = new Generator ({ })
 
-   expect (generator .Precision (NaN)) .toBe ("NaN")
-   expect (generator .Precision (Infinity)) .toBe ("Infinity")
-   expect (generator .Precision (-Infinity)) .toBe ("-Infinity")
-   expect (generator .Precision (0)) .toBe ("0")
-   expect (generator .Precision (0.00000123456789)) .toBe ("1.234568e-6")
-   expect (generator .Precision (0.00000123)) .toBe ("1.23e-6")
-   expect (generator .Precision (0.0000123)) .toBe ("1.23e-5")
-   expect (generator .Precision (0.000123)) .toBe ("0.000123")
-   expect (generator .Precision (0.00123)) .toBe ("0.00123")
-   expect (generator .Precision (0.0123)) .toBe ("0.0123")
-   expect (generator .Precision (0.123)) .toBe ("0.123")
-   expect (generator .Precision (1.123)) .toBe ("1.123")
-   expect (generator .Precision (12.123)) .toBe ("12.123")
-   expect (generator .Precision (123.123)) .toBe ("123.123")
-   expect (generator .Precision (1234.123)) .toBe ("1234.123")
-   expect (generator .Precision (12345.123)) .toBe ("12345.12")
-   expect (generator .Precision (123456.123)) .toBe ("123456.1")
-   expect (generator .Precision (1234567.123)) .toBe ("1234567")
-   expect (generator .Precision (12345678.123)) .toBe ("1.234568e7")
-   expect (generator .Precision (123456789.123)) .toBe ("1.234568e8")
-   expect (generator .Precision (1234567890.123)) .toBe ("1.234568e9")
-   expect (generator .Precision (12345678901.123)) .toBe ("1.234568e10")
-   expect (generator .Precision (123456789012.123)) .toBe ("1.234568e11")
-   expect (generator .Precision (-0)) .toBe ("-0")
-   expect (generator .Precision (-0.00000123)) .toBe ("-1.23e-6")
-   expect (generator .Precision (-0.0000123)) .toBe ("-1.23e-5")
-   expect (generator .Precision (-0.000123)) .toBe ("-0.000123")
-   expect (generator .Precision (-0.00123)) .toBe ("-0.00123")
-   expect (generator .Precision (-0.0123)) .toBe ("-0.0123")
-   expect (generator .Precision (-0.123)) .toBe ("-0.123")
-   expect (generator .Precision (-1.123)) .toBe ("-1.123")
-   expect (generator .Precision (-12.123)) .toBe ("-12.123")
-   expect (generator .Precision (-123.123)) .toBe ("-123.123")
-   expect (generator .Precision (-1234.123)) .toBe ("-1234.123")
-   expect (generator .Precision (-12345.123)) .toBe ("-12345.12")
-   expect (generator .Precision (-123456.123)) .toBe ("-123456.1")
-   expect (generator .Precision (-1234567.123)) .toBe ("-1234567")
-   expect (generator .Precision (-12345678.123)) .toBe ("-1.234568e7")
-   expect (generator .Precision (-123456789.123)) .toBe ("-1.234568e8")
-   expect (generator .Precision (-1234567890.123)) .toBe ("-1.234568e9")
-   expect (generator .Precision (-12345678901.123)) .toBe ("-1.234568e10")
-   expect (generator .Precision (-123456789012.123)) .toBe ("-1.234568e11")
+   for (const [first, second] of values)
+      expect (generator .Precision (first)) .toBe (second)
 })
 
 test ("DoublePrecision", () =>
 {
    const generator = new Generator ({ doublePrecision: 7 })
 
-   expect (generator .DoublePrecision (NaN)) .toBe ("NaN")
-   expect (generator .DoublePrecision (Infinity)) .toBe ("Infinity")
-   expect (generator .DoublePrecision (-Infinity)) .toBe ("-Infinity")
-   expect (generator .DoublePrecision (0)) .toBe ("0")
-   expect (generator .DoublePrecision (0.00000123456789)) .toBe ("1.234568e-6")
-   expect (generator .DoublePrecision (0.00000123)) .toBe ("1.23e-6")
-   expect (generator .DoublePrecision (0.0000123)) .toBe ("1.23e-5")
-   expect (generator .DoublePrecision (0.000123)) .toBe ("0.000123")
-   expect (generator .DoublePrecision (0.00123)) .toBe ("0.00123")
-   expect (generator .DoublePrecision (0.0123)) .toBe ("0.0123")
-   expect (generator .DoublePrecision (0.123)) .toBe ("0.123")
-   expect (generator .DoublePrecision (1.123)) .toBe ("1.123")
-   expect (generator .DoublePrecision (12.123)) .toBe ("12.123")
-   expect (generator .DoublePrecision (123.123)) .toBe ("123.123")
-   expect (generator .DoublePrecision (1234.123)) .toBe ("1234.123")
-   expect (generator .DoublePrecision (12345.123)) .toBe ("12345.12")
-   expect (generator .DoublePrecision (123456.123)) .toBe ("123456.1")
-   expect (generator .DoublePrecision (1234567.123)) .toBe ("1234567")
-   expect (generator .DoublePrecision (12345678.123)) .toBe ("1.234568e7")
-   expect (generator .DoublePrecision (123456789.123)) .toBe ("1.234568e8")
-   expect (generator .DoublePrecision (1234567890.123)) .toBe ("1.234568e9")
-   expect (generator .DoublePrecision (12345678901.123)) .toBe ("1.234568e10")
-   expect (generator .DoublePrecision (123456789012.123)) .toBe ("1.234568e11")
-   expect (generator .DoublePrecision (-0)) .toBe ("-0")
-   expect (generator .DoublePrecision (-0.00000123)) .toBe ("-1.23e-6")
-   expect (generator .DoublePrecision (-0.0000123)) .toBe ("-1.23e-5")
-   expect (generator .DoublePrecision (-0.000123)) .toBe ("-0.000123")
-   expect (generator .DoublePrecision (-0.00123)) .toBe ("-0.00123")
-   expect (generator .DoublePrecision (-0.0123)) .toBe ("-0.0123")
-   expect (generator .DoublePrecision (-0.123)) .toBe ("-0.123")
-   expect (generator .DoublePrecision (-1.123)) .toBe ("-1.123")
-   expect (generator .DoublePrecision (-12.123)) .toBe ("-12.123")
-   expect (generator .DoublePrecision (-123.123)) .toBe ("-123.123")
-   expect (generator .DoublePrecision (-1234.123)) .toBe ("-1234.123")
-   expect (generator .DoublePrecision (-12345.123)) .toBe ("-12345.12")
-   expect (generator .DoublePrecision (-123456.123)) .toBe ("-123456.1")
-   expect (generator .DoublePrecision (-1234567.123)) .toBe ("-1234567")
-   expect (generator .DoublePrecision (-12345678.123)) .toBe ("-1.234568e7")
-   expect (generator .DoublePrecision (-123456789.123)) .toBe ("-1.234568e8")
-   expect (generator .DoublePrecision (-1234567890.123)) .toBe ("-1.234568e9")
-   expect (generator .DoublePrecision (-12345678901.123)) .toBe ("-1.234568e10")
-   expect (generator .DoublePrecision (-123456789012.123)) .toBe ("-1.234568e11")
+   for (const [first, second] of values)
+      expect (generator .DoublePrecision (first)) .toBe (second)
 })
