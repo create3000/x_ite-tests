@@ -1,16 +1,11 @@
 require ("jsdom-global") ()
+require ("@webcomponents/custom-elements")
 
-window .HTMLElement = function () { }
-window .HTMLElement .prototype .attachShadow = () => document .createElement ("div")
+//window .HTMLCanvasElement .prototype .getContext = () => null
 
 global .require          = require
 global .HTMLElement      = window .HTMLElement
 global .MutationObserver = window .MutationObserver
+global .customElements   = window .customElements
 
-require ("@webcomponents/custom-elements")
-
-global .customElements = window .customElements
-
-const X3D = require ("../../x_ite/dist/x_ite")
-
-module .exports = X3D
+module .exports = require ("../../x_ite/dist/x_ite")
