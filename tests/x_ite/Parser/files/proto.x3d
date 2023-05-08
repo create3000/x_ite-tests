@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE X3D PUBLIC "ISO//Web3D//DTD X3D 4.0//EN" "http://www.web3d.org/specifications/x3d-4.0.dtd">
+<X3D profile='Interchange' version='4.0' xmlns:xsd='http://www.w3.org/2001/XMLSchema-instance' xsd:noNamespaceSchemaLocation='http://www.web3d.org/specifications/x3d-4.0.xsd'>
+  <head>
+    <component name='Geometry2D' level='2'/>
+    <meta name='created' content='Mon, 08 May 2023 13:25:42 GMT'/>
+    <meta name='comment' content='Rise and Shine'/>
+    <meta name='creator' content='Holger Seelig'/>
+    <meta name='generator' content='Sunrize X3D Editor V1.0.26, https://create3000.github.io/sunrize/'/>
+    <meta name='identifier' content='file:///Users/holger/Desktop/X_ITE/x_ite-tests/tests/x_ite/Parser/files/proto.x3d'/>
+    <meta name='modified' content='Mon, 08 May 2023 13:37:00 GMT'/>
+  </head>
+  <Scene>
+    <ProtoDeclare name='Foo'>
+      <ProtoBody>
+        <Transform DEF='Disk2D'
+            translation='0 3 0'
+            scale='0.1 0.1 0.1'>
+          <Shape>
+            <Appearance>
+              <Material/>
+            </Appearance>
+            <Disk2D
+                innerRadius='1'
+                outerRadius='2'/>
+          </Shape>
+        </Transform>
+      </ProtoBody>
+    </ProtoDeclare>
+    <ProtoInstance name='Foo'/>
+  </Scene>
+</X3D>
