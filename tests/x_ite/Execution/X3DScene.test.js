@@ -80,3 +80,80 @@ test ("properties2", () =>
    expect (scene .routes) .toHaveLength (0)
    expect (scene .routes) .toBeInstanceOf (X3D .RouteArray)
 })
+
+test ("updateUnit", () =>
+{
+   const
+      canvas  = X3D .createBrowser (),
+      Browser = canvas .browser,
+      scene   = Browser .createScene ()
+
+   let angle = scene .getUnit ("angle")
+
+   expect (angle) .toBeInstanceOf (X3D .UnitInfo)
+   expect (angle .category) .toBe ("angle")
+   expect (angle .name) .toBe ("radian")
+   expect (angle .conversionFactor) .toBe (1)
+   expect (angle .conversion_factor) .toBe (1)
+
+   let force = scene .getUnit ("force")
+
+   expect (force) .toBeInstanceOf (X3D .UnitInfo)
+   expect (force .category) .toBe ("force")
+   expect (force .name) .toBe ("newton")
+   expect (force .conversionFactor) .toBe (1)
+   expect (force .conversion_factor) .toBe (1)
+
+   let length = scene .getUnit ("length")
+
+   expect (length) .toBeInstanceOf (X3D .UnitInfo)
+   expect (length .category) .toBe ("length")
+   expect (length .name) .toBe ("metre")
+   expect (length .conversionFactor) .toBe (1)
+   expect (length .conversion_factor) .toBe (1)
+
+   let mass = scene .getUnit ("mass")
+
+   expect (mass) .toBeInstanceOf (X3D .UnitInfo)
+   expect (mass .category) .toBe ("mass")
+   expect (mass .name) .toBe ("kilogram")
+   expect (mass .conversionFactor) .toBe (1)
+   expect (mass .conversion_factor) .toBe (1)
+
+   scene .updateUnit ("angle", "testAngle", 123.456)
+   scene .updateUnit ("force", "testForce", 234.567)
+   scene .updateUnit ("length", "testLength", 345.678)
+   scene .updateUnit ("mass", "testMass", 456.789)
+
+   angle = scene .getUnit ("angle")
+
+   expect (angle) .toBeInstanceOf (X3D .UnitInfo)
+   expect (angle .category) .toBe ("angle")
+   expect (angle .name) .toBe ("testAngle")
+   expect (angle .conversionFactor) .toBeCloseTo (123.456)
+   expect (angle .conversion_factor) .toBeCloseTo (123.456)
+
+   force = scene .getUnit ("force")
+
+   expect (force) .toBeInstanceOf (X3D .UnitInfo)
+   expect (force .category) .toBe ("force")
+   expect (force .name) .toBe ("testForce")
+   expect (force .conversionFactor) .toBeCloseTo (234.567)
+   expect (force .conversion_factor) .toBeCloseTo (234.567)
+
+   length = scene .getUnit ("length")
+
+   expect (length) .toBeInstanceOf (X3D .UnitInfo)
+   expect (length .category) .toBe ("length")
+   expect (length .name) .toBe ("testLength")
+   expect (length .conversionFactor) .toBeCloseTo (345.678)
+   expect (length .conversion_factor) .toBeCloseTo (345.678)
+
+   mass = scene .getUnit ("mass")
+
+   expect (mass) .toBeInstanceOf (X3D .UnitInfo)
+   expect (mass .category) .toBe ("mass")
+   expect (mass .name) .toBe ("testMass")
+   expect (mass .conversionFactor) .toBeCloseTo (456.789)
+   expect (mass .conversion_factor) .toBeCloseTo (456.789)
+})
