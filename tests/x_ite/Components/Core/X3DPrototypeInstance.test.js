@@ -29,6 +29,8 @@ Test { }`))
    expect (scene .rootNodes [0] .getValue () .getBody () .rootNodes) .toHaveLength (1)
    expect (scene .rootNodes [0] .getValue () .getBody () .rootNodes [0] .getNodeTypeName ()) .toBe ("Transform")
 
+   const rootNodes = scene .rootNodes [0] .getValue () .getBody () .rootNodes
+
    scene .rootNodes [0] .getValue () .update ()
 
    expect (scene .rootNodes [0] .getNodeTypeName ()) .toBe ("Test")
@@ -36,4 +38,6 @@ Test { }`))
    expect (scene .rootNodes [0] .test) .toBe (true)
    expect (scene .rootNodes [0] .getValue () .getBody () .rootNodes) .toHaveLength (1)
    expect (scene .rootNodes [0] .getValue () .getBody () .rootNodes [0] .getNodeTypeName ()) .toBe ("Transform")
+   expect (scene .rootNodes [0] .getValue () .getBody () .rootNodes) .not .toBe (rootNodes)
+   expect (scene .rootNodes [0] .getValue () .getBody () .rootNodes [0]) .not .toBe (rootNodes [0])
 })
