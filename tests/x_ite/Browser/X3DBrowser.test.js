@@ -56,3 +56,35 @@ test ("createScene", () =>
    expect (scene .routes) .toHaveLength (0)
    expect (scene .routes) .toBeInstanceOf (X3D .RouteArray)
 })
+
+test ("createX3DFromURL", async () =>
+{
+   const
+      canvas  = X3D .createBrowser (),
+      Browser = canvas .browser,
+      scene   = await Browser .createX3DFromURL (new X3D .MFString (`data:model/x3d+vrml,
+PROFILE Interactive
+COMPONENT Shape:1
+
+Transform {
+   children Shape {
+      geometry Box { }
+   }
+}`))
+
+   expect (scene .specificationVersion) .toMatch (/^\d+\.\d+$/)
+   expect (scene .encoding) .toBe ("VRML")
+   expect (scene .profile .name) .toBe ("Interactive")
+   expect (scene .components) .toHaveLength (1)
+   expect (scene .components) .toBeInstanceOf (X3D .ComponentInfoArray)
+   expect (scene .components [0] .name) .toBe ("Shape")
+   expect (scene .worldURL) .toMatch (/^file:\/\/\/.*$/)
+   expect (scene .rootNodes) .toHaveLength (1)
+   expect (scene .rootNodes) .toBeInstanceOf (X3D .MFNode)
+   expect (scene .protos) .toHaveLength (0)
+   expect (scene .protos) .toBeInstanceOf (X3D .ProtoDeclarationArray)
+   expect (scene .externprotos) .toHaveLength (0)
+   expect (scene .externprotos) .toBeInstanceOf (X3D .ExternProtoDeclarationArray)
+   expect (scene .routes) .toHaveLength (0)
+   expect (scene .routes) .toBeInstanceOf (X3D .RouteArray)
+})
