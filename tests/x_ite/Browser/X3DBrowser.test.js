@@ -35,6 +35,79 @@ test ("properties", () =>
    expect (Browser .currentScene) .toBeInstanceOf (X3D .X3DScene)
 })
 
+test ("getProfile", () =>
+{
+   const
+      canvas  = X3D .createBrowser (),
+      Browser = canvas .browser
+
+   const profiles = [
+      "CADInterchange",
+      "Core",
+      "Full",
+      "Immersive",
+      "Interactive",
+      "Interchange",
+      "MedicalInterchange",
+      "MPEG-4",
+   ]
+
+   for (const name of profiles)
+      expect (Browser .getProfile (name) .name) .toBe (name)
+})
+
+test ("getComponent", () =>
+{
+   const
+      canvas  = X3D .createBrowser (),
+      Browser = canvas .browser
+
+   const components = [
+      "CADGeometry",
+      "Core",
+      "CubeMapTexturing",
+      "DIS",
+      "EnvironmentalEffects",
+      "EnvironmentalSensor",
+      "EventUtilities",
+      "Followers",
+      "Geometry2D",
+      "Geometry3D",
+      "Geospatial",
+      "Grouping",
+      "HAnim",
+      "Interpolation",
+      "KeyDeviceSensor",
+      "Layering",
+      "Layout",
+      "Lighting",
+      "Navigation",
+      "Networking",
+      "NURBS",
+      "ParticleSystems",
+      "Picking",
+      "PointingDeviceSensor",
+      "Shaders",
+      "Rendering",
+      "RigidBodyPhysics",
+      "Scripting",
+      "Shape",
+      "Sound",
+      "Text",
+      "Texturing",
+      "Texturing3D",
+      "Time",
+      "VolumeRendering",
+   ]
+
+   const legacy = [
+      "H-Anim",
+   ]
+
+   for (const name of [... components, ... legacy])
+      expect (Browser .getComponent (name) .name) .toBe (name)
+})
+
 test ("createScene", () =>
 {
    const
