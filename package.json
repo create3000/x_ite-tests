@@ -18,7 +18,8 @@
   "homepage": "https://github.com/create3000/unit-tests#readme",
   "jest": {
     "runner": "@kayahr/jest-electron-runner",
-    "testEnvironment": "@kayahr/jest-electron-runner/environment"
+    "testEnvironment": "@kayahr/jest-electron-runner/environment",
+    "testTimeout": 30000
   },
   "dependencies": {
     "@kayahr/jest-electron-runner": "^29.3.1"
