@@ -8,14 +8,21 @@
     <meta name='creator' content='Holger Seelig'/>
     <meta name='generator' content='Sunrize X3D Editor V1.0.26, https://create3000.github.io/sunrize/'/>
     <meta name='identifier' content='file:///Users/holger/Desktop/X_ITE/x_ite-tests/tests/x_ite/Parser/files/proto.x3d'/>
-    <meta name='modified' content='Mon, 08 May 2023 13:37:00 GMT'/>
+    <meta name='modified' content='Mon, 08 May 2023 16:12:20 GMT'/>
   </head>
   <Scene>
     <ProtoDeclare name='Foo'>
+      <ProtoInterface>
+        <field accessType='inputOutput' type='SFVec3f' name='translation' value='0 3 0'/>
+        <field accessType='inputOutput' type='SFRotation' name='rotation'/>
+      </ProtoInterface>
       <ProtoBody>
         <Transform DEF='Disk2D'
-            translation='0 3 0'
             scale='0.1 0.1 0.1'>
+          <IS>
+            <connect nodeField='translation' protoField='translation'/>
+            <connect nodeField='rotation' protoField='rotation'/>
+          </IS>
           <Shape>
             <Appearance>
               <Material/>
