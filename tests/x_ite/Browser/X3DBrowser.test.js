@@ -6,6 +6,7 @@ test ("properties", () =>
       canvas  = X3D .createBrowser (),
       Browser = canvas .browser
 
+   expect (Browser) .toBeInstanceOf (X3D .X3DBrowser)
    expect (Browser .name) .toBe ("X_ITE")
    expect (Browser .version) .toMatch (/^\d+\.\d+\.\d+$/)
    expect (Browser .currentSpeed) .toBe (0)
@@ -41,6 +42,8 @@ test ("createScene", () =>
       Browser = canvas .browser,
       scene   = Browser .createScene ()
 
+   expect (scene) .toBeInstanceOf (X3D .X3DScene)
+   expect (scene) .toBeInstanceOf (X3D .X3DExecutionContext)
    expect (scene .specificationVersion) .toMatch (/^\d+\.\d+$/)
    expect (scene .encoding) .toBe ("SCRIPTED")
    expect (scene .profile) .toBe (null)
@@ -72,6 +75,8 @@ Transform {
    }
 }`))
 
+   expect (scene) .toBeInstanceOf (X3D .X3DScene)
+   expect (scene) .toBeInstanceOf (X3D .X3DExecutionContext)
    expect (scene .specificationVersion) .toMatch (/^\d+\.\d+$/)
    expect (scene .encoding) .toBe ("VRML")
    expect (scene .profile .name) .toBe ("Interactive")

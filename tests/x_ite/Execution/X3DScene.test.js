@@ -8,6 +8,8 @@ test ("properties1", () =>
       profile = Browser .getProfile ("Full"),
       scene   = Browser .createScene (profile)
 
+   expect (scene) .toBeInstanceOf (X3D .X3DScene)
+   expect (scene) .toBeInstanceOf (X3D .X3DExecutionContext)
    expect (scene .specificationVersion) .toMatch (/^\d+\.\d+$/)
    expect (scene .encoding) .toBe ("SCRIPTED")
    expect (scene .profile) .toBe (profile)
@@ -53,6 +55,8 @@ test ("properties2", () =>
    scene .externprotos         = undefined
    scene .routes               = undefined
 
+   expect (scene) .toBeInstanceOf (X3D .X3DScene)
+   expect (scene) .toBeInstanceOf (X3D .X3DExecutionContext)
    expect (scene .specificationVersion) .toBe (specificationVersion)
    expect (scene .encoding) .toBe (encoding)
    expect (scene .profile) .toBe (profile)
