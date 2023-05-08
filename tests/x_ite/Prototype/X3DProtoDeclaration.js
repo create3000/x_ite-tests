@@ -42,10 +42,12 @@ Test { }
    expect (proto .fields [0] .accessType) .toBe (X3D .X3DConstants .inputOutput)
    expect (proto .fields [0] .dataType) .toBe (X3D .X3DConstants .SFNode)
    expect (proto .fields [0] .name) .toBe ("metadata")
+   expect (proto .fields [0] .value) .toBeInstanceOf (X3D .SFNode)
    expect (proto .fields [1]) .toBeInstanceOf (X3D .X3DFieldDefinition)
    expect (proto .fields [1] .accessType) .toBe (X3D .X3DConstants .initializeOnly)
    expect (proto .fields [1] .dataType) .toBe (X3D .X3DConstants .SFVec3f)
    expect (proto .fields [1] .name) .toBe ("size")
+   expect (proto .fields [1] .value) .toBeInstanceOf (X3D .SFVec3f)
 
    proto .name = undefined
    proto .isExternProto = undefined
@@ -59,10 +61,12 @@ Test { }
    expect (proto .fields [0] .accessType) .toBe (X3D .X3DConstants .inputOutput)
    expect (proto .fields [0] .dataType) .toBe (X3D .X3DConstants .SFNode)
    expect (proto .fields [0] .name) .toBe ("metadata")
+   expect (proto .fields [0] .value) .toBeInstanceOf (X3D .SFNode)
    expect (proto .fields [1]) .toBeInstanceOf (X3D .X3DFieldDefinition)
    expect (proto .fields [1] .accessType) .toBe (X3D .X3DConstants .initializeOnly)
    expect (proto .fields [1] .dataType) .toBe (X3D .X3DConstants .SFVec3f)
    expect (proto .fields [1] .name) .toBe ("size")
+   expect (proto .fields [1] .value) .toBeInstanceOf (X3D .SFVec3f)
 
    const instance = proto .newInstance ()
 
