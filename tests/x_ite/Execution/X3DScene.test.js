@@ -5,11 +5,12 @@ test ("properties1", () =>
    const
       canvas  = X3D .createBrowser (),
       Browser = canvas .browser,
-      scene   = Browser .createScene ()
+      profile = Browser .getProfile ("Full"),
+      scene   = Browser .createScene (profile)
 
    expect (scene .specificationVersion) .toMatch (/^\d+\.\d+$/)
    expect (scene .encoding) .toBe ("SCRIPTED")
-   expect (scene .profile) .toBe (null)
+   expect (scene .profile) .toBe (profile)
    expect (scene .components .length) .toBe (0)
    expect (scene .components) .toBeInstanceOf (X3D .ComponentInfoArray)
    expect (scene .worldURL) .toMatch (/^file:\/\/\/.*$/)
