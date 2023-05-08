@@ -1,6 +1,6 @@
 const X3D = require ("../../../X3D")
 
-test ("setProtoNode", async () =>
+test ("update", async () =>
 {
    const
       canvas  = X3D .createBrowser (),
@@ -26,10 +26,14 @@ Test { }`))
    expect (scene .rootNodes [0] .test) .toBe (true)
    expect (scene .protos) .toHaveLength (1)
    expect (scene .protos) .toBeInstanceOf (X3D .ProtoDeclarationArray)
+   expect (scene .rootNodes [0] .getValue () .getBody () .rootNodes) .toHaveLength (1)
+   expect (scene .rootNodes [0] .getValue () .getBody () .rootNodes [0] .getNodeTypeName ()) .toBe ("Transform")
 
    scene .rootNodes [0] .getValue () .update ()
 
    expect (scene .rootNodes [0] .getNodeTypeName ()) .toBe ("Test")
    expect (scene .rootNodes [0] .metadata) .toBe (null)
    expect (scene .rootNodes [0] .test) .toBe (true)
+   expect (scene .rootNodes [0] .getValue () .getBody () .rootNodes) .toHaveLength (1)
+   expect (scene .rootNodes [0] .getValue () .getBody () .rootNodes [0] .getNodeTypeName ()) .toBe ("Transform")
 })
