@@ -14,7 +14,7 @@ test ("constructor", () =>
    expect (v1 .y) .toBe (0)
    expect (v1 .z) .toBe (0)
    expect ([... v1]) .toEqual ([ 0, 0, 0 ])
-   expect (v1 .length) .toBe (3)
+   expect (v1) .toHaveLength (3)
 
    const v2 = new Vector3 (2, 3, 4)
 
@@ -26,7 +26,7 @@ test ("constructor", () =>
    expect (v2 .y) .toBe (3)
    expect (v2 .z) .toBe (4)
    expect ([... v2]) .toEqual ([ 2, 3, 4 ])
-   expect (v2 .length) .toBe (3)
+   expect (v2) .toHaveLength (3)
 })
 
 test ("copy", () =>

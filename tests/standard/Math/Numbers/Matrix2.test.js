@@ -17,7 +17,7 @@ test ("constructor", () =>
       0, 1,
    ])
 
-   expect (m1 .length) .toBe (4)
+   expect (m1) .toHaveLength (4)
    expect (m1 .order)  .toBe (2)
 
    const m2 = new Matrix2 (2,3, 4,5)
@@ -31,7 +31,7 @@ test ("constructor", () =>
       2,3, 4,5
    ])
 
-   expect (m2 .length) .toBe (4)
+   expect (m2) .toHaveLength (4)
    expect (m2 .order)  .toBe (2)
 })
 

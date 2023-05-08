@@ -13,7 +13,7 @@ test ("constructor", () =>
    expect (r1 .y) .toBe (2)
    expect (r1 .z) .toBe (3)
    expect (r1 .angle) .toBe (4)
-   expect (r1 .length) .toBe (4)
+   expect (r1) .toHaveLength (4)
    expect ([... r1]) .toEqual ([1,2,3,4])
 
    r1 .x = 5
@@ -25,7 +25,7 @@ test ("constructor", () =>
    expect (r1 .y) .toBe (6)
    expect (r1 .z) .toBe (7)
    expect (r1 .angle) .toBe (8)
-   expect (r1 .length) .toBe (4)
+   expect (r1) .toHaveLength (4)
    expect ([... r1]) .toEqual ([5,6,7,8])
 
    const r2 = new Rotation4 ()
@@ -34,7 +34,7 @@ test ("constructor", () =>
    expect (r2 .y) .toBe (0)
    expect (r2 .z) .toBe (1)
    expect (r2 .angle) .toBe (0)
-   expect (r2 .length) .toBe (4)
+   expect (r2) .toHaveLength (4)
    expect ([... r2]) .toEqual ([0,0,1,0])
 })
 

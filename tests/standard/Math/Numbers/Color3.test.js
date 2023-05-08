@@ -14,7 +14,7 @@ test ("constructor", () =>
    expect (c1 [1]) .toBe (0)
    expect (c1 [2]) .toBe (0)
    expect ([... c1]) .toEqual ([0, 0, 0])
-   expect (c1 .length) .toBe (3)
+   expect (c1) .toHaveLength (3)
 
    const c2 = new Color3 (0.1, 0.2, 0.3)
 
@@ -25,7 +25,7 @@ test ("constructor", () =>
    expect (c2 [1]) .toBe (0.2)
    expect (c2 [2]) .toBe (0.3)
    expect ([... c2]) .toEqual ([0.1, 0.2, 0.3])
-   expect (c2 .length) .toBe (3)
+   expect (c2) .toHaveLength (3)
 
    const c3 = new Color3 (2, 3, 4)
 
@@ -36,7 +36,7 @@ test ("constructor", () =>
    expect (c3 [1]) .toBe (1)
    expect (c3 [2]) .toBe (1)
    expect ([... c3]) .toEqual ([1, 1, 1])
-   expect (c3 .length) .toBe (3)
+   expect (c3) .toHaveLength (3)
 
    const c4 = new Color3 (0, 0, 0)
 

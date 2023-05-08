@@ -11,7 +11,7 @@ test ("constructor", () =>
    expect (c1 [0]) .toBe (1)
    expect (c1 [1]) .toBe (2)
    expect ([... c1]) .toEqual ([1,2])
-   expect (c1 .length) .toBe (2)
+   expect (c1) .toHaveLength (2)
 
    c1 .real = 5
    c1 .imag = 6
@@ -21,7 +21,7 @@ test ("constructor", () =>
    expect (c1 [0]) .toBe (5)
    expect (c1 [1]) .toBe (6)
    expect ([... c1]) .toEqual ([5,6])
-   expect (c1 .length) .toBe (2)
+   expect (c1) .toHaveLength (2)
 
    c1 [0] = 7
    c1 [1] = 8
@@ -31,7 +31,7 @@ test ("constructor", () =>
    expect (c1 [0]) .toBe (7)
    expect (c1 [1]) .toBe (8)
    expect ([... c1]) .toEqual ([7,8])
-   expect (c1 .length) .toBe (2)
+   expect (c1) .toHaveLength (2)
 })
 
 test ("copy", () =>
