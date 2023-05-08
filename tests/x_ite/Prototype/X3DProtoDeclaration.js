@@ -68,4 +68,11 @@ Test { }
 
    expect (instance) .toBeInstanceOf (X3D .SFNode)
    expect (instance .getNodeTypeName ()) .toBe ("Test")
+
+   const body = instance .getValue () .getBody ()
+
+   expect (body .rootNodes) .toHaveLength (2)
+   expect (body .protos) .toHaveLength (0)
+   expect (body .externprotos) .toHaveLength (0)
+   expect (body .routes) .toHaveLength (1)
 })
