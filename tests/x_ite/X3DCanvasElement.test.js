@@ -61,6 +61,26 @@ test ("oninitialized-property", () => new Promise ((resolve, reject) =>
    canvas [0] .onerror = reject
 }))
 
+test ("onerror-event", () => new Promise ((resolve, reject) =>
+{
+   const canvas = $(`<x3d-canvas></x3d-canvas>`)
+
+   canvas .attr ("src", "https://www.example.com/does-not-exist")
+
+   canvas .on ("initialized", reject)
+   canvas .on ("error", resolve)
+}))
+
+test ("onerror-property", () => new Promise ((resolve, reject) =>
+{
+   const canvas = $(`<x3d-canvas></x3d-canvas>`)
+
+   canvas .attr ("src", "https://www.example.com/does-not-exist")
+
+   canvas [0] .oninitialized = reject
+   canvas [0] .onerror = resolve
+}))
+
 test ("src-property", () => new Promise ((resolve, reject) =>
 {
    const
