@@ -323,3 +323,43 @@ Transform {
    expect (scene .routes) .toBeInstanceOf (X3D .RouteArray)
    expect (scene .getNamedNode ("R") .getNodeTypeName ()) .toBe ("Box")
 })
+
+test ("replaceWorld", async () =>
+{
+   const
+      canvas  = X3D .createBrowser (),
+      Browser = canvas .browser,
+      scene   = await Browser .createX3DFromString (`
+PROFILE Interactive
+
+Transform {
+   children Shape {
+      geometry DEF R Box { }
+   }
+}`)
+
+   Browser .replaceWorld (scene)
+
+   expect (Browser .currentScene) .toBe (scene)
+})
+
+test ("vrml-replaceWorld", async () =>
+{
+   const
+      canvas  = X3D .createBrowser (),
+      Browser = canvas .browser,
+      scene   = await Browser .createX3DFromString (`
+PROFILE Interactive
+
+Transform { }
+Shape { }
+Box { }
+`)
+
+   Browser .replaceWorld (scene .rootNodes)
+
+   expect (Browser .currentScene .rootNodes) .toHaveLength (3)
+
+   for (const [i, node] of Browser .currentScene .rootNodes .entries ())
+      expect (node) .toBe (scene .rootNodes [i])
+})
