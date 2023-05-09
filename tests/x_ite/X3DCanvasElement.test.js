@@ -27,10 +27,12 @@ test ("onload-event", () => new Promise ((resolve, reject) =>
 
    canvas .html (`<X3D profile='Interchange' version='4.0'><Scene></Scene></X3D>`)
 
-   canvas .on ("load", function ()
+   canvas .on ("load", function (event)
    {
       try
       {
+         expect (event .type) .toBe ("load")
+         expect (event .originalEvent) .toBeInstanceOf (CustomEvent)
          expect (this) .toBe (canvas [0])
          resolve ()
       }
@@ -49,10 +51,12 @@ test ("onload-property", () => new Promise ((resolve, reject) =>
 
    canvas .html (`<X3D profile='Interchange' version='4.0'><Scene></Scene></X3D>`)
 
-   canvas [0] .onload = function ()
+   canvas [0] .onload = function (event)
    {
       try
       {
+         expect (event .type) .toBe ("load")
+         expect (event) .toBeInstanceOf (CustomEvent)
          expect (this) .toBe (canvas [0])
          resolve ()
       }
@@ -71,10 +75,12 @@ test ("oninitialized-event", () => new Promise ((resolve, reject) =>
 
    canvas .html (`<X3D profile='Interchange' version='4.0'><Scene></Scene></X3D>`)
 
-   canvas .on ("initialized", function ()
+   canvas .on ("initialized", function (event)
    {
       try
       {
+         expect (event .type) .toBe ("initialized")
+         expect (event .originalEvent) .toBeInstanceOf (CustomEvent)
          expect (this) .toBe (canvas [0])
          resolve ()
       }
@@ -93,10 +99,12 @@ test ("oninitialized-property", () => new Promise ((resolve, reject) =>
 
    canvas .html (`<X3D profile='Interchange' version='4.0'><Scene></Scene></X3D>`)
 
-   canvas [0] .oninitialized = function ()
+   canvas [0] .oninitialized = function (event)
    {
       try
       {
+         expect (event .type) .toBe ("initialized")
+         expect (event) .toBeInstanceOf (CustomEvent)
          expect (this) .toBe (canvas [0])
          resolve ()
       }
@@ -116,10 +124,12 @@ test ("onerror-event", () => new Promise ((resolve, reject) =>
    canvas .attr ("src", "https://www.example.com/does-not-exist")
 
    canvas .on ("initialized", reject)
-   canvas .on ("error", function ()
+   canvas .on ("error", function (event)
    {
       try
       {
+         expect (event .type) .toBe ("error")
+         expect (event .originalEvent) .toBeInstanceOf (CustomEvent)
          expect (this) .toBe (canvas [0])
          resolve ()
       }
@@ -137,10 +147,12 @@ test ("onerror-property", () => new Promise ((resolve, reject) =>
    canvas .attr ("src", "https://www.example.com/does-not-exist")
 
    canvas [0] .oninitialized = reject
-   canvas [0] .onerror = function ()
+   canvas [0] .onerror = function (event)
    {
       try
       {
+         expect (event .type) .toBe ("error")
+         expect (event) .toBeInstanceOf (CustomEvent)
          expect (this) .toBe (canvas [0])
          resolve ()
       }
