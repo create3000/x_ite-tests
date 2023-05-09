@@ -66,6 +66,12 @@ test ("simple-scene-direct", () => new Promise ((resolve, reject) =>
 
    canvas .on ("load", () =>
    {
+      expect (Browser .currentScene .profile .name) .toBe ("Interchange")
+      expect (Browser .currentScene .components) .toHaveLength (3)
+      expect (Browser .currentScene .components [0] .name) .toBe ("Geometry2D")
+      expect (Browser .currentScene .components [1] .name) .toBe ("Geospatial")
+      expect (Browser .currentScene .components [2] .name) .toBe ("HAnim")
+
       expect (Browser .currentScene .rootNodes) .toHaveLength (3)
       expect (Browser .currentScene .rootNodes [0] .getNodeTypeName ()) .toBe ("Arc2D")
       expect (Browser .currentScene .rootNodes [1] .getNodeTypeName ()) .toBe ("GeoTransform")
@@ -103,6 +109,12 @@ test ("simple-scene-later", () => new Promise ((resolve, reject) =>
 
    canvas .on ("load", () =>
    {
+      expect (Browser .currentScene .profile .name) .toBe ("Interchange")
+      expect (Browser .currentScene .components) .toHaveLength (3)
+      expect (Browser .currentScene .components [0] .name) .toBe ("Geometry2D")
+      expect (Browser .currentScene .components [1] .name) .toBe ("Geospatial")
+      expect (Browser .currentScene .components [2] .name) .toBe ("HAnim")
+
       expect (Browser .currentScene .rootNodes) .toHaveLength (3)
       expect (Browser .currentScene .rootNodes [0] .getNodeTypeName ()) .toBe ("Arc2D")
       expect (Browser .currentScene .rootNodes [1] .getNodeTypeName ()) .toBe ("GeoTransform")
