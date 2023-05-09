@@ -1,3 +1,7 @@
+const
+   path = require ("path"),
+   url  = require ("url")
+
 const X3D = require ("../../X3D")
 
 test ("properties", () =>
@@ -367,4 +371,31 @@ Box { }
 
    for (const [i, node] of Browser .currentScene .rootNodes .entries ())
       expect (node) .toBe (scene .rootNodes [i])
+})
+
+test ("loadURL", async () =>
+{
+   const
+      canvas  = X3D .createBrowser (),
+      Browser = canvas .browser
+
+      await Browser .loadURL (new X3D .MFString (`data:model/x3d+vrml,
+PROFILE Interactive
+
+Transform { }
+Shape { }
+Box { }
+`))
+
+   expect (Browser .currentScene .rootNodes) .toHaveLength (3)
+   expect (Browser .currentScene .rootNodes [0] .getNodeTypeName ()) .toBe ("Transform")
+   expect (Browser .currentScene .rootNodes [1] .getNodeTypeName ()) .toBe ("Shape")
+   expect (Browser .currentScene .rootNodes [2] .getNodeTypeName ()) .toBe ("Box")
+
+   await Browser .loadURL (new X3D .MFString (url .pathToFileURL (path .join (__dirname, "files", "replaceWorld.x3d"))))
+
+   expect (Browser .currentScene .rootNodes) .toHaveLength (3)
+   expect (Browser .currentScene .rootNodes [0] .getNodeTypeName ()) .toBe ("Arc2D")
+   expect (Browser .currentScene .rootNodes [1] .getNodeTypeName ()) .toBe ("GeoTransform")
+   expect (Browser .currentScene .rootNodes [2] .getNodeTypeName ()) .toBe ("HAnimJoint")
 })
