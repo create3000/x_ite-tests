@@ -2,7 +2,7 @@ const
    X3D = require ("../../X3D"),
    $   = require ("jquery")
 
-test ("construction1", () =>
+test ("construction", () =>
 {
    const canvas = document .createElement ("x3d-canvas")
 
@@ -10,7 +10,7 @@ test ("construction1", () =>
    expect (canvas .browser) .toBeInstanceOf (X3D .X3DBrowser)
 })
 
-test ("construction2", () =>
+test ("construction-jquery", () =>
 {
    const
       elements = $("<x3d-canvas></x3d-canvas>"),
