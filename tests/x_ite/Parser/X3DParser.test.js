@@ -16,11 +16,15 @@ test ("statements", async () =>
       x3dv = scene .toVRMLString (),
       x3dj = scene .toJSONString ()
 
+   const encodings = ["XML", "VRML", "JSON"]
+
    Browser .baseURL = scene .worldURL
 
-   for (const file of [x3d, x3dv, x3dj])
+   for (const [i, file] of [x3d, x3dv, x3dj] .entries ())
    {
       const scene = await Browser .createX3DFromURL (new X3D .MFString (`data:model/x3d,${file}`))
+
+      expect (scene .encoding) .toBe (encodings [i])
 
       expect (scene .getNamedNode ("Transform") .rotation .angle) .toBeCloseTo (Math .PI / 4)
       expect (scene .getNamedNode ("Box") .size .x) .toBeCloseTo (4)
@@ -47,11 +51,15 @@ test ("fields", async () =>
       x3dv = scene .toVRMLString (),
       x3dj = scene .toJSONString ()
 
+   const encodings = ["XML", "VRML", "JSON"]
+
    Browser .baseURL = scene .worldURL
 
-   for (const file of [x3d, x3dv, x3dj])
+   for (const [i, file] of [x3d, x3dv, x3dj] .entries ())
    {
       const scene = await Browser .createX3DFromURL (new X3D .MFString (`data:model/x3d,${file}`))
+
+      expect (scene .encoding) .toBe (encodings [i])
 
       expect (scene .toXMLString ()) .toBe (x3d)
       expect (scene .toVRMLString ()) .toBe (x3dv)
