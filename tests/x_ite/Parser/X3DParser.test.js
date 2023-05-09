@@ -6,21 +6,19 @@ const X3D = require ("../../X3D")
 
 test ("units", async () =>
 {
-   const files = [ ]
+   const
+   canvas  = X3D .createBrowser (),
+   Browser = canvas .browser,
+   scene   = await Browser .createX3DFromURL (new X3D .MFString (url .pathToFileURL (path .join (__dirname, "files", `units.x3d`))))
 
-   for (const ext of [".x3d", ".x3dj", ".x3dv"])
+   const
+      x3d  = await fetch (path .join (__dirname, "files", `units.x3d`)) .then (r => r .text ()),
+      x3dv = scene .toVRMLString (),
+      x3dj = scene .toJSONString ()
+
+   for (const file of [x3d, x3dv, x3dj])
    {
-      files .push (await fetch (path .join (__dirname, "files", `units${ext}`)) .then (r => r .text ()))
-   }
-
-   const to = ["toXMLString", "toJSONString", "toVRMLString"]
-
-   for (const [i, ext] of [".x3d", ".x3dj", ".x3dv"] .entries ())
-   {
-      const
-         canvas  = X3D .createBrowser (),
-         Browser = canvas .browser,
-         scene   = await Browser .createX3DFromURL (new X3D .MFString (url .pathToFileURL (path .join (__dirname, "files", `units${ext}`))))
+      const scene = await Browser .createX3DFromURL (new X3D .MFString (`data:model/x3d,${file}`))
 
       expect (scene .getNamedNode ("Transform") .rotation .angle) .toBeCloseTo (Math .PI / 4)
       expect (scene .getNamedNode ("Box") .size .x) .toBeCloseTo (4)
@@ -29,6 +27,30 @@ test ("units", async () =>
       expect (scene .getNamedNode ("Emitter") .mass) .toBeCloseTo (2)
       expect (scene .getNamedNode ("Force") .force .y) .toBeCloseTo (-10)
 
-      expect (scene [to [i]] ()) .toBe (files [i])
+      expect (scene .toXMLString ()) .toBe (x3d)
+      expect (scene .toVRMLString ()) .toBe (x3dv)
+      expect (scene .toJSONString ()) .toBe (x3dj)
+   }
+})
+
+test ("fields", async () =>
+{
+   const
+   canvas  = X3D .createBrowser (),
+   Browser = canvas .browser,
+   scene   = await Browser .createX3DFromURL (new X3D .MFString (url .pathToFileURL (path .join (__dirname, "files", `fields.x3d`))))
+
+   const
+      x3d  = await fetch (path .join (__dirname, "files", `fields.x3d`)) .then (r => r .text ()),
+      x3dv = scene .toVRMLString (),
+      x3dj = scene .toJSONString ()
+
+   for (const file of [x3d, x3dv, x3dj])
+   {
+      const scene = await Browser .createX3DFromURL (new X3D .MFString (`data:model/x3d,${file}`))
+
+      expect (scene .toXMLString ()) .toBe (x3d)
+      expect (scene .toVRMLString ()) .toBe (x3dv)
+      expect (scene .toJSONString ()) .toBe (x3dj)
    }
 })
