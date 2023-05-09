@@ -191,7 +191,7 @@ test ("simple-scene-src", () => new Promise ((resolve, reject) =>
    expect (Browser) .toBeInstanceOf (X3D .X3DBrowser)
    expect (Browser .currentScene .rootNodes) .toHaveLength (0)
 
-   canvas .on ("load", () =>
+   canvas .on ("initialized", () =>
    {
       expect (Browser .currentScene .profile .name) .toBe ("Interchange")
       expect (Browser .currentScene .components) .toHaveLength (3)
