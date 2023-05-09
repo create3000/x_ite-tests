@@ -42,7 +42,9 @@ Test { }
 
    expect (externproto) .toBeInstanceOf (X3D .X3DExternProtoDeclaration)
    expect (externproto .name) .toBe ("Test")
+   expect (externproto .loadState) .toBe (X3D .X3DConstants .COMPLETE_STATE)
    expect (externproto .isExternProto) .toBe (true)
+   expect (externproto .urls) .toBeInstanceOf (X3D .MFString)
    expect (externproto .fields) .toBeInstanceOf (X3D .FieldDefinitionArray)
    expect (externproto .fields) .toHaveLength (2)
    expect (externproto .fields [0]) .toBeInstanceOf (X3D .X3DFieldDefinition)
@@ -57,11 +59,15 @@ Test { }
    expect (externproto .fields [1] .value) .toBeInstanceOf (X3D .SFVec3f)
 
    externproto .name = undefined
+   externproto .loadState = undefined
    externproto .isExternProto = undefined
+   externproto .urls = undefined
    externproto .fields = undefined
 
    expect (externproto .name) .toBe ("Test")
+   expect (externproto .loadState) .toBe (X3D .X3DConstants .COMPLETE_STATE)
    expect (externproto .isExternProto) .toBe (true)
+   expect (externproto .urls) .toBeInstanceOf (X3D .MFString)
    expect (externproto .fields) .toBeInstanceOf (X3D .FieldDefinitionArray)
    expect (externproto .fields) .toHaveLength (2)
    expect (externproto .fields [0]) .toBeInstanceOf (X3D .X3DFieldDefinition)
@@ -86,4 +92,29 @@ Test { }
    expect (body .protos) .toHaveLength (0)
    expect (body .externprotos) .toHaveLength (0)
    expect (body .routes) .toHaveLength (1)
+
+   function enumerate (properties, target)
+   {
+      const
+         a = { },
+         b = { }
+
+      for (const property in target)
+         a [property] = true
+
+      for (const property of properties)
+         b [property] = true
+
+      expect (a) .toEqual (b)
+   }
+
+   const properties = [
+      "name",
+      "loadState",
+      "isExternProto",
+      "urls",
+      "fields",
+   ]
+
+   enumerate (properties, externproto)
 })

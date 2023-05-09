@@ -33,6 +33,36 @@ test ("properties", () =>
    expect (Browser .supportedProfiles) .toBeInstanceOf (X3D .ProfileInfoArray)
    expect (Browser .supportedComponents) .toBeInstanceOf (X3D .ComponentInfoArray)
    expect (Browser .currentScene) .toBeInstanceOf (X3D .X3DScene)
+
+   function enumerate (properties, target)
+   {
+      const
+         a = { },
+         b = { }
+
+      for (const property in target)
+         a [property] = true
+
+      for (const property of properties)
+         b [property] = true
+
+      expect (a) .toEqual (b)
+   }
+
+   const properties = [
+      "name",
+      "version",
+      "providerUrl",
+      "currentSpeed",
+      "currentFrameRate",
+      "description",
+      "supportedProfiles",
+      "supportedComponents",
+      "baseURL",
+      "currentScene",
+   ]
+
+   enumerate (properties, Browser)
 })
 
 test ("getProfile", () =>

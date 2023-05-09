@@ -43,4 +43,28 @@ ROUTE I.value_changed TO T.set_translation
    expect (route .destinationNode) .toBeInstanceOf (X3D .SFNode)
    expect (route .destinationNode .getNodeTypeName ()) .toBe ("Transform")
    expect (route .destinationField) .toBe ("translation")
+
+   function enumerate (properties, target)
+   {
+      const
+         a = { },
+         b = { }
+
+      for (const property in target)
+         a [property] = true
+
+      for (const property of properties)
+         b [property] = true
+
+      expect (a) .toEqual (b)
+   }
+
+   const properties = [
+      "sourceNode",
+      "sourceField",
+      "destinationNode",
+      "destinationField",
+   ]
+
+   enumerate (properties, route)
 })

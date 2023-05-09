@@ -40,9 +40,26 @@ test ("properties", () =>
    expect (fieldDefinitions [0] .name) .toBe ("metadata")
    expect (fieldDefinitions [0] .value) .toBeInstanceOf (Fields .SFNode)
 
-   expect (fieldDefinitions [0]) .toEqual ({
-      accessType: X3D .X3DConstants .inputOutput,
-      dataType: X3D .X3DConstants .SFNode,
-      name: "metadata",
-   })
+   function enumerate (properties, target)
+   {
+      const
+         a = { },
+         b = { }
+
+      for (const property in target)
+         a [property] = true
+
+      for (const property of properties)
+         b [property] = true
+
+      expect (a) .toEqual (b)
+   }
+
+   const properties = [
+      "accessType",
+      "dataType",
+      "name",
+   ]
+
+   enumerate (properties, fieldDefinitions [0])
 })

@@ -23,4 +23,27 @@ test ("properties", () =>
    expect (unit .name) .toBe ("radian")
    expect (unit .conversionFactor) .toBe (1)
    expect (unit .conversion_factor) .toBe (1)
+
+   function enumerate (properties, target)
+   {
+      const
+         a = { },
+         b = { }
+
+      for (const property in target)
+         a [property] = true
+
+      for (const property of properties)
+         b [property] = true
+
+      expect (a) .toEqual (b)
+   }
+
+   const properties = [
+      "category",
+      "name",
+      "conversionFactor",
+   ]
+
+   enumerate (properties, unit)
 })

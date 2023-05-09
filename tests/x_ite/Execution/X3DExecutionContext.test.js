@@ -82,4 +82,34 @@ Test { }
    expect (executionContext .rootNodes [0]) .toBeInstanceOf (X3D .SFNode)
    expect (executionContext .rootNodes [0] .getNodeTypeName ()) .toBe ("Transform")
    expect (executionContext .rootNodes [0]) .toBe (executionContext .rootNodes [0])
+
+   function enumerate (properties, target)
+   {
+      const
+         a = { },
+         b = { }
+
+      for (const property in target)
+         a [property] = true
+
+      for (const property of properties)
+         b [property] = true
+
+      expect (a) .toEqual (b)
+   }
+
+   const properties = [
+      "specificationVersion",
+      "encoding",
+      "profile",
+      "components",
+      "units",
+      "worldURL",
+      "rootNodes",
+      "protos",
+      "externprotos",
+      "routes",
+   ]
+
+   enumerate (properties, executionContext)
 })

@@ -17,7 +17,7 @@ test ("properties", () =>
    expect (profile .components [0] .name) .toBe ("Core")
 
    profile .name        = undefined
-   profile .level       = undefined
+   profile .title       = undefined
    profile .providerUrl = undefined
    profile .components  = undefined
 
@@ -29,4 +29,28 @@ test ("properties", () =>
    expect (profile .components) .toBeInstanceOf (X3D .ComponentInfoArray)
    expect (profile .components) .toHaveLength (1)
    expect (profile .components [0] .name) .toBe ("Core")
+
+   function enumerate (properties, target)
+   {
+      const
+         a = { },
+         b = { }
+
+      for (const property in target)
+         a [property] = true
+
+      for (const property of properties)
+         b [property] = true
+
+      expect (a) .toEqual (b)
+   }
+
+   const properties = [
+      "name",
+      "title",
+      "providerUrl",
+      "components",
+   ]
+
+   enumerate (properties, profile)
 })
