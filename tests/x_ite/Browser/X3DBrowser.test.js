@@ -392,7 +392,7 @@ Box { }
    expect (Browser .currentScene .rootNodes [1] .getNodeTypeName ()) .toBe ("Shape")
    expect (Browser .currentScene .rootNodes [2] .getNodeTypeName ()) .toBe ("Box")
 
-   await Browser .loadURL (new X3D .MFString (url .pathToFileURL (path .join (__dirname, "files", "replaceWorld.x3d"))))
+   await Browser .loadURL (new X3D .MFString (url .pathToFileURL (path .join (__dirname, "files", "loadURL.x3d"))))
 
    expect (Browser .currentScene .rootNodes) .toHaveLength (3)
    expect (Browser .currentScene .rootNodes [0] .getNodeTypeName ()) .toBe ("Arc2D")
