@@ -320,6 +320,26 @@ Transform {
    expect (scene .getNamedNode ("R") .getNodeTypeName ()) .toBe ("NurbsCurve")
 })
 
+test ("createX3DFromString2", async () =>
+{
+   const
+      canvas  = X3D .createBrowser (),
+      Browser = canvas .browser
+
+   const scene1 = await Browser .createX3DFromString (`
+PROFILE Interactive
+
+Transform { }
+Shape { }
+Box { }
+`)
+
+   expect (scene1 .rootNodes) .toHaveLength (3)
+   expect (scene1 .rootNodes [0] .getNodeTypeName ()) .toBe ("Transform")
+   expect (scene1 .rootNodes [1] .getNodeTypeName ()) .toBe ("Shape")
+   expect (scene1 .rootNodes [2] .getNodeTypeName ()) .toBe ("Box")
+})
+
 test ("createVrmlFromString", () =>
 {
    const
