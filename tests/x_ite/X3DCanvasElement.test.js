@@ -29,8 +29,15 @@ test ("onload-event", () => new Promise ((resolve, reject) =>
 
    canvas .on ("load", function ()
    {
-      expect (this) .toBe (canvas [0])
-      resolve ()
+      try
+      {
+         expect (this) .toBe (canvas [0])
+         resolve ()
+      }
+      catch (error)
+      {
+         reject ()
+      }
    })
 
    canvas .on ("error", reject)
@@ -44,8 +51,15 @@ test ("onload-property", () => new Promise ((resolve, reject) =>
 
    canvas [0] .onload = function ()
    {
-      expect (this) .toBe (canvas [0])
-      resolve ()
+      try
+      {
+         expect (this) .toBe (canvas [0])
+         resolve ()
+      }
+      catch (error)
+      {
+         reject ()
+      }
    }
 
    canvas [0] .onerror = reject
@@ -59,8 +73,15 @@ test ("oninitialized-event", () => new Promise ((resolve, reject) =>
 
    canvas .on ("initialized", function ()
    {
-      expect (this) .toBe (canvas [0])
-      resolve ()
+      try
+      {
+         expect (this) .toBe (canvas [0])
+         resolve ()
+      }
+      catch (error)
+      {
+         reject ()
+      }
    })
 
    canvas .on ("error", reject)
@@ -74,8 +95,15 @@ test ("oninitialized-property", () => new Promise ((resolve, reject) =>
 
    canvas [0] .oninitialized = function ()
    {
-      expect (this) .toBe (canvas [0])
-      resolve ()
+      try
+      {
+         expect (this) .toBe (canvas [0])
+         resolve ()
+      }
+      catch (error)
+      {
+         reject ()
+      }
    }
 
    canvas [0] .onerror = reject
@@ -90,8 +118,15 @@ test ("onerror-event", () => new Promise ((resolve, reject) =>
    canvas .on ("initialized", reject)
    canvas .on ("error", function ()
    {
-      expect (this) .toBe (canvas [0])
-      resolve ()
+      try
+      {
+         expect (this) .toBe (canvas [0])
+         resolve ()
+      }
+      catch (error)
+      {
+         reject ()
+      }
    })
 }))
 
@@ -104,8 +139,15 @@ test ("onerror-property", () => new Promise ((resolve, reject) =>
    canvas [0] .oninitialized = reject
    canvas [0] .onerror = function ()
    {
-      expect (this) .toBe (canvas [0])
-      resolve ()
+      try
+      {
+         expect (this) .toBe (canvas [0])
+         resolve ()
+      }
+      catch (error)
+      {
+         reject ()
+      }
    }
 }))
 
