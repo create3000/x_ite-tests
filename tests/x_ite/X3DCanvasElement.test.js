@@ -36,7 +36,7 @@ test ("onload-event", () => new Promise ((resolve, reject) =>
       }
       catch (error)
       {
-         reject ()
+         reject (error .message)
       }
    })
 
@@ -58,7 +58,7 @@ test ("onload-property", () => new Promise ((resolve, reject) =>
       }
       catch (error)
       {
-         reject ()
+         reject (error .message)
       }
    }
 
@@ -80,7 +80,7 @@ test ("oninitialized-event", () => new Promise ((resolve, reject) =>
       }
       catch (error)
       {
-         reject ()
+         reject (error .message)
       }
    })
 
@@ -102,7 +102,7 @@ test ("oninitialized-property", () => new Promise ((resolve, reject) =>
       }
       catch (error)
       {
-         reject ()
+         reject (error .message)
       }
    }
 
@@ -125,7 +125,7 @@ test ("onerror-event", () => new Promise ((resolve, reject) =>
       }
       catch (error)
       {
-         reject ()
+         reject (error .message)
       }
    })
 }))
@@ -146,7 +146,7 @@ test ("onerror-property", () => new Promise ((resolve, reject) =>
       }
       catch (error)
       {
-         reject ()
+         reject (error .message)
       }
    }
 }))
@@ -172,15 +172,22 @@ test ("src-property", () => new Promise ((resolve, reject) =>
 
    canvas .on ("initialized", () =>
    {
-      expect (Browser .currentScene .profile .name) .toBe ("Interchange")
-      expect (Browser .currentScene .components) .toHaveLength (0)
+      try
+      {
+         expect (Browser .currentScene .profile .name) .toBe ("Interchange")
+         expect (Browser .currentScene .components) .toHaveLength (0)
 
-      expect (Browser .currentScene .rootNodes) .toHaveLength (3)
-      expect (Browser .currentScene .rootNodes [0] .getNodeTypeName ()) .toBe ("Shape")
-      expect (Browser .currentScene .rootNodes [1] .getNodeTypeName ()) .toBe ("Material")
-      expect (Browser .currentScene .rootNodes [2] .getNodeTypeName ()) .toBe ("Box")
+         expect (Browser .currentScene .rootNodes) .toHaveLength (3)
+         expect (Browser .currentScene .rootNodes [0] .getNodeTypeName ()) .toBe ("Shape")
+         expect (Browser .currentScene .rootNodes [1] .getNodeTypeName ()) .toBe ("Material")
+         expect (Browser .currentScene .rootNodes [2] .getNodeTypeName ()) .toBe ("Box")
 
-      resolve ()
+         resolve ()
+      }
+      catch (error)
+      {
+         reject (error .message)
+      }
    })
 
    canvas .on ("error", reject)
@@ -207,15 +214,22 @@ test ("url-property", () => new Promise ((resolve, reject) =>
 
    canvas .on ("initialized", () =>
    {
-      expect (Browser .currentScene .profile .name) .toBe ("Interchange")
-      expect (Browser .currentScene .components) .toHaveLength (0)
+      try
+      {
+         expect (Browser .currentScene .profile .name) .toBe ("Interchange")
+         expect (Browser .currentScene .components) .toHaveLength (0)
 
-      expect (Browser .currentScene .rootNodes) .toHaveLength (3)
-      expect (Browser .currentScene .rootNodes [0] .getNodeTypeName ()) .toBe ("Shape")
-      expect (Browser .currentScene .rootNodes [1] .getNodeTypeName ()) .toBe ("Material")
-      expect (Browser .currentScene .rootNodes [2] .getNodeTypeName ()) .toBe ("Box")
+         expect (Browser .currentScene .rootNodes) .toHaveLength (3)
+         expect (Browser .currentScene .rootNodes [0] .getNodeTypeName ()) .toBe ("Shape")
+         expect (Browser .currentScene .rootNodes [1] .getNodeTypeName ()) .toBe ("Material")
+         expect (Browser .currentScene .rootNodes [2] .getNodeTypeName ()) .toBe ("Box")
 
-      resolve ()
+         resolve ()
+      }
+      catch (error)
+      {
+         reject (error .message)
+      }
    })
 
    canvas .on ("error", reject)
@@ -242,15 +256,22 @@ test ("src-attribute", () => new Promise ((resolve, reject) =>
 
    canvas .on ("initialized", () =>
    {
-      expect (Browser .currentScene .profile .name) .toBe ("Interchange")
-      expect (Browser .currentScene .components) .toHaveLength (0)
+      try
+      {
+         expect (Browser .currentScene .profile .name) .toBe ("Interchange")
+         expect (Browser .currentScene .components) .toHaveLength (0)
 
-      expect (Browser .currentScene .rootNodes) .toHaveLength (3)
-      expect (Browser .currentScene .rootNodes [0] .getNodeTypeName ()) .toBe ("Shape")
-      expect (Browser .currentScene .rootNodes [1] .getNodeTypeName ()) .toBe ("Material")
-      expect (Browser .currentScene .rootNodes [2] .getNodeTypeName ()) .toBe ("Box")
+         expect (Browser .currentScene .rootNodes) .toHaveLength (3)
+         expect (Browser .currentScene .rootNodes [0] .getNodeTypeName ()) .toBe ("Shape")
+         expect (Browser .currentScene .rootNodes [1] .getNodeTypeName ()) .toBe ("Material")
+         expect (Browser .currentScene .rootNodes [2] .getNodeTypeName ()) .toBe ("Box")
 
-      resolve ()
+         resolve ()
+      }
+      catch (error)
+      {
+         reject (error .message)
+      }
    })
 
    canvas .on ("error", reject)
@@ -277,15 +298,22 @@ test ("url-attribute", () => new Promise ((resolve, reject) =>
 
    canvas .on ("initialized", () =>
    {
-      expect (Browser .currentScene .profile .name) .toBe ("Interchange")
-      expect (Browser .currentScene .components) .toHaveLength (0)
+      try
+      {
+         expect (Browser .currentScene .profile .name) .toBe ("Interchange")
+         expect (Browser .currentScene .components) .toHaveLength (0)
 
-      expect (Browser .currentScene .rootNodes) .toHaveLength (3)
-      expect (Browser .currentScene .rootNodes [0] .getNodeTypeName ()) .toBe ("Shape")
-      expect (Browser .currentScene .rootNodes [1] .getNodeTypeName ()) .toBe ("Material")
-      expect (Browser .currentScene .rootNodes [2] .getNodeTypeName ()) .toBe ("Box")
+         expect (Browser .currentScene .rootNodes) .toHaveLength (3)
+         expect (Browser .currentScene .rootNodes [0] .getNodeTypeName ()) .toBe ("Shape")
+         expect (Browser .currentScene .rootNodes [1] .getNodeTypeName ()) .toBe ("Material")
+         expect (Browser .currentScene .rootNodes [2] .getNodeTypeName ()) .toBe ("Box")
 
-      resolve ()
+         resolve ()
+      }
+      catch (error)
+      {
+         reject (error .message)
+      }
    })
 
    canvas .on ("error", reject)
