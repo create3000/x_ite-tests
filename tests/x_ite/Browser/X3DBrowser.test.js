@@ -256,6 +256,32 @@ Transform {
    expect (scene .getNamedNode ("R") .getNodeTypeName ()) .toBe ("Rectangle2D")
 })
 
+test ("createX3DFromURL2", async () =>
+{
+   const
+      canvas  = X3D .createBrowser (),
+      Browser = canvas .browser,
+      scene1  = await Browser .createX3DFromURL (new X3D .MFString (`data:model/x3d+vrml,
+PROFILE Interactive
+
+Transform { }
+Shape { }
+Box { }
+`))
+
+   expect (scene1 .rootNodes) .toHaveLength (3)
+   expect (scene1 .rootNodes [0] .getNodeTypeName ()) .toBe ("Transform")
+   expect (scene1 .rootNodes [1] .getNodeTypeName ()) .toBe ("Shape")
+   expect (scene1 .rootNodes [2] .getNodeTypeName ()) .toBe ("Box")
+
+   const scene2 = await Browser .createX3DFromURL (new X3D .MFString (url .pathToFileURL (path .join (__dirname, "files", "loadURL.x3d"))))
+
+   expect (scene2 .rootNodes) .toHaveLength (3)
+   expect (scene2 .rootNodes [0] .getNodeTypeName ()) .toBe ("Arc2D")
+   expect (scene2 .rootNodes [1] .getNodeTypeName ()) .toBe ("GeoTransform")
+   expect (scene2 .rootNodes [2] .getNodeTypeName ()) .toBe ("HAnimJoint")
+})
+
 test ("createX3DFromString", async () =>
 {
    const
