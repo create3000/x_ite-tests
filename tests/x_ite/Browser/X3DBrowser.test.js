@@ -65,6 +65,26 @@ test ("properties", () =>
    enumerate (properties, Browser)
 })
 
+test ("vrml-properties", () =>
+{
+   const
+      canvas  = X3D .createBrowser (),
+      Browser = canvas .browser
+
+   expect (Browser) .toBeInstanceOf (X3D .X3DBrowser)
+   expect (Browser .getName ()) .toBe (Browser .name)
+   expect (Browser .getVersion ()) .toBe (Browser .version)
+   expect (Browser .getCurrentSpeed ()) .toBe (Browser .currentSpeed)
+   expect (Browser .getCurrentFrameRate ()) .toBe (Browser .currentFrameRate)
+   expect (Browser .getDescription ()) .toBe (Browser .description)
+   expect (Browser .getWorldURL ()) .toBe (Browser .currentScene .worldURL)
+
+   Browser .setDescription ("test-description")
+
+   expect (Browser .getDescription ()) .toBe ("test-description")
+   expect (Browser .description) .toBe ("test-description")
+})
+
 test ("getProfile", () =>
 {
    const
