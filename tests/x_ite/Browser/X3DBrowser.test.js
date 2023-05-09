@@ -332,15 +332,20 @@ test ("replaceWorld", async () =>
       scene   = await Browser .createX3DFromString (`
 PROFILE Interactive
 
-Transform {
-   children Shape {
-      geometry DEF R Box { }
-   }
-}`)
+Transform { }
+Shape { }
+Box { }
+`)
 
    Browser .replaceWorld (scene)
 
    expect (Browser .currentScene) .toBe (scene)
+   expect (Browser .currentScene .rootNodes) .toHaveLength (3)
+
+   Browser .replaceWorld (null)
+
+   expect (Browser .currentScene) .not .toBe (scene)
+   expect (Browser .currentScene .rootNodes) .toHaveLength (0)
 })
 
 test ("vrml-replaceWorld", async () =>
