@@ -2,8 +2,8 @@
 <!DOCTYPE X3D PUBLIC "ISO//Web3D//DTD X3D 4.0//EN" "http://www.web3d.org/specifications/x3d-4.0.dtd">
 <X3D profile='Interchange' version='4.0' xmlns:xsd='http://www.w3.org/2001/XMLSchema-instance' xsd:noNamespaceSchemaLocation='http://www.web3d.org/specifications/x3d-4.0.xsd'>
   <head>
-    <component name='ParticleSystems' level='3'/>
     <component name='CADGeometry' level='2'/>
+    <component name='ParticleSystems' level='3'/>
     <unit category='angle' name='degree' conversionFactor='0.017453292519943295'/>
     <unit category='force' name='millinewton' conversionFactor='0.001'/>
     <unit category='length' name='millimetre' conversionFactor='0.001'/>
@@ -12,8 +12,8 @@
     <meta name='comment' content='Rise and Shine'/>
     <meta name='creator' content='Holger Seelig'/>
     <meta name='generator' content='Sunrize X3D Editor V1.0.27, https://create3000.github.io/sunrize/'/>
-    <meta name='identifier' content='file:///Users/holger/Desktop/X_ITE/x_ite-tests/tests/x_ite/Parser/files/units.x3d'/>
-    <meta name='modified' content='Tue, 09 May 2023 08:36:11 GMT'/>
+    <meta name='identifier' content='file:///Users/holger/Desktop/X_ITE/x_ite-tests/tests/x_ite/Parser/files/statements.x3d'/>
+    <meta name='modified' content='Tue, 09 May 2023 09:02:50 GMT'/>
   </head>
   <Scene>
     <ExternProtoDeclare name='Foo' url='"proto.x3d"'>
@@ -22,7 +22,9 @@
     </ExternProtoDeclare>
     <ProtoDeclare name='Test'>
       <ProtoInterface>
+        <field accessType='inputOnly' type='SFBool' name='set_bind'/>
         <field accessType='inputOutput' type='SFFloat' name='transparency'/>
+        <field accessType='outputOnly' type='SFBool' name='isBound'/>
       </ProtoInterface>
       <ProtoBody>
         <Background DEF='Summer'
@@ -31,7 +33,9 @@
             groundAngle='37.81361, 68.75494, 80.16367, 90.00021'
             groundColor='0.105712 0.156051 0.297, 0.187629 0.255857 0.398, 0.33604 0.405546 0.542, 0.3612 0.469145 0.602, 0.39471 0.522059 0.669'>
           <IS>
+            <connect nodeField='set_bind' protoField='set_bind'/>
             <connect nodeField='transparency' protoField='transparency'/>
+            <connect nodeField='isBound' protoField='isBound'/>
           </IS>
         </Background>
       </ProtoBody>
@@ -60,8 +64,15 @@
     <QuadSet DEF='QUAD'/>
     <Inline DEF='InlineWithExport'
         url='"proto.x3d"'/>
+    <TimeSensor DEF='Timer'
+        description='Test Timer'
+        cycleInterval='10'/>
+    <PositionInterpolator DEF='PI'/>
+    <Transform DEF='T'/>
     <IMPORT inlineDEF='InlineWithExport' importedDEF='ExportedInstanceFoo'/>
     <IMPORT inlineDEF='InlineWithExport' importedDEF='ExportedInstanceFoo' AS='WithOtherName'/>
+    <ROUTE fromNode='Timer' fromField='fraction_changed' toNode='PI' toField='set_fraction'/>
+    <ROUTE fromNode='PI' fromField='value_changed' toNode='T' toField='set_translation'/>
     <EXPORT localDEF='FOO' AS='FOObah'/>
     <EXPORT localDEF='QUAD'/>
   </Scene>

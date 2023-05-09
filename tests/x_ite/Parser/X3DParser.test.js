@@ -4,15 +4,15 @@ const
 
 const X3D = require ("../../X3D")
 
-test ("units", async () =>
+test ("statements", async () =>
 {
    const
       canvas  = X3D .createBrowser (),
       Browser = canvas .browser,
-      scene   = await Browser .createX3DFromURL (new X3D .MFString (url .pathToFileURL (path .join (__dirname, "files", `units.x3d`))))
+      scene   = await Browser .createX3DFromURL (new X3D .MFString (url .pathToFileURL (path .join (__dirname, "files", `statements.x3d`))))
 
    const
-      x3d  = await fetch (path .join (__dirname, "files", `units.x3d`)) .then (r => r .text ()),
+      x3d  = await fetch (path .join (__dirname, "files", `statements.x3d`)) .then (r => r .text ()),
       x3dv = scene .toVRMLString (),
       x3dj = scene .toJSONString ()
 
