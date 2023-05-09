@@ -164,6 +164,36 @@ test ("createScene", () =>
    expect (scene .routes) .toBeInstanceOf (X3D .RouteArray)
 })
 
+test ("createScene2", () =>
+{
+   const
+      canvas  = X3D .createBrowser (),
+      Browser = canvas .browser,
+      scene   = Browser .createScene (Browser .getProfile ("Interactive"), Browser .getComponent ("HAnim"), Browser .getComponent ("Picking"))
+
+   expect (scene) .toBeInstanceOf (X3D .X3DScene)
+   expect (scene) .toBeInstanceOf (X3D .X3DExecutionContext)
+   expect (scene .specificationVersion) .toMatch (/^\d+\.\d+$/)
+   expect (scene .encoding) .toBe ("SCRIPTED")
+   expect (scene .profile) .toBeInstanceOf (X3D .ProfileInfo)
+   expect (scene .profile .name) .toBe ("Interactive")
+   expect (scene .components) .toHaveLength (2)
+   expect (scene .components) .toBeInstanceOf (X3D .ComponentInfoArray)
+   expect (scene .components [0]) .toBeInstanceOf (X3D .ComponentInfo)
+   expect (scene .components [0] .name) .toBe ("HAnim")
+   expect (scene .components [1]) .toBeInstanceOf (X3D .ComponentInfo)
+   expect (scene .components [1] .name) .toBe ("Picking")
+   expect (scene .worldURL) .toMatch (/^file:\/\/\/.*$/)
+   expect (scene .rootNodes) .toHaveLength (0)
+   expect (scene .rootNodes) .toBeInstanceOf (X3D .MFNode)
+   expect (scene .protos) .toHaveLength (0)
+   expect (scene .protos) .toBeInstanceOf (X3D .ProtoDeclarationArray)
+   expect (scene .externprotos) .toHaveLength (0)
+   expect (scene .externprotos) .toBeInstanceOf (X3D .ExternProtoDeclarationArray)
+   expect (scene .routes) .toHaveLength (0)
+   expect (scene .routes) .toBeInstanceOf (X3D .RouteArray)
+})
+
 test ("createX3DFromURL", async () =>
 {
    const
