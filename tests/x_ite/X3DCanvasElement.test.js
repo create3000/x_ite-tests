@@ -27,7 +27,12 @@ test ("onload-event", () => new Promise ((resolve, reject) =>
 
    canvas .html (`<X3D profile='Interchange' version='4.0'><Scene></Scene></X3D>`)
 
-   canvas .on ("load", resolve)
+   canvas .on ("load", function ()
+   {
+      expect (this) .toBe (canvas [0])
+      resolve ()
+   })
+
    canvas .on ("error", reject)
 }))
 
@@ -37,7 +42,12 @@ test ("onload-property", () => new Promise ((resolve, reject) =>
 
    canvas .html (`<X3D profile='Interchange' version='4.0'><Scene></Scene></X3D>`)
 
-   canvas [0] .onload = resolve
+   canvas [0] .onload = function ()
+   {
+      expect (this) .toBe (canvas [0])
+      resolve ()
+   }
+
    canvas [0] .onerror = reject
 }))
 
@@ -47,7 +57,12 @@ test ("oninitialized-event", () => new Promise ((resolve, reject) =>
 
    canvas .html (`<X3D profile='Interchange' version='4.0'><Scene></Scene></X3D>`)
 
-   canvas .on ("initialized", resolve)
+   canvas .on ("initialized", function ()
+   {
+      expect (this) .toBe (canvas [0])
+      resolve ()
+   })
+
    canvas .on ("error", reject)
 }))
 
@@ -57,7 +72,12 @@ test ("oninitialized-property", () => new Promise ((resolve, reject) =>
 
    canvas .html (`<X3D profile='Interchange' version='4.0'><Scene></Scene></X3D>`)
 
-   canvas [0] .oninitialized = resolve
+   canvas [0] .oninitialized = function ()
+   {
+      expect (this) .toBe (canvas [0])
+      resolve ()
+   }
+
    canvas [0] .onerror = reject
 }))
 
@@ -68,7 +88,11 @@ test ("onerror-event", () => new Promise ((resolve, reject) =>
    canvas .attr ("src", "https://www.example.com/does-not-exist")
 
    canvas .on ("initialized", reject)
-   canvas .on ("error", resolve)
+   canvas .on ("error", function ()
+   {
+      expect (this) .toBe (canvas [0])
+      resolve ()
+   })
 }))
 
 test ("onerror-property", () => new Promise ((resolve, reject) =>
@@ -78,7 +102,11 @@ test ("onerror-property", () => new Promise ((resolve, reject) =>
    canvas .attr ("src", "https://www.example.com/does-not-exist")
 
    canvas [0] .oninitialized = reject
-   canvas [0] .onerror = resolve
+   canvas [0] .onerror = function ()
+   {
+      expect (this) .toBe (canvas [0])
+      resolve ()
+   }
 }))
 
 test ("src-property", () => new Promise ((resolve, reject) =>
