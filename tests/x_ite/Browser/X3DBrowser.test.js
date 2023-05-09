@@ -201,11 +201,11 @@ test ("createX3DFromURL", async () =>
       Browser = canvas .browser,
       scene   = await Browser .createX3DFromURL (new X3D .MFString (`data:model/x3d+vrml,
 PROFILE Interactive
-COMPONENT Shape:1
+COMPONENT Geometry2D:1
 
 Transform {
    children Shape {
-      geometry Box { }
+      geometry Rectangle2D { }
    }
 }`))
 
@@ -216,7 +216,7 @@ Transform {
    expect (scene .profile .name) .toBe ("Interactive")
    expect (scene .components) .toHaveLength (1)
    expect (scene .components) .toBeInstanceOf (X3D .ComponentInfoArray)
-   expect (scene .components [0] .name) .toBe ("Shape")
+   expect (scene .components [0] .name) .toBe ("Geometry2D")
    expect (scene .worldURL) .toMatch (/^file:\/\/\/.*$/)
    expect (scene .rootNodes) .toHaveLength (1)
    expect (scene .rootNodes) .toBeInstanceOf (X3D .MFNode)
