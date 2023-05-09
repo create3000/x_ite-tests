@@ -7,14 +7,16 @@ const X3D = require ("../../X3D")
 test ("units", async () =>
 {
    const
-   canvas  = X3D .createBrowser (),
-   Browser = canvas .browser,
-   scene   = await Browser .createX3DFromURL (new X3D .MFString (url .pathToFileURL (path .join (__dirname, "files", `units.x3d`))))
+      canvas  = X3D .createBrowser (),
+      Browser = canvas .browser,
+      scene   = await Browser .createX3DFromURL (new X3D .MFString (url .pathToFileURL (path .join (__dirname, "files", `units.x3d`))))
 
    const
       x3d  = await fetch (path .join (__dirname, "files", `units.x3d`)) .then (r => r .text ()),
       x3dv = scene .toVRMLString (),
       x3dj = scene .toJSONString ()
+
+   Browser .baseURL = scene .worldURL
 
    for (const file of [x3d, x3dv, x3dj])
    {
@@ -36,14 +38,16 @@ test ("units", async () =>
 test ("fields", async () =>
 {
    const
-   canvas  = X3D .createBrowser (),
-   Browser = canvas .browser,
-   scene   = await Browser .createX3DFromURL (new X3D .MFString (url .pathToFileURL (path .join (__dirname, "files", `fields.x3d`))))
+      canvas  = X3D .createBrowser (),
+      Browser = canvas .browser,
+      scene   = await Browser .createX3DFromURL (new X3D .MFString (url .pathToFileURL (path .join (__dirname, "files", `fields.x3d`))))
 
    const
       x3d  = await fetch (path .join (__dirname, "files", `fields.x3d`)) .then (r => r .text ()),
       x3dv = scene .toVRMLString (),
       x3dj = scene .toJSONString ()
+
+   Browser .baseURL = scene .worldURL
 
    for (const file of [x3d, x3dv, x3dj])
    {

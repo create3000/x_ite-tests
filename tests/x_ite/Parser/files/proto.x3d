@@ -34,6 +34,7 @@
         </Transform>
       </ProtoBody>
     </ProtoDeclare>
-    <ProtoInstance name='Foo'/>
+    <ProtoInstance name='Foo' DEF='ExportedInstanceFoo'/>
+    <EXPORT localDEF='ExportedInstanceFoo'/>
   </Scene>
 </X3D>
