@@ -21,7 +21,7 @@ test ("construction-jquery", () =>
    expect (canvas .browser) .toBeInstanceOf (X3D .X3DBrowser)
 })
 
-test ("onload", () => new Promise ((resolve, reject) =>
+test ("onload-event", () => new Promise ((resolve, reject) =>
 {
    const canvas = $(`<x3d-canvas></x3d-canvas>`)
 
@@ -31,7 +31,17 @@ test ("onload", () => new Promise ((resolve, reject) =>
    canvas .on ("error", reject)
 }))
 
-test ("oninitialized", () => new Promise ((resolve, reject) =>
+test ("onload-property", () => new Promise ((resolve, reject) =>
+{
+   const canvas = $(`<x3d-canvas></x3d-canvas>`)
+
+   canvas .html (`<X3D profile='Interchange' version='4.0'><Scene></Scene></X3D>`)
+
+   canvas [0] .onload = resolve
+   canvas [0] .onerror = reject
+}))
+
+test ("oninitialized-event", () => new Promise ((resolve, reject) =>
 {
    const canvas = $(`<x3d-canvas></x3d-canvas>`)
 
@@ -39,6 +49,16 @@ test ("oninitialized", () => new Promise ((resolve, reject) =>
 
    canvas .on ("initialized", resolve)
    canvas .on ("error", reject)
+}))
+
+test ("oninitialized-property", () => new Promise ((resolve, reject) =>
+{
+   const canvas = $(`<x3d-canvas></x3d-canvas>`)
+
+   canvas .html (`<X3D profile='Interchange' version='4.0'><Scene></Scene></X3D>`)
+
+   canvas [0] .oninitialized = resolve
+   canvas [0] .onerror = reject
 }))
 
 test ("simple-scene-direct", () => new Promise ((resolve, reject) =>
