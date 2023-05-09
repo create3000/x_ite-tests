@@ -205,7 +205,7 @@ COMPONENT Geometry2D:1
 
 Transform {
    children Shape {
-      geometry Rectangle2D { }
+      geometry DEF R Rectangle2D { }
    }
 }`))
 
@@ -229,4 +229,77 @@ Transform {
    expect (scene .externprotos) .toBeInstanceOf (X3D .ExternProtoDeclarationArray)
    expect (scene .routes) .toHaveLength (0)
    expect (scene .routes) .toBeInstanceOf (X3D .RouteArray)
+   expect (scene .getNamedNode ("R") .getNodeTypeName ()) .toBe ("Rectangle2D")
+})
+
+test ("createVrmlFromString", () =>
+{
+   const
+      canvas  = X3D .createBrowser (),
+      Browser = canvas .browser,
+      scene   = Browser .createVrmlFromString (`
+Transform {
+   children Shape {
+      geometry DEF R Box { }
+   }
+}`)
+
+   expect (scene) .toBeInstanceOf (X3D .X3DScene)
+   expect (scene) .toBeInstanceOf (X3D .X3DExecutionContext)
+   expect (scene .specificationVersion) .toMatch (/^\d+\.\d+$/)
+   expect (scene .encoding) .toBe ("VRML")
+   expect (scene .profile .name) .toBe ("Full")
+   expect (scene .components) .toHaveLength (0)
+   expect (scene .components) .toBeInstanceOf (X3D .ComponentInfoArray)
+   expect (scene .worldURL) .toMatch (/^file:\/\/\/.*$/)
+   expect (scene .rootNodes) .toHaveLength (1)
+   expect (scene .rootNodes) .toBeInstanceOf (X3D .MFNode)
+   expect (scene .rootNodes [0]) .toBeInstanceOf (X3D .SFNode)
+   expect (scene .rootNodes [0] .getNodeTypeName ()) .toBe ("Transform")
+   expect (scene .rootNodes [0]) .toBe (scene .rootNodes [0])
+   expect (scene .protos) .toHaveLength (0)
+   expect (scene .protos) .toBeInstanceOf (X3D .ProtoDeclarationArray)
+   expect (scene .externprotos) .toHaveLength (0)
+   expect (scene .externprotos) .toBeInstanceOf (X3D .ExternProtoDeclarationArray)
+   expect (scene .routes) .toHaveLength (0)
+   expect (scene .routes) .toBeInstanceOf (X3D .RouteArray)
+   expect (scene .getNamedNode ("R") .getNodeTypeName ()) .toBe ("Box")
+})
+
+test ("createX3DFromString", async () =>
+{
+   const
+      canvas  = X3D .createBrowser (),
+      Browser = canvas .browser,
+      scene   = await Browser .createX3DFromString (`
+PROFILE Interactive
+COMPONENT NURBS:1
+
+Transform {
+   children Shape {
+      geometry DEF R NurbsCurve { }
+   }
+}`)
+
+   expect (scene) .toBeInstanceOf (X3D .X3DScene)
+   expect (scene) .toBeInstanceOf (X3D .X3DExecutionContext)
+   expect (scene .specificationVersion) .toMatch (/^\d+\.\d+$/)
+   expect (scene .encoding) .toBe ("VRML")
+   expect (scene .profile .name) .toBe ("Interactive")
+   expect (scene .components) .toHaveLength (1)
+   expect (scene .components) .toBeInstanceOf (X3D .ComponentInfoArray)
+   expect (scene .components [0] .name) .toBe ("NURBS")
+   expect (scene .worldURL) .toMatch (/^file:\/\/\/.*$/)
+   expect (scene .rootNodes) .toHaveLength (1)
+   expect (scene .rootNodes) .toBeInstanceOf (X3D .MFNode)
+   expect (scene .rootNodes [0]) .toBeInstanceOf (X3D .SFNode)
+   expect (scene .rootNodes [0] .getNodeTypeName ()) .toBe ("Transform")
+   expect (scene .rootNodes [0]) .toBe (scene .rootNodes [0])
+   expect (scene .protos) .toHaveLength (0)
+   expect (scene .protos) .toBeInstanceOf (X3D .ProtoDeclarationArray)
+   expect (scene .externprotos) .toHaveLength (0)
+   expect (scene .externprotos) .toBeInstanceOf (X3D .ExternProtoDeclarationArray)
+   expect (scene .routes) .toHaveLength (0)
+   expect (scene .routes) .toBeInstanceOf (X3D .RouteArray)
+   expect (scene .getNamedNode ("R") .getNodeTypeName ()) .toBe ("NurbsCurve")
 })
