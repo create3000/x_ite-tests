@@ -16,6 +16,8 @@ test ("getBrowser", () =>
 {
    const canvas = $(X3D .createBrowser ())
 
+   expect (X3D .getBrowser ()) .toBe (undefined)
+
    $("body") .append (canvas)
 
    expect (X3D .getBrowser ()) .toBe (canvas [0] .browser)
