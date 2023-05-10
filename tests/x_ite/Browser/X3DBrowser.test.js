@@ -538,7 +538,6 @@ DEF X Transform { }
    expect (scene .routes) .toHaveLength (0)
 })
 
-
 test ("INITIALIZED_EVENT", () => new Promise ((resolve, reject) =>
 {
    const
