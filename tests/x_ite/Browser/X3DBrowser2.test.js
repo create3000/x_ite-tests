@@ -1,6 +1,7 @@
 const
    path = require ("path"),
-   url  = require ("url")
+   url  = require ("url"),
+   $    = require ("jquery")
 
 const X3D = require ("../../X3D")
 
@@ -152,3 +153,47 @@ DEF X Transform { }
 
    expect (Browser .getBrowserCallbacks () .size) .toBe (1)
 }))
+
+test ("importDocument", async () =>
+{
+   const
+      canvas  = X3D .createBrowser (),
+      Browser = canvas .browser,
+      scene = await Browser .importDocument ($.parseXML (`
+<X3D>
+   <Scene>
+      <Transform/>
+      <Shape/>
+      <Box/>
+   </Scene>
+</X3D>`))
+
+   expect (scene .rootNodes) .toHaveLength (3)
+   expect (scene .rootNodes [0] .getNodeTypeName ()) .toBe ("Transform")
+   expect (scene .rootNodes [1] .getNodeTypeName ()) .toBe ("Shape")
+   expect (scene .rootNodes [2] .getNodeTypeName ()) .toBe ("Box")
+})
+
+test ("importJS", async () =>
+{
+   const
+      canvas  = X3D .createBrowser (),
+      Browser = canvas .browser,
+      scene = await Browser .importJS ({ "X3D": {
+         "encoding": "UTF-8",
+         "@profile": "Interchange",
+         "@version": "4.0",
+         "Scene": {
+            "-children": [
+               { "Transform": { } },
+               { "Shape": { } },
+               { "Box": { } }
+            ]
+         }
+      }})
+
+   expect (scene .rootNodes) .toHaveLength (3)
+   expect (scene .rootNodes [0] .getNodeTypeName ()) .toBe ("Transform")
+   expect (scene .rootNodes [1] .getNodeTypeName ()) .toBe ("Shape")
+   expect (scene .rootNodes [2] .getNodeTypeName ()) .toBe ("Box")
+})
