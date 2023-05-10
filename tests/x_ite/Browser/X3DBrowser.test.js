@@ -483,3 +483,39 @@ Box { }
    expect (Browser .currentScene .rootNodes [1] .getNodeTypeName ()) .toBe ("GeoTransform")
    expect (Browser .currentScene .rootNodes [2] .getNodeTypeName ()) .toBe ("HAnimJoint")
 })
+
+
+test ("addRoute", async () =>
+{
+   const
+      canvas  = X3D .createBrowser (),
+      Browser = canvas .browser
+
+      await Browser .loadURL (new X3D .MFString (`data:model/x3d+vrml,
+PROFILE Interactive
+
+DEF T TimeSensor { }
+DEF I PositionInterpolator { }
+DEF X Transform { }
+`))
+
+   const scene = Browser .currentScene
+
+   expect (scene .rootNodes) .toHaveLength (3)
+   expect (scene .rootNodes [0] .getNodeTypeName ()) .toBe ("TimeSensor")
+   expect (scene .rootNodes [1] .getNodeTypeName ()) .toBe ("PositionInterpolator")
+   expect (scene .rootNodes [2] .getNodeTypeName ()) .toBe ("Transform")
+
+   Browser .addRoute (scene .rootNodes [0], "fraction_changed", scene .rootNodes [1], "set_fraction")
+   Browser .addRoute (scene .rootNodes [1], "value_changed", scene .rootNodes [2], "translation")
+
+   expect (scene .routes) .toHaveLength (2)
+   expect (scene .routes [0] .sourceNode) .toBe (scene .rootNodes [0])
+   expect (scene .routes [0] .sourceField) .toBe ("fraction_changed")
+   expect (scene .routes [0] .destinationNode) .toBe (scene .rootNodes [1])
+   expect (scene .routes [0] .destinationField) .toBe ("set_fraction")
+   expect (scene .routes [1] .sourceNode) .toBe (scene .rootNodes [1])
+   expect (scene .routes [1] .sourceField) .toBe ("value_changed")
+   expect (scene .routes [1] .destinationNode) .toBe (scene .rootNodes [2])
+   expect (scene .routes [1] .destinationField) .toBe ("translation")
+})
