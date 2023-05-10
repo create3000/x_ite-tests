@@ -484,7 +484,6 @@ Box { }
    expect (Browser .currentScene .rootNodes [2] .getNodeTypeName ()) .toBe ("HAnimJoint")
 })
 
-
 test ("addRoute/deleteRoute", async () =>
 {
    const
