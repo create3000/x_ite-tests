@@ -21,6 +21,30 @@ test ("construction-jquery", () =>
    expect (canvas .browser) .toBeInstanceOf (X3D .X3DBrowser)
 })
 
+test ("onload-listener", () => new Promise ((resolve, reject) =>
+{
+   const canvas = $(`<x3d-canvas></x3d-canvas>`)
+
+   canvas .html (`<X3D profile='Interchange' version='4.0'><Scene></Scene></X3D>`)
+
+   canvas [0] .addEventListener ("load", function (event)
+   {
+      try
+      {
+         expect (event .type) .toBe ("load")
+         expect (event) .toBeInstanceOf (CustomEvent)
+         expect (this) .toBe (canvas [0])
+         resolve ()
+      }
+      catch (error)
+      {
+         reject (error .message)
+      }
+   })
+
+   canvas [0] .addEventListener ("error", () => reject ("onerror"))
+}))
+
 test ("onload-event", () => new Promise ((resolve, reject) =>
 {
    const canvas = $(`<x3d-canvas></x3d-canvas>`)
@@ -42,7 +66,7 @@ test ("onload-event", () => new Promise ((resolve, reject) =>
       }
    })
 
-   canvas .on ("error", reject)
+   canvas .on ("error", () => reject ("onerror"))
 }))
 
 test ("onload-property", () => new Promise ((resolve, reject) =>
@@ -69,6 +93,30 @@ test ("onload-property", () => new Promise ((resolve, reject) =>
    canvas [0] .onerror = reject
 }))
 
+test ("oninitialized-listener", () => new Promise ((resolve, reject) =>
+{
+   const canvas = $(`<x3d-canvas></x3d-canvas>`)
+
+   canvas .html (`<X3D profile='Interchange' version='4.0'><Scene></Scene></X3D>`)
+
+   canvas [0] .addEventListener ("initialized", function (event)
+   {
+      try
+      {
+         expect (event .type) .toBe ("initialized")
+         expect (event) .toBeInstanceOf (CustomEvent)
+         expect (this) .toBe (canvas [0])
+         resolve ()
+      }
+      catch (error)
+      {
+         reject (error .message)
+      }
+   })
+
+   canvas [0] .addEventListener ("error", () => reject ("onerror"))
+}))
+
 test ("oninitialized-event", () => new Promise ((resolve, reject) =>
 {
    const canvas = $(`<x3d-canvas></x3d-canvas>`)
@@ -90,7 +138,7 @@ test ("oninitialized-event", () => new Promise ((resolve, reject) =>
       }
    })
 
-   canvas .on ("error", reject)
+   canvas .on ("error", () => reject ("onerror"))
 }))
 
 test ("oninitialized-property", () => new Promise ((resolve, reject) =>
@@ -118,6 +166,30 @@ test ("oninitialized-property", () => new Promise ((resolve, reject) =>
 }))
 
 
+test ("onshutdown-listener", () => new Promise ((resolve, reject) =>
+{
+   const canvas = $(`<x3d-canvas></x3d-canvas>`)
+
+   canvas .html (`<X3D profile='Interchange' version='4.0'><Scene></Scene></X3D>`)
+
+   canvas [0] .addEventListener ("shutdown", function (event)
+   {
+      try
+      {
+         expect (event .type) .toBe ("shutdown")
+         expect (event) .toBeInstanceOf (CustomEvent)
+         expect (this) .toBe (canvas [0])
+         resolve ()
+      }
+      catch (error)
+      {
+         reject (error .message)
+      }
+   })
+
+   canvas [0] .addEventListener ("error", () => reject ("onerror"))
+}))
+
 test ("onshutdown-event", () => new Promise ((resolve, reject) =>
 {
    const canvas = $(`<x3d-canvas></x3d-canvas>`)
@@ -139,7 +211,7 @@ test ("onshutdown-event", () => new Promise ((resolve, reject) =>
       }
    })
 
-   canvas .on ("error", reject)
+   canvas .on ("error", () => reject ("onerror"))
 }))
 
 test ("onshutdown-property", () => new Promise ((resolve, reject) =>
@@ -166,13 +238,36 @@ test ("onshutdown-property", () => new Promise ((resolve, reject) =>
    canvas [0] .onerror = reject
 }))
 
+test ("onerror-listener", () => new Promise ((resolve, reject) =>
+{
+   const canvas = $(`<x3d-canvas></x3d-canvas>`)
+
+   canvas .attr ("src", "https://www.example.com/does-not-exist")
+
+   canvas [0] .addEventListener ("initialized", () => reject ("onerror"))
+   canvas [0] .addEventListener ("error", function (event)
+   {
+      try
+      {
+         expect (event .type) .toBe ("error")
+         expect (event) .toBeInstanceOf (CustomEvent)
+         expect (this) .toBe (canvas [0])
+         resolve ()
+      }
+      catch (error)
+      {
+         reject (error .message)
+      }
+   })
+}))
+
 test ("onerror-event", () => new Promise ((resolve, reject) =>
 {
    const canvas = $(`<x3d-canvas></x3d-canvas>`)
 
    canvas .attr ("src", "https://www.example.com/does-not-exist")
 
-   canvas .on ("initialized", reject)
+   canvas .on ("initialized", () => reject ("onerror"))
    canvas .on ("error", function (event)
    {
       try
@@ -251,7 +346,7 @@ test ("src-property", () => new Promise ((resolve, reject) =>
       }
    })
 
-   canvas .on ("error", reject)
+   canvas .on ("error", () => reject ("onerror"))
 }))
 
 test ("url-property", () => new Promise ((resolve, reject) =>
@@ -293,7 +388,7 @@ test ("url-property", () => new Promise ((resolve, reject) =>
       }
    })
 
-   canvas .on ("error", reject)
+   canvas .on ("error", () => reject ("onerror"))
 }))
 
 test ("src-attribute", () => new Promise ((resolve, reject) =>
@@ -335,7 +430,7 @@ test ("src-attribute", () => new Promise ((resolve, reject) =>
       }
    })
 
-   canvas .on ("error", reject)
+   canvas .on ("error", () => reject ("onerror"))
 }))
 
 test ("url-attribute", () => new Promise ((resolve, reject) =>
@@ -377,5 +472,5 @@ test ("url-attribute", () => new Promise ((resolve, reject) =>
       }
    })
 
-   canvas .on ("error", reject)
+   canvas .on ("error", () => reject ("onerror"))
 }))
