@@ -1,3 +1,7 @@
+const
+   path = require ("path"),
+   url  = require ("url")
+
 const X3D = require ("../../X3D")
 
 test ("getBrowserProperty", () =>
@@ -43,6 +47,25 @@ test ("getBrowserOption", () =>
    expect (Browser .getBrowserOption ("Notifications")) .toBe (true)
    expect (Browser .getBrowserOption ("StraightenHorizon")) .toBe (true)
    expect (Browser .getBrowserOption ("Timings")) .toBe (false)
+})
+
+test ("getRenderingProperty", () =>
+{
+   // const
+   //    canvas = X3D .createBrowser (),
+   //    Browser = canvas .browser
+
+   // expect (Browser .getRenderingProperty ("Shading")) .toBe ("GOURAUD")
+   // expect (Browser .getRenderingProperty ("MaxTextureSize")) .toBeGreaterThanOrEqual (128)
+   // expect (Browser .getRenderingProperty ("TextureUnits")) .toBeGreaterThanOrEqual (8)
+   // expect (Browser .getRenderingProperty ("MaxLights")) .toBeGreaterThanOrEqual (8)
+   // expect (Browser .getRenderingProperty ("Antialiased")) .toBe (true)
+   // expect (Browser .getRenderingProperty ("ColorDepth")) .toBe (32)
+   // expect (Browser .getRenderingProperty ("TextureMemory")) .toBe (NaN)
+   // expect (Browser .getRenderingProperty ("ContentScale")) .toBe ("GOURAUD")
+   // expect (Browser .getRenderingProperty ("MaxSamples")) .toBeGreaterThanOrEqual (2)
+   // expect (Browser .getRenderingProperty ("Multisampling")) .toBeGreaterThanOrEqual (1)
+   // expect (Browser .getRenderingProperty ("LogarithmicDepthBuffer")) .toBe (false)
 })
 
 test ("INITIALIZED_EVENT", () => new Promise ((resolve, reject) =>
