@@ -585,8 +585,9 @@ DEF X Transform { }
 test ("SHUTDOWN_EVENT", () => new Promise ((resolve, reject) =>
 {
    const
-      canvas  = X3D .createBrowser (),
-      Browser = canvas .browser
+      canvas = X3D .createBrowser (),
+      Browser = canvas .browser,
+      initialScene = Browser .currentScene
 
    Browser .loadURL (new X3D .MFString (`data:model/x3d+vrml,
 PROFILE Interactive
@@ -605,6 +606,7 @@ DEF X Transform { }
 
          const scene = Browser .currentScene
 
+         expect (scene) .toBe (initialScene)
          expect (scene .rootNodes) .toHaveLength (0)
 
          Browser .removeBrowserCallback ("test")
