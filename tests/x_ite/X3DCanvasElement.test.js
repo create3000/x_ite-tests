@@ -117,6 +117,55 @@ test ("oninitialized-property", () => new Promise ((resolve, reject) =>
    canvas [0] .onerror = reject
 }))
 
+
+test ("onshutdown-event", () => new Promise ((resolve, reject) =>
+{
+   const canvas = $(`<x3d-canvas></x3d-canvas>`)
+
+   canvas .html (`<X3D profile='Interchange' version='4.0'><Scene></Scene></X3D>`)
+
+   canvas .on ("shutdown", function (event)
+   {
+      try
+      {
+         expect (event .type) .toBe ("shutdown")
+         expect (event .originalEvent) .toBeInstanceOf (CustomEvent)
+         expect (this) .toBe (canvas [0])
+         resolve ()
+      }
+      catch (error)
+      {
+         reject (error .message)
+      }
+   })
+
+   canvas .on ("error", reject)
+}))
+
+test ("onshutdown-property", () => new Promise ((resolve, reject) =>
+{
+   const canvas = $(`<x3d-canvas></x3d-canvas>`)
+
+   canvas .html (`<X3D profile='Interchange' version='4.0'><Scene></Scene></X3D>`)
+
+   canvas [0] .onshutdown = function (event)
+   {
+      try
+      {
+         expect (event .type) .toBe ("shutdown")
+         expect (event) .toBeInstanceOf (CustomEvent)
+         expect (this) .toBe (canvas [0])
+         resolve ()
+      }
+      catch (error)
+      {
+         reject (error .message)
+      }
+   }
+
+   canvas [0] .onerror = reject
+}))
+
 test ("onerror-event", () => new Promise ((resolve, reject) =>
 {
    const canvas = $(`<x3d-canvas></x3d-canvas>`)
