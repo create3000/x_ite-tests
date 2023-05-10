@@ -282,6 +282,43 @@ Box { }
    expect (scene2 .rootNodes [2] .getNodeTypeName ()) .toBe ("HAnimJoint")
 })
 
+test ("createVrmlFromURL", () => new Promise ((resolve, reject) =>
+{
+   const
+      canvas    = X3D .createBrowser (),
+      Browser   = canvas .browser,
+      scene     = Browser .currentScene,
+      transform = scene .createNode ("Transform")
+
+   Browser .createVrmlFromURL (new X3D .MFString (`data:model/x3d+vrml,
+PROFILE Interactive
+COMPONENT Geometry2D:1
+
+Transform {
+   children Shape {
+      geometry DEF R Rectangle2D { }
+   }
+}`), transform, "children")
+
+   transform .addFieldCallback ("children", "test", () =>
+   {
+      try
+      {
+         expect (transform .children) .toHaveLength (1)
+         expect (transform .children) .toBeInstanceOf (X3D .MFNode)
+         expect (transform .children [0]) .toBeInstanceOf (X3D .SFNode)
+         expect (transform .children [0] .getNodeTypeName ()) .toBe ("Transform")
+         expect (transform .children [0]) .toBe (transform .children [0])
+
+         resolve ()
+      }
+      catch (error)
+      {
+         reject (error .message)
+      }
+   })
+}))
+
 test ("createX3DFromString", async () =>
 {
    const
