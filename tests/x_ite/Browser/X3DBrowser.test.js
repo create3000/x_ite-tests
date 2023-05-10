@@ -291,24 +291,25 @@ test ("createVrmlFromURL", () => new Promise ((resolve, reject) =>
       transform = scene .createNode ("Transform")
 
    Browser .createVrmlFromURL (new X3D .MFString (`data:model/x3d+vrml,
-PROFILE Interactive
-COMPONENT Geometry2D:1
-
-Transform {
-   children Shape {
-      geometry DEF R Rectangle2D { }
-   }
-}`), transform, "children")
+Transform { }
+Shape { }
+Box { }`), transform, "children")
 
    transform .addFieldCallback ("children", "test", () =>
    {
       try
       {
-         expect (transform .children) .toHaveLength (1)
+         expect (transform .children) .toHaveLength (3)
          expect (transform .children) .toBeInstanceOf (X3D .MFNode)
          expect (transform .children [0]) .toBeInstanceOf (X3D .SFNode)
          expect (transform .children [0] .getNodeTypeName ()) .toBe ("Transform")
          expect (transform .children [0]) .toBe (transform .children [0])
+         expect (transform .children [1]) .toBeInstanceOf (X3D .SFNode)
+         expect (transform .children [1] .getNodeTypeName ()) .toBe ("Shape")
+         expect (transform .children [1]) .toBe (transform .children [1])
+         expect (transform .children [2]) .toBeInstanceOf (X3D .SFNode)
+         expect (transform .children [2] .getNodeTypeName ()) .toBe ("Box")
+         expect (transform .children [2]) .toBe (transform .children [2])
 
          resolve ()
       }
