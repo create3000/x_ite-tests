@@ -383,33 +383,25 @@ test ("createVrmlFromString", () =>
    const
       canvas  = X3D .createBrowser (),
       Browser = canvas .browser,
-      scene   = Browser .createVrmlFromString (`
+      nodes   = Browser .createVrmlFromString (`
 Transform {
    children Shape {
       geometry DEF R Box { }
    }
-}`)
+}
+Group { }`)
 
-   expect (scene) .toBeInstanceOf (X3D .X3DScene)
-   expect (scene) .toBeInstanceOf (X3D .X3DExecutionContext)
-   expect (scene .specificationVersion) .toMatch (/^\d+\.\d+$/)
-   expect (scene .encoding) .toBe ("VRML")
-   expect (scene .profile .name) .toBe ("Full")
-   expect (scene .components) .toHaveLength (0)
-   expect (scene .components) .toBeInstanceOf (X3D .ComponentInfoArray)
-   expect (scene .worldURL) .toMatch (/^file:\/\/\/.*$/)
-   expect (scene .rootNodes) .toHaveLength (1)
-   expect (scene .rootNodes) .toBeInstanceOf (X3D .MFNode)
-   expect (scene .rootNodes [0]) .toBeInstanceOf (X3D .SFNode)
-   expect (scene .rootNodes [0] .getNodeTypeName ()) .toBe ("Transform")
-   expect (scene .rootNodes [0]) .toBe (scene .rootNodes [0])
-   expect (scene .protos) .toHaveLength (0)
-   expect (scene .protos) .toBeInstanceOf (X3D .ProtoDeclarationArray)
-   expect (scene .externprotos) .toHaveLength (0)
-   expect (scene .externprotos) .toBeInstanceOf (X3D .ExternProtoDeclarationArray)
-   expect (scene .routes) .toHaveLength (0)
-   expect (scene .routes) .toBeInstanceOf (X3D .RouteArray)
-   expect (scene .getNamedNode ("R") .getNodeTypeName ()) .toBe ("Box")
+   expect (nodes) .toHaveLength (2)
+   expect (nodes) .toBeInstanceOf (X3D .MFNode)
+   expect (nodes [0]) .toBeInstanceOf (X3D .SFNode)
+   expect (nodes [0] .getNodeTypeName ()) .toBe ("Transform")
+   expect (nodes [0]) .toBe (nodes [0])
+   expect (nodes [0] .children) .toHaveLength (1)
+   expect (nodes [0] .children [0] .getNodeTypeName ()) .toBe ("Shape")
+   expect (nodes [0] .children [0] .geometry .getNodeTypeName ()) .toBe ("Box")
+   expect (nodes [1]) .toBeInstanceOf (X3D .SFNode)
+   expect (nodes [1] .getNodeTypeName ()) .toBe ("Group")
+   expect (nodes [1]) .toBe (nodes [1])
 })
 
 test ("replaceWorld", async () =>
