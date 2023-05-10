@@ -10,3 +10,20 @@ test ("constructor", () =>
    expect (X3D .getBrowser (canvas)) .toBe (canvas .browser)
    expect (canvas .browser) .toBeInstanceOf (X3D .X3DBrowser)
 })
+
+test ("X3D-classic", () => new Promise ((resolve, reject) =>
+{
+   X3D (() =>
+   {
+      resolve ()
+   },
+   (error) =>
+   {
+      reject (error .message)
+   })
+}))
+
+test ("X3D-async", async () =>
+{
+   await X3D ()
+})
