@@ -463,7 +463,7 @@ test ("loadURL", async () =>
       canvas  = X3D .createBrowser (),
       Browser = canvas .browser
 
-      await Browser .loadURL (new X3D .MFString (`data:model/x3d+vrml,
+   await Browser .loadURL (new X3D .MFString (`data:model/x3d+vrml,
 PROFILE Interactive
 
 Transform { }
@@ -490,7 +490,7 @@ test ("addRoute/deleteRoute", async () =>
       canvas  = X3D .createBrowser (),
       Browser = canvas .browser
 
-      await Browser .loadURL (new X3D .MFString (`data:model/x3d+vrml,
+   await Browser .loadURL (new X3D .MFString (`data:model/x3d+vrml,
 PROFILE Interactive
 
 DEF T TimeSensor { }
@@ -537,3 +537,87 @@ DEF X Transform { }
 
    expect (scene .routes) .toHaveLength (0)
 })
+
+
+test ("INITIALIZED_EVENT", () => new Promise ((resolve, reject) =>
+{
+   const
+      canvas  = X3D .createBrowser (),
+      Browser = canvas .browser
+
+   Browser .loadURL (new X3D .MFString (`data:model/x3d+vrml,
+PROFILE Interactive
+
+DEF T TimeSensor { }
+DEF I PositionInterpolator { }
+DEF X Transform { }
+`))
+
+   Browser .addBrowserCallback ("test", (event) =>
+   {
+      try
+      {
+         if (event !== X3D .X3DConstants .INITIALIZED_EVENT)
+            return;
+
+         const scene = Browser .currentScene
+
+         expect (scene .rootNodes) .toHaveLength (3)
+         expect (scene .rootNodes [0] .getNodeTypeName ()) .toBe ("TimeSensor")
+         expect (scene .rootNodes [1] .getNodeTypeName ()) .toBe ("PositionInterpolator")
+         expect (scene .rootNodes [2] .getNodeTypeName ()) .toBe ("Transform")
+
+         Browser .removeBrowserCallback ("test")
+
+         expect (Browser .getBrowserCallbacks () .size) .toBe (0)
+
+         resolve ()
+      }
+      catch (error)
+      {
+         reject (error .message)
+      }
+   })
+
+   expect (Browser .getBrowserCallbacks () .size) .toBe (1)
+}))
+
+test ("SHUTDOWN_EVENT", () => new Promise ((resolve, reject) =>
+{
+   const
+      canvas  = X3D .createBrowser (),
+      Browser = canvas .browser
+
+   Browser .loadURL (new X3D .MFString (`data:model/x3d+vrml,
+PROFILE Interactive
+
+DEF T TimeSensor { }
+DEF I PositionInterpolator { }
+DEF X Transform { }
+`))
+
+   Browser .addBrowserCallback ("test", (event) =>
+   {
+      try
+      {
+         if (event !== X3D .X3DConstants .SHUTDOWN_EVENT)
+            return;
+
+         const scene = Browser .currentScene
+
+         expect (scene .rootNodes) .toHaveLength (0)
+
+         Browser .removeBrowserCallback ("test")
+
+         expect (Browser .getBrowserCallbacks () .size) .toBe (0)
+
+         resolve ()
+      }
+      catch (error)
+      {
+         reject (error .message)
+      }
+   })
+
+   expect (Browser .getBrowserCallbacks () .size) .toBe (1)
+}))
