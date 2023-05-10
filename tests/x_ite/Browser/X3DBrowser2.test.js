@@ -158,8 +158,9 @@ test ("importDocument", async () =>
 {
    const
       canvas  = X3D .createBrowser (),
-      Browser = canvas .browser,
-      scene = await Browser .importDocument ($.parseXML (`
+      Browser = canvas .browser
+
+   const scene1 = await Browser .importDocument ($.parseXML (`
 <X3D>
    <Scene>
       <Transform/>
@@ -168,32 +169,65 @@ test ("importDocument", async () =>
    </Scene>
 </X3D>`))
 
-   expect (scene .rootNodes) .toHaveLength (3)
-   expect (scene .rootNodes [0] .getNodeTypeName ()) .toBe ("Transform")
-   expect (scene .rootNodes [1] .getNodeTypeName ()) .toBe ("Shape")
-   expect (scene .rootNodes [2] .getNodeTypeName ()) .toBe ("Box")
+   expect (scene1 .rootNodes) .toHaveLength (3)
+   expect (scene1 .rootNodes [0] .getNodeTypeName ()) .toBe ("Transform")
+   expect (scene1 .rootNodes [1] .getNodeTypeName ()) .toBe ("Shape")
+   expect (scene1 .rootNodes [2] .getNodeTypeName ()) .toBe ("Box")
+
+   const scene2 = await Browser .importDocument (`
+<X3D>
+   <Scene>
+      <Transform/>
+      <Shape/>
+      <Box/>
+   </Scene>
+</X3D>`)
+
+   expect (scene2 .rootNodes) .toHaveLength (3)
+   expect (scene2 .rootNodes [0] .getNodeTypeName ()) .toBe ("Transform")
+   expect (scene2 .rootNodes [1] .getNodeTypeName ()) .toBe ("Shape")
+   expect (scene2 .rootNodes [2] .getNodeTypeName ()) .toBe ("Box")
 })
 
 test ("importJS", async () =>
 {
    const
       canvas  = X3D .createBrowser (),
-      Browser = canvas .browser,
-      scene = await Browser .importJS ({ "X3D": {
-         "encoding": "UTF-8",
-         "@profile": "Interchange",
-         "@version": "4.0",
-         "Scene": {
-            "-children": [
-               { "Transform": { } },
-               { "Shape": { } },
-               { "Box": { } }
-            ]
-         }
-      }})
+      Browser = canvas .browser
 
-   expect (scene .rootNodes) .toHaveLength (3)
-   expect (scene .rootNodes [0] .getNodeTypeName ()) .toBe ("Transform")
-   expect (scene .rootNodes [1] .getNodeTypeName ()) .toBe ("Shape")
-   expect (scene .rootNodes [2] .getNodeTypeName ()) .toBe ("Box")
+   const scene1 = await Browser .importJS ({ "X3D": {
+      "encoding": "UTF-8",
+      "@profile": "Interchange",
+      "@version": "4.0",
+      "Scene": {
+         "-children": [
+            { "Transform": { } },
+            { "Shape": { } },
+            { "Box": { } }
+         ]
+      }
+   }})
+
+   expect (scene1 .rootNodes) .toHaveLength (3)
+   expect (scene1 .rootNodes [0] .getNodeTypeName ()) .toBe ("Transform")
+   expect (scene1 .rootNodes [1] .getNodeTypeName ()) .toBe ("Shape")
+   expect (scene1 .rootNodes [2] .getNodeTypeName ()) .toBe ("Box")
+
+   const scene2 = await Browser .importJS (`{ "X3D": {
+      "encoding": "UTF-8",
+      "@profile": "Interchange",
+      "@version": "4.0",
+      "Scene": {
+         "-children": [
+            { "Transform": { } },
+            { "Shape": { } },
+            { "Box": { } }
+         ]
+      }
+   }}`)
+
+   expect (scene2 .rootNodes) .toHaveLength (3)
+   expect (scene2 .rootNodes [0] .getNodeTypeName ()) .toBe ("Transform")
+   expect (scene2 .rootNodes [1] .getNodeTypeName ()) .toBe ("Shape")
+   expect (scene2 .rootNodes [2] .getNodeTypeName ()) .toBe ("Box")
 })
