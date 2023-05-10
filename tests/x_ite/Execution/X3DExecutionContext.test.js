@@ -1,6 +1,6 @@
 const X3D = require ("../../X3D")
 
-test ("createX3DFromURL", async () =>
+test ("properties", async () =>
 {
    const
       canvas  = X3D .createBrowser (),
