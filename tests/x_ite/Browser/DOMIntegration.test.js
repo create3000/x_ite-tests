@@ -51,7 +51,7 @@ test ("simple-scene-direct", () => new Promise ((resolve, reject) =>
    canvas .on ("error", () => reject ("onerror"))
 }))
 
-test ("simple-scene-later", () => new Promise ((resolve, reject) =>
+test ("simple-scene-injected", () => new Promise ((resolve, reject) =>
 {
    const
       canvas  = $(`<x3d-canvas></x3d-canvas>`),
