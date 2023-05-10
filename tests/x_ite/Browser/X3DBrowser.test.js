@@ -485,7 +485,7 @@ Box { }
 })
 
 
-test ("addRoute", async () =>
+test ("addRoute/deleteRoute", async () =>
 {
    const
       canvas  = X3D .createBrowser (),
@@ -507,6 +507,13 @@ DEF X Transform { }
    expect (scene .rootNodes [2] .getNodeTypeName ()) .toBe ("Transform")
 
    Browser .addRoute (scene .rootNodes [0], "fraction_changed", scene .rootNodes [1], "set_fraction")
+
+   expect (scene .routes) .toHaveLength (1)
+   expect (scene .routes [0] .sourceNode) .toBe (scene .rootNodes [0])
+   expect (scene .routes [0] .sourceField) .toBe ("fraction_changed")
+   expect (scene .routes [0] .destinationNode) .toBe (scene .rootNodes [1])
+   expect (scene .routes [0] .destinationField) .toBe ("set_fraction")
+
    Browser .addRoute (scene .rootNodes [1], "value_changed", scene .rootNodes [2], "translation")
 
    expect (scene .routes) .toHaveLength (2)
@@ -518,4 +525,16 @@ DEF X Transform { }
    expect (scene .routes [1] .sourceField) .toBe ("value_changed")
    expect (scene .routes [1] .destinationNode) .toBe (scene .rootNodes [2])
    expect (scene .routes [1] .destinationField) .toBe ("translation")
+
+   Browser .deleteRoute (scene .rootNodes [0], "fraction_changed", scene .rootNodes [1], "set_fraction")
+
+   expect (scene .routes) .toHaveLength (1)
+   expect (scene .routes [0] .sourceNode) .toBe (scene .rootNodes [1])
+   expect (scene .routes [0] .sourceField) .toBe ("value_changed")
+   expect (scene .routes [0] .destinationNode) .toBe (scene .rootNodes [2])
+   expect (scene .routes [0] .destinationField) .toBe ("translation")
+
+   Browser .deleteRoute (scene .rootNodes [1], "value_changed", scene .rootNodes [2], "translation")
+
+   expect (scene .routes) .toHaveLength (0)
 })
