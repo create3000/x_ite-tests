@@ -54,8 +54,6 @@ test ("shader", () =>
                      options .push ("X3D_EMISSIVE_TEXTURE", `X3D_EMISSIVE_TEXTURE_${texture}`);
                      options .push ("X3D_NORMAL_TEXTURE", `X3D_NORMAL_TEXTURE_${texture}`);
 
-                     options .push ("X3D_EMISSIVE_TEXTURE", `X3D_EMISSIVE_TEXTURE_${texture}`);
-                     options .push ("X3D_NORMAL_TEXTURE", `X3D_NORMAL_TEXTURE_${texture}`);
                      options .push ("X3D_AMBIENT_TEXTURE", `X3D_AMBIENT_TEXTURE_${texture}`);
                      options .push ("X3D_DIFFUSE_TEXTURE", `X3D_DIFFUSE_TEXTURE_${texture}`);
                      options .push ("X3D_SPECULAR_TEXTURE", `X3D_SPECULAR_TEXTURE_${texture}`);
