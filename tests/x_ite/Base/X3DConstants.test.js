@@ -17,6 +17,9 @@ test ("fields", () =>
 
    expect (Object .keys (Fields) .filter (f => f .startsWith ("SF")) .length)
       .toBe (Object .keys (Fields) .filter (f => f .startsWith ("MF")) .length)
+
+   expect (Object .keys (X3D .X3DConstants) .filter (f => f .match (/^(?:SF|MF|VrmlMatrix)/)) .length)
+      .toBe (Object .keys (Fields) .length)
 })
 
 test ("nodes", async () =>
