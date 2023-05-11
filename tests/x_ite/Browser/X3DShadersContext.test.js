@@ -13,6 +13,15 @@ test ("shader", () =>
       ["X3D_PHYSICAL_MATERIAL", "PhysicalMaterialShader", "Default", "PBR"],
    ]
 
+   const fogs = [
+      "X3D_FOG_COORDS",
+      "X3D_FOG_LINEAR",
+      "X3D_FOG_EXPONENTIAL",
+      "X3D_FOG_NONE",
+   ]
+
+   let i = 0;
+
    for (const [option, name, vertex, fragment] of shaders)
    {
       for (const geometry of ["0D", "1D", "2D", "3D"])
@@ -30,7 +39,7 @@ test ("shader", () =>
                   options .push ("MANUAL_SRGB")
                   options .push ("X3D_LOGARITHMIC_DEPTH_BUFFER");
                   options .push (`X3D_GEOMETRY_${geometry}`);
-                  options .push ("X3D_FOG_EXPONENTIAL");
+                  options .push (fogs [i % fogs .length]);
                   options .push ("X3D_COLOR_MATERIAL");
                   options .push ("X3D_NORMALS");
                   options .push ("X3D_ALPHA_MODE_OPAQUE", "X3D_ALPHA_MODE_MASK");
@@ -61,6 +70,8 @@ test ("shader", () =>
                   const shader = Browser .createShader (name, vertex, fragment, options);
 
                   expect (shader .isValid ()) .toBe (true)
+
+                  ++ i;
                }
             }
          }
