@@ -2,6 +2,23 @@ const
    X3D    = require ("../../X3D"),
    Fields = X3D .require ("x_ite/Fields")
 
+test ("events", () =>
+{
+   expect (Number .isInteger (X3D .X3DConstants .CONNECTION_ERROR)) .toBe (true)
+   expect (Number .isInteger (X3D .X3DConstants .BROWSER_EVENT)) .toBe (true)
+   expect (Number .isInteger (X3D .X3DConstants .INITIALIZED_EVENT)) .toBe (true)
+   expect (Number .isInteger (X3D .X3DConstants .SHUTDOWN_EVENT)) .toBe (true)
+   expect (Number .isInteger (X3D .X3DConstants .INITIALIZED_ERROR)) .toBe (true)
+})
+
+test ("load-state", () =>
+{
+   expect (Number .isInteger (X3D .X3DConstants .NOT_STARTED_STATE)) .toBe (true)
+   expect (Number .isInteger (X3D .X3DConstants .IN_PROGRESS_STATE)) .toBe (true)
+   expect (Number .isInteger (X3D .X3DConstants .COMPLETE_STATE)) .toBe (true)
+   expect (Number .isInteger (X3D .X3DConstants .FAILED_STATE)) .toBe (true)
+})
+
 test ("access-types", () =>
 {
    expect (Number .isInteger (X3D .X3DConstants .initializeOnly)) .toBe (true)
@@ -32,4 +49,10 @@ test ("nodes", async () =>
 
    for (const Type of Browser .getSupportedNodes ())
       expect (Number .isInteger (X3D .X3DConstants [Type .prototype .getTypeName ()])) .toBe (true)
+})
+
+test ("abstract-nodes", async () =>
+{
+   for (const AbstractType of Object .keys (X3D .X3DConstants) .filter (f => f .startsWith ("X3D")))
+      expect (Number .isInteger (X3D .X3DConstants [AbstractType])) .toBe (true)
 })
