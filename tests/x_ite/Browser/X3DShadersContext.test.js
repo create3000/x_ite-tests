@@ -35,7 +35,6 @@ test ("shader", () =>
                   const options = [ ]
 
                   options .push (option)
-                  options .push ("X3D_UNLIT_MATERIAL");
                   options .push ("MANUAL_SRGB")
                   options .push ("X3D_LOGARITHMIC_DEPTH_BUFFER");
                   options .push (`X3D_GEOMETRY_${geometry}`);
