@@ -23,6 +23,6 @@
   },
   "dependencies": {
     "@kayahr/jest-electron-runner": "^29.3.1",
-    "jquery": "^3.6.4"
+    "jquery": "^3.7.0"
   }
 }
