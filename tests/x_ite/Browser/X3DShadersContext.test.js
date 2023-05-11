@@ -58,6 +58,7 @@ test ("shader", () =>
                      options .push ("X3D_DIFFUSE_TEXTURE", `X3D_DIFFUSE_TEXTURE_${texture}`);
                      options .push ("X3D_SPECULAR_TEXTURE", `X3D_SPECULAR_TEXTURE_${texture}`);
                      options .push ("X3D_SHININESS_TEXTURE", `X3D_SHININESS_TEXTURE_${texture}`);
+                     
                      options .push ("X3D_OCCLUSION_TEXTURE", `X3D_OCCLUSION_TEXTURE_${texture}`);
 
                      options .push ("X3D_BASE_TEXTURE", `X3D_BASE_TEXTURE_${texture}`);
