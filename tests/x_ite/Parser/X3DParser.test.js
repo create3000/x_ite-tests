@@ -66,3 +66,26 @@ test ("fields", async () =>
       expect (scene .toJSONString ()) .toBe (x3dj)
    }
 })
+
+test ("nodes", async () =>
+{
+   const
+      canvas  = X3D .createBrowser (),
+      Browser = canvas .browser
+
+   await Browser .loadComponents (Browser .getProfile ("Full"))
+
+   const string = `PROFILE Full
+
+   ${Browser .getSupportedNodes () .map (Type => Type .prototype .getTypeName () + "{}") .join ("\n")}
+   `
+
+   const
+      scene1 = await Browser .createX3DFromString (string),
+      scene2 = await Browser .createX3DFromString (scene1 .toXMLString ()),
+      scene3 = await Browser .createX3DFromString (scene1 .toJSONString ())
+
+   expect (scene1 .rootNodes) .toHaveLength (Browser .getSupportedNodes () .length)
+   expect (scene2 .rootNodes) .toHaveLength (Browser .getSupportedNodes () .length)
+   expect (scene3 .rootNodes) .toHaveLength (Browser .getSupportedNodes () .length)
+})
