@@ -2,6 +2,23 @@ const
    X3D    = require ("../../X3D"),
    Fields = X3D .require ("x_ite/Fields")
 
+test ("access-types", () =>
+{
+   expect (Number .isInteger (X3D .X3DConstants .initializeOnly)) .toBe (true)
+   expect (Number .isInteger (X3D .X3DConstants .inputOnly)) .toBe (true)
+   expect (Number .isInteger (X3D .X3DConstants .outputOnly)) .toBe (true)
+   expect (Number .isInteger (X3D .X3DConstants .inputOutput)) .toBe (true)
+})
+
+test ("fields", () =>
+{
+   for (const Field of Object .keys (Fields))
+      expect (Number .isInteger (X3D .X3DConstants [Field])) .toBe (true)
+
+   expect (Object .keys (Fields) .filter (f => f .startsWith ("SF")) .length)
+      .toBe (Object .keys (Fields) .filter (f => f .startsWith ("MF")) .length)
+})
+
 test ("nodes", async () =>
 {
    const
@@ -12,10 +29,4 @@ test ("nodes", async () =>
 
    for (const Type of Browser .getSupportedNodes ())
       expect (Number .isInteger (X3D .X3DConstants [Type .prototype .getTypeName ()])) .toBe (true)
-})
-
-test ("fields", () =>
-{
-   for (const Field of Object .keys (Fields))
-      expect (Number .isInteger (X3D .X3DConstants [Field])) .toBe (true)
 })
