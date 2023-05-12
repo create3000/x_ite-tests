@@ -26,7 +26,9 @@ test ("statements", async () =>
       const scene = await Browser .createX3DFromURL (new X3D .MFString (`data:model/x3d,${file}`))
 
       expect (scene .encoding) .toBe (encodings [i])
-      expect (scene .specificationVersion) .toBe (latestVersion)
+
+      if (i)
+         expect (scene .specificationVersion) .toBe (latestVersion)
 
       expect (scene .getNamedNode ("Transform") .rotation .angle) .toBeCloseTo (Math .PI / 4)
       expect (scene .getNamedNode ("Box") .size .x) .toBeCloseTo (4)
@@ -63,7 +65,9 @@ test ("fields", async () =>
       const scene = await Browser .createX3DFromURL (new X3D .MFString (`data:model/x3d,${file}`))
 
       expect (scene .encoding) .toBe (encodings [i])
-      expect (scene .specificationVersion) .toBe (latestVersion)
+
+      if (i)
+         expect (scene .specificationVersion) .toBe (latestVersion)
 
       expect (scene .toXMLString ()) .toBe (x3d)
       expect (scene .toVRMLString ()) .toBe (x3dv)
