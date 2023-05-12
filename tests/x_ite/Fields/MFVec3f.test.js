@@ -7,7 +7,7 @@ test ("constructor", () =>
 {
    const a = new MFVec3f ()
 
-   expect (a) .toHaveLength (5)
+   expect (a) .toHaveLength (0)
    expect (a [0] .equals (new SFVec3f ())) .toBe (true)
    expect (a) .toHaveLength (1)
 
@@ -18,6 +18,14 @@ test ("constructor", () =>
    expect (b [2] .equals (new SFVec3f (3,4,5))) .toBe (true)
    expect (b [3] .equals (new SFVec3f (4,5,6))) .toBe (true)
    expect (b [4] .equals (new SFVec3f (5,6,7))) .toBe (true)
+
+   const c = [... b]
+   expect (c) .toHaveLength (5)
+   expect (c [0] .equals (new SFVec3f (1,2,3))) .toBe (true)
+   expect (c [1] .equals (new SFVec3f (2,3,4))) .toBe (true)
+   expect (c [2] .equals (new SFVec3f (3,4,5))) .toBe (true)
+   expect (c [3] .equals (new SFVec3f (4,5,6))) .toBe (true)
+   expect (c [4] .equals (new SFVec3f (5,6,7))) .toBe (true)
 })
 
 test ("getter", () =>

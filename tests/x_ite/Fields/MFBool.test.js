@@ -47,6 +47,31 @@ test ("setValue", () =>
    expect ((field [0] = -666,            field [0])) .toBe (true)
 })
 
+test ("constructor", () =>
+{
+   const a = new MFBool ()
+
+   expect (a) .toHaveLength (0)
+   expect (a [0]) .toBe (false)
+   expect (a) .toHaveLength (1)
+
+   const b = new MFBool (true,false,true,false,true)
+   expect (b) .toHaveLength (5)
+   expect (b [0]) .toBe (true)
+   expect (b [1]) .toBe (false)
+   expect (b [2]) .toBe (true)
+   expect (b [3]) .toBe (false)
+   expect (b [4]) .toBe (true)
+
+   const c = [... b]
+   expect (c) .toHaveLength (5)
+   expect (c [0]) .toBe (true)
+   expect (c [1]) .toBe (false)
+   expect (c [2]) .toBe (true)
+   expect (c [3]) .toBe (false)
+   expect (c [4]) .toBe (true)
+})
+
 test ("getter", () =>
 {
    const field = new MFBool ()
