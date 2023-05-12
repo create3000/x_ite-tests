@@ -53,18 +53,18 @@ const values = [
    [-123456789012.123, "-1.234568e11"],
 ];
 
-test ("Precision", () =>
+test ("FloatFormat", () =>
 {
    const generator = new Generator ({ })
 
    for (const [first, second] of values)
-      expect (generator .Precision (first)) .toBe (second)
+      expect (generator .FloatFormat (first)) .toBe (second)
 })
 
-test ("DoublePrecision", () =>
+test ("DoubleFormat", () =>
 {
    const generator = new Generator ({ doublePrecision: 7 })
 
    for (const [first, second] of values)
-      expect (generator .DoublePrecision (first)) .toBe (second)
+      expect (generator .DoubleFormat (first)) .toBe (second)
 })
