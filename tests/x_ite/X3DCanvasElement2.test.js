@@ -2,6 +2,129 @@ const
    X3D = require ("../X3D"),
    $   = require ("jquery")
 
+test ("onload-attribute", () => new Promise ((resolve, reject) =>
+{
+   window .onload1 = undefined;
+   window .onload2 = jest .fn ();
+
+   expect (window .onload1) .toBe (undefined)
+
+   const canvas = $(`<x3d-canvas onload="window.onload1=this;window.onload2()"></x3d-canvas>`)
+
+   canvas .html (`<X3D profile='Interchange' version='4.0'><Scene></Scene></X3D>`)
+
+   canvas [0] .addEventListener ("load", function (event)
+   {
+      try
+      {
+         expect (event .type) .toBe ("load")
+         expect (event) .toBeInstanceOf (CustomEvent)
+         expect (this) .toBe (canvas [0])
+         expect (window .onload1) .toBe (canvas [0])
+         expect (window .onload2). toHaveBeenCalledTimes (2)
+         resolve ()
+      }
+      catch (error)
+      {
+         reject (error .message)
+      }
+   })
+
+   canvas [0] .addEventListener ("error", () => reject ("onerror"))
+}))
+
+test ("oninitialized-attribute", () => new Promise ((resolve, reject) =>
+{
+   window .oninitialized1 = undefined;
+   window .oninitialized2 = jest .fn ();
+
+   expect (window .oninitialized1) .toBe (undefined)
+
+   const canvas = $(`<x3d-canvas oninitialized="window.oninitialized1=this;window.oninitialized2()"></x3d-canvas>`)
+
+   canvas .html (`<X3D profile='Interchange' version='4.0'><Scene></Scene></X3D>`)
+
+   canvas [0] .addEventListener ("initialized", function (event)
+   {
+      try
+      {
+         expect (event .type) .toBe ("initialized")
+         expect (event) .toBeInstanceOf (CustomEvent)
+         expect (this) .toBe (canvas [0])
+         expect (window .oninitialized1) .toBe (canvas [0])
+         expect (window .oninitialized2). toHaveBeenCalledTimes (1)
+         resolve ()
+      }
+      catch (error)
+      {
+         reject (error .message)
+      }
+   })
+
+   canvas [0] .addEventListener ("error", () => reject ("onerror"))
+}))
+
+test ("onshutdown-attribute", () => new Promise ((resolve, reject) =>
+{
+   window .onshutdown1 = undefined;
+   window .onshutdown2 = jest .fn ();
+
+   expect (window .onshutdown1) .toBe (undefined)
+
+   const canvas = $(`<x3d-canvas onshutdown="window.onshutdown1=this;window.onshutdown2()"></x3d-canvas>`)
+
+   canvas .html (`<X3D profile='Interchange' version='4.0'><Scene></Scene></X3D>`)
+
+   canvas [0] .addEventListener ("shutdown", function (event)
+   {
+      try
+      {
+         expect (event .type) .toBe ("shutdown")
+         expect (event) .toBeInstanceOf (CustomEvent)
+         expect (this) .toBe (canvas [0])
+         expect (window .onshutdown1) .toBe (canvas [0])
+         expect (window .onshutdown2). toHaveBeenCalledTimes (1)
+         resolve ()
+      }
+      catch (error)
+      {
+         reject (error .message)
+      }
+   })
+
+   canvas [0] .addEventListener ("error", () => reject ("onerror"))
+}))
+
+test ("onerror-attribute", () => new Promise ((resolve, reject) =>
+{
+   window .onerror1 = undefined;
+   window .onerror2 = jest .fn ();
+
+   expect (window .onerror1) .toBe (undefined)
+
+   const canvas = $(`<x3d-canvas onerror="window.onerror1=this;window.onerror2()"></x3d-canvas>`)
+
+   canvas .attr ("src", "https://www.example.com/does-not-exist")
+
+   canvas [0] .addEventListener ("initialized", () => reject ("onerror"))
+   canvas [0] .addEventListener ("error", function (event)
+   {
+      try
+      {
+         expect (event .type) .toBe ("error")
+         expect (event) .toBeInstanceOf (CustomEvent)
+         expect (this) .toBe (canvas [0])
+         expect (window .onerror1) .toBe (canvas [0])
+         expect (window .onerror2). toHaveBeenCalledTimes (1)
+         resolve ()
+      }
+      catch (error)
+      {
+         reject (error .message)
+      }
+   })
+}))
+
 test ("src-property", () => new Promise ((resolve, reject) =>
 {
    const

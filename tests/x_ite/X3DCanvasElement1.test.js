@@ -184,7 +184,6 @@ test ("oninitialized-property", () => new Promise ((resolve, reject) =>
    canvas [0] .onerror = reject
 }))
 
-
 test ("onshutdown-listener", () => new Promise ((resolve, reject) =>
 {
    const canvas = $(`<x3d-canvas></x3d-canvas>`)
