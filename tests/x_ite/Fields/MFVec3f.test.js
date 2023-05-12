@@ -26,6 +26,17 @@ test ("constructor", () =>
    expect (c [2] .equals (new SFVec3f (3,4,5))) .toBe (true)
    expect (c [3] .equals (new SFVec3f (4,5,6))) .toBe (true)
    expect (c [4] .equals (new SFVec3f (5,6,7))) .toBe (true)
+
+   const d = new MFVec3f (new SFVec3f (1,2,3))
+   expect (d [0] .equals (new SFVec3f (1,2,3))) .toBe (true)
+   d [0] .x = 2
+   d [0] .y = 3
+   d [0] .z = 4
+   d [1] .x = 3
+   d [1] .y = 4
+   d [1] .z = 5
+   expect (d [0] .equals (new SFVec3f (2,3,4))) .toBe (true)
+   expect (d [1] .equals (new SFVec3f (3,4,5))) .toBe (true)
 })
 
 test ("getter", () =>
