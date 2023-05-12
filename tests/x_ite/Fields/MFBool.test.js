@@ -4,7 +4,7 @@ const
 
 test ("constructor", () =>
 {
-   let field;
+   let field
 
    expect ((field = new MFBool (), field [0]))                .toBe (false)
    expect ((field = new MFBool (NaN), field [0]))             .toBe (false)
@@ -27,7 +27,7 @@ test ("constructor", () =>
 
 test ("setValue", () =>
 {
-   const field = new MFBool ();
+   const field = new MFBool ()
 
    expect ((field [0] = NaN,             field [0])) .toBe (false)
    expect ((field [0] = Infinity,        field [0])) .toBe (true)
@@ -49,7 +49,7 @@ test ("setValue", () =>
 
 test ("getter", () =>
 {
-   const field = new MFBool ();
+   const field = new MFBool ()
 
    expect (field .getType ()) .toBe (X3D .X3DConstants .MFBool)
    expect (field .getTypeName ()) .toBe ("MFBool")
@@ -59,7 +59,7 @@ test ("equals", () =>
 {
    const
       a = new MFBool (),
-      b = new MFBool (true);
+      b = new MFBool (true)
 
    expect (a .equals (a)) .toBe (true)
    expect (b .equals (b)) .toBe (true)
@@ -70,7 +70,7 @@ test ("isDefaultValue", () =>
 {
    const
       a = new MFBool (),
-      b = new MFBool (true);
+      b = new MFBool (true)
 
    expect (a .isDefaultValue ()) .toBe (true)
    expect (b .isDefaultValue ()) .toBe (false)
@@ -81,7 +81,7 @@ test ("special-values", () =>
    const a = new MFBool (Infinity)
 
    expect (a [0]) .toBe (true)
-   a [1] = Infinity;
+   a [1] = Infinity
    expect (a [1]) .toBe (true)
    a .push (Infinity)
    expect (a .at (-1)) .toBe (true)

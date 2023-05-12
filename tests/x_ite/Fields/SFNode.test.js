@@ -36,7 +36,7 @@ test ("equals", () =>
 {
    const
       a = new X3D .SFNode (),
-      b = node;
+      b = node
 
    expect (a .equals (a)) .toBe (true)
    expect (b .equals (b)) .toBe (true)
@@ -47,7 +47,7 @@ test ("isDefaultValue", () =>
 {
    const
       a = new X3D .SFNode (),
-      b = node;
+      b = node
 
    expect (a .isDefaultValue ()) .toBe (true)
    expect (b .isDefaultValue ()) .toBe (false)

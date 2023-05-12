@@ -4,7 +4,7 @@ const
 
 test ("constructor", () =>
 {
-   let field;
+   let field
 
    expect ((field = new MFInt32 (), field [0]))                .toBe (0)
    expect ((field = new MFInt32 (NaN), field [0]))             .toBe (0)
@@ -27,7 +27,7 @@ test ("constructor", () =>
 
 test ("setValue", () =>
 {
-   const field = new MFInt32 ();
+   const field = new MFInt32 ()
 
    expect ((field [0] = NaN,             field [0])) .toBe (0)
    expect ((field [0] = Infinity,        field [0])) .toBe (0)
@@ -49,7 +49,7 @@ test ("setValue", () =>
 
 test ("getter", () =>
 {
-   const field = new MFInt32 ();
+   const field = new MFInt32 ()
 
    expect (field .getType ()) .toBe (X3D .X3DConstants .MFInt32)
    expect (field .getTypeName ()) .toBe ("MFInt32")
@@ -59,7 +59,7 @@ test ("equals", () =>
 {
    const
       a = new MFInt32 (),
-      b = new MFInt32 (true);
+      b = new MFInt32 (true)
 
    expect (a .equals (a)) .toBe (true)
    expect (b .equals (b)) .toBe (true)
@@ -70,7 +70,7 @@ test ("isDefaultValue", () =>
 {
    const
       a = new MFInt32 (),
-      b = new MFInt32 (true);
+      b = new MFInt32 (true)
 
    expect (a .isDefaultValue ()) .toBe (true)
    expect (b .isDefaultValue ()) .toBe (false)

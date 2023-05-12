@@ -25,7 +25,7 @@ test ("constructor", () =>
 
 test ("setValue", () =>
 {
-   const field = new SFInt32 ();
+   const field = new SFInt32 ()
 
    expect ((field .setValue (),                field .valueOf ())) .toBe (0)
    expect ((field .setValue (NaN),             field .valueOf ())) .toBe (0)
@@ -48,7 +48,7 @@ test ("setValue", () =>
 
 test ("getter", () =>
 {
-   const field = new SFInt32 ();
+   const field = new SFInt32 ()
 
    expect (field .getType ()) .toBe (X3D .X3DConstants .SFInt32)
    expect (field .getTypeName ()) .toBe ("SFInt32")
@@ -58,7 +58,7 @@ test ("equals", () =>
 {
    const
       a = new SFInt32 (0),
-      b = new SFInt32 (1);
+      b = new SFInt32 (1)
 
    expect (a .equals (a)) .toBe (true)
    expect (b .equals (b)) .toBe (true)
@@ -69,7 +69,7 @@ test ("isDefaultValue", () =>
 {
    const
       a = new SFInt32 (0),
-      b = new SFInt32 (1);
+      b = new SFInt32 (1)
 
    expect (a .isDefaultValue ()) .toBe (true)
    expect (b .isDefaultValue ()) .toBe (false)

@@ -25,7 +25,7 @@ test ("constructor", () =>
 
 test ("setValue", () =>
 {
-   const field = new SFTime ();
+   const field = new SFTime ()
 
    expect ((field .setValue (),                field .valueOf ())) .toBe (NaN)
    expect ((field .setValue (NaN),             field .valueOf ())) .toBe (NaN)
@@ -48,7 +48,7 @@ test ("setValue", () =>
 
 test ("getter", () =>
 {
-   const field = new SFTime ();
+   const field = new SFTime ()
 
    expect (field .getType ()) .toBe (X3D .X3DConstants .SFTime)
    expect (field .getTypeName ()) .toBe ("SFTime")
@@ -58,7 +58,7 @@ test ("equals", () =>
 {
    const
       a = new SFTime (0),
-      b = new SFTime (1);
+      b = new SFTime (1)
 
    expect (a .equals (a)) .toBe (true)
    expect (b .equals (b)) .toBe (true)
@@ -69,7 +69,7 @@ test ("isDefaultValue", () =>
 {
    const
       a = new SFTime (0),
-      b = new SFTime (1);
+      b = new SFTime (1)
 
    expect (a .isDefaultValue ()) .toBe (true)
    expect (b .isDefaultValue ()) .toBe (false)

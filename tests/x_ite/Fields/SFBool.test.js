@@ -25,7 +25,7 @@ test ("constructor", () =>
 
 test ("setValue", () =>
 {
-   const field = new SFBool ();
+   const field = new SFBool ()
 
    expect ((field .setValue (),                field .valueOf ())) .toBe (false)
    expect ((field .setValue (NaN),             field .valueOf ())) .toBe (false)
@@ -48,7 +48,7 @@ test ("setValue", () =>
 
 test ("getter", () =>
 {
-   const field = new SFBool ();
+   const field = new SFBool ()
 
    expect (field .getType ()) .toBe (X3D .X3DConstants .SFBool)
    expect (field .getTypeName ()) .toBe ("SFBool")
@@ -58,7 +58,7 @@ test ("equals", () =>
 {
    const
       a = new SFBool (false),
-      b = new SFBool (true);
+      b = new SFBool (true)
 
    expect (a .equals (a)) .toBe (true)
    expect (b .equals (b)) .toBe (true)
@@ -69,7 +69,7 @@ test ("isDefaultValue", () =>
 {
    const
       a = new SFBool (false),
-      b = new SFBool (true);
+      b = new SFBool (true)
 
    expect (a .isDefaultValue ()) .toBe (true)
    expect (b .isDefaultValue ()) .toBe (false)

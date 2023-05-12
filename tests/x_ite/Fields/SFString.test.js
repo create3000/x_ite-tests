@@ -25,7 +25,7 @@ test ("constructor", () =>
 
 test ("setValue", () =>
 {
-   const field = new SFString ();
+   const field = new SFString ()
 
    expect ((field .setValue (),                field .valueOf ())) .toBe ("undefined")
    expect ((field .setValue (NaN),             field .valueOf ())) .toBe ("NaN")
@@ -48,7 +48,7 @@ test ("setValue", () =>
 
 test ("getter", () =>
 {
-   const field = new SFString ();
+   const field = new SFString ()
 
    expect (field .getType ()) .toBe (X3D .X3DConstants .SFString)
    expect (field .getTypeName ()) .toBe ("SFString")
@@ -58,7 +58,7 @@ test ("equals", () =>
 {
    const
       a = new SFString (""),
-      b = new SFString ("1");
+      b = new SFString ("1")
 
    expect (a .equals (a)) .toBe (true)
    expect (b .equals (b)) .toBe (true)
@@ -69,7 +69,7 @@ test ("isDefaultValue", () =>
 {
    const
       a = new SFString (""),
-      b = new SFString ("1");
+      b = new SFString ("1")
 
    expect (a .isDefaultValue ()) .toBe (true)
    expect (b .isDefaultValue ()) .toBe (false)

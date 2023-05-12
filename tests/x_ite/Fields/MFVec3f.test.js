@@ -1,0 +1,119 @@
+const
+   X3D    = require ("../../X3D"),
+   MFVec3f = X3D .MFVec3f,
+   SFVec3f = X3D .SFVec3f
+
+test ("constructor", () =>
+{
+   const a = new MFVec3f ()
+
+   expect (a) .toHaveLength (5)
+   expect (a [0] .equals (new SFVec3f ())) .toBe (true)
+   expect (a) .toHaveLength (1)
+
+   const b = new MFVec3f (new SFVec3f (1,2,3),new SFVec3f (2,3,4),new SFVec3f (3,4,5),new SFVec3f (4,5,6),new SFVec3f (5,6,7))
+   expect (b) .toHaveLength (5)
+   expect (b [0] .equals (new SFVec3f (1,2,3))) .toBe (true)
+   expect (b [1] .equals (new SFVec3f (2,3,4))) .toBe (true)
+   expect (b [2] .equals (new SFVec3f (3,4,5))) .toBe (true)
+   expect (b [3] .equals (new SFVec3f (4,5,6))) .toBe (true)
+   expect (b [4] .equals (new SFVec3f (5,6,7))) .toBe (true)
+})
+
+test ("getter", () =>
+{
+   const field = new MFVec3f ()
+
+   expect (field .getType ()) .toBe (X3D .X3DConstants .MFVec3f)
+   expect (field .getTypeName ()) .toBe ("MFVec3f")
+})
+
+test ("equals", () =>
+{
+   const
+      a = new MFVec3f (),
+      b = new MFVec3f (new SFVec3f ())
+
+   expect (a .equals (a)) .toBe (true)
+   expect (b .equals (b)) .toBe (true)
+   expect (a .equals (b)) .toBe (false)
+})
+
+test ("isDefaultValue", () =>
+{
+   const
+      a = new MFVec3f (),
+      b = new MFVec3f (new SFVec3f ())
+
+   expect (a .isDefaultValue ()) .toBe (true)
+   expect (b .isDefaultValue ()) .toBe (false)
+})
+
+test ("basic-functions", () =>
+{
+   const a = new MFVec3f (new SFVec3f (1,2,3))
+
+   expect (a [0] .x) .toBe (1)
+   expect (a [0] .y) .toBe (2)
+   expect (a [0] .z) .toBe (3)
+   a [1] = new SFVec3f (3,4,5)
+   expect (a [1] .x) .toBe (3)
+   expect (a [1] .y) .toBe (4)
+   expect (a [1] .z) .toBe (5)
+   a .push (new SFVec3f (4,5,6))
+   expect (a .at (-1) .x) .toBe (4)
+   expect (a .at (-1) .y) .toBe (5)
+   expect (a .at (-1) .z) .toBe (6)
+   a .unshift (new SFVec3f (5,6,7))
+   expect (a [0] .x) .toBe (5)
+   expect (a [0] .y) .toBe (6)
+   expect (a [0] .z) .toBe (7)
+   expect (a) .toHaveLength (4)
+   a .splice (1, 1, new SFVec3f (6,7,8))
+   expect (a [1] .x) .toBe (6)
+   expect (a [1] .y) .toBe (7)
+   expect (a [1] .z) .toBe (8)
+   a .splice (1, 1, new SFVec3f (7,8,9))
+   expect (a [1] .x) .toBe (7)
+   expect (a [1] .y) .toBe (8)
+   expect (a [1] .z) .toBe (9)
+   a .splice (1, 0, new SFVec3f (8,9,0))
+   expect (a) .toHaveLength (5)
+   expect (a [0] .equals (new SFVec3f (5,6,7))) .toBe (true)
+   expect (a [1] .equals (new SFVec3f (8,9,0))) .toBe (true)
+   expect (a [2] .equals (new SFVec3f (7,8,9))) .toBe (true)
+   expect (a [3] .equals (new SFVec3f (3,4,5))) .toBe (true)
+   expect (a [4] .equals (new SFVec3f (4,5,6))) .toBe (true)
+
+   a .fill (new SFVec3f (5,6,7))
+   expect (a) .toHaveLength (5)
+   expect (a [0] .equals (new SFVec3f (5,6,7))) .toBe (true)
+   expect (a [1] .equals (new SFVec3f (5,6,7))) .toBe (true)
+   expect (a [2] .equals (new SFVec3f (5,6,7))) .toBe (true)
+   expect (a [3] .equals (new SFVec3f (5,6,7))) .toBe (true)
+   expect (a [4] .equals (new SFVec3f (5,6,7))) .toBe (true)
+
+   expect (a .includes (new SFVec3f (9,9,9))) .toBe (false)
+   expect (a .indexOf (new SFVec3f (9,9,9))) .toBe (-1)
+   expect (a .lastIndexOf (new SFVec3f (9,9,9))) .toBe (-1)
+
+   expect (a .includes (new SFVec3f (5,6,7))) .toBe (true)
+   expect (a .indexOf (new SFVec3f (5,6,7))) .toBe (0)
+   expect (a .lastIndexOf (new SFVec3f (5,6,7))) .toBe (a .length - 1)
+
+   a [1] = new SFVec3f (4,5,6)
+   a [3] = new SFVec3f (4,5,6)
+
+   expect (a .includes (new SFVec3f (4,5,6))) .toBe (true)
+   expect (a .indexOf (new SFVec3f (4,5,6))) .toBe (1)
+   expect (a .lastIndexOf (new SFVec3f (4,5,6))) .toBe (3)
+
+   a .splice (0, 5, new SFVec3f (1,2,3),new SFVec3f (2,3,4),new SFVec3f (3,4,5),new SFVec3f (4,5,6),new SFVec3f (5,6,7))
+   expect (a) .toHaveLength (5)
+   expect (a [0] .equals (new SFVec3f (1,2,3))) .toBe (true)
+   expect (a [1] .equals (new SFVec3f (2,3,4))) .toBe (true)
+   expect (a [2] .equals (new SFVec3f (3,4,5))) .toBe (true)
+   expect (a [3] .equals (new SFVec3f (4,5,6))) .toBe (true)
+   expect (a [4] .equals (new SFVec3f (5,6,7))) .toBe (true)
+})
+

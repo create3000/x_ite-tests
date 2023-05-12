@@ -4,7 +4,7 @@ const
 
 test ("constructor", () =>
 {
-   let field;
+   let field
 
    expect ((field = new MFDouble (), field [0]))                .toBe (0)
    expect ((field = new MFDouble (NaN), field [0]))             .toBe (NaN)
@@ -27,7 +27,7 @@ test ("constructor", () =>
 
 test ("setValue", () =>
 {
-   const field = new MFDouble ();
+   const field = new MFDouble ()
 
    expect ((field [0] = NaN,             field [0])) .toBe (NaN)
    expect ((field [0] = Infinity,        field [0])) .toBe (Infinity)
@@ -49,7 +49,7 @@ test ("setValue", () =>
 
 test ("getter", () =>
 {
-   const field = new MFDouble ();
+   const field = new MFDouble ()
 
    expect (field .getType ()) .toBe (X3D .X3DConstants .MFDouble)
    expect (field .getTypeName ()) .toBe ("MFDouble")
@@ -59,7 +59,7 @@ test ("equals", () =>
 {
    const
       a = new MFDouble (),
-      b = new MFDouble (true);
+      b = new MFDouble (true)
 
    expect (a .equals (a)) .toBe (true)
    expect (b .equals (b)) .toBe (true)
@@ -70,7 +70,7 @@ test ("isDefaultValue", () =>
 {
    const
       a = new MFDouble (),
-      b = new MFDouble (true);
+      b = new MFDouble (true)
 
    expect (a .isDefaultValue ()) .toBe (true)
    expect (b .isDefaultValue ()) .toBe (false)

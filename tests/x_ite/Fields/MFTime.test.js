@@ -4,7 +4,7 @@ const
 
 test ("constructor", () =>
 {
-   let field;
+   let field
 
    expect ((field = new MFTime (), field [0]))                .toBe (0)
    expect ((field = new MFTime (NaN), field [0]))             .toBe (NaN)
@@ -27,7 +27,7 @@ test ("constructor", () =>
 
 test ("setValue", () =>
 {
-   const field = new MFTime ();
+   const field = new MFTime ()
 
    expect ((field [0] = NaN,             field [0])) .toBe (NaN)
    expect ((field [0] = Infinity,        field [0])) .toBe (Infinity)
@@ -49,7 +49,7 @@ test ("setValue", () =>
 
 test ("getter", () =>
 {
-   const field = new MFTime ();
+   const field = new MFTime ()
 
    expect (field .getType ()) .toBe (X3D .X3DConstants .MFTime)
    expect (field .getTypeName ()) .toBe ("MFTime")
@@ -59,7 +59,7 @@ test ("equals", () =>
 {
    const
       a = new MFTime (),
-      b = new MFTime (true);
+      b = new MFTime (true)
 
    expect (a .equals (a)) .toBe (true)
    expect (b .equals (b)) .toBe (true)
@@ -70,7 +70,7 @@ test ("isDefaultValue", () =>
 {
    const
       a = new MFTime (),
-      b = new MFTime (true);
+      b = new MFTime (true)
 
    expect (a .isDefaultValue ()) .toBe (true)
    expect (b .isDefaultValue ()) .toBe (false)

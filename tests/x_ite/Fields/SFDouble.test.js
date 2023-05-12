@@ -25,7 +25,7 @@ test ("constructor", () =>
 
 test ("setValue", () =>
 {
-   const field = new SFDouble ();
+   const field = new SFDouble ()
 
    expect ((field .setValue (),                field .valueOf ())) .toBe (NaN)
    expect ((field .setValue (NaN),             field .valueOf ())) .toBe (NaN)
@@ -48,7 +48,7 @@ test ("setValue", () =>
 
 test ("getter", () =>
 {
-   const field = new SFDouble ();
+   const field = new SFDouble ()
 
    expect (field .getType ()) .toBe (X3D .X3DConstants .SFDouble)
    expect (field .getTypeName ()) .toBe ("SFDouble")
@@ -58,7 +58,7 @@ test ("equals", () =>
 {
    const
       a = new SFDouble (0),
-      b = new SFDouble (1);
+      b = new SFDouble (1)
 
    expect (a .equals (a)) .toBe (true)
    expect (b .equals (b)) .toBe (true)
@@ -69,7 +69,7 @@ test ("isDefaultValue", () =>
 {
    const
       a = new SFDouble (0),
-      b = new SFDouble (1);
+      b = new SFDouble (1)
 
    expect (a .isDefaultValue ()) .toBe (true)
    expect (b .isDefaultValue ()) .toBe (false)
