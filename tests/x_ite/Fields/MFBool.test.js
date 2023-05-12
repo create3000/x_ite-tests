@@ -76,3 +76,27 @@ test ("isDefaultValue", () =>
    expect (b .isDefaultValue ()) .toBe (false)
 })
 
+test ("special-values", () =>
+{
+   const a = new MFBool (Infinity)
+
+   a .push (Infinity)
+   expect (a .at (-1)) .toBe (true)
+   a .unshift (Infinity)
+   expect (a [0]) .toBe (true)
+   a [0] = Infinity;
+   expect (a [0]) .toBe (true)
+   expect (a) .toHaveLength (3)
+   a .splice (1, 1, Infinity)
+   expect (a) .toHaveLength (3)
+   expect (a [1]) .toBe (true)
+   a .splice (1, 1, 0)
+   expect (a [1]) .toBe (false)
+   a .splice (1, 0, NaN)
+   expect (a) .toHaveLength (4)
+   expect (a [0]) .toBe (true)
+   expect (a [1]) .toBe (false)
+   expect (a [2]) .toBe (true)
+   expect (a [2]) .toBe (true)
+})
+
