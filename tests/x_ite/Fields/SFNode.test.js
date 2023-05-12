@@ -1,12 +1,16 @@
 const X3D = require ("../../X3D")
 
-test ("toString", () =>
+const
+   canvas  = X3D .createBrowser (),
+   Browser = canvas .browser,
+   scene   = Browser .currentScene,
+   load    = Browser .loadComponents (Browser .getProfile ("Full"))
+
+test ("toString", async () =>
 {
-   const
-      canvas  = X3D .createBrowser (),
-      Browser = canvas .browser,
-      scene   = Browser .currentScene,
-      node    = scene .createNode ("WorldInfo")
+   await load;
+
+   const node = scene .createNode ("WorldInfo")
 
    expect (node .toString ()) .toMatch (/^\w+ { }$/)
 })

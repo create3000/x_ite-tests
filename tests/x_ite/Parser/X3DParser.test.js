@@ -13,15 +13,16 @@ test ("statements", async () =>
       scene         = await Browser .createX3DFromURL (new X3D .MFString (url .pathToFileURL (path .join (__dirname, "files", `statements.x3d`))))
 
    const
-      x3d  = await fetch (path .join (__dirname, "files", `statements.x3d`)) .then (r => r .text ()),
+      orig = await fetch (path .join (__dirname, "files", `statements.x3d`)) .then (r => r .text ()),
+      x3d  = scene .toXMLString (),
       x3dv = scene .toVRMLString (),
       x3dj = scene .toJSONString ()
 
-   const encodings = ["XML", "VRML", "JSON"]
+   const encodings = ["XML", "XML", "VRML", "JSON"]
 
    Browser .baseURL = scene .worldURL
 
-   for (const [i, file] of [x3d, x3dv, x3dj] .entries ())
+   for (const [i, file] of [orig, x3d, x3dv, x3dj] .entries ())
    {
       const scene = await Browser .createX3DFromURL (new X3D .MFString (`data:model/x3d,${file}`))
 
@@ -37,7 +38,7 @@ test ("statements", async () =>
       expect (scene .getNamedNode ("Emitter") .mass) .toBeCloseTo (2)
       expect (scene .getNamedNode ("Force") .force .y) .toBeCloseTo (-10)
 
-      expect (scene .toXMLString ()) .toBe (x3d)
+      expect (scene .toXMLString ()) .toBe (orig)
       expect (scene .toVRMLString ()) .toBe (x3dv)
       expect (scene .toJSONString ()) .toBe (x3dj)
    }
@@ -52,15 +53,16 @@ test ("fields", async () =>
       scene         = await Browser .createX3DFromURL (new X3D .MFString (url .pathToFileURL (path .join (__dirname, "files", `fields.x3d`))))
 
    const
-      x3d  = await fetch (path .join (__dirname, "files", `fields.x3d`)) .then (r => r .text ()),
+      orig = await fetch (path .join (__dirname, "files", `fields.x3d`)) .then (r => r .text ()),
+      x3d  = scene .toXMLString (),
       x3dv = scene .toVRMLString (),
       x3dj = scene .toJSONString ()
 
-   const encodings = ["XML", "VRML", "JSON"]
+   const encodings = ["XML", "XML", "VRML", "JSON"]
 
    Browser .baseURL = scene .worldURL
 
-   for (const [i, file] of [x3d, x3dv, x3dj] .entries ())
+   for (const [i, file] of [orig, x3d, x3dv, x3dj] .entries ())
    {
       const scene = await Browser .createX3DFromURL (new X3D .MFString (`data:model/x3d,${file}`))
 
