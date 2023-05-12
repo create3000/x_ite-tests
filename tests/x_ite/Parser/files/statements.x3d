@@ -4,6 +4,8 @@
   <head>
     <component name='CADGeometry' level='2'/>
     <component name='ParticleSystems' level='3'/>
+    <component name='Scripting' level='1'/>
+    <component name='Shaders' level='1'/>
     <unit category='angle' name='degree' conversionFactor='0.017453292519943295'/>
     <unit category='force' name='millinewton' conversionFactor='0.001'/>
     <unit category='length' name='millimetre' conversionFactor='0.001'/>
@@ -11,9 +13,9 @@
     <meta name='created' content='Mon, 08 May 2023 12:03:58 GMT'/>
     <meta name='comment' content='Rise and Shine'/>
     <meta name='creator' content='Holger Seelig'/>
-    <meta name='generator' content='Sunrize X3D Editor V1.0.27, https://create3000.github.io/sunrize/'/>
+    <meta name='generator' content='Sunrize X3D Editor V1.0.31, https://create3000.github.io/sunrize/'/>
     <meta name='identifier' content='file:///Users/holger/Desktop/X_ITE/x_ite-tests/tests/x_ite/Parser/files/statements.x3d'/>
-    <meta name='modified' content='Tue, 09 May 2023 09:02:50 GMT'/>
+    <meta name='modified' content='Fri, 12 May 2023 09:03:24 GMT'/>
   </head>
   <Scene>
     <ExternProtoDeclare name='Foo' url='"proto.x3d"'>
@@ -69,6 +71,57 @@
         cycleInterval='10'/>
     <PositionInterpolator DEF='PI'/>
     <Transform DEF='T'/>
+    <Script DEF='NewScript'>
+<![CDATA[ecmascript:
+
+function initialize ()
+{
+   // Add code here.
+}
+
+function set_field (value, time)
+{
+   console .log (time, value);
+}
+]]>
+    </Script>
+    <ComposedShader DEF='NewShader'
+        language='GLSL'>
+      <ShaderPart DEF='VertexShader'>
+<![CDATA[data:x-shader/x-vertex,#version 300 es
+
+precision highp float;
+precision highp int;
+
+uniform mat4 x3d_ProjectionMatrix;
+uniform mat4 x3d_ModelViewMatrix;
+
+in vec4 x3d_Vertex;
+
+void
+main ()
+{
+   gl_Position = x3d_ProjectionMatrix * x3d_ModelViewMatrix * x3d_Vertex;
+}
+]]>
+      </ShaderPart>
+      <ShaderPart DEF='FragmentShader'
+          type='FRAGMENT'>
+<![CDATA[data:x-shader/x-fragment,#version 300 es
+
+precision highp float;
+precision highp int;
+
+out vec4 x3d_FragColor;
+
+void
+main ()
+{
+   x3d_FragColor = vec4 (1.0, 0.0, 0.0, 1.0);
+}
+]]>
+      </ShaderPart>
+    </ComposedShader>
     <IMPORT inlineDEF='InlineWithExport' importedDEF='ExportedInstanceFoo'/>
     <IMPORT inlineDEF='InlineWithExport' importedDEF='ExportedInstanceFoo' AS='WithOtherName'/>
     <ROUTE fromNode='Timer' fromField='fraction_changed' toNode='PI' toField='set_fraction'/>
