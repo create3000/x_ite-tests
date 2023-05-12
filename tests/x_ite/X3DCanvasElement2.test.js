@@ -44,6 +44,8 @@ test ("oninitialized-attribute", () => new Promise ((resolve, reject) =>
 
    const canvas = $(`<x3d-canvas oninitialized="window.oninitialized1=this;window.oninitialized2()"></x3d-canvas>`)
 
+   expect (window .oninitialized2) .toHaveBeenCalledTimes (0)
+
    canvas .html (`<X3D profile='Interchange' version='4.0'><Scene></Scene></X3D>`)
 
    canvas [0] .addEventListener ("initialized", function (event)
@@ -75,6 +77,8 @@ test ("onshutdown-attribute", () => new Promise ((resolve, reject) =>
 
    const canvas = $(`<x3d-canvas onshutdown="window.onshutdown1=this;window.onshutdown2()"></x3d-canvas>`)
 
+   expect (window .onshutdown2) .toHaveBeenCalledTimes (0)
+
    canvas .html (`<X3D profile='Interchange' version='4.0'><Scene></Scene></X3D>`)
 
    canvas [0] .addEventListener ("shutdown", function (event)
@@ -105,6 +109,8 @@ test ("onerror-attribute", () => new Promise ((resolve, reject) =>
    expect (window .onerror1) .toBe (undefined)
 
    const canvas = $(`<x3d-canvas onerror="window.onerror1=this;window.onerror2()"></x3d-canvas>`)
+
+   expect (window .onerror2) .toHaveBeenCalledTimes (0)
 
    canvas .attr ("src", "https://www.example.com/does-not-exist")
 
