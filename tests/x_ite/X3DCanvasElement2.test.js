@@ -11,6 +11,8 @@ test ("onload-attribute", () => new Promise ((resolve, reject) =>
 
    const canvas = $(`<x3d-canvas onload="window.onload1=this;window.onload2()"></x3d-canvas>`)
 
+   expect (window .onload2) .toHaveBeenCalledTimes (1)
+
    canvas .html (`<X3D profile='Interchange' version='4.0'><Scene></Scene></X3D>`)
 
    canvas [0] .addEventListener ("load", function (event)
@@ -21,7 +23,7 @@ test ("onload-attribute", () => new Promise ((resolve, reject) =>
          expect (event) .toBeInstanceOf (CustomEvent)
          expect (this) .toBe (canvas [0])
          expect (window .onload1) .toBe (canvas [0])
-         expect (window .onload2). toHaveBeenCalledTimes (2)
+         expect (window .onload2) .toHaveBeenCalledTimes (2)
          resolve ()
       }
       catch (error)
@@ -52,7 +54,7 @@ test ("oninitialized-attribute", () => new Promise ((resolve, reject) =>
          expect (event) .toBeInstanceOf (CustomEvent)
          expect (this) .toBe (canvas [0])
          expect (window .oninitialized1) .toBe (canvas [0])
-         expect (window .oninitialized2). toHaveBeenCalledTimes (1)
+         expect (window .oninitialized2) .toHaveBeenCalledTimes (1)
          resolve ()
       }
       catch (error)
@@ -83,7 +85,7 @@ test ("onshutdown-attribute", () => new Promise ((resolve, reject) =>
          expect (event) .toBeInstanceOf (CustomEvent)
          expect (this) .toBe (canvas [0])
          expect (window .onshutdown1) .toBe (canvas [0])
-         expect (window .onshutdown2). toHaveBeenCalledTimes (1)
+         expect (window .onshutdown2) .toHaveBeenCalledTimes (1)
          resolve ()
       }
       catch (error)
@@ -115,7 +117,7 @@ test ("onerror-attribute", () => new Promise ((resolve, reject) =>
          expect (event) .toBeInstanceOf (CustomEvent)
          expect (this) .toBe (canvas [0])
          expect (window .onerror1) .toBe (canvas [0])
-         expect (window .onerror2). toHaveBeenCalledTimes (1)
+         expect (window .onerror2) .toHaveBeenCalledTimes (1)
          resolve ()
       }
       catch (error)
