@@ -11,7 +11,7 @@ test ("onload-attribute", () => new Promise ((resolve, reject) =>
 
    const canvas = $(`<x3d-canvas onload="window.onload1=this;window.onload2()"></x3d-canvas>`)
 
-   expect (window .onload2) .toHaveBeenCalledTimes (1)
+   expect (window .onload2) .toHaveBeenCalledTimes (0)
 
    canvas .html (`<X3D profile='Interchange' version='4.0'><Scene></Scene></X3D>`)
 
@@ -23,7 +23,7 @@ test ("onload-attribute", () => new Promise ((resolve, reject) =>
          expect (event) .toBeInstanceOf (CustomEvent)
          expect (this) .toBe (canvas [0])
          expect (window .onload1) .toBe (canvas [0])
-         expect (window .onload2) .toHaveBeenCalledTimes (2)
+         expect (window .onload2) .toHaveBeenCalledTimes (1)
          resolve ()
       }
       catch (error)
