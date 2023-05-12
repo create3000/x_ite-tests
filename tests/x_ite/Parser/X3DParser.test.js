@@ -7,9 +7,10 @@ const X3D = require ("../../X3D")
 test ("statements", async () =>
 {
    const
-      canvas  = X3D .createBrowser (),
-      Browser = canvas .browser,
-      scene   = await Browser .createX3DFromURL (new X3D .MFString (url .pathToFileURL (path .join (__dirname, "files", `statements.x3d`))))
+      canvas        = X3D .createBrowser (),
+      Browser       = canvas .browser,
+      latestVersion = Browser .createScene () .specificationVersion,
+      scene         = await Browser .createX3DFromURL (new X3D .MFString (url .pathToFileURL (path .join (__dirname, "files", `statements.x3d`))))
 
    const
       x3d  = await fetch (path .join (__dirname, "files", `statements.x3d`)) .then (r => r .text ()),
@@ -25,6 +26,7 @@ test ("statements", async () =>
       const scene = await Browser .createX3DFromURL (new X3D .MFString (`data:model/x3d,${file}`))
 
       expect (scene .encoding) .toBe (encodings [i])
+      expect (scene .specificationVersion) .toBe (latestVersion)
 
       expect (scene .getNamedNode ("Transform") .rotation .angle) .toBeCloseTo (Math .PI / 4)
       expect (scene .getNamedNode ("Box") .size .x) .toBeCloseTo (4)
@@ -42,9 +44,10 @@ test ("statements", async () =>
 test ("fields", async () =>
 {
    const
-      canvas  = X3D .createBrowser (),
-      Browser = canvas .browser,
-      scene   = await Browser .createX3DFromURL (new X3D .MFString (url .pathToFileURL (path .join (__dirname, "files", `fields.x3d`))))
+      canvas        = X3D .createBrowser (),
+      Browser       = canvas .browser,
+      latestVersion = Browser .createScene () .specificationVersion,
+      scene         = await Browser .createX3DFromURL (new X3D .MFString (url .pathToFileURL (path .join (__dirname, "files", `fields.x3d`))))
 
    const
       x3d  = await fetch (path .join (__dirname, "files", `fields.x3d`)) .then (r => r .text ()),
@@ -60,6 +63,7 @@ test ("fields", async () =>
       const scene = await Browser .createX3DFromURL (new X3D .MFString (`data:model/x3d,${file}`))
 
       expect (scene .encoding) .toBe (encodings [i])
+      expect (scene .specificationVersion) .toBe (latestVersion)
 
       expect (scene .toXMLString ()) .toBe (x3d)
       expect (scene .toVRMLString ()) .toBe (x3dv)
