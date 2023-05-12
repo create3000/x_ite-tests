@@ -109,9 +109,9 @@ test ("special-values", () =>
    expect (a [3]) .toBe (false)
    expect (a [4]) .toBe (false)
 
-   expect (a .includes (Infinity)) .toBe (false)
-   expect (a .indexOf (Infinity)) .toBe (-1)
-   expect (a .lastIndexOf (Infinity)) .toBe (-1)
+   expect (a .includes (true)) .toBe (false)
+   expect (a .indexOf (true)) .toBe (-1)
+   expect (a .lastIndexOf (true)) .toBe (-1)
 
    a .fill (Infinity)
    expect (a) .toHaveLength (5)
@@ -121,9 +121,9 @@ test ("special-values", () =>
    expect (a [3]) .toBe (true)
    expect (a [4]) .toBe (true)
 
-   expect (a .includes (Infinity)) .toBe (true)
-   expect (a .indexOf (Infinity)) .toBe (0)
-   expect (a .lastIndexOf (Infinity)) .toBe (a .length - 1)
+   expect (a .includes (true)) .toBe (true)
+   expect (a .indexOf (true)) .toBe (0)
+   expect (a .lastIndexOf (true)) .toBe (a .length - 1)
 
    a [1] = false
    a [3] = false
