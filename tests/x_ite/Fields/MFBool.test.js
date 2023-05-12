@@ -131,5 +131,13 @@ test ("special-values", () =>
    expect (a .includes (false)) .toBe (true)
    expect (a .indexOf (false)) .toBe (1)
    expect (a .lastIndexOf (false)) .toBe (3)
+
+   a .splice (0, 5, Infinity, Infinity, Infinity, Infinity, Infinity)
+   expect (a) .toHaveLength (5)
+   expect (a [0]) .toBe (true)
+   expect (a [1]) .toBe (true)
+   expect (a [2]) .toBe (true)
+   expect (a [3]) .toBe (true)
+   expect (a [4]) .toBe (true)
 })
 
