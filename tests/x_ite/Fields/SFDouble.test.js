@@ -45,3 +45,32 @@ test ("setValue", () =>
    expect ((field .setValue (666),             field .valueOf ())) .toBe (666)
    expect ((field .setValue (-666),            field .valueOf ())) .toBe (-666)
 })
+
+test ("getter", () =>
+{
+   const field = new SFDouble ();
+
+   expect (field .getType ()) .toBe (X3D .X3DConstants .SFDouble)
+   expect (field .getTypeName ()) .toBe ("SFDouble")
+})
+
+test ("equals", () =>
+{
+   const
+      a = new SFDouble (0),
+      b = new SFDouble (1);
+
+   expect (a .equals (a)) .toBe (true)
+   expect (b .equals (b)) .toBe (true)
+   expect (a .equals (b)) .toBe (false)
+})
+
+test ("isDefaultValue", () =>
+{
+   const
+      a = new SFDouble (0),
+      b = new SFDouble (1);
+
+   expect (a .isDefaultValue ()) .toBe (true)
+   expect (b .isDefaultValue ()) .toBe (false)
+})

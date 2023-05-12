@@ -45,3 +45,33 @@ test ("setValue", () =>
    expect ((field .setValue (666),             field .valueOf ())) .toBe (true)
    expect ((field .setValue (-666),            field .valueOf ())) .toBe (true)
 })
+
+test ("getter", () =>
+{
+   const field = new SFBool ();
+
+   expect (field .getType ()) .toBe (X3D .X3DConstants .SFBool)
+   expect (field .getTypeName ()) .toBe ("SFBool")
+})
+
+test ("equals", () =>
+{
+   const
+      a = new SFBool (false),
+      b = new SFBool (true);
+
+   expect (a .equals (a)) .toBe (true)
+   expect (b .equals (b)) .toBe (true)
+   expect (a .equals (b)) .toBe (false)
+})
+
+test ("isDefaultValue", () =>
+{
+   const
+      a = new SFBool (false),
+      b = new SFBool (true);
+
+   expect (a .isDefaultValue ()) .toBe (true)
+   expect (b .isDefaultValue ()) .toBe (false)
+})
+
