@@ -55,6 +55,8 @@ test ("constructor", () =>
    expect (c [2] .equals (new SFVec3f (3,4,5))) .toBe (true)
    expect (c [3] .equals (new SFVec3f (4,5,6))) .toBe (true)
    expect (c [4] .equals (new SFVec3f (5,6,7))) .toBe (true)
+   for (let i = 0; i < 5; ++ i)
+      expect (c [i]) .toBe (b [i])
 
    const d = new MFVec3f (new SFVec3f (1,2,3))
    expect (dispatchEvent) .toHaveLength (1)
