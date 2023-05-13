@@ -264,14 +264,19 @@ test ("flatMap", () =>
    for (let i = 0, n = 0; i < N; ++ i)
       a .push (new SFVec3f (++n,++n,++n))
 
-   const b = a .flatMap (v => v)
+   const b = a .flatMap (v => [v,v])
 
    expect (b) .toBeInstanceOf (Array)
    expect (Array .isArray (b)) .toBe (true)
-   expect (b) .toHaveLength (N * 3)
+   expect (b) .toHaveLength (N * 2)
 
-   for (let i = 0, n = 0; i < N * 3; ++ i)
-      expect (b [i]) .toBe (++n)
+   for (let i = 0; i < N; ++ i)
+   {
+      expect (b [i * 2 + 0]) .not .toBe (a [i])
+      expect (b [i * 2 + 1]) .not .toBe (a [i])
+      expect (b [i * 2 + 0] .equals (a [i])) .toBe (true)
+      expect (b [i * 2 + 1] .equals (a [i])) .toBe (true)
+   }
 })
 
 test ("map", () =>
