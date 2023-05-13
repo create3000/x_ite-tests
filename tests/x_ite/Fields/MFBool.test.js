@@ -294,6 +294,26 @@ test ("shift", () =>
    }
 })
 
+test ("slice", () =>
+{
+   const
+      N = 10,
+      a = new MFBool ()
+
+   for (let i = 0, n = 0; i < N; ++ i)
+      a .push ((n=!n))
+
+   expect (a) .toHaveLength (N)
+
+   const b = a .slice ()
+
+   expect (b) .toBeInstanceOf (Array)
+   expect (Array .isArray(b)) .toBe (true)
+
+   for (let i = 0; i < N; ++ i)
+      expect (b [i]) .toBe (a [i])
+})
+
 test ("sort-reverse", () =>
 {
    const a = new MFBool (true, false, true, false, true, false)

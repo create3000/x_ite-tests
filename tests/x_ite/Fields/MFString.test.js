@@ -294,6 +294,26 @@ test ("shift", () =>
    }
 })
 
+test ("slice", () =>
+{
+   const
+      N = 10,
+      a = new MFString ()
+
+   for (let i = 0, n = 0; i < N; ++ i)
+      a .push (String (++n))
+
+   expect (a) .toHaveLength (N)
+
+   const b = a .slice ()
+
+   expect (b) .toBeInstanceOf (Array)
+   expect (Array .isArray(b)) .toBe (true)
+
+   for (let i = 0; i < N; ++ i)
+      expect (b [i]) .toBe (a [i])
+})
+
 test ("sort-reverse", () =>
 {
    const a = new MFString ("1", "2", "3", "4", "5", "6")

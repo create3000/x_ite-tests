@@ -268,6 +268,29 @@ test ("shift", () =>
    }
 })
 
+test ("slice", () =>
+{
+   const
+      N = 10,
+      a = new MFVec3f ()
+
+   for (let i = 0, n = 0; i < N; ++ i)
+      a .push (new SFVec3f (++n,++n,++n))
+
+   expect (a) .toHaveLength (N)
+
+   const b = a .slice ()
+
+   expect (b) .toBeInstanceOf (Array)
+   expect (Array .isArray(b)) .toBe (true)
+
+   for (let i = 0; i < N; ++ i)
+   {
+      expect (b [i]) .not .toBe (a [i])
+      expect (b [i] .equals (a [i])) .toBe (true)
+   }
+})
+
 test ("sort-reverse", () =>
 {
    const a = new MFVec3f (new SFVec3f (1,2,3),
