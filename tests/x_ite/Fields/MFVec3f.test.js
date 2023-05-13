@@ -166,9 +166,7 @@ test ("sort-reverse", () =>
    expect (a [5] .equals (new SFVec3f (1,2,3))) .toBe (true)
 
    a .sort ()
-
-   console .log (a.toString ())
-
+   
    expect (a) .toHaveLength (6)
    expect (a [0] .equals (new SFVec3f (1,2,3))) .toBe (true)
    expect (a [1] .equals (new SFVec3f (2,3,4))) .toBe (true)
