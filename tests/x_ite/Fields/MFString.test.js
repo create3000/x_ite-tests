@@ -220,6 +220,37 @@ test ("push", () =>
    }
 })
 
+test ("shift", () =>
+{
+   const a = new MFString ()
+
+   for (let i = 0, n = 0; i < 10; ++ i)
+   {
+      const v = String (++n)
+      a .push (v)
+      expect (a [i]) .toBe (v)
+      expect (a) .toHaveLength (i + 1)
+   }
+
+   for (let i = 0, n = 0; i < 10; ++ i)
+   {
+      const v = String (++n)
+      expect (a [i]) .toBe (v)
+   }
+
+   for (let j = 0; j < 10; ++ j)
+   {
+      a .shift ()
+      expect (a) .toHaveLength (10 - j - 1)
+
+      for (let i = 0, n = j + 1; i < a .length; ++ i)
+      {
+         const v = String (++n)
+         expect (a [i]) .toBe (v)
+      }
+   }
+})
+
 test ("sort-reverse", () =>
 {
    const a = new MFString ("1", "2", "3", "4", "5", "6")

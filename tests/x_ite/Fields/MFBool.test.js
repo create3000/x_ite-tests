@@ -220,6 +220,37 @@ test ("push", () =>
    }
 })
 
+test ("shift", () =>
+{
+   const a = new MFBool ()
+
+   for (let i = 0, n = false; i < 10; ++ i)
+   {
+      const v = (n=!n)
+      a .push (v)
+      expect (a [i]) .toBe (v)
+      expect (a) .toHaveLength (i + 1)
+   }
+
+   for (let i = 0, n = false; i < 10; ++ i)
+   {
+      const v = (n=!n)
+      expect (a [i]) .toBe (v)
+   }
+
+   for (let j = 0; j < 10; ++ j)
+   {
+      a .shift ()
+      expect (a) .toHaveLength (10 - j - 1)
+
+      for (let i = 0, n = !(j%2); i < a .length; ++ i)
+      {
+         const v = (n=!n)
+         expect (a [i]) .toBe (v)
+      }
+   }
+})
+
 test ("sort-reverse", () =>
 {
    const a = new MFBool (true, false, true, false, true, false)

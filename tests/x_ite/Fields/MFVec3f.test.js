@@ -194,6 +194,37 @@ test ("push", () =>
    }
 })
 
+test ("shift", () =>
+{
+   const a = new MFVec3f ()
+
+   for (let i = 0, n = 0; i < 10; ++ i)
+   {
+      const v = new SFVec3f (++n,++n,++n)
+      a .push (v)
+      expect (a [i] .equals (v)) .toBe (true)
+      expect (a) .toHaveLength (i + 1)
+   }
+
+   for (let i = 0, n = 0; i < 10; ++ i)
+   {
+      const v = new SFVec3f (++n,++n,++n)
+      expect (a [i] .equals (v)) .toBe (true)
+   }
+
+   for (let j = 0; j < 10; ++ j)
+   {
+      a .shift ()
+      expect (a) .toHaveLength (10 - j - 1)
+
+      for (let i = 0, n = j * 3 + 3; i < a .length; ++ i)
+      {
+         const v = new SFVec3f (++n,++n,++n)
+         expect (a [i] .equals (v)) .toBe (true)
+      }
+   }
+})
+
 test ("sort-reverse", () =>
 {
    const a = new MFVec3f (new SFVec3f (1,2,3),
