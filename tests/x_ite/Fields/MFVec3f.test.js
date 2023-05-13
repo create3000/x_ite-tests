@@ -187,7 +187,7 @@ test ("map", () =>
    const b = a .map (v => v)
 
    expect (b) .toBeInstanceOf (Array)
-   expect (Array .isArray(b)) .toBe (true)
+   expect (Array .isArray (b)) .toBe (true)
 
    for (let i = 0; i < N; ++ i)
    {
@@ -304,13 +304,26 @@ test ("slice", () =>
 
    const b = a .slice ()
 
+   expect (b) .toHaveLength (N)
    expect (b) .toBeInstanceOf (Array)
-   expect (Array .isArray(b)) .toBe (true)
+   expect (Array .isArray (b)) .toBe (true)
 
    for (let i = 0; i < N; ++ i)
    {
       expect (b [i]) .not .toBe (a [i])
       expect (b [i] .equals (a [i])) .toBe (true)
+   }
+
+   const c = a .slice (1, N - 1)
+
+   expect (c) .toHaveLength (N - 2)
+   expect (c) .toBeInstanceOf (Array)
+   expect (Array .isArray (c)) .toBe (true)
+
+   for (let i = 0, j = 1; i < N - 2; ++ i, ++ j)
+   {
+      expect (c [i]) .not .toBe (a [j])
+      expect (c [i] .equals (a [j])) .toBe (true)
    }
 })
 

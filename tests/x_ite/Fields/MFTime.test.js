@@ -213,7 +213,7 @@ test ("map", () =>
    const b = a .map (v => v)
 
    expect (b) .toBeInstanceOf (Array)
-   expect (Array .isArray(b)) .toBe (true)
+   expect (Array .isArray (b)) .toBe (true)
 
    for (let i = 0; i < N; ++ i)
       expect (b [i]) .toBe (a [i])
@@ -327,11 +327,21 @@ test ("slice", () =>
 
    const b = a .slice ()
 
+   expect (b) .toHaveLength (N)
    expect (b) .toBeInstanceOf (Array)
-   expect (Array .isArray(b)) .toBe (true)
+   expect (Array .isArray (b)) .toBe (true)
 
    for (let i = 0; i < N; ++ i)
       expect (b [i]) .toBe (a [i])
+
+   const c = a .slice (1, N - 1)
+
+   expect (c) .toHaveLength (N - 2)
+   expect (c) .toBeInstanceOf (Array)
+   expect (Array .isArray (c)) .toBe (true)
+
+   for (let i = 0, j = 1; i < N - 2; ++ i, ++ j)
+      expect (c [i]) .toBe (a [j])
 })
 
 test ("sort-reverse", () =>
