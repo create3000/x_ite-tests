@@ -47,31 +47,6 @@ test ("setValue", () =>
    expect ((field [0] = -666,            field [0])) .toBe (true)
 })
 
-test ("constructor", () =>
-{
-   const a = new MFBool ()
-
-   expect (a) .toHaveLength (0)
-   expect (a [0]) .toBe (false)
-   expect (a) .toHaveLength (1)
-
-   const b = new MFBool (true,false,true,false,true)
-   expect (b) .toHaveLength (5)
-   expect (b [0]) .toBe (true)
-   expect (b [1]) .toBe (false)
-   expect (b [2]) .toBe (true)
-   expect (b [3]) .toBe (false)
-   expect (b [4]) .toBe (true)
-
-   const c = [... b]
-   expect (c) .toHaveLength (5)
-   expect (c [0]) .toBe (true)
-   expect (c [1]) .toBe (false)
-   expect (c [2]) .toBe (true)
-   expect (c [3]) .toBe (false)
-   expect (c [4]) .toBe (true)
-})
-
 test ("getter", () =>
 {
    const field = new MFBool ()
@@ -99,6 +74,31 @@ test ("isDefaultValue", () =>
 
    expect (a .isDefaultValue ()) .toBe (true)
    expect (b .isDefaultValue ()) .toBe (false)
+})
+
+test ("constructor", () =>
+{
+   const a = new MFBool ()
+
+   expect (a) .toHaveLength (0)
+   expect (a [0]) .toBe (false)
+   expect (a) .toHaveLength (1)
+
+   const b = new MFBool (true,false,true,false,true)
+   expect (b) .toHaveLength (5)
+   expect (b [0]) .toBe (true)
+   expect (b [1]) .toBe (false)
+   expect (b [2]) .toBe (true)
+   expect (b [3]) .toBe (false)
+   expect (b [4]) .toBe (true)
+
+   const c = [... b]
+   expect (c) .toHaveLength (5)
+   expect (c [0]) .toBe (true)
+   expect (c [1]) .toBe (false)
+   expect (c [2]) .toBe (true)
+   expect (c [3]) .toBe (false)
+   expect (c [4]) .toBe (true)
 })
 
 test ("special-values", () =>
@@ -166,3 +166,47 @@ test ("special-values", () =>
    expect (a [4]) .toBe (true)
 })
 
+test ("sort-reverse", () =>
+{
+   const a = new MFBool (true, false, true, false, true, false)
+
+   expect (a) .toHaveLength (6)
+   expect (a [0]) .toBe (true)
+   expect (a [1]) .toBe (false)
+   expect (a [2]) .toBe (true)
+   expect (a [3]) .toBe (false)
+   expect (a [4]) .toBe (true)
+   expect (a [5]) .toBe (false)
+
+   a .reverse ()
+
+   expect (a) .toHaveLength (6)
+   expect (a [0]) .toBe (false)
+   expect (a [1]) .toBe (true)
+   expect (a [2]) .toBe (false)
+   expect (a [3]) .toBe (true)
+   expect (a [4]) .toBe (false)
+   expect (a [5]) .toBe (true)
+
+   a .sort ()
+
+   expect (a) .toHaveLength (6)
+   expect (a [0]) .toBe (false)
+   expect (a [1]) .toBe (false)
+   expect (a [2]) .toBe (false)
+   expect (a [3]) .toBe (true)
+   expect (a [4]) .toBe (true)
+   expect (a [5]) .toBe (true)
+
+   const Algorithm = X3D .require ("standard/Math/Algorithm")
+
+   a .sort ((a, b) => Algorithm .cmp (b, a))
+
+   expect (a) .toHaveLength (6)
+   expect (a [0]) .toBe (true)
+   expect (a [1]) .toBe (true)
+   expect (a [2]) .toBe (true)
+   expect (a [3]) .toBe (false)
+   expect (a [4]) .toBe (false)
+   expect (a [5]) .toBe (false)
+})

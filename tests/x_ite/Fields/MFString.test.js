@@ -76,3 +76,137 @@ test ("isDefaultValue", () =>
    expect (b .isDefaultValue ()) .toBe (false)
 })
 
+test ("constructor", () =>
+{
+   const a = new MFString ()
+
+   expect (a) .toHaveLength (0)
+   expect (a [0]) .toBe ("")
+   expect (a) .toHaveLength (1)
+
+   const b = new MFString ("true","false","true","false","true")
+   expect (b) .toHaveLength (5)
+   expect (b [0]) .toBe ("true")
+   expect (b [1]) .toBe ("false")
+   expect (b [2]) .toBe ("true")
+   expect (b [3]) .toBe ("false")
+   expect (b [4]) .toBe ("true")
+
+   const c = [... b]
+   expect (c) .toHaveLength (5)
+   expect (c [0]) .toBe ("true")
+   expect (c [1]) .toBe ("false")
+   expect (c [2]) .toBe ("true")
+   expect (c [3]) .toBe ("false")
+   expect (c [4]) .toBe ("true")
+})
+
+test ("basic-functions", () =>
+{
+   const a = new MFString ("Infinity")
+
+   expect (a [0]) .toBe ("Infinity")
+   a [1] = "Infinity"
+   expect (a [1]) .toBe ("Infinity")
+   a .push ("Infinity")
+   expect (a .at (-1)) .toBe ("Infinity")
+   a .unshift ("Infinity")
+   expect (a [0]) .toBe ("Infinity")
+   expect (a) .toHaveLength (4)
+   a .splice (1, 1, "Infinity")
+   expect (a) .toHaveLength (4)
+   expect (a [1]) .toBe ("Infinity")
+   a .splice (1, 1, "NaN")
+   expect (a [1]) .toBe ("NaN")
+   a .splice (1, 0, "NaN")
+   expect (a) .toHaveLength (5)
+   expect (a [0]) .toBe ("Infinity")
+   expect (a [1]) .toBe ("NaN")
+   expect (a [2]) .toBe ("NaN")
+   expect (a [3]) .toBe ("Infinity")
+   expect (a [4]) .toBe ("Infinity")
+
+   a .fill ("NaN")
+   expect (a) .toHaveLength (5)
+   expect (a [0]) .toBe ("NaN")
+   expect (a [1]) .toBe ("NaN")
+   expect (a [2]) .toBe ("NaN")
+   expect (a [3]) .toBe ("NaN")
+   expect (a [4]) .toBe ("NaN")
+
+   expect (a .includes ("foo")) .toBe (false)
+   expect (a .indexOf ("foo")) .toBe (-1)
+   expect (a .lastIndexOf ("foo")) .toBe (-1)
+
+   a .fill ("Infinity")
+   expect (a) .toHaveLength (5)
+   expect (a [0]) .toBe ("Infinity")
+   expect (a [1]) .toBe ("Infinity")
+   expect (a [2]) .toBe ("Infinity")
+   expect (a [3]) .toBe ("Infinity")
+   expect (a [4]) .toBe ("Infinity")
+
+   expect (a .includes ("Infinity")) .toBe (true)
+   expect (a .indexOf ("Infinity")) .toBe (0)
+   expect (a .lastIndexOf ("Infinity")) .toBe (a .length - 1)
+
+   a [1] = "NaN"
+   a [3] = "NaN"
+
+   expect (a .includes ("NaN")) .toBe (true)
+   expect (a .indexOf ("NaN")) .toBe (1)
+   expect (a .lastIndexOf ("NaN")) .toBe (3)
+
+   a .splice (0, 5, "Infinity", "Infinity", "Infinity", "Infinity", "Infinity")
+   expect (a) .toHaveLength (5)
+   expect (a [0]) .toBe ("Infinity")
+   expect (a [1]) .toBe ("Infinity")
+   expect (a [2]) .toBe ("Infinity")
+   expect (a [3]) .toBe ("Infinity")
+   expect (a [4]) .toBe ("Infinity")
+})
+
+test ("sort-reverse", () =>
+{
+   const a = new MFString ("1", "2", "3", "4", "5", "6")
+
+   expect (a) .toHaveLength (6)
+   expect (a [0]) .toBe ("1")
+   expect (a [1]) .toBe ("2")
+   expect (a [2]) .toBe ("3")
+   expect (a [3]) .toBe ("4")
+   expect (a [4]) .toBe ("5")
+   expect (a [5]) .toBe ("6")
+
+   a .reverse ()
+
+   expect (a) .toHaveLength (6)
+   expect (a [0]) .toBe ("6")
+   expect (a [1]) .toBe ("5")
+   expect (a [2]) .toBe ("4")
+   expect (a [3]) .toBe ("3")
+   expect (a [4]) .toBe ("2")
+   expect (a [5]) .toBe ("1")
+
+   a .sort ()
+
+   expect (a) .toHaveLength (6)
+   expect (a [0]) .toBe ("1")
+   expect (a [1]) .toBe ("2")
+   expect (a [2]) .toBe ("3")
+   expect (a [3]) .toBe ("4")
+   expect (a [4]) .toBe ("5")
+   expect (a [5]) .toBe ("6")
+
+   const Algorithm = X3D .require ("standard/Math/Algorithm")
+
+   a .sort ((a, b) => Algorithm .cmp (b, a))
+
+   expect (a) .toHaveLength (6)
+   expect (a [0]) .toBe ("6")
+   expect (a [1]) .toBe ("5")
+   expect (a [2]) .toBe ("4")
+   expect (a [3]) .toBe ("3")
+   expect (a [4]) .toBe ("2")
+   expect (a [5]) .toBe ("1")
+})

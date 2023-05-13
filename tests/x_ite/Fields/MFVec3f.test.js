@@ -3,6 +3,35 @@ const
    MFVec3f = X3D .MFVec3f,
    SFVec3f = X3D .SFVec3f
 
+test ("getter", () =>
+{
+   const field = new MFVec3f ()
+
+   expect (field .getType ()) .toBe (X3D .X3DConstants .MFVec3f)
+   expect (field .getTypeName ()) .toBe ("MFVec3f")
+})
+
+test ("equals", () =>
+{
+   const
+      a = new MFVec3f (),
+      b = new MFVec3f (new SFVec3f ())
+
+   expect (a .equals (a)) .toBe (true)
+   expect (b .equals (b)) .toBe (true)
+   expect (a .equals (b)) .toBe (false)
+})
+
+test ("isDefaultValue", () =>
+{
+   const
+      a = new MFVec3f (),
+      b = new MFVec3f (new SFVec3f ())
+
+   expect (a .isDefaultValue ()) .toBe (true)
+   expect (b .isDefaultValue ()) .toBe (false)
+})
+
 test ("constructor", () =>
 {
    const a = new MFVec3f ()
@@ -39,35 +68,6 @@ test ("constructor", () =>
    expect (d) .toHaveLength (2)
    expect (d [0] .equals (new SFVec3f (2,3,4))) .toBe (true)
    expect (d [1] .equals (new SFVec3f (3,4,5))) .toBe (true)
-})
-
-test ("getter", () =>
-{
-   const field = new MFVec3f ()
-
-   expect (field .getType ()) .toBe (X3D .X3DConstants .MFVec3f)
-   expect (field .getTypeName ()) .toBe ("MFVec3f")
-})
-
-test ("equals", () =>
-{
-   const
-      a = new MFVec3f (),
-      b = new MFVec3f (new SFVec3f ())
-
-   expect (a .equals (a)) .toBe (true)
-   expect (b .equals (b)) .toBe (true)
-   expect (a .equals (b)) .toBe (false)
-})
-
-test ("isDefaultValue", () =>
-{
-   const
-      a = new MFVec3f (),
-      b = new MFVec3f (new SFVec3f ())
-
-   expect (a .isDefaultValue ()) .toBe (true)
-   expect (b .isDefaultValue ()) .toBe (false)
 })
 
 test ("basic-functions", () =>
@@ -138,3 +138,54 @@ test ("basic-functions", () =>
    expect (a [4] .equals (new SFVec3f (5,6,7))) .toBe (true)
 })
 
+test ("sort-reverse", () =>
+{
+   const a = new MFVec3f (new SFVec3f (1,2,3),
+                          new SFVec3f (2,3,4),
+                          new SFVec3f (3,4,5),
+                          new SFVec3f (4,5,6),
+                          new SFVec3f (5,6,7),
+                          new SFVec3f (5,6,8))
+
+   expect (a) .toHaveLength (6)
+   expect (a [0] .equals (new SFVec3f (1,2,3))) .toBe (true)
+   expect (a [1] .equals (new SFVec3f (2,3,4))) .toBe (true)
+   expect (a [2] .equals (new SFVec3f (3,4,5))) .toBe (true)
+   expect (a [3] .equals (new SFVec3f (4,5,6))) .toBe (true)
+   expect (a [4] .equals (new SFVec3f (5,6,7))) .toBe (true)
+   expect (a [5] .equals (new SFVec3f (5,6,8))) .toBe (true)
+
+   a .reverse ()
+
+   expect (a) .toHaveLength (6)
+   expect (a [0] .equals (new SFVec3f (5,6,8))) .toBe (true)
+   expect (a [1] .equals (new SFVec3f (5,6,7))) .toBe (true)
+   expect (a [2] .equals (new SFVec3f (4,5,6))) .toBe (true)
+   expect (a [3] .equals (new SFVec3f (3,4,5))) .toBe (true)
+   expect (a [4] .equals (new SFVec3f (2,3,4))) .toBe (true)
+   expect (a [5] .equals (new SFVec3f (1,2,3))) .toBe (true)
+
+   a .sort ()
+
+   console .log (a.toString ())
+
+   expect (a) .toHaveLength (6)
+   expect (a [0] .equals (new SFVec3f (1,2,3))) .toBe (true)
+   expect (a [1] .equals (new SFVec3f (2,3,4))) .toBe (true)
+   expect (a [2] .equals (new SFVec3f (3,4,5))) .toBe (true)
+   expect (a [3] .equals (new SFVec3f (4,5,6))) .toBe (true)
+   expect (a [4] .equals (new SFVec3f (5,6,7))) .toBe (true)
+   expect (a [5] .equals (new SFVec3f (5,6,8))) .toBe (true)
+
+   const Algorithm = X3D .require ("standard/Math/Algorithm")
+
+   a .sort ((a, b) => Algorithm .cmp (b .z, a .z))
+
+   expect (a) .toHaveLength (6)
+   expect (a [0] .equals (new SFVec3f (5,6,8))) .toBe (true)
+   expect (a [1] .equals (new SFVec3f (5,6,7))) .toBe (true)
+   expect (a [2] .equals (new SFVec3f (4,5,6))) .toBe (true)
+   expect (a [3] .equals (new SFVec3f (3,4,5))) .toBe (true)
+   expect (a [4] .equals (new SFVec3f (2,3,4))) .toBe (true)
+   expect (a [5] .equals (new SFVec3f (1,2,3))) .toBe (true)
+})
