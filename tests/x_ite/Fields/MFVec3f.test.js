@@ -253,9 +253,11 @@ test ("shift", () =>
       expect (a [i] .equals (v)) .toBe (true)
    }
 
+   const b = a .slice ()
+
    for (let j = 0; j < N; ++ j)
    {
-      a .shift ()
+      expect (a .shift () .equals (b .shift ())) .toBe (true)
       expect (a) .toHaveLength (N - j - 1)
 
       for (let i = 0, n = j * 3 + 3; i < a .length; ++ i)
