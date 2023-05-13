@@ -223,6 +223,25 @@ test ("fill", () =>
    expect (a [5]) .toBe (2)
 })
 
+test ("filter", () =>
+{
+   const
+      N = 10,
+      a = new MFDouble ()
+
+   for (let i = 0, n = 0; i < N; ++ i)
+      a .push (++n)
+
+   const b = a .filter (v => v % 2)
+
+   expect (b) .toBeInstanceOf (Array)
+   expect (Array .isArray (b)) .toBe (true)
+   expect (b) .toHaveLength (N / 2)
+
+   for (let i = 0; i < N / 2; ++ i)
+      expect (b [i]) .toBe (a [i * 2])
+})
+
 test ("flat", () =>
 {
    const
