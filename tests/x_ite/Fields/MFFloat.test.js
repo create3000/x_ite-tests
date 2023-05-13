@@ -201,11 +201,13 @@ test ("fill", () =>
 
 test ("push", () =>
 {
-   const a = new MFFloat ()
+   const
+      N = 1_000,
+      a = new MFFloat ()
 
    expect (a) .toHaveLength (0)
 
-   for (let i = 0, n = 0; i < 1_000; ++ i)
+   for (let i = 0, n = 0; i < N; ++ i)
    {
       const v = ++n
       a .push (v)
@@ -213,7 +215,7 @@ test ("push", () =>
       expect (a) .toHaveLength (i + 1)
    }
 
-   for (let i = 0, n = 0; i < 1_000; ++ i)
+   for (let i = 0, n = 0; i < N; ++ i)
    {
       const v = ++n
       expect (a [i]) .toBe (v)
@@ -222,9 +224,11 @@ test ("push", () =>
 
 test ("shift", () =>
 {
-   const a = new MFFloat ()
+   const
+      N = 10,
+      a = new MFFloat ()
 
-   for (let i = 0, n = 0; i < 10; ++ i)
+   for (let i = 0, n = 0; i < N; ++ i)
    {
       const v = ++n
       a .push (v)
@@ -232,16 +236,16 @@ test ("shift", () =>
       expect (a) .toHaveLength (i + 1)
    }
 
-   for (let i = 0, n = 0; i < 10; ++ i)
+   for (let i = 0, n = 0; i < N; ++ i)
    {
       const v = ++n
       expect (a [i]) .toBe (v)
    }
 
-   for (let j = 0; j < 10; ++ j)
+   for (let j = 0; j < N; ++ j)
    {
       a .shift ()
-      expect (a) .toHaveLength (10 - j - 1)
+      expect (a) .toHaveLength (N - j - 1)
 
       for (let i = 0, n = j + 1; i < a .length; ++ i)
       {
