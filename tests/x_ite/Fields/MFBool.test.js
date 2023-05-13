@@ -166,6 +166,39 @@ test ("special-values", () =>
    expect (a [4]) .toBe (true)
 })
 
+test ("fill", () =>
+{
+   const a = new MFBool (false, false, false, false, false, false)
+
+   expect (a) .toHaveLength (6)
+   expect (a [0]) .toBe (false)
+   expect (a [1]) .toBe (false)
+   expect (a [2]) .toBe (false)
+   expect (a [3]) .toBe (false)
+   expect (a [4]) .toBe (false)
+   expect (a [5]) .toBe (false)
+
+   a .fill (true)
+
+   expect (a) .toHaveLength (6)
+   expect (a [0]) .toBe (true)
+   expect (a [1]) .toBe (true)
+   expect (a [2]) .toBe (true)
+   expect (a [3]) .toBe (true)
+   expect (a [4]) .toBe (true)
+   expect (a [5]) .toBe (true)
+
+   a .fill (false)
+
+   expect (a) .toHaveLength (6)
+   expect (a [0]) .toBe (false)
+   expect (a [1]) .toBe (false)
+   expect (a [2]) .toBe (false)
+   expect (a [3]) .toBe (false)
+   expect (a [4]) .toBe (false)
+   expect (a [5]) .toBe (false)
+})
+
 test ("sort-reverse", () =>
 {
    const a = new MFBool (true, false, true, false, true, false)

@@ -166,6 +166,39 @@ test ("basic-functions", () =>
    expect (a [4]) .toBe (5)
 })
 
+test ("fill", () =>
+{
+   const a = new MFInt32 (0, 0, 0, 0, 0, 0)
+
+   expect (a) .toHaveLength (6)
+   expect (a [0]) .toBe (0)
+   expect (a [1]) .toBe (0)
+   expect (a [2]) .toBe (0)
+   expect (a [3]) .toBe (0)
+   expect (a [4]) .toBe (0)
+   expect (a [5]) .toBe (0)
+
+   a .fill (1)
+
+   expect (a) .toHaveLength (6)
+   expect (a [0]) .toBe (1)
+   expect (a [1]) .toBe (1)
+   expect (a [2]) .toBe (1)
+   expect (a [3]) .toBe (1)
+   expect (a [4]) .toBe (1)
+   expect (a [5]) .toBe (1)
+
+   a .fill (2)
+
+   expect (a) .toHaveLength (6)
+   expect (a [0]) .toBe (2)
+   expect (a [1]) .toBe (2)
+   expect (a [2]) .toBe (2)
+   expect (a [3]) .toBe (2)
+   expect (a [4]) .toBe (2)
+   expect (a [5]) .toBe (2)
+})
+
 test ("sort-reverse", () =>
 {
    const a = new MFInt32 (1, 2, 3, 4, 5, 6)

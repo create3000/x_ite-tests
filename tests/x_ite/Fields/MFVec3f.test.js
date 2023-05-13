@@ -138,6 +138,41 @@ test ("basic-functions", () =>
    expect (a [4] .equals (new SFVec3f (5,6,7))) .toBe (true)
 })
 
+test ("fill", () =>
+{
+   const a = new MFVec3f ()
+
+   a .length = 6
+
+   expect (a) .toHaveLength (6)
+   expect (a [0] .equals (new SFVec3f (0,0,0))) .toBe (true)
+   expect (a [1] .equals (new SFVec3f (0,0,0))) .toBe (true)
+   expect (a [2] .equals (new SFVec3f (0,0,0))) .toBe (true)
+   expect (a [3] .equals (new SFVec3f (0,0,0))) .toBe (true)
+   expect (a [4] .equals (new SFVec3f (0,0,0))) .toBe (true)
+   expect (a [5] .equals (new SFVec3f (0,0,0))) .toBe (true)
+
+   a .fill (new SFVec3f (1,2,3))
+
+   expect (a) .toHaveLength (6)
+   expect (a [0] .equals (new SFVec3f (1,2,3))) .toBe (true)
+   expect (a [1] .equals (new SFVec3f (1,2,3))) .toBe (true)
+   expect (a [2] .equals (new SFVec3f (1,2,3))) .toBe (true)
+   expect (a [3] .equals (new SFVec3f (1,2,3))) .toBe (true)
+   expect (a [4] .equals (new SFVec3f (1,2,3))) .toBe (true)
+   expect (a [5] .equals (new SFVec3f (1,2,3))) .toBe (true)
+
+   a .fill (new SFVec3f (4,5,6))
+
+   expect (a) .toHaveLength (6)
+   expect (a [0] .equals (new SFVec3f (4,5,6))) .toBe (true)
+   expect (a [1] .equals (new SFVec3f (4,5,6))) .toBe (true)
+   expect (a [2] .equals (new SFVec3f (4,5,6))) .toBe (true)
+   expect (a [3] .equals (new SFVec3f (4,5,6))) .toBe (true)
+   expect (a [4] .equals (new SFVec3f (4,5,6))) .toBe (true)
+   expect (a [5] .equals (new SFVec3f (4,5,6))) .toBe (true)
+})
+
 test ("sort-reverse", () =>
 {
    const a = new MFVec3f (new SFVec3f (1,2,3),
@@ -166,7 +201,7 @@ test ("sort-reverse", () =>
    expect (a [5] .equals (new SFVec3f (1,2,3))) .toBe (true)
 
    a .sort ()
-   
+
    expect (a) .toHaveLength (6)
    expect (a [0] .equals (new SFVec3f (1,2,3))) .toBe (true)
    expect (a [1] .equals (new SFVec3f (2,3,4))) .toBe (true)
