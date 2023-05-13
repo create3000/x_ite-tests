@@ -138,6 +138,30 @@ test ("basic-functions", () =>
    expect (a [4] .equals (new SFVec3f (5,6,7))) .toBe (true)
 })
 
+test ("concat", () =>
+{
+   const
+      N = 10,
+      a = new MFVec3f ()
+
+   for (let i = 0, n = 0; i < N; ++ i)
+      a .push (new SFVec3f (++n,++n,++n))
+
+   expect (a) .toHaveLength (N)
+
+   const b = a .concat ([new SFVec3f (1000,1001,1002),new SFVec3f (1003,1004,1005)])
+
+   expect (b) .toBeInstanceOf (Array)
+   expect (Array .isArray (b)) .toBe (true)
+   expect (b) .toHaveLength (N + 2)
+
+   for (let i = 0; i < N; ++ i)
+      expect (b [i] .equals (a [i])) .toBe (true)
+
+   expect (b [N + 0] .equals (new SFVec3f (1000,1001,1002))) .toBe (true)
+   expect (b [N + 1] .equals (new SFVec3f (1003,1004,1005))) .toBe (true)
+})
+
 test ("fill", () =>
 {
    const a = new MFVec3f ()

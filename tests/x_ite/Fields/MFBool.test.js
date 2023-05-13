@@ -166,6 +166,30 @@ test ("special-values", () =>
    expect (a [4]) .toBe (true)
 })
 
+test ("concat", () =>
+{
+   const
+      N = 10,
+      a = new MFBool ()
+
+   for (let i = 0, n = false; i < N; ++ i)
+      a .push (n=!n)
+
+   expect (a) .toHaveLength (N)
+
+   const b = a .concat ([true,false])
+
+   expect (b) .toBeInstanceOf (Array)
+   expect (Array .isArray (b)) .toBe (true)
+   expect (b) .toHaveLength (N + 2)
+
+   for (let i = 0; i < N; ++ i)
+      expect (b [i]) .toBe (a [i])
+
+   expect (b [N + 0]) .toBe (true)
+   expect (b [N + 1]) .toBe (false)
+})
+
 test ("fill", () =>
 {
    const a = new MFBool (false, false, false, false, false, false)

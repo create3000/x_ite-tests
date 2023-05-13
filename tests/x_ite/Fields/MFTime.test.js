@@ -166,6 +166,30 @@ test ("basic-functions", () =>
    expect (a [4]) .toBe (Infinity)
 })
 
+test ("concat", () =>
+{
+   const
+      N = 10,
+      a = new MFTime ()
+
+   for (let i = 0, n = 0; i < N; ++ i)
+      a .push (++n)
+
+   expect (a) .toHaveLength (N)
+
+   const b = a .concat ([1000,1001])
+
+   expect (b) .toBeInstanceOf (Array)
+   expect (Array .isArray (b)) .toBe (true)
+   expect (b) .toHaveLength (N + 2)
+
+   for (let i = 0; i < N; ++ i)
+      expect (b [i]) .toBe (a [i])
+
+   expect (b [N + 0]) .toBe (1000)
+   expect (b [N + 1]) .toBe (1001)
+})
+
 test ("fill", () =>
 {
    const a = new MFTime (0, 0, 0, 0, 0, 0)
