@@ -1,7 +1,8 @@
 const
-   X3D    = require ("../../X3D"),
+   X3D     = require ("../../X3D"),
    MFVec3f = X3D .MFVec3f,
-   SFVec3f = X3D .SFVec3f
+   SFVec3f = X3D .SFVec3f,
+   comp    = 3
 
 test ("getter", () =>
 {
@@ -249,9 +250,9 @@ test ("flat", () =>
 
    expect (c) .toBeInstanceOf (Array)
    expect (Array .isArray (c)) .toBe (true)
-   expect (c) .toHaveLength (N * 3)
+   expect (c) .toHaveLength (N * comp)
 
-   for (let i = 0, n = 0; i < N * 3; ++ i)
+   for (let i = 0, n = 0; i < N * comp; ++ i)
       expect (c [i]) .toBe (++n)
 })
 
@@ -389,7 +390,7 @@ test ("shift", () =>
       expect (a .shift () .equals (b .shift ())) .toBe (true)
       expect (a) .toHaveLength (N - j - 1)
 
-      for (let i = 0, n = j * 3 + 3; i < a .length; ++ i)
+      for (let i = 0, n = j * comp + comp; i < a .length; ++ i)
       {
          const v = new SFVec3f (++n,++n,++n)
          expect (a [i] .equals (v)) .toBe (true)
