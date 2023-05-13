@@ -199,6 +199,26 @@ test ("fill", () =>
    expect (a [5]) .toBe (false)
 })
 
+test ("map", () =>
+{
+   const
+      N = 10,
+      a = new MFBool ()
+
+   for (let i = 0, n = 0; i < N; ++ i)
+      a .push ((n=!n))
+
+   expect (a) .toHaveLength (N)
+
+   const b = a .map (v => v)
+
+   expect (b) .toBeInstanceOf (Array)
+   expect (Array .isArray(b)) .toBe (true)
+
+   for (let i = 0; i < N; ++ i)
+      expect (b [i]) .toBe (a [i])
+})
+
 test ("pop", () =>
 {
    const
