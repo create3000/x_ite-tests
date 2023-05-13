@@ -156,7 +156,10 @@ test ("concat", () =>
    expect (b) .toHaveLength (N + 2)
 
    for (let i = 0; i < N; ++ i)
+   {
+      expect (b [i]) .not .toBe (a [i])
       expect (b [i] .equals (a [i])) .toBe (true)
+   }
 
    expect (b [N + 0] .equals (new SFVec3f (1000,1001,1002))) .toBe (true)
    expect (b [N + 1] .equals (new SFVec3f (1003,1004,1005))) .toBe (true)
@@ -195,6 +198,37 @@ test ("fill", () =>
    expect (a [3] .equals (new SFVec3f (4,5,6))) .toBe (true)
    expect (a [4] .equals (new SFVec3f (4,5,6))) .toBe (true)
    expect (a [5] .equals (new SFVec3f (4,5,6))) .toBe (true)
+})
+
+test ("flat", () =>
+{
+   const
+      N = 10,
+      a = new MFVec3f ()
+
+   for (let i = 0, n = 0; i < N; ++ i)
+      a .push (new SFVec3f (++n,++n,++n))
+
+   const b = a .flat (0)
+
+   expect (b) .toBeInstanceOf (Array)
+   expect (Array .isArray (b)) .toBe (true)
+   expect (b) .toHaveLength (N)
+
+   for (let i = 0; i < N; ++ i)
+   {
+      expect (b [i]) .not .toBe (a [i])
+      expect (b [i] .equals (a [i])) .toBe (true)
+   }
+
+   const c = a .flat ()
+
+   expect (c) .toBeInstanceOf (Array)
+   expect (Array .isArray (c)) .toBe (true)
+   expect (c) .toHaveLength (N * 3)
+
+   for (let i = 0, n = 0; i < N * 3; ++ i)
+      expect (c [i]) .toBe (++n)
 })
 
 test ("map", () =>

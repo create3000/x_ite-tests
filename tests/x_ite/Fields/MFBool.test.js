@@ -223,6 +223,25 @@ test ("fill", () =>
    expect (a [5]) .toBe (false)
 })
 
+test ("flat", () =>
+{
+   const
+      N = 10,
+      a = new MFBool ()
+
+   for (let i = 0, n = false; i < N; ++ i)
+      a .push (n=!n)
+
+   const b = a .flat ()
+
+   expect (b) .toBeInstanceOf (Array)
+   expect (Array .isArray (b)) .toBe (true)
+   expect (b) .toHaveLength (N)
+
+   for (let i = 0, n = false; i < N; ++ i)
+      expect (b [i]) .toBe (n=!n)
+})
+
 test ("map", () =>
 {
    const

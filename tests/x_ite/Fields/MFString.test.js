@@ -223,6 +223,25 @@ test ("fill", () =>
    expect (a [5]) .toBe ("2")
 })
 
+test ("flat", () =>
+{
+   const
+      N = 10,
+      a = new MFString ()
+
+   for (let i = 0, n = 0; i < N; ++ i)
+      a .push (String (++n))
+
+   const b = a .flat ()
+
+   expect (b) .toBeInstanceOf (Array)
+   expect (Array .isArray (b)) .toBe (true)
+   expect (b) .toHaveLength (N)
+
+   for (let i = 0, n = 0; i < N; ++ i)
+      expect (b [i]) .toBe (String (++n))
+})
+
 test ("map", () =>
 {
    const
