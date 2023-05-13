@@ -173,6 +173,30 @@ test ("fill", () =>
    expect (a [5] .equals (new SFVec3f (4,5,6))) .toBe (true)
 })
 
+test ("push", () =>
+{
+   const a = new MFVec3f ()
+   let n = 0;
+
+   expect (a) .toHaveLength (0)
+
+   n = 0;
+   for (let i = 0; i < 1_000; ++ i)
+   {
+      const v = new SFVec3f (++n,++n,++n)
+      a .push (v)
+      expect (a [i] .equals (v)) .toBe (true)
+      expect (a) .toHaveLength (i + 1)
+   }
+
+   n = 0;
+   for (let i = 0; i < 1_000; ++ i)
+   {
+      const v = new SFVec3f (++n,++n,++n)
+      expect (a [i] .equals (v)) .toBe (true)
+   }
+})
+
 test ("sort-reverse", () =>
 {
    const a = new MFVec3f (new SFVec3f (1,2,3),

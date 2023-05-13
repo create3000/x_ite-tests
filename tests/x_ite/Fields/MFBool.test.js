@@ -199,6 +199,30 @@ test ("fill", () =>
    expect (a [5]) .toBe (false)
 })
 
+test ("push", () =>
+{
+   const a = new MFBool ()
+   let n = false;
+
+   expect (a) .toHaveLength (0)
+
+   n = false;
+   for (let i = 0; i < 1_000; ++ i)
+   {
+      const v = (n=!n)
+      a .push (v)
+      expect (a [i]) .toBe (v)
+      expect (a) .toHaveLength (i + 1)
+   }
+
+   n = false;
+   for (let i = 0; i < 1_000; ++ i)
+   {
+      const v = (n=!n)
+      expect (a [i]) .toBe (v)
+   }
+})
+
 test ("sort-reverse", () =>
 {
    const a = new MFBool (true, false, true, false, true, false)

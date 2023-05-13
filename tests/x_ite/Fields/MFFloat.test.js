@@ -199,6 +199,30 @@ test ("fill", () =>
    expect (a [5]) .toBe (2)
 })
 
+test ("push", () =>
+{
+   const a = new MFFloat ()
+   let n = 0;
+
+   expect (a) .toHaveLength (0)
+
+   n = 0;
+   for (let i = 0; i < 1_000; ++ i)
+   {
+      const v = ++n
+      a .push (v)
+      expect (a [i]) .toBe (v)
+      expect (a) .toHaveLength (i + 1)
+   }
+
+   n = 0;
+   for (let i = 0; i < 1_000; ++ i)
+   {
+      const v = ++n
+      expect (a [i]) .toBe (v)
+   }
+})
+
 test ("sort-reverse", () =>
 {
    const a = new MFFloat (1, 2, 3, 4, 5, 6)
