@@ -76,3 +76,137 @@ test ("isDefaultValue", () =>
    expect (b .isDefaultValue ()) .toBe (false)
 })
 
+test ("constructor", () =>
+{
+   const a = new MFInt32 ()
+
+   expect (a) .toHaveLength (0)
+   expect (a [0]) .toBe (0)
+   expect (a) .toHaveLength (1)
+
+   const b = new MFInt32 (1,2,3,4,5)
+   expect (b) .toHaveLength (5)
+   expect (b [0]) .toBe (1)
+   expect (b [1]) .toBe (2)
+   expect (b [2]) .toBe (3)
+   expect (b [3]) .toBe (4)
+   expect (b [4]) .toBe (5)
+
+   const c = [... b]
+   expect (c) .toHaveLength (5)
+   expect (c [0]) .toBe (1)
+   expect (c [1]) .toBe (2)
+   expect (c [2]) .toBe (3)
+   expect (c [3]) .toBe (4)
+   expect (c [4]) .toBe (5)
+})
+
+test ("basic-functions", () =>
+{
+   const a = new MFInt32 (Infinity)
+
+   expect (a [0]) .toBe (0)
+   a [1] = Infinity
+   expect (a [1]) .toBe (0)
+   a .push (Infinity)
+   expect (a .at (-1)) .toBe (0)
+   a .unshift (Infinity)
+   expect (a [0]) .toBe (0)
+   expect (a) .toHaveLength (4)
+   a .splice (1, 1, Infinity)
+   expect (a) .toHaveLength (4)
+   expect (a [1]) .toBe (0)
+   a .splice (1, 1, NaN)
+   expect (a [1]) .toBe (0)
+   a .splice (1, 0, NaN)
+   expect (a) .toHaveLength (5)
+   expect (a [0]) .toBe (0)
+   expect (a [1]) .toBe (0)
+   expect (a [2]) .toBe (0)
+   expect (a [3]) .toBe (0)
+   expect (a [4]) .toBe (0)
+
+   a .fill (NaN)
+   expect (a) .toHaveLength (5)
+   expect (a [0]) .toBe (0)
+   expect (a [1]) .toBe (0)
+   expect (a [2]) .toBe (0)
+   expect (a [3]) .toBe (0)
+   expect (a [4]) .toBe (0)
+
+   expect (a .includes (123)) .toBe (false)
+   expect (a .indexOf (123)) .toBe (-1)
+   expect (a .lastIndexOf (123)) .toBe (-1)
+
+   a .fill (1)
+   expect (a) .toHaveLength (5)
+   expect (a [0]) .toBe (1)
+   expect (a [1]) .toBe (1)
+   expect (a [2]) .toBe (1)
+   expect (a [3]) .toBe (1)
+   expect (a [4]) .toBe (1)
+
+   expect (a .includes (1)) .toBe (true)
+   expect (a .indexOf (1)) .toBe (0)
+   expect (a .lastIndexOf (1)) .toBe (a .length - 1)
+
+   a [1] = 2
+   a [3] = 2
+
+   expect (a .includes (2)) .toBe (true)
+   expect (a .indexOf (2)) .toBe (1)
+   expect (a .lastIndexOf (2)) .toBe (3)
+
+   a .splice (0, 5, 1,2,3,4,5)
+   expect (a) .toHaveLength (5)
+   expect (a [0]) .toBe (1)
+   expect (a [1]) .toBe (2)
+   expect (a [2]) .toBe (3)
+   expect (a [3]) .toBe (4)
+   expect (a [4]) .toBe (5)
+})
+
+test ("sort-reverse", () =>
+{
+   const a = new MFInt32 (1, 2, 3, 4, 5, 6)
+
+   expect (a) .toHaveLength (6)
+   expect (a [0]) .toBe (1)
+   expect (a [1]) .toBe (2)
+   expect (a [2]) .toBe (3)
+   expect (a [3]) .toBe (4)
+   expect (a [4]) .toBe (5)
+   expect (a [5]) .toBe (6)
+
+   a .reverse ()
+
+   expect (a) .toHaveLength (6)
+   expect (a [0]) .toBe (6)
+   expect (a [1]) .toBe (5)
+   expect (a [2]) .toBe (4)
+   expect (a [3]) .toBe (3)
+   expect (a [4]) .toBe (2)
+   expect (a [5]) .toBe (1)
+
+   a .sort ()
+
+   expect (a) .toHaveLength (6)
+   expect (a [0]) .toBe (1)
+   expect (a [1]) .toBe (2)
+   expect (a [2]) .toBe (3)
+   expect (a [3]) .toBe (4)
+   expect (a [4]) .toBe (5)
+   expect (a [5]) .toBe (6)
+
+   const Algorithm = X3D .require ("standard/Math/Algorithm")
+
+   a .sort ((a, b) => Algorithm .cmp (b, a))
+
+   expect (a) .toHaveLength (6)
+   expect (a [0]) .toBe (6)
+   expect (a [1]) .toBe (5)
+   expect (a [2]) .toBe (4)
+   expect (a [3]) .toBe (3)
+   expect (a [4]) .toBe (2)
+   expect (a [5]) .toBe (1)
+})
