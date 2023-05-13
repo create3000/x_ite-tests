@@ -176,12 +176,10 @@ test ("fill", () =>
 test ("push", () =>
 {
    const a = new MFVec3f ()
-   let n = 0;
 
    expect (a) .toHaveLength (0)
 
-   n = 0;
-   for (let i = 0; i < 1_000; ++ i)
+   for (let i = 0, n = 0; i < 1_000; ++ i)
    {
       const v = new SFVec3f (++n,++n,++n)
       a .push (v)
@@ -189,8 +187,7 @@ test ("push", () =>
       expect (a) .toHaveLength (i + 1)
    }
 
-   n = 0;
-   for (let i = 0; i < 1_000; ++ i)
+   for (let i = 0, n = 0; i < 1_000; ++ i)
    {
       const v = new SFVec3f (++n,++n,++n)
       expect (a [i] .equals (v)) .toBe (true)

@@ -202,12 +202,10 @@ test ("fill", () =>
 test ("push", () =>
 {
    const a = new MFDouble ()
-   let n = 0;
 
    expect (a) .toHaveLength (0)
 
-   n = 0;
-   for (let i = 0; i < 1_000; ++ i)
+   for (let i = 0, n = 0; i < 1_000; ++ i)
    {
       const v = ++n
       a .push (v)
@@ -215,8 +213,7 @@ test ("push", () =>
       expect (a) .toHaveLength (i + 1)
    }
 
-   n = 0;
-   for (let i = 0; i < 1_000; ++ i)
+   for (let i = 0, n = 0; i < 1_000; ++ i)
    {
       const v = ++n
       expect (a [i]) .toBe (v)

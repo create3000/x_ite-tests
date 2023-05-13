@@ -202,12 +202,10 @@ test ("fill", () =>
 test ("push", () =>
 {
    const a = new MFBool ()
-   let n = false;
 
    expect (a) .toHaveLength (0)
 
-   n = false;
-   for (let i = 0; i < 1_000; ++ i)
+   for (let i = 0, n = false; i < 1_000; ++ i)
    {
       const v = (n=!n)
       a .push (v)
@@ -215,8 +213,7 @@ test ("push", () =>
       expect (a) .toHaveLength (i + 1)
    }
 
-   n = false;
-   for (let i = 0; i < 1_000; ++ i)
+   for (let i = 0, n = false; i < 1_000; ++ i)
    {
       const v = (n=!n)
       expect (a [i]) .toBe (v)
