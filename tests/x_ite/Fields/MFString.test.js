@@ -84,21 +84,21 @@ test ("constructor", () =>
    expect (a [0]) .toBe ("")
    expect (a) .toHaveLength (1)
 
-   const b = new MFString ("true","false","true","false","true")
+   const b = new MFString ("1","2","3","4","5")
    expect (b) .toHaveLength (5)
-   expect (b [0]) .toBe ("true")
-   expect (b [1]) .toBe ("false")
-   expect (b [2]) .toBe ("true")
-   expect (b [3]) .toBe ("false")
-   expect (b [4]) .toBe ("true")
+   expect (b [0]) .toBe ("1")
+   expect (b [1]) .toBe ("2")
+   expect (b [2]) .toBe ("3")
+   expect (b [3]) .toBe ("4")
+   expect (b [4]) .toBe ("5")
 
    const c = [... b]
    expect (c) .toHaveLength (5)
-   expect (c [0]) .toBe ("true")
-   expect (c [1]) .toBe ("false")
-   expect (c [2]) .toBe ("true")
-   expect (c [3]) .toBe ("false")
-   expect (c [4]) .toBe ("true")
+   expect (c [0]) .toBe ("1")
+   expect (c [1]) .toBe ("2")
+   expect (c [2]) .toBe ("3")
+   expect (c [3]) .toBe ("4")
+   expect (c [4]) .toBe ("5")
 })
 
 test ("basic-functions", () =>

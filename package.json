@@ -19,6 +19,7 @@
   "jest": {
     "runner": "@kayahr/jest-electron-runner",
     "testEnvironment": "@kayahr/jest-electron-runner/environment",
+    "testSequencer": "./CustomTestSequencer.js",
     "testTimeout": 40000
   },
   "dependencies": {
