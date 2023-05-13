@@ -173,6 +173,43 @@ test ("fill", () =>
    expect (a [5] .equals (new SFVec3f (4,5,6))) .toBe (true)
 })
 
+test ("pop", () =>
+{
+   const
+      N = 10,
+      a = new MFVec3f ()
+
+   expect (a) .toHaveLength (0)
+
+   for (let i = 0, n = 0; i < N; ++ i)
+   {
+      const v = new SFVec3f (++n,++n,++n)
+      a .push (v)
+      expect (a [i] .equals (v)) .toBe (true)
+      expect (a) .toHaveLength (i + 1)
+   }
+
+   for (let i = 0, n = 0; i < N; ++ i)
+   {
+      const v = new SFVec3f (++n,++n,++n)
+      expect (a [i] .equals (v)) .toBe (true)
+   }
+
+   const b = a .slice ()
+
+   for (let j = 0; j < N; ++ j)
+   {
+      expect (a .pop () .equals (b .pop ())) .toBe (true)
+      expect (a) .toHaveLength (N - j - 1)
+
+      for (let i = 0, n = 0; i < a .length; ++ i)
+      {
+         const v = new SFVec3f (++n,++n,++n)
+         expect (a [i] .equals (v)) .toBe (true)
+      }
+   }
+})
+
 test ("push", () =>
 {
    const

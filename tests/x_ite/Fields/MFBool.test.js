@@ -199,6 +199,43 @@ test ("fill", () =>
    expect (a [5]) .toBe (false)
 })
 
+test ("pop", () =>
+{
+   const
+      N = 10,
+      a = new MFBool ()
+
+   expect (a) .toHaveLength (0)
+
+   for (let i = 0, n = false; i < N; ++ i)
+   {
+      const v = (n=!n)
+      a .push (v)
+      expect (a [i]) .toBe (v)
+      expect (a) .toHaveLength (i + 1)
+   }
+
+   for (let i = 0, n = false; i < N; ++ i)
+   {
+      const v = (n=!n)
+      expect (a [i]) .toBe (v)
+   }
+
+   const b = a .slice ()
+
+   for (let j = 0; j < N; ++ j)
+   {
+      expect (a .pop ()) .toBe (b .pop ())
+      expect (a) .toHaveLength (N - j - 1)
+
+      for (let i = 0, n = false; i < a .length; ++ i)
+      {
+         const v = (n=!n)
+         expect (a [i]) .toBe (v)
+      }
+   }
+})
+
 test ("push", () =>
 {
    const
