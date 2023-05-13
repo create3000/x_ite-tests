@@ -242,6 +242,28 @@ test ("flat", () =>
       expect (b [i]) .toBe (n=!n)
 })
 
+test ("flatMap", () =>
+{
+   const
+      N = 10,
+      a = new MFBool ()
+
+   for (let i = 0, n = false; i < N; ++ i)
+      a .push (n=!n)
+
+   const b = a .flatMap (v => [v, v])
+
+   expect (b) .toBeInstanceOf (Array)
+   expect (Array .isArray (b)) .toBe (true)
+   expect (b) .toHaveLength (N * 2)
+
+   for (let i = 0, n = false; i < N; ++ i)
+   {
+      expect (b [i * 2 + 0]) .toBe (n=!n)
+      expect (b [i * 2 + 1]) .toBe (n)
+   }
+})
+
 test ("map", () =>
 {
    const

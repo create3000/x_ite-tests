@@ -233,6 +233,25 @@ test ("flat", () =>
       expect (c [i]) .toBe (++n)
 })
 
+test ("flatMap", () =>
+{
+   const
+      N = 10,
+      a = new MFVec3f ()
+
+   for (let i = 0, n = 0; i < N; ++ i)
+      a .push (new SFVec3f (++n,++n,++n))
+
+   const b = a .flatMap (v => v)
+
+   expect (b) .toBeInstanceOf (Array)
+   expect (Array .isArray (b)) .toBe (true)
+   expect (b) .toHaveLength (N * 3)
+
+   for (let i = 0, n = 0; i < N * 3; ++ i)
+      expect (b [i]) .toBe (++n)
+})
+
 test ("map", () =>
 {
    const
