@@ -285,7 +285,7 @@ test ("sort-reverse", () =>
    expect (a [4] .equals (new SFVec3f (5,6,7))) .toBe (true)
    expect (a [5] .equals (new SFVec3f (5,6,8))) .toBe (true)
 
-   a .reverse ()
+   expect (a .reverse ()) .toBe (a)
 
    expect (a) .toHaveLength (6)
    expect (a [0] .equals (new SFVec3f (5,6,8))) .toBe (true)
@@ -295,7 +295,7 @@ test ("sort-reverse", () =>
    expect (a [4] .equals (new SFVec3f (2,3,4))) .toBe (true)
    expect (a [5] .equals (new SFVec3f (1,2,3))) .toBe (true)
 
-   a .sort ()
+   expect (a .sort ()) .toBe (a)
 
    expect (a) .toHaveLength (6)
    expect (a [0] .equals (new SFVec3f (1,2,3))) .toBe (true)

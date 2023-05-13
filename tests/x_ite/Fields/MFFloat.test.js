@@ -306,7 +306,7 @@ test ("sort-reverse", () =>
    expect (a [4]) .toBe (5)
    expect (a [5]) .toBe (6)
 
-   a .reverse ()
+   expect (a .reverse ()) .toBe (a)
 
    expect (a) .toHaveLength (6)
    expect (a [0]) .toBe (6)
@@ -316,7 +316,7 @@ test ("sort-reverse", () =>
    expect (a [4]) .toBe (2)
    expect (a [5]) .toBe (1)
 
-   a .sort ()
+   expect (a .sort ()) .toBe (a)
 
    expect (a) .toHaveLength (6)
    expect (a [0]) .toBe (1)
