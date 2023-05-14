@@ -12,6 +12,15 @@ test ("getter", () =>
    expect (field .getTypeName ()) .toBe ("MFVec3f")
 })
 
+test ("copy", () =>
+{
+   const
+      a = new MFVec3f (new SFVec3f (1,2,3),new SFVec3f (4,5,6),new SFVec3f (7,8,9)),
+      b = a .copy ()
+
+   expect (a .equals (b)) .toBe (true)
+})
+
 test ("equals", () =>
 {
    const

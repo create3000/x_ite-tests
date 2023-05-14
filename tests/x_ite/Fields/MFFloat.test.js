@@ -55,6 +55,15 @@ test ("getter", () =>
    expect (field .getTypeName ()) .toBe ("MFFloat")
 })
 
+test ("copy", () =>
+{
+   const
+      a = new MFFloat (1,2,3),
+      b = a .copy ()
+
+   expect (a .equals (b)) .toBe (true)
+})
+
 test ("equals", () =>
 {
    const

@@ -55,6 +55,15 @@ test ("getter", () =>
    expect (field .getTypeName ()) .toBe ("MFBool")
 })
 
+test ("copy", () =>
+{
+   const
+      a = new MFBool (true,false,true),
+      b = a .copy ()
+
+   expect (a .equals (b)) .toBe (true)
+})
+
 test ("equals", () =>
 {
    const

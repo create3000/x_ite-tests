@@ -55,6 +55,15 @@ test ("getter", () =>
    expect (field .getTypeName ()) .toBe ("MFDouble")
 })
 
+test ("copy", () =>
+{
+   const
+      a = new MFDouble (1,2,3),
+      b = a .copy ()
+
+   expect (a .equals (b)) .toBe (true)
+})
+
 test ("equals", () =>
 {
    const
