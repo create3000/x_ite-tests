@@ -21,6 +21,7 @@ test ("getter", () =>
 
    scene .removeNamedNode ("NodeName_123")
 
+   expect (node .getNodeType ()) .not .toBe (node .getNodeType ())
    expect (node .getNodeType ()) .toEqual ([
       X3D .X3DConstants .X3DBaseNode,
       X3D .X3DConstants .X3DNode,
