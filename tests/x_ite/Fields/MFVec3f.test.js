@@ -351,7 +351,7 @@ test ("push", () =>
    for (let i = 0, n = 0; i < N; ++ i)
    {
       const v = new SFVec3f (++n,++n,++n)
-      a .push (v)
+      expect (a .push (v)) .toBe (i + 1)
       expect (a [i] .equals (v)) .toBe (true)
       expect (a) .toHaveLength (i + 1)
    }

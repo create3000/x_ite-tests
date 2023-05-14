@@ -351,7 +351,7 @@ test ("push", () =>
    for (let i = 0, n = 0; i < N; ++ i)
    {
       const v = String (++n)
-      a .push (v)
+      expect (a .push (v)) .toBe (i + 1)
       expect (a [i]) .toBe (v)
       expect (a) .toHaveLength (i + 1)
    }
