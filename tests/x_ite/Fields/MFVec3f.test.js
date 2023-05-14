@@ -18,7 +18,8 @@ test ("copy", () =>
       a = new MFVec3f (new SFVec3f (1,2,3),new SFVec3f (4,5,6),new SFVec3f (7,8,9)),
       b = a .copy ()
 
-   expect (a .equals (b)) .toBe (true)
+   expect (b) .toHaveLength (a .length)
+   expect (b .equals (a)) .toBe (true)
 })
 
 test ("equals", () =>

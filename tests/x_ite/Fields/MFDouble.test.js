@@ -61,7 +61,8 @@ test ("copy", () =>
       a = new MFDouble (1,2,3),
       b = a .copy ()
 
-   expect (a .equals (b)) .toBe (true)
+   expect (b) .toHaveLength (a .length)
+   expect (b .equals (a)) .toBe (true)
 })
 
 test ("equals", () =>
