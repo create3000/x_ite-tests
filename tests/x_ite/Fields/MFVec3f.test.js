@@ -156,7 +156,7 @@ test ("at", () =>
    {
       const v = new SFVec3f (++n,++n,++n)
       expect (a .at (i) .equals (v)) .toBe (true)
-      expect (a .at (i - a .length) .equals (v)) .toBe (true)
+      expect (a .at (i - N) .equals (v)) .toBe (true)
    }
 })
 

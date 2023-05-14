@@ -181,7 +181,7 @@ test ("at", () =>
    {
       const v = n=!n
       expect (a .at (i)) .toBe (v)
-      expect (a .at (i - a .length)) .toBe (v)
+      expect (a .at (i - N)) .toBe (v)
    }
 })
 
