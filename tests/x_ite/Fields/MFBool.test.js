@@ -59,11 +59,13 @@ test ("equals", () =>
 {
    const
       a = new MFBool (),
-      b = new MFBool (true)
+      b = new MFBool (true, false),
+      c = new MFBool (true, false)
 
    expect (a .equals (a)) .toBe (true)
    expect (b .equals (b)) .toBe (true)
    expect (a .equals (b)) .toBe (false)
+   expect (b .equals (c)) .toBe (true)
 })
 
 test ("isDefaultValue", () =>
@@ -164,6 +166,23 @@ test ("special-values", () =>
    expect (a [2]) .toBe (true)
    expect (a [3]) .toBe (true)
    expect (a [4]) .toBe (true)
+})
+
+test ("at", () =>
+{
+   const
+      N = 10,
+      a = new MFBool ()
+
+   for (let i = 0, n = false; i < N; ++ i)
+      expect (a .push (n=!n)) .toBe (i + 1)
+
+   for (let i = 0, n = false; i < N; ++ i)
+   {
+      const v = n=!n
+      expect (a .at (i)) .toBe (v)
+      expect (a .at (i - a .length)) .toBe (v)
+   }
 })
 
 test ("concat", () =>

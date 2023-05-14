@@ -16,11 +16,13 @@ test ("equals", () =>
 {
    const
       a = new MFVec3f (),
-      b = new MFVec3f (new SFVec3f ())
+      b = new MFVec3f (new SFVec3f (1,2,3),new SFVec3f (4,5,6)),
+      c = new MFVec3f (new SFVec3f (1,2,3),new SFVec3f (4,5,6))
 
    expect (a .equals (a)) .toBe (true)
    expect (b .equals (b)) .toBe (true)
    expect (a .equals (b)) .toBe (false)
+   expect (b .equals (c)) .toBe (true)
 })
 
 test ("isDefaultValue", () =>
@@ -139,6 +141,23 @@ test ("basic-functions", () =>
    expect (a [2] .equals (new SFVec3f (3,4,5))) .toBe (true)
    expect (a [3] .equals (new SFVec3f (4,5,6))) .toBe (true)
    expect (a [4] .equals (new SFVec3f (5,6,7))) .toBe (true)
+})
+
+test ("at", () =>
+{
+   const
+      N = 10,
+      a = new MFVec3f ()
+
+   for (let i = 0, n = 0; i < N; ++ i)
+      expect (a .push (new SFVec3f (++n,++n,++n))) .toBe (i + 1)
+
+   for (let i = 0, n = 0; i < N; ++ i)
+   {
+      const v = new SFVec3f (++n,++n,++n)
+      expect (a .at (i) .equals (v)) .toBe (true)
+      expect (a .at (i - a .length) .equals (v)) .toBe (true)
+   }
 })
 
 test ("concat", () =>

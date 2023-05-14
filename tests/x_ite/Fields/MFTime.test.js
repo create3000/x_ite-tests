@@ -59,11 +59,13 @@ test ("equals", () =>
 {
    const
       a = new MFTime (),
-      b = new MFTime (true)
+      b = new MFTime (1, 2),
+      c = new MFTime (1, 2)
 
    expect (a .equals (a)) .toBe (true)
    expect (b .equals (b)) .toBe (true)
    expect (a .equals (b)) .toBe (false)
+   expect (b .equals (c)) .toBe (true)
 })
 
 test ("isDefaultValue", () =>
@@ -164,6 +166,23 @@ test ("basic-functions", () =>
    expect (a [2]) .toBe (Infinity)
    expect (a [3]) .toBe (Infinity)
    expect (a [4]) .toBe (Infinity)
+})
+
+test ("at", () =>
+{
+   const
+      N = 10,
+      a = new MFTime ()
+
+   for (let i = 0, n = 0; i < N; ++ i)
+      expect (a .push (++n)) .toBe (i + 1)
+
+   for (let i = 0, n = 0; i < N; ++ i)
+   {
+      const v = ++n
+      expect (a .at (i)) .toBe (v)
+      expect (a .at (i - a .length)) .toBe (v)
+   }
 })
 
 test ("concat", () =>
