@@ -173,7 +173,7 @@ test ("concat", () =>
       a = new MFTime ()
 
    for (let i = 0, n = 0; i < N; ++ i)
-      a .push (++n)
+      expect (a .push (++n)) .toBe (i + 1)
 
    expect (a) .toHaveLength (N)
 
@@ -230,7 +230,7 @@ test ("filter", () =>
       a = new MFTime ()
 
    for (let i = 0, n = 0; i < N; ++ i)
-      a .push (++n)
+      expect (a .push (++n)) .toBe (i + 1)
 
    const b = a .filter (v => v % 2)
 
@@ -249,7 +249,7 @@ test ("flat", () =>
       a = new MFTime ()
 
    for (let i = 0, n = 0; i < N; ++ i)
-      a .push (++n)
+      expect (a .push (++n)) .toBe (i + 1)
 
    const b = a .flat ()
 
@@ -268,7 +268,7 @@ test ("flatMap", () =>
       a = new MFTime ()
 
    for (let i = 0, n = 0; i < N; ++ i)
-      a .push (++n)
+      expect (a .push (++n)) .toBe (i + 1)
 
    const b = a .flatMap (v => [v, v])
 
@@ -290,7 +290,7 @@ test ("map", () =>
       a = new MFTime ()
 
    for (let i = 0, n = 0; i < N; ++ i)
-      a .push (++n)
+      expect (a .push (++n)) .toBe (i + 1)
 
    expect (a) .toHaveLength (N)
 
@@ -405,7 +405,7 @@ test ("slice", () =>
       a = new MFTime ()
 
    for (let i = 0, n = 0; i < N; ++ i)
-      a .push (++n)
+      expect (a .push (++n)) .toBe (i + 1)
 
    expect (a) .toHaveLength (N)
 

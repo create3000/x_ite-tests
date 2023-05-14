@@ -148,7 +148,7 @@ test ("concat", () =>
       a = new MFVec3f ()
 
    for (let i = 0, n = 0; i < N; ++ i)
-      a .push (new SFVec3f (++n,++n,++n))
+      expect (a .push (new SFVec3f (++n,++n,++n))) .toBe (i + 1)
 
    expect (a) .toHaveLength (N)
 
@@ -210,7 +210,7 @@ test ("filter", () =>
       a = new MFVec3f ()
 
    for (let i = 0, n = 0; i < N; ++ i)
-      a .push (new SFVec3f (++n,++n,++n))
+      expect (a .push (new SFVec3f (++n,++n,++n))) .toBe (i + 1)
 
    const b = a .filter (v => v.x % 2)
 
@@ -232,7 +232,7 @@ test ("flat", () =>
       a = new MFVec3f ()
 
    for (let i = 0, n = 0; i < N; ++ i)
-      a .push (new SFVec3f (++n,++n,++n))
+      expect (a .push (new SFVec3f (++n,++n,++n))) .toBe (i + 1)
 
    const b = a .flat (0)
 
@@ -263,7 +263,7 @@ test ("flatMap", () =>
       a = new MFVec3f ()
 
    for (let i = 0, n = 0; i < N; ++ i)
-      a .push (new SFVec3f (++n,++n,++n))
+      expect (a .push (new SFVec3f (++n,++n,++n))) .toBe (i + 1)
 
    const b = a .flatMap (v => [v,v])
 
@@ -287,7 +287,7 @@ test ("map", () =>
       a = new MFVec3f ()
 
    for (let i = 0, n = 0; i < N; ++ i)
-      a .push (new SFVec3f (++n,++n,++n))
+      expect (a .push (new SFVec3f (++n,++n,++n))) .toBe (i + 1)
 
    expect (a) .toHaveLength (N)
 
@@ -405,7 +405,7 @@ test ("slice", () =>
       a = new MFVec3f ()
 
    for (let i = 0, n = 0; i < N; ++ i)
-      a .push (new SFVec3f (++n,++n,++n))
+      expect (a .push (new SFVec3f (++n,++n,++n))) .toBe (i + 1)
 
    expect (a) .toHaveLength (N)
 

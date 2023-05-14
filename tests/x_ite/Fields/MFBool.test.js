@@ -173,7 +173,7 @@ test ("concat", () =>
       a = new MFBool ()
 
    for (let i = 0, n = false; i < N; ++ i)
-      a .push (n=!n)
+      expect (a .push (n=!n)) .toBe (i + 1)
 
    expect (a) .toHaveLength (N)
 
@@ -230,7 +230,7 @@ test ("filter", () =>
       a = new MFBool ()
 
    for (let i = 0, n = false; i < N; ++ i)
-      a .push (n=!n)
+      expect (a .push (n=!n)) .toBe (i + 1)
 
    const b = a .filter (v => v % 2)
 
@@ -249,7 +249,7 @@ test ("flat", () =>
       a = new MFBool ()
 
    for (let i = 0, n = false; i < N; ++ i)
-      a .push (n=!n)
+      expect (a .push (n=!n)) .toBe (i + 1)
 
    const b = a .flat ()
 
@@ -268,7 +268,7 @@ test ("flatMap", () =>
       a = new MFBool ()
 
    for (let i = 0, n = false; i < N; ++ i)
-      a .push (n=!n)
+      expect (a .push (n=!n)) .toBe (i + 1)
 
    const b = a .flatMap (v => [v, v])
 
