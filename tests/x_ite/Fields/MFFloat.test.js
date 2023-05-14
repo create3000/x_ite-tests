@@ -180,7 +180,9 @@ test ("at", () =>
    for (let i = 0, n = 0; i < N; ++ i)
    {
       const v = ++n
+      expect (a .at (i)) .toBe (a [i])
       expect (a .at (i)) .toBe (v)
+      expect (a .at (i - N)) .toBe (a [i])
       expect (a .at (i - N)) .toBe (v)
    }
 })
