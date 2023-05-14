@@ -472,3 +472,26 @@ test ("sort-reverse", () =>
    expect (a [4]) .toBe (false)
    expect (a [5]) .toBe (false)
 })
+
+test ("unshift", () =>
+{
+   const
+      N = 1_000,
+      a = new MFBool ()
+
+   expect (a) .toHaveLength (0)
+
+   for (let i = 0, n = false; i < N; ++ i)
+   {
+      const v = n=!n
+      expect (a .unshift (v)) .toBe (i + 1)
+      expect (a [0]) .toBe (v)
+      expect (a) .toHaveLength (i + 1)
+   }
+
+   for (let i = 0, n = false; i < N; ++ i)
+   {
+      const v = n=!n
+      expect (a .at (-(i + 1))) .toBe (v)
+   }
+})

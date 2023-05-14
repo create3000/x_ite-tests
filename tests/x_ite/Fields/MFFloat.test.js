@@ -472,3 +472,26 @@ test ("sort-reverse", () =>
    expect (a [4]) .toBe (2)
    expect (a [5]) .toBe (1)
 })
+
+test ("unshift", () =>
+{
+   const
+      N = 1_000,
+      a = new MFFloat ()
+
+   expect (a) .toHaveLength (0)
+
+   for (let i = 0, n = 0; i < N; ++ i)
+   {
+      const v = ++n
+      expect (a .unshift (v)) .toBe (i + 1)
+      expect (a [0]) .toBe (v)
+      expect (a) .toHaveLength (i + 1)
+   }
+
+   for (let i = 0, n = 0; i < N; ++ i)
+   {
+      const v = ++n
+      expect (a .at (-(i + 1))) .toBe (v)
+   }
+})

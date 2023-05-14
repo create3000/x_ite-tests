@@ -483,3 +483,26 @@ test ("sort-reverse", () =>
    expect (a [4] .equals (new SFVec3f (2,3,4))) .toBe (true)
    expect (a [5] .equals (new SFVec3f (1,2,3))) .toBe (true)
 })
+
+test ("unshift", () =>
+{
+   const
+      N = 1_000,
+      a = new MFVec3f ()
+
+   expect (a) .toHaveLength (0)
+
+   for (let i = 0, n = 0; i < N; ++ i)
+   {
+      const v = new SFVec3f (++n,++n,++n)
+      expect (a .unshift (v)) .toBe (i + 1)
+      expect (a [0] .equals (v)) .toBe (true)
+      expect (a) .toHaveLength (i + 1)
+   }
+
+   for (let i = 0, n = 0; i < N; ++ i)
+   {
+      const v = new SFVec3f (++n,++n,++n)
+      expect (a .at (-(i + 1)) .equals (v)) .toBe (true)
+   }
+})
