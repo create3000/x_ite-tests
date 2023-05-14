@@ -434,6 +434,62 @@ test ("slice", () =>
    }
 })
 
+test ("splice", () =>
+{
+   const
+      N = 10,
+      a = new MFVec3f ()
+
+   for (let i = 0, n = 0; i < N; ++ i)
+      expect (a .push (new SFVec3f (++n,++n,++n))) .toBe (i + 1)
+
+   const
+      v0 = a [0] .copy (),
+      v1 = a .at (-1) .copy ()
+
+   expect (a) .toHaveLength (N)
+
+   const b = a .splice (1,N-2)
+
+   expect (a) .toHaveLength (2)
+   expect (b) .toHaveLength (N-2)
+   expect (b) .toBeInstanceOf (Array)
+   expect (Array .isArray (b)) .toBe (true)
+   expect (a [0] .equals (v0)) .toBe (true)
+   expect (a [1] .equals (v1)) .toBe (true)
+
+   for (let i = 0, n = comp; i < N-2; ++ i)
+      expect (b [i] .equals (new SFVec3f (++n,++n,++n))) .toBe (true)
+
+   const c = a .splice (1,0,...b)
+
+   expect (a) .toHaveLength (N)
+   expect (c) .toHaveLength (0)
+   expect (c) .toBeInstanceOf (Array)
+   expect (Array .isArray (c)) .toBe (true)
+
+   for (let i = 0, n = 0; i < N; ++ i)
+      expect (a [i] .equals (new SFVec3f (++n,++n,++n))) .toBe (true)
+
+   const d = a .splice (1,N-2,...b)
+
+   expect (a) .toHaveLength (N)
+   expect (d) .toHaveLength (N-2)
+   expect (d) .toBeInstanceOf (Array)
+   expect (Array .isArray (d)) .toBe (true)
+
+   for (let i = 0, n = comp; i < N-2; ++ i)
+   {
+      const v = new SFVec3f (++n,++n,++n)
+      expect (d [i] .equals (v)) .toBe (true)
+      expect (b [i] .equals (v)) .toBe (true)
+      expect (d [i]) .not .toBe (b [i])
+   }
+
+   for (let i = 0, n = 0; i < N; ++ i)
+      expect (a [i] .equals (new SFVec3f (++n,++n,++n))) .toBe (true)
+})
+
 test ("sort-reverse", () =>
 {
    const a = new MFVec3f (new SFVec3f (1,2,3),

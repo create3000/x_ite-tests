@@ -289,7 +289,7 @@ test ("map", () =>
       N = 10,
       a = new MFBool ()
 
-   for (let i = 0, n = 0; i < N; ++ i)
+   for (let i = 0, n = false; i < N; ++ i)
       a .push ((n=!n))
 
    expect (a) .toHaveLength (N)
@@ -404,7 +404,7 @@ test ("slice", () =>
       N = 10,
       a = new MFBool ()
 
-   for (let i = 0, n = 0; i < N; ++ i)
+   for (let i = 0, n = false; i < N; ++ i)
       a .push ((n=!n))
 
    expect (a) .toHaveLength (N)
@@ -426,6 +426,61 @@ test ("slice", () =>
 
    for (let i = 0, j = 1; i < N - 2; ++ i, ++ j)
       expect (c [i]) .toBe (a [j])
+})
+
+test ("splice", () =>
+{
+   const
+      N = 10,
+      a = new MFBool ()
+
+   for (let i = 0, n = false; i < N; ++ i)
+      expect (a .push (n=!n)) .toBe (i + 1)
+
+   const
+      v0 = a [0],
+      v1 = a .at (-1)
+
+   expect (a) .toHaveLength (N)
+
+   const b = a .splice (1,N-2)
+
+   expect (a) .toHaveLength (2)
+   expect (b) .toHaveLength (N-2)
+   expect (b) .toBeInstanceOf (Array)
+   expect (Array .isArray (b)) .toBe (true)
+   expect (a [0]) .toBe (v0)
+   expect (a [1]) .toBe (v1)
+
+   for (let i = 0, n = true; i < N-2; ++ i)
+      expect (b [i]) .toBe (n=!n)
+
+   const c = a .splice (1,0,...b)
+
+   expect (a) .toHaveLength (N)
+   expect (c) .toHaveLength (0)
+   expect (c) .toBeInstanceOf (Array)
+   expect (Array .isArray (c)) .toBe (true)
+
+   for (let i = 0, n = false; i < N; ++ i)
+      expect (a [i]) .toBe (n=!n)
+
+   const d = a .splice (1,N-2,...b)
+
+   expect (a) .toHaveLength (N)
+   expect (d) .toHaveLength (N-2)
+   expect (d) .toBeInstanceOf (Array)
+   expect (Array .isArray (d)) .toBe (true)
+
+   for (let i = 0, n = true; i < N-2; ++ i)
+   {
+      const v = n=!n
+      expect (d [i]) .toBe (v)
+      expect (b [i]) .toBe (v)
+   }
+
+   for (let i = 0, n = false; i < N; ++ i)
+      expect (a [i]) .toBe (n=!n)
 })
 
 test ("sort-reverse", () =>
