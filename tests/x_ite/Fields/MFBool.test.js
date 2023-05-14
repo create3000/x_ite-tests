@@ -126,7 +126,7 @@ test ("special-values", () =>
    expect (a [3]) .toBe (true)
    expect (a [4]) .toBe (true)
 
-   a .fill (NaN)
+   expect (a .fill (NaN)) .toBe (a)
    expect (a) .toHaveLength (5)
    expect (a [0]) .toBe (false)
    expect (a [1]) .toBe (false)
@@ -138,7 +138,7 @@ test ("special-values", () =>
    expect (a .indexOf (true)) .toBe (-1)
    expect (a .lastIndexOf (true)) .toBe (-1)
 
-   a .fill (Infinity)
+   expect (a .fill (Infinity)) .toBe (a)
    expect (a) .toHaveLength (5)
    expect (a [0]) .toBe (true)
    expect (a [1]) .toBe (true)
@@ -202,7 +202,7 @@ test ("fill", () =>
    expect (a [4]) .toBe (false)
    expect (a [5]) .toBe (false)
 
-   a .fill (true)
+   expect (a .fill (true)) .toBe (a)
 
    expect (a) .toHaveLength (6)
    expect (a [0]) .toBe (true)
@@ -212,7 +212,7 @@ test ("fill", () =>
    expect (a [4]) .toBe (true)
    expect (a [5]) .toBe (true)
 
-   a .fill (false)
+   expect (a .fill (false)) .toBe (a)
 
    expect (a) .toHaveLength (6)
    expect (a [0]) .toBe (false)
@@ -462,7 +462,7 @@ test ("sort-reverse", () =>
 
    const Algorithm = X3D .require ("standard/Math/Algorithm")
 
-   a .sort ((a, b) => Algorithm .cmp (b, a))
+   expect (a .sort ((a, b) => Algorithm .cmp (b, a))) .toBe (a)
 
    expect (a) .toHaveLength (6)
    expect (a [0]) .toBe (true)
