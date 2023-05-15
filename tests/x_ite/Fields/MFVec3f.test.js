@@ -133,16 +133,16 @@ test ("basic-functions", () =>
    expect (a .indexOf (new SFVec3f (9,9,9))) .toBe (-1)
    expect (a .lastIndexOf (new SFVec3f (9,9,9))) .toBe (-1)
 
-   expect (a .includes (new SFVec3f (5,6,7))) .toBe (true)
-   expect (a .indexOf (new SFVec3f (5,6,7))) .toBe (0)
-   expect (a .lastIndexOf (new SFVec3f (5,6,7))) .toBe (a .length - 1)
+   expect (a .includes (a [0])) .toBe (true)
+   expect (a .indexOf (a [0])) .toBe (0)
+   expect (a .lastIndexOf (a .at (-1))) .toBe (a .length - 1)
 
    a [1] = new SFVec3f (4,5,6)
    a [3] = new SFVec3f (4,5,6)
 
-   expect (a .includes (new SFVec3f (4,5,6))) .toBe (true)
-   expect (a .indexOf (new SFVec3f (4,5,6))) .toBe (1)
-   expect (a .lastIndexOf (new SFVec3f (4,5,6))) .toBe (3)
+   expect (a .includes (a [1])) .toBe (true)
+   expect (a .indexOf (a [1])) .toBe (1)
+   expect (a .lastIndexOf (a [3])) .toBe (3)
 
    expect (a .splice (0, 5, new SFVec3f (1,2,3),new SFVec3f (2,3,4),new SFVec3f (3,4,5),new SFVec3f (4,5,6),new SFVec3f (5,6,7))) .toHaveLength (5)
    expect (a) .toHaveLength (5)
