@@ -172,6 +172,21 @@ test ("at", () =>
    }
 })
 
+test ("entries", () =>
+{
+   const
+      N = 10,
+      a = new MFVec3f ()
+
+   for (let i = 0, n = 0; i < N; ++ i)
+      expect (a .push (new SFVec3f (++n,++n,++n))) .toBe (i + 1)
+
+   expect ([... a .entries ()]) .toHaveLength (N)
+
+   for (const [i, value] of a .entries ())
+      expect (value) .toBe (a [i])
+})
+
 test ("fill", () =>
 {
    const a = new MFVec3f ()

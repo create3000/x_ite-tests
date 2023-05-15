@@ -197,6 +197,21 @@ test ("at", () =>
    }
 })
 
+test ("entries", () =>
+{
+   const
+      N = 10,
+      a = new MFBool ()
+
+   for (let i = 0, n = false; i < N; ++ i)
+      expect (a .push (n=!n)) .toBe (i + 1)
+
+   expect ([... a .entries ()]) .toHaveLength (N)
+
+   for (const [i, value] of a .entries ())
+      expect (value) .toBe (a [i])
+})
+
 test ("fill", () =>
 {
    const a = new MFBool (false, false, false, false, false, false)

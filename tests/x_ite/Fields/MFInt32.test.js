@@ -197,6 +197,21 @@ test ("at", () =>
    }
 })
 
+test ("entries", () =>
+{
+   const
+      N = 10,
+      a = new MFInt32 ()
+
+   for (let i = 0, n = 0; i < N; ++ i)
+      expect (a .push (++n)) .toBe (i + 1)
+
+   expect ([... a .entries ()]) .toHaveLength (N)
+
+   for (const [i, value] of a .entries ())
+      expect (value) .toBe (a [i])
+})
+
 test ("fill", () =>
 {
    const a = new MFInt32 (0, 0, 0, 0, 0, 0)
@@ -253,7 +268,7 @@ test ("keys", () =>
    const
       N = 10,
       a = new MFInt32 ()
-      
+
    a .length = N
    expect (a .keys ()) .toEqual (new Array (N) .keys ())
    a .length = N/2
