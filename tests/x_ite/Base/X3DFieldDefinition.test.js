@@ -65,6 +65,8 @@ test ("properties", () =>
 
    const a = [... fieldDefinitions]
 
+   expect (a) .toHaveLength (fieldDefinitions .length)
+
    for (const [i, v] of a .entries ())
       expect (v) .toBe (fieldDefinitions [i])
 })
