@@ -252,8 +252,9 @@ test ("keys", () =>
       a = new MFVec3f ()
 
    a .length = N
-
    expect (a .keys ()) .toEqual (new Array (N) .keys ())
+   a .length = N/2
+   expect (a .keys ()) .toEqual (new Array (N/2) .keys ())
 })
 
 test ("map", () =>
