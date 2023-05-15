@@ -72,7 +72,7 @@ test ("constructor", () =>
       expect (c [i]) .toBe (b [i])
 
    const d = new MFVec3f (new SFVec3f (1,2,3))
-   expect (dispatchEvent) .toHaveLength (1)
+   expect (d) .toHaveLength (1)
    expect (d [0] .equals (new SFVec3f (1,2,3))) .toBe (true)
    d [0] .x = 2
    d [0] .y = 3
