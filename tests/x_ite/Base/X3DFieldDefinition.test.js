@@ -62,4 +62,9 @@ test ("properties", () =>
    ]
 
    enumerate (properties, fieldDefinitions [0])
+
+   const a = [... fieldDefinitions]
+
+   for (const [i, v] of a .entries ())
+      expect (v) .toBe (fieldDefinitions [i])
 })
