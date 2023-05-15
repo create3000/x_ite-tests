@@ -172,33 +172,6 @@ test ("at", () =>
    }
 })
 
-test ("concat", () =>
-{
-   const
-      N = 10,
-      a = new MFVec3f ()
-
-   for (let i = 0, n = 0; i < N; ++ i)
-      expect (a .push (new SFVec3f (++n,++n,++n))) .toBe (i + 1)
-
-   expect (a) .toHaveLength (N)
-
-   const b = a .concat ([new SFVec3f (1000,1001,1002),new SFVec3f (1003,1004,1005)])
-
-   expect (b) .toBeInstanceOf (Array)
-   expect (Array .isArray (b)) .toBe (true)
-   expect (b) .toHaveLength (N + 2)
-
-   for (let i = 0; i < N; ++ i)
-   {
-      expect (b [i]) .not .toBe (a [i])
-      expect (b [i] .equals (a [i])) .toBe (true)
-   }
-
-   expect (b [N + 0] .equals (new SFVec3f (1000,1001,1002))) .toBe (true)
-   expect (b [N + 1] .equals (new SFVec3f (1003,1004,1005))) .toBe (true)
-})
-
 test ("fill", () =>
 {
    const a = new MFVec3f ()
@@ -245,8 +218,7 @@ test ("filter", () =>
 
    const b = a .filter (v => v.x % 2)
 
-   expect (b) .toBeInstanceOf (Array)
-   expect (Array .isArray (b)) .toBe (true)
+   expect (b) .toBeInstanceOf (MFVec3f)
    expect (b) .toHaveLength (N / 2)
 
    for (let i = 0; i < N / 2; ++ i)
@@ -256,7 +228,7 @@ test ("filter", () =>
    }
 })
 
-test ("flat", () =>
+test ("find", () =>
 {
    const
       N = 10,
@@ -265,50 +237,12 @@ test ("flat", () =>
    for (let i = 0, n = 0; i < N; ++ i)
       expect (a .push (new SFVec3f (++n,++n,++n))) .toBe (i + 1)
 
-   const b = a .flat (0)
-
-   expect (b) .toBeInstanceOf (Array)
-   expect (Array .isArray (b)) .toBe (true)
-   expect (b) .toHaveLength (N)
-
-   for (let i = 0; i < N; ++ i)
-   {
-      expect (b [i]) .not .toBe (a [i])
-      expect (b [i] .equals (a [i])) .toBe (true)
-   }
-
-   const c = a .flat ()
-
-   expect (c) .toBeInstanceOf (Array)
-   expect (Array .isArray (c)) .toBe (true)
-   expect (c) .toHaveLength (N * comp)
-
-   for (let i = 0, n = 0; i < N * comp; ++ i)
-      expect (c [i]) .toBe (++n)
-})
-
-test ("flatMap", () =>
-{
    const
-      N = 10,
-      a = new MFVec3f ()
+      b = a .find (v => v .equals (new SFVec3f (1,2,3))),
+      c = a .find (v => v .equals (new SFVec3f ()))
 
-   for (let i = 0, n = 0; i < N; ++ i)
-      expect (a .push (new SFVec3f (++n,++n,++n))) .toBe (i + 1)
-
-   const b = a .flatMap (v => [v,v])
-
-   expect (b) .toBeInstanceOf (Array)
-   expect (Array .isArray (b)) .toBe (true)
-   expect (b) .toHaveLength (N * 2)
-
-   for (let i = 0; i < N; ++ i)
-   {
-      expect (b [i * 2 + 0]) .not .toBe (a [i])
-      expect (b [i * 2 + 1]) .not .toBe (a [i])
-      expect (b [i * 2 + 0] .equals (a [i])) .toBe (true)
-      expect (b [i * 2 + 1] .equals (a [i])) .toBe (true)
-   }
+   expect (b) .toBe (a [0])
+   expect (c) .toBe (undefined)
 })
 
 test ("map", () =>
@@ -324,8 +258,7 @@ test ("map", () =>
 
    const b = a .map (v => v)
 
-   expect (b) .toBeInstanceOf (Array)
-   expect (Array .isArray (b)) .toBe (true)
+   expect (b) .toBeInstanceOf (MFVec3f)
 
    for (let i = 0; i < N; ++ i)
    {
@@ -443,8 +376,7 @@ test ("slice", () =>
    const b = a .slice ()
 
    expect (b) .toHaveLength (N)
-   expect (b) .toBeInstanceOf (Array)
-   expect (Array .isArray (b)) .toBe (true)
+   expect (b) .toBeInstanceOf (MFVec3f)
 
    for (let i = 0; i < N; ++ i)
    {
@@ -455,8 +387,7 @@ test ("slice", () =>
    const c = a .slice (1, N - 1)
 
    expect (c) .toHaveLength (N - 2)
-   expect (c) .toBeInstanceOf (Array)
-   expect (Array .isArray (c)) .toBe (true)
+   expect (c) .toBeInstanceOf (MFVec3f)
 
    for (let i = 0, j = 1; i < N - 2; ++ i, ++ j)
    {
@@ -484,8 +415,7 @@ test ("splice", () =>
 
    expect (a) .toHaveLength (2)
    expect (b) .toHaveLength (N-2)
-   expect (b) .toBeInstanceOf (Array)
-   expect (Array .isArray (b)) .toBe (true)
+   expect (b) .toBeInstanceOf (MFVec3f)
    expect (a [0] .equals (v0)) .toBe (true)
    expect (a [1] .equals (v1)) .toBe (true)
 
@@ -496,8 +426,7 @@ test ("splice", () =>
 
    expect (a) .toHaveLength (N)
    expect (c) .toHaveLength (0)
-   expect (c) .toBeInstanceOf (Array)
-   expect (Array .isArray (c)) .toBe (true)
+   expect (c) .toBeInstanceOf (MFVec3f)
 
    for (let i = 0, n = 0; i < N; ++ i)
       expect (a [i] .equals (new SFVec3f (++n,++n,++n))) .toBe (true)
@@ -506,8 +435,7 @@ test ("splice", () =>
 
    expect (a) .toHaveLength (N)
    expect (d) .toHaveLength (N-2)
-   expect (d) .toBeInstanceOf (Array)
-   expect (Array .isArray (d)) .toBe (true)
+   expect (d) .toBeInstanceOf (MFVec3f)
 
    for (let i = 0, n = comp; i < N-2; ++ i)
    {

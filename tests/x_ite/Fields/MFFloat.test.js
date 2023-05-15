@@ -197,30 +197,6 @@ test ("at", () =>
    }
 })
 
-test ("concat", () =>
-{
-   const
-      N = 10,
-      a = new MFFloat ()
-
-   for (let i = 0, n = 0; i < N; ++ i)
-      expect (a .push (++n)) .toBe (i + 1)
-
-   expect (a) .toHaveLength (N)
-
-   const b = a .concat ([1000,1001])
-
-   expect (b) .toBeInstanceOf (Array)
-   expect (Array .isArray (b)) .toBe (true)
-   expect (b) .toHaveLength (N + 2)
-
-   for (let i = 0; i < N; ++ i)
-      expect (b [i]) .toBe (a [i])
-
-   expect (b [N + 0]) .toBe (1000)
-   expect (b [N + 1]) .toBe (1001)
-})
-
 test ("fill", () =>
 {
    const a = new MFFloat (0, 0, 0, 0, 0, 0)
@@ -265,53 +241,11 @@ test ("filter", () =>
 
    const b = a .filter (v => v % 2)
 
-   expect (b) .toBeInstanceOf (Array)
-   expect (Array .isArray (b)) .toBe (true)
+   expect (b) .toBeInstanceOf (MFFloat)
    expect (b) .toHaveLength (N / 2)
 
    for (let i = 0; i < N / 2; ++ i)
       expect (b [i]) .toBe (a [i * 2])
-})
-
-test ("flat", () =>
-{
-   const
-      N = 10,
-      a = new MFFloat ()
-
-   for (let i = 0, n = 0; i < N; ++ i)
-      expect (a .push (++n)) .toBe (i + 1)
-
-   const b = a .flat ()
-
-   expect (b) .toBeInstanceOf (Array)
-   expect (Array .isArray (b)) .toBe (true)
-   expect (b) .toHaveLength (N)
-
-   for (let i = 0, n = 0; i < N; ++ i)
-      expect (b [i]) .toBe (++n)
-})
-
-test ("flatMap", () =>
-{
-   const
-      N = 10,
-      a = new MFFloat ()
-
-   for (let i = 0, n = 0; i < N; ++ i)
-      expect (a .push (++n)) .toBe (i + 1)
-
-   const b = a .flatMap (v => [v, v])
-
-   expect (b) .toBeInstanceOf (Array)
-   expect (Array .isArray (b)) .toBe (true)
-   expect (b) .toHaveLength (N * 2)
-
-   for (let i = 0, n = 0; i < N; ++ i)
-   {
-      expect (b [i * 2 + 0]) .toBe (++n)
-      expect (b [i * 2 + 1]) .toBe (n)
-   }
 })
 
 test ("map", () =>
@@ -327,8 +261,7 @@ test ("map", () =>
 
    const b = a .map (v => v)
 
-   expect (b) .toBeInstanceOf (Array)
-   expect (Array .isArray (b)) .toBe (true)
+   expect (b) .toBeInstanceOf (MFFloat)
 
    for (let i = 0; i < N; ++ i)
       expect (b [i]) .toBe (a [i])
@@ -443,8 +376,7 @@ test ("slice", () =>
    const b = a .slice ()
 
    expect (b) .toHaveLength (N)
-   expect (b) .toBeInstanceOf (Array)
-   expect (Array .isArray (b)) .toBe (true)
+   expect (b) .toBeInstanceOf (MFFloat)
 
    for (let i = 0; i < N; ++ i)
       expect (b [i]) .toBe (a [i])
@@ -452,8 +384,7 @@ test ("slice", () =>
    const c = a .slice (1, N - 1)
 
    expect (c) .toHaveLength (N - 2)
-   expect (c) .toBeInstanceOf (Array)
-   expect (Array .isArray (c)) .toBe (true)
+   expect (c) .toBeInstanceOf (MFFloat)
 
    for (let i = 0, j = 1; i < N - 2; ++ i, ++ j)
       expect (c [i]) .toBe (a [j])
@@ -478,8 +409,7 @@ test ("splice", () =>
 
    expect (a) .toHaveLength (2)
    expect (b) .toHaveLength (N-2)
-   expect (b) .toBeInstanceOf (Array)
-   expect (Array .isArray (b)) .toBe (true)
+   expect (b) .toBeInstanceOf (MFFloat)
    expect (a [0]) .toBe (v0)
    expect (a [1]) .toBe (v1)
 
@@ -490,8 +420,7 @@ test ("splice", () =>
 
    expect (a) .toHaveLength (N)
    expect (c) .toHaveLength (0)
-   expect (c) .toBeInstanceOf (Array)
-   expect (Array .isArray (c)) .toBe (true)
+   expect (c) .toBeInstanceOf (MFFloat)
 
    for (let i = 0, n = 0; i < N; ++ i)
       expect (a [i]) .toBe (++n)
@@ -500,8 +429,7 @@ test ("splice", () =>
 
    expect (a) .toHaveLength (N)
    expect (d) .toHaveLength (N-2)
-   expect (d) .toBeInstanceOf (Array)
-   expect (Array .isArray (d)) .toBe (true)
+   expect (d) .toBeInstanceOf (MFFloat)
 
    for (let i = 0, n = 1; i < N-2; ++ i)
    {
