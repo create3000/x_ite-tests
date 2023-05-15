@@ -31,3 +31,37 @@ main ()
       }
    });
 }))
+
+test .each ([
+   ["ecmascript:"],
+   ["javascript:"],
+   ["vrmlscript:"],
+])
+("ecmascript-url", (protocol) => new Promise ((resolve, reject) =>
+{
+   const
+      canvas  = X3D .createBrowser (),
+      Browser = canvas .browser
+
+   const text = `
+// Some percent % signs can cause to 100% an error.
+
+function test ()
+{
+   let i = 23 % 2; // Maybe as modulo.
+}
+`;
+
+   new FileLoader (Browser .getWorld ()) .loadDocument (new X3D .MFString (`${protocol}${text}`), function (data)
+   {
+      try
+      {
+         expect (data) .toBe (text)
+         resolve ()
+      }
+      catch (error)
+      {
+         reject (error .message)
+      }
+   });
+}))
