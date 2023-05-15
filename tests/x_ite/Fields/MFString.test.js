@@ -248,6 +248,17 @@ test ("filter", () =>
       expect (b [i]) .toBe (a [i * 2])
 })
 
+test ("keys", () =>
+{
+   const
+      N = 10,
+      a = new MFString ()
+
+   a .length = N
+
+   expect (a .keys ()) .toEqual (new Array (N) .keys ())
+})
+
 test ("map", () =>
 {
    const

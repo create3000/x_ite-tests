@@ -245,6 +245,17 @@ test ("find", () =>
    expect (c) .toBe (undefined)
 })
 
+test ("keys", () =>
+{
+   const
+      N = 10,
+      a = new MFVec3f ()
+
+   a .length = N
+
+   expect (a .keys ()) .toEqual (new Array (N) .keys ())
+})
+
 test ("map", () =>
 {
    const
