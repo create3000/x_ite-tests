@@ -18,3 +18,11 @@ test ("spread", () =>
    for (const [i, v] of a .entries ())
       expect (v) .toBe (fieldDefinitions [i])
 })
+
+test ("filter", () =>
+{
+   const a = fieldDefinitions .filter (f => f .name .includes ("i"))
+
+   expect (a) .toBeInstanceOf (X3D .FieldDefinitionArray)
+   expect (a) .toHaveLength (2)
+})
