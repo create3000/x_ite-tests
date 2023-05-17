@@ -2,16 +2,15 @@ const
    X3D    = require ("../../X3D"),
    Fields = X3D .require ("x_ite/Fields")
 
+const
+   canvas           = X3D .createBrowser (),
+   Browser          = canvas .browser,
+   scene            = Browser .currentScene,
+   node             = scene .createNode ("WorldInfo"),
+   fieldDefinitions = node .getFieldDefinitions ()
+
 test ("properties", () =>
 {
-   const
-      canvas  = X3D .createBrowser (),
-      Browser = canvas .browser,
-      scene   = Browser .currentScene,
-      node    = scene .createNode ("WorldInfo")
-
-   const fieldDefinitions = node .getFieldDefinitions ()
-
    expect (fieldDefinitions) .toBeInstanceOf (X3D .FieldDefinitionArray)
    expect (fieldDefinitions) .toHaveLength (3)
 

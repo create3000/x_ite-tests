@@ -1,15 +1,14 @@
 const X3D = require ("../../X3D")
 
+const
+   canvas           = X3D .createBrowser (),
+   Browser          = canvas .browser,
+   scene            = Browser .currentScene,
+   node             = scene .createNode ("WorldInfo"),
+   fieldDefinitions = node .getFieldDefinitions ()
+
 test ("spread", () =>
 {
-   const
-      canvas  = X3D .createBrowser (),
-      Browser = canvas .browser,
-      scene   = Browser .currentScene,
-      node    = scene .createNode ("WorldInfo")
-
-   const fieldDefinitions = node .getFieldDefinitions ()
-
    expect (fieldDefinitions) .toBeInstanceOf (X3D .FieldDefinitionArray)
 
    const a = [... fieldDefinitions]
