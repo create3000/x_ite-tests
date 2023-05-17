@@ -23,6 +23,7 @@ test ("filter", () =>
 {
    const a = fieldDefinitions .filter (f => f .name .includes ("i"))
 
+   expect (a) .not .toBe (fieldDefinitions)
    expect (a) .toBeInstanceOf (X3D .FieldDefinitionArray)
    expect (a) .toHaveLength (2)
 })
