@@ -61,6 +61,7 @@ test ("copy", () =>
       a = new MFTime (1,2,3),
       b = a .copy ()
 
+   expect (b) .toBeInstanceOf (MFTime)
    expect (b) .toHaveLength (a .length)
    expect (b .equals (a)) .toBe (true)
 })

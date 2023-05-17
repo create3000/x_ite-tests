@@ -61,6 +61,7 @@ test ("copy", () =>
       a = new MFBool (true,false,true),
       b = a .copy ()
 
+   expect (b) .toBeInstanceOf (MFBool)
    expect (b) .toHaveLength (a .length)
    expect (b .equals (a)) .toBe (true)
 })
