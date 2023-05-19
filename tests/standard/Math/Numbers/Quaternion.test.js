@@ -38,19 +38,19 @@ test ("set", () =>
 
 // test ("getMatrix/setMatrix", () =>
 // {
-//    const matrix = new Matrix3 (1, 2, 3, 4, 5, 6, 7, 8, 9);
-//    const qSetMatrix = new Quaternion ().setMatrix(matrix);
-//    const matrixResult = qSetMatrix.getMatrix(new Matrix3 ());
+//    const m = new Matrix3 (1, 2, 3, 4, 5, 6, 7, 8, 9);
+//    const q = new Quaternion () .setMatrix (matrix);
+//    const r = q .getMatrix (new Matrix3 ());
 
-//    expect (matrixResult [0]) .toBeCloseTo (matrix [0]);
-//    expect (matrixResult [1]) .toBeCloseTo (matrix [1]);
-//    expect (matrixResult [2]) .toBeCloseTo (matrix [2]);
-//    expect (matrixResult [3]) .toBeCloseTo (matrix [3]);
-//    expect (matrixResult [4]) .toBeCloseTo (matrix [4]);
-//    expect (matrixResult [5]) .toBeCloseTo (matrix [5]);
-//    expect (matrixResult [6]) .toBeCloseTo (matrix [6]);
-//    expect (matrixResult [7]) .toBeCloseTo (matrix [7]);
-//    expect (matrixResult [8]) .toBeCloseTo (matrix [8]);
+//    expect (r [0]) .toBeCloseTo (m [0]);
+//    expect (r [1]) .toBeCloseTo (m [1]);
+//    expect (r [2]) .toBeCloseTo (m [2]);
+//    expect (r [3]) .toBeCloseTo (m [3]);
+//    expect (r [4]) .toBeCloseTo (m [4]);
+//    expect (r [5]) .toBeCloseTo (m [5]);
+//    expect (r [6]) .toBeCloseTo (m [6]);
+//    expect (r [7]) .toBeCloseTo (m [7]);
+//    expect (r [8]) .toBeCloseTo (m [8]);
 // });
 
 test ("isReal", () =>
