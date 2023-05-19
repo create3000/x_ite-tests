@@ -11,6 +11,13 @@ test ("constructor", () =>
    expect (q .y) .toBe (2);
    expect (q .z) .toBe (3);
    expect (q .w) .toBe (4);
+
+   expect (q [0]) .toBe (1);
+   expect (q [1]) .toBe (2);
+   expect (q [2]) .toBe (3);
+   expect (q [3]) .toBe (4);
+
+   expect ([... q]) .toEqual ([1,2,3,4])
 });
 
 test ("copy", () =>
