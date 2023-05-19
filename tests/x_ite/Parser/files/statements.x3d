@@ -15,14 +15,14 @@
     <meta name='creator' content='Holger Seelig'/>
     <meta name='generator' content='Sunrize X3D Editor V1.0.33, https://create3000.github.io/sunrize/'/>
     <meta name='identifier' content='file:///Users/holger/Desktop/X_ITE/x_ite-tests/tests/x_ite/Parser/files/statements.x3d'/>
-    <meta name='modified' content='Fri, 19 May 2023 10:14:43 GMT'/>
+    <meta name='modified' content='Fri, 19 May 2023 12:11:31 GMT'/>
   </head>
   <Scene>
     <ExternProtoDeclare name='Foo' url='"proto.x3d"'>
       <field accessType='inputOutput' type='SFVec3f' name='translation'/>
       <field accessType='inputOutput' type='SFRotation' name='rotation'/>
     </ExternProtoDeclare>
-    <ExternProtoDeclare name='Second' url=''>
+    <ExternProtoDeclare name='NoURL' url=''>
     </ExternProtoDeclare>
     <ProtoDeclare name='Test'>
       <ProtoInterface>
