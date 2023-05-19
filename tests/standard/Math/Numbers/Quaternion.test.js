@@ -73,3 +73,62 @@ test ("equals", () =>
    expect (a .equals (b)) .toBe (true);
    expect (a .equals (c)) .toBe (false);
 });
+
+test ("negate", () =>
+{
+   const a = new Quaternion (1, 2, 3, 4);
+   const b = a .negate ();
+   expect (b .x) .toBe (-1);
+   expect (b .y) .toBe (-2);
+   expect (b .z) .toBe (-3);
+   expect (b .w) .toBe (-4);
+ });
+
+ test ("inverse", () =>
+ {
+   const a = new Quaternion (1, 2, 3, 4) .normalize ();
+   const b = a .copy () .inverse ();
+   const c = a .copy () .multLeft (b);
+   const d = a .copy () .multRight (b);
+
+   expect (c .x) .toBeCloseTo (0);
+   expect (c .y) .toBeCloseTo (0);
+   expect (c .z) .toBeCloseTo (0);
+   expect (c .w) .toBeCloseTo (1);
+
+   expect (d .x) .toBeCloseTo (0);
+   expect (d .y) .toBeCloseTo (0);
+   expect (d .z) .toBeCloseTo (0);
+   expect (d .w) .toBeCloseTo (1);
+ });
+
+ test ("add", () =>
+ {
+   const a = new Quaternion (1, 2, 3, 4);
+   const b = new Quaternion (5, 6, 7, 8);
+   const c = a .add (b);
+   expect (c.x) .toBe (6);
+   expect (c.y) .toBe (8);
+   expect (c.z) .toBe (10);
+   expect (c.w) .toBe (12);
+ });
+
+ test ("subtract", () =>
+ {
+   const a = new Quaternion (5, 6, 7, 8);
+   const b = new Quaternion (1, 2, 3, 4);
+   const c = a .subtract (b);
+   expect (c.x) .toBe (4);
+   expect (c.y) .toBe (4);
+   expect (c.z) .toBe (4);
+   expect (c.w) .toBe (4);
+ });
+
+ test ("multiply", () => {
+   const a = new Quaternion (1, 2, 3, 4);
+   const c = a .multiply (5);
+   expect (c.x) .toBe (5);
+   expect (c.y) .toBe (10);
+   expect (c.z) .toBe (15);
+   expect (c.w) .toBe (20);
+ });
