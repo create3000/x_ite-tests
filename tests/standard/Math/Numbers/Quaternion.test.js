@@ -36,22 +36,17 @@ test ("set", () =>
    expect (q .equals (new Quaternion (2, 3, 4, 5))) .toBe (true);
 });
 
-// test ("getMatrix/setMatrix", () =>
-// {
-//    const m = new Matrix3 (1, 2, 3, 4, 5, 6, 7, 8, 9);
-//    const q = new Quaternion () .setMatrix (matrix);
-//    const r = q .getMatrix (new Matrix3 ());
+test ("getMatrix/setMatrix", () =>
+{
+   const m = new Matrix3 (1, 2, 3, 4, 5, 6, 7, 8, 9);
+   const a = new Quaternion () .setMatrix (m) .normalize ();
+   const b = new Quaternion () .setMatrix (a .getMatrix (new Matrix3 ())) .normalize ();
 
-//    expect (r [0]) .toBeCloseTo (m [0]);
-//    expect (r [1]) .toBeCloseTo (m [1]);
-//    expect (r [2]) .toBeCloseTo (m [2]);
-//    expect (r [3]) .toBeCloseTo (m [3]);
-//    expect (r [4]) .toBeCloseTo (m [4]);
-//    expect (r [5]) .toBeCloseTo (m [5]);
-//    expect (r [6]) .toBeCloseTo (m [6]);
-//    expect (r [7]) .toBeCloseTo (m [7]);
-//    expect (r [8]) .toBeCloseTo (m [8]);
-// });
+   expect (b .x) .toBeCloseTo (a .x);
+   expect (b .y) .toBeCloseTo (a .y);
+   expect (b .z) .toBeCloseTo (a .z);
+   expect (b .w) .toBeCloseTo (a .w);
+});
 
 test ("isReal", () =>
 {
