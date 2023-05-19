@@ -133,11 +133,11 @@ test ("negate", () =>
 
  test ("multiply", () => {
    const a = new Quaternion (1, 2, 3, 4)
-   const c = a .multiply (5)
-   expect (c.x) .toBe (5)
-   expect (c.y) .toBe (10)
-   expect (c.z) .toBe (15)
-   expect (c.w) .toBe (20)
+   const b = a .multiply (5)
+   expect (b.x) .toBe (5)
+   expect (b.y) .toBe (10)
+   expect (b.z) .toBe (15)
+   expect (b.w) .toBe (20)
  })
 
  test ("divide", () =>
