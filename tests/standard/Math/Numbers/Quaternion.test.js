@@ -40,7 +40,7 @@ test ("getMatrix/setMatrix", () =>
 {
    const m = new Matrix3 (1, 2, 3, 4, 5, 6, 7, 8, 9);
    const a = new Quaternion () .setMatrix (m) .normalize ();
-   const b = new Quaternion () .setMatrix (a .getMatrix (new Matrix3 ())) .normalize ();
+   const b = new Quaternion () .setMatrix (a .getMatrix ());
 
    expect (b .x) .toBeCloseTo (a .x);
    expect (b .y) .toBeCloseTo (a .y);
