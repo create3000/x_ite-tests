@@ -4,7 +4,7 @@ const
    SFVec3f = X3D .SFVec3f,
    comp    = 3
 
-test ("getter", () =>
+test ("common", () =>
 {
    const field = new MFVec3f ()
 

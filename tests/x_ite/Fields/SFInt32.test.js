@@ -46,7 +46,7 @@ test ("setValue", () =>
    expect ((field .setValue (-666),            field .valueOf ())) .toBe (-666)
 })
 
-test ("getter", () =>
+test ("common", () =>
 {
    const field = new SFInt32 ()
 

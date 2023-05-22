@@ -46,7 +46,7 @@ test ("setValue", () =>
    expect ((field .setValue (-666),            field .valueOf ())) .toBe (true)
 })
 
-test ("getter", () =>
+test ("common", () =>
 {
    const field = new SFBool ()
 

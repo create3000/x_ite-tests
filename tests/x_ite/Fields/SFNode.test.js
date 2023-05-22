@@ -6,7 +6,7 @@ const
    scene   = Browser .currentScene,
    node    = scene .createNode ("WorldInfo")
 
-test ("getter", () =>
+test ("common", () =>
 {
    expect (node .getType ()) .toBe (X3D .X3DConstants .SFNode)
    expect (node .getTypeName ()) .toBe ("SFNode")

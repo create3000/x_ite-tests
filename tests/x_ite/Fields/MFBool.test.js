@@ -47,7 +47,7 @@ test ("setValue", () =>
    expect ((field [0] = -666,            field [0])) .toBe (true)
 })
 
-test ("getter", () =>
+test ("common", () =>
 {
    const field = new MFBool ()
 
