@@ -29,6 +29,41 @@ test ("constructor", () =>
    expect ([...v2]) .toEqual ([0.2,0.3,0.4,0.5])
 })
 
+test ("getter/setter", () =>
+{
+   const v1 = new SFColorRGBA ()
+
+   v1 .r = 0.2
+   v1 .g = 0.3
+   v1 .b = 0.4
+   v1 .a = 0.5
+
+   expect (v1 .r) .toBe (0.2)
+   expect (v1 .g) .toBe (0.3)
+   expect (v1 .b) .toBe (0.4)
+   expect (v1 .a) .toBe (0.5)
+   expect (v1 [0]) .toBe (0.2)
+   expect (v1 [1]) .toBe (0.3)
+   expect (v1 [2]) .toBe (0.4)
+   expect (v1 [3]) .toBe (0.5)
+   expect ([...v1]) .toEqual ([0.2,0.3,0.4,0.5])
+
+   v1 [0] = 0.6
+   v1 [1] = 0.7
+   v1 [2] = 0.8
+   v1 [3] = 0.9
+
+   expect (v1 .r) .toBe (0.6)
+   expect (v1 .g) .toBe (0.7)
+   expect (v1 .b) .toBe (0.8)
+   expect (v1 .a) .toBe (0.9)
+   expect (v1 [0]) .toBe (0.6)
+   expect (v1 [1]) .toBe (0.7)
+   expect (v1 [2]) .toBe (0.8)
+   expect (v1 [3]) .toBe (0.9)
+   expect ([...v1]) .toEqual ([0.6,0.7,0.8,0.9])
+})
+
 test ("common", () =>
 {
    const field = new SFColorRGBA ()

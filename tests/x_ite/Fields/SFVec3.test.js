@@ -27,6 +27,35 @@ for (const Type of Object .keys (X3D .require ("x_ite/Fields/SFVec3")))
       expect ([...v2]) .toEqual ([2,3,4])
    })
 
+   test ("getter/setter", () =>
+   {
+      const v1 = new SFVec3 ()
+
+      v1 .x = 2
+      v1 .y = 3
+      v1 .z = 4
+
+      expect (v1 .x) .toBe (2)
+      expect (v1 .y) .toBe (3)
+      expect (v1 .z) .toBe (4)
+      expect (v1 [0]) .toBe (2)
+      expect (v1 [1]) .toBe (3)
+      expect (v1 [2]) .toBe (4)
+      expect ([...v1]) .toEqual ([2,3,4])
+
+      v1 [0] = 6
+      v1 [1] = 7
+      v1 [2] = 8
+
+      expect (v1 .x) .toBe (6)
+      expect (v1 .y) .toBe (7)
+      expect (v1 .z) .toBe (8)
+      expect (v1 [0]) .toBe (6)
+      expect (v1 [1]) .toBe (7)
+      expect (v1 [2]) .toBe (8)
+      expect ([...v1]) .toEqual ([6,7,8])
+   })
+
    test ("common", () =>
    {
       const field = new SFVec3 ()
