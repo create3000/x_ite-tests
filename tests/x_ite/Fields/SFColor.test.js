@@ -23,6 +23,29 @@ test ("constructor", () =>
    expect (v2 [1]) .toBe (0.3)
    expect (v2 [2]) .toBe (0.4)
    expect ([...v2]) .toEqual ([0.2,0.3,0.4])
+
+   function enumerate (properties, target)
+   {
+      const
+         a = { },
+         b = { }
+
+      for (const property in target)
+         a [property] = true
+
+      for (const property of properties)
+         b [property] = true
+
+      expect (a) .toEqual (b)
+   }
+
+   const properties = [
+      "r",
+      "g",
+      "b",
+   ]
+
+   enumerate (properties, v1)
 })
 
 test ("getter/setter", () =>

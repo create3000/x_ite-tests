@@ -45,6 +45,25 @@ for (const Type of Object .keys (X3D .require ("x_ite/Fields/SFMatrix4")))
       expect (v2 [14]) .toBe (16)
       expect (v2 [15]) .toBe (17)
       expect ([...v2]) .toEqual ([2,3,4,5, 6,7,8,9, 10,11,12,13, 14,15,16,17])
+
+      function enumerate (properties, target)
+      {
+         const
+            a = { },
+            b = { }
+
+         for (const property in target)
+            a [property] = true
+
+         for (const property of properties)
+            b [property] = true
+
+         expect (a) .toEqual (b)
+      }
+
+      const properties = new Array (16) .keys ()
+
+      enumerate (properties, v1)
    })
 
    test ("getter/setter", () =>
