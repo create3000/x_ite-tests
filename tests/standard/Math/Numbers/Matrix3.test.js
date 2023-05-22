@@ -583,3 +583,10 @@ test ("equals", () =>
       expect (a .equals (c)) .toBe (false)
    }
 })
+
+test ("toString", () =>
+{
+   const m = new Matrix3 (2,3,4, 5,6,7, 8,9,10)
+
+   expect (m .toString ()) .toBe ([... m] .join (" "))
+})
