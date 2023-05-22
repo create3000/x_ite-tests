@@ -24,6 +24,21 @@ test ("constructor", () =>
    expect (v2 .array) .toHaveLength (2)
    expect (v2 .array [0]) .toBe (5)
    expect (v2 .array [1]) .toBe (6)
+
+   const v3 = new SFImage (2,3,4)
+
+   expect (v3 .x) .toBe (2)
+   expect (v3 .y) .toBe (3)
+   expect (v3 .width) .toBe (2)
+   expect (v3 .height) .toBe (3)
+   expect (v3 .comp) .toBe (4)
+   expect (v3 .array) .toHaveLength (6)
+   expect (v3 .array [0]) .toBe (0)
+   expect (v3 .array [1]) .toBe (0)
+   expect (v3 .array [2]) .toBe (0)
+   expect (v3 .array [3]) .toBe (0)
+   expect (v3 .array [4]) .toBe (0)
+   expect (v3 .array [5]) .toBe (0)
 })
 
 test ("getter/setter", () =>
