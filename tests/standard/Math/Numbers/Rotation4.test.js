@@ -293,3 +293,10 @@ test ("getMatrix", () =>
    expect (r1 [2]) .toBeCloseTo (r2 [2])
    expect (r1 [3]) .toBeCloseTo (r2 [3])
 })
+
+test ("toString", () =>
+{
+   const r = new Rotation4 (3, 4, 5, 6)
+
+   expect (r .toString ()) .toBe ([... r] .join (" "))
+})

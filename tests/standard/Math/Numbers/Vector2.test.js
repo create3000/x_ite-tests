@@ -257,3 +257,10 @@ test ("equals", () =>
       expect (a .equals (c)) .toBe (false)
    }
 })
+
+test ("toString", () =>
+{
+   const v = new Vector2 (3, 4)
+
+   expect (v .toString ()) .toBe ([... v] .join (" "))
+})

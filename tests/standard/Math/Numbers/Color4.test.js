@@ -184,3 +184,10 @@ test ("getHSVA", () =>
    expect (c .set (0.5, 0.5, 0.5, 1) .getHSVA ([ ]) [2]) .toBeCloseTo (0.5)
    expect (c .set (0.5, 0.5, 0.5, 1) .getHSVA ([ ]) [3]) .toBe (1)
 })
+
+test ("toString", () =>
+{
+   const c = new Color4 (0.1, 0.2, 0.3, 0.4)
+
+   expect (c .toString ()) .toBe ([... c] .join (" "))
+})

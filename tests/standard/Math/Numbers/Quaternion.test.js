@@ -156,3 +156,10 @@ test ("negate", () =>
    const m = q .magnitude ()
    expect (m) .toBeCloseTo (9.273618495495704)
  })
+
+ test ("toString", () =>
+ {
+    const q = new Quaternion (3, 4, 5, 6)
+
+    expect (q .toString ()) .toBe ([... q] .join (" "))
+ })

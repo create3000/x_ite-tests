@@ -197,3 +197,15 @@ test ("divComp", () =>
    expect (c1 .real) .toBeCloseTo (18/25)
    expect (c1 .imag) .toBeCloseTo (1/25)
 })
+
+test ("toString", () =>
+{
+   const
+      c0 = new Complex (2, 0),
+      c1 = new Complex (2, 3),
+      c2 = new Complex (2, -3)
+
+   expect (c0 .toString ()) .toBe ("2")
+   expect (c1 .toString ()) .toBe ("2+3i")
+   expect (c2 .toString ()) .toBe ("2-3i")
+})
