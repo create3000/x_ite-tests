@@ -37,7 +37,7 @@ test ("constructor", () =>
    ])
 
    expect (m2) .toHaveLength (9)
-   expect (m2 .order)  .toBe (3)
+   expect (m2 .order) .toBe (3)
 })
 
 test ("get1", () =>
