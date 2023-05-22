@@ -27,7 +27,10 @@ test ("constructor", () =>
    expect (v2 [2]) .toBe (4)
    expect (v2 [3]) .toBe (5)
    expect ([...v2]) .toEqual ([2,3,4,5])
+})
 
+test ("enumerate", () =>
+{
    function enumerate (properties, target)
    {
       const
@@ -50,7 +53,7 @@ test ("constructor", () =>
       "angle",
    ]
 
-   enumerate (properties, v1)
+   enumerate (properties, new SFRotation ())
 })
 
 test ("getter/setter", () =>

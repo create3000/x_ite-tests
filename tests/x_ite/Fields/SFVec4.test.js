@@ -29,7 +29,10 @@ for (const Type of Object .keys (X3D .require ("x_ite/Fields/SFVec4")))
       expect (v2 [2]) .toBe (4)
       expect (v2 [3]) .toBe (5)
       expect ([...v2]) .toEqual ([2,3,4,5])
+   })
 
+   test ("enumerate", () =>
+   {
       function enumerate (properties, target)
       {
          const
@@ -52,7 +55,7 @@ for (const Type of Object .keys (X3D .require ("x_ite/Fields/SFVec4")))
          "w",
       ]
 
-      enumerate (properties, v1)
+      enumerate (properties, new SFVec4 ())
    })
 
    test ("getter/setter", () =>

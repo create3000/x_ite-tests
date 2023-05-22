@@ -23,6 +23,26 @@ test ("constructor", () =>
    expect (new SFDouble (-666)            .valueOf ()) .toBe (-666)
 })
 
+test ("enumerate", () =>
+{
+   function enumerate (properties, target)
+   {
+      const
+         a = { },
+         b = { }
+
+      for (const property in target)
+         a [property] = true
+
+      for (const property of properties)
+         b [property] = true
+
+      expect (a) .toEqual (b)
+   }
+
+   enumerate ([ ], new SFDouble ())
+})
+
 test ("setValue", () =>
 {
    const field = new SFDouble ()

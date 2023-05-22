@@ -21,7 +21,10 @@ test ("constructor", () =>
    expect (new SFString (0xffffffff)      .valueOf ()) .toBe ("4294967295")
    expect (new SFString (666)             .valueOf ()) .toBe ("666")
    expect (new SFString (-666)            .valueOf ()) .toBe ("-666")
+})
 
+test ("enumerate", () =>
+{
    function enumerate (properties, target)
    {
       const
@@ -37,9 +40,7 @@ test ("constructor", () =>
       expect (a) .toEqual (b)
    }
 
-   const properties = [ ]
-
-   enumerate (properties, new SFString ())
+   enumerate ([ ], new SFString ())
 })
 
 test ("setValue", () =>

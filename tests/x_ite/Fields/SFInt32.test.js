@@ -23,6 +23,26 @@ test ("constructor", () =>
    expect (new SFInt32 (-666)            .valueOf ()) .toBe (-666)
 })
 
+test ("enumerate", () =>
+{
+   function enumerate (properties, target)
+   {
+      const
+         a = { },
+         b = { }
+
+      for (const property in target)
+         a [property] = true
+
+      for (const property of properties)
+         b [property] = true
+
+      expect (a) .toEqual (b)
+   }
+
+   enumerate ([ ], new SFInt32 ())
+})
+
 test ("setValue", () =>
 {
    const field = new SFInt32 ()

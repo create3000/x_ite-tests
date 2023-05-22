@@ -23,7 +23,10 @@ test ("constructor", () =>
    expect (v2 [1]) .toBe (0.3)
    expect (v2 [2]) .toBe (0.4)
    expect ([...v2]) .toEqual ([0.2,0.3,0.4])
+})
 
+test ("enumerate", () =>
+{
    function enumerate (properties, target)
    {
       const
@@ -45,7 +48,7 @@ test ("constructor", () =>
       "b",
    ]
 
-   enumerate (properties, v1)
+   enumerate (properties, new SFColor ())
 })
 
 test ("getter/setter", () =>

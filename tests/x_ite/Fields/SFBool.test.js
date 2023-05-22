@@ -23,6 +23,26 @@ test ("constructor", () =>
    expect (new SFBool (-666)            .valueOf ()) .toBe (true)
 })
 
+test ("enumerate", () =>
+{
+   function enumerate (properties, target)
+   {
+      const
+         a = { },
+         b = { }
+
+      for (const property in target)
+         a [property] = true
+
+      for (const property of properties)
+         b [property] = true
+
+      expect (a) .toEqual (b)
+   }
+
+   enumerate ([ ], new SFBool ())
+})
+
 test ("setValue", () =>
 {
    const field = new SFBool ()
