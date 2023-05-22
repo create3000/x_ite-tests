@@ -33,6 +33,16 @@ test ("common", () =>
    expect (node .valueOf ()) .toBe (node .valueOf ())
 })
 
+test ("copy", () =>
+{
+   const
+      a = new X3D .SFNode (),
+      b = node
+
+   expect (a .copy () .equals (a)) .toBe (true)
+   expect (b .copy () .equals (b)) .toBe (true)
+})
+
 test ("equals", () =>
 {
    const

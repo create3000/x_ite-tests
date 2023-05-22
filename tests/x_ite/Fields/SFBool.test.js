@@ -54,6 +54,20 @@ test ("common", () =>
    expect (field .getTypeName ()) .toBe ("SFBool")
 })
 
+test ("copy", () =>
+{
+   const
+      v1 = new SFBool (true),
+      v2 = v1 .copy (),
+      v3 = new SFBool (false),
+      v4 = v3 .copy ()
+
+   expect (v2) .not .toBe (v1)
+   expect (v2 .equals (v1)) .toBe (true)
+   expect (v4) .not .toBe (v3)
+   expect (v4 .equals (v3)) .toBe (true)
+})
+
 test ("equals", () =>
 {
    const
@@ -74,4 +88,3 @@ test ("isDefaultValue", () =>
    expect (a .isDefaultValue ()) .toBe (true)
    expect (b .isDefaultValue ()) .toBe (false)
 })
-

@@ -54,6 +54,16 @@ test ("common", () =>
    expect (field .getTypeName ()) .toBe ("SFFloat")
 })
 
+test ("copy", () =>
+{
+   const
+      v1 = new SFFloat (2),
+      v2 = v1 .copy ()
+
+   expect (v2) .not .toBe (v1)
+   expect (v2 .equals (v1)) .toBe (true)
+})
+
 test ("equals", () =>
 {
    const

@@ -71,6 +71,16 @@ test ("common", () =>
    expect (field .getTypeName ()) .toBe ("SFImage")
 })
 
+test ("copy", () =>
+{
+   const
+      v1 = new SFImage (1,2,3,new MFInt32 (5,6)),
+      v2 = v1 .copy ()
+
+   expect (v2) .not .toBe (v1)
+   expect (v2 .equals (v1)) .toBe (true)
+})
+
 test ("equals", () =>
 {
    const

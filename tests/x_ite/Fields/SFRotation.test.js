@@ -72,6 +72,16 @@ test ("common", () =>
    expect (field .getTypeName ()) .toBe ("SFRotation")
 })
 
+test ("copy", () =>
+{
+   const
+      v1 = new SFRotation (2,3,4,5),
+      v2 = v1 .copy ()
+
+   expect (v2) .not .toBe (v1)
+   expect (v2 .equals (v1)) .toBe (true)
+})
+
 test ("equals", () =>
 {
    const

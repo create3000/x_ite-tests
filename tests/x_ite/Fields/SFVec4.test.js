@@ -74,6 +74,16 @@ for (const Type of Object .keys (X3D .require ("x_ite/Fields/SFVec4")))
       expect (field .getTypeName ()) .toBe (Type)
    })
 
+   test ("copy", () =>
+   {
+      const
+         v1 = new SFVec4 (2,3,4,5),
+         v2 = v1 .copy ()
+
+      expect (v2) .not .toBe (v1)
+      expect (v2 .equals (v1)) .toBe (true)
+   })
+
    test ("equals", () =>
    {
       const
