@@ -17,6 +17,8 @@ test ("constructor", () =>
    expect (q [2]) .toBe (3)
    expect (q [3]) .toBe (4)
 
+   expect (q) .toHaveLength (4)
+
    expect ([... q]) .toEqual ([1,2,3,4])
 })
 
