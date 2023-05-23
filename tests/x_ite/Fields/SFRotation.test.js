@@ -247,4 +247,14 @@ test ("multVec", () =>
    expect (v2 [0]) .toBeCloseTo (Math .SQRT1_2)
    expect (v2 [1]) .toBeCloseTo (0)
    expect (v2 [2]) .toBeCloseTo (Math .SQRT1_2)
+
+   const
+      r3 = new SFRotation (new SFVec3f (0,0,1), new SFVec3f (1,1,0)),
+      v3 = r3 .multVec (new SFVec3f (0,0,1))
+
+   expect (v3) .not .toBe (r3 .multVec (new SFVec3f (0,0,1)))
+   expect (v3) .toBeInstanceOf (SFVec3f)
+   expect (v3 [0]) .toBeCloseTo (Math .SQRT1_2)
+   expect (v3 [1]) .toBeCloseTo (Math .SQRT1_2)
+   expect (v3 [2]) .toBeCloseTo (0)
 })
