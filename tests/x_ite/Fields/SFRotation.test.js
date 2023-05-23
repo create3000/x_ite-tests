@@ -1,7 +1,8 @@
 const
    X3D        = require ("../../X3D"),
    SFRotation = X3D .require ("x_ite/Fields/SFRotation"),
-   SFVec3f    = X3D .require ("x_ite/Fields") .SFVec3f
+   SFVec3f    = X3D .require ("x_ite/Fields") .SFVec3f,
+   SFMatrix3f = X3D .require ("x_ite/Fields") .SFMatrix3f
 
 test ("constructor", () =>
 {
@@ -51,6 +52,17 @@ test ("constructor", () =>
    expect (v4 [1]) .toBeCloseTo (1)
    expect (v4 [2]) .toBeCloseTo (0)
    expect (v4 [3]) .toBeCloseTo (Math .PI / 2)
+
+   const v5 = new SFRotation (new SFMatrix3f (0,0,-1,0,1,0,1,0,0))
+
+   expect (v5 .x) .toBeCloseTo (0)
+   expect (v5 .y) .toBeCloseTo (1)
+   expect (v5 .z) .toBeCloseTo (0)
+   expect (v5 .angle) .toBeCloseTo (Math .PI / 2)
+   expect (v5 [0]) .toBeCloseTo (0)
+   expect (v5 [1]) .toBeCloseTo (1)
+   expect (v5 [2]) .toBeCloseTo (0)
+   expect (v5 [3]) .toBeCloseTo (Math .PI / 2)
 })
 
 test ("enumerate", () =>
