@@ -1,6 +1,7 @@
 const
-   X3D         = require ("../../X3D"),
-   SFRotation = X3D .require ("x_ite/Fields/SFRotation")
+   X3D        = require ("../../X3D"),
+   SFRotation = X3D .require ("x_ite/Fields/SFRotation"),
+   SFVec3f    = X3D .require ("x_ite/Fields") .SFVec3f
 
 test ("constructor", () =>
 {
@@ -27,6 +28,29 @@ test ("constructor", () =>
    expect (v2 [2]) .toBe (4)
    expect (v2 [3]) .toBe (5)
    expect ([...v2]) .toEqual ([2,3,4,5])
+
+   const v3 = new SFRotation (new SFVec3f (2,3,4), 5)
+
+   expect (v3 .x) .toBe (2)
+   expect (v3 .y) .toBe (3)
+   expect (v3 .z) .toBe (4)
+   expect (v3 .angle) .toBe (5)
+   expect (v3 [0]) .toBe (2)
+   expect (v3 [1]) .toBe (3)
+   expect (v3 [2]) .toBe (4)
+   expect (v3 [3]) .toBe (5)
+   expect ([...v3]) .toEqual ([2,3,4,5])
+
+   const v4 = new SFRotation (new SFVec3f (0,0,1), new SFVec3f (1,0,0))
+
+   expect (v4 .x) .toBeCloseTo (0)
+   expect (v4 .y) .toBeCloseTo (1)
+   expect (v4 .z) .toBeCloseTo (0)
+   expect (v4 .angle) .toBeCloseTo (Math .PI / 2)
+   expect (v4 [0]) .toBeCloseTo (0)
+   expect (v4 [1]) .toBeCloseTo (1)
+   expect (v4 [2]) .toBeCloseTo (0)
+   expect (v4 [3]) .toBeCloseTo (Math .PI / 2)
 })
 
 test ("enumerate", () =>
