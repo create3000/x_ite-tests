@@ -34,6 +34,7 @@ Test { }
    const proto = scene .protos [0]
 
    expect (proto) .toBeInstanceOf (X3D .X3DProtoDeclaration)
+   expect (proto .constructor) .toBe (X3D .X3DProtoDeclaration)
    expect (proto .name) .toBe ("Test")
    expect (proto .isExternProto) .toBe (false)
    expect (proto .fields) .toBeInstanceOf (X3D .FieldDefinitionArray)

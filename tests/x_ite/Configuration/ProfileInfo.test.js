@@ -8,6 +8,7 @@ test ("properties", () =>
       profile = Browser .getProfile ("Core")
 
    expect (profile) .toBeInstanceOf (X3D .ProfileInfo)
+   expect (profile .constructor) .toBe (X3D .ProfileInfo)
    expect (profile .name) .toBe ("Core")
    expect (profile .title) .toBe ("Core")
    expect (profile .providerUrl .length > 0) .toBe (true)

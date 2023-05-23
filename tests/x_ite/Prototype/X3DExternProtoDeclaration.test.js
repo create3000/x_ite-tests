@@ -41,6 +41,7 @@ Test { }
    const externproto = scene .externprotos [0]
 
    expect (externproto) .toBeInstanceOf (X3D .X3DExternProtoDeclaration)
+   expect (externproto .constructor) .toBe (X3D .X3DExternProtoDeclaration)
    expect (externproto .name) .toBe ("Test")
    expect (externproto .loadState) .toBe (X3D .X3DConstants .COMPLETE_STATE)
    expect (externproto .isExternProto) .toBe (true)

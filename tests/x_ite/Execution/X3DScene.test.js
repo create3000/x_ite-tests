@@ -10,6 +10,7 @@ test ("properties1", () =>
 
    expect (scene) .toBeInstanceOf (X3D .X3DScene)
    expect (scene) .toBeInstanceOf (X3D .X3DExecutionContext)
+   expect (scene .constructor) .toBe (X3D .X3DScene)
    expect (scene .specificationVersion) .toMatch (/^\d+\.\d+$/)
    expect (scene .encoding) .toBe ("SCRIPTED")
    expect (scene .profile) .toBe (profile)

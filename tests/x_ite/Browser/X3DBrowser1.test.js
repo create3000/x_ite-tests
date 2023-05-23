@@ -11,6 +11,7 @@ test ("properties", () =>
       Browser = canvas .browser
 
    expect (Browser) .toBeInstanceOf (X3D .X3DBrowser)
+   expect (Browser .constructor) .toBe (X3D .X3DBrowser)
    expect (Browser .name) .toBe ("X_ITE")
    expect (Browser .version) .toMatch (/^\d+\.\d+\.\d+$/)
    expect (Browser .currentSpeed) .toBe (0)

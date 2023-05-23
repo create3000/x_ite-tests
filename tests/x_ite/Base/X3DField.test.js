@@ -6,11 +6,12 @@ test ("properties", () =>
 {
    for (const Type of Object .keys (Fields))
    {
-      const field = new Fields [Type] ()
+      const field = new (Fields [Type]) ()
 
       expect (field) .toBeInstanceOf (X3D .X3DField)
       if (Type .startsWith ("MF")) expect (field) .toBeInstanceOf (X3D .X3DArrayField)
       expect (field) .toBeInstanceOf (Fields [Type])
+      expect (field .constructor) .toBe (Fields [Type])
 
       expect (field .getName ()) .toBe ("")
       expect (field .getType ()) .toBe (X3D .X3DConstants [Type])

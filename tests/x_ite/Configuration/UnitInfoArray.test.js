@@ -14,6 +14,7 @@ test ("spread", async () =>
    const units = scene .units
 
    expect (units) .toBeInstanceOf (X3D .UnitInfoArray)
+   expect (units .constructor) .toBe (X3D .UnitInfoArray)
 
    const a = [... units]
 

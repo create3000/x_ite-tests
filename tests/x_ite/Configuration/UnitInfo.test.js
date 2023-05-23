@@ -8,6 +8,7 @@ test ("properties", () =>
       unit    = Browser .currentScene .getUnit ("angle")
 
    expect (unit) .toBeInstanceOf (X3D .UnitInfo)
+   expect (unit .constructor) .toBe (X3D .UnitInfo)
    expect (unit .category) .toBe ("angle")
    expect (unit .name) .toBe ("radian")
    expect (unit .conversionFactor) .toBe (1)

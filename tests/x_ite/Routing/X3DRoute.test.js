@@ -21,9 +21,11 @@ ROUTE I.value_changed TO T.set_translation
 `))
 
    expect (scene .routes) .toHaveLength (1)
-   expect (scene .routes [0]) .toBeInstanceOf (X3D .X3DRoute)
 
    const route = scene .routes [0]
+
+   expect (route) .toBeInstanceOf (X3D .X3DRoute)
+   expect (route .constructor) .toBe (X3D .X3DRoute)
 
    expect (route .sourceNode) .toBeInstanceOf (X3D .SFNode)
    expect (route .sourceNode .getNodeTypeName ()) .toBe ("PositionInterpolator")

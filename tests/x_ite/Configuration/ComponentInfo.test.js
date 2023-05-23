@@ -8,6 +8,7 @@ test ("properties", () =>
       component = Browser .getComponent ("Core")
 
    expect (component) .toBeInstanceOf (X3D .ComponentInfo)
+   expect (component .constructor) .toBe (X3D .ComponentInfo)
    expect (component .name) .toBe ("Core")
    expect (component .level) .toBe (2)
    expect (component .title) .toBe ("Core")

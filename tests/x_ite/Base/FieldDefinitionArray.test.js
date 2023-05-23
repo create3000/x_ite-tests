@@ -10,6 +10,7 @@ const
 test ("spread", () =>
 {
    expect (fieldDefinitions) .toBeInstanceOf (X3D .FieldDefinitionArray)
+   expect (fieldDefinitions .constructor) .toBe (X3D .FieldDefinitionArray)
 
    const a = [... fieldDefinitions]
 
