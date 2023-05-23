@@ -228,31 +228,33 @@ test ("inverse", () =>
 
 test ("multVec", () =>
 {
-   const
-      r1 = new SFRotation (new SFVec3f (0,0,1), new SFVec3f (1,0,0)),
-      v1 = r1 .multVec (new SFVec3f (0,0,1))
+   const zAxis = new SFVec3f (0,0,1)
 
-   expect (v1) .not .toBe (r1 .multVec (new SFVec3f (0,0,1)))
+   const
+      r1 = new SFRotation (zAxis, new SFVec3f (1,0,0)),
+      v1 = r1 .multVec (zAxis)
+
+   expect (v1) .not .toBe (r1 .multVec (zAxis))
    expect (v1) .toBeInstanceOf (SFVec3f)
    expect (v1 [0]) .toBeCloseTo (1)
    expect (v1 [1]) .toBeCloseTo (0)
    expect (v1 [2]) .toBeCloseTo (0)
 
    const
-      r2 = new SFRotation (new SFVec3f (0,0,1), new SFVec3f (1,0,1)),
-      v2 = r2 .multVec (new SFVec3f (0,0,1))
+      r2 = new SFRotation (zAxis, new SFVec3f (1,0,1)),
+      v2 = r2 .multVec (zAxis)
 
-   expect (v2) .not .toBe (r2 .multVec (new SFVec3f (0,0,1)))
+   expect (v2) .not .toBe (r2 .multVec (zAxis))
    expect (v2) .toBeInstanceOf (SFVec3f)
    expect (v2 [0]) .toBeCloseTo (Math .SQRT1_2)
    expect (v2 [1]) .toBeCloseTo (0)
    expect (v2 [2]) .toBeCloseTo (Math .SQRT1_2)
 
    const
-      r3 = new SFRotation (new SFVec3f (0,0,1), new SFVec3f (1,1,0)),
-      v3 = r3 .multVec (new SFVec3f (0,0,1))
+      r3 = new SFRotation (zAxis, new SFVec3f (1,1,0)),
+      v3 = r3 .multVec (zAxis)
 
-   expect (v3) .not .toBe (r3 .multVec (new SFVec3f (0,0,1)))
+   expect (v3) .not .toBe (r3 .multVec (zAxis))
    expect (v3) .toBeInstanceOf (SFVec3f)
    expect (v3 [0]) .toBeCloseTo (Math .SQRT1_2)
    expect (v3 [1]) .toBeCloseTo (Math .SQRT1_2)
