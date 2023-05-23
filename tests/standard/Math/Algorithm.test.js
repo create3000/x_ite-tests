@@ -41,6 +41,17 @@ test ("random", () =>
    }
 })
 
+test ("clamp", () =>
+{
+   expect (Algorithm .clamp ( 1.5, -1, 1)) .toBe ( 1.0)
+   expect (Algorithm .clamp ( 1.0, -1, 1)) .toBe ( 1.0)
+   expect (Algorithm .clamp ( 0.5, -1, 1)) .toBe ( 0.5)
+   expect (Algorithm .clamp ( 0.0, -1, 1)) .toBe ( 0.0)
+   expect (Algorithm .clamp (-0.5, -1, 1)) .toBe (-0.5)
+   expect (Algorithm .clamp (-1.0, -1, 1)) .toBe (-1.0)
+   expect (Algorithm .clamp (-1.5, -1, 1)) .toBe (-1.0)
+})
+
 test ("fract", () =>
 {
    expect (Algorithm .fract (0))    .toBe (0)
