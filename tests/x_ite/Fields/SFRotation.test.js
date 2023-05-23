@@ -165,3 +165,63 @@ test ("isDefaultValue", () =>
    expect (a .isDefaultValue ()) .toBe (true)
    expect (b .isDefaultValue ()) .toBe (false)
 })
+
+test ("get/setAxis", () =>
+{
+   const a = new SFRotation (2,3,4,5)
+
+   expect (a .getAxis ()) .toBeInstanceOf (SFVec3f)
+   expect (a .getAxis ()) .not .toBe (a .getAxis ())
+   expect (a .getAxis () .equals (new SFVec3f (2,3,4))) .toBe (true)
+
+   a .setAxis (new SFVec3f (6,7,8))
+
+   expect (a .getAxis () .equals (new SFVec3f (6,7,8))) .toBe (true)
+})
+
+test ("get/setMatrix", () =>
+{
+   const a = new SFRotation (new SFVec3f (0,0,1), new SFVec3f (1,0,0))
+
+   expect (a .getMatrix ()) .toBeInstanceOf (SFMatrix3f)
+   expect (a .getMatrix ()) .not .toBe (a .getMatrix ())
+   expect (a .getMatrix () [0]) .toBeCloseTo (0)
+   expect (a .getMatrix () [1]) .toBeCloseTo (0)
+   expect (a .getMatrix () [2]) .toBeCloseTo (-1)
+   expect (a .getMatrix () [3]) .toBeCloseTo (0)
+   expect (a .getMatrix () [4]) .toBeCloseTo (1)
+   expect (a .getMatrix () [5]) .toBeCloseTo (0)
+   expect (a .getMatrix () [6]) .toBeCloseTo (1)
+   expect (a .getMatrix () [7]) .toBeCloseTo (0)
+   expect (a .getMatrix () [8]) .toBeCloseTo (0)
+
+   const b = new SFRotation ()
+
+   b .setMatrix (new SFMatrix3f (0,0,-1,0,1,0,1,0,0))
+
+   expect (b .getMatrix ()) .toBeInstanceOf (SFMatrix3f)
+   expect (b .getMatrix ()) .not .toBe (a .getMatrix ())
+   expect (b .getMatrix () [0]) .toBeCloseTo (0)
+   expect (b .getMatrix () [1]) .toBeCloseTo (0)
+   expect (b .getMatrix () [2]) .toBeCloseTo (-1)
+   expect (b .getMatrix () [3]) .toBeCloseTo (0)
+   expect (b .getMatrix () [4]) .toBeCloseTo (1)
+   expect (b .getMatrix () [5]) .toBeCloseTo (0)
+   expect (b .getMatrix () [6]) .toBeCloseTo (1)
+   expect (b .getMatrix () [7]) .toBeCloseTo (0)
+   expect (b .getMatrix () [8]) .toBeCloseTo (0)
+})
+
+test ("inverse", () =>
+{
+   const a = new SFRotation (2,3,4,5) .inverse () .multiply (new SFRotation (2,3,4,5))
+
+   expect (a .x) .toBeCloseTo (0)
+   expect (a .y) .toBeCloseTo (0)
+   expect (a .z) .toBeCloseTo (1)
+   expect (a .angle) .toBeCloseTo (0)
+   expect (a [0]) .toBeCloseTo (0)
+   expect (a [1]) .toBeCloseTo (0)
+   expect (a [2]) .toBeCloseTo (1)
+   expect (a [3]) .toBeCloseTo (0)
+})

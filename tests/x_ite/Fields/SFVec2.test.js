@@ -151,6 +151,11 @@ for (const Type of Object .keys (X3D .require ("x_ite/Fields/SFVec2")))
       expect (new SFVec2 (2,3) .length ()) .toBe (Math .hypot (2,3))
    })
 
+   test ("lerp", () =>
+   {
+      expect (new SFVec2 (2,3) .lerp (new SFVec2 (4,6), 0.5) .equals (new SFVec2 (3,4.5))) .toBe (true)
+   })
+
    test ("min", () =>
    {
       expect (new SFVec2 (4,9) .min (new SFVec2 (2,3)) .equals (new SFVec2 (2,3))) .toBe (true)
