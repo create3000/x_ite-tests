@@ -210,6 +210,15 @@ test ("get/setMatrix", () =>
    expect (b .getMatrix () [6]) .toBeCloseTo (1)
    expect (b .getMatrix () [7]) .toBeCloseTo (0)
    expect (b .getMatrix () [8]) .toBeCloseTo (0)
+
+   expect (b .x) .toBeCloseTo (0)
+   expect (b .y) .toBeCloseTo (1)
+   expect (b .z) .toBeCloseTo (0)
+   expect (b .angle) .toBeCloseTo (Math .PI / 2)
+   expect (b [0]) .toBeCloseTo (0)
+   expect (b [1]) .toBeCloseTo (1)
+   expect (b [2]) .toBeCloseTo (0)
+   expect (b [3]) .toBeCloseTo (Math .PI / 2)
 })
 
 test ("inverse", () =>
