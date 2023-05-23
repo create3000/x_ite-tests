@@ -109,4 +109,83 @@ for (const Type of Object .keys (X3D .require ("x_ite/Fields/SFVec2")))
       expect (a .isDefaultValue ()) .toBe (true)
       expect (b .isDefaultValue ()) .toBe (false)
    })
+
+   test ("abs", () =>
+   {
+      expect (new SFVec2 (-2,-3) .abs () .equals (new SFVec2 (2,3))) .toBe (true)
+      expect (new SFVec2 (2,3) .abs () .equals (new SFVec2 (2,3))) .toBe (true)
+   })
+
+   test ("add", () =>
+   {
+      expect (new SFVec2 (2,3) .add (new SFVec2 (6,7)) .equals (new SFVec2 (8,10))) .toBe (true)
+   })
+
+   test ("distance", () =>
+   {
+      expect (new SFVec2 (2,3) .distance (new SFVec2 (6,7))) .toBeCloseTo (5.656854249492381)
+   })
+
+   test ("divide", () =>
+   {
+      expect (new SFVec2 (2,4) .divide (2) .equals (new SFVec2 (1,2))) .toBe (true)
+   })
+
+   test ("divVec", () =>
+   {
+      expect (new SFVec2 (4,9) .divVec (new SFVec2 (2,3)) .equals (new SFVec2 (2,3))) .toBe (true)
+   })
+
+   test ("dot", () =>
+   {
+      expect (new SFVec2 (2,3) .dot (new SFVec2 (6,7))) .toBe (33)
+   })
+
+   test ("inverse", () =>
+   {
+      expect (new SFVec2 (2,3) .inverse () .equals (new SFVec2 (1/2,1/3))) .toBe (true)
+   })
+
+   test ("length", () =>
+   {
+      expect (new SFVec2 (2,3) .length ()) .toBe (Math .hypot (2,3))
+   })
+
+   test ("min", () =>
+   {
+      expect (new SFVec2 (4,9) .min (new SFVec2 (2,3)) .equals (new SFVec2 (2,3))) .toBe (true)
+      expect (new SFVec2 (2,3) .min (new SFVec2 (4,9)) .equals (new SFVec2 (2,3))) .toBe (true)
+   })
+
+   test ("max", () =>
+   {
+      expect (new SFVec2 (4,9) .max (new SFVec2 (2,3)) .equals (new SFVec2 (4,9))) .toBe (true)
+      expect (new SFVec2 (2,3) .max (new SFVec2 (4,9)) .equals (new SFVec2 (4,9))) .toBe (true)
+   })
+
+   test ("multiply", () =>
+   {
+      expect (new SFVec2 (2,4) .multiply (2) .equals (new SFVec2 (4,8))) .toBe (true)
+   })
+
+   test ("multVec", () =>
+   {
+      expect (new SFVec2 (4,9) .multVec (new SFVec2 (2,3)) .equals (new SFVec2 (8,27))) .toBe (true)
+   })
+
+   test ("negate", () =>
+   {
+      expect (new SFVec2 (2,3) .negate () .equals (new SFVec2 (-2,-3))) .toBe (true)
+      expect (new SFVec2 (-2,-3) .negate () .equals (new SFVec2 (2,3))) .toBe (true)
+   })
+
+   test ("normalize", () =>
+   {
+      expect (new SFVec2 (4,9) .normalize () .length ()) .toBeCloseTo (1)
+   })
+
+   test ("subtract", () =>
+   {
+      expect (new SFVec2 (8,10) .subtract (new SFVec2 (6,7)) .equals (new SFVec2 (2,3))) .toBe (true)
+   })
 }
