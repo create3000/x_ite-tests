@@ -224,6 +224,19 @@ test ("inverse", () =>
    expect (a [1]) .toBeCloseTo (0)
    expect (a [2]) .toBeCloseTo (1)
    expect (a [3]) .toBeCloseTo (0)
+
+   const
+      b = new SFRotation (2,3,4,5) .inverse () .inverse () .inverse (),
+      c = new SFRotation (2,3,4,5) .inverse ()
+
+   expect (b .x) .toBeCloseTo (c .x)
+   expect (b .y) .toBeCloseTo (c .y)
+   expect (b .z) .toBeCloseTo (c .z)
+   expect (b .angle) .toBeCloseTo (c .angle)
+   expect (b [0]) .toBeCloseTo (c [0])
+   expect (b [1]) .toBeCloseTo (c [1])
+   expect (b [2]) .toBeCloseTo (c [2])
+   expect (b [3]) .toBeCloseTo (c [3])
 })
 
 test ("multVec", () =>
