@@ -122,6 +122,7 @@ for (const Type of Object .keys (X3D .require ("x_ite/Fields/SFMatrix3")))
          v2 = v1 .copy ()
 
       expect (v2) .not .toBe (v1)
+      expect (v2 .getValue ()) .not .toBe (v1 .getValue ())
       expect (v2 .equals (v1)) .toBe (true)
    })
 
@@ -199,6 +200,9 @@ for (const Type of Object .keys (X3D .require ("x_ite/Fields/SFMatrix3")))
       expect (a) .not .toBe (b)
       expect (a) .not .toBe (c)
       expect (b) .not .toBe (c)
+      expect (a .getValue ()) .not .toBe (b .getValue ())
+      expect (a .getValue ()) .not .toBe (c .getValue ())
+      expect (b .getValue ()) .not .toBe (c .getValue ())
       expect (b) .toBeInstanceOf (SFMatrix3)
       expect (c) .toBeInstanceOf (SFMatrix3)
 
@@ -233,6 +237,9 @@ for (const Type of Object .keys (X3D .require ("x_ite/Fields/SFMatrix3")))
       expect (a) .not .toBe (b)
       expect (a) .not .toBe (c)
       expect (b) .not .toBe (c)
+      expect (a .getValue ()) .not .toBe (b .getValue ())
+      expect (a .getValue ()) .not .toBe (c .getValue ())
+      expect (b .getValue ()) .not .toBe (c .getValue ())
       expect (b) .toBeInstanceOf (SFMatrix3)
       expect (c) .toBeInstanceOf (SFMatrix3)
 
@@ -267,6 +274,9 @@ for (const Type of Object .keys (X3D .require ("x_ite/Fields/SFMatrix3")))
       expect (a) .not .toBe (b)
       expect (a) .not .toBe (c)
       expect (b) .not .toBe (c)
+      expect (a .getValue ()) .not .toBe (b .getValue ())
+      expect (a .getValue ()) .not .toBe (c .getValue ())
+      expect (b .getValue ()) .not .toBe (c .getValue ())
       expect (c) .toBeInstanceOf (SFMatrix3)
 
       expect (c [ 0]) .toBe (132)
@@ -290,6 +300,9 @@ for (const Type of Object .keys (X3D .require ("x_ite/Fields/SFMatrix3")))
       expect (a) .not .toBe (b)
       expect (a) .not .toBe (c)
       expect (b) .not .toBe (c)
+      expect (a .getValue ()) .not .toBe (b .getValue ())
+      expect (a .getValue ()) .not .toBe (c .getValue ())
+      expect (b .getValue ()) .not .toBe (c .getValue ())
       expect (c) .toBeInstanceOf (SFMatrix3)
 
       expect (c [ 0]) .toBe (132)
@@ -310,9 +323,8 @@ for (const Type of Object .keys (X3D .require ("x_ite/Fields/SFMatrix3")))
          b = new SFVec2 (11,12),
          c = a .transpose () .multVecMatrix (b)
 
-      expect (a) .not .toBe (b)
-      expect (a) .not .toBe (c)
       expect (b) .not .toBe (c)
+      expect (b .getValue ()) .not .toBe (c .getValue ())
       expect (c) .toBeInstanceOf (SFVec2)
 
       expect (c [0]) .toBe (62/206)
@@ -326,9 +338,8 @@ for (const Type of Object .keys (X3D .require ("x_ite/Fields/SFMatrix3")))
          b = new SFVec2 (11,12),
          c = a .multMatrixVec (b)
 
-      expect (a) .not .toBe (b)
-      expect (a) .not .toBe (c)
       expect (b) .not .toBe (c)
+      expect (b .getValue ()) .not .toBe (c .getValue ())
       expect (c) .toBeInstanceOf (SFVec2)
 
       expect (c [0]) .toBe (62/206)
@@ -342,9 +353,8 @@ for (const Type of Object .keys (X3D .require ("x_ite/Fields/SFMatrix3")))
          b = new SFVec2 (11,12),
          c = a .transpose () .multDirMatrix (b)
 
-      expect (a) .not .toBe (b)
-      expect (a) .not .toBe (c)
       expect (b) .not .toBe (c)
+      expect (b .getValue ()) .not .toBe (c .getValue ())
       expect (c) .toBeInstanceOf (SFVec2)
 
       expect (c [0]) .toBe (58)
@@ -358,9 +368,8 @@ for (const Type of Object .keys (X3D .require ("x_ite/Fields/SFMatrix3")))
          b = new SFVec2 (11,12),
          c = a .multMatrixDir (b)
 
-      expect (a) .not .toBe (b)
-      expect (a) .not .toBe (c)
       expect (b) .not .toBe (c)
+      expect (b .getValue ()) .not .toBe (c .getValue ())
       expect (c) .toBeInstanceOf (SFVec2)
 
       expect (c [0]) .toBe (58)

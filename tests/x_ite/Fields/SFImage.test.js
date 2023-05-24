@@ -119,6 +119,7 @@ test ("copy", () =>
       v2 = v1 .copy ()
 
    expect (v2) .not .toBe (v1)
+   expect (v2 .getValue ()) .not .toBe (v1 .getValue ())
    expect (v2 .equals (v1)) .toBe (true)
 })
 

@@ -95,6 +95,7 @@ test ("copy", () =>
       v2 = v1 .copy ()
 
    expect (v2) .not .toBe (v1)
+   expect (v2 .getValue ()) .not .toBe (v1 .getValue ())
    expect (v2 .equals (v1)) .toBe (true)
 })
 
@@ -162,6 +163,8 @@ test ("lerp", () =>
    expect (c) .toBeInstanceOf (SFColor)
    expect (c) .not .toBe (a)
    expect (c) .not .toBe (b)
+   expect (c .getValue ()) .not .toBe (a .getValue ())
+   expect (c .getValue ()) .not .toBe (b .getValue ())
 
    expect (c .r)  .toBeCloseTo (0.5)
    expect (c .g)  .toBeCloseTo (0.5)

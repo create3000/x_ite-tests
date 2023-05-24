@@ -142,6 +142,7 @@ test ("copy", () =>
       v2 = v1 .copy ()
 
    expect (v2) .not .toBe (v1)
+   expect (v2 .getValue ()) .not .toBe (v1 .getValue ())
    expect (v2 .equals (v1)) .toBe (true)
 })
 
@@ -172,6 +173,7 @@ test ("get/setAxis", () =>
 
    expect (a .getAxis ()) .toBeInstanceOf (SFVec3f)
    expect (a .getAxis ()) .not .toBe (a .getAxis ())
+   expect (a .getAxis () .getValue ()) .not .toBe (a .getAxis ().getValue ())
    expect (a .getAxis () .equals (new SFVec3f (2,3,4))) .toBe (true)
 
    a .setAxis (new SFVec3f (6,7,8))
@@ -185,6 +187,7 @@ test ("get/setMatrix", () =>
 
    expect (a .getMatrix ()) .toBeInstanceOf (SFMatrix3f)
    expect (a .getMatrix ()) .not .toBe (a .getMatrix ())
+   expect (a .getMatrix () .getValue ()) .not .toBe (a .getMatrix () .getValue ())
    expect (a .getMatrix () [0]) .toBeCloseTo (0)
    expect (a .getMatrix () [1]) .toBeCloseTo (0)
    expect (a .getMatrix () [2]) .toBeCloseTo (-1)
@@ -229,6 +232,7 @@ test ("inverse", () =>
 
    expect (b) .toBeInstanceOf (SFRotation)
    expect (b) .not .toBe (a)
+   expect (b .getValue ()) .not .toBe (a .getValue ())
 
    expect (b .x) .toBeCloseTo (0)
    expect (b .y) .toBeCloseTo (0)
@@ -266,6 +270,8 @@ test ("multiply", () =>
    expect (c) .toBeInstanceOf (SFRotation)
    expect (c) .not .toBe (a)
    expect (c) .not .toBe (b)
+   expect (c .getValue ()) .not .toBe (a .getValue ())
+   expect (c .getValue ()) .not .toBe (b .getValue ())
 
    expect (d .x) .toBeCloseTo (-c .x)
    expect (d .y) .toBeCloseTo (-c .y)
@@ -309,6 +315,7 @@ test ("multVec", () =>
 
    expect (v1) .toBeInstanceOf (SFVec3f)
    expect (v1) .not .toBe (r1 .multVec (zAxis))
+   expect (v1 .getValue ()) .not .toBe (r1 .multVec (zAxis) .getValue ())
    expect (v1 [0]) .toBeCloseTo (1)
    expect (v1 [1]) .toBeCloseTo (0)
    expect (v1 [2]) .toBeCloseTo (0)
@@ -344,6 +351,8 @@ test ("slerp", () =>
    expect (c) .toBeInstanceOf (SFRotation)
    expect (c) .not .toBe (a)
    expect (c) .not .toBe (b)
+   expect (c .getValue ()) .not .toBe (a .getValue ())
+   expect (c .getValue ()) .not .toBe (b .getValue ())
 
    expect (c .x) .toBeCloseTo (0)
    expect (c .y) .toBeCloseTo (1)
