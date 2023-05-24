@@ -129,3 +129,46 @@ test ("isDefaultValue", () =>
    expect (a .isDefaultValue ()) .toBe (true)
    expect (b .isDefaultValue ()) .toBe (false)
 })
+
+test ("get/setHSVA", () =>
+{
+   const
+      a = new SFColorRGBA (0.2,0.3,0.4,0.5),
+      b = new SFColorRGBA (),
+      hsva = a .getHSVA ()
+
+   expect (hsva) .toBeInstanceOf (Array)
+   expect (hsva) .not .toBe (a .getHSVA ())
+
+   b .setHSVA (...hsva)
+
+   expect (b .r)  .toBeCloseTo (a .r)
+   expect (b .g)  .toBeCloseTo (a .g)
+   expect (b .b)  .toBeCloseTo (a .b)
+   expect (b .a)  .toBeCloseTo (a .a)
+   expect (b [0]) .toBeCloseTo (a [0])
+   expect (b [1]) .toBeCloseTo (a [1])
+   expect (b [2]) .toBeCloseTo (a [2])
+   expect (b [3]) .toBeCloseTo (a [3])
+})
+
+test ("lerp", () =>
+{
+   const
+      a = new SFColorRGBA (0,0,0,0),
+      b = new SFColorRGBA (1,1,1,1),
+      c = a .lerp (b, 0.5)
+
+   expect (c) .toBeInstanceOf (SFColorRGBA)
+   expect (c) .not .toBe (a)
+   expect (c) .not .toBe (b)
+
+   expect (c .r)  .toBeCloseTo (0.5)
+   expect (c .g)  .toBeCloseTo (0.5)
+   expect (c .b)  .toBeCloseTo (0.5)
+   expect (c .a)  .toBeCloseTo (0.5)
+   expect (c [0]) .toBeCloseTo (0.5)
+   expect (c [1]) .toBeCloseTo (0.5)
+   expect (c [2]) .toBeCloseTo (0.5)
+   expect (c [3]) .toBeCloseTo (0.5)
+})

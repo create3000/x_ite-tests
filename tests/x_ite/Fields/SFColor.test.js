@@ -118,3 +118,42 @@ test ("isDefaultValue", () =>
    expect (a .isDefaultValue ()) .toBe (true)
    expect (b .isDefaultValue ()) .toBe (false)
 })
+
+test ("get/setHSVA", () =>
+{
+   const
+      a = new SFColor (0.2,0.3,0.4),
+      b = new SFColor (),
+      hsv = a .getHSV ()
+
+   expect (hsv) .toBeInstanceOf (Array)
+   expect (hsv) .not .toBe (a .getHSV ())
+
+   b .setHSV (...hsv)
+
+   expect (b .r)  .toBeCloseTo (a .r)
+   expect (b .g)  .toBeCloseTo (a .g)
+   expect (b .b)  .toBeCloseTo (a .b)
+   expect (b [0]) .toBeCloseTo (a [0])
+   expect (b [1]) .toBeCloseTo (a [1])
+   expect (b [2]) .toBeCloseTo (a [2])
+})
+
+test ("lerp", () =>
+{
+   const
+      a = new SFColor (0,0,0),
+      b = new SFColor (1,1,1),
+      c = a .lerp (b, 0.5)
+
+   expect (c) .toBeInstanceOf (SFColor)
+   expect (c) .not .toBe (a)
+   expect (c) .not .toBe (b)
+
+   expect (c .r)  .toBeCloseTo (0.5)
+   expect (c .g)  .toBeCloseTo (0.5)
+   expect (c .b)  .toBeCloseTo (0.5)
+   expect (c [0]) .toBeCloseTo (0.5)
+   expect (c [1]) .toBeCloseTo (0.5)
+   expect (c [2]) .toBeCloseTo (0.5)
+})
