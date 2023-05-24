@@ -253,7 +253,8 @@ test ("multiply", () =>
    const
       a = new SFRotation (new SFVec3f (1,2,3) .normalize (), 4) ,
       b = new SFRotation (5,6,7,8),
-      c = a .multiply (b) .multiply (b .inverse ())
+      c = a .multiply (b) .multiply (b .inverse ()),
+      d = new SFRotation (a .getMatrix () .multLeft (b .getMatrix ()) .multLeft (b .getMatrix () .inverse ()))
 
    expect (c .x) .toBeCloseTo (a .x)
    expect (c .y) .toBeCloseTo (a .y)
@@ -263,6 +264,15 @@ test ("multiply", () =>
    expect (c [1]) .toBeCloseTo (a [1])
    expect (c [2]) .toBeCloseTo (a [2])
    expect (c [3]) .toBeCloseTo (a [3])
+
+   expect (d .x) .toBeCloseTo (c .x)
+   expect (d .y) .toBeCloseTo (c .y)
+   expect (d .z) .toBeCloseTo (c .z)
+   expect (d .angle) .toBeCloseTo (c .angle)
+   expect (d [0]) .toBeCloseTo (c [0])
+   expect (d [1]) .toBeCloseTo (c [1])
+   expect (d [2]) .toBeCloseTo (c [2])
+   expect (d [3]) .toBeCloseTo (c [3])
 })
 
 test ("multVec", () =>
