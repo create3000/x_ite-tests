@@ -334,4 +334,36 @@ for (const Type of Object .keys (X3D .require ("x_ite/Fields/SFMatrix3")))
       expect (c [0]) .toBe (62/206)
       expect (c [1]) .toBe (134/206)
    })
+
+   test ("multDirMatrix", () =>
+   {
+      const
+         a = new SFMatrix3 (2,3,4, 5,6,7, 8,9,10),
+         b = new SFVec2 (11,12),
+         c = a .transpose () .multDirMatrix (b)
+
+      expect (a) .not .toBe (b)
+      expect (a) .not .toBe (c)
+      expect (b) .not .toBe (c)
+      expect (c) .toBeInstanceOf (SFVec2)
+
+      expect (c [0]) .toBe (58)
+      expect (c [1]) .toBe (127)
+   })
+
+   test ("multMatrixDir", () =>
+   {
+      const
+         a = new SFMatrix3 (2,3,4, 5,6,7, 8,9,10),
+         b = new SFVec2 (11,12),
+         c = a .multMatrixDir (b)
+
+      expect (a) .not .toBe (b)
+      expect (a) .not .toBe (c)
+      expect (b) .not .toBe (c)
+      expect (c) .toBeInstanceOf (SFVec2)
+
+      expect (c [0]) .toBe (58)
+      expect (c [1]) .toBe (127)
+   })
 }
