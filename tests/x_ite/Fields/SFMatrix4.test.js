@@ -225,6 +225,13 @@ for (const Type of Object .keys (X3D .require ("x_ite/Fields/SFMatrix4")))
       expect ([...a]) .toEqual ([1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1])
    })
 
+   test ("determinant", () =>
+   {
+      const a = new SFMatrix4 (4,3,2,15, 5,6,7,16, 10,9,14,17, 11,12,13,18)
+
+      expect (a .determinant ()) .toBe (-1008)
+   })
+
    test ("inverse", () =>
    {
       const a = new SFMatrix4 ()
