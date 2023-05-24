@@ -21,6 +21,7 @@ test ("copy", () =>
    expect (b) .toBeInstanceOf (MFVec3f)
    expect (b) .toHaveLength (a .length)
    expect (b .equals (a)) .toBe (true)
+   expect (b .getValue ()) .not .toBe (a .getValue ())
 })
 
 test ("equals", () =>

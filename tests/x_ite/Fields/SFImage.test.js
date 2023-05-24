@@ -44,6 +44,7 @@ test ("constructor", () =>
 
    expect (v4 .equals (v2)) .toBe (true)
    expect (v4 .array) .not .toBe (v2 .array)
+   expect (v4 .array .getValue ()) .not .toBe (v2 .array .getValue ())
    expect (v4 .array .equals (v2 .array)) .toBe (true)
 })
 
@@ -69,7 +70,9 @@ test ("enumerate", () =>
 
 test ("getter/setter", () =>
 {
-   const v1 = new SFImage ()
+   const
+      v1 = new SFImage (),
+      array = v1 .array
 
    v1 .width  = 1
    v1 .height = 2
@@ -81,6 +84,7 @@ test ("getter/setter", () =>
    expect (v1 .width) .toBe (1)
    expect (v1 .height) .toBe (2)
    expect (v1 .comp) .toBe (3)
+   expect (v1 .array) .toBe (array)
    expect (v1 .array) .toHaveLength (2)
    expect (v1 .array [0]) .toBe (5)
    expect (v1 .array [1]) .toBe (6)
@@ -95,6 +99,7 @@ test ("getter/setter", () =>
    expect (v1 .width) .toBe (2)
    expect (v1 .height) .toBe (3)
    expect (v1 .comp) .toBe (4)
+   expect (v1 .array) .toBe (array)
    expect (v1 .array) .toHaveLength (6)
    expect (v1 .array [0]) .toBe (1)
    expect (v1 .array [1]) .toBe (2)

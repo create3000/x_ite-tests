@@ -64,6 +64,7 @@ test ("copy", () =>
    expect (b) .toBeInstanceOf (MFDouble)
    expect (b) .toHaveLength (a .length)
    expect (b .equals (a)) .toBe (true)
+   expect (b .getValue ()) .not .toBe (a .getValue ())
 })
 
 test ("equals", () =>
