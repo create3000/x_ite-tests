@@ -9,7 +9,7 @@ test ("spread", async () =>
    const
       canvas  = X3D .createBrowser (),
       Browser = canvas .browser,
-      scene   = await Browser .createX3DFromURL (new X3D .MFString (url .pathToFileURL (path .join (__dirname, "..", "Parser", "files", `statements.x3d`))))
+      scene   = await Browser .createX3DFromURL (new X3D .MFString (url .pathToFileURL (path .join (__dirname, "..", "Parser", "files", "X3D", `statements.x3d`))))
 
    const units = scene .units
 
@@ -29,7 +29,7 @@ test ("filter", async () =>
    const
       canvas  = X3D .createBrowser (),
       Browser = canvas .browser,
-      scene   = await Browser .createX3DFromURL (new X3D .MFString (url .pathToFileURL (path .join (__dirname, "..", "Parser", "files", `statements.x3d`)))),
+      scene   = await Browser .createX3DFromURL (new X3D .MFString (url .pathToFileURL (path .join (__dirname, "..", "Parser", "files", "X3D", `statements.x3d`)))),
       units   = scene .units
 
    const a = units .filter (u => u .conversionFactor !== 1)
