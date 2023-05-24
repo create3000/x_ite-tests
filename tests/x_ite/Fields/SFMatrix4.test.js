@@ -323,4 +323,64 @@ for (const Type of Object .keys (X3D .require ("x_ite/Fields/SFMatrix4")))
       expect (c [14]) .toBe (16)
       expect (c [15]) .toBe (17)
    })
+
+   test ("multRight", () =>
+   {
+      const
+         a = new SFMatrix4 (2,3,4,5, 6,7,8,9, 10,11,12,13, 14,15,16,17),
+         b = new SFMatrix4 (18,19,20,21, 22,23,24,25, 26,27,28,29, 30,31,32,33),
+         c = a .multRight (b)
+
+      expect (a) .not .toBe (b)
+      expect (a) .not .toBe (c)
+      expect (b) .not .toBe (c)
+      expect (c) .toBeInstanceOf (SFMatrix4)
+
+      expect (c [ 0]) .toBe ( 356)
+      expect (c [ 1]) .toBe ( 370)
+      expect (c [ 2]) .toBe ( 384)
+      expect (c [ 3]) .toBe ( 398)
+      expect (c [ 4]) .toBe ( 740)
+      expect (c [ 5]) .toBe ( 770)
+      expect (c [ 6]) .toBe ( 800)
+      expect (c [ 7]) .toBe ( 830)
+      expect (c [ 8]) .toBe (1124)
+      expect (c [ 9]) .toBe (1170)
+      expect (c [10]) .toBe (1216)
+      expect (c [11]) .toBe (1262)
+      expect (c [12]) .toBe (1508)
+      expect (c [13]) .toBe (1570)
+      expect (c [14]) .toBe (1632)
+      expect (c [15]) .toBe (1694)
+   })
+
+   test ("multLeft", () =>
+   {
+      const
+         a = new SFMatrix4 (2,3,4,5, 6,7,8,9, 10,11,12,13, 14,15,16,17),
+         b = new SFMatrix4 (18,19,20,21, 22,23,24,25, 26,27,28,29, 30,31,32,33),
+         c = b .multLeft (a)
+
+      expect (a) .not .toBe (b)
+      expect (a) .not .toBe (c)
+      expect (b) .not .toBe (c)
+      expect (c) .toBeInstanceOf (SFMatrix4)
+
+      expect (c [ 0]) .toBe ( 356)
+      expect (c [ 1]) .toBe ( 370)
+      expect (c [ 2]) .toBe ( 384)
+      expect (c [ 3]) .toBe ( 398)
+      expect (c [ 4]) .toBe ( 740)
+      expect (c [ 5]) .toBe ( 770)
+      expect (c [ 6]) .toBe ( 800)
+      expect (c [ 7]) .toBe ( 830)
+      expect (c [ 8]) .toBe (1124)
+      expect (c [ 9]) .toBe (1170)
+      expect (c [10]) .toBe (1216)
+      expect (c [11]) .toBe (1262)
+      expect (c [12]) .toBe (1508)
+      expect (c [13]) .toBe (1570)
+      expect (c [14]) .toBe (1632)
+      expect (c [15]) .toBe (1694)
+   })
 }

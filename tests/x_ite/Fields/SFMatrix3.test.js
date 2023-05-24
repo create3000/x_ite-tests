@@ -249,4 +249,50 @@ for (const Type of Object .keys (X3D .require ("x_ite/Fields/SFMatrix3")))
       expect (c [7]) .toBe (9)
       expect (c [8]) .toBe (10)
    })
+
+   test ("multRight", () =>
+   {
+      const
+         a = new SFMatrix3 (2,3,4, 5,6,7, 8,9,10),
+         b = new SFMatrix3 (11,12,13, 14,15,16, 17,18,19),
+         c = a .multRight (b)
+
+      expect (a) .not .toBe (b)
+      expect (a) .not .toBe (c)
+      expect (b) .not .toBe (c)
+      expect (c) .toBeInstanceOf (SFMatrix3)
+
+      expect (c [ 0]) .toBe (132)
+      expect (c [ 1]) .toBe (141)
+      expect (c [ 2]) .toBe (150)
+      expect (c [ 3]) .toBe (258)
+      expect (c [ 4]) .toBe (276)
+      expect (c [ 5]) .toBe (294)
+      expect (c [ 6]) .toBe (384)
+      expect (c [ 7]) .toBe (411)
+      expect (c [ 8]) .toBe (438)
+   })
+
+   test ("multLeft", () =>
+   {
+      const
+         a = new SFMatrix3 (2,3,4, 5,6,7, 8,9,10),
+         b = new SFMatrix3 (11,12,13, 14,15,16, 17,18,19),
+         c = b .multLeft (a)
+
+      expect (a) .not .toBe (b)
+      expect (a) .not .toBe (c)
+      expect (b) .not .toBe (c)
+      expect (c) .toBeInstanceOf (SFMatrix3)
+
+      expect (c [ 0]) .toBe (132)
+      expect (c [ 1]) .toBe (141)
+      expect (c [ 2]) .toBe (150)
+      expect (c [ 3]) .toBe (258)
+      expect (c [ 4]) .toBe (276)
+      expect (c [ 5]) .toBe (294)
+      expect (c [ 6]) .toBe (384)
+      expect (c [ 7]) .toBe (411)
+      expect (c [ 8]) .toBe (438)
+   })
 }
