@@ -258,30 +258,45 @@ test ("multiply", () =>
    const
       a = new SFRotation (new SFVec3f (1,2,3) .normalize (), 4),
       b = new SFRotation (5,6,7,8),
-      c = a .multiply (b) .multiply (b .inverse ()),
-      d = new SFRotation (a .getMatrix () .multLeft (b .getMatrix ()) .multLeft (b .getMatrix () .inverse ()))
+      c = a .multiply (b),
+      d = new SFRotation (a .getMatrix () .multRight (b .getMatrix ())),
+      e = a .multiply (b) .multiply (b .inverse ()),
+      f = new SFRotation (a .getMatrix () .multRight (b .getMatrix ()) .multRight (b .getMatrix () .inverse ()))
 
    expect (c) .toBeInstanceOf (SFRotation)
    expect (c) .not .toBe (a)
    expect (c) .not .toBe (b)
 
-   expect (c .x) .toBeCloseTo (a .x)
-   expect (c .y) .toBeCloseTo (a .y)
-   expect (c .z) .toBeCloseTo (a .z)
-   expect (c .angle) .toBeCloseTo (a .angle)
-   expect (c [0]) .toBeCloseTo (a [0])
-   expect (c [1]) .toBeCloseTo (a [1])
-   expect (c [2]) .toBeCloseTo (a [2])
-   expect (c [3]) .toBeCloseTo (a [3])
+   expect (d .x) .toBeCloseTo (-c .x)
+   expect (d .y) .toBeCloseTo (-c .y)
+   expect (d .z) .toBeCloseTo (-c .z)
+   expect (d .angle) .toBeCloseTo (Math .PI * 2 - c .angle)
+   expect (d [0]) .toBeCloseTo (-c [0])
+   expect (d [1]) .toBeCloseTo (-c [1])
+   expect (d [2]) .toBeCloseTo (-c [2])
+   expect (d [3]) .toBeCloseTo (Math .PI * 2 - c [3])
 
-   expect (d .x) .toBeCloseTo (c .x)
-   expect (d .y) .toBeCloseTo (c .y)
-   expect (d .z) .toBeCloseTo (c .z)
-   expect (d .angle) .toBeCloseTo (c .angle)
-   expect (d [0]) .toBeCloseTo (c [0])
-   expect (d [1]) .toBeCloseTo (c [1])
-   expect (d [2]) .toBeCloseTo (c [2])
-   expect (d [3]) .toBeCloseTo (c [3])
+   expect (e) .toBeInstanceOf (SFRotation)
+   expect (e) .not .toBe (a)
+   expect (e) .not .toBe (b)
+
+   expect (e .x) .toBeCloseTo (a .x)
+   expect (e .y) .toBeCloseTo (a .y)
+   expect (e .z) .toBeCloseTo (a .z)
+   expect (e .angle) .toBeCloseTo (a .angle)
+   expect (e [0]) .toBeCloseTo (a [0])
+   expect (e [1]) .toBeCloseTo (a [1])
+   expect (e [2]) .toBeCloseTo (a [2])
+   expect (e [3]) .toBeCloseTo (a [3])
+
+   expect (f .x) .toBeCloseTo (e .x)
+   expect (f .y) .toBeCloseTo (e .y)
+   expect (f .z) .toBeCloseTo (e .z)
+   expect (f .angle) .toBeCloseTo (e .angle)
+   expect (f [0]) .toBeCloseTo (e [0])
+   expect (f [1]) .toBeCloseTo (e [1])
+   expect (f [2]) .toBeCloseTo (e [2])
+   expect (f [3]) .toBeCloseTo (e [3])
 })
 
 test ("multVec", () =>
