@@ -1,8 +1,21 @@
 const X3D = require ("../../X3D")
 
+const SFVec2Type = {
+   SFMatrix3d: "SFVec2d",
+   SFMatrix3f: "SFVec2f",
+}
+
+const SFVec3Type = {
+   SFMatrix3d: "SFVec3d",
+   SFMatrix3f: "SFVec3f",
+}
+
 for (const Type of Object .keys (X3D .require ("x_ite/Fields/SFMatrix3")))
 {
-   const SFMatrix3 = X3D .require ("x_ite/Fields/SFMatrix3") [Type]
+   const
+      SFMatrix3 = X3D .require ("x_ite/Fields/SFMatrix3") [Type],
+      SFVec2    = X3D .require ("x_ite/Fields/SFVec2") [SFVec2Type [Type]],
+      SFVec3    = X3D .require ("x_ite/Fields/SFVec3") [SFVec3Type [Type]]
 
    test ("constructor", () =>
    {
@@ -31,6 +44,19 @@ for (const Type of Object .keys (X3D .require ("x_ite/Fields/SFMatrix3")))
       expect (v2 [7]) .toBe (9)
       expect (v2 [8]) .toBe (10)
       expect ([...v2]) .toEqual ([2,3,4, 5,6,7, 8,9,10])
+
+      const v3 = new SFMatrix3 (new SFVec3 (2,3,4), new SFVec3 (5,6,7), new SFVec3 (8,9,10))
+
+      expect (v3 [0]) .toBe (2)
+      expect (v3 [1]) .toBe (3)
+      expect (v3 [2]) .toBe (4)
+      expect (v3 [3]) .toBe (5)
+      expect (v3 [4]) .toBe (6)
+      expect (v3 [5]) .toBe (7)
+      expect (v3 [6]) .toBe (8)
+      expect (v3 [7]) .toBe (9)
+      expect (v3 [8]) .toBe (10)
+      expect ([...v3]) .toEqual ([2,3,4, 5,6,7, 8,9,10])
    })
 
    test ("enumerate", () =>
