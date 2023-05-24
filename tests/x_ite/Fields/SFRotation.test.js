@@ -251,7 +251,7 @@ test ("inverse", () =>
 test ("multiply", () =>
 {
    const
-      a = new SFRotation (new SFVec3f (1,2,3) .normalize (), 4) ,
+      a = new SFRotation (new SFVec3f (1,2,3) .normalize (), 4),
       b = new SFRotation (5,6,7,8),
       c = a .multiply (b) .multiply (b .inverse ()),
       d = new SFRotation (a .getMatrix () .multLeft (b .getMatrix ()) .multLeft (b .getMatrix () .inverse ()))
