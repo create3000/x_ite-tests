@@ -223,29 +223,34 @@ test ("get/setMatrix", () =>
 
 test ("inverse", () =>
 {
-   const a = new SFRotation (2,3,4,5) .inverse () .multiply (new SFRotation (2,3,4,5))
+   const
+      a = new SFRotation (2,3,4,5)
+      b = a .inverse () .multiply (new SFRotation (2,3,4,5))
 
-   expect (a .x) .toBeCloseTo (0)
-   expect (a .y) .toBeCloseTo (0)
-   expect (a .z) .toBeCloseTo (1)
-   expect (a .angle) .toBeCloseTo (0)
-   expect (a [0]) .toBeCloseTo (0)
-   expect (a [1]) .toBeCloseTo (0)
-   expect (a [2]) .toBeCloseTo (1)
-   expect (a [3]) .toBeCloseTo (0)
+   expect (b) .toBeInstanceOf (SFRotation)
+   expect (b) .not .toBe (a)
+
+   expect (b .x) .toBeCloseTo (0)
+   expect (b .y) .toBeCloseTo (0)
+   expect (b .z) .toBeCloseTo (1)
+   expect (b .angle) .toBeCloseTo (0)
+   expect (b [0]) .toBeCloseTo (0)
+   expect (b [1]) .toBeCloseTo (0)
+   expect (b [2]) .toBeCloseTo (1)
+   expect (b [3]) .toBeCloseTo (0)
 
    const
-      b = new SFRotation (2,3,4,5) .inverse () .inverse () .inverse (),
-      c = new SFRotation (2,3,4,5) .inverse ()
+      c = new SFRotation (2,3,4,5) .inverse () .inverse () .inverse (),
+      d = new SFRotation (2,3,4,5) .inverse ()
 
-   expect (b .x) .toBeCloseTo (c .x)
-   expect (b .y) .toBeCloseTo (c .y)
-   expect (b .z) .toBeCloseTo (c .z)
-   expect (b .angle) .toBeCloseTo (c .angle)
-   expect (b [0]) .toBeCloseTo (c [0])
-   expect (b [1]) .toBeCloseTo (c [1])
-   expect (b [2]) .toBeCloseTo (c [2])
-   expect (b [3]) .toBeCloseTo (c [3])
+   expect (c .x) .toBeCloseTo (d .x)
+   expect (c .y) .toBeCloseTo (d .y)
+   expect (c .z) .toBeCloseTo (d .z)
+   expect (c .angle) .toBeCloseTo (d .angle)
+   expect (c [0]) .toBeCloseTo (d [0])
+   expect (c [1]) .toBeCloseTo (d [1])
+   expect (c [2]) .toBeCloseTo (d [2])
+   expect (c [3]) .toBeCloseTo (d [3])
 })
 
 test ("multiply", () =>
@@ -255,6 +260,10 @@ test ("multiply", () =>
       b = new SFRotation (5,6,7,8),
       c = a .multiply (b) .multiply (b .inverse ()),
       d = new SFRotation (a .getMatrix () .multLeft (b .getMatrix ()) .multLeft (b .getMatrix () .inverse ()))
+
+   expect (c) .toBeInstanceOf (SFRotation)
+   expect (c) .not .toBe (a)
+   expect (c) .not .toBe (b)
 
    expect (c .x) .toBeCloseTo (a .x)
    expect (c .y) .toBeCloseTo (a .y)
@@ -283,8 +292,8 @@ test ("multVec", () =>
       r1 = new SFRotation (zAxis, new SFVec3f (1,0,0)),
       v1 = r1 .multVec (zAxis)
 
-   expect (v1) .not .toBe (r1 .multVec (zAxis))
    expect (v1) .toBeInstanceOf (SFVec3f)
+   expect (v1) .not .toBe (r1 .multVec (zAxis))
    expect (v1 [0]) .toBeCloseTo (1)
    expect (v1 [1]) .toBeCloseTo (0)
    expect (v1 [2]) .toBeCloseTo (0)
@@ -293,8 +302,8 @@ test ("multVec", () =>
       r2 = new SFRotation (zAxis, new SFVec3f (1,0,1)),
       v2 = r2 .multVec (zAxis)
 
-   expect (v2) .not .toBe (r2 .multVec (zAxis))
    expect (v2) .toBeInstanceOf (SFVec3f)
+   expect (v2) .not .toBe (r2 .multVec (zAxis))
    expect (v2 [0]) .toBeCloseTo (Math .SQRT1_2)
    expect (v2 [1]) .toBeCloseTo (0)
    expect (v2 [2]) .toBeCloseTo (Math .SQRT1_2)
@@ -303,8 +312,8 @@ test ("multVec", () =>
       r3 = new SFRotation (zAxis, new SFVec3f (1,1,0)),
       v3 = r3 .multVec (zAxis)
 
-   expect (v3) .not .toBe (r3 .multVec (zAxis))
    expect (v3) .toBeInstanceOf (SFVec3f)
+   expect (v3) .not .toBe (r3 .multVec (zAxis))
    expect (v3 [0]) .toBeCloseTo (Math .SQRT1_2)
    expect (v3 [1]) .toBeCloseTo (Math .SQRT1_2)
    expect (v3 [2]) .toBeCloseTo (0)
@@ -316,6 +325,10 @@ test ("slerp", () =>
       a = new SFRotation (),
       b = new SFRotation (new SFVec3f (0,0,1), new SFVec3f (1,0,0)),
       c = a .slerp (b, 0.5)
+
+   expect (c) .toBeInstanceOf (SFRotation)
+   expect (c) .not .toBe (a)
+   expect (c) .not .toBe (b)
 
    expect (c .x) .toBeCloseTo (0)
    expect (c .y) .toBeCloseTo (1)
