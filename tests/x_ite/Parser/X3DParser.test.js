@@ -10,10 +10,10 @@ test ("statements", async () =>
       canvas        = X3D .createBrowser (),
       Browser       = canvas .browser,
       latestVersion = Browser .createScene () .specificationVersion,
-      scene         = await Browser .createX3DFromURL (new X3D .MFString (url .pathToFileURL (path .join (__dirname, "files", `statements.x3d`))))
+      scene         = await Browser .createX3DFromURL (new X3D .MFString (url .pathToFileURL (path .join (__dirname, "files", "X3D", `statements.x3d`))))
 
    const
-      orig = await fetch (path .join (__dirname, "files", `statements.x3d`)) .then (r => r .text ()),
+      orig = await fetch (path .join (__dirname, "files", "X3D", `statements.x3d`)) .then (r => r .text ()),
       x3d  = scene .toXMLString (),
       x3dv = scene .toVRMLString (),
       x3dj = scene .toJSONString ()
@@ -50,10 +50,10 @@ test ("fields", async () =>
       canvas        = X3D .createBrowser (),
       Browser       = canvas .browser,
       latestVersion = Browser .createScene () .specificationVersion,
-      scene         = await Browser .createX3DFromURL (new X3D .MFString (url .pathToFileURL (path .join (__dirname, "files", `fields.x3d`))))
+      scene         = await Browser .createX3DFromURL (new X3D .MFString (url .pathToFileURL (path .join (__dirname, "files", "X3D", `fields.x3d`))))
 
    const
-      orig = await fetch (path .join (__dirname, "files", `fields.x3d`)) .then (r => r .text ()),
+      orig = await fetch (path .join (__dirname, "files", "X3D", `fields.x3d`)) .then (r => r .text ()),
       x3d  = scene .toXMLString (),
       x3dv = scene .toVRMLString (),
       x3dj = scene .toJSONString ()
