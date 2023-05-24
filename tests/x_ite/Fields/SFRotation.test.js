@@ -248,6 +248,23 @@ test ("inverse", () =>
    expect (b [3]) .toBeCloseTo (c [3])
 })
 
+test ("multiply", () =>
+{
+   const
+      a = new SFRotation (new SFVec3f (1,2,3) .normalize (), 4) ,
+      b = new SFRotation (5,6,7,8),
+      c = a .multiply (b) .multiply (b .inverse ())
+
+   expect (c .x) .toBeCloseTo (a .x)
+   expect (c .y) .toBeCloseTo (a .y)
+   expect (c .z) .toBeCloseTo (a .z)
+   expect (c .angle) .toBeCloseTo (a .angle)
+   expect (c [0]) .toBeCloseTo (a [0])
+   expect (c [1]) .toBeCloseTo (a [1])
+   expect (c [2]) .toBeCloseTo (a [2])
+   expect (c [3]) .toBeCloseTo (a [3])
+})
+
 test ("multVec", () =>
 {
    const zAxis = new SFVec3f (0,0,1)
@@ -281,4 +298,21 @@ test ("multVec", () =>
    expect (v3 [0]) .toBeCloseTo (Math .SQRT1_2)
    expect (v3 [1]) .toBeCloseTo (Math .SQRT1_2)
    expect (v3 [2]) .toBeCloseTo (0)
+})
+
+test ("slerp", () =>
+{
+   const
+      a = new SFRotation (),
+      b = new SFRotation (new SFVec3f (0,0,1), new SFVec3f (1,0,0)),
+      c = a .slerp (b, 0.5)
+
+   expect (c .x) .toBeCloseTo (0)
+   expect (c .y) .toBeCloseTo (1)
+   expect (c .z) .toBeCloseTo (0)
+   expect (c .angle) .toBeCloseTo (Math .PI / 4)
+   expect (c [0]) .toBeCloseTo (0)
+   expect (c [1]) .toBeCloseTo (1)
+   expect (c [2]) .toBeCloseTo (0)
+   expect (c [3]) .toBeCloseTo (Math .PI / 4)
 })
