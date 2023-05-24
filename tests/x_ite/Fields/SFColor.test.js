@@ -137,6 +137,19 @@ test ("get/setHSVA", () =>
    expect (b [0]) .toBeCloseTo (a [0])
    expect (b [1]) .toBeCloseTo (a [1])
    expect (b [2]) .toBeCloseTo (a [2])
+
+   for (let i = 0; i <= 12; ++ i)
+   {
+      a .setHSV (i/12 * Math .PI * 2, 0.5, 0.5)
+      b .setHSV (... a .getHSV ())
+
+      expect (b .r)  .toBeCloseTo (a .r)
+      expect (b .g)  .toBeCloseTo (a .g)
+      expect (b .b)  .toBeCloseTo (a .b)
+      expect (b [0]) .toBeCloseTo (a [0])
+      expect (b [1]) .toBeCloseTo (a [1])
+      expect (b [2]) .toBeCloseTo (a [2])
+   }
 })
 
 test ("lerp", () =>
