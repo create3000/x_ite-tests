@@ -591,35 +591,44 @@ test ("parents", () =>
 {
    const n1 = scene .createNode ("MetadataBoolean")
 
+   expect (n1 .getValue ()) .not .toBe (null)
    expect (n1 .getValue () .getParents () .size) .toBe (1)
 
    const a1 = new MFNode (n1)
 
+   expect (n1 .getValue ()) .not .toBe (null)
    expect (n1 .getValue () .getParents () .size) .toBe (2)
 
    a1 [0] = scene .createNode ("MetadataBoolean")
 
+   expect (n1 .getValue ()) .not .toBe (null)
    expect (n1 .getValue () .getParents () .size) .toBe (1)
+   expect (a1 [0] .getValue ()) .not .toBe (null)
    expect (a1 [0] .getValue () .getParents () .size) .toBe (2)
 
    const n2 = a1 .pop ()
 
+   expect (n2 .getValue ()) .not .toBe (null)
    expect (n2 .getValue () .getParents () .size) .toBe (1)
 
    a1 [0] = scene .createNode ("MetadataBoolean")
 
+   expect (a1 [0] .getValue ()) .not .toBe (null)
    expect (a1 [0] .getValue () .getParents () .size) .toBe (2)
 
    const n3 = a1 .shift ()
 
+   expect (n3 .getValue ()) .not .toBe (null)
    expect (n3 .getValue () .getParents () .size) .toBe (1)
 
    a1 [0] = scene .createNode ("MetadataBoolean")
 
+   expect (a1 [0] .getValue ()) .not .toBe (null)
    expect (a1 [0] .getValue () .getParents () .size) .toBe (2)
 
    const a2 = a1 .splice (0,1)
 
+   expect (a2 [0] .getValue ()) .not .toBe (null)
    expect (a2 [0] .getValue () .getParents () .size) .toBe (2)
 })
 
