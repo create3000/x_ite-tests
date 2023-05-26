@@ -141,10 +141,7 @@ test ("user-data", () =>
    expect (field .getNodeUserData (sym)) .toBe (undefined)
 })
 
-function sleep (delay)
-{
-   return new Promise (resolve => setTimeout (resolve, delay))
-}
+const sleep = delay => new Promise (resolve => setTimeout (resolve, delay))
 
 test ("dispose", async () =>
 {
