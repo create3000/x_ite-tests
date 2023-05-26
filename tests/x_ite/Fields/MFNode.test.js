@@ -563,3 +563,28 @@ test ("unshift", () =>
       expect (a .at (-(i + 1))) .toBe (v)
    }
 })
+
+test ("dispose", () =>
+{
+   const a = new MFNode (
+      scene .createNode ("MetadataBoolean"),
+      scene .createNode ("MetadataBoolean"),
+      scene .createNode ("MetadataBoolean"),
+      scene .createNode ("MetadataBoolean"),
+      scene .createNode ("MetadataBoolean"),
+      scene .createNode ("MetadataBoolean"),
+   )
+
+   expect (a) .toHaveLength (6)
+
+   for (let i = 0; i < 6; ++ i)
+      expect (a [i] .getValue () .getParents () .size) .toBe (2)
+
+   const b = [...a]
+
+   a .dispose ()
+   expect (a) .toHaveLength (0)
+
+   for (let i = 0; i < 6; ++ i)
+      expect (b [i] .getValue () .getParents () .size) .toBe (1)
+})
