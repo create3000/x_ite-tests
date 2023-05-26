@@ -141,7 +141,12 @@ test ("user-data", () =>
    expect (field .getNodeUserData (sym)) .toBe (undefined)
 })
 
-test ("dispose", () => new Promise (async (resolve, reject) =>
+function sleep (delay)
+{
+   return new Promise (resolve => setTimeout (resolve, delay))
+}
+
+test ("dispose", async () =>
 {
    const scene = await Browser .createX3DFromString (`
 PROFILE Interchange
@@ -178,48 +183,45 @@ EXPORT S1
 ROUTE S1.appearance TO S2.appearance
    `)
 
-   setTimeout (() =>
-   {
-      const
-         shape1 = scene .getNamedNode ("S1"),
-         shape3 = scene .getImportedNode ("S3")
+   await sleep ()
 
-      expect (scene .rootNodes) .toHaveLength (4)
-      expect (scene .routes) .toHaveLength (1)
-      expect (scene .getNamedNodes ()) .toHaveLength (7)
-      expect (scene .getImportedNodes ()) .toHaveLength (1)
-      expect (scene .getExportedNodes ()) .toHaveLength (1)
-      expect (shape1) .toBe (scene .getNamedNode ("S1"))
-      expect (shape1 .getType ()) .toBe (X3D .X3DConstants .SFNode)
-      expect (shape1 .getTypeName ()) .toBe ("SFNode")
-      expect (shape1 .getNodeTypeName ()) .toBe ("Shape")
-      expect (shape1 .getValue ()) .toBeInstanceOf (X3D .require ("x_ite/Base/X3DBaseNode"))
-      expect (shape1) .toBe (scene .getNamedNode ("S1"))
-      expect (shape3 .getType ()) .toBe (X3D .X3DConstants .SFNode)
-      expect (shape3 .getTypeName ()) .toBe ("SFNode")
-      expect (shape3 .getNodeTypeName ()) .toBe ("Shape")
-      expect (shape3 .getValue ()) .toBeInstanceOf (X3D .require ("x_ite/Base/X3DBaseNode"))
-      expect (shape3) .toBe (scene .getImportedNode ("S3"))
-      expect (scene .getNamedNode ("T1") .children) .toHaveLength (2)
-      expect (scene .getNamedNode ("T2") .children) .toHaveLength (1)
-      expect (scene .getNamedNode ("A") .getValue () .getParents () .size) .toBe (2)
-      expect (scene .getNamedNode ("B") .getValue () .getParents () .size) .toBe (2)
+   const
+      shape1 = scene .getNamedNode ("S1"),
+      shape3 = scene .getImportedNode ("S3")
 
-      shape1 .dispose ()
-      shape3 .dispose ()
+   expect (scene .rootNodes) .toHaveLength (4)
+   expect (scene .routes) .toHaveLength (1)
+   expect (scene .getNamedNodes ()) .toHaveLength (7)
+   expect (scene .getImportedNodes ()) .toHaveLength (1)
+   expect (scene .getExportedNodes ()) .toHaveLength (1)
+   expect (shape1) .toBe (scene .getNamedNode ("S1"))
+   expect (shape1 .getType ()) .toBe (X3D .X3DConstants .SFNode)
+   expect (shape1 .getTypeName ()) .toBe ("SFNode")
+   expect (shape1 .getNodeTypeName ()) .toBe ("Shape")
+   expect (shape1 .getValue ()) .toBeInstanceOf (X3D .require ("x_ite/Base/X3DBaseNode"))
+   expect (shape1) .toBe (scene .getNamedNode ("S1"))
+   expect (shape3 .getType ()) .toBe (X3D .X3DConstants .SFNode)
+   expect (shape3 .getTypeName ()) .toBe ("SFNode")
+   expect (shape3 .getNodeTypeName ()) .toBe ("Shape")
+   expect (shape3 .getValue ()) .toBeInstanceOf (X3D .require ("x_ite/Base/X3DBaseNode"))
+   expect (shape3) .toBe (scene .getImportedNode ("S3"))
+   expect (scene .getNamedNode ("T1") .children) .toHaveLength (2)
+   expect (scene .getNamedNode ("T2") .children) .toHaveLength (1)
+   expect (scene .getNamedNode ("A") .getValue () .getParents () .size) .toBe (2)
+   expect (scene .getNamedNode ("B") .getValue () .getParents () .size) .toBe (2)
 
-      expect (scene .rootNodes) .toHaveLength (4)
-      expect (scene .routes) .toHaveLength (0)
-      expect (scene .getNamedNodes ()) .toHaveLength (6)
-      expect (scene .getImportedNodes ()) .toHaveLength (0)
-      expect (scene .getExportedNodes ()) .toHaveLength (0)
-      expect (shape1 .getValue ()) .toBe (null)
-      expect (shape3 .getValue ()) .toBe (null)
-      expect (scene .getNamedNode ("T1") .children) .toHaveLength (1)
-      expect (scene .getNamedNode ("T2") .children) .toHaveLength (0)
-      expect (scene .getNamedNode ("A") .getValue () .getParents () .size) .toBe (1)
-      expect (scene .getNamedNode ("B") .getValue () .getParents () .size) .toBe (1)
+   shape1 .dispose ()
+   shape3 .dispose ()
 
-      resolve ()
-   })
-}))
+   expect (scene .rootNodes) .toHaveLength (4)
+   expect (scene .routes) .toHaveLength (0)
+   expect (scene .getNamedNodes ()) .toHaveLength (6)
+   expect (scene .getImportedNodes ()) .toHaveLength (0)
+   expect (scene .getExportedNodes ()) .toHaveLength (0)
+   expect (shape1 .getValue ()) .toBe (null)
+   expect (shape3 .getValue ()) .toBe (null)
+   expect (scene .getNamedNode ("T1") .children) .toHaveLength (1)
+   expect (scene .getNamedNode ("T2") .children) .toHaveLength (0)
+   expect (scene .getNamedNode ("A") .getValue () .getParents () .size) .toBe (1)
+   expect (scene .getNamedNode ("B") .getValue () .getParents () .size) .toBe (1)
+})
