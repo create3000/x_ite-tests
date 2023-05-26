@@ -147,12 +147,15 @@ test ("dispose", async () =>
 PROFILE Interchange
 
 DEF T1 Transform {
-   children DEF S1 Shape {
-      appearance DEF A Appearance {
-         material Material { }
+   children [
+      DEF S1 Shape {
+         appearance DEF A Appearance {
+            material Material { }
+         }
+         geometry DEF B Box { }
       }
-      geometry DEF B Box { }
-   }
+      Shape { }
+   ]
 }
 DEF T2 Transform {
    children USE S1
@@ -175,6 +178,8 @@ ROUTE S1.appearance TO S2.appearance
    expect (shape .getTypeName ()) .toBe ("SFNode")
    expect (shape .getNodeTypeName ()) .toBe ("Shape")
    expect (shape .getValue ()) .toBeInstanceOf (X3D .require ("x_ite/Base/X3DBaseNode"))
+   expect (scene .getNamedNode ("T1") .children) .toHaveLength (2)
+   expect (scene .getNamedNode ("T2") .children) .toHaveLength (1)
    expect (scene .getNamedNode ("A") .getValue () .getParents () .size) .toBe (2)
    expect (scene .getNamedNode ("B") .getValue () .getParents () .size) .toBe (2)
 
@@ -182,11 +187,11 @@ ROUTE S1.appearance TO S2.appearance
 
    expect (scene .rootNodes) .toHaveLength (3)
    expect (scene .routes) .toHaveLength (0)
-   expect (scene .getNamedNode ("T1") .children) .toHaveLength (0)
-   expect (scene .getNamedNode ("T2") .children) .toHaveLength (0)
    expect (scene .getNamedNodes ()) .toHaveLength (5)
    expect (scene .getExportedNodes ()) .toHaveLength (0)
    expect (shape .getValue ()) .toBe (null)
+   expect (scene .getNamedNode ("T1") .children) .toHaveLength (1)
+   expect (scene .getNamedNode ("T2") .children) .toHaveLength (0)
    expect (scene .getNamedNode ("A") .getValue () .getParents () .size) .toBe (1)
    expect (scene .getNamedNode ("B") .getValue () .getParents () .size) .toBe (1)
 })
