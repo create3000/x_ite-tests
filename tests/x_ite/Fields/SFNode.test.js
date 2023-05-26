@@ -153,12 +153,14 @@ test ("parents", () =>
 
    n1 .metadata = n2
 
+   expect (n1 .metadata) .toBe (n2)
    expect (n2 .getValue ()) .not .toBe (null)
    expect (n2 .getValue () .getParents () .size) .toBe (2)
    expect (n2 .getNodeTypeName ()) .toBe ("MetadataBoolean")
 
    n1 .metadata = null
 
+   expect (n1 .metadata) .toBe (null)
    expect (n2 .getValue ()) .not .toBe (null)
    expect (n2 .getValue () .getParents () .size) .toBe (1)
    expect (n2 .getNodeTypeName ()) .toBe ("MetadataBoolean")
