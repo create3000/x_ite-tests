@@ -141,6 +141,26 @@ test ("user-data", () =>
    expect (field .getNodeUserData (sym)) .toBe (undefined)
 })
 
+test ("parents", () =>
+{
+   const
+      n1 = scene .createNode ("MetadataSet"),
+      n2 = scene .createNode ("MetadataBoolean")
+
+   expect (n2 .getValue ()) .not .toBe (null)
+   expect (n2 .getValue () .getParents () .size) .toBe (1)
+
+   n1 .metadata = n2
+
+   expect (n2 .getValue ()) .not .toBe (null)
+   expect (n2 .getValue () .getParents () .size) .toBe (2)
+
+   n1 .metadata = null
+
+   expect (n2 .getValue ()) .not .toBe (null)
+   expect (n2 .getValue () .getParents () .size) .toBe (1)
+})
+
 const sleep = delay => new Promise (resolve => setTimeout (resolve, delay))
 
 test ("dispose", async () =>
