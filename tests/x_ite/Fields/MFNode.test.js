@@ -343,6 +343,7 @@ test ("pop", () =>
    {
       const v = a .pop ()
       expect (v) .toBe (b .pop ())
+      expect (v) .not .toBe (null)
       expect (v. getNodeTypeName ()) .toBe ("WorldInfo")
       expect (a) .toHaveLength (N - j - 1)
 
@@ -406,6 +407,7 @@ test ("shift", () =>
       const v = a .shift ()
 
       expect (v) .toBe (b .shift ())
+      expect (v) .not .toBe (null)
       expect (v .getNodeTypeName ()) .toBe ("WorldInfo")
       expect (a) .toHaveLength (N - j - 1)
 
@@ -435,7 +437,11 @@ test ("slice", () =>
    expect (b) .toBeInstanceOf (MFNode)
 
    for (let i = 0; i < N; ++ i)
+   {
       expect (b [i]) .toBe (a [i])
+      expect (b [i]) .not .toBe (null)
+      expect (b [i] .getNodeTypeName ()) .toBe ("WorldInfo")
+   }
 
    const c = a .slice (1, N - 1)
 
@@ -443,7 +449,11 @@ test ("slice", () =>
    expect (c) .toBeInstanceOf (MFNode)
 
    for (let i = 0, j = 1; i < N - 2; ++ i, ++ j)
+   {
       expect (c [i]) .toBe (a [j])
+      expect (c [i]) .not .toBe (null)
+      expect (c [i] .getNodeTypeName ()) .toBe ("WorldInfo")
+   }
 })
 
 test ("splice", () =>
@@ -471,7 +481,11 @@ test ("splice", () =>
    expect (a [1]) .toBe (v1)
 
    for (let i = 0, n = 1; i < N-2; ++ i)
+   {
       expect (b [i]) .toBe (x [n++])
+      expect (b [i]) .not .toBe (null)
+      expect (b [i] .getNodeTypeName ()) .toBe ("WorldInfo")
+   }
 
    const c = a .splice (1,0,...b)
 
@@ -493,6 +507,8 @@ test ("splice", () =>
       const v = x [n++]
       expect (d [i]) .toBe (v)
       expect (b [i]) .toBe (v)
+      expect (d [i]) .not .toBe (null)
+      expect (b [i]) .not .toBe (null)
       expect (d [i] .getNodeTypeName ()) .toBe ("WorldInfo")
       expect (b [i] .getNodeTypeName ()) .toBe ("WorldInfo")
    }
