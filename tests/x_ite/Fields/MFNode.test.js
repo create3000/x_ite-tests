@@ -341,7 +341,9 @@ test ("pop", () =>
 
    for (let j = 0; j < N; ++ j)
    {
-      expect (a .pop ()) .toBe (b .pop ())
+      const v = a .pop ()
+      expect (v) .toBe (b .pop ())
+      expect (v. getNodeTypeName ()) .toBe ("WorldInfo")
       expect (a) .toHaveLength (N - j - 1)
 
       for (let i = 0; i < a .length; ++ i)
@@ -401,7 +403,10 @@ test ("shift", () =>
 
    for (let j = 0; j < N; ++ j)
    {
-      expect (a .shift ()) .toBe (b .shift ())
+      const v = a .shift ()
+
+      expect (v) .toBe (b .shift ())
+      expect (v .getNodeTypeName ()) .toBe ("WorldInfo")
       expect (a) .toHaveLength (N - j - 1)
 
       for (let i = 0, n = j + 1; i < a .length; ++ i)
@@ -488,6 +493,8 @@ test ("splice", () =>
       const v = x [n++]
       expect (d [i]) .toBe (v)
       expect (b [i]) .toBe (v)
+      expect (d [i] .getNodeTypeName ()) .toBe ("WorldInfo")
+      expect (b [i] .getNodeTypeName ()) .toBe ("WorldInfo")
    }
 
    for (let i = 0, n = 0; i < N; ++ i)
