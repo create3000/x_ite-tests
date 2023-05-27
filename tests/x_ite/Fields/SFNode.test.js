@@ -141,6 +141,16 @@ test ("user-data", () =>
    expect (field .getNodeUserData (sym)) .toBe (undefined)
 })
 
+test ("toString", () =>
+{
+   const
+      n1 = scene .createNode ("MetadataSet"),
+      n2 = scene .createNode ("MetadataBoolean")
+
+   expect (n1 .toString ()) .toBe ("MetadataSet { }")
+   expect (n2 .toString ()) .toBe ("MetadataBoolean { }")
+})
+
 test ("parents", () =>
 {
    const
