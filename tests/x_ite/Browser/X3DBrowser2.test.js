@@ -304,6 +304,8 @@ test ("VRML", async () =>
 ${nodes .map (n => `${n}{}`) .join ("\n")}
 `)
 
+   expect (scene .encoding) .toBe ("VRML")
+
    for (const [i, node] of nodes .entries ())
       expect (scene .rootNodes [i] .getNodeTypeName ()) .toBe (node)
 })
