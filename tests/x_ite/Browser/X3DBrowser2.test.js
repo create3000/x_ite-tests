@@ -236,3 +236,74 @@ test ("importJS", async () =>
    expect (scene2 .rootNodes [1] .getNodeTypeName ()) .toBe ("Shape")
    expect (scene2 .rootNodes [2] .getNodeTypeName ()) .toBe ("Box")
 })
+
+test ("VRML", async () =>
+{
+   const nodes = [
+      "Anchor",
+      "Appearance",
+      "AudioClip",
+      "Background",
+      "Billboard",
+      "Box",
+      "Collision",
+      "Color",
+      "ColorInterpolator",
+      "Cone",
+      "Coordinate",
+      "CoordinateInterpolator",
+      "Cylinder",
+      "CylinderSensor",
+      "DirectionalLight",
+      "ElevationGrid",
+      "Extrusion",
+      "Fog",
+      "FontStyle",
+      "Group",
+      "ImageTexture",
+      "IndexedFaceSet",
+      "IndexedLineSet",
+      "Inline",
+      "LOD",
+      "Material",
+      "MovieTexture",
+      "NavigationInfo",
+      "Normal",
+      "NormalInterpolator",
+      "OrientationInterpolator",
+      "PixelTexture",
+      "PlaneSensor",
+      "PointLight",
+      "PointSet",
+      "PositionInterpolator",
+      "ProximitySensor",
+      "ScalarInterpolator",
+      "Script",
+      "Shape",
+      "Sound",
+      "Sphere",
+      "SphereSensor",
+      "SpotLight",
+      "Switch",
+      "Text",
+      "TextureCoordinate",
+      "TextureTransform",
+      "TimeSensor",
+      "TouchSensor",
+      "Transform",
+      "Viewpoint",
+      "VisibilitySensor",
+      "WorldInfo",
+   ]
+
+   const
+      canvas  = X3D .createBrowser (),
+      Browser = canvas .browser,
+      scene   = await Browser .createX3DFromString (`#VRML V2.0 utf8
+
+${nodes .map (n => `${n}{}`) .join ("\n")}
+`)
+
+   for (const [i, node] of nodes .entries ())
+      expect (scene .rootNodes [i] .getNodeTypeName ()) .toBe (node)
+})
