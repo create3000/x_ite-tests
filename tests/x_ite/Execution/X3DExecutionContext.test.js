@@ -1,11 +1,12 @@
 const X3D = require ("../../X3D")
 
+const
+   canvas  = X3D .createBrowser (),
+   Browser = canvas .browser
+
 test ("properties", async () =>
 {
-   const
-      canvas  = X3D .createBrowser (),
-      Browser = canvas .browser,
-      scene   = await Browser .createX3DFromURL (new X3D .MFString (`data:model/x3d+vrml,
+   const scene = await Browser .createX3DFromURL (new X3D .MFString (`data:model/x3d+vrml,
 PROFILE Interactive
 COMPONENT Grouping:1
 COMPONENT Shape:1
@@ -32,6 +33,8 @@ Test { }
    expect (scene .components) .toBeInstanceOf (X3D .ComponentInfoArray)
    expect (scene .components [0] .name) .toBe ("Grouping")
    expect (scene .components [1] .name) .toBe ("Shape")
+   expect (scene .units) .toHaveLength (4)
+   expect (scene .units) .toBeInstanceOf (X3D .UnitInfoArray)
    expect (scene .worldURL) .toMatch (/^file:\/\/\/.*$/)
    expect (scene .rootNodes) .toHaveLength (1)
    expect (scene .rootNodes) .toBeInstanceOf (X3D .MFNode)
@@ -62,6 +65,8 @@ Test { }
    expect (executionContext .components) .toBeInstanceOf (X3D .ComponentInfoArray)
    expect (executionContext .components [0] .name) .toBe ("Grouping")
    expect (executionContext .components [1] .name) .toBe ("Shape")
+   expect (executionContext .units) .toHaveLength (4)
+   expect (executionContext .units) .toBeInstanceOf (X3D .UnitInfoArray)
    expect (executionContext .worldURL) .toBe (scene .worldURL)
    expect (executionContext .rootNodes) .toHaveLength (1)
    expect (executionContext .rootNodes) .toBeInstanceOf (X3D .MFNode)
@@ -114,4 +119,52 @@ Test { }
    ]
 
    enumerate (properties, executionContext)
+})
+
+test ("createNode", async () =>
+{
+   const scene = await Browser .createX3DFromString (`PROFILE Full`)
+
+   for (const Type of Browser .getSupportedNodes ())
+      expect (scene .createNode (Type .prototype .getTypeName ()) .getNodeTypeName ()) .toBe (Type .prototype .getTypeName ())
+})
+
+test ("createProto", async () =>
+{
+   const scene = await Browser .createX3DFromString (`
+PROFILE Interchange
+
+PROTO Foo [
+   inputOutput MFNode children [ ]
+]
+{
+   Group { children IS children }
+}
+   `)
+
+   expect (scene .createProto ("Foo") .getNodeTypeName ()) .toBe ("Foo")
+})
+
+test ("addNamedNode", async () =>
+{
+   const
+      scene = await Browser .createX3DFromString (`PROFILE Full`),
+      node  = scene .createNode ("Group")
+
+   scene .addNamedNode ("Foo", node)
+
+   expect (scene .getNamedNode ("Foo")) .toBe (node)
+   expect (scene .getNamedNode ("Foo") .getNodeName ()) .toBe ("Foo")
+   expect (scene .getNamedNode ("Foo") .getNodeTypeName ()) .toBe ("Group")
+
+   try
+   {
+      scene .addNamedNode ("Foo", node)
+      throw false;
+   }
+   catch (e)
+   {
+      if (e === false)
+         throw new Error ("addNamedNode throw Error test failed!")
+   }
 })
