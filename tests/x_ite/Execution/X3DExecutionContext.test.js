@@ -136,7 +136,14 @@ test ("createProto", async () =>
    const scene = await Browser .createX3DFromString (`
 PROFILE Interchange
 
+EXTERNPROTO Foo [
+   inputOutput SFBool test
+   inputOutput MFNode children
+]
+[ ]
+
 PROTO Foo [
+   inputOutput SFBool test TRUE
    inputOutput MFNode children [ ]
 ]
 {
@@ -145,6 +152,7 @@ PROTO Foo [
    `)
 
    expect (scene .createProto ("Foo") .getNodeTypeName ()) .toBe ("Foo")
+   expect (scene .createProto ("Foo") .test) .toBe (true)
    expect (() => scene .createProto ("WorldInfo")) .toThrow (Error)
 })
 
