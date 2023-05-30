@@ -302,6 +302,25 @@ test ("getNamedNodes", async () =>
    expect (scene .getNamedNodes () [1]) .toBe (node2)
 })
 
+test ("getUniqueName", async () =>
+{
+   const scene = await Browser .createX3DFromString (`
+PROFILE Interchange
+
+DEF S Shape {
+   geometry DEF B Box { }
+}
+   `)
+
+   expect (scene .getNamedNode ("S") .getNodeName ()) .toBe ("S")
+   expect (scene .getNamedNode ("B") .getNodeName ()) .toBe ("B")
+   expect (scene .getUniqueName ("S")) .not .toBe ("S")
+   expect (scene .getUniqueName ("S")) .toMatch (/^S_\d+$/)
+   expect (scene .getUniqueName ("B")) .not .toBe ("B")
+   expect (scene .getUniqueName ("B")) .toMatch (/^B_\d+$/)
+   expect (scene .getUniqueName ()) .toMatch (/^_\d+$/)
+})
+
 const sleep = delay => new Promise (resolve => setTimeout (resolve, delay))
 
 test ("addImportedNode", async () =>
