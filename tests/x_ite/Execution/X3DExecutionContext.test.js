@@ -123,12 +123,40 @@ Test { }
 
 test ("createNode", async () =>
 {
-   const scene = await Browser .createX3DFromString (`PROFILE Full`)
+   const scene = await Browser .createX3DFromString (`
+PROFILE Full
+
+EXTERNPROTO TimeSensor [
+   inputOutput SFBool enabled
+]
+[ ]
+
+EXTERNPROTO Foo [
+   inputOutput SFBool enabled
+]
+[ ]
+
+PROTO TimeSensor [
+   inputOutput SFBool enabled FALSE
+]
+{ }
+
+PROTO Foo [
+   inputOutput SFBool enabled FALSE
+]
+{ }
+`)
 
    for (const Type of Browser .getSupportedNodes ())
+   {
       expect (scene .createNode (Type .prototype .getTypeName ()) .getNodeTypeName ()) .toBe (Type .prototype .getTypeName ())
+      expect (scene .createNode (Type .prototype .getTypeName ()) .getValue ()) .toBeInstanceOf (Type)
+   }
 
    expect (() => scene .createNode ("Foo")) .toThrow (Error)
+
+   expect (scene .createNode ("TimeSensor") .getNodeTypeName ()) .toBe ("TimeSensor")
+   expect (scene .createNode ("TimeSensor") .enabled) .toBe (true)
 })
 
 test ("createProto", async () =>
