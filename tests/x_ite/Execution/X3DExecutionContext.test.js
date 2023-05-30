@@ -127,6 +127,8 @@ test ("createNode", async () =>
 
    for (const Type of Browser .getSupportedNodes ())
       expect (scene .createNode (Type .prototype .getTypeName ()) .getNodeTypeName ()) .toBe (Type .prototype .getTypeName ())
+
+   expect (() => scene .createNode ("Foo")) .toThrow (Error)
 })
 
 test ("createProto", async () =>
@@ -143,6 +145,7 @@ PROTO Foo [
    `)
 
    expect (scene .createProto ("Foo") .getNodeTypeName ()) .toBe ("Foo")
+   expect (() => scene .createProto ("WorldInfo")) .toThrow (Error)
 })
 
 test ("addNamedNode", async () =>
