@@ -256,3 +256,144 @@ test ("getNamedNodes", async () =>
    expect (scene .getNamedNodes () [0]) .toBe (node1)
    expect (scene .getNamedNodes () [1]) .toBe (node2)
 })
+
+const sleep = delay => new Promise (resolve => setTimeout (resolve, delay))
+
+test ("addImportedNode", async () =>
+{
+   const scene = await Browser .createX3DFromString (`
+PROFILE Interchange
+
+DEF I Inline {
+   url "data:model/x3d+vrml,
+DEF S Shape {
+   geometry DEF B Box { }
+}
+EXPORT S
+EXPORT B
+"
+}
+   `)
+
+   await sleep ()
+
+   const
+      inlineNode = scene .getNamedNode ("I"),
+      node1      = inlineNode .getValue () .getInternalScene () .getNamedNode ("S"),
+      node2      = inlineNode .getValue () .getInternalScene () .getNamedNode ("B")
+
+   scene .addImportedNode (inlineNode, "S")
+
+   expect (scene .getImportedNode ("S")) .toBe (node1)
+   expect (scene .getImportedNode ("S") .getNodeName ()) .toBe ("S")
+   expect (scene .getImportedNode ("S") .getNodeTypeName ()) .toBe ("Shape")
+   expect (node1 .getNodeName ()) .toBe ("S")
+
+   expect (() => scene .addImportedNode (inlineNode, "S")) .toThrow (Error);
+   expect (() => scene .addImportedNode (inlineNode, "B", "S")) .toThrow (Error);
+
+   expect (scene .getImportedNode ("S")) .toBe (node1)
+   expect (scene .getImportedNode ("S") .getNodeName ()) .toBe ("S")
+   expect (scene .getImportedNode ("S") .getNodeTypeName ()) .toBe ("Shape")
+   expect (node1 .getNodeName ()) .toBe ("S")
+
+   scene .removeImportedNode ("S")
+
+   scene .addImportedNode (inlineNode, "B", "S")
+
+   expect (scene .getImportedNode ("S")) .toBe (node2)
+   expect (scene .getImportedNode ("S") .getNodeName ()) .toBe ("B")
+   expect (scene .getImportedNode ("S") .getNodeTypeName ()) .toBe ("Box")
+   expect (node2 .getNodeName ()) .toBe ("B")
+
+   expect (() => scene .addImportedNode (inlineNode, "S")) .toThrow (Error);
+   expect (() => scene .addImportedNode (inlineNode, "B", "S")) .toThrow (Error);
+
+   expect (scene .getImportedNode ("S")) .toBe (node2)
+   expect (scene .getImportedNode ("S") .getNodeName ()) .toBe ("B")
+   expect (scene .getImportedNode ("S") .getNodeTypeName ()) .toBe ("Box")
+   expect (node2 .getNodeName ()) .toBe ("B")
+})
+
+test ("updateImportedNode", async () =>
+{
+   const scene = await Browser .createX3DFromString (`
+PROFILE Interchange
+
+DEF I Inline {
+   url "data:model/x3d+vrml,
+DEF S Shape {
+   geometry DEF B Box { }
+}
+EXPORT S
+EXPORT B
+"
+}
+   `)
+
+   await sleep ()
+
+   const
+      inlineNode = scene .getNamedNode ("I"),
+      node1      = inlineNode .getValue () .getInternalScene () .getNamedNode ("S"),
+      node2      = inlineNode .getValue () .getInternalScene () .getNamedNode ("B")
+
+   scene .updateImportedNode (inlineNode, "S", "Foo")
+
+   expect (scene .getImportedNode ("Foo")) .toBe (node1)
+   expect (scene .getImportedNode ("Foo") .getNodeName ()) .toBe ("S")
+   expect (scene .getImportedNode ("Foo") .getNodeTypeName ()) .toBe ("Shape")
+   expect (node1 .getNodeName ()) .toBe ("S")
+
+   expect (() => scene .updateImportedNode (inlineNode, "B", "Foo")) .not .toThrow (Error);
+
+   expect (scene .getImportedNode ("Foo")) .toBe (node2)
+   expect (scene .getImportedNode ("Foo") .getNodeName ()) .toBe ("B")
+   expect (scene .getImportedNode ("Foo") .getNodeTypeName ()) .toBe ("Box")
+   expect (node2 .getNodeName ()) .toBe ("B")
+})
+
+test ("removeImportedNode", async () =>
+{
+   const scene = await Browser .createX3DFromString (`
+PROFILE Interchange
+
+DEF I Inline {
+   url "data:model/x3d+vrml,
+DEF S Shape {
+   geometry DEF B Box { }
+}
+EXPORT S
+EXPORT B
+"
+}
+   `)
+
+   await sleep ()
+
+   const
+      inlineNode = scene .getNamedNode ("I"),
+      node1      = inlineNode .getValue () .getInternalScene () .getNamedNode ("S")
+
+   scene .updateImportedNode (inlineNode, "S", "Foo")
+
+   expect (scene .getImportedNode ("Foo")) .toBe (node1)
+   expect (scene .getImportedNode ("Foo") .getNodeName ()) .toBe ("S")
+   expect (scene .getImportedNode ("Foo") .getNodeTypeName ()) .toBe ("Shape")
+   expect (node1 .getNodeName ()) .toBe ("S")
+
+   scene .removeImportedNode ("Foo")
+
+   expect (() => scene .getImportedNode ("Foo")) .toThrow (Error);
+
+   scene .updateImportedNode (inlineNode, "S", "Bah")
+
+   expect (scene .getImportedNode ("Bah")) .toBe (node1)
+   expect (scene .getImportedNode ("Bah") .getNodeName ()) .toBe ("S")
+   expect (scene .getImportedNode ("Bah") .getNodeTypeName ()) .toBe ("Shape")
+   expect (node1 .getNodeName ()) .toBe ("S")
+
+   scene .removeImportedNode ("Bah")
+
+   expect (() => scene .getImportedNode ("Bah")) .toThrow (Error);
+})
