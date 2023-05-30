@@ -245,4 +245,11 @@ test ("getNamedNodes", async () =>
    scene .removeNamedNode ("Bah")
 
    expect (scene .getNamedNodes ()) .toHaveLength (0)
+
+   scene .addNamedNode ("Foo", node1)
+   scene .addNamedNode ("Bah", node2)
+
+   expect (scene .getNamedNodes ()) .toHaveLength (2)
+   expect (scene .getNamedNodes () [0]) .toBe (node1)
+   expect (scene .getNamedNodes () [1]) .toBe (node2)
 })
