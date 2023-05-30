@@ -210,15 +210,39 @@ test ("removeNamedNode", async () =>
    expect (() => scene .getNamedNode ("Foo")) .toThrow (Error);
    expect (node1 .getNodeName ()) .toBe ("")
 
-   scene .addNamedNode ("Foo", node1)
+   scene .addNamedNode ("Bah", node1)
 
-   expect (scene .getNamedNode ("Foo")) .toBe (node1)
-   expect (scene .getNamedNode ("Foo") .getNodeName ()) .toBe ("Foo")
-   expect (scene .getNamedNode ("Foo") .getNodeTypeName ()) .toBe ("Group")
-   expect (node1 .getNodeName ()) .toBe ("Foo")
+   expect (scene .getNamedNode ("Bah")) .toBe (node1)
+   expect (scene .getNamedNode ("Bah") .getNodeName ()) .toBe ("Bah")
+   expect (scene .getNamedNode ("Bah") .getNodeTypeName ()) .toBe ("Group")
+   expect (node1 .getNodeName ()) .toBe ("Bah")
+
+   scene .removeNamedNode ("Bah")
+
+   expect (() => scene .getNamedNode ("Bah")) .toThrow (Error);
+   expect (node1 .getNodeName ()) .toBe ("")
+})
+
+test ("getNamedNodes", async () =>
+{
+   const
+      scene = await Browser .createX3DFromString (`PROFILE Full`),
+      node1 = scene .createNode ("Group"),
+      node2 = scene .createNode ("Group")
+
+   scene .addNamedNode ("Foo", node1)
+   scene .addNamedNode ("Bah", node2)
+
+   expect (scene .getNamedNodes ()) .toHaveLength (2)
+   expect (scene .getNamedNodes () [0]) .toBe (node1)
+   expect (scene .getNamedNodes () [1]) .toBe (node2)
 
    scene .removeNamedNode ("Foo")
 
-   expect (() => scene .getNamedNode ("Foo")) .toThrow (Error);
-   expect (node1 .getNodeName ()) .toBe ("")
+   expect (scene .getNamedNodes ()) .toHaveLength (1)
+   expect (scene .getNamedNodes () [0]) .toBe (node2)
+
+   scene .removeNamedNode ("Bah")
+
+   expect (scene .getNamedNodes ()) .toHaveLength (0)
 })
