@@ -397,3 +397,64 @@ EXPORT B
 
    expect (() => scene .getImportedNode ("Bah")) .toThrow (Error);
 })
+
+test ("getImportedNodes", async () =>
+{
+   const scene = await Browser .createX3DFromString (`
+PROFILE Interchange
+
+DEF I Inline {
+   url "data:model/x3d+vrml,
+DEF S Shape {
+   geometry DEF B Box { }
+}
+EXPORT S AS SE
+EXPORT B AS BE
+"
+}
+IMPORT I.SE AS S
+IMPORT I.BE AS B
+   `)
+
+   await sleep ()
+
+   const
+      inlineNode = scene .getNamedNode ("I"),
+      node1      = inlineNode .getValue () .getInternalScene () .getNamedNode ("S"),
+      node2      = inlineNode .getValue () .getInternalScene () .getNamedNode ("B")
+
+   expect (scene .getImportedNodes ()) .toHaveLength (2)
+   expect (scene .getImportedNodes () [0] .inlineNode) .toBe (inlineNode)
+   expect (scene .getImportedNodes () [0] .exportedNode) .toBe (node1)
+   expect (scene .getImportedNodes () [0] .exportedName) .toBe ("SE")
+   expect (scene .getImportedNodes () [0] .importedName) .toBe ("S")
+   expect (scene .getImportedNodes () [1] .inlineNode) .toBe (inlineNode)
+   expect (scene .getImportedNodes () [1] .exportedNode) .toBe (node2)
+   expect (scene .getImportedNodes () [1] .exportedName) .toBe ("BE")
+   expect (scene .getImportedNodes () [1] .importedName) .toBe ("B")
+
+   scene .removeImportedNode ("S")
+
+   expect (scene .getImportedNodes ()) .toHaveLength (1)
+   expect (scene .getImportedNodes () [0] .inlineNode) .toBe (inlineNode)
+   expect (scene .getImportedNodes () [0] .exportedNode) .toBe (node2)
+   expect (scene .getImportedNodes () [0] .exportedName) .toBe ("BE")
+   expect (scene .getImportedNodes () [0] .importedName) .toBe ("B")
+
+   scene .removeImportedNode ("B")
+
+   expect (scene .getImportedNodes ()) .toHaveLength (0)
+
+   scene .addImportedNode (inlineNode, "SE", "Foo")
+   scene .addImportedNode (inlineNode, "BE", "Bah")
+
+   expect (scene .getImportedNodes ()) .toHaveLength (2)
+   expect (scene .getImportedNodes () [0] .inlineNode) .toBe (inlineNode)
+   expect (scene .getImportedNodes () [0] .exportedNode) .toBe (node1)
+   expect (scene .getImportedNodes () [0] .exportedName) .toBe ("SE")
+   expect (scene .getImportedNodes () [0] .importedName) .toBe ("Foo")
+   expect (scene .getImportedNodes () [1] .inlineNode) .toBe (inlineNode)
+   expect (scene .getImportedNodes () [1] .exportedNode) .toBe (node2)
+   expect (scene .getImportedNodes () [1] .exportedName) .toBe ("BE")
+   expect (scene .getImportedNodes () [1] .importedName) .toBe ("Bah")
+})
