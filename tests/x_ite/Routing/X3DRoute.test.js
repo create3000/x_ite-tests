@@ -28,9 +28,11 @@ ROUTE I.value_changed TO T.set_translation
    expect (route .constructor) .toBe (X3D .X3DRoute)
 
    expect (route .sourceNode) .toBeInstanceOf (X3D .SFNode)
+   expect (route .sourceNode) .toBe (scene .getNamedNode ("I"))
    expect (route .sourceNode .getNodeTypeName ()) .toBe ("PositionInterpolator")
    expect (route .sourceField) .toBe ("value_changed")
    expect (route .destinationNode) .toBeInstanceOf (X3D .SFNode)
+   expect (route .destinationNode) .toBe (scene .getNamedNode ("T"))
    expect (route .destinationNode .getNodeTypeName ()) .toBe ("Transform")
    expect (route .destinationField) .toBe ("translation")
 
@@ -40,9 +42,11 @@ ROUTE I.value_changed TO T.set_translation
    route .destinationField = undefined
 
    expect (route .sourceNode) .toBeInstanceOf (X3D .SFNode)
+   expect (route .sourceNode) .toBe (scene .getNamedNode ("I"))
    expect (route .sourceNode .getNodeTypeName ()) .toBe ("PositionInterpolator")
    expect (route .sourceField) .toBe ("value_changed")
    expect (route .destinationNode) .toBeInstanceOf (X3D .SFNode)
+   expect (route .destinationNode) .toBe (scene .getNamedNode ("T"))
    expect (route .destinationNode .getNodeTypeName ()) .toBe ("Transform")
    expect (route .destinationField) .toBe ("translation")
 
