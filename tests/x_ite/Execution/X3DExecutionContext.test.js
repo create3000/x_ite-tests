@@ -319,6 +319,23 @@ DEF S Shape {
    expect (scene .getUniqueName ("B")) .not .toBe ("B")
    expect (scene .getUniqueName ("B")) .toMatch (/^B_\d+$/)
    expect (scene .getUniqueName ()) .toMatch (/^_\d+$/)
+
+   expect (scene .getNamedNodes ()) .toHaveLength (2)
+
+   for (let i = 0; i < 100; ++ i)
+      scene .addNamedNode (scene .getUniqueName (), scene .createNode ("Group"))
+
+   expect (scene .getNamedNodes ()) .toHaveLength (102)
+
+   for (let i = 0; i < 1000; ++ i)
+   {
+      const r = Math .floor (Math .random () * scene .getNamedNodes () .length)
+
+      scene .removeNamedNode (scene .getNamedNodes () [r] .getNodeName ())
+      scene .addNamedNode (scene .getUniqueName (), scene .createNode ("Group"))
+   }
+
+   expect (scene .getNamedNodes ()) .toHaveLength (102)
 })
 
 const sleep = delay => new Promise (resolve => setTimeout (resolve, delay))
