@@ -7,7 +7,7 @@ test ("constructor", () =>
       Browser  = canvas .browser,
       profiles = Browser .supportedProfiles
 
-   expect (profiles .length) .toBeGreaterThan (0)
+   expect (profiles) .toHaveLength (8)
    expect (profiles) .toBeInstanceOf (X3D .ProfileInfoArray)
    expect (profiles .constructor) .toBe (X3D .ProfileInfoArray)
 })

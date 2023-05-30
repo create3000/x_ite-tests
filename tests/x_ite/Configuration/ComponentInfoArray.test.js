@@ -7,7 +7,7 @@ test ("constructor", () =>
       Browser    = canvas .browser,
       components = Browser .supportedComponents
 
-   expect (components .length) .toBeGreaterThan (0)
+   expect (components) .toHaveLength (36 + 2) // Annotation + X_ITE
    expect (components) .toBeInstanceOf (X3D .ComponentInfoArray)
    expect (components .constructor) .toBe (X3D .ComponentInfoArray)
 })
