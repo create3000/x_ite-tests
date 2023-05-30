@@ -149,22 +149,41 @@ test ("addNamedNode", async () =>
 {
    const
       scene = await Browser .createX3DFromString (`PROFILE Full`),
-      node  = scene .createNode ("Group")
+      node1 = scene .createNode ("Group"),
+      node2 = scene .createNode ("Group")
 
-   scene .addNamedNode ("Foo", node)
+   scene .addNamedNode ("Foo", node1)
 
-   expect (scene .getNamedNode ("Foo")) .toBe (node)
+   expect (scene .getNamedNode ("Foo")) .toBe (node1)
    expect (scene .getNamedNode ("Foo") .getNodeName ()) .toBe ("Foo")
    expect (scene .getNamedNode ("Foo") .getNodeTypeName ()) .toBe ("Group")
+   expect (node1 .getNodeName ()) .toBe ("Foo")
 
-   try
-   {
-      scene .addNamedNode ("Foo", node)
-      throw false;
-   }
-   catch (e)
-   {
-      if (e === false)
-         throw new Error ("addNamedNode throw Error test failed!")
-   }
+   expect (() => scene .addNamedNode ("Foo", node1)) .toThrow (Error);
+   expect (() => scene .addNamedNode ("Foo", node2)) .toThrow (Error);
+   expect (node1 .getNodeName ()) .toBe ("Foo")
+})
+
+test ("updateNamedNode", async () =>
+{
+   const
+      scene = await Browser .createX3DFromString (`PROFILE Full`),
+      node1 = scene .createNode ("Group"),
+      node2 = scene .createNode ("Group")
+
+   scene .updateNamedNode ("Foo", node1)
+
+   expect (scene .getNamedNode ("Foo")) .toBe (node1)
+   expect (scene .getNamedNode ("Foo") .getNodeName ()) .toBe ("Foo")
+   expect (scene .getNamedNode ("Foo") .getNodeTypeName ()) .toBe ("Group")
+   expect (node1 .getNodeName ()) .toBe ("Foo")
+
+   expect (() => scene .updateNamedNode ("Foo", node1)) .not .toThrow (Error);
+   expect (() => scene .updateNamedNode ("Foo", node2)) .not .toThrow (Error);
+
+   expect (scene .getNamedNode ("Foo")) .toBe (node2)
+   expect (scene .getNamedNode ("Foo") .getNodeName ()) .toBe ("Foo")
+   expect (scene .getNamedNode ("Foo") .getNodeTypeName ()) .toBe ("Group")
+   expect (node2 .getNodeName ()) .toBe ("Foo")
+   expect (node1 .getNodeName ()) .toBe ("")
 })
