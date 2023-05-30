@@ -161,6 +161,10 @@ test ("addNamedNode", async () =>
 
    expect (() => scene .addNamedNode ("Foo", node1)) .toThrow (Error);
    expect (() => scene .addNamedNode ("Foo", node2)) .toThrow (Error);
+
+   expect (scene .getNamedNode ("Foo")) .toBe (node1)
+   expect (scene .getNamedNode ("Foo") .getNodeName ()) .toBe ("Foo")
+   expect (scene .getNamedNode ("Foo") .getNodeTypeName ()) .toBe ("Group")
    expect (node1 .getNodeName ()) .toBe ("Foo")
 })
 
@@ -193,6 +197,18 @@ test ("removeNamedNode", async () =>
    const
       scene = await Browser .createX3DFromString (`PROFILE Full`),
       node1 = scene .createNode ("Group")
+
+   scene .addNamedNode ("Foo", node1)
+
+   expect (scene .getNamedNode ("Foo")) .toBe (node1)
+   expect (scene .getNamedNode ("Foo") .getNodeName ()) .toBe ("Foo")
+   expect (scene .getNamedNode ("Foo") .getNodeTypeName ()) .toBe ("Group")
+   expect (node1 .getNodeName ()) .toBe ("Foo")
+
+   scene .removeNamedNode ("Foo")
+
+   expect (() => scene .getNamedNode ("Foo")) .toThrow (Error);
+   expect (node1 .getNodeName ()) .toBe ("")
 
    scene .addNamedNode ("Foo", node1)
 
