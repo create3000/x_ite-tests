@@ -150,7 +150,7 @@ test ("addNamedNode", async () =>
    const
       scene = await Browser .createX3DFromString (`PROFILE Full`),
       node1 = scene .createNode ("Group"),
-      node2 = scene .createNode ("Group")
+      node2 = scene .createNode ("Switch")
 
    scene .addNamedNode ("Foo", node1)
 
@@ -173,7 +173,7 @@ test ("updateNamedNode", async () =>
    const
       scene = await Browser .createX3DFromString (`PROFILE Full`),
       node1 = scene .createNode ("Group"),
-      node2 = scene .createNode ("Group")
+      node2 = scene .createNode ("Switch")
 
    scene .updateNamedNode ("Foo", node1)
 
@@ -187,7 +187,7 @@ test ("updateNamedNode", async () =>
 
    expect (scene .getNamedNode ("Foo")) .toBe (node2)
    expect (scene .getNamedNode ("Foo") .getNodeName ()) .toBe ("Foo")
-   expect (scene .getNamedNode ("Foo") .getNodeTypeName ()) .toBe ("Group")
+   expect (scene .getNamedNode ("Foo") .getNodeTypeName ()) .toBe ("Switch")
    expect (node2 .getNodeName ()) .toBe ("Foo")
    expect (node1 .getNodeName ()) .toBe ("")
 })
@@ -228,7 +228,7 @@ test ("getNamedNodes", async () =>
    const
       scene = await Browser .createX3DFromString (`PROFILE Full`),
       node1 = scene .createNode ("Group"),
-      node2 = scene .createNode ("Group")
+      node2 = scene .createNode ("Switch")
 
    scene .addNamedNode ("Foo", node1)
    scene .addNamedNode ("Bah", node2)
