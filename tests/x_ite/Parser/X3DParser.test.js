@@ -87,7 +87,7 @@ test ("nodes", async () =>
 
    const string = `PROFILE Full
 
-   ${Browser .getSupportedNodes () .map (Type => Type .prototype .getTypeName () + "{ }") .join ("\n")}
+   ${[...Browser .getSupportedNodes ()] .map (Type => Type .prototype .getTypeName () + "{ }") .join ("\n")}
    `
 
    const
