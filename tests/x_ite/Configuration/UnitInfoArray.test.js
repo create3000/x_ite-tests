@@ -15,6 +15,7 @@ test ("spread", async () =>
 
    expect (units) .toBeInstanceOf (X3D .UnitInfoArray)
    expect (units .constructor) .toBe (X3D .UnitInfoArray)
+   expect (units) .toHaveLength (4)
 
    const a = [... units]
 
