@@ -161,6 +161,7 @@ PROTO Foo [
    expect (scene .createProto ("Foo") .test) .toBe (true)
    expect (scene .createProto ("Bah") .getNodeTypeName ()) .toBe ("Bah")
    expect (scene .createProto ("Bah") .test) .toBe (false)
+
    expect (() => scene .createProto ("WorldInfo")) .toThrow (Error)
 })
 
