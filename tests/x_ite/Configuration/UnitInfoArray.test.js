@@ -4,6 +4,44 @@ const
 
 const X3D = require ("../../X3D")
 
+test ("properties", () =>
+{
+   const
+      canvas  = X3D .createBrowser (),
+      Browser = canvas .browser,
+      units   = Browser .currentScene .units
+
+   expect (units) .toHaveLength (4)
+
+   expect (units [0]) .toBeInstanceOf (X3D .UnitInfo)
+   expect (units [0] .constructor) .toBe (X3D .UnitInfo)
+   expect (units [0] .category) .toBe ("angle")
+   expect (units [0] .name) .toBe ("radian")
+   expect (units [0] .conversionFactor) .toBe (1)
+   expect (units [0] .conversion_factor) .toBe (1)
+
+   expect (units [1]) .toBeInstanceOf (X3D .UnitInfo)
+   expect (units [1] .constructor) .toBe (X3D .UnitInfo)
+   expect (units [1] .category) .toBe ("force")
+   expect (units [1] .name) .toBe ("newton")
+   expect (units [1] .conversionFactor) .toBe (1)
+   expect (units [1] .conversion_factor) .toBe (1)
+
+   expect (units [2]) .toBeInstanceOf (X3D .UnitInfo)
+   expect (units [2] .constructor) .toBe (X3D .UnitInfo)
+   expect (units [2] .category) .toBe ("length")
+   expect (units [2] .name) .toBe ("metre")
+   expect (units [2] .conversionFactor) .toBe (1)
+   expect (units [2] .conversion_factor) .toBe (1)
+
+   expect (units [3]) .toBeInstanceOf (X3D .UnitInfo)
+   expect (units [3] .constructor) .toBe (X3D .UnitInfo)
+   expect (units [3] .category) .toBe ("mass")
+   expect (units [3] .name) .toBe ("kilogram")
+   expect (units [3] .conversionFactor) .toBe (1)
+   expect (units [3] .conversion_factor) .toBe (1)
+})
+
 test ("spread", async () =>
 {
    const
@@ -15,7 +53,6 @@ test ("spread", async () =>
 
    expect (units) .toBeInstanceOf (X3D .UnitInfoArray)
    expect (units .constructor) .toBe (X3D .UnitInfoArray)
-   expect (units) .toHaveLength (4)
 
    const a = [... units]
 
