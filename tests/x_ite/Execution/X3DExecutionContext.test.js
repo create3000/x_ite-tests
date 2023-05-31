@@ -604,11 +604,11 @@ Foo { }
 
    const proto = scene .getProtoDeclaration ("Foo")
 
-   scene .removeProtoDeclaration ("Foo")
-
+   expect (() => scene .removeProtoDeclaration ("Foo")) .not .toThrow (Error)
    expect (scene .protos) .toHaveLength (0)
    expect (scene .getProtoDeclarations ()) .toHaveLength (0)
    expect (() => scene .getProtoDeclaration ("Foo")) .toThrow (Error)
+   expect (() => scene .removeProtoDeclaration ("Foo")) .not .toThrow (Error)
 
    expect (() => scene .addProtoDeclaration ("Bah", proto)) .not .toThrow (Error)
    expect (() => scene .addProtoDeclaration ("Bah", proto)) .toThrow (Error)
@@ -652,11 +652,11 @@ Foo { }
 
    const externproto = scene .getExternProtoDeclaration ("Foo")
 
-   scene .removeExternProtoDeclaration ("Foo")
-
+   expect (() => scene .removeExternProtoDeclaration ("Foo")) .not .toThrow (Error)
    expect (scene .externprotos) .toHaveLength (0)
    expect (scene .getExternProtoDeclarations ()) .toHaveLength (0)
    expect (() => scene .getExternProtoDeclaration ("Foo")) .toThrow (Error)
+   expect (() => scene .removeExternProtoDeclaration ("Foo")) .not .toThrow (Error)
 
    expect (() => scene .addExternProtoDeclaration ("Bah", externproto)) .not .toThrow (Error)
    expect (() => scene .addExternProtoDeclaration ("Bah", externproto)) .toThrow (Error)
