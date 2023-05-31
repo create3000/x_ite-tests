@@ -430,7 +430,7 @@ EXPORT B
 
    const otherInlineNode = otherScene .getNamedNode ("I")
 
-   expect (() => scene .addImportedNode (otherInlineNode, "S")) .toThrow (Error)
+   expect (() => scene .addImportedNode (otherInlineNode, "S", "FooBee")) .toThrow (Error)
 })
 
 test ("updateImportedNode", async () =>
@@ -490,7 +490,7 @@ EXPORT B
 
    const otherInlineNode = otherScene .getNamedNode ("I")
 
-   expect (() => scene .updateImportedNode (otherInlineNode, "S")) .toThrow (Error)
+   expect (() => scene .updateImportedNode (otherInlineNode, "S", "FooBee")) .toThrow (Error)
 })
 
 test ("removeImportedNode", async () =>
@@ -704,8 +704,8 @@ Foo { }
 
    const otherProto = otherScene .getProtoDeclaration ("Foo")
 
-   expect (() => scene .addProtoDeclaration ("Bah", otherProto)) .toThrow (Error)
-   expect (() => scene .updateProtoDeclaration ("Bah", otherProto)) .toThrow (Error)
+   expect (() => scene .addProtoDeclaration ("FooBee", otherProto)) .toThrow (Error)
+   expect (() => scene .updateProtoDeclaration ("FooBee", otherProto)) .toThrow (Error)
 })
 
 test ("ExternProtoDeclarationHandling", async () =>
@@ -771,6 +771,6 @@ Foo { }
 
    const otherProto = otherScene .getExternProtoDeclaration ("Foo")
 
-   expect (() => scene .addExternProtoDeclaration ("Bah", otherProto)) .toThrow (Error)
-   expect (() => scene .updateExternProtoDeclaration ("Bah", otherProto)) .toThrow (Error)
+   expect (() => scene .addExternProtoDeclaration ("FooBee", otherProto)) .toThrow (Error)
+   expect (() => scene .updateExternProtoDeclaration ("FooBee", otherProto)) .toThrow (Error)
 })
