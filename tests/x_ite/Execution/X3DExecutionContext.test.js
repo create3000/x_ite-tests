@@ -606,20 +606,28 @@ Foo { }
 
    scene .removeProtoDeclaration ("Foo")
 
+   expect (scene .protos) .toHaveLength (0)
+   expect (scene .getProtoDeclarations ()) .toHaveLength (0)
    expect (() => scene .getProtoDeclaration ("Foo")) .toThrow (Error)
 
    expect (() => scene .addProtoDeclaration ("Bah", proto)) .not .toThrow (Error)
    expect (() => scene .addProtoDeclaration ("Bah", proto)) .toThrow (Error)
+   expect (scene .protos) .toHaveLength (1)
+   expect (scene .getProtoDeclarations ()) .toHaveLength (1)
    expect (scene .getProtoDeclaration ("Bah")) .toBe (proto)
    expect (proto .name) .toBe ("Bah")
 
    expect (() => scene .updateProtoDeclaration ("Foo", proto)) .not .toThrow (Error)
    expect (() => scene .getProtoDeclaration ("Bah")) .toThrow (Error)
+   expect (scene .protos) .toHaveLength (1)
+   expect (scene .getProtoDeclarations ()) .toHaveLength (1)
    expect (scene .getProtoDeclaration ("Foo")) .toBe (proto)
    expect (proto .name) .toBe ("Foo")
 
    expect (() => scene .updateProtoDeclaration ("Bah", proto)) .not .toThrow (Error)
    expect (() => scene .getProtoDeclaration ("Foo")) .toThrow (Error)
+   expect (scene .protos) .toHaveLength (1)
+   expect (scene .getProtoDeclarations ()) .toHaveLength (1)
    expect (scene .getProtoDeclaration ("Bah")) .toBe (proto)
    expect (proto .name) .toBe ("Bah")
 })
@@ -646,20 +654,28 @@ Foo { }
 
    scene .removeExternProtoDeclaration ("Foo")
 
+   expect (scene .externprotos) .toHaveLength (0)
+   expect (scene .getExternProtoDeclarations ()) .toHaveLength (0)
    expect (() => scene .getExternProtoDeclaration ("Foo")) .toThrow (Error)
 
    expect (() => scene .addExternProtoDeclaration ("Bah", externproto)) .not .toThrow (Error)
    expect (() => scene .addExternProtoDeclaration ("Bah", externproto)) .toThrow (Error)
+   expect (scene .externprotos) .toHaveLength (1)
+   expect (scene .getExternProtoDeclarations ()) .toHaveLength (1)
    expect (scene .getExternProtoDeclaration ("Bah")) .toBe (externproto)
    expect (externproto .name) .toBe ("Bah")
 
    expect (() => scene .updateExternProtoDeclaration ("Foo", externproto)) .not .toThrow (Error)
    expect (() => scene .getExternProtoDeclaration ("Bah")) .toThrow (Error)
+   expect (scene .externprotos) .toHaveLength (1)
+   expect (scene .getExternProtoDeclarations ()) .toHaveLength (1)
    expect (scene .getExternProtoDeclaration ("Foo")) .toBe (externproto)
    expect (externproto .name) .toBe ("Foo")
 
    expect (() => scene .updateExternProtoDeclaration ("Bah", externproto)) .not .toThrow (Error)
    expect (() => scene .getExternProtoDeclaration ("Foo")) .toThrow (Error)
+   expect (scene .externprotos) .toHaveLength (1)
+   expect (scene .getExternProtoDeclarations ()) .toHaveLength (1)
    expect (scene .getExternProtoDeclaration ("Bah")) .toBe (externproto)
    expect (externproto .name) .toBe ("Bah")
 })
