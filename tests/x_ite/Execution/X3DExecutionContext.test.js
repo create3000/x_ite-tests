@@ -219,6 +219,12 @@ test ("addNamedNode", async () =>
 
    expect (() => scene .addNamedNode ("", node1)) .toThrow (Error)
    expect (() => scene .addNamedNode ("", scene)) .toThrow (Error)
+
+   const
+      otherScene = await Browser .createX3DFromString (`PROFILE Full`),
+      otherNode1 = otherScene .createNode ("Group")
+
+   expect (() => scene .addNamedNode ("FooBee", otherNode1)) .toThrow (Error)
 })
 
 test ("updateNamedNode", async () =>
@@ -245,6 +251,12 @@ test ("updateNamedNode", async () =>
 
    expect (() => scene .updateNamedNode ("", node1)) .toThrow (Error)
    expect (() => scene .updateNamedNode ("", scene)) .toThrow (Error)
+
+   const
+      otherScene = await Browser .createX3DFromString (`PROFILE Full`),
+      otherNode1 = otherScene .createNode ("Group")
+
+   expect (() => scene .updateNamedNode ("FooBee", otherNode1)) .toThrow (Error)
 })
 
 test ("removeNamedNode", async () =>
@@ -399,6 +411,26 @@ EXPORT B
 
    expect (() => scene .addImportedNode (inlineNode, "")) .toThrow (Error)
    expect (() => scene .addImportedNode (scene, "S")) .toThrow (Error)
+
+   const otherScene = await Browser .createX3DFromString (`
+PROFILE Interchange
+
+DEF I Inline {
+   url "data:model/x3d+vrml,
+DEF S Shape {
+   geometry DEF B Box { }
+}
+EXPORT S
+EXPORT B
+"
+}
+   `)
+
+   await sleep ()
+
+   const otherInlineNode = otherScene .getNamedNode ("I")
+
+   expect (() => scene .addImportedNode (otherInlineNode, "S")) .toThrow (Error)
 })
 
 test ("updateImportedNode", async () =>
@@ -439,6 +471,26 @@ EXPORT B
 
    expect (() => scene .updateImportedNode (inlineNode, "", "Foo")) .toThrow (Error)
    expect (() => scene .updateImportedNode (scene, "S", "Foo")) .toThrow (Error)
+
+   const otherScene = await Browser .createX3DFromString (`
+PROFILE Interchange
+
+DEF I Inline {
+   url "data:model/x3d+vrml,
+DEF S Shape {
+   geometry DEF B Box { }
+}
+EXPORT S
+EXPORT B
+"
+}
+   `)
+
+   await sleep ()
+
+   const otherInlineNode = otherScene .getNamedNode ("I")
+
+   expect (() => scene .updateImportedNode (otherInlineNode, "S")) .toThrow (Error)
 })
 
 test ("removeImportedNode", async () =>
@@ -635,6 +687,25 @@ Foo { }
    expect (scene .getProtoDeclarations ()) .toHaveLength (1)
    expect (scene .getProtoDeclaration ("Bah")) .toBe (proto)
    expect (proto .name) .toBe ("Bah")
+
+   const otherScene = await Browser .createX3DFromString (`
+PROFILE Interchange
+
+PROTO Foo [ ]
+{
+   DEF S Shape {
+      geometry DEF B Box { }
+   }
+   USE B
+}
+
+Foo { }
+   `)
+
+   const otherProto = otherScene .getProtoDeclaration ("Foo")
+
+   expect (() => scene .addProtoDeclaration ("Bah", otherProto)) .toThrow (Error)
+   expect (() => scene .updateProtoDeclaration ("Bah", otherProto)) .toThrow (Error)
 })
 
 test ("ExternProtoDeclarationHandling", async () =>
@@ -688,4 +759,18 @@ Foo { }
    expect (scene .getExternProtoDeclarations ()) .toHaveLength (1)
    expect (scene .getExternProtoDeclaration ("Bah")) .toBe (externproto)
    expect (externproto .name) .toBe ("Bah")
+
+   const otherScene = await Browser .createX3DFromString (`
+PROFILE Interchange
+
+EXTERNPROTO Foo [ ]
+[ ]
+
+Foo { }
+   `)
+
+   const otherProto = otherScene .getExternProtoDeclaration ("Foo")
+
+   expect (() => scene .addExternProtoDeclaration ("Bah", otherProto)) .toThrow (Error)
+   expect (() => scene .updateExternProtoDeclaration ("Bah", otherProto)) .toThrow (Error)
 })
