@@ -579,7 +579,7 @@ Foo { }
    expect (executionContext .getRootNodes () [1] .getNodeName ()) .toBe ("B")
 })
 
-test ("getProtoDeclaration", async () =>
+test ("ProtoDeclarationHandling", async () =>
 {
    const scene = await Browser .createX3DFromString (`
 PROFILE Interchange
@@ -601,9 +601,30 @@ Foo { }
    expect (scene .getProtoDeclarations ()) .toBeInstanceOf (X3D .ProtoDeclarationArray)
    expect (scene .getProtoDeclaration ("Foo")) .toBeInstanceOf (X3D .X3DProtoDeclaration)
    expect (() => scene .getProtoDeclaration ("Bah")) .toThrow (Error)
+
+   const proto = scene .getProtoDeclaration ("Foo")
+
+   scene .removeProtoDeclaration ("Foo")
+
+   expect (() => scene .getProtoDeclaration ("Foo")) .toThrow (Error)
+
+   expect (() => scene .addProtoDeclaration ("Bah", proto)) .not .toThrow (Error)
+   expect (() => scene .addProtoDeclaration ("Bah", proto)) .toThrow (Error)
+   expect (scene .getProtoDeclaration ("Bah")) .toBe (proto)
+   expect (proto .name) .toBe ("Bah")
+
+   expect (() => scene .updateProtoDeclaration ("Foo", proto)) .not .toThrow (Error)
+   expect (() => scene .getProtoDeclaration ("Bah")) .toThrow (Error)
+   expect (scene .getProtoDeclaration ("Foo")) .toBe (proto)
+   expect (proto .name) .toBe ("Foo")
+
+   expect (() => scene .updateProtoDeclaration ("Bah", proto)) .not .toThrow (Error)
+   expect (() => scene .getProtoDeclaration ("Foo")) .toThrow (Error)
+   expect (scene .getProtoDeclaration ("Bah")) .toBe (proto)
+   expect (proto .name) .toBe ("Bah")
 })
 
-test ("getExternProtoDeclaration", async () =>
+test ("ExternProtoDeclarationHandling", async () =>
 {
    const scene = await Browser .createX3DFromString (`
 PROFILE Interchange
@@ -620,4 +641,25 @@ Foo { }
    expect (scene .getExternProtoDeclarations ()) .toBeInstanceOf (X3D .ExternProtoDeclarationArray)
    expect (scene .getExternProtoDeclaration ("Foo")) .toBeInstanceOf (X3D .X3DExternProtoDeclaration)
    expect (() => scene .getExternProtoDeclaration ("Bah")) .toThrow (Error)
+
+   const externproto = scene .getExternProtoDeclaration ("Foo")
+
+   scene .removeExternProtoDeclaration ("Foo")
+
+   expect (() => scene .getExternProtoDeclaration ("Foo")) .toThrow (Error)
+
+   expect (() => scene .addExternProtoDeclaration ("Bah", externproto)) .not .toThrow (Error)
+   expect (() => scene .addExternProtoDeclaration ("Bah", externproto)) .toThrow (Error)
+   expect (scene .getExternProtoDeclaration ("Bah")) .toBe (externproto)
+   expect (externproto .name) .toBe ("Bah")
+
+   expect (() => scene .updateExternProtoDeclaration ("Foo", externproto)) .not .toThrow (Error)
+   expect (() => scene .getExternProtoDeclaration ("Bah")) .toThrow (Error)
+   expect (scene .getExternProtoDeclaration ("Foo")) .toBe (externproto)
+   expect (externproto .name) .toBe ("Foo")
+
+   expect (() => scene .updateExternProtoDeclaration ("Bah", externproto)) .not .toThrow (Error)
+   expect (() => scene .getExternProtoDeclaration ("Foo")) .toThrow (Error)
+   expect (scene .getExternProtoDeclaration ("Bah")) .toBe (externproto)
+   expect (externproto .name) .toBe ("Bah")
 })
