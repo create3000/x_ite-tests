@@ -539,3 +539,40 @@ IMPORT I.BE AS B
    expect (scene .getImportedNodes () [1] .exportedName) .toBe ("BE")
    expect (scene .getImportedNodes () [1] .importedName) .toBe ("Bah")
 })
+
+test ("get/setRootNodes", async () =>
+{
+   const scene = await Browser .createX3DFromString (`
+PROFILE Interchange
+
+PROTO Foo [ ]
+{
+   DEF S Shape {
+      geometry DEF B Box { }
+   }
+   USE B
+}
+
+Foo { }
+   `)
+
+   const executionContext = scene .getRootNodes () [0] .getValue () .getBody ()
+
+   expect (executionContext .getRootNodes ()) .toHaveLength (2)
+   expect (executionContext .getRootNodes () [0]) .toBeInstanceOf (X3D .SFNode)
+   expect (executionContext .getRootNodes () [0] .getValue ()) .toBeInstanceOf (Browser .getSupportedNode ("Shape"))
+   expect (executionContext .getRootNodes () [0] .getNodeName ()) .toBe ("S")
+   expect (executionContext .getRootNodes () [1]) .toBeInstanceOf (X3D .SFNode)
+   expect (executionContext .getRootNodes () [1] .getValue ()) .toBeInstanceOf (Browser .getSupportedNode ("Box"))
+   expect (executionContext .getRootNodes () [1] .getNodeName ()) .toBe ("B")
+
+   executionContext .setRootNodes (new X3D .MFNode ())
+
+   expect (executionContext .getRootNodes ()) .toHaveLength (2)
+   expect (executionContext .getRootNodes () [0]) .toBeInstanceOf (X3D .SFNode)
+   expect (executionContext .getRootNodes () [0] .getValue ()) .toBeInstanceOf (Browser .getSupportedNode ("Shape"))
+   expect (executionContext .getRootNodes () [0] .getNodeName ()) .toBe ("S")
+   expect (executionContext .getRootNodes () [1]) .toBeInstanceOf (X3D .SFNode)
+   expect (executionContext .getRootNodes () [1] .getValue ()) .toBeInstanceOf (Browser .getSupportedNode ("Box"))
+   expect (executionContext .getRootNodes () [1] .getNodeName ()) .toBe ("B")
+})
