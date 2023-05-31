@@ -42,6 +42,7 @@ Test { }
    expect (scene .rootNodes [0] .getNodeTypeName ()) .toBe ("Test")
    expect (scene .rootNodes [0]) .toBe (scene .rootNodes [0])
    expect (scene .protos) .toHaveLength (1)
+   expect (scene .protos) .toBeInstanceOf (X3D .ProtoDeclarationArray)
    expect (scene .protos [0]) .toBeInstanceOf (X3D .X3DProtoDeclaration)
    expect (scene .protos [0] .name) .toBe ("Test")
    expect (scene .protos [0] .isExternProto) .toBe (false)
@@ -74,6 +75,7 @@ Test { }
    expect (executionContext .rootNodes [0] .getNodeTypeName ()) .toBe ("Transform")
    expect (executionContext .rootNodes [0]) .toBe (executionContext .rootNodes [0])
    expect (executionContext .protos) .toHaveLength (0)
+   expect (executionContext .protos) .toBeInstanceOf (X3D .ProtoDeclarationArray)
    expect (executionContext .externprotos) .toHaveLength (0)
    expect (executionContext .externprotos) .toBeInstanceOf (X3D .ExternProtoDeclarationArray)
    expect (executionContext .routes) .toHaveLength (0)
@@ -575,4 +577,47 @@ Foo { }
    expect (executionContext .getRootNodes () [1]) .toBeInstanceOf (X3D .SFNode)
    expect (executionContext .getRootNodes () [1] .getValue ()) .toBeInstanceOf (Browser .getSupportedNode ("Box"))
    expect (executionContext .getRootNodes () [1] .getNodeName ()) .toBe ("B")
+})
+
+test ("getProtoDeclaration", async () =>
+{
+   const scene = await Browser .createX3DFromString (`
+PROFILE Interchange
+
+PROTO Foo [ ]
+{
+   DEF S Shape {
+      geometry DEF B Box { }
+   }
+   USE B
+}
+
+Foo { }
+   `)
+
+   expect (scene .protos) .toHaveLength (1)
+   expect (scene .getProtoDeclarations ()) .toHaveLength (1)
+   expect (scene .protos) .toBeInstanceOf (X3D .ProtoDeclarationArray)
+   expect (scene .getProtoDeclarations ()) .toBeInstanceOf (X3D .ProtoDeclarationArray)
+   expect (scene .getProtoDeclaration ("Foo")) .toBeInstanceOf (X3D .X3DProtoDeclaration)
+   expect (() => scene .getProtoDeclaration ("Bah")) .toThrow (Error)
+})
+
+test ("getExternProtoDeclaration", async () =>
+{
+   const scene = await Browser .createX3DFromString (`
+PROFILE Interchange
+
+EXTERNPROTO Foo [ ]
+[ ]
+
+Foo { }
+   `)
+
+   expect (scene .externprotos) .toHaveLength (1)
+   expect (scene .getExternProtoDeclarations ()) .toHaveLength (1)
+   expect (scene .externprotos) .toBeInstanceOf (X3D .ExternProtoDeclarationArray)
+   expect (scene .getExternProtoDeclarations ()) .toBeInstanceOf (X3D .ExternProtoDeclarationArray)
+   expect (scene .getExternProtoDeclaration ("Foo")) .toBeInstanceOf (X3D .X3DExternProtoDeclaration)
+   expect (() => scene .getExternProtoDeclaration ("Bah")) .toThrow (Error)
 })
