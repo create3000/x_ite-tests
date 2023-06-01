@@ -663,6 +663,7 @@ test ("remove", () =>
       a = new MFNode (node1, node2, node3, node4, node5, node6),
       b = new MFNode (node1, node2, node3, node4, node5, node6)
 
+   expect (a .remove (0, a .length, undefined)) .toBe (a .length)
    expect (a .remove (0, a .length, node7)) .toBe (a .length)
    expect (b .remove (0, b .length, value => value === node7)) .toBe (b .length)
    expect (a .equals (new MFNode (node1, node2, node3, node4, node5, node6))) .toBe (true)

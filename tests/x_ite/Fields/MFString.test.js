@@ -545,6 +545,7 @@ test ("remove", () =>
       a = new MFString ("1", "2", "3", "4", "5", "6"),
       b = new MFString ("1", "2", "3", "4", "5", "6")
 
+   expect (a .remove (0, a .length, undefined)) .toBe (a .length)
    expect (a .remove (0, a .length, "0")) .toBe (a .length)
    expect (b .remove (0, b .length, value => value === "0")) .toBe (b .length)
    expect (a .equals (new MFString ("1", "2", "3", "4", "5", "6"))) .toBe (true)
