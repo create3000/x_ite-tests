@@ -472,8 +472,10 @@ test ("splice", () =>
 
    const e = new MFBool (true, false, true, false)
 
-   e .splice (2)
+   expect (e .splice (2) .equals (new MFBool (true, false))) .toBe (true)
+   expect (e .equals (new MFBool (true, false))) .toBe (true)
 
+   expect (e .splice () .equals (new MFBool ())) .toBe (true)
    expect (e .equals (new MFBool (true, false))) .toBe (true)
 })
 

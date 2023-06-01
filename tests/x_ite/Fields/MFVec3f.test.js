@@ -479,8 +479,10 @@ test ("splice", () =>
 
    const e = new MFVec3f (new SFVec3f (1,1,1), new SFVec3f (2,2,2), new SFVec3f (3,3,3), new SFVec3f (4,4,4))
 
-   e .splice (2)
+   expect (e .splice (2) .equals (new MFVec3f (new SFVec3f (3,3,3), new SFVec3f (4,4,4)))) .toBe (true)
+   expect (e .equals (new MFVec3f (new SFVec3f (1,1,1), new SFVec3f (2,2,2)))) .toBe (true)
 
+   expect (e .splice () .equals (new MFVec3f ())) .toBe (true)
    expect (e .equals (new MFVec3f (new SFVec3f (1,1,1), new SFVec3f (2,2,2)))) .toBe (true)
 })
 

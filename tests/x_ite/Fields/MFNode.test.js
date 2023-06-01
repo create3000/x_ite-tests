@@ -518,8 +518,10 @@ test ("splice", () =>
 
    const e = new MFNode (node1, node2, node3, node4)
 
-   e .splice (2)
+   expect (e .splice (2) .equals (new MFNode (node3, node4))) .toBe (true)
+   expect (e .equals (new MFNode (node1, node2))) .toBe (true)
 
+   expect (e .splice () .equals (new MFNode ())) .toBe (true)
    expect (e .equals (new MFNode (node1, node2))) .toBe (true)
 })
 

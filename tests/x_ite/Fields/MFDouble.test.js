@@ -472,8 +472,10 @@ test ("splice", () =>
 
    const e = new MFDouble (1, 2, 3, 4)
 
-   e .splice (2)
+   expect (e .splice (2) .equals (new MFDouble (3, 4))) .toBe (true)
+   expect (e .equals (new MFDouble (1, 2))) .toBe (true)
 
+   expect (e .splice () .equals (new MFDouble ())) .toBe (true)
    expect (e .equals (new MFDouble (1, 2))) .toBe (true)
 })
 

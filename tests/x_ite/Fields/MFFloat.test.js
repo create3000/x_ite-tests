@@ -472,8 +472,10 @@ test ("splice", () =>
 
    const e = new MFFloat (1, 2, 3, 4)
 
-   e .splice (2)
+   expect (e .splice (2) .equals (new MFFloat (3, 4))) .toBe (true)
+   expect (e .equals (new MFFloat (1, 2))) .toBe (true)
 
+   expect (e .splice () .equals (new MFFloat ())) .toBe (true)
    expect (e .equals (new MFFloat (1, 2))) .toBe (true)
 })
 
