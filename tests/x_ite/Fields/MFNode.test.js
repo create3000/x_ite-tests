@@ -515,6 +515,12 @@ test ("splice", () =>
 
    for (let i = 0, n = 0; i < N; ++ i)
       expect (a [i]) .toBe (x [n++])
+
+   const e = new MFNode (node1, node2, node3, node4)
+
+   e .splice (2)
+
+   expect (e .equals (new MFNode (node1, node2))) .toBe (true)
 })
 
 test ("sort-reverse", () =>

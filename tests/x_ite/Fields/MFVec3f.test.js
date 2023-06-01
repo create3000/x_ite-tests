@@ -476,6 +476,12 @@ test ("splice", () =>
 
    for (let i = 0, n = 0; i < N; ++ i)
       expect (a [i] .equals (new SFVec3f (++n,++n,++n))) .toBe (true)
+
+   const e = new MFVec3f (new SFVec3f (1,1,1), new SFVec3f (2,2,2), new SFVec3f (3,3,3), new SFVec3f (4,4,4))
+
+   e .splice (2)
+
+   expect (e .equals (new MFVec3f (new SFVec3f (1,1,1), new SFVec3f (2,2,2)))) .toBe (true)
 })
 
 test ("sort-reverse", () =>

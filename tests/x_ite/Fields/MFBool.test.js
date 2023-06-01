@@ -469,6 +469,12 @@ test ("splice", () =>
 
    for (let i = 0, n = false; i < N; ++ i)
       expect (a [i]) .toBe (n=!n)
+
+   const e = new MFBool (true, false, true, false)
+
+   e .splice (2)
+
+   expect (e .equals (new MFBool (true, false))) .toBe (true)
 })
 
 test ("sort-reverse", () =>
