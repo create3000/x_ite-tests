@@ -49,6 +49,7 @@ Test { }
    expect (proto .fields [1] .dataType) .toBe (X3D .X3DConstants .SFVec3f)
    expect (proto .fields [1] .name) .toBe ("size")
    expect (proto .fields [1] .value) .toBeInstanceOf (X3D .SFVec3f)
+   expect (proto .toString ()) .toBe (`[object ${proto .getTypeName ()}]`)
 
    proto .name = undefined
    proto .isExternProto = undefined

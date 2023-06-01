@@ -11,3 +11,13 @@ test ("constructor", () =>
    expect (components) .toBeInstanceOf (X3D .ComponentInfoArray)
    expect (components .constructor) .toBe (X3D .ComponentInfoArray)
 })
+
+test ("toString", () =>
+{
+   const
+      canvas     = X3D .createBrowser (),
+      Browser    = canvas .browser,
+      components = Browser .supportedComponents
+
+   expect (components .toString ()) .toBe (`[object ${components .getTypeName ()}]`)
+})

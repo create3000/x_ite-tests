@@ -48,3 +48,13 @@ test ("properties", () =>
 
    enumerate (properties, unit)
 })
+
+test ("toString", () =>
+{
+   const
+      canvas  = X3D .createBrowser (),
+      Browser = canvas .browser,
+      unit    = Browser .currentScene .getUnit ("angle")
+
+   expect (unit .toString ()) .toBe (`[object ${unit .getTypeName ()}]`)
+})

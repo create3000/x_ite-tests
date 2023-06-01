@@ -11,3 +11,13 @@ test ("constructor", () =>
    expect (profiles) .toBeInstanceOf (X3D .ProfileInfoArray)
    expect (profiles .constructor) .toBe (X3D .ProfileInfoArray)
 })
+
+test ("toString", () =>
+{
+   const
+      canvas   = X3D .createBrowser (),
+      Browser  = canvas .browser,
+      profiles = Browser .supportedProfiles
+
+   expect (profiles .toString ()) .toBe (`[object ${profiles .getTypeName ()}]`)
+})

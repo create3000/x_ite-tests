@@ -28,3 +28,8 @@ test ("filter", () =>
    expect (a) .toBeInstanceOf (X3D .FieldDefinitionArray)
    expect (a) .toHaveLength (2)
 })
+
+test ("toString", () =>
+{
+   expect (fieldDefinitions .toString ()) .toBe (`[object ${fieldDefinitions .getTypeName ()}]`)
+})

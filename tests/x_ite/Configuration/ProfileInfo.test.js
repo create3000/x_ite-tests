@@ -55,3 +55,13 @@ test ("properties", () =>
 
    enumerate (properties, profile)
 })
+
+test ("toString", () =>
+{
+   const
+      canvas  = X3D .createBrowser (),
+      Browser = canvas .browser,
+      profile = Browser .getProfile ("Core")
+
+   expect (profile .toString ()) .toBe (`[object ${profile .getTypeName ()}]`)
+})

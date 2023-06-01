@@ -38,6 +38,7 @@ test ("properties", () =>
    expect (Browser .supportedProfiles) .toBeInstanceOf (X3D .ProfileInfoArray)
    expect (Browser .supportedComponents) .toBeInstanceOf (X3D .ComponentInfoArray)
    expect (Browser .currentScene) .toBeInstanceOf (X3D .X3DScene)
+   expect (Browser .toString ()) .toBe (`[object ${Browser .getTypeName ()}]`)
 
    function enumerate (properties, target)
    {

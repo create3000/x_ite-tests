@@ -91,6 +91,7 @@ Test { }
    expect (executionContext .rootNodes [0]) .toBeInstanceOf (X3D .SFNode)
    expect (executionContext .rootNodes [0] .getNodeTypeName ()) .toBe ("Transform")
    expect (executionContext .rootNodes [0]) .toBe (executionContext .rootNodes [0])
+   expect (executionContext .toString ()) .toBe (`[object ${executionContext .getTypeName ()}]`)
 
    function enumerate (properties, target)
    {

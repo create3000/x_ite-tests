@@ -79,3 +79,13 @@ test ("filter", async () =>
    for (const [i, v] of a .entries ())
       expect (v) .toBe (units [i])
 })
+
+test ("toString", () =>
+{
+   const
+      canvas  = X3D .createBrowser (),
+      Browser = canvas .browser,
+      units   = Browser .currentScene .units
+
+   expect (units .toString ()) .toBe (`[object ${units .getTypeName ()}]`)
+})

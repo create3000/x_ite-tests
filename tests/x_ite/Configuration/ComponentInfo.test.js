@@ -51,3 +51,13 @@ test ("properties", () =>
 
    enumerate (properties, component)
 })
+
+test ("toString", () =>
+{
+   const
+      canvas    = X3D .createBrowser (),
+      Browser   = canvas .browser,
+      component = Browser .getComponent ("Core")
+
+   expect (component .toString ()) .toBe (`[object ${component .getTypeName ()}]`)
+})

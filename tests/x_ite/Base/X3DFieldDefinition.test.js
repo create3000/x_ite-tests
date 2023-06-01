@@ -69,3 +69,8 @@ test ("properties", () =>
 
    enumerate (properties, fieldDefinitions [0])
 })
+
+test ("toString", () =>
+{
+   expect (fieldDefinitions [0] .toString ()) .toBe (`[object ${fieldDefinitions [0] .getTypeName ()}]`)
+})

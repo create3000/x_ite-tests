@@ -35,6 +35,7 @@ ROUTE I.value_changed TO T.set_translation
    expect (route .destinationNode) .toBe (scene .getNamedNode ("T"))
    expect (route .destinationNode .getNodeTypeName ()) .toBe ("Transform")
    expect (route .destinationField) .toBe ("translation")
+   expect (route .toString ()) .toBe (`[object ${route .getTypeName ()}]`)
 
    route .sourceNode       = undefined
    route .sourceField      = undefined

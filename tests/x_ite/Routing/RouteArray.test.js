@@ -12,3 +12,14 @@ test ("properties", () =>
    expect (routes) .toBeInstanceOf (X3D .RouteArray)
    expect (routes .constructor) .toBe (X3D .RouteArray)
 })
+
+test ("toString", () =>
+{
+   const
+      canvas  = X3D .createBrowser (),
+      Browser = canvas .browser,
+      scene   = Browser .currentScene,
+      routes  = scene .routes
+
+   expect (routes .toString ()) .toBe (`[object ${routes .getTypeName ()}]`)
+})

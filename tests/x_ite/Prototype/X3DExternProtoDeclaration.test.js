@@ -58,6 +58,7 @@ Test { }
    expect (externproto .fields [1] .dataType) .toBe (X3D .X3DConstants .SFVec3f)
    expect (externproto .fields [1] .name) .toBe ("size")
    expect (externproto .fields [1] .value) .toBeInstanceOf (X3D .SFVec3f)
+   expect (externproto .toString ()) .toBe (`[object ${externproto .getTypeName ()}]`)
 
    externproto .name = undefined
    externproto .loadState = undefined
@@ -118,4 +119,15 @@ Test { }
    ]
 
    enumerate (properties, externproto)
+})
+
+test ("toString", () =>
+{
+   const
+      canvas  = X3D .createBrowser (),
+      Browser = canvas .browser,
+      scene   = Browser .currentScene,
+      protos  = scene .protos
+
+   expect (protos .toString ()) .toBe (`[object ${protos .getTypeName ()}]`)
 })

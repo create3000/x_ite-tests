@@ -25,6 +25,7 @@ test ("properties1", () =>
    expect (scene .externprotos) .toBeInstanceOf (X3D .ExternProtoDeclarationArray)
    expect (scene .routes) .toHaveLength (0)
    expect (scene .routes) .toBeInstanceOf (X3D .RouteArray)
+   expect (scene .toString ()) .toBe (`[object ${scene .getTypeName ()}]`)
 })
 
 test ("properties2", () =>
