@@ -665,6 +665,8 @@ test ("remove", () =>
 
    expect (a .remove (0, a .length, node7)) .toBe (a .length)
    expect (b .remove (0, b .length, value => value === node7)) .toBe (b .length)
+   expect (a .equals (new MFNode (node1, node2, node3, node4, node5, node6))) .toBe (true)
+   expect (b .equals (new MFNode (node1, node2, node3, node4, node5, node6))) .toBe (true)
 
    var
       a = new MFNode (node1, node2, node3, node4, node5, node6),
@@ -673,14 +675,28 @@ test ("remove", () =>
    expect (a .remove (0, a .length, node2)) .toBe (a .length - 1)
    expect (b .remove (0, b .length, value => value === node2)) .toBe (b .length - 1)
 
+   a .splice (a .length - 1, 1)
+   b .splice (b .length - 1, 1)
+
+   expect (a .equals (new MFNode (node1, node3, node4, node5, node6))) .toBe (true)
+   expect (b .equals (new MFNode (node1, node3, node4, node5, node6))) .toBe (true)
+
    var b = new MFNode (node1, node2, node3, node4, node5, node6)
    var s = new Set ([node1, node3, node5])
 
    expect (b .remove (0, b .length, value => s .has (value))) .toBe (b .length - 3)
 
+   b .splice (b .length - 3, 3)
+
+   expect (b .equals (new MFNode (node2, node4, node6))) .toBe (true)
+
    var b = new MFNode (node1, node2, node3, node4, node5, node6)
 
    expect (b .remove (0, b .length, () => true)) .toBe (0)
+
+   b .splice (0, b .length)
+
+   expect (b .equals (new MFNode ())) .toBe (true)
 })
 
 test ("erase", () =>
