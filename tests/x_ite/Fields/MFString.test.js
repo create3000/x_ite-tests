@@ -545,9 +545,9 @@ test ("remove", () =>
       a = new MFString ("1", "2", "3", "4", "5", "6"),
       b = new MFString ("1", "2", "3", "4", "5", "6")
 
-   expect (a .remove (0, a .length, undefined)) .toBe (a .length)
-   expect (a .remove (0, a .length, "0")) .toBe (a .length)
-   expect (b .remove (0, b .length, value => value === "0")) .toBe (b .length)
+   expect (a .remove (undefined)) .toBe (a .length)
+   expect (a .remove ("0")) .toBe (a .length)
+   expect (b .remove (value => value === "0")) .toBe (b .length)
    expect (a .equals (new MFString ("1", "2", "3", "4", "5", "6"))) .toBe (true)
    expect (b .equals (new MFString ("1", "2", "3", "4", "5", "6"))) .toBe (true)
 
@@ -555,46 +555,28 @@ test ("remove", () =>
       a = new MFString ("1", "2", "3", "4", "5", "6"),
       b = new MFString ("1", "2", "3", "4", "5", "6")
 
-   expect (a .remove (0, a .length, "2")) .toBe (a .length - 1)
-   expect (b .remove (0, b .length, value => value === "2")) .toBe (b .length - 1)
+   expect (a .remove ("2")) .toBe (a .length - 1)
+   expect (b .remove (value => value === "2")) .toBe (b .length - 1)
 
-   a .splice (a .length - 1, 1)
-   b .splice (b .length - 1, 1)
+   a .splice (a .length - 1)
+   b .splice (b .length - 1)
 
    expect (a .equals (new MFString ("1", "3", "4", "5", "6"))) .toBe (true)
    expect (b .equals (new MFString ("1", "3", "4", "5", "6"))) .toBe (true)
 
    var b = new MFString ("1", "2", "3", "4", "5", "6")
 
-   expect (b .remove (0, b .length, value => value % 2)) .toBe (b .length - 3)
+   expect (b .remove (value => value % 2)) .toBe (b .length - 3)
 
-   b .splice (b .length - 3, 3)
+   b .splice (b .length - 3)
 
    expect (b .equals (new MFString ("2", "4", "6"))) .toBe (true)
 
    var b = new MFString ("1", "2", "3", "4", "5", "6")
 
-   expect (b .remove (0, b .length, () => true)) .toBe (0)
+   expect (b .remove (() => true)) .toBe (0)
 
-   b .splice (0, b .length)
+   b .splice (0)
 
    expect (b .equals (new MFString ())) .toBe (true)
-})
-
-test ("erase", () =>
-{
-   var a = new MFString ("1", "2", "3", "4", "5", "6")
-
-   a .erase (a .length, a .length)
-   expect (a .equals (new MFString ("1", "2", "3", "4", "5", "6"))) .toBe (true)
-
-   var a = new MFString ("1", "2", "3", "4", "5", "6")
-
-   a .erase (3, a .length)
-   expect (a .equals (new MFString ("1", "2", "3"))) .toBe (true)
-
-   var a = new MFString ("1", "2", "3", "4", "5", "6")
-
-   a .erase (1, 5)
-   expect (a .equals (new MFString ("1", "6"))) .toBe (true)
 })
