@@ -538,3 +538,46 @@ test ("unshift", () =>
       expect (a .at (-(i + 1))) .toBe (v)
    }
 })
+
+test ("remove", () =>
+{
+   var
+      a = new MFString ("1", "2", "3", "4", "5", "6"),
+      b = new MFString ("1", "2", "3", "4", "5", "6")
+
+   expect (a .remove (0, a .length, "0")) .toBe (a .length)
+   expect (b .remove (0, b .length, value => value === "0")) .toBe (b .length)
+
+   var
+      a = new MFString ("1", "2", "3", "4", "5", "6"),
+      b = new MFString ("1", "2", "3", "4", "5", "6")
+
+   expect (a .remove (0, a .length, "2")) .toBe (a .length - 1)
+   expect (b .remove (0, b .length, value => value === "2")) .toBe (b .length - 1)
+
+   var b = new MFString ("1", "2", "3", "4", "5", "6")
+
+   expect (b .remove (0, b .length, value => value % 2)) .toBe (b .length - 3)
+
+   var b = new MFString ("1", "2", "3", "4", "5", "6")
+
+   expect (b .remove (0, b .length, () => true)) .toBe (0)
+})
+
+test ("erase", () =>
+{
+   var a = new MFString ("1", "2", "3", "4", "5", "6")
+
+   a .erase (a .length, a .length)
+   expect (a .equals (new MFString ("1", "2", "3", "4", "5", "6"))) .toBe (true)
+
+   var a = new MFString ("1", "2", "3", "4", "5", "6")
+
+   a .erase (3, a .length)
+   expect (a .equals (new MFString ("1", "2", "3"))) .toBe (true)
+
+   var a = new MFString ("1", "2", "3", "4", "5", "6")
+
+   a .erase (1, 5)
+   expect (a .equals (new MFString ("1", "6"))) .toBe (true)
+})

@@ -656,3 +656,47 @@ test ("dispose", () =>
    for (let i = 0; i < 6; ++ i)
       expect (b [i] .getValue () .getParents () .size) .toBe (1)
 })
+
+test ("remove", () =>
+{
+   var
+      a = new MFNode (node1, node2, node3, node4, node5, node6),
+      b = new MFNode (node1, node2, node3, node4, node5, node6)
+
+   expect (a .remove (0, a .length, node7)) .toBe (a .length)
+   expect (b .remove (0, b .length, value => value === node7)) .toBe (b .length)
+
+   var
+      a = new MFNode (node1, node2, node3, node4, node5, node6),
+      b = new MFNode (node1, node2, node3, node4, node5, node6)
+
+   expect (a .remove (0, a .length, node2)) .toBe (a .length - 1)
+   expect (b .remove (0, b .length, value => value === node2)) .toBe (b .length - 1)
+
+   var b = new MFNode (node1, node2, node3, node4, node5, node6)
+   var s = new Set ([node1, node3, node5])
+
+   expect (b .remove (0, b .length, value => s .has (value))) .toBe (b .length - 3)
+
+   var b = new MFNode (node1, node2, node3, node4, node5, node6)
+
+   expect (b .remove (0, b .length, () => true)) .toBe (0)
+})
+
+test ("erase", () =>
+{
+   var a = new MFNode (node1, node2, node3, node4, node5, node6)
+
+   a .erase (a .length, a .length)
+   expect (a .equals (new MFNode (node1, node2, node3, node4, node5, node6))) .toBe (true)
+
+   var a = new MFNode (node1, node2, node3, node4, node5, node6)
+
+   a .erase (3, a .length)
+   expect (a .equals (new MFNode (node1, node2, node3))) .toBe (true)
+
+   var a = new MFNode (node1, node2, node3, node4, node5, node6)
+
+   a .erase (1, 5)
+   expect (a .equals (new MFNode (node1, node6))) .toBe (true)
+})
