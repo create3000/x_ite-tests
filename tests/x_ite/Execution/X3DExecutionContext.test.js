@@ -114,6 +114,8 @@ Test { }
       "profile",
       "components",
       "units",
+      "namedNodes",
+      "importedNodes",
       "worldURL",
       "rootNodes",
       "protos",
