@@ -17,6 +17,12 @@ test ("properties1", () =>
    expect (scene .components) .toHaveLength (0)
    expect (scene .components) .toBeInstanceOf (X3D .ComponentInfoArray)
    expect (scene .worldURL) .toMatch (/^file:\/\/\/.*$/)
+   expect (scene .namedNodes) .toHaveLength (0)
+   expect (scene .namedNodes) .toBeInstanceOf (X3D .NamedNodesArray)
+   expect (scene .importedNodes) .toHaveLength (0)
+   expect (scene .importedNodes) .toBeInstanceOf (X3D .ImportedNodesArray)
+   expect (scene .exportedNodes) .toHaveLength (0)
+   expect (scene .exportedNodes) .toBeInstanceOf (X3D .ExportedNodesArray)
    expect (scene .rootNodes) .toHaveLength (0)
    expect (scene .rootNodes) .toBeInstanceOf (X3D .MFNode)
    expect (scene .protos) .toHaveLength (0)
@@ -43,6 +49,9 @@ test ("properties2", () =>
       components           = scene .components,
       worldURL             = scene .worldURL,
       rootNodes            = scene .rootNodes,
+      namedNodes           = scene .namedNodes,
+      importedNodes        = scene .importedNodes,
+      exportedNodes        = scene .exportedNodes,
       protos               = scene .protos,
       externprotos         = scene .externprotos,
       routes               = scene .routes
@@ -52,6 +61,9 @@ test ("properties2", () =>
    scene .profile              = undefined
    scene .components           = undefined
    scene .worldURL             = undefined
+   scene .namedNodes           = undefined
+   scene .importedNodes        = undefined
+   scene .exportedNodes        = undefined
    scene .rootNodes            = nodes
    scene .protos               = undefined
    scene .externprotos         = undefined
@@ -66,6 +78,15 @@ test ("properties2", () =>
    expect (scene .components) .toHaveLength (0)
    expect (scene .components) .toBeInstanceOf (X3D .ComponentInfoArray)
    expect (scene .worldURL) .toBe (worldURL)
+   expect (scene .namedNodes) .toBe (namedNodes)
+   expect (scene .namedNodes) .toHaveLength (0)
+   expect (scene .namedNodes) .toBeInstanceOf (X3D .NamedNodesArray)
+   expect (scene .importedNodes) .toBe (importedNodes)
+   expect (scene .importedNodes) .toHaveLength (0)
+   expect (scene .importedNodes) .toBeInstanceOf (X3D .ImportedNodesArray)
+   expect (scene .exportedNodes) .toBe (exportedNodes)
+   expect (scene .exportedNodes) .toHaveLength (0)
+   expect (scene .exportedNodes) .toBeInstanceOf (X3D .ExportedNodesArray)
    expect (scene .rootNodes) .toBe (rootNodes)
    expect (scene .rootNodes) .toHaveLength (1)
    expect (scene .rootNodes) .toBeInstanceOf (X3D .MFNode)

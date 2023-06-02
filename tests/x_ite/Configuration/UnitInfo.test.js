@@ -1,11 +1,12 @@
 const X3D = require ("../../X3D")
 
+const
+   canvas  = X3D .createBrowser (),
+   Browser = canvas .browser
+
 test ("properties", () =>
 {
-   const
-      canvas  = X3D .createBrowser (),
-      Browser = canvas .browser,
-      unit    = Browser .currentScene .getUnit ("angle")
+   const unit = Browser .currentScene .getUnit ("angle")
 
    expect (unit) .toBeInstanceOf (X3D .UnitInfo)
    expect (unit .constructor) .toBe (X3D .UnitInfo)
@@ -51,10 +52,7 @@ test ("properties", () =>
 
 test ("toString", () =>
 {
-   const
-      canvas  = X3D .createBrowser (),
-      Browser = canvas .browser,
-      unit    = Browser .currentScene .getUnit ("angle")
+   const unit = Browser .currentScene .getUnit ("angle")
 
    expect (unit .toString ()) .toBe (`[object ${unit .getTypeName ()}]`)
 })
