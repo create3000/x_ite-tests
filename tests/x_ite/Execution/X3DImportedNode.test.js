@@ -38,6 +38,10 @@ IMPORT I.E2 AS I2
    expect (importedNode .exportedNode) .toBeInstanceOf (X3D .SFNode)
    expect (importedNode .exportedNode .getNodeTypeName ()) .toBe ("Group")
    expect (importedNode .importedName) .toBe ("I1")
+   expect (importedNode .getInlineNode ()) .toBe (importedNode .inlineNode .getValue ())
+   expect (importedNode .getExportedName ()) .toBe (importedNode .exportedName)
+   expect (importedNode .getExportedNode ()) .toBe (importedNode .exportedNode .getValue ())
+   expect (importedNode .getImportedName ()) .toBe (importedNode .importedName)
    expect (importedNode .toString ()) .toBe (`[object ${importedNode .getTypeName ()}]`)
 
    importedNode .inlineNode   = undefined
