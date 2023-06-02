@@ -4,6 +4,8 @@ const
    canvas  = X3D .createBrowser (),
    Browser = canvas .browser
 
+console .warn = Function .prototype
+
 test ("properties", async () =>
 {
    const scene = await Browser .createX3DFromURL (new X3D .MFString (`data:model/x3d+vrml,

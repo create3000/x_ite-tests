@@ -4,6 +4,8 @@ const
 
 const X3D = require ("../../X3D")
 
+console .warn = Function .prototype
+
 test ("properties", () =>
 {
    const

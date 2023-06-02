@@ -2,6 +2,8 @@ const
    X3D = require ("../X3D"),
    $   = require ("jquery")
 
+console .warn = Function .prototype
+
 test ("onload-attribute", () => new Promise ((resolve, reject) =>
 {
    window .onload1 = undefined;
