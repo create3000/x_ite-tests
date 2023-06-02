@@ -39,7 +39,7 @@ test ("fields", () =>
       .toBe (Object .keys (Fields) .length)
 })
 
-test ("nodes", async () =>
+test ("concrete-nodes", async () =>
 {
    const
       canvas  = X3D .createBrowser (),
