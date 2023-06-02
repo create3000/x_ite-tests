@@ -87,7 +87,7 @@ test ("nodes", async () =>
 
    const string = `PROFILE Full
 
-   ${[...Browser .getSupportedNodes ()] .map (Type => Type .prototype .getTypeName () + "{ }") .join ("\n")}
+   ${[...Browser .getConcreteNodes ()] .map (Type => Type .prototype .getTypeName () + "{ }") .join ("\n")}
    `
 
    const
@@ -95,7 +95,7 @@ test ("nodes", async () =>
       scene2 = await Browser .createX3DFromString (scene1 .toXMLString ()),
       scene3 = await Browser .createX3DFromString (scene1 .toJSONString ())
 
-   expect (scene1 .rootNodes) .toHaveLength (Browser .getSupportedNodes () .length)
-   expect (scene2 .rootNodes) .toHaveLength (Browser .getSupportedNodes () .length)
-   expect (scene3 .rootNodes) .toHaveLength (Browser .getSupportedNodes () .length)
+   expect (scene1 .rootNodes) .toHaveLength (Browser .getConcreteNodes () .length)
+   expect (scene2 .rootNodes) .toHaveLength (Browser .getConcreteNodes () .length)
+   expect (scene3 .rootNodes) .toHaveLength (Browser .getConcreteNodes () .length)
 })

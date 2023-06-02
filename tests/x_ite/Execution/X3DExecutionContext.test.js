@@ -152,7 +152,7 @@ PROTO Foo [
 { }
 `)
 
-   for (const Type of Browser .getSupportedNodes ())
+   for (const Type of Browser .getConcreteNodes ())
    {
       expect (scene .createNode (Type .prototype .getTypeName ()) .getNodeTypeName ()) .toBe (Type .prototype .getTypeName ())
       expect (scene .createNode (Type .prototype .getTypeName ()) .getValue ()) .toBeInstanceOf (Type)
@@ -617,20 +617,20 @@ Foo { }
 
    expect (executionContext .getRootNodes ()) .toHaveLength (2)
    expect (executionContext .getRootNodes () [0]) .toBeInstanceOf (X3D .SFNode)
-   expect (executionContext .getRootNodes () [0] .getValue ()) .toBeInstanceOf (Browser .getSupportedNode ("Shape"))
+   expect (executionContext .getRootNodes () [0] .getValue ()) .toBeInstanceOf (Browser .getConcreteNode ("Shape"))
    expect (executionContext .getRootNodes () [0] .getNodeName ()) .toBe ("S")
    expect (executionContext .getRootNodes () [1]) .toBeInstanceOf (X3D .SFNode)
-   expect (executionContext .getRootNodes () [1] .getValue ()) .toBeInstanceOf (Browser .getSupportedNode ("Box"))
+   expect (executionContext .getRootNodes () [1] .getValue ()) .toBeInstanceOf (Browser .getConcreteNode ("Box"))
    expect (executionContext .getRootNodes () [1] .getNodeName ()) .toBe ("B")
 
    executionContext .setRootNodes (new X3D .MFNode ())
 
    expect (executionContext .getRootNodes ()) .toHaveLength (2)
    expect (executionContext .getRootNodes () [0]) .toBeInstanceOf (X3D .SFNode)
-   expect (executionContext .getRootNodes () [0] .getValue ()) .toBeInstanceOf (Browser .getSupportedNode ("Shape"))
+   expect (executionContext .getRootNodes () [0] .getValue ()) .toBeInstanceOf (Browser .getConcreteNode ("Shape"))
    expect (executionContext .getRootNodes () [0] .getNodeName ()) .toBe ("S")
    expect (executionContext .getRootNodes () [1]) .toBeInstanceOf (X3D .SFNode)
-   expect (executionContext .getRootNodes () [1] .getValue ()) .toBeInstanceOf (Browser .getSupportedNode ("Box"))
+   expect (executionContext .getRootNodes () [1] .getValue ()) .toBeInstanceOf (Browser .getConcreteNode ("Box"))
    expect (executionContext .getRootNodes () [1] .getNodeName ()) .toBe ("B")
 })
 
