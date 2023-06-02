@@ -2,8 +2,6 @@ const
    X3D = require ("../../X3D"),
    $   = require ("jquery")
 
-console .warn = Function .prototype
-
 test ("simple-scene-direct", () => new Promise ((resolve, reject) =>
 {
    const canvas = $(`<x3d-canvas>

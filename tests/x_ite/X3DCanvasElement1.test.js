@@ -2,8 +2,6 @@ const
    X3D = require ("../X3D"),
    $   = require ("jquery")
 
-console .warn = Function .prototype
-
 test ("construction", () =>
 {
    const canvas = document .createElement ("x3d-canvas")
