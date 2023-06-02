@@ -2,7 +2,7 @@ const
    $                = require ("jquery"),
    X3D              = require ("./X3D"),
    X3DCanvasElement = X3D .require ("x_ite/X3DCanvasElement"),
-   DEBUG            = X3D .require ("x_ite/DEBUG")
+   DEVELOPMENT      = X3D .require ("x_ite/DEVELOPMENT")
 
 test ("createBrowser", () =>
 {
@@ -43,7 +43,7 @@ test ("X3D-async", async () =>
    await X3D ()
 })
 
-test ("DEBUG", () =>
+test ("DEVELOPMENT", () =>
 {
-   expect (DEBUG) .toBe (false)
+   expect (DEVELOPMENT) .toBe (false)
 })
