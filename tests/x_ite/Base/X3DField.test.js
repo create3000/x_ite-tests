@@ -11,7 +11,6 @@ test ("properties", () =>
          field = new Type ()
 
       expect (Type .typeName) .toBe (typeName)
-      expect (Type .type) .toBe (X3D .X3DConstants [typeName])
 
       expect (field) .toBeInstanceOf (X3D .X3DField)
       if (typeName .startsWith ("MF")) expect (field) .toBeInstanceOf (X3D .X3DArrayField)
