@@ -4,18 +4,23 @@ const
 
 test ("properties", () =>
 {
-   for (const Type of Object .keys (Fields))
+   for (const typeName of Object .keys (Fields))
    {
-      const field = new (Fields [Type]) ()
+      const
+         Type  = Fields [typeName],
+         field = new Type ()
+
+      expect (Type .typeName) .toBe (typeName)
+      expect (Type .type) .toBe (X3D .X3DConstants [typeName])
 
       expect (field) .toBeInstanceOf (X3D .X3DField)
-      if (Type .startsWith ("MF")) expect (field) .toBeInstanceOf (X3D .X3DArrayField)
-      expect (field) .toBeInstanceOf (Fields [Type])
-      expect (field .constructor) .toBe (Fields [Type])
+      if (typeName .startsWith ("MF")) expect (field) .toBeInstanceOf (X3D .X3DArrayField)
+      expect (field) .toBeInstanceOf (Fields [typeName])
+      expect (field .constructor) .toBe (Fields [typeName])
 
       expect (field .getName ()) .toBe ("")
-      expect (field .getType ()) .toBe (X3D .X3DConstants [Type])
-      expect (field .getTypeName ()) .toBe (Type)
+      expect (field .getType ()) .toBe (X3D .X3DConstants [typeName])
+      expect (field .getTypeName ()) .toBe (typeName)
 
       expect (field .isReadable ()) .toBe (true)
       expect (field .isWritable ()) .toBe (true)
