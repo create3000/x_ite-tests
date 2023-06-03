@@ -47,8 +47,8 @@ test ("concrete-nodes", async () =>
 
    await Browser .loadComponents (Browser .getProfile ("Full"))
 
-   for (const Type of Browser .getConcreteNodes ())
-      expect (Number .isInteger (X3D .X3DConstants [Type .prototype .getTypeName ()])) .toBe (true)
+   for (const ConcreteNode of Browser .getConcreteNodes ())
+      expect (Number .isInteger (X3D .X3DConstants [ConcreteNode .typeName])) .toBe (true)
 })
 
 test ("abstract-nodes", async () =>

@@ -87,7 +87,7 @@ test ("nodes", async () =>
 
    const string = `PROFILE Full
 
-   ${[...Browser .getConcreteNodes ()] .map (Type => Type .prototype .getTypeName () + "{ }") .join ("\n")}
+   ${[...Browser .getConcreteNodes ()] .map (ConcreteNode => ConcreteNode .typeName + "{ }") .join ("\n")}
    `
 
    const
@@ -98,4 +98,13 @@ test ("nodes", async () =>
    expect (scene1 .rootNodes) .toHaveLength (Browser .getConcreteNodes () .length)
    expect (scene2 .rootNodes) .toHaveLength (Browser .getConcreteNodes () .length)
    expect (scene3 .rootNodes) .toHaveLength (Browser .getConcreteNodes () .length)
+
+   for (const [i, node] of scene1 .rootNodes .entries ())
+      expect (node .getNodeTypeName ()) .toBe (Browser .getConcreteNodes () [i] .typeName)
+
+   for (const [i, node] of scene2 .rootNodes .entries ())
+      expect (node .getNodeTypeName ()) .toBe (Browser .getConcreteNodes () [i] .typeName)
+
+   for (const [i, node] of scene3 .rootNodes .entries ())
+      expect (node .getNodeTypeName ()) .toBe (Browser .getConcreteNodes () [i] .typeName)
 })

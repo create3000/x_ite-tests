@@ -152,10 +152,10 @@ PROTO Foo [
 { }
 `)
 
-   for (const Type of Browser .getConcreteNodes ())
+   for (const ConcreteNode of Browser .getConcreteNodes ())
    {
-      expect (scene .createNode (Type .prototype .getTypeName ()) .getNodeTypeName ()) .toBe (Type .prototype .getTypeName ())
-      expect (scene .createNode (Type .prototype .getTypeName ()) .getValue ()) .toBeInstanceOf (Type)
+      expect (scene .createNode (ConcreteNode .typeName) .getNodeTypeName ()) .toBe (ConcreteNode .typeName)
+      expect (scene .createNode (ConcreteNode .typeName) .getValue ()) .toBeInstanceOf (ConcreteNode)
    }
 
    expect (() => scene .createNode ("Foo")) .toThrow (Error)
