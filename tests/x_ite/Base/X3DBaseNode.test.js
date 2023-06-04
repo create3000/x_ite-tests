@@ -53,13 +53,13 @@ test ("abstract-nodes", async () =>
 
    await Browser .loadComponents (Browser .getProfile ("Full"))
 
-   for (const AbstractNodes of Browser .getAbstractNodes ())
+   for (const AbstractNode of Browser .getAbstractNodes ())
    {
-      expect (typeof AbstractNodes .typeName) .toBe ("string")
+      expect (typeof AbstractNode .typeName) .toBe ("string")
 
-      if (internal .has (AbstractNodes .typeName))
+      if (internal .has (AbstractNode .typeName))
          continue;
 
-      expect (typeof AbstractNodes .componentName) .toBe ("string")
+      expect (typeof AbstractNode .componentName) .toBe ("string")
    }
 })
