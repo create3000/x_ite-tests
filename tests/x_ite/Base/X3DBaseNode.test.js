@@ -13,7 +13,7 @@ test ("getType", () =>
    expect (() => node .getType () .reverse ()) .toThrow (Error)
 })
 
-test ("static-properties", async () =>
+test ("concrete-nodes", async () =>
 {
    await Browser .loadComponents (Browser .getProfile ("Full"))
 
@@ -36,5 +36,30 @@ test ("static-properties", async () =>
       expect (node .getValue () .getContainerField ()) .toBe (ConcreteNode .containerField)
       expect (node .getValue () .getSpecificationRange ()) .toBe (ConcreteNode .specificationRange)
       expect (node .getValue () .getFieldDefinitions ()) .toBeInstanceOf (X3D .FieldDefinitionArray)
+   }
+})
+
+test ("abstract-nodes", async () =>
+{
+   const internal = new Set ([
+      "X3DBrowser",
+      "X3DWorld",
+      "X3DScene",
+      "X3DExecutionContext",
+      "X3DExternProtoDeclaration",
+      "X3DProtoDeclaration",
+      "X3DProtoDeclarationNode",
+   ])
+
+   await Browser .loadComponents (Browser .getProfile ("Full"))
+
+   for (const AbstractNodes of Browser .getAbstractNodes ())
+   {
+      expect (typeof AbstractNodes .typeName) .toBe ("string")
+
+      if (internal .has (AbstractNodes .typeName))
+         continue;
+
+      expect (typeof AbstractNodes .componentName) .toBe ("string")
    }
 })
