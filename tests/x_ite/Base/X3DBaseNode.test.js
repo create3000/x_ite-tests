@@ -15,6 +15,21 @@ test ("getType", () =>
 
 test ("concrete-nodes", async () =>
 {
+   function enumerate (properties, target)
+   {
+      const
+         a = { },
+         b = { }
+
+      for (const property in target)
+         a [property] = true
+
+      for (const property of properties)
+         b [property] = true
+
+      expect (a) .toEqual (b)
+   }
+
    await Browser .loadComponents (Browser .getProfile ("Full"))
 
    for (const ConcreteNode of Browser .getConcreteNodes ())
@@ -36,6 +51,7 @@ test ("concrete-nodes", async () =>
       expect (node .getValue () .getContainerField ()) .toBe (ConcreteNode .containerField)
       expect (node .getValue () .getSpecificationRange ()) .toBe (ConcreteNode .specificationRange)
       expect (node .getValue () .getFieldDefinitions ()) .toBeInstanceOf (X3D .FieldDefinitionArray)
+      enumerate (["typeName", "componentName", "containerField", "specificationRange", "fieldDefinitions"], ConcreteNode)
    }
 })
 
@@ -51,6 +67,21 @@ test ("abstract-nodes", async () =>
       "X3DProtoDeclarationNode",
    ])
 
+   function enumerate (properties, target)
+   {
+      const
+         a = { },
+         b = { }
+
+      for (const property in target)
+         a [property] = true
+
+      for (const property of properties)
+         b [property] = true
+
+      expect (a) .toEqual (b)
+   }
+
    await Browser .loadComponents (Browser .getProfile ("Full"))
 
    for (const AbstractNode of Browser .getAbstractNodes ())
@@ -58,8 +89,24 @@ test ("abstract-nodes", async () =>
       expect (typeof AbstractNode .typeName) .toBe ("string")
 
       if (internal .has (AbstractNode .typeName))
-         continue;
-
-      expect (typeof AbstractNode .componentName) .toBe ("string")
+      {
+         if (AbstractNode .fieldDefinitions)
+            enumerate (["typeName", "fieldDefinitions"], AbstractNode)
+         else
+            enumerate (["typeName"], AbstractNode)
+      }
+      else
+      {
+         if (AbstractNode .typeName === "X3DPrototypeInstance")
+         {
+            expect (typeof AbstractNode .componentName) .toBe ("string")
+            enumerate (["typeName", "componentName", "containerField", "specificationRange"], AbstractNode)
+         }
+         else
+         {
+            expect (typeof AbstractNode .componentName) .toBe ("string")
+            enumerate (["typeName", "componentName"], AbstractNode)
+         }
+      }
    }
 })
