@@ -27,21 +27,6 @@ test ("properties", () =>
    expect (component .providerUrl) .not .toBe ("")
    expect (component .providerUrl) .not .toBe (undefined)
 
-   function enumerate (properties, target)
-   {
-      const
-         a = { },
-         b = { }
-
-      for (const property in target)
-         a [property] = true
-
-      for (const property of properties)
-         b [property] = true
-
-      expect (a) .toEqual (b)
-   }
-
    const properties = [
       "name",
       "level",

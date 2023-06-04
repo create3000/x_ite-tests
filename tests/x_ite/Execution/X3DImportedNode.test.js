@@ -4,8 +4,6 @@ const
    canvas  = X3D .createBrowser (),
    Browser = canvas .browser
 
-const sleep = delay => new Promise (resolve => setTimeout (resolve, delay))
-
 test ("properties", async () =>
 {
    const scene = await Browser .createX3DFromString (`
@@ -55,21 +53,6 @@ IMPORT I.E2 AS I2
    expect (importedNode .exportedNode) .toBeInstanceOf (X3D .SFNode)
    expect (importedNode .exportedNode .getNodeTypeName ()) .toBe ("Group")
    expect (importedNode .importedName) .toBe ("I1")
-
-   function enumerate (properties, target)
-   {
-      const
-         a = { },
-         b = { }
-
-      for (const property in target)
-         a [property] = true
-
-      for (const property of properties)
-         b [property] = true
-
-      expect (a) .toEqual (b)
-   }
 
    const properties = [
       "inlineNode",

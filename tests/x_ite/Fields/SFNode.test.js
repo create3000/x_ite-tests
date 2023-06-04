@@ -76,21 +76,6 @@ test ("properties", () =>
    expect ("toString" in node) .toBe (true)
    expect ("foo"      in node) .toBe (false)
 
-   function enumerate (properties, target)
-   {
-      const
-         a = { },
-         b = { }
-
-      for (const property in target)
-         a [property] = true
-
-      for (const property of properties)
-         b [property] = true
-
-      expect (a) .toEqual (b)
-   }
-
    const properties = [
       "metadata",
       "title",
@@ -175,8 +160,6 @@ test ("parents", () =>
    expect (n2 .getValue () .getParents () .size) .toBe (1)
    expect (n2 .getNodeTypeName ()) .toBe ("MetadataBoolean")
 })
-
-const sleep = delay => new Promise (resolve => setTimeout (resolve, delay))
 
 test ("dispose", async () =>
 {

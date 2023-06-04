@@ -86,21 +86,6 @@ for (const Type of Object .keys (X3D .require ("x_ite/Fields/SFMatrix4")))
 
    test ("enumerate", () =>
    {
-      function enumerate (properties, target)
-      {
-         const
-            a = { },
-            b = { }
-
-         for (const property in target)
-            a [property] = true
-
-         for (const property of properties)
-            b [property] = true
-
-         expect (a) .toEqual (b)
-      }
-
       const properties = new Array (16) .keys ()
 
       enumerate (properties, new SFMatrix4 ())

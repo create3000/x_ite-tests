@@ -40,21 +40,6 @@ test ("properties", () =>
    expect (Browser .currentScene) .toBeInstanceOf (X3D .X3DScene)
    expect (Browser .toString ()) .toBe (`[object ${Browser .getTypeName ()}]`)
 
-   function enumerate (properties, target)
-   {
-      const
-         a = { },
-         b = { }
-
-      for (const property in target)
-         a [property] = true
-
-      for (const property of properties)
-         b [property] = true
-
-      expect (a) .toEqual (b)
-   }
-
    const properties = [
       "name",
       "version",

@@ -31,21 +31,6 @@ test ("properties", () =>
    expect (profile .components) .toHaveLength (1)
    expect (profile .components [0] .name) .toBe ("Core")
 
-   function enumerate (properties, target)
-   {
-      const
-         a = { },
-         b = { }
-
-      for (const property in target)
-         a [property] = true
-
-      for (const property of properties)
-         b [property] = true
-
-      expect (a) .toEqual (b)
-   }
-
    const properties = [
       "name",
       "title",

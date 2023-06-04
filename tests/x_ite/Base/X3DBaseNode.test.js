@@ -15,21 +15,6 @@ test ("getType", () =>
 
 test ("concrete-nodes", async () =>
 {
-   function enumerate (properties, target)
-   {
-      const
-         a = { },
-         b = { }
-
-      for (const property in target)
-         a [property] = true
-
-      for (const property of properties)
-         b [property] = true
-
-      expect (a) .toEqual (b)
-   }
-
    await Browser .loadComponents (Browser .getProfile ("Full"))
 
    for (const ConcreteNode of Browser .getConcreteNodes ())
@@ -66,21 +51,6 @@ test ("abstract-nodes", async () =>
       "X3DProtoDeclaration",
       "X3DProtoDeclarationNode",
    ])
-
-   function enumerate (properties, target)
-   {
-      const
-         a = { },
-         b = { }
-
-      for (const property in target)
-         a [property] = true
-
-      for (const property of properties)
-         b [property] = true
-
-      expect (a) .toEqual (b)
-   }
 
    await Browser .loadComponents (Browser .getProfile ("Full"))
 

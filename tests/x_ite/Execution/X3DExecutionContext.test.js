@@ -93,21 +93,6 @@ Test { }
    expect (executionContext .rootNodes [0]) .toBe (executionContext .rootNodes [0])
    expect (executionContext .toString ()) .toBe (`[object ${executionContext .getTypeName ()}]`)
 
-   function enumerate (properties, target)
-   {
-      const
-         a = { },
-         b = { }
-
-      for (const property in target)
-         a [property] = true
-
-      for (const property of properties)
-         b [property] = true
-
-      expect (a) .toEqual (b)
-   }
-
    const properties = [
       "specificationVersion",
       "encoding",
@@ -357,8 +342,6 @@ DEF S Shape {
 
    expect (scene .getNamedNodes ()) .toHaveLength (102)
 })
-
-const sleep = delay => new Promise (resolve => setTimeout (resolve, delay))
 
 test ("addImportedNode", async () =>
 {

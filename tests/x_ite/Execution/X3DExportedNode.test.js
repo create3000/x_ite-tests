@@ -4,8 +4,6 @@ const
    canvas  = X3D .createBrowser (),
    Browser = canvas .browser
 
-const sleep = delay => new Promise (resolve => setTimeout (resolve, delay))
-
 test ("properties", async () =>
 {
    const scene = await Browser .createX3DFromString (`
@@ -39,21 +37,6 @@ EXPORT N2 AS E2
    expect (exportedNode .localNode) .toBeInstanceOf (X3D .SFNode)
    expect (exportedNode .localNode) .toBe (scene .getNamedNode ("N1"))
    expect (exportedNode .toString ()) .toBe (`[object ${exportedNode .getTypeName ()}]`)
-
-   function enumerate (properties, target)
-   {
-      const
-         a = { },
-         b = { }
-
-      for (const property in target)
-         a [property] = true
-
-      for (const property of properties)
-         b [property] = true
-
-      expect (a) .toEqual (b)
-   }
 
    const properties = [
       "exportedName",

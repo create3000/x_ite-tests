@@ -103,21 +103,6 @@ test ("properties2", () =>
    expect (scene .routes) .toHaveLength (0)
    expect (scene .routes) .toBeInstanceOf (X3D .RouteArray)
 
-   function enumerate (properties, target)
-   {
-      const
-         a = { },
-         b = { }
-
-      for (const property in target)
-         a [property] = true
-
-      for (const property of properties)
-         b [property] = true
-
-      expect (a) .toEqual (b)
-   }
-
    const properties = [
       "specificationVersion",
       "encoding",
