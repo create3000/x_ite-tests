@@ -34,6 +34,7 @@ test ("static-properties", async () =>
       expect (ConcreteNode .componentName) .not .toBe (undefined)
       expect (ConcreteNode .containerField) .not .toBe (undefined)
       expect (ConcreteNode .specificationRange) .toBeInstanceOf (Array)
+      expect (() => ConcreteNode .specificationRange .sort ()) .toThrow (Error)
       expect (ConcreteNode .fieldDefinitions) .not .toBe (undefined)
       expect (ConcreteNode .fieldDefinitions) .toBeInstanceOf (X3D .FieldDefinitionArray)
    }
