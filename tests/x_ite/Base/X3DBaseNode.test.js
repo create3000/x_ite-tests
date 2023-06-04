@@ -32,9 +32,9 @@ test ("static-properties", async () =>
       expect (node .getFieldDefinitions ()) .toBeInstanceOf (X3D .FieldDefinitionArray)
       expect (node .getFieldDefinitions ()) .toBe (node .getValue () .getFieldDefinitions ())
       expect (node .getValue () .getTypeName ()) .toBe (ConcreteNode .typeName)
-      expect (typeof node .getValue () .getTypeName ()) .toBe ("string")
-      expect (typeof node .getValue () .getComponentName ()) .toBe ("string")
-      expect (node .getValue () .getSpecificationRange ()) .toBeInstanceOf (Array)
+      expect (node .getValue () .getComponentName ()) .toBe (ConcreteNode .componentName)
+      expect (node .getValue () .getContainerField ()) .toBe (ConcreteNode .containerField)
+      expect (node .getValue () .getSpecificationRange ()) .toBe (ConcreteNode .specificationRange)
       expect (node .getValue () .getFieldDefinitions ()) .toBeInstanceOf (X3D .FieldDefinitionArray)
    }
 })
