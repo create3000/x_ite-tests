@@ -1,7 +1,9 @@
 const
    X3D        = require ("../../X3D"),
    SFRotation = X3D .require ("x_ite/Fields/SFRotation"),
+   SFVec3d    = X3D .require ("x_ite/Fields") .SFVec3d,
    SFVec3f    = X3D .require ("x_ite/Fields") .SFVec3f,
+   SFMatrix3d = X3D .require ("x_ite/Fields") .SFMatrix3d,
    SFMatrix3f = X3D .require ("x_ite/Fields") .SFMatrix3f
 
 test ("constructor", () =>
@@ -63,6 +65,39 @@ test ("constructor", () =>
    expect (v5 [1]) .toBeCloseTo (1)
    expect (v5 [2]) .toBeCloseTo (0)
    expect (v5 [3]) .toBeCloseTo (Math .PI / 2)
+
+   const v6 = new SFRotation (new SFVec3d (2,3,4), 5)
+
+   expect (v6 .x) .toBe (2)
+   expect (v6 .y) .toBe (3)
+   expect (v6 .z) .toBe (4)
+   expect (v6 .angle) .toBe (5)
+   expect (v6 [0]) .toBe (2)
+   expect (v6 [1]) .toBe (3)
+   expect (v6 [2]) .toBe (4)
+   expect (v6 [3]) .toBe (5)
+
+   const v7 = new SFRotation (new SFVec3d (0,0,1), new SFVec3d (1,0,0))
+
+   expect (v7 .x) .toBeCloseTo (0)
+   expect (v7 .y) .toBeCloseTo (1)
+   expect (v7 .z) .toBeCloseTo (0)
+   expect (v7 .angle) .toBeCloseTo (Math .PI / 2)
+   expect (v7 [0]) .toBeCloseTo (0)
+   expect (v7 [1]) .toBeCloseTo (1)
+   expect (v7 [2]) .toBeCloseTo (0)
+   expect (v7 [3]) .toBeCloseTo (Math .PI / 2)
+
+   const v8 = new SFRotation (new SFMatrix3d (0,0,-1,0,1,0,1,0,0))
+
+   expect (v8 .x) .toBeCloseTo (0)
+   expect (v8 .y) .toBeCloseTo (1)
+   expect (v8 .z) .toBeCloseTo (0)
+   expect (v8 .angle) .toBeCloseTo (Math .PI / 2)
+   expect (v8 [0]) .toBeCloseTo (0)
+   expect (v8 [1]) .toBeCloseTo (1)
+   expect (v8 [2]) .toBeCloseTo (0)
+   expect (v8 [3]) .toBeCloseTo (Math .PI / 2)
 })
 
 test ("enumerate", () =>
@@ -320,6 +355,42 @@ test ("multVec", () =>
       v3 = r3 .multVec (zAxis)
 
    expect (v3) .toBeInstanceOf (SFVec3f)
+   expect (v3) .not .toBe (r3 .multVec (zAxis))
+   expect (v3 [0]) .toBeCloseTo (Math .SQRT1_2)
+   expect (v3 [1]) .toBeCloseTo (Math .SQRT1_2)
+   expect (v3 [2]) .toBeCloseTo (0)
+})
+
+test ("multVec-double", () =>
+{
+   const zAxis = new SFVec3d (0,0,1)
+
+   const
+      r1 = new SFRotation (zAxis, new SFVec3d (1,0,0)),
+      v1 = r1 .multVec (zAxis)
+
+   expect (v1) .toBeInstanceOf (SFVec3d)
+   expect (v1) .not .toBe (r1 .multVec (zAxis))
+   expect (v1 .getValue ()) .not .toBe (r1 .multVec (zAxis) .getValue ())
+   expect (v1 [0]) .toBeCloseTo (1)
+   expect (v1 [1]) .toBeCloseTo (0)
+   expect (v1 [2]) .toBeCloseTo (0)
+
+   const
+      r2 = new SFRotation (zAxis, new SFVec3d (1,0,1)),
+      v2 = r2 .multVec (zAxis)
+
+   expect (v2) .toBeInstanceOf (SFVec3d)
+   expect (v2) .not .toBe (r2 .multVec (zAxis))
+   expect (v2 [0]) .toBeCloseTo (Math .SQRT1_2)
+   expect (v2 [1]) .toBeCloseTo (0)
+   expect (v2 [2]) .toBeCloseTo (Math .SQRT1_2)
+
+   const
+      r3 = new SFRotation (zAxis, new SFVec3d (1,1,0)),
+      v3 = r3 .multVec (zAxis)
+
+   expect (v3) .toBeInstanceOf (SFVec3d)
    expect (v3) .not .toBe (r3 .multVec (zAxis))
    expect (v3 [0]) .toBeCloseTo (Math .SQRT1_2)
    expect (v3 [1]) .toBeCloseTo (Math .SQRT1_2)
