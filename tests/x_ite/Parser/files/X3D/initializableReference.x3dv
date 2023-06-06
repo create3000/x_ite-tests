@@ -1,0 +1,49 @@
+#X3D V4.0 utf8 X_ITE V8.7.8
+
+PROFILE Interchange
+
+COMPONENT Scripting : 1
+
+META "created" "Thu, 01 Jun 2023 09:13:52 GMT"
+META "comment" "Rise and Shine"
+META "creator" "Holger Seelig"
+META "generator" "Sunrize X3D Editor V1.0.39, https://create3000.github.io/sunrize/"
+META "identifier" "file:///Users/holger/Desktop/X_ITE/x_ite-tests/tests/x_ite/Parser/files/X3D/initializableReference.x3dv"
+META "modified" "Tue, 06 Jun 2023 00:47:27 GMT"
+
+PROTO Test [
+  inputOnly  SFFloat in
+  outputOnly SFFloat out
+  inputOnly  SFTime  inTime
+  outputOnly SFTime  outTime
+]
+{
+  DEF NewScript Script {
+    inputOutput SFFloat in IS in
+    inputOutput SFFloat in 1
+    inputOutput SFFloat out IS out
+    inputOutput SFFloat out 2
+
+    url "ecmascript:
+
+function initialize ()
+{
+   // Add code here.
+}
+
+function set_field (value, time)
+{
+   console .log (time, value);
+}
+"
+  }
+
+  TimeSensor {
+    pauseTime IS inTime
+    pauseTime 1
+    stopTime IS outTime
+    stopTime 2
+  }
+}
+
+Test { }

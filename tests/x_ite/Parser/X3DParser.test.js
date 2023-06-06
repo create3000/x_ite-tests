@@ -4,7 +4,7 @@ const
 
 const X3D = require ("../../X3D")
 
-test ("statements", async () =>
+test ("statements.x3d", async () =>
 {
    const
       canvas        = X3D .createBrowser (),
@@ -44,7 +44,7 @@ test ("statements", async () =>
    }
 })
 
-test ("fields", async () =>
+test ("fields.x3d", async () =>
 {
    const
       canvas        = X3D .createBrowser (),
@@ -107,4 +107,20 @@ test ("nodes", async () =>
 
    for (const [i, node] of scene3 .rootNodes .entries ())
       expect (node .getNodeTypeName ()) .toBe (Browser .getConcreteNodes () [i] .typeName)
+})
+
+test ("initializableReference.x3dv", async () =>
+{
+   const
+      canvas  = X3D .createBrowser (),
+      Browser = canvas .browser
+
+   const
+      orig   = await fetch (path .join (__dirname, "files", "X3D", `initializableReference.x3dv`)) .then (r => r .text ()),
+      x3dv   = await Browser .createX3DFromString (orig),
+      x3d    = await Browser .createX3DFromString (x3dv .toXMLString ()),
+      x3dj   = await Browser .createX3DFromString (x3d  .toJSONString ()),
+      result = await Browser .createX3DFromString (x3dj .toVRMLString ())
+
+   expect (result .toVRMLString ()) .toBe (orig)
 })
