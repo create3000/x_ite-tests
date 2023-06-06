@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE X3D PUBLIC "ISO//Web3D//DTD X3D 4.0//EN" "http://www.web3d.org/specifications/x3d-4.0.dtd">
+<X3D profile='Interchange' version='4.0' xmlns:xsd='http://www.w3.org/2001/XMLSchema-instance' xsd:noNamespaceSchemaLocation='http://www.web3d.org/specifications/x3d-4.0.xsd'>
+  <head>
+    <component name='Scripting' level='1'/>
+    <meta name='created' content='Tue, 06 Jun 2023 19:32:00 GMT'/>
+    <meta name='comment' content='Rise and Shine'/>
+    <meta name='creator' content='Holger Seelig'/>
+    <meta name='generator' content='Sunrize X3D Editor V1.0.39, https://create3000.github.io/sunrize/'/>
+    <meta name='identifier' content='file:///Users/holger/Desktop/X_ITE/x_ite-tests/tests/x_ite/Parser/files/X3D/doubleFields.x3d'/>
+    <meta name='modified' content='Tue, 06 Jun 2023 19:42:39 GMT'/>
+  </head>
+  <Scene>
+    <Script DEF='NewScript'
+        description='build-in description'
+        load='false'>
+      <field accessType='initializeOnly' type='SFBool' name='load' value='true'/>
+      <field accessType='initializeOnly' type='SFString' name='description' value='custom description'/>
+<![CDATA[ecmascript:
+
+function initialize ()
+{
+   // Add code here.
+}
+
+function set_field (value, time)
+{
+   console .log (time, value);
+}
+]]>
+    </Script>
+  </Scene>
+</X3D>

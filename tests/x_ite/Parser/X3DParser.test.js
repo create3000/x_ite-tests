@@ -4,11 +4,13 @@ const
 
 const X3D = require ("../../X3D")
 
+const
+   canvas  = X3D .createBrowser (),
+   Browser = canvas .browser
+
 test ("statements.x3d", async () =>
 {
    const
-      canvas        = X3D .createBrowser (),
-      Browser       = canvas .browser,
       latestVersion = Browser .createScene () .specificationVersion,
       scene         = await Browser .createX3DFromURL (new X3D .MFString (url .pathToFileURL (path .join (__dirname, "files", "X3D", `statements.x3d`))))
 
@@ -47,8 +49,6 @@ test ("statements.x3d", async () =>
 test ("fields.x3d", async () =>
 {
    const
-      canvas        = X3D .createBrowser (),
-      Browser       = canvas .browser,
       latestVersion = Browser .createScene () .specificationVersion,
       scene         = await Browser .createX3DFromURL (new X3D .MFString (url .pathToFileURL (path .join (__dirname, "files", "X3D", `fields.x3d`))))
 
@@ -79,10 +79,6 @@ test ("fields.x3d", async () =>
 
 test ("nodes", async () =>
 {
-   const
-      canvas  = X3D .createBrowser (),
-      Browser = canvas .browser
-
    await Browser .loadComponents (Browser .getProfile ("Full"))
 
    const string = `PROFILE Full
@@ -112,15 +108,27 @@ test ("nodes", async () =>
 test ("initializableReference.x3dv", async () =>
 {
    const
-      canvas  = X3D .createBrowser (),
-      Browser = canvas .browser
+      orig  = await fetch (path .join (__dirname, "files", "X3D", `initializableReference.x3dv`)) .then (r => r .text ()),
+      scene = await Browser .createX3DFromString (orig),
+      x3d   = await Browser .createX3DFromString (scene .toXMLString ()),
+      x3dj  = await Browser .createX3DFromString (scene .toJSONString ()),
+      x3dv  = await Browser .createX3DFromString (scene .toVRMLString ())
 
+   expect (x3d  .toVRMLString ()) .toBe (orig)
+   expect (x3dj .toVRMLString ()) .toBe (orig)
+   expect (x3dv .toVRMLString ()) .toBe (orig)
+})
+
+test ("doubleFields.x3d", async () =>
+{
    const
-      orig   = await fetch (path .join (__dirname, "files", "X3D", `initializableReference.x3dv`)) .then (r => r .text ()),
-      x3dv   = await Browser .createX3DFromString (orig),
-      x3d    = await Browser .createX3DFromString (x3dv .toXMLString ()),
-      x3dj   = await Browser .createX3DFromString (x3d  .toJSONString ()),
-      result = await Browser .createX3DFromString (x3dj .toVRMLString ())
+      orig  = await fetch (path .join (__dirname, "files", "X3D", `doubleFields.x3d`)) .then (r => r .text ()),
+      scene = await Browser .createX3DFromString (orig),
+      x3d   = await Browser .createX3DFromString (scene .toXMLString ()),
+      x3dj  = await Browser .createX3DFromString (scene .toJSONString ()),
+      x3dv  = await Browser .createX3DFromString (scene .toVRMLString ())
 
-   expect (result .toVRMLString ()) .toBe (orig)
+   expect (x3d  .toXMLString ()) .toBe (orig)
+   expect (x3dj .toXMLString ()) .toBe (orig)
+   expect (x3dv .toXMLString ()) .toBe (orig)
 })

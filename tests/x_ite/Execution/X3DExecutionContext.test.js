@@ -760,3 +760,8 @@ Foo { }
    expect (() => scene .addExternProtoDeclaration ("FooBee", otherProto)) .toThrow (Error)
    expect (() => scene .updateExternProtoDeclaration ("FooBee", otherProto)) .toThrow (Error)
 })
+
+test ("RoutesHandling", () =>
+{
+
+})
