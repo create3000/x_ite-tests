@@ -9,19 +9,35 @@ META "comment" "Rise and Shine"
 META "creator" "Holger Seelig"
 META "generator" "Sunrize X3D Editor V1.0.39, https://create3000.github.io/sunrize/"
 META "identifier" "file:///Users/holger/Desktop/X_ITE/x_ite-tests/tests/x_ite/Parser/files/X3D/initializableReference.x3dv"
-META "modified" "Tue, 06 Jun 2023 00:47:27 GMT"
+META "modified" "Tue, 06 Jun 2023 07:33:45 GMT"
 
-PROTO Test [
-  inputOnly  SFFloat in
-  outputOnly SFFloat out
-  inputOnly  SFTime  inTime
-  outputOnly SFTime  outTime
+PROTO Proto [
+  inputOutput SFFloat in 0
+  inputOutput SFFloat out 0
 ]
 {
+}
+
+PROTO Test [
+  inputOnly  SFTime  preIn
+  outputOnly SFTime  preOut
+  inputOnly  SFFloat userIn
+  outputOnly SFFloat userOut
+  inputOnly  SFFloat protoIn
+  outputOnly SFFloat protoOut
+]
+{
+  TimeSensor {
+    pauseTime IS preIn
+    pauseTime 1
+    stopTime IS preOut
+    stopTime 2
+  }
+
   DEF NewScript Script {
-    inputOutput SFFloat in IS in
+    inputOutput SFFloat in IS userIn
     inputOutput SFFloat in 1
-    inputOutput SFFloat out IS out
+    inputOutput SFFloat out IS userOut
     inputOutput SFFloat out 2
 
     url "ecmascript:
@@ -38,11 +54,11 @@ function set_field (value, time)
 "
   }
 
-  TimeSensor {
-    pauseTime IS inTime
-    pauseTime 1
-    stopTime IS outTime
-    stopTime 2
+  Proto {
+    in IS protoIn
+    in 1
+    out IS protoOut
+    out 2
   }
 }
 
