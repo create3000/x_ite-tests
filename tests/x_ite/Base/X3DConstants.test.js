@@ -39,6 +39,23 @@ test ("fields", () =>
       .toBe (Object .keys (Fields) .length)
 })
 
+test ("internal-nodes", () =>
+{
+   const InternalNodes = [
+      "X3DBrowser",
+      "X3DWorld",
+      "X3DScene",
+      "X3DExecutionContext",
+      "X3DExternProtoDeclaration",
+      "X3DProtoDeclaration",
+      "X3DProtoDeclarationNode",
+      "X3DBaseNode",
+   ]
+
+   for (const InternalNode of InternalNodes)
+      expect (Number .isInteger (X3D .X3DConstants [InternalNode])) .toBe (true)
+})
+
 test ("concrete-nodes", async () =>
 {
    const
