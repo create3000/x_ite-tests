@@ -42,41 +42,21 @@ test ("concrete-nodes", async () =>
 
 test ("abstract-nodes", async () =>
 {
-   const internal = new Set ([
-      "X3DBrowser",
-      "X3DWorld",
-      "X3DScene",
-      "X3DExecutionContext",
-      "X3DExternProtoDeclaration",
-      "X3DProtoDeclaration",
-      "X3DProtoDeclarationNode",
-   ])
-
    await Browser .loadComponents (Browser .getProfile ("Full"))
 
    for (const AbstractNode of Browser .getAbstractNodes ())
    {
       expect (typeof AbstractNode .typeName) .toBe ("string")
 
-      if (internal .has (AbstractNode .typeName))
+      if (AbstractNode .typeName === "X3DPrototypeInstance")
       {
-         if (AbstractNode .fieldDefinitions)
-            enumerate (["typeName", "fieldDefinitions"], AbstractNode)
-         else
-            enumerate (["typeName"], AbstractNode)
+         expect (typeof AbstractNode .componentName) .toBe ("string")
+         enumerate (["typeName", "componentName", "containerField", "specificationRange"], AbstractNode)
       }
       else
       {
-         if (AbstractNode .typeName === "X3DPrototypeInstance")
-         {
-            expect (typeof AbstractNode .componentName) .toBe ("string")
-            enumerate (["typeName", "componentName", "containerField", "specificationRange"], AbstractNode)
-         }
-         else
-         {
-            expect (typeof AbstractNode .componentName) .toBe ("string")
-            enumerate (["typeName", "componentName"], AbstractNode)
-         }
+         expect (typeof AbstractNode .componentName) .toBe ("string")
+         enumerate (["typeName", "componentName"], AbstractNode)
       }
    }
 })
