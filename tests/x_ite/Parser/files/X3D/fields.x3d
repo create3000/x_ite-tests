@@ -8,13 +8,13 @@
     <meta name='creator' content='Holger Seelig'/>
     <meta name='generator' content='Sunrize X3D Editor V1.0.39, https://create3000.github.io/sunrize/'/>
     <meta name='identifier' content='file:///Users/holger/Desktop/X_ITE/x_ite-tests/tests/x_ite/Parser/files/X3D/fields.x3d'/>
-    <meta name='modified' content='Wed, 07 Jun 2023 12:53:05 GMT'/>
+    <meta name='modified' content='Wed, 07 Jun 2023 13:42:23 GMT'/>
   </head>
   <Scene>
     <Transform DEF='Sphere'>
       <Shape>
         <Appearance>
-          <ComposedShader DEF='CobwebShader'
+          <ComposedShader DEF='Shader'
               language='GLSL'>
             <field accessType='initializeOnly' type='SFBool' name='sfbool' value='true'/>
             <field accessType='initializeOnly' type='SFColor' name='sfcolor' value='0.1 0.2 0.3'/>
