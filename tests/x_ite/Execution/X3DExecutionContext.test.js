@@ -761,7 +761,50 @@ Foo { }
    expect (() => scene .updateExternProtoDeclaration ("FooBee", otherProto)) .toThrow (Error)
 })
 
-test ("RoutesHandling", () =>
+test ("RouteHandling", async () =>
 {
+   const scene = await Browser .createX3DFromString (`
+PROFILE Interchange
 
+DEF T1 Transform { }
+DEF T2 Transform { }
+DEF T3 Transform { }
+DEF T4 Transform { }
+   `)
+
+   expect (scene .routes) .toHaveLength (0)
+
+   const
+      t1 = scene .getNamedNode ("T1"),
+      t2 = scene .getNamedNode ("T2"),
+      t3 = scene .getNamedNode ("T3"),
+      t4 = scene .getNamedNode ("T4")
+
+   scene .addRoute (t1, "translation", t2, "translation");
+   scene .addRoute (t2, "translation_changed", t3, "set_translation");
+
+   expect (scene .routes) .toHaveLength (2)
+   expect (scene .routes [0] .sourceNode) .toBe (t1)
+   expect (scene .routes [0] .sourceField) .toBe ("translation")
+   expect (scene .routes [0] .destinationNode) .toBe (t2)
+   expect (scene .routes [0] .destinationField) .toBe ("translation")
+   expect (scene .routes [1] .sourceNode) .toBe (t2)
+   expect (scene .routes [1] .sourceField) .toBe ("translation")
+   expect (scene .routes [1] .destinationNode) .toBe (t3)
+   expect (scene .routes [1] .destinationField) .toBe ("translation")
+
+   scene .deleteRoute (scene .routes [0])
+
+   expect (scene .routes) .toHaveLength (1)
+   expect (scene .routes [0] .sourceNode) .toBe (t2)
+   expect (scene .routes [0] .sourceField) .toBe ("translation")
+   expect (scene .routes [0] .destinationNode) .toBe (t3)
+   expect (scene .routes [0] .destinationField) .toBe ("translation")
+
+   scene .deleteRoute (scene .routes [0] .sourceNode,
+                       scene .routes [0] .sourceField,
+                       scene .routes [0] .destinationNode,
+                       scene .routes [0] .destinationField)
+
+   expect (scene .routes) .toHaveLength (0)
 })
