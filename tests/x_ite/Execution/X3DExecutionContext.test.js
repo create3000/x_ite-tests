@@ -777,8 +777,7 @@ DEF T4 Transform { }
    const
       t1 = scene .getNamedNode ("T1"),
       t2 = scene .getNamedNode ("T2"),
-      t3 = scene .getNamedNode ("T3"),
-      t4 = scene .getNamedNode ("T4")
+      t3 = scene .getNamedNode ("T3")
 
    scene .addRoute (t1, "translation", t2, "translation");
    scene .addRoute (t2, "translation_changed", t3, "set_translation");
