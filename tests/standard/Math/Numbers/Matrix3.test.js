@@ -58,7 +58,7 @@ test ("get1", () =>
    const
       m2 = new Matrix3 (),
       r  = new Vector3 (0, 0, 0),
-      c  = new Complex .Polar (1, 5)
+      c  = Complex .Polar (1, 5)
 
    m2 .rotate (5)
    m2 .get (null, r)
