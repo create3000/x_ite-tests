@@ -288,7 +288,7 @@ test ("dispose2", () =>
 
    expect (scene .rootNodes) .toHaveLength (0)
 
-   scene .rootNodes .push (s1, s2, s3, null, s4, s5, s6)
+   scene .rootNodes .push (s1, s2, s3, null, m1, s4, s5, s6)
    s1 .metadata = m1
    s2 .metadata = m1
    s3 .metadata = m1
@@ -296,14 +296,15 @@ test ("dispose2", () =>
    s5 .metadata = m1
    s6 .metadata = m1
 
-   expect (scene .rootNodes) .toHaveLength (7)
+   expect (scene .rootNodes) .toHaveLength (8)
    expect (scene .rootNodes [0]) .toBe (s1)
    expect (scene .rootNodes [1]) .toBe (s2)
    expect (scene .rootNodes [2]) .toBe (s3)
    expect (scene .rootNodes [3]) .toBe (null)
-   expect (scene .rootNodes [4]) .toBe (s4)
-   expect (scene .rootNodes [5]) .toBe (s5)
-   expect (scene .rootNodes [6]) .toBe (s6)
+   expect (scene .rootNodes [4]) .toBe (m1)
+   expect (scene .rootNodes [5]) .toBe (s4)
+   expect (scene .rootNodes [6]) .toBe (s5)
+   expect (scene .rootNodes [7]) .toBe (s6)
    expect (s1 .metadata) .toBe (m1)
    expect (s2 .metadata) .toBe (m1)
    expect (s3 .metadata) .toBe (m1)
@@ -315,6 +316,14 @@ test ("dispose2", () =>
    m1 .dispose ()
    expect (m1 .getValue ()) .toBe (null)
 
+   expect (scene .rootNodes) .toHaveLength (7)
+   expect (scene .rootNodes [0]) .toBe (s1)
+   expect (scene .rootNodes [1]) .toBe (s2)
+   expect (scene .rootNodes [2]) .toBe (s3)
+   expect (scene .rootNodes [3]) .toBe (null)
+   expect (scene .rootNodes [4]) .toBe (s4)
+   expect (scene .rootNodes [5]) .toBe (s5)
+   expect (scene .rootNodes [6]) .toBe (s6)
    expect (s1 .metadata) .toBe (null)
    expect (s2 .metadata) .toBe (null)
    expect (s3 .metadata) .toBe (null)
