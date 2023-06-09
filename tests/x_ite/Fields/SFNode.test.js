@@ -161,11 +161,12 @@ test ("parents", () =>
    expect (n2 .getNodeTypeName ()) .toBe ("MetadataBoolean")
 })
 
-test ("dispose", async () =>
+test ("dispose1", async () =>
 {
    const scene = await Browser .createX3DFromString (`
 PROFILE Interchange
 
+DEF S4 Shape { }
 DEF T1 Transform {
    children [
       DEF S1 Shape {
@@ -202,11 +203,28 @@ ROUTE S1.appearance TO S2.appearance
 
    const
       shape1 = scene .getNamedNode ("S1"),
-      shape3 = scene .getImportedNode ("S3")
+      shape3 = scene .getImportedNode ("S3"),
+      shape4 = scene .getNamedNode ("S4")
 
-   expect (scene .rootNodes) .toHaveLength (4)
+   const
+      t1 = scene .getNamedNode ("T1"),
+      t2 = scene .getNamedNode ("T2"),
+      s2 = scene .getNamedNode ("S2"),
+      i  = scene .getNamedNode ("I")
+
+   expect (scene .rootNodes) .toHaveLength (5)
+   expect (scene .rootNodes [0]) .toBe (shape4)
+   expect (scene .rootNodes [1]) .toBe (t1)
+   expect (scene .rootNodes [2]) .toBe (t2)
+   expect (scene .rootNodes [3]) .toBe (s2)
+   expect (scene .rootNodes [4]) .toBe (i)
+   expect (scene .rootNodes [0] .getValue ()) .not .toBe (null)
+   expect (scene .rootNodes [1] .getValue ()) .not .toBe (null)
+   expect (scene .rootNodes [2] .getValue ()) .not .toBe (null)
+   expect (scene .rootNodes [3] .getValue ()) .not .toBe (null)
+   expect (scene .rootNodes [4] .getValue ()) .not .toBe (null)
    expect (scene .routes) .toHaveLength (1)
-   expect (scene .getNamedNodes ()) .toHaveLength (7)
+   expect (scene .getNamedNodes ()) .toHaveLength (8)
    expect (scene .getImportedNodes ()) .toHaveLength (1)
    expect (scene .getExportedNodes ()) .toHaveLength (1)
    expect (shape1) .toBe (scene .getNamedNode ("S1"))
@@ -220,6 +238,11 @@ ROUTE S1.appearance TO S2.appearance
    expect (shape3 .getNodeTypeName ()) .toBe ("Shape")
    expect (shape3 .getValue ()) .toBeInstanceOf (X3D .require ("x_ite/Base/X3DBaseNode"))
    expect (shape3) .toBe (scene .getImportedNode ("S3"))
+   expect (shape4 .getType ()) .toBe (X3D .X3DConstants .SFNode)
+   expect (shape4 .getTypeName ()) .toBe ("SFNode")
+   expect (shape4 .getNodeTypeName ()) .toBe ("Shape")
+   expect (shape4 .getValue ()) .toBeInstanceOf (X3D .require ("x_ite/Base/X3DBaseNode"))
+   expect (shape4) .toBe (scene .getNamedNode ("S4"))
    expect (scene .getNamedNode ("T1") .children) .toHaveLength (2)
    expect (scene .getNamedNode ("T2") .children) .toHaveLength (1)
    expect (scene .getNamedNode ("A") .getValue () .getParents () .size) .toBe (2)
@@ -227,16 +250,118 @@ ROUTE S1.appearance TO S2.appearance
 
    shape1 .dispose ()
    shape3 .dispose ()
+   shape4 .dispose ()
 
    expect (scene .rootNodes) .toHaveLength (4)
+   expect (scene .rootNodes [0]) .toBe (t1)
+   expect (scene .rootNodes [1]) .toBe (t2)
+   expect (scene .rootNodes [2]) .toBe (s2)
+   expect (scene .rootNodes [3]) .toBe (i)
+   expect (scene .rootNodes [0] .getValue ()) .not .toBe (null)
+   expect (scene .rootNodes [1] .getValue ()) .not .toBe (null)
+   expect (scene .rootNodes [2] .getValue ()) .not .toBe (null)
+   expect (scene .rootNodes [3] .getValue ()) .not .toBe (null)
    expect (scene .routes) .toHaveLength (0)
    expect (scene .getNamedNodes ()) .toHaveLength (6)
    expect (scene .getImportedNodes ()) .toHaveLength (0)
    expect (scene .getExportedNodes ()) .toHaveLength (0)
    expect (shape1 .getValue ()) .toBe (null)
    expect (shape3 .getValue ()) .toBe (null)
+   expect (shape4 .getValue ()) .toBe (null)
    expect (scene .getNamedNode ("T1") .children) .toHaveLength (1)
    expect (scene .getNamedNode ("T2") .children) .toHaveLength (0)
    expect (scene .getNamedNode ("A") .getValue () .getParents () .size) .toBe (1)
    expect (scene .getNamedNode ("B") .getValue () .getParents () .size) .toBe (1)
+})
+
+test ("dispose2", () =>
+{
+   const
+      scene = Browser .createScene (),
+      s1    = scene .createNode ("MetadataSet"),
+      s2    = scene .createNode ("MetadataSet"),
+      s3    = scene .createNode ("MetadataSet"),
+      s4    = scene .createNode ("MetadataSet"),
+      s5    = scene .createNode ("MetadataSet"),
+      s6    = scene .createNode ("MetadataSet"),
+      m1    = scene .createNode ("MetadataBoolean")
+
+   expect (scene .rootNodes) .toHaveLength (0)
+
+   scene .rootNodes .push (s1, s2, s3, s4, s5, s6)
+   s1 .metadata = m1
+   s2 .metadata = m1
+   s3 .metadata = m1
+   s4 .metadata = m1
+   s5 .metadata = m1
+   s6 .metadata = m1
+
+   expect (scene .rootNodes) .toHaveLength (6)
+   expect (scene .rootNodes [0]) .toBe (s1)
+   expect (scene .rootNodes [1]) .toBe (s2)
+   expect (scene .rootNodes [2]) .toBe (s3)
+   expect (scene .rootNodes [3]) .toBe (s4)
+   expect (scene .rootNodes [4]) .toBe (s5)
+   expect (scene .rootNodes [5]) .toBe (s6)
+   expect (s1 .metadata) .toBe (m1)
+   expect (s2 .metadata) .toBe (m1)
+   expect (s3 .metadata) .toBe (m1)
+   expect (s4 .metadata) .toBe (m1)
+   expect (s5 .metadata) .toBe (m1)
+   expect (s6 .metadata) .toBe (m1)
+
+   m1 .dispose ()
+   expect (m1 .getValue ()) .toBe (null)
+
+   expect (s1 .metadata) .toBe (null)
+   expect (s2 .metadata) .toBe (null)
+   expect (s3 .metadata) .toBe (null)
+   expect (s4 .metadata) .toBe (null)
+   expect (s5 .metadata) .toBe (null)
+   expect (s6 .metadata) .toBe (null)
+
+   s5 .dispose ()
+   expect (s5 .getValue ()) .toBe (null)
+
+   expect (scene .rootNodes) .toHaveLength (5)
+   expect (scene .rootNodes [0]) .toBe (s1)
+   expect (scene .rootNodes [1]) .toBe (s2)
+   expect (scene .rootNodes [2]) .toBe (s3)
+   expect (scene .rootNodes [3]) .toBe (s4)
+   expect (scene .rootNodes [4]) .toBe (s6)
+
+   s2 .dispose ()
+   expect (s2 .getValue ()) .toBe (null)
+
+   expect (scene .rootNodes) .toHaveLength (4)
+   expect (scene .rootNodes [0]) .toBe (s1)
+   expect (scene .rootNodes [1]) .toBe (s3)
+   expect (scene .rootNodes [2]) .toBe (s4)
+   expect (scene .rootNodes [3]) .toBe (s6)
+
+   s1 .dispose ()
+   expect (s1 .getValue ()) .toBe (null)
+
+   expect (scene .rootNodes) .toHaveLength (3)
+   expect (scene .rootNodes [0]) .toBe (s3)
+   expect (scene .rootNodes [1]) .toBe (s4)
+   expect (scene .rootNodes [2]) .toBe (s6)
+
+   s4 .dispose ()
+   expect (s4 .getValue ()) .toBe (null)
+
+   expect (scene .rootNodes) .toHaveLength (2)
+   expect (scene .rootNodes [0]) .toBe (s3)
+   expect (scene .rootNodes [1]) .toBe (s6)
+
+   s3 .dispose ()
+   expect (s3 .getValue ()) .toBe (null)
+
+   expect (scene .rootNodes) .toHaveLength (1)
+   expect (scene .rootNodes [0]) .toBe (s6)
+
+   s6 .dispose ()
+   expect (s6 .getValue ()) .toBe (null)
+
+   expect (scene .rootNodes) .toHaveLength (0)
 })
