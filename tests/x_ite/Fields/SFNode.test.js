@@ -288,7 +288,7 @@ test ("dispose2", () =>
 
    expect (scene .rootNodes) .toHaveLength (0)
 
-   scene .rootNodes .push (s1, s2, s3, s4, s5, s6)
+   scene .rootNodes .push (s1, s2, s3, null, s4, s5, s6)
    s1 .metadata = m1
    s2 .metadata = m1
    s3 .metadata = m1
@@ -296,13 +296,14 @@ test ("dispose2", () =>
    s5 .metadata = m1
    s6 .metadata = m1
 
-   expect (scene .rootNodes) .toHaveLength (6)
+   expect (scene .rootNodes) .toHaveLength (7)
    expect (scene .rootNodes [0]) .toBe (s1)
    expect (scene .rootNodes [1]) .toBe (s2)
    expect (scene .rootNodes [2]) .toBe (s3)
-   expect (scene .rootNodes [3]) .toBe (s4)
-   expect (scene .rootNodes [4]) .toBe (s5)
-   expect (scene .rootNodes [5]) .toBe (s6)
+   expect (scene .rootNodes [3]) .toBe (null)
+   expect (scene .rootNodes [4]) .toBe (s4)
+   expect (scene .rootNodes [5]) .toBe (s5)
+   expect (scene .rootNodes [6]) .toBe (s6)
    expect (s1 .metadata) .toBe (m1)
    expect (s2 .metadata) .toBe (m1)
    expect (s3 .metadata) .toBe (m1)
@@ -325,50 +326,56 @@ test ("dispose2", () =>
    s5 .dispose ()
    expect (s5 .getValue ()) .toBe (null)
 
-   expect (scene .rootNodes) .toHaveLength (5)
+   expect (scene .rootNodes) .toHaveLength (6)
    expect (scene .rootNodes [0]) .toBe (s1)
    expect (scene .rootNodes [1]) .toBe (s2)
    expect (scene .rootNodes [2]) .toBe (s3)
-   expect (scene .rootNodes [3]) .toBe (s4)
-   expect (scene .rootNodes [4]) .toBe (s6)
+   expect (scene .rootNodes [3]) .toBe (null)
+   expect (scene .rootNodes [4]) .toBe (s4)
+   expect (scene .rootNodes [5]) .toBe (s6)
 
    expect (s2 .getValue ()) .not .toBe (null)
    s2 .dispose ()
    expect (s2 .getValue ()) .toBe (null)
 
-   expect (scene .rootNodes) .toHaveLength (4)
+   expect (scene .rootNodes) .toHaveLength (5)
    expect (scene .rootNodes [0]) .toBe (s1)
    expect (scene .rootNodes [1]) .toBe (s3)
-   expect (scene .rootNodes [2]) .toBe (s4)
-   expect (scene .rootNodes [3]) .toBe (s6)
+   expect (scene .rootNodes [2]) .toBe (null)
+   expect (scene .rootNodes [3]) .toBe (s4)
+   expect (scene .rootNodes [4]) .toBe (s6)
 
    expect (s1 .getValue ()) .not .toBe (null)
    s1 .dispose ()
    expect (s1 .getValue ()) .toBe (null)
 
-   expect (scene .rootNodes) .toHaveLength (3)
+   expect (scene .rootNodes) .toHaveLength (4)
    expect (scene .rootNodes [0]) .toBe (s3)
-   expect (scene .rootNodes [1]) .toBe (s4)
-   expect (scene .rootNodes [2]) .toBe (s6)
+   expect (scene .rootNodes [1]) .toBe (null)
+   expect (scene .rootNodes [2]) .toBe (s4)
+   expect (scene .rootNodes [3]) .toBe (s6)
 
    expect (s4 .getValue ()) .not .toBe (null)
    s4 .dispose ()
    expect (s4 .getValue ()) .toBe (null)
 
-   expect (scene .rootNodes) .toHaveLength (2)
+   expect (scene .rootNodes) .toHaveLength (3)
    expect (scene .rootNodes [0]) .toBe (s3)
-   expect (scene .rootNodes [1]) .toBe (s6)
+   expect (scene .rootNodes [1]) .toBe (null)
+   expect (scene .rootNodes [2]) .toBe (s6)
 
    expect (s3 .getValue ()) .not .toBe (null)
    s3 .dispose ()
    expect (s3 .getValue ()) .toBe (null)
 
-   expect (scene .rootNodes) .toHaveLength (1)
-   expect (scene .rootNodes [0]) .toBe (s6)
+   expect (scene .rootNodes) .toHaveLength (2)
+   expect (scene .rootNodes [0]) .toBe (null)
+   expect (scene .rootNodes [1]) .toBe (s6)
 
    expect (s6 .getValue ()) .not .toBe (null)
    s6 .dispose ()
    expect (s6 .getValue ()) .toBe (null)
 
-   expect (scene .rootNodes) .toHaveLength (0)
+   expect (scene .rootNodes) .toHaveLength (1)
+   expect (scene .rootNodes [0]) .toBe (null)
 })
