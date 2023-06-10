@@ -422,4 +422,10 @@ test ("NodeUserData", () =>
    n .removeNodeUserData ("key")
 
    expect (n .getNodeUserData ("key")) .toBe (undefined)
+
+   n .dispose ()
+
+   expect (() => n .getNodeUserData ("key")) .toThrow (Error)
+   expect (() => n .setNodeUserData ("key", 123)) .toThrow (Error)
+   expect (() => n .removeNodeUserData ("key")) .toThrow (Error)
 })
