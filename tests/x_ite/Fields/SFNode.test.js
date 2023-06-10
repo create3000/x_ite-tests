@@ -391,3 +391,35 @@ test ("dispose2", () =>
    expect (scene .rootNodes) .toHaveLength (1)
    expect (scene .rootNodes [0]) .toBe (null)
 })
+
+test ("UserData", () =>
+{
+   const
+      scene = Browser .createScene (),
+      n     = scene .createNode ("MetadataSet")
+
+   expect (n .getUserData ("key")) .toBe (undefined)
+
+   n .setUserData ("key", 123)
+   expect (n .getUserData ("key")) .toBe (123)
+
+   n .removeUserData ("key")
+
+   expect (n .getUserData ("key")) .toBe (undefined)
+})
+
+test ("NodeUserData", () =>
+{
+   const
+      scene = Browser .createScene (),
+      n     = scene .createNode ("MetadataSet")
+
+   expect (n .getNodeUserData ("key")) .toBe (undefined)
+
+   n .setNodeUserData ("key", 123)
+   expect (n .getNodeUserData ("key")) .toBe (123)
+
+   n .removeNodeUserData ("key")
+
+   expect (n .getNodeUserData ("key")) .toBe (undefined)
+})
