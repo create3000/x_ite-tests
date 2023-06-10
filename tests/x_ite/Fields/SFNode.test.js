@@ -418,6 +418,7 @@ test ("NodeUserData", () =>
 
    n .setNodeUserData ("key", 123)
    expect (n .getNodeUserData ("key")) .toBe (123)
+   expect (n .getUserData ("key")) .toBe (undefined)
 
    n .removeNodeUserData ("key")
 
