@@ -79,9 +79,9 @@ Box { }
    \`), self, 'nodes');
 }
 
-function set_nodes (nodes)
+function set_nodes (nodes, time)
 {
-   res ();
+   res (nodes);
 }
    "
 }
@@ -92,11 +92,12 @@ function set_nodes (nodes)
       load   = script .evaluate ("load")
 
    browser .getScriptStack () .push (script);
-   await new Promise ((resolve, reject) => load (resolve, reject))
+   const nodes = await new Promise ((resolve, reject) => load (resolve, reject))
    browser .getScriptStack () .pop ();
 
-   expect (script .getField ("nodes")) .toHaveLength (3)
-   expect (script .getField ("nodes") [0] .getNodeTypeName ()) .toBe ("Transform")
-   expect (script .getField ("nodes") [1] .getNodeTypeName ()) .toBe ("Shape")
-   expect (script .getField ("nodes") [2] .getNodeTypeName ()) .toBe ("Box")
+   expect (nodes) .toBe (script .getField ("nodes"))
+   expect (nodes) .toHaveLength (3)
+   expect (nodes [0] .getNodeTypeName ()) .toBe ("Transform")
+   expect (nodes [1] .getNodeTypeName ()) .toBe ("Shape")
+   expect (nodes [2] .getNodeTypeName ()) .toBe ("Box")
 })
