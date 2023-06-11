@@ -61,7 +61,7 @@ test ("abstract-nodes", async () =>
    }
 })
 
-test ("private", () =>
+test ("private/cloneCount", () =>
 {
    const
       set1 = scene .createNode ("MetadataSet"),
