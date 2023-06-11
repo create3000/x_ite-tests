@@ -108,7 +108,7 @@ test ("nodes", async () =>
 test ("initializableReference.x3dv", async () =>
 {
    const
-      orig  = await fetch (path .join (__dirname, "files", "X3D", `initializableReference.x3dv`)) .then (r => r .text ()),
+      orig  = await fetch (path .join (__dirname, "files", "X3D", `initializableReference.x3dv`)) .then (r => r .text ()) .then (t => t .replace (/V\d+\.\d+\.\d+/, "V" + Browser .version)),
       scene = await Browser .createX3DFromString (orig),
       x3d   = await Browser .createX3DFromString (scene .toXMLString ()),
       x3dj  = await Browser .createX3DFromString (scene .toJSONString ()),
