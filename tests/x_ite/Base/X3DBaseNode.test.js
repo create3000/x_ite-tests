@@ -60,3 +60,16 @@ test ("abstract-nodes", async () =>
       }
    }
 })
+
+test ("isPrivate", () =>
+{
+   const node = scene .createNode ("MetadataDouble") .getValue ()
+
+   expect (node .isPrivate ()) .toBe (false)
+
+   node .setPrivate (true)
+   expect (node .isPrivate ()) .toBe (true)
+
+   node .setPrivate (false)
+   expect (node .isPrivate ()) .toBe (false)
+})
