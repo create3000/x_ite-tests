@@ -20,9 +20,9 @@ DEF Script Script {
 
    const script = scene .getNamedNode ("Script") .getValue ()
 
-   expect (script .evaluate ("return Browser")) .toBe (browser)
-   expect (script .evaluate ("return Browser .currentScene")) .toBe (scene)
-   expect (script .evaluate ("return X3DConstants")) .toBe (X3D .X3DConstants)
+   expect (script .evaluate ("Browser")) .toBe (browser)
+   expect (script .evaluate ("Browser .currentScene")) .toBe (scene)
+   expect (script .evaluate ("X3DConstants")) .toBe (X3D .X3DConstants)
 })
 
 test ("fields", async () =>
@@ -45,14 +45,14 @@ test ("fields", async () =>
    script ._url = new X3D .MFString ("ecmascript:")
    script .setup ()
 
-   expect (script .evaluate ("return double1")) .toBe (0)
-   expect (script .evaluate ("return vector1")) .toBeInstanceOf (Fields .SFVec3f)
-   expect (script .evaluate ("return typeof double2")) .toBe ("undefined")
-   expect (script .evaluate ("return typeof vector2")) .toBe ("undefined")
-   expect (script .evaluate ("return double3")) .toBe (0)
-   expect (script .evaluate ("return vector3")) .toBeInstanceOf (Fields .SFVec3f)
-   expect (script .evaluate ("return double4")) .toBe (0)
-   expect (script .evaluate ("return vector4")) .toBeInstanceOf (Fields .SFVec3f)
+   expect (script .evaluate ("double1")) .toBe (0)
+   expect (script .evaluate ("vector1")) .toBeInstanceOf (Fields .SFVec3f)
+   expect (script .evaluate ("typeof double2")) .toBe ("undefined")
+   expect (script .evaluate ("typeof vector2")) .toBe ("undefined")
+   expect (script .evaluate ("double3")) .toBe (0)
+   expect (script .evaluate ("vector3")) .toBeInstanceOf (Fields .SFVec3f)
+   expect (script .evaluate ("double4")) .toBe (0)
+   expect (script .evaluate ("vector4")) .toBeInstanceOf (Fields .SFVec3f)
 })
 
 test ("createVrmlFromURL", async () =>
@@ -87,10 +87,12 @@ function set_nodes (nodes)
 }
    `)
 
-   const script = scene .getNamedNode ("Script") .getValue ()
+   const
+      script = scene .getNamedNode ("Script") .getValue (),
+      load   = script .evaluate ("load")
 
    browser .getScriptStack () .push (script);
-   await new Promise ((resolve, reject) => script .evaluate ("return load") (resolve, reject))
+   await new Promise ((resolve, reject) => load (resolve, reject))
    browser .getScriptStack () .pop ();
 
    expect (script .getField ("nodes")) .toHaveLength (3)
