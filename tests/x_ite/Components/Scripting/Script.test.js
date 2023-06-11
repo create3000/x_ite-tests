@@ -31,12 +31,12 @@ test ("fields", async () =>
 
    script .addUserDefinedField (X3D .X3DConstants .initializeOnly, "double1", new Fields .SFDouble ())
    script .addUserDefinedField (X3D .X3DConstants .initializeOnly, "vector1", new Fields .SFVec3f ())
-   script .addUserDefinedField (X3D .X3DConstants .inputOnly, "double2", new Fields .SFDouble ())
-   script .addUserDefinedField (X3D .X3DConstants .inputOnly, "vector2", new Fields .SFVec3f ())
-   script .addUserDefinedField (X3D .X3DConstants .outputOnly, "double3", new Fields .SFDouble ())
-   script .addUserDefinedField (X3D .X3DConstants .outputOnly, "vector3", new Fields .SFVec3f ())
-   script .addUserDefinedField (X3D .X3DConstants .inputOutput, "double4", new Fields .SFDouble ())
-   script .addUserDefinedField (X3D .X3DConstants .inputOutput, "vector4", new Fields .SFVec3f ())
+   script .addUserDefinedField (X3D .X3DConstants .inputOnly,      "double2", new Fields .SFDouble ())
+   script .addUserDefinedField (X3D .X3DConstants .inputOnly,      "vector2", new Fields .SFVec3f ())
+   script .addUserDefinedField (X3D .X3DConstants .outputOnly,     "double3", new Fields .SFDouble ())
+   script .addUserDefinedField (X3D .X3DConstants .outputOnly,     "vector3", new Fields .SFVec3f ())
+   script .addUserDefinedField (X3D .X3DConstants .inputOutput,    "double4", new Fields .SFDouble ())
+   script .addUserDefinedField (X3D .X3DConstants .inputOutput,    "vector4", new Fields .SFVec3f ())
 
    script ._url = new X3D .MFString ("ecmascript:")
    script .setup ()
