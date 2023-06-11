@@ -87,6 +87,12 @@ test ("private/cloneCount", () =>
    set1 .value .length = 0
    expect (dbl .getValue () .getCloneCount ()) .toBe (1)
 
+   set1 .metadata = dbl
+   expect (dbl .getValue () .getCloneCount ()) .toBe (2)
+
+   set1 .metadata = null
+   expect (dbl .getValue () .getCloneCount ()) .toBe (1)
+   
    set2 .value .length = 0
    expect (dbl .getValue () .getCloneCount ()) .toBe (0)
 })
