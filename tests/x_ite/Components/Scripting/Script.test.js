@@ -4,30 +4,30 @@ const
 
 const
    canvas  = X3D .createBrowser (),
-   Browser = canvas .browser
+   browser = canvas .browser // Must be lowercase
 
 test ("environment", async () =>
 {
-   await Browser .loadComponents (Browser .getComponent ("Scripting"))
+   await browser .loadComponents (browser .getComponent ("Scripting"))
 
    const
-      Script = Browser .getConcreteNode ("Script"),
-      script = new Script (Browser .currentScene)
+      Script = browser .getConcreteNode ("Script"),
+      script = new Script (browser .currentScene)
 
    script ._url = new X3D .MFString ("ecmascript:")
    script .setup ()
 
-   expect (script .evaluate ("Browser")) .toBe (Browser)
+   expect (script .evaluate ("Browser")) .toBe (browser)
    expect (script .evaluate ("X3DConstants")) .toBe (X3D .X3DConstants)
 })
 
 test ("fields", async () =>
 {
-   await Browser .loadComponents (Browser .getComponent ("Scripting"))
+   await browser .loadComponents (browser .getComponent ("Scripting"))
 
    const
-      Script = Browser .getConcreteNode ("Script"),
-      script = new Script (Browser .currentScene)
+      Script = browser .getConcreteNode ("Script"),
+      script = new Script (browser .currentScene)
 
    script .addUserDefinedField (X3D .X3DConstants .initializeOnly, "double1", new Fields .SFDouble ())
    script .addUserDefinedField (X3D .X3DConstants .initializeOnly, "vector1", new Fields .SFVec3f ())
