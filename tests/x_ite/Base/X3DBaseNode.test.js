@@ -61,15 +61,32 @@ test ("abstract-nodes", async () =>
    }
 })
 
-test ("isPrivate", () =>
+test ("private", () =>
 {
-   const node = scene .createNode ("MetadataDouble") .getValue ()
+   const
+      set1 = scene .createNode ("MetadataSet"),
+      set2 = scene .createNode ("MetadataSet"),
+      dbl  = scene .createNode ("MetadataDouble")
 
-   expect (node .isPrivate ()) .toBe (false)
+   set1 .value .push (dbl)
 
-   node .setPrivate (true)
-   expect (node .isPrivate ()) .toBe (true)
+   expect (set1 .getValue () .isPrivate ()) .toBe (false)
+   expect (dbl .getValue () .getCloneCount ()) .toBe (1)
 
-   node .setPrivate (false)
-   expect (node .isPrivate ()) .toBe (false)
+   set1 .getValue () .setPrivate (true)
+   expect (set1 .getValue () .isPrivate ()) .toBe (true)
+   expect (dbl .getValue () .getCloneCount ()) .toBe (0)
+
+   set1 .getValue () .setPrivate (false)
+   expect (set1 .getValue () .isPrivate ()) .toBe (false)
+   expect (dbl .getValue () .getCloneCount ()) .toBe (1)
+
+   set2 .value .push (dbl)
+   expect (dbl .getValue () .getCloneCount ()) .toBe (2)
+
+   set1 .value .length = 0
+   expect (dbl .getValue () .getCloneCount ()) .toBe (1)
+
+   set2 .value .length = 0
+   expect (dbl .getValue () .getCloneCount ()) .toBe (0)
 })
