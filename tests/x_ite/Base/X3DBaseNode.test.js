@@ -92,7 +92,13 @@ test ("private/cloneCount", () =>
 
    set1 .metadata = null
    expect (dbl .getValue () .getCloneCount ()) .toBe (1)
-   
+
    set2 .value .length = 0
+   expect (dbl .getValue () .getCloneCount ()) .toBe (0)
+
+   Browser .currentScene .rootNodes .push (dbl)
+   expect (dbl .getValue () .getCloneCount ()) .toBe (1)
+
+   Browser .currentScene .rootNodes .length = 0
    expect (dbl .getValue () .getCloneCount ()) .toBe (0)
 })
