@@ -64,6 +64,7 @@ DEF Script Script {
       const script = scene .getNamedNode ("Script") .getValue ()
 
       expect (script .evaluate ("SFNode")) .not .toBe (X3D .SFNode)
+      expect (script .evaluate ("new SFNode ('Transform { }')")) .toBeInstanceOf (script .evaluate ("SFNode"))
       expect (script .evaluate ("new SFNode ('Transform { }')")) .toBeInstanceOf (X3D .SFNode)
       expect (script .evaluate ("new SFNode ('Transform { }')") .getNodeTypeName ()) .toBe ("Transform")
       expect (() => script .evaluate ("new SFNode ('NULL')")) .toThrow (Error)
