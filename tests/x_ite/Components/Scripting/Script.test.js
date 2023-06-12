@@ -29,21 +29,24 @@ test ("fields", async () =>
 {
    await browser .loadComponents (browser .getComponent ("Scripting"))
 
-   const
-      Script = browser .getConcreteNode ("Script"),
-      script = new Script (browser .currentScene)
+   const scene = await browser .createX3DFromString (`
+PROFILE Interchange
+COMPONENT Scripting:1
+DEF Script Script {
+   initializeOnly SFDouble double1 0
+   initializeOnly SFVec3f  vector1 0 0 0
+   inputOnly      SFDouble double2
+   inputOnly      SFVec3f  vector2
+   outputOnly     SFDouble double3
+   outputOnly     SFVec3f  vector3
+   inputOutput    SFDouble double4 0
+   inputOutput    SFVec3f  vector4 0 0 0
 
-   script .addUserDefinedField (X3D .X3DConstants .initializeOnly, "double1", new Fields .SFDouble ())
-   script .addUserDefinedField (X3D .X3DConstants .initializeOnly, "vector1", new Fields .SFVec3f ())
-   script .addUserDefinedField (X3D .X3DConstants .inputOnly,      "double2", new Fields .SFDouble ())
-   script .addUserDefinedField (X3D .X3DConstants .inputOnly,      "vector2", new Fields .SFVec3f ())
-   script .addUserDefinedField (X3D .X3DConstants .outputOnly,     "double3", new Fields .SFDouble ())
-   script .addUserDefinedField (X3D .X3DConstants .outputOnly,     "vector3", new Fields .SFVec3f ())
-   script .addUserDefinedField (X3D .X3DConstants .inputOutput,    "double4", new Fields .SFDouble ())
-   script .addUserDefinedField (X3D .X3DConstants .inputOutput,    "vector4", new Fields .SFVec3f ())
+   url "ecmascript:"
+}
+   `)
 
-   script ._url = new X3D .MFString ("ecmascript:")
-   script .setup ()
+   const script = scene .getNamedNode ("Script") .getValue ()
 
    expect (script .evaluate ("double1")) .toBe (0)
    expect (script .evaluate ("vector1")) .toBeInstanceOf (Fields .SFVec3f)
