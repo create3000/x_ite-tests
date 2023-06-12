@@ -36,20 +36,12 @@ DEF Script Script {
       expect (script .evaluate ("Browser")) .toBe (browser)
       expect (script .evaluate ("Browser .currentScene")) .toBe (scene)
 
-      expect (script .evaluate ("X3DConstants")) .toBe (X3D .X3DConstants)
-
-      for (const key in Fields)
-      {
-         if ((new (Fields [key]) ()) .valueOf () instanceof X3D .X3DField)
-            expect (script .evaluate (key)) .toBe (Fields [key])
-      }
-
       const excludes = new Set (["require", "noConflict", "getBrowser", "createBrowser", "SFNode"])
 
       for (const key of Object .keys (X3D) .filter (k => !excludes .has (k)))
          expect (script .evaluate (key)) .toBe (X3D [key])
 
-      expect (script .evaluate ("new SFNode ('Transform { }')")) .toBeInstanceOf (X3D .SFNode)
+      expect (() => script .evaluate ("new SFNode ('Transform { }')")) .toThrow (Error)
    }
    catch (error)
    {
@@ -63,7 +55,7 @@ test ("SFNode", async () =>
    {
       await browser .loadComponents (browser .getComponent ("Scripting"))
 
-      const scene = await browser .createX3DFromString (`
+      const scene = await browser .createX3DFromString (`#VRML V2.0 utf8
 PROFILE Interchange
 COMPONENT Scripting:1
 DEF Script Script {
@@ -118,7 +110,7 @@ DEF Script Script {
 
 test ("createVrmlFromURL", async () =>
 {
-   const scene = await browser .createX3DFromString (`
+   const scene = await browser .createX3DFromString (`#VRML V2.0 utf8
 PROFILE Interchange
 COMPONENT Scripting:1
 DEF Script Script {
