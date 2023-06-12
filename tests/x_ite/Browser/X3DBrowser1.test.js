@@ -379,9 +379,10 @@ Transform {
       geometry DEF R Box { }
    }
 }
-Group { }`)
+Group { }
+Script { }`)
 
-   expect (nodes) .toHaveLength (2)
+   expect (nodes) .toHaveLength (3)
    expect (nodes) .toBeInstanceOf (X3D .MFNode)
    expect (nodes [0]) .toBeInstanceOf (X3D .SFNode)
    expect (nodes [0] .getNodeTypeName ()) .toBe ("Transform")
@@ -392,6 +393,9 @@ Group { }`)
    expect (nodes [1]) .toBeInstanceOf (X3D .SFNode)
    expect (nodes [1] .getNodeTypeName ()) .toBe ("Group")
    expect (nodes [1]) .toBe (nodes [1])
+   expect (nodes [2]) .toBeInstanceOf (X3D .SFNode)
+   expect (nodes [2] .getNodeTypeName ()) .toBe ("Script")
+   expect (nodes [2]) .toBe (nodes [2])
 })
 
 test ("replaceWorld", async () =>
