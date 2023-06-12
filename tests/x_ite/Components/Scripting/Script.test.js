@@ -8,24 +8,54 @@ const
 
 test ("environment", async () =>
 {
-   await browser .loadComponents (browser .getComponent ("Scripting"))
+   try
+   {
+      await browser .loadComponents (browser .getComponent ("Scripting"))
 
-   const scene = await browser .createX3DFromString (`
-PROFILE Interchange
-COMPONENT Scripting:1
-DEF Script Script {
-   url "ecmascript:"
-}
-   `)
+      const scene = await browser .createX3DFromString (`
+   PROFILE Interchange
+   COMPONENT Scripting:1
+   DEF Script Script {
+      url "ecmascript:"
+   }
+      `)
 
-   const script = scene .getNamedNode ("Script") .getValue ()
+      const script = scene .getNamedNode ("Script") .getValue ()
 
-   expect (script .evaluate ("arguments")) .toHaveLength (0)
-   expect (script .evaluate ("0 in arguments")) .toBe (false)
-   expect (script .evaluate ("1 in arguments")) .toBe (false)
-   expect (script .evaluate ("Browser")) .toBe (browser)
-   expect (script .evaluate ("Browser .currentScene")) .toBe (scene)
-   expect (script .evaluate ("X3DConstants")) .toBe (X3D .X3DConstants)
+      expect (script .evaluate ("arguments")) .toHaveLength (0)
+      expect (script .evaluate ("0 in arguments")) .toBe (false)
+      expect (script .evaluate ("1 in arguments")) .toBe (false)
+
+      expect (script .evaluate ("TRUE")) .toBe (true)
+      expect (script .evaluate ("FALSE")) .toBe (false)
+      expect (script .evaluate ("NULL")) .toBe (null)
+
+      expect (script .evaluate ("print")) .toBeInstanceOf (Function)
+      expect (script .evaluate ("trace")) .toBeInstanceOf (Function)
+
+      expect (script .evaluate ("Browser")) .toBe (browser)
+      expect (script .evaluate ("Browser .currentScene")) .toBe (scene)
+
+      expect (script .evaluate ("X3DConstants")) .toBe (X3D .X3DConstants)
+
+      for (const key in Fields)
+      {
+         if ((new (Fields [key]) ()) .valueOf () instanceof X3D .X3DField)
+            expect (script .evaluate (key)) .toBe (Fields [key])
+      }
+
+      const excludes = new Set (["require", "noConflict", "getBrowser", "createBrowser", "SFNode"])
+
+      for (const key of Object .keys (X3D) .filter (k => !excludes .has (k)))
+         expect (script .evaluate (key)) .toBe (X3D [key])
+
+      expect (script .evaluate ("new SFNode ('Transform { }')")) .toBeInstanceOf (X3D .SFNode)
+      expect (script .evaluate ("new SFNode ('Transform { }')") .getNodeTypeName ()) .toBe ("Transform")
+   }
+   catch (error)
+   {
+      throw new Error (error .message)
+   }
 })
 
 test ("fields", async () =>
