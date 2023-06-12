@@ -40,8 +40,6 @@ DEF Script Script {
 
       for (const key of Object .keys (X3D) .filter (k => !excludes .has (k)))
          expect (script .evaluate (key)) .toBe (X3D [key])
-
-      expect (() => script .evaluate ("new SFNode ('Transform { }')")) .toThrow (Error)
    }
    catch (error)
    {
@@ -69,6 +67,27 @@ DEF Script Script {
       expect (script .evaluate ("new SFNode ('Transform { }')")) .toBeInstanceOf (X3D .SFNode)
       expect (script .evaluate ("new SFNode ('Transform { }')") .getNodeTypeName ()) .toBe ("Transform")
       expect (() => script .evaluate ("new SFNode ('NULL')")) .toThrow (Error)
+   }
+   catch (error)
+   {
+      throw new Error (error .message)
+   }
+
+   try
+   {
+      await browser .loadComponents (browser .getComponent ("Scripting"))
+
+      const scene = await browser .createX3DFromString (`
+PROFILE Interchange
+COMPONENT Scripting:1
+DEF Script Script {
+   url "ecmascript:"
+}
+      `)
+
+      const script = scene .getNamedNode ("Script") .getValue ()
+
+      expect (() => script .evaluate ("new SFNode ('Transform { }')")) .toThrow (Error)
    }
    catch (error)
    {
