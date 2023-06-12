@@ -41,6 +41,7 @@ DEF Script Script {
       for (const key of Object .keys (X3D) .filter (k => !excludes .has (k)))
          expect (script .evaluate (key)) .toBe (X3D [key])
 
+      expect (script .evaluate ("SFNode")) .not .toBe (X3D .SFNode)
       expect (() => script .evaluate ("new SFNode ('Transform { }')")) .toThrow (Error)
    }
    catch (error)
