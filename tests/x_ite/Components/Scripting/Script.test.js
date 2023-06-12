@@ -20,6 +20,9 @@ DEF Script Script {
 
    const script = scene .getNamedNode ("Script") .getValue ()
 
+   expect (script .evaluate ("arguments")) .toHaveLength (0)
+   expect (script .evaluate ("0 in arguments")) .toBe (false)
+   expect (script .evaluate ("1 in arguments")) .toBe (false)
    expect (script .evaluate ("Browser")) .toBe (browser)
    expect (script .evaluate ("Browser .currentScene")) .toBe (scene)
    expect (script .evaluate ("X3DConstants")) .toBe (X3D .X3DConstants)
