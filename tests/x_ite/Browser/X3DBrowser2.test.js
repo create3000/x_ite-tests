@@ -239,7 +239,7 @@ test ("importJS", async () =>
 
 test ("VRML", async () =>
 {
-   const nodes = [
+   const typeNames = [
       "Anchor",
       "Appearance",
       "AudioClip",
@@ -301,11 +301,11 @@ test ("VRML", async () =>
       Browser = canvas .browser,
       scene   = await Browser .createX3DFromString (`#VRML V2.0 utf8
 
-${nodes .map (n => `${n}{}`) .join ("\n")}
+${typeNames .map (n => `${n}{}`) .join ("\n")}
 `)
 
    expect (scene .encoding) .toBe ("VRML")
 
-   for (const [i, node] of nodes .entries ())
-      expect (scene .rootNodes [i] .getNodeTypeName ()) .toBe (node)
+   for (const [i, typeName] of typeNames .entries ())
+      expect (scene .rootNodes [i] .getNodeTypeName ()) .toBe (typeName)
 })
