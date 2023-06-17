@@ -319,7 +319,7 @@ test ("Profile/Component Handling", async () =>
 
    Browser .addSupportedComponent (Test)
 
-   expect (() => Browser .getComponent ("Test")) .not .toThrow (Error)
+   expect (() => Browser .getComponent ("Test", 1)) .not .toThrow (Error)
 
    const scene = await Browser .createX3DFromString (`
 COMPONENT Test:1
