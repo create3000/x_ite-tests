@@ -3,7 +3,7 @@ const
    url  = require ("url"),
    $    = require ("jquery")
 
-const X3D = require ("../../X3D")
+const X3D = window .X3D = require ("../../X3D")
 
 test ("getBrowserProperty", () =>
 {
@@ -308,4 +308,27 @@ ${typeNames .map (n => `${n}{}`) .join ("\n")}
 
    for (const [i, typeName] of typeNames .entries ())
       expect (scene .rootNodes [i] .getNodeTypeName ()) .toBe (typeName)
+})
+
+test ("Profile/Component Handling", async () =>
+{
+   const
+      canvas  = X3D .createBrowser (),
+      Browser = canvas .browser,
+      Test    = new X3D .ComponentInfo ("Test", 1, "Test Component", url .pathToFileURL (path .join (__dirname, "files", "TestComponent.js")), true, [ ])
+
+   Browser .addSupportedComponent (Test)
+
+   expect (() => Browser .getComponent ("Test")) .not .toThrow (Error)
+
+   const scene = await Browser .createX3DFromString (`
+COMPONENT Test:1
+
+TestNode { }
+   `)
+
+   expect (scene .rootNodes) .toHaveLength (1)
+   expect (scene .rootNodes [0] .getNodeTypeName ()) .toBe ("TestNode")
+   expect (X3D .X3DConstants .TestNode) .toBeGreaterThan (0)
+   expect (scene .rootNodes [0] .getNodeType () .includes (X3D .X3DConstants .TestNode)) .toBe (true)
 })
