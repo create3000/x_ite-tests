@@ -317,9 +317,14 @@ test ("Profile/Component Handling", async () =>
       Browser = canvas .browser,
       Test    = new X3D .ComponentInfo ("Test", 1, "Test Component", url .pathToFileURL (path .join (__dirname, "files", "TestComponent.js")), true, [ ])
 
+   expect (() => Browser .getSupportedComponent ("Test")) .toThrow (Error)
+   expect (() => Browser .getComponent ("Test", 1))       .toThrow (Error)
+   expect (() => Browser .getConcreteNode ("TestNode"))   .toThrow (Error)
+
    Browser .addSupportedComponent (Test)
 
-   expect (() => Browser .getComponent ("Test", 1)) .not .toThrow (Error)
+   expect (() => Browser .getSupportedComponent ("Test")) .not .toThrow (Error)
+   expect (() => Browser .getComponent ("Test", 1))       .not .toThrow (Error)
 
    const scene = await Browser .createX3DFromString (`
 COMPONENT Test:1
@@ -327,8 +332,10 @@ COMPONENT Test:1
 TestNode { }
    `)
 
+   expect (() => Browser .getConcreteNode ("TestNode")) .not .toThrow (Error)
    expect (scene .rootNodes) .toHaveLength (1)
    expect (scene .rootNodes [0] .getNodeTypeName ()) .toBe ("TestNode")
    expect (X3D .X3DConstants .TestNode) .toBeGreaterThan (0)
    expect (scene .rootNodes [0] .getNodeType () .includes (X3D .X3DConstants .TestNode)) .toBe (true)
+   expect (scene .rootNodes [0] .test) .toBe ("TestValue")
 })
