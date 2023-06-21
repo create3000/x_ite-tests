@@ -41,6 +41,9 @@ ROUTE I.value_changed TO T.set_translation
    expect (route .getDestinationField () .getName ()) .toBe (route .destinationField)
    expect (route .toString ()) .toBe (`[object ${route .getTypeName ()}]`)
 
+   expect (route .getId ()) .toBeGreaterThan (0)
+   expect (typeof route .getRouteId ()) .toBe ("string")
+
    route .sourceNode       = undefined
    route .sourceField      = undefined
    route .destinationNode  = undefined
