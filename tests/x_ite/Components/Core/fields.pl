@@ -237,4 +237,4 @@ $cwd = getcwd . "";
 
 node $_ foreach sort `find $cwd/../x_ite/src/x_ite/Components -type f -mindepth 2`;
 
-say "test-done";
+say "Test done.";
