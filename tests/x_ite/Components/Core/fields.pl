@@ -3,6 +3,8 @@ use v5.10.0;
 use utf8;
 use open qw/:std :utf8/;
 
+use Cwd;
+
 sub node {
    $filename = shift;
    chomp $filename;
@@ -18,7 +20,7 @@ sub node {
    #return unless $typeName =~ /^Transform$/;
    #say "$componentName $typeName";
 
-   $file   = `cat ../x_ite/docs/_posts/components/$componentName/$typeName.md`;
+   $file   = `cat $cwd/../x_ite/docs/_posts/components/$componentName/$typeName.md`;
    $source = `cat $filename`;
 
    @fields = $file =~ m|###\s*[SM]F\w+.*|go;
@@ -219,4 +221,8 @@ sub field {
    say "$typeName $name '$value' <-> '$codeValue'";
 }
 
-node $_ foreach sort `find ../x_ite/src/x_ite/Components -type f -mindepth 2`;
+$cwd = getcwd . "";
+
+node $_ foreach sort `find $cwd/../x_ite/src/x_ite/Components -type f -mindepth 2`;
+
+say "test-done";
