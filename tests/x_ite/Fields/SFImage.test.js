@@ -46,6 +46,18 @@ test ("constructor", () =>
    expect (v4 .array) .not .toBe (v2 .array)
    expect (v4 .array .getValue ()) .not .toBe (v2 .array .getValue ())
    expect (v4 .array .equals (v2 .array)) .toBe (true)
+
+   const v5 = new SFImage (1,2,3)
+
+   expect (v5 .x) .toBe (1)
+   expect (v5 .y) .toBe (2)
+   expect (v5 .width) .toBe (1)
+   expect (v5 .height) .toBe (2)
+   expect (v5 .comp) .toBe (3)
+   expect (v5 .array) .toHaveLength (2)
+   expect (v5 .array [0]) .toBe (0)
+   expect (v5 .array [1]) .toBe (0)
+
 })
 
 test ("enumerate", () =>
