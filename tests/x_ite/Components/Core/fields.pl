@@ -23,7 +23,10 @@ sub node {
    $file   = `cat $cwd/../x_ite/docs/_posts/components/$componentName/$typeName.md`;
    $source = `cat $filename`;
 
-   @fields = $file =~ m|###\s*[SM]F\w+.*|go;
+   @fields       = $file   =~ m|###\s*[SM]F\w+.*|go;
+   @sourceFields = $source =~ /\bX3DFieldDefinition\s*\(/go;
+
+   say "$typeName fields (" . scalar (@fields) . ") <-> source fields (" . scalar (@sourceFields) . ")" unless scalar (@fields) == scalar (@sourceFields);
 
    field ($_, $source) foreach @fields
 }
