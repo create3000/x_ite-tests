@@ -41,12 +41,24 @@ sub field {
    $name       = $3;
    $value      = $4;
 
+   $source =~ /X3DFieldDefinition\s*\(X3DConstants\s*\.(\w+),\s*"$name",\s*new\s+Fields\s*\.(\w+)\s*\((.*?)\)\),/;
+
+   $codeAccessType = $1;
+   $codeType       = $2;
+   $codeValue      = $3;
+
+   $accessTypes = {
+      " " => "initializeOnly",
+      "in" => "inputOnly",
+      "out" => "outputOnly",
+      "in, out" => "inputOutput",
+   };
+
+   say "$typeName $name '$accessType' <-> '$codeAccessType'" unless $accessTypes -> {$accessType} eq $codeAccessType;
+   say "$typeName $name '$type' <-> '$codeType'" unless $type eq $codeType;
+
    return if $accessType eq "in";
    return if $accessType eq "out";
-
-   $source =~ /X3DFieldDefinition.*?"$name",\s*new\s+Fields\s*.*?\((.*?)\)\),/;
-
-   $codeValue = $1;
 
    if ($type eq "SFBool")
    {
