@@ -37,7 +37,7 @@ sub node {
 
    say "$componentName $typeName fields do no match (" . join (", ", @difference) . ")" if @difference;
    say "$componentName $typeName fields are not in the right order." unless "@fields" eq "@sourceFields";
-   # say "@fields\n@sourceFields" unless "@fields" eq "@sourceFields";
+   # say "@fields\n@sourceFields" unless "@fields" eq "@sourceFields" && $typeName eq "Transform";
 }
 
 sub field {
