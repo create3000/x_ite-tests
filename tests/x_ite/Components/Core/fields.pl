@@ -40,7 +40,7 @@ sub node {
    unless ("@fields" eq "@sourceFields")
    {
       say "$componentName $typeName fields are not in the right order.";
-      # say "@fields\n@sourceFields" unless $typeName eq "Transform";
+      # say "@fields\n@sourceFields" if $typeName eq "Transform";
       return;
    }
 }
