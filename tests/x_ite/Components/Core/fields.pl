@@ -27,7 +27,7 @@ sub node {
    @fields       = $file   =~ m|###\s*[SM]F\w+.*|go;
    @sourceFields = $source =~ /\bX3DFieldDefinition\s*\(.*/go;
 
-   say "$typeName fields (" . scalar (@fields) . ") <-> source fields (" . scalar (@sourceFields) . ")" unless scalar (@fields) == scalar (@sourceFields);
+   say "$typeName fields (" . scalar (@fields) . ") <-> source fields (" . scalar (@sourceFields) . ")" unless @fields == @sourceFields;
 
    field ($_, $source) foreach @fields;
 
