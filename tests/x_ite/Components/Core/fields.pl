@@ -4,6 +4,7 @@ use utf8;
 use open qw/:std :utf8/;
 
 use Cwd;
+use Array::Utils qw(array_diff);
 
 sub node {
    $filename = shift;
@@ -18,17 +19,23 @@ sub node {
    return if $typeName =~ /^X3D/;
 
    #return unless $typeName =~ /^Transform$/;
-   #say "$componentName $typeName";
+   # say "$componentName $typeName";
 
    $file   = `cat $cwd/../x_ite/docs/_posts/components/$componentName/$typeName.md`;
    $source = `cat $filename`;
 
    @fields       = $file   =~ m|###\s*[SM]F\w+.*|go;
-   @sourceFields = $source =~ /\bX3DFieldDefinition\s*\(/go;
+   @sourceFields = $source =~ /\bX3DFieldDefinition\s*\(.*/go;
 
    say "$typeName fields (" . scalar (@fields) . ") <-> source fields (" . scalar (@sourceFields) . ")" unless scalar (@fields) == scalar (@sourceFields);
 
    field ($_, $source) foreach @fields;
+
+   @fields       = sort map { /\*\*(.*?)\*\*/; $_ = $1 } @fields;
+   @sourceFields = sort map { /"(.*?)"/; $_ = $1 } @sourceFields;
+   @difference   = array_diff (@fields, @sourceFields);
+
+   say "$typeName fields do no match (" . join (", ", @difference) . ")" if @difference;
 }
 
 sub field {
