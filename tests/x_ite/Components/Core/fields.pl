@@ -36,7 +36,7 @@ sub node {
    @difference   = array_diff (@fields, @sourceFields);
 
    say "$componentName $typeName fields do no match (" . join (", ", @difference) . ")" if @difference;
-   say "$componentName $typeName fields are not in order." unless "@fields" eq "@sourceFields";
+   say "$componentName $typeName fields are not in the right order." unless "@fields" eq "@sourceFields";
    # say "@fields\n@sourceFields" unless "@fields" eq "@sourceFields";
 }
 
