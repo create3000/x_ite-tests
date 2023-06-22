@@ -28,7 +28,7 @@ sub node {
 
    say "$typeName fields (" . scalar (@fields) . ") <-> source fields (" . scalar (@sourceFields) . ")" unless scalar (@fields) == scalar (@sourceFields);
 
-   field ($_, $source) foreach @fields
+   field ($_, $source) foreach @fields;
 }
 
 sub field {
