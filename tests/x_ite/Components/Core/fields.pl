@@ -21,7 +21,8 @@ sub node {
    #return unless $typeName =~ /^Transform$/;
    # say "$componentName $typeName";
 
-   $file   = `cat $cwd/../x_ite/docs/_posts/components/$componentName/$typeName.md`;
+   $md     = "$cwd/../x_ite/docs/_posts/components/$componentName/$typeName.md";
+   $file   = `cat $md`;
    $source = `cat $filename`;
 
    @fields       = $file   =~ m|###\s*[SM]F\w+.*|go;
