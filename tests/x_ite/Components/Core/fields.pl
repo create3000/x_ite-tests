@@ -10,15 +10,15 @@ sub node {
    $filename = shift;
    chomp $filename;
 
-   $filename =~ m|([^/]+)/([^/]+)\.js$|;
+   $filename =~ m|([^/]+)/([^/]+)\.js$|o;
 
    $componentName = $1;
    $typeName      = $2;
 
-   return if $componentName =~ /^Annotation$/;
-   return if $typeName =~ /^X3D/;
+   return if $componentName =~ /^Annotation$/o;
+   return if $typeName =~ /^X3D/o;
 
-   #return unless $typeName =~ /^Transform$/;
+   #return unless $typeName =~ /^Transform$/o;
    # say "$componentName $typeName";
 
    $md     = "$cwd/../x_ite/docs/_posts/components/$componentName/$typeName.md";
@@ -32,8 +32,8 @@ sub node {
 
    field ($_, $source) foreach @fields;
 
-   @fields       = map { /\*\*(.*?)\*\*/; $_ = $1 } @fields;
-   @sourceFields = map { /"(.*?)"/; $_ = $1 } @sourceFields;
+   @fields       = map { /\*\*(.*?)\*\*/o; $_ = $1 } @fields;
+   @sourceFields = map { /"(.*?)"/o; $_ = $1 } @sourceFields;
    @difference   = array_diff (@fields, @sourceFields);
 
    return say "$componentName $typeName fields do no match (" . join (", ", @difference) . ")" if @difference;
@@ -52,7 +52,7 @@ sub field {
 
    #say $field;
 
-   $field =~ /###\s*(\w+)\s*\[(.*?)\]\s*\*\*(\w+)\*\*\s*(.*?)(?:\s*<|$)/;
+   $field =~ /###\s*(\w+)\s*\[(.*?)\]\s*\*\*(\w+)\*\*\s*(.*?)(?:\s*<|$)/o;
 
    $type       = $1;
    $accessType = $2;
@@ -120,13 +120,13 @@ sub field {
       return if $value eq "0" && $codeValue eq "";
       return if $value eq $codeValue;
    }
-   elsif ($type =~ /^(?:SFMatrix3d|SFMatrix3f)$/)
+   elsif ($type =~ /^(?:SFMatrix3d|SFMatrix3f)$/o)
    {
       $value =~s /(\s)/,$1/sgo;
 
       return if $value eq "1, 0, 0, 0, 1, 0, 0, 0, 1" && $codeValue eq "";
    }
-   elsif ($type =~ /^(?:SFMatrix4d|SFMatrix4f)$/)
+   elsif ($type =~ /^(?:SFMatrix4d|SFMatrix4f)$/o)
    {
       $value =~s /(\s)/,$1/sgo;
 
@@ -150,21 +150,21 @@ sub field {
       return if $value eq "0" && $codeValue eq "";
       return if $value eq $codeValue;
    }
-   elsif ($type =~ /^(?:SFVec2d|SFVec2f)$/)
+   elsif ($type =~ /^(?:SFVec2d|SFVec2f)$/o)
    {
       $value =~s /(\s)/,$1/sgo;
 
       return if $value eq "0, 0" && $codeValue eq "";
       return if $value eq $codeValue;
    }
-   elsif ($type =~ /^(?:SFVec3d|SFVec3f)$/)
+   elsif ($type =~ /^(?:SFVec3d|SFVec3f)$/o)
    {
       $value =~s /(\s)/,$1/sgo;
 
       return if $value eq "0, 0, 0" && $codeValue eq "";
       return if $value eq $codeValue;
    }
-   elsif ($type =~ /^(?:SFVec4d|SFVec4f)$/)
+   elsif ($type =~ /^(?:SFVec4d|SFVec4f)$/o)
    {
       $value =~s /(\s)/,$1/sgo;
 
@@ -204,11 +204,11 @@ sub field {
       return if $value eq "[ $codeValue ]";
       return if $value =~ /^[+-]?\d+$/ && $value eq $codeValue;
    }
-   elsif ($type =~ /^(?:MFMatrix3d|MFMatrix3f)$/)
+   elsif ($type =~ /^(?:MFMatrix3d|MFMatrix3f)$/o)
    {
       return if $value eq "[ ]" && $codeValue eq "";
    }
-   elsif ($type =~ /^(?:MFMatrix4d|MFMatrix4f)$/)
+   elsif ($type =~ /^(?:MFMatrix4d|MFMatrix4f)$/o)
    {
       return if $value eq "[ ]" && $codeValue eq "";
    }
@@ -225,25 +225,25 @@ sub field {
    {
       return if $value eq "[ ]" && $codeValue eq "";
       return if $value eq "[ $codeValue ]";
-      return if $value =~ /^"\w+"+$/ && $value eq $codeValue;
+      return if $value =~ /^"\w+"+$/o && $value eq $codeValue;
    }
    elsif ($type eq "MFTime")
    {
       return if $value eq "[ ]" && $codeValue eq "";
    }
-   elsif ($type =~ /^(?:MFVec2d|MFVec2f)$/)
+   elsif ($type =~ /^(?:MFVec2d|MFVec2f)$/o)
    {
       return if $value eq "[ ]" && $codeValue eq "";
       return if $value eq "[ 1 1, 1 -1, -1 -1, -1 1, 1 1 ]" && $codeValue eq "new Vector2 (1, 1), new Vector2 (1, -1), new Vector2 (-1, -1), new Vector2 (-1, 1), new Vector2 (1, 1)";
       return if $value eq "1 1" && $codeValue eq "new Vector2 (1, 1)";
    }
-   elsif ($type =~ /^(?:MFVec3d|MFVec3f)$/)
+   elsif ($type =~ /^(?:MFVec3d|MFVec3f)$/o)
    {
       return if $value eq "[ ]" && $codeValue eq "";
       return if $value eq "0 0 0" && $codeValue eq "new Vector3 (0, 0, 0)";
       return if $value eq "[ 0 0 0, 0 1 0 ]" && $codeValue eq "new Vector3 (0, 0, 0), new Vector3 (0, 1, 0)";
    }
-   elsif ($type =~ /^(?:MFVec4d|MFVec4f)$/)
+   elsif ($type =~ /^(?:MFVec4d|MFVec4f)$/o)
    {
       return if $value eq "[ ]" && $codeValue eq "";
    }
