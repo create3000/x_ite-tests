@@ -25,7 +25,7 @@ sub node {
    $file   = `cat $md`;
    $source = `cat $filename`;
 
-   #return say "$componentName $typeName no external links." unless $file =~ /## External Links/s;
+   return say "$componentName $typeName no 'See Also' section." unless $file =~ /## See Also/s;
 
    @fields       = $file   =~ /###\s*[SM]F\w+.*/go;
    @sourceFields = $source =~ /\bX3DFieldDefinition\s*\(.*/go;
