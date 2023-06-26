@@ -26,6 +26,7 @@ sub node {
    $source = `cat $filename`;
 
    return say "$componentName $typeName no 'See Also' section." unless $file =~ /## See Also/s;
+   return say "$componentName $typeName no spec section." unless $file =~ /node is still experimental/ || $file =~ /X3D Specification of/s;
 
    @fields       = $file   =~ /###\s*[SM]F\w+.*/go;
    @sourceFields = $source =~ /\bX3DFieldDefinition\s*\(.*/go;
