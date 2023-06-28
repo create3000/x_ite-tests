@@ -16,4 +16,6 @@ Collision {
 
    expect (scene1 .rootNodes [0] .collide) .toBe (false)
    expect (scene1 .rootNodes [1] .collide) .toBe (true)
+   expect (scene1 .rootNodes [0] .enabled) .toBe (false)
+   expect (scene1 .rootNodes [1] .enabled) .toBe (true)
 })
