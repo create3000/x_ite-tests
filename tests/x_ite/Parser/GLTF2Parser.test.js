@@ -12,7 +12,7 @@ test ("glTF", async () =>
       scene   = await Browser .createX3DFromURL (new X3D .MFString (url .pathToFileURL (path .join (__dirname, "files", "glTF", "CesiumMan", "glTF", "CesiumMan.gltf"))))
 
    expect (scene .encoding) .toBe ("GLTF")
-   expect (scene .rootNodes .length) .toBe (2)
+   expect (scene .rootNodes .length) .toBe (3)
 })
 
 test ("glTF-Binary", async () =>
@@ -23,7 +23,7 @@ test ("glTF-Binary", async () =>
       scene   = await Browser .createX3DFromURL (new X3D .MFString (url .pathToFileURL (path .join (__dirname, "files", "glTF", "CesiumMan", "glTF-Binary", "CesiumMan.glb"))))
 
    expect (scene .encoding) .toBe ("GLTF")
-   expect (scene .rootNodes .length) .toBe (2)
+   expect (scene .rootNodes .length) .toBe (3)
 })
 
 test ("glTF-Draco", async () =>
@@ -34,7 +34,7 @@ test ("glTF-Draco", async () =>
       scene   = await Browser .createX3DFromURL (new X3D .MFString (url .pathToFileURL (path .join (__dirname, "files", "glTF", "CesiumMan", "glTF-Draco", "CesiumMan.gltf"))))
 
    expect (scene .encoding) .toBe ("GLTF")
-   expect (scene .rootNodes .length) .toBe (2)
+   expect (scene .rootNodes .length) .toBe (3)
 })
 
 test ("glTF-Embedded", async () =>
@@ -45,5 +45,5 @@ test ("glTF-Embedded", async () =>
       scene   = await Browser .createX3DFromURL (new X3D .MFString (url .pathToFileURL (path .join (__dirname, "files", "glTF", "CesiumMan", "glTF-Embedded", "CesiumMan.gltf"))))
 
    expect (scene .encoding) .toBe ("GLTF")
-   expect (scene .rootNodes .length) .toBe (2)
+   expect (scene .rootNodes .length) .toBe (3)
 })
