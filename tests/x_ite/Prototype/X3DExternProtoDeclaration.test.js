@@ -1,12 +1,13 @@
 
 const X3D = require ("../../X3D")
 
+const
+   canvas  = X3D .createBrowser (),
+   Browser = canvas .browser
+
 test ("properties", async () =>
 {
-   const
-      canvas  = X3D .createBrowser (),
-      Browser = canvas .browser,
-      scene   = await Browser .createX3DFromURL (new X3D .MFString (`data:model/x3d+vrml,
+   const scene   = await Browser .createX3DFromURL (new X3D .MFString (`data:model/x3d+vrml,
 PROFILE Interactive
 
 EXTERNPROTO Test [
@@ -110,10 +111,25 @@ Test { }
 test ("toString", () =>
 {
    const
-      canvas  = X3D .createBrowser (),
-      Browser = canvas .browser,
-      scene   = Browser .currentScene,
-      protos  = scene .protos
+      scene  = Browser .currentScene,
+      protos = scene .protos
 
    expect (protos .toString ()) .toBe (`[object ${protos .getTypeName ()}]`)
+})
+
+test ("load-failed", async () =>
+{
+   const scene = await Browser .createX3DFromString (`
+PROFILE Core
+
+EXTERNPROTO Test [
+   inputOutput SFBool test
+]
+"does/not/exists.x3d"
+
+Test { }`)
+
+   expect (scene .rootNodes) .toHaveLength (1)
+   expect (scene .rootNodes [0] .getNodeTypeName ()) .toBe ("Test")
+   expect (scene .rootNodes [0] .getValue () .getProtoNode () .checkLoadState ()) .toBe (X3D .X3DConstants .FAILED_STATE)
 })

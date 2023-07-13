@@ -7,7 +7,7 @@ const
 test ("update", async () =>
 {
    const scene = await Browser .createX3DFromURL (new X3D .MFString (`data:model/x3d+vrml,
-PROFILE Full
+PROFILE Interchange
 
 PROTO Test [
    inputOutput SFBool test true
