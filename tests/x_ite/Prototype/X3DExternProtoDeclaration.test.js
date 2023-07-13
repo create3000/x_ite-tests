@@ -1,4 +1,8 @@
 
+const
+   path = require ("path"),
+   url  = require ("url")
+
 const X3D = require ("../../X3D")
 
 const
@@ -117,6 +121,39 @@ test ("toString", () =>
    expect (protos .toString ()) .toBe (`[object ${protos .getTypeName ()}]`)
 })
 
+test ("load-not-started", async () =>
+{
+   const scene = await Browser .createX3DFromString (`
+PROFILE Core
+
+EXTERNPROTO Test [
+   inputOutput SFBool test
+]
+"${url .pathToFileURL (path .join (__dirname, "files", "proto.x3d"))}"
+`)
+
+   expect (scene .rootNodes) .toHaveLength (0)
+   expect (scene .externprotos [0] .checkLoadState ()) .toBe (X3D .X3DConstants .NOT_STARTED_STATE)
+})
+
+test ("load-complete", async () =>
+{
+   const scene = await Browser .createX3DFromString (`
+PROFILE Core
+
+EXTERNPROTO Test [
+   inputOutput SFBool test
+]
+"${url .pathToFileURL (path .join (__dirname, "files", "proto.x3d"))}"
+
+Test { }
+`)
+
+   expect (scene .rootNodes) .toHaveLength (1)
+   expect (scene .rootNodes [0] .getNodeTypeName ()) .toBe ("Test")
+   expect (scene .externprotos [0] .checkLoadState ()) .toBe (X3D .X3DConstants .COMPLETE_STATE)
+})
+
 test ("load-failed", async () =>
 {
    const scene = await Browser .createX3DFromString (`
@@ -131,5 +168,5 @@ Test { }`)
 
    expect (scene .rootNodes) .toHaveLength (1)
    expect (scene .rootNodes [0] .getNodeTypeName ()) .toBe ("Test")
-   expect (scene .rootNodes [0] .getValue () .getProtoNode () .checkLoadState ()) .toBe (X3D .X3DConstants .FAILED_STATE)
+   expect (scene .externprotos [0] .checkLoadState ()) .toBe (X3D .X3DConstants .FAILED_STATE)
 })
