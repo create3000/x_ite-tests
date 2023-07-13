@@ -133,6 +133,7 @@ EXTERNPROTO Test [
 `)
 
    expect (scene .rootNodes) .toHaveLength (0)
+   expect (scene .externprotos [0] .loadState) .toBe (X3D .X3DConstants .NOT_STARTED_STATE)
    expect (scene .externprotos [0] .checkLoadState ()) .toBe (X3D .X3DConstants .NOT_STARTED_STATE)
 })
 
@@ -151,6 +152,7 @@ Test { }
 
    expect (scene .rootNodes) .toHaveLength (1)
    expect (scene .rootNodes [0] .getNodeTypeName ()) .toBe ("Test")
+   expect (scene .externprotos [0] .loadState) .toBe (X3D .X3DConstants .COMPLETE_STATE)
    expect (scene .externprotos [0] .checkLoadState ()) .toBe (X3D .X3DConstants .COMPLETE_STATE)
 })
 
@@ -168,5 +170,6 @@ Test { }`)
 
    expect (scene .rootNodes) .toHaveLength (1)
    expect (scene .rootNodes [0] .getNodeTypeName ()) .toBe ("Test")
+   expect (scene .externprotos [0] .loadState) .toBe (X3D .X3DConstants .FAILED_STATE)
    expect (scene .externprotos [0] .checkLoadState ()) .toBe (X3D .X3DConstants .FAILED_STATE)
 })
