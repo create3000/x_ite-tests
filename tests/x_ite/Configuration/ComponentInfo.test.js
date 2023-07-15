@@ -1,11 +1,12 @@
 const X3D = require ("../../X3D")
 
+const
+   canvas  = X3D .createBrowser (),
+   Browser = canvas .browser
+
 test ("properties", () =>
 {
-   const
-      canvas    = X3D .createBrowser (),
-      Browser   = canvas .browser,
-      component = Browser .getComponent ("Core")
+   const component = Browser .getComponent ("Core")
 
    expect (component) .toBeInstanceOf (X3D .ComponentInfo)
    expect (component .constructor) .toBe (X3D .ComponentInfo)
@@ -37,12 +38,14 @@ test ("properties", () =>
    enumerate (properties, component)
 })
 
+test ("legacy", () =>
+{
+   expect (Browser .getComponent ("H-Anim") .name) .toBe ("HAnim")
+})
+
 test ("toString", () =>
 {
-   const
-      canvas    = X3D .createBrowser (),
-      Browser   = canvas .browser,
-      component = Browser .getComponent ("Core")
+   const component = Browser .getComponent ("Core")
 
    expect (component .toString ()) .toBe (`[object ${component .getTypeName ()}]`)
 })
