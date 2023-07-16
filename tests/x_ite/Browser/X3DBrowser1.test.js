@@ -146,11 +146,14 @@ test ("getComponent", () =>
    ]
 
    const legacy = [
-      "H-Anim",
+      ["H-Anim", "HAnim"],
    ]
 
-   for (const name of [... components, ... legacy])
+   for (const name of components)
       expect (Browser .getComponent (name) .name) .toBe (name)
+
+   for (const [name, value] of legacy)
+      expect (Browser .getComponent (name) .name) .toBe (value)
 })
 
 test ("createScene", () =>
