@@ -20,3 +20,24 @@ test ("help", () => new Promise ((resolve, reject) =>
       resolve ()
    });
 }))
+
+test ("error", () => new Promise ((resolve, reject) =>
+{
+   exec ("npx x3d-tidy -i does/not/exists", (error, stdout, stderr) =>
+   {
+      if (error)
+      {
+         reject (error .message)
+         return
+      }
+
+      if (stderr)
+      {
+         expect (stderr) .toMatch (/Couldn't load X3D file./)
+         resolve ()
+         return
+      }
+
+      reject ("there should be no stdout")
+   });
+}))
