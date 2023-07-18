@@ -23,7 +23,7 @@ test ("help", () => new Promise ((resolve, reject) =>
 
 test ("error", () => new Promise ((resolve, reject) =>
 {
-   exec ("npx x3d-tidy -i does/not/exists", (error, stdout, stderr) =>
+   exec ("npx x3d-tidy -i does/not/exist", (error, stdout, stderr) =>
    {
       if (error)
       {
