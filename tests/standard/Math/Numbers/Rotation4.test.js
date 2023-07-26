@@ -315,7 +315,7 @@ test ("getMatrix", () =>
    expect (m2 [7]) .toBeCloseTo (m3 [7])
    expect (m2 [8]) .toBeCloseTo (m3 [8])
 
-   const r2 = new Rotation4 () .setMatrix (r1 .normalize () .getMatrix ())
+   const r2 = Rotation4 .fromMatrix (r1 .normalize () .getMatrix ())
 
    if (r1 .getQuaternion () .dot (r2 .getQuaternion ()) < 0)
       r1 .setQuaternion (r1 .getQuaternion () .negate ())
@@ -324,6 +324,26 @@ test ("getMatrix", () =>
    expect (r1 [1]) .toBeCloseTo (r2 [1])
    expect (r1 [2]) .toBeCloseTo (r2 [2])
    expect (r1 [3]) .toBeCloseTo (r2 [3])
+})
+
+test ("euler", () =>
+{
+   const r1 = Rotation4 .fromEuler (2,3,4)
+
+   expect (r1 [0]) .toBeCloseTo (0.7422674);
+   expect (r1 [1]) .toBeCloseTo (-0.4441315);
+   expect (r1 [2]) .toBeCloseTo (-0.5017831);
+   expect (r1 [3]) .toBeCloseTo (4.9281641);
+
+   const r2 = Rotation4 .fromEuler (... Rotation4 .fromEuler (2,3,4) .getEuler ())
+
+   if (r2 .getQuaternion () .dot (r1 .getQuaternion ()) < 0)
+      r2 .setQuaternion (r2 .getQuaternion () .negate ())
+
+   expect (r2 [0]) .toBeCloseTo (r1 [0])
+   expect (r2 [1]) .toBeCloseTo (r1 [1])
+   expect (r2 [2]) .toBeCloseTo (r1 [2])
+   expect (r2 [3]) .toBeCloseTo (r1 [3])
 })
 
 test ("toString", () =>
