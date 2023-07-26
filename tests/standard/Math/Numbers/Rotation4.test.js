@@ -166,7 +166,7 @@ test ("multVecRot", () =>
    expect (v4 [2]) .toBeCloseTo (w4 [2])
 
    const
-      r5 = new Rotation4 (2,5,3,6),
+      r5 = new Rotation4 (2,5,3,4),
       v5 = r5 .multVecRot (new Vector3 (2,4,3)),
       m5 = new Matrix4 () .rotate (r5),
       w5 = m5 .multVecMatrix (new Vector3 (2,4,3))
@@ -228,7 +228,7 @@ test ("multRotVec", () =>
    expect (v4 [2]) .toBeCloseTo (w4 [2])
 
    const
-      r5 = new Rotation4 (2,5,3,6),
+      r5 = new Rotation4 (2,5,3,4),
       v5 = r5 .multRotVec (new Vector3 (2,4,3)),
       m5 = new Matrix4 () .rotate (r5),
       w5 = m5 .multMatrixVec (new Vector3 (2,4,3))
