@@ -300,7 +300,7 @@ test ("getAxis", () =>
 test ("getMatrix", () =>
 {
    const
-      r1 = new Rotation4 (1,2,3,4),
+      r1 = new Rotation4 (1,2,3,4) .normalize (),
       m1 = new Matrix4 () .rotate (r1),
       m2 = r1 .getMatrix (),
       m3 = m1 .submatrix
@@ -315,18 +315,18 @@ test ("getMatrix", () =>
    expect (m2 [7]) .toBeCloseTo (m3 [7])
    expect (m2 [8]) .toBeCloseTo (m3 [8])
 
-   const r2 = Rotation4 .fromMatrix (r1 .normalize () .getMatrix ())
+   const r2 = Rotation4 .fromMatrix (r1 .getMatrix ())
 
    if (r1 .getQuaternion () .dot (r2 .getQuaternion ()) < 0)
-      r1 .setQuaternion (r1 .getQuaternion () .negate ())
+      r2 .setQuaternion (r2 .getQuaternion () .negate ())
 
-   expect (r1 [0]) .toBeCloseTo (r2 [0])
-   expect (r1 [1]) .toBeCloseTo (r2 [1])
-   expect (r1 [2]) .toBeCloseTo (r2 [2])
-   expect (r1 [3]) .toBeCloseTo (r2 [3])
+   expect (r2 [0]) .toBeCloseTo (r1 [0])
+   expect (r2 [1]) .toBeCloseTo (r1 [1])
+   expect (r2 [2]) .toBeCloseTo (r1 [2])
+   expect (r2 [3]) .toBeCloseTo (r1 [3])
 })
 
-test ("euler", () =>
+test ("getEuler", () =>
 {
    const r1 = Rotation4 .fromEuler (2,3,4)
 
@@ -335,15 +335,20 @@ test ("euler", () =>
    expect (r1 [2]) .toBeCloseTo (-0.5017831);
    expect (r1 [3]) .toBeCloseTo (4.9281641);
 
-   const r2 = Rotation4 .fromEuler (... Rotation4 .fromEuler (2,3,4) .getEuler ())
+   const orders = ["XYZ", "ZYX", "YXZ", "ZXY", "YZX", "XZY"]
 
-   if (r2 .getQuaternion () .dot (r1 .getQuaternion ()) < 0)
-      r2 .setQuaternion (r2 .getQuaternion () .negate ())
+   for (const order of orders)
+   {
+      const r2 = Rotation4 .fromEuler (... r1 .getEuler ([ ], order), order)
 
-   expect (r2 [0]) .toBeCloseTo (r1 [0])
-   expect (r2 [1]) .toBeCloseTo (r1 [1])
-   expect (r2 [2]) .toBeCloseTo (r1 [2])
-   expect (r2 [3]) .toBeCloseTo (r1 [3])
+      if (r2 .getQuaternion () .dot (r1 .getQuaternion ()) < 0)
+         r2 .setQuaternion (r2 .getQuaternion () .negate ())
+
+      expect (r2 [0]) .toBeCloseTo (r1 [0])
+      expect (r2 [1]) .toBeCloseTo (r1 [1])
+      expect (r2 [2]) .toBeCloseTo (r1 [2])
+      expect (r2 [3]) .toBeCloseTo (r1 [3])
+   }
 })
 
 test ("toString", () =>
