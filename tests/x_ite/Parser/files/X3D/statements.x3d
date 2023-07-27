@@ -43,9 +43,7 @@
             <connect nodeField='isBound' protoField='isBound'/>
           </IS>
         </Background>
-        <ProtoInstance name='Foo'>
-          <fieldValue name='translation' value='0 3 0'/>
-        </ProtoInstance>
+        <ProtoInstance name='Foo'/>
       </ProtoBody>
     </ProtoDeclare>
     <ProtoInstance name='Test'/>
