@@ -82,6 +82,8 @@ Test1 { }`)
    expect (instance .getFieldDefinitions () [1] .name) .toBe ("test1")
    expect (instance .getFieldDefinitions () [0] .value .getValue ()) .toBe (null)
    expect (instance .getFieldDefinitions () [1] .value .getValue ()) .toBe (123)
+   expect (instance .getBody () .rootNodes) .toHaveLength (1)
+   expect (instance .getBody () .rootNodes [0] .getNodeTypeName ()) .toBe ("Transform")
 
    instance .setProtoNode (proto2)
 
@@ -93,6 +95,8 @@ Test1 { }`)
    expect (instance .getFieldDefinitions () [1] .name) .toBe ("test2")
    expect (instance .getFieldDefinitions () [0] .value .getValue ()) .toBe (null)
    expect (instance .getFieldDefinitions () [1] .value .getValue ()) .toBe (456)
+   expect (instance .getBody () .rootNodes) .toHaveLength (1)
+   expect (instance .getBody () .rootNodes [0] .getNodeTypeName ()) .toBe ("Group")
 
    instance .setProtoNode (proto1)
 
@@ -104,6 +108,8 @@ Test1 { }`)
    expect (instance .getFieldDefinitions () [1] .name) .toBe ("test1")
    expect (instance .getFieldDefinitions () [0] .value .getValue ()) .toBe (null)
    expect (instance .getFieldDefinitions () [1] .value .getValue ()) .toBe (123)
+   expect (instance .getBody () .rootNodes) .toHaveLength (1)
+   expect (instance .getBody () .rootNodes [0] .getNodeTypeName ()) .toBe ("Transform")
 })
 
 test ("static-properties", () =>
