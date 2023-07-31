@@ -2,7 +2,7 @@ const { exec } = require ("child_process")
 
 test ("help", () => new Promise ((resolve, reject) =>
 {
-   exec ("npx x3d-tidy -h", (error, stdout, stderr) =>
+   exec ("npx --yes x3d-tidy -h", (error, stdout, stderr) =>
    {
       if (error)
       {
@@ -23,7 +23,7 @@ test ("help", () => new Promise ((resolve, reject) =>
 
 test ("error", () => new Promise ((resolve, reject) =>
 {
-   exec ("npx x3d-tidy -i does/not/exist", (error, stdout, stderr) =>
+   exec ("npx --yes x3d-tidy -i does/not/exist", (error, stdout, stderr) =>
    {
       if (error)
       {
