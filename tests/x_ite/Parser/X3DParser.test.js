@@ -142,3 +142,12 @@ test ("doubleFields.x3d", async () =>
    expect (x3dj .toXMLString ()) .toBe (orig)
    expect (x3dv .toXMLString ()) .toBe (orig)
 })
+
+test ("base64-with-bom", async () =>
+{
+   const
+      data  = await fetch (path .join (__dirname, "files", "X3D", `base64-with-bom.url`)) .then (r => r .text ()),
+      scene = await Browser .createX3DFromURL (new X3D .MFString (data))
+
+   expect (scene .rootNodes) .toHaveLength (27)
+})
