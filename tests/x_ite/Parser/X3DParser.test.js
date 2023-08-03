@@ -151,3 +151,12 @@ test ("base64-with-bom", async () =>
 
    expect (scene .rootNodes) .toHaveLength (27)
 })
+
+test ("bom.txt", async () =>
+{
+   const
+      text  = await fetch (path .join (__dirname, "files", "X3D", `bom.txt`)) .then (r => r .text ()),
+      scene = await Browser .createX3DFromURL (new X3D .MFString (`data:model/x3d+vrml,${atob (text)}`))
+
+   expect (scene .rootNodes) .toHaveLength (27)
+})
