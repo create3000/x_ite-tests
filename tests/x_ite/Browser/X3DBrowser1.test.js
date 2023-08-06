@@ -32,6 +32,7 @@ test ("properties", () =>
 
    expect (Browser .name) .toBe ("X_ITE")
    expect (Browser .version) .toMatch (/^\d+\.\d+\.\d+$/)
+   expect (Browser .providerURL) .toMatch (/^https:\/\//)
    expect (Browser .providerUrl) .toMatch (/^https:\/\//)
    expect (Browser .currentSpeed) .toBe (0)
    expect (Browser .currentFrameRate) .toBe (60)
@@ -46,7 +47,7 @@ test ("properties", () =>
    const properties = [
       "name",
       "version",
-      "providerUrl",
+      "providerURL",
       "currentSpeed",
       "currentFrameRate",
       "description",

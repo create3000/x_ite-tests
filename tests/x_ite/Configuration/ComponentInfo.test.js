@@ -13,26 +13,27 @@ test ("properties", () =>
    expect (component .name) .toBe ("Core")
    expect (component .level) .toBe (2)
    expect (component .title) .toBe ("Core")
-   expect (component .providerUrl .length > 0) .toBe (true)
-   expect (component .providerUrl) .not .toBe ("")
+   expect (component .providerURL .length > 0) .toBe (true)
+   expect (component .providerURL) .not .toBe ("")
 
    component .name        = undefined
    component .level       = undefined
    component .title       = undefined
+   component .providerURL = undefined
    component .providerUrl = undefined
 
    expect (component .name) .toBe ("Core")
    expect (component .level) .toBe (2)
    expect (component .title) .toBe ("Core")
-   expect (component .providerUrl .length > 0) .toBe (true)
-   expect (component .providerUrl) .not .toBe ("")
-   expect (component .providerUrl) .not .toBe (undefined)
+   expect (component .providerURL .length > 0) .toBe (true)
+   expect (component .providerURL) .not .toBe ("")
+   expect (component .providerURL) .not .toBe (undefined)
 
    const properties = [
       "name",
       "level",
       "title",
-      "providerUrl",
+      "providerURL",
    ]
 
    enumerate (properties, component)
@@ -40,6 +41,11 @@ test ("properties", () =>
 
 test ("legacy", () =>
 {
+   const component = Browser .getComponent ("Core")
+
+   expect (component .providerUrl .length > 0) .toBe (true)
+   expect (component .providerUrl) .not .toBe ("")
+
    expect (Browser .getComponent ("H-Anim") .name) .toBe ("HAnim")
 })
 
