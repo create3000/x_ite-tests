@@ -46,8 +46,7 @@ test ("legacy", () =>
 {
    const profile = Browser .getProfile ("Core")
 
-   expect (profile .providerUrl .length > 0) .toBe (true)
-   expect (profile .providerUrl) .not .toBe ("")
+   expect (profile .providerUrl) .toBe (profile .providerURL)
 })
 
 test ("toString", () =>

@@ -43,8 +43,7 @@ test ("legacy", () =>
 {
    const component = Browser .getComponent ("Core")
 
-   expect (component .providerUrl .length > 0) .toBe (true)
-   expect (component .providerUrl) .not .toBe ("")
+   expect (component .providerUrl) .toBe (component .providerURL)
 
    expect (Browser .getComponent ("H-Anim") .name) .toBe ("HAnim")
 })
