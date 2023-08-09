@@ -461,6 +461,51 @@ DEF L LoadSensor {
    })
 }))
 
+test ("baseURL - createVrmlFromString", () => new Promise (async (resolve, reject) =>
+{
+   try
+   {
+
+   const
+      canvas  = X3D .createBrowser (),
+      Browser = canvas .browser
+
+   Browser .baseURL = url .pathToFileURL (path .join (__dirname, "files/"))
+
+   const rootNodes = Browser .createVrmlFromString (`
+DEF I Inline {
+   url "box.x3d"
+}
+   `)
+
+   expect (rootNodes) .toHaveLength (1)
+
+   rootNodes [0] .getValue () ._loadState .addFieldCallback ("test", (loadState) =>
+   {
+      try
+      {
+         if (loadState !== X3D .X3DConstants .COMPLETE_STATE)
+            return
+
+         const I = rootNodes [0]
+
+         expect (I .getValue () .getInternalScene () .rootNodes) .toHaveLength (1)
+         expect (I .getValue () .getInternalScene () .rootNodes [0] .getNodeTypeName ()) .toBe ("Transform")
+
+         resolve ()
+      }
+      catch (error)
+      {
+         reject (error .message)
+      }
+   })
+}
+catch (error)
+{
+   reject (error .message)
+}
+}))
+
 test ("baseURL - loadURL", async () =>
 {
    const
