@@ -535,3 +535,19 @@ DEF L LoadSensor {
    expect (I .getValue () .getInternalScene () .rootNodes) .toHaveLength (1)
    expect (I .getValue () .getInternalScene () .rootNodes [0] .getNodeTypeName ()) .toBe ("Transform")
 })
+
+test ("blob URL", async () =>
+{
+   const
+      canvas  = X3D .createBrowser (),
+      Browser = canvas .browser
+
+   const
+      response = await fetch (url .pathToFileURL (path .join (__dirname, "files", "box-with-wrong-texture.x3d"))),
+      blob     = await response .blob ()
+
+   await Browser .loadURL (new X3D .MFString (URL .createObjectURL (blob)));
+
+   expect (Browser .currentScene .rootNodes) .toHaveLength (1)
+   expect (Browser .currentScene .rootNodes [0] .getNodeTypeName ()) .toBe ("Transform")
+})
