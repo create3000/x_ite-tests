@@ -35,7 +35,7 @@ Test { }
    expect (scene .components [1] .name) .toBe ("Shape")
    expect (scene .units) .toHaveLength (4)
    expect (scene .units) .toBeInstanceOf (X3D .UnitInfoArray)
-   expect (scene .worldURL) .toMatch (/^file:\/\/\/.*$/)
+   expect (scene .worldURL) .toMatch (/^data:/)
    expect (scene .rootNodes) .toHaveLength (1)
    expect (scene .rootNodes) .toBeInstanceOf (X3D .MFNode)
    expect (scene .rootNodes [0]) .toBeInstanceOf (X3D .SFNode)

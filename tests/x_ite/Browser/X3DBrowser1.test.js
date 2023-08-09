@@ -237,7 +237,7 @@ Transform {
    expect (scene .components) .toHaveLength (1)
    expect (scene .components) .toBeInstanceOf (X3D .ComponentInfoArray)
    expect (scene .components [0] .name) .toBe ("Geometry2D")
-   expect (scene .worldURL) .toMatch (/^file:\/\/\/.*$/)
+   expect (scene .worldURL) .toMatch (/^data:/)
    expect (scene .rootNodes) .toHaveLength (1)
    expect (scene .rootNodes) .toBeInstanceOf (X3D .MFNode)
    expect (scene .rootNodes [0]) .toBeInstanceOf (X3D .SFNode)

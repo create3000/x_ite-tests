@@ -528,6 +528,7 @@ DEF L LoadSensor {
 
    const scene = Browser .currentScene
 
+   expect (scene .worldURL) .toMatch (/^data:/)
    expect (scene .rootNodes) .toHaveLength (2)
 
    const I = scene .getNamedNode ("I")
@@ -548,6 +549,7 @@ test ("blob URL", async () =>
 
    await Browser .loadURL (new X3D .MFString (URL .createObjectURL (blob)));
 
+   expect (Browser .currentScene .worldURL) .toMatch (/^blob:/)
    expect (Browser .currentScene .rootNodes) .toHaveLength (1)
    expect (Browser .currentScene .rootNodes [0] .getNodeTypeName ()) .toBe ("Transform")
 })
