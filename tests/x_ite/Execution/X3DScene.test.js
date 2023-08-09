@@ -78,6 +78,7 @@ test ("properties2", () =>
    expect (scene .components) .toHaveLength (0)
    expect (scene .components) .toBeInstanceOf (X3D .ComponentInfoArray)
    expect (scene .worldURL) .toBe (worldURL)
+   expect (scene .baseURL) .toBe (worldURL)
    expect (scene .namedNodes) .toBe (namedNodes)
    expect (scene .namedNodes) .toHaveLength (0)
    expect (scene .namedNodes) .toBeInstanceOf (X3D .NamedNodesArray)
@@ -113,6 +114,7 @@ test ("properties2", () =>
       "importedNodes",
       "exportedNodes",
       "worldURL",
+      "baseURL",
       "rootNodes",
       "protos",
       "externprotos",

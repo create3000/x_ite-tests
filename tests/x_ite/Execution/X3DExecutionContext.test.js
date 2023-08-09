@@ -36,6 +36,7 @@ Test { }
    expect (scene .units) .toHaveLength (4)
    expect (scene .units) .toBeInstanceOf (X3D .UnitInfoArray)
    expect (scene .worldURL) .toMatch (/^data:/)
+   expect (scene .baseURL) .toMatch (/^file:\/\//)
    expect (scene .rootNodes) .toHaveLength (1)
    expect (scene .rootNodes) .toBeInstanceOf (X3D .MFNode)
    expect (scene .rootNodes [0]) .toBeInstanceOf (X3D .SFNode)
@@ -102,6 +103,7 @@ Test { }
       "namedNodes",
       "importedNodes",
       "worldURL",
+      "baseURL",
       "rootNodes",
       "protos",
       "externprotos",
