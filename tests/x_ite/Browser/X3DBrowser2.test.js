@@ -421,7 +421,7 @@ TestNode { }
    expect (scene .rootNodes [0] .test) .toBe ("TestValue")
 })
 
-test ("baseURL 1", () => new Promise (async (resolve, reject) =>
+test ("baseURL - createX3DFromString", () => new Promise (async (resolve, reject) =>
 {
    const
       canvas  = X3D .createBrowser (),
@@ -461,7 +461,7 @@ DEF L LoadSensor {
    })
 }))
 
-test ("baseURL 2", async () =>
+test ("baseURL - loadURL", async () =>
 {
    const
       canvas  = X3D .createBrowser (),
