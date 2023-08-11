@@ -30,6 +30,9 @@
         <field accessType='inputOnly' type='SFBool' name='set_bind'/>
         <field accessType='inputOutput' type='SFFloat' name='transparency'/>
         <field accessType='outputOnly' type='SFBool' name='isBound'/>
+        <field accessType='inputOutput' type='MFNode' name='children'>
+          <Transform/>
+        </field>
       </ProtoInterface>
       <ProtoBody>
         <Background DEF='Summer'
@@ -47,6 +50,12 @@
       </ProtoBody>
     </ProtoDeclare>
     <ProtoInstance name='Test'/>
+    <ProtoInstance name='Test'>
+      <fieldValue name='children'>
+        <Transform/>
+        <Transform/>
+      </fieldValue>
+    </ProtoInstance>
     <Transform DEF='Transform'
         rotation='0 1 0 45'>
       <Shape>
