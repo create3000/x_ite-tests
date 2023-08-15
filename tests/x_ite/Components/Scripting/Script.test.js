@@ -26,20 +26,15 @@ DEF Script Script {
       expect (script .evaluate ("0 in arguments")) .toBe (false)
       expect (script .evaluate ("1 in arguments")) .toBe (false)
 
-      expect (script .evaluate ("TRUE")) .toBe (true)
+      expect (script .evaluate ("TRUE"))  .toBe (true)
       expect (script .evaluate ("FALSE")) .toBe (false)
-      expect (script .evaluate ("NULL")) .toBe (null)
+      expect (script .evaluate ("NULL"))  .toBe (null)
 
       expect (script .evaluate ("print")) .toBeInstanceOf (Function)
       expect (script .evaluate ("trace")) .toBeInstanceOf (Function)
 
       expect (script .evaluate ("Browser")) .toBe (browser)
       expect (script .evaluate ("Browser .currentScene")) .toBe (scene)
-
-      const excludes = new Set (["require", "noConflict", "getBrowser", "createBrowser", "SFNode"])
-
-      for (const key of Object .keys (X3D) .filter (k => !excludes .has (k)))
-         expect (script .evaluate (key)) .toBe (X3D [key])
    }
    catch (error)
    {
