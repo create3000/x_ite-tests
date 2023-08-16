@@ -70,12 +70,24 @@ test ("X3D", async () =>
       for (const AbstractNode of Browser .getAbstractNodes ())
          expect (values .has (AbstractNode)) .toBe (true)
 
+
+      expect (X3D .Namespace .hasOwnProperty ("call")) .toBe (false)
+      expect (X3D .Namespace .hasOwnProperty ("apply")) .toBe (false)
+      expect (X3D .Namespace .hasOwnProperty ("bind")) .toBe (false)
+      expect (X3D .Namespace .hasOwnProperty ("toString")) .toBe (false)
+
       expect (X3D .hasOwnProperty ("add")) .toBe (false)
+      expect (X3D .hasOwnProperty ("has")) .toBe (false)
       expect (X3D .hasOwnProperty ("set")) .toBe (false)
       expect (X3D .hasOwnProperty ("get")) .toBe (false)
       expect (X3D .hasOwnProperty ("delete")) .toBe (false)
+      expect (X3D .hasOwnProperty ("clear")) .toBe (false)
       expect (X3D .hasOwnProperty ("size")) .toBe (false)
       expect (X3D .hasOwnProperty ("forEach")) .toBe (false)
+      expect (X3D .hasOwnProperty ("entries")) .toBe (false)
+      expect (X3D .hasOwnProperty ("keys")) .toBe (false)
+      expect (X3D .hasOwnProperty ("values")) .toBe (false)
+      expect (X3D .hasOwnProperty ("toString")) .toBe (false)
    }
    catch (error)
    {
