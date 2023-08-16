@@ -69,6 +69,13 @@ test ("X3D", async () =>
 
       for (const AbstractNode of Browser .getAbstractNodes ())
          expect (values .has (AbstractNode)) .toBe (true)
+
+      expect (X3D .hasOwnProperty ("add")) .toBe (false)
+      expect (X3D .hasOwnProperty ("set")) .toBe (false)
+      expect (X3D .hasOwnProperty ("get")) .toBe (false)
+      expect (X3D .hasOwnProperty ("delete")) .toBe (false)
+      expect (X3D .hasOwnProperty ("size")) .toBe (false)
+      expect (X3D .hasOwnProperty ("forEach")) .toBe (false)
    }
    catch (error)
    {
