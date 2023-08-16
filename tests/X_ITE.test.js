@@ -47,3 +47,26 @@ test ("DEVELOPMENT", () =>
 {
    expect (DEVELOPMENT) .toBe (false)
 })
+
+test ("X3D", async () =>
+{
+   try
+   {
+      const Browser = X3D .createBrowser () .browser
+
+      await Browser .loadComponents (Browser .getProfile ("Full"))
+
+      for (const key in X3D .Namespace)
+         expect (X3D [key]) .toBe (X3D .Namespace [key])
+
+      for (const key in X3D .Fields)
+         expect (X3D [key]) .toBe (X3D .Fields [key])
+
+      for (const ConcreteNode of Browser .getConcreteNodes ())
+         expect (X3D [ConcreteNode .typeName]) .toBe (ConcreteNode)
+   }
+   catch (error)
+   {
+      throw error .message
+   }
+})
