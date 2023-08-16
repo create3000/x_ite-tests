@@ -176,3 +176,19 @@ function set_nodes (nodes, time)
    expect (nodes [1] .getNodeTypeName ()) .toBe ("Shape")
    expect (nodes [2] .getNodeTypeName ()) .toBe ("Box")
 })
+
+test ("this", async () =>
+{
+   try
+   {
+      await browser .loadComponents (browser .getComponent ("Scripting"))
+
+      const script = browser .currentScene .createNode ("Script")
+
+      expect (script .getValue () .evaluate ("this")) .toBe (script)
+   }
+   catch (error)
+   {
+      throw new Error (error .message)
+   }
+})
