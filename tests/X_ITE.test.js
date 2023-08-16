@@ -64,6 +64,11 @@ test ("X3D", async () =>
 
       for (const ConcreteNode of Browser .getConcreteNodes ())
          expect (X3D [ConcreteNode .typeName]) .toBe (ConcreteNode)
+
+      const values = new Set (Object .values (X3D))
+
+      for (const AbstractNode of Browser .getAbstractNodes ())
+         expect (values .has (AbstractNode)) .toBe (true)
    }
    catch (error)
    {
