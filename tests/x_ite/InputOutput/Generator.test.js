@@ -1,6 +1,7 @@
 const
    X3D       = require ("../../X3D"),
-   Generator = X3D .require ("x_ite/InputOutput/Generator")
+   Generator = X3D .require ("x_ite/InputOutput/Generator"),
+   Browser   = X3D .createBrowser () .browser
 
 const values = [
    [NaN, "NaN"],
@@ -67,4 +68,73 @@ test ("DoubleFormat", () =>
 
    for (const [first, second] of values)
       expect (generator .DoubleFormat (first)) .toBe (second)
+})
+
+test ("names 1", async () =>
+{
+   const input = `<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE X3D PUBLIC "ISO//Web3D//DTD X3D 4.0//EN" "http://www.web3d.org/specifications/x3d-4.0.dtd">
+<X3D profile='Interchange' version='4.0' xmlns:xsd='http://www.w3.org/2001/XMLSchema-instance' xsd:noNamespaceSchemaLocation='http://www.web3d.org/specifications/x3d-4.0.xsd'>
+  <Scene>
+    <Group DEF='x_4'/>
+    <Group DEF='x_1'/>
+    <Group DEF='x_8'/>
+    <Group DEF='x_3'/>
+    <ROUTE fromNode='x_4' fromField='children_changed' toNode='x_1' toField='set_children'/>
+    <ROUTE fromNode='x_4' fromField='children_changed' toNode='x_8' toField='set_children'/>
+    <ROUTE fromNode='x_4' fromField='children_changed' toNode='x_3' toField='set_children'/>
+  </Scene>
+</X3D>
+`
+
+   const
+      xml  = await Browser .createX3DFromString (input),
+      vrml = await Browser .createX3DFromString (xml .toVRMLString ()),
+      json = await Browser .createX3DFromString (xml .toJSONString ())
+
+   expect (xml  .toXMLString ()) .toBe (input)
+   expect (vrml .toXMLString ()) .toBe (input)
+   expect (json .toXMLString ()) .toBe (input)
+})
+
+test ("names 2", async () =>
+{
+   const input = `<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE X3D PUBLIC "ISO//Web3D//DTD X3D 4.0//EN" "http://www.web3d.org/specifications/x3d-4.0.dtd">
+<X3D profile='Interchange' version='4.0' xmlns:xsd='http://www.w3.org/2001/XMLSchema-instance' xsd:noNamespaceSchemaLocation='http://www.web3d.org/specifications/x3d-4.0.xsd'>
+  <Scene>
+    <Group DEF='_4'/>
+    <Group DEF='_1'/>
+    <Group DEF='_8'/>
+    <Group DEF='_3'/>
+    <ROUTE fromNode='_4' fromField='children_changed' toNode='_1' toField='set_children'/>
+    <ROUTE fromNode='_4' fromField='children_changed' toNode='_8' toField='set_children'/>
+    <ROUTE fromNode='_4' fromField='children_changed' toNode='_3' toField='set_children'/>
+  </Scene>
+</X3D>
+`
+
+const output = `<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE X3D PUBLIC "ISO//Web3D//DTD X3D 4.0//EN" "http://www.web3d.org/specifications/x3d-4.0.dtd">
+<X3D profile='Interchange' version='4.0' xmlns:xsd='http://www.w3.org/2001/XMLSchema-instance' xsd:noNamespaceSchemaLocation='http://www.web3d.org/specifications/x3d-4.0.xsd'>
+  <Scene>
+    <Group DEF='_1'/>
+    <Group DEF='_2'/>
+    <Group DEF='_3'/>
+    <Group DEF='_4'/>
+    <ROUTE fromNode='_1' fromField='children_changed' toNode='_2' toField='set_children'/>
+    <ROUTE fromNode='_1' fromField='children_changed' toNode='_3' toField='set_children'/>
+    <ROUTE fromNode='_1' fromField='children_changed' toNode='_4' toField='set_children'/>
+  </Scene>
+</X3D>
+`
+
+   const
+      xml  = await Browser .createX3DFromString (input),
+      vrml = await Browser .createX3DFromString (xml .toVRMLString ()),
+      json = await Browser .createX3DFromString (xml .toJSONString ())
+
+   expect (xml  .toXMLString ()) .toBe (output)
+   expect (vrml .toXMLString ()) .toBe (output)
+   expect (json .toXMLString ()) .toBe (output)
 })
