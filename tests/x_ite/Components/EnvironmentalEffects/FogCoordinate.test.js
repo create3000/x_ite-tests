@@ -8,11 +8,7 @@ test ("use", async () =>
 PROFILE Interchange
 
 Shape {
-   geometry IndexedFaceSet {
-      coordIndex [
-         0 1 2 -1
-         3 4 5 -1
-      ]
+   geometry PointSet {
       fogCoord FogCoordinate {
          depth [ ]
       }
@@ -26,6 +22,32 @@ Shape {
             2 1 0
          ]
       }
+   }
+}
+
+Shape {
+   geometry PointSet {
+      fogCoord FogCoordinate {
+         depth [
+            0.0,
+            0.1,
+            0.2,
+         ]
+      }
+      coord USE C
+   }
+}
+
+Shape {
+   geometry IndexedFaceSet {
+      coordIndex [
+         0 1 2 -1
+         3 4 5 -1
+      ]
+      fogCoord FogCoordinate {
+         depth [ ]
+      }
+      coord USE C
    }
 }
 

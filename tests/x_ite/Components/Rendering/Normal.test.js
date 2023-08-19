@@ -8,11 +8,7 @@ test ("use", async () =>
 PROFILE Interchange
 
 Shape {
-   geometry IndexedFaceSet {
-      coordIndex [
-         0 1 2 -1
-         3 4 5 -1
-      ]
+   geometry PointSet {
       normal Normal {
          vector [ ]
       }
@@ -26,6 +22,32 @@ Shape {
             2 1 0
          ]
       }
+   }
+}
+
+Shape {
+   geometry PointSet {
+      normal Normal {
+         vector [
+            1 0 0,
+            0 1 0,
+            0 0 1,
+         ]
+      }
+      coord USE C
+   }
+}
+
+Shape {
+   geometry IndexedFaceSet {
+      coordIndex [
+         0 1 2 -1
+         3 4 5 -1
+      ]
+      normal Normal {
+         vector [ ]
+      }
+      coord USE C
    }
 }
 
