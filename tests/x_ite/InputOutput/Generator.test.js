@@ -1,7 +1,8 @@
 const
-   X3D       = require ("../../X3D"),
-   Generator = X3D .require ("x_ite/InputOutput/Generator"),
-   Browser   = X3D .createBrowser () .browser
+   X3D        = require ("../../X3D"),
+   Generator  = X3D .require ("x_ite/InputOutput/Generator"),
+   Browser    = X3D .createBrowser () .browser,
+   X3DVersion = Browser .currentScene .specificationVersion
 
 const values = [
    [NaN, "NaN"],
@@ -73,8 +74,8 @@ test ("DoubleFormat", () =>
 test ("names 1", async () =>
 {
    const input = `<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE X3D PUBLIC "ISO//Web3D//DTD X3D 4.0//EN" "http://www.web3d.org/specifications/x3d-4.0.dtd">
-<X3D profile='Interchange' version='4.0' xmlns:xsd='http://www.w3.org/2001/XMLSchema-instance' xsd:noNamespaceSchemaLocation='http://www.web3d.org/specifications/x3d-4.0.xsd'>
+<!DOCTYPE X3D PUBLIC "ISO//Web3D//DTD X3D ${X3DVersion}//EN" "http://www.web3d.org/specifications/x3d-${X3DVersion}.dtd">
+<X3D profile='Interchange' version='${X3DVersion}' xmlns:xsd='http://www.w3.org/2001/XMLSchema-instance' xsd:noNamespaceSchemaLocation='http://www.web3d.org/specifications/x3d-${X3DVersion}.xsd'>
   <Scene>
     <Group DEF='x_4'/>
     <Group DEF='x_1'/>
@@ -100,8 +101,8 @@ test ("names 1", async () =>
 test ("names 2", async () =>
 {
    const input = `<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE X3D PUBLIC "ISO//Web3D//DTD X3D 4.0//EN" "http://www.web3d.org/specifications/x3d-4.0.dtd">
-<X3D profile='Interchange' version='4.0' xmlns:xsd='http://www.w3.org/2001/XMLSchema-instance' xsd:noNamespaceSchemaLocation='http://www.web3d.org/specifications/x3d-4.0.xsd'>
+<!DOCTYPE X3D PUBLIC "ISO//Web3D//DTD X3D ${X3DVersion}//EN" "http://www.web3d.org/specifications/x3d-${X3DVersion}.dtd">
+<X3D profile='Interchange' version='${X3DVersion}' xmlns:xsd='http://www.w3.org/2001/XMLSchema-instance' xsd:noNamespaceSchemaLocation='http://www.web3d.org/specifications/x3d-${X3DVersion}.xsd'>
   <Scene>
     <Group DEF='_4'/>
     <Group DEF='_1'/>
@@ -115,8 +116,8 @@ test ("names 2", async () =>
 `
 
 const output = `<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE X3D PUBLIC "ISO//Web3D//DTD X3D 4.0//EN" "http://www.web3d.org/specifications/x3d-4.0.dtd">
-<X3D profile='Interchange' version='4.0' xmlns:xsd='http://www.w3.org/2001/XMLSchema-instance' xsd:noNamespaceSchemaLocation='http://www.web3d.org/specifications/x3d-4.0.xsd'>
+<!DOCTYPE X3D PUBLIC "ISO//Web3D//DTD X3D ${X3DVersion}//EN" "http://www.web3d.org/specifications/x3d-${X3DVersion}.dtd">
+<X3D profile='Interchange' version='${X3DVersion}' xmlns:xsd='http://www.w3.org/2001/XMLSchema-instance' xsd:noNamespaceSchemaLocation='http://www.web3d.org/specifications/x3d-${X3DVersion}.xsd'>
   <Scene>
     <Group DEF='_1'/>
     <Group DEF='_2'/>
