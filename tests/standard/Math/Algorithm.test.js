@@ -61,6 +61,29 @@ test ("fract", () =>
    expect (Algorithm .fract (-0.5)) .toBeCloseTo (-0.5)
 })
 
+test ("roundToMultiple", () =>
+{
+   expect (Algorithm .roundToMultiple (0, 2)) .toBe (0)
+   expect (Algorithm .roundToMultiple (1, 2)) .toBe (2)
+   expect (Algorithm .roundToMultiple (2, 2)) .toBe (2)
+   expect (Algorithm .roundToMultiple (3, 2)) .toBe (4)
+   expect (Algorithm .roundToMultiple (4, 2)) .toBe (4)
+   expect (Algorithm .roundToMultiple (5, 2)) .toBe (6)
+   expect (Algorithm .roundToMultiple (6, 2)) .toBe (6)
+   expect (Algorithm .roundToMultiple (7, 2)) .toBe (8)
+   expect (Algorithm .roundToMultiple (8, 2)) .toBe (8)
+
+   expect (Algorithm .roundToMultiple (0, 4)) .toBe (0)
+   expect (Algorithm .roundToMultiple (1, 4)) .toBe (4)
+   expect (Algorithm .roundToMultiple (2, 4)) .toBe (4)
+   expect (Algorithm .roundToMultiple (3, 4)) .toBe (4)
+   expect (Algorithm .roundToMultiple (4, 4)) .toBe (4)
+   expect (Algorithm .roundToMultiple (5, 4)) .toBe (8)
+   expect (Algorithm .roundToMultiple (6, 4)) .toBe (8)
+   expect (Algorithm .roundToMultiple (7, 4)) .toBe (8)
+   expect (Algorithm .roundToMultiple (8, 4)) .toBe (8)
+})
+
 test ("isPowerOfTwo", () =>
 {
    expect (Algorithm .isPowerOfTwo (0)) .toBe (true)
