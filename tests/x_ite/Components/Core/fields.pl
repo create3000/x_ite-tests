@@ -30,6 +30,7 @@ sub node {
 
    @fields       = $file   =~ /###\s*[SM]F\w+.*/go;
    @sourceFields = $source =~ /\bX3DFieldDefinition\s*\(.*/go;
+   @sourceFields = grep { !m/\/\/\s*experimental/ } @sourceFields;
 
    say "$typeName fields (" . scalar (@fields) . ") <-> source fields (" . scalar (@sourceFields) . ")" unless @fields == @sourceFields;
 
@@ -62,11 +63,14 @@ sub field {
    $name       = $3;
    $value      = $4;
 
-   $source =~ /X3DFieldDefinition\s*\(X3DConstants\s*\.(\w+),\s*"$name",\s*new\s+Fields\s*\.(\w+)\s*\((.*?)\)\),/;
+   $source =~ /X3DFieldDefinition\s*\(X3DConstants\s*\.(\w+),\s*"$name",\s*new\s+Fields\s*\.(\w+)\s*\((.*?)\)\),(\s*\/\/\s*(?:experimental|skip test))?/;
 
    $codeAccessType = $1;
    $codeType       = $2;
    $codeValue      = $3;
+   $skip           = $4;
+
+   return if $skip;
 
    $accessTypes = {
       " " => "initializeOnly",

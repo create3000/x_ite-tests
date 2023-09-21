@@ -52,7 +52,7 @@ test ("shader", () =>
                         options .push ("X3D_PROJECTIVE_TEXTURE_MAPPING")
                         options .push (`X3D_NUM_TEXTURE_PROJECTORS ${numTextureXXX}`);
                         options .push ("X3D_STYLE_PROPERTIES");
-                        options .push ("X3D_SKINNING")
+                        options .push ("X3D_SKINNING", "X3D_NUM_JOINT_SETS 2", "X3D_NUM_DISPLACEMENTS 2")
                      }
 
                      if (materialTexture)
