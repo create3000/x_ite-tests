@@ -35,7 +35,7 @@ test ("shader", () =>
                   const options = [ ]
 
                   options .push (option)
-                  options .push ("MANUAL_SRGB")
+                  options .push ("X3D_MATERIAL_METALLIC_ROUGHNESS")
                   options .push ("X3D_LOGARITHMIC_DEPTH_BUFFER");
                   options .push (`X3D_GEOMETRY_${geometry}`);
                   options .push (fogs [i % fogs .length]);
@@ -84,6 +84,8 @@ test ("shader", () =>
                      options .push (`X3D_NUM_TEXTURE_COORDINATES ${numTextureXXX}`);
 
                      const shader = Browser .createShader (name, vertex, fragment, options);
+
+                     console .log (option, geometry, texture, numTextureXXX, materialTexture, o);
 
                      expect (shader .isValid ()) .toBe (true)
 
