@@ -141,7 +141,7 @@ test ("getComponent", () =>
       "Shape",
       "Sound",
       "Text",
-      "TextureProjector",
+      "TextureProjection",
       "Texturing",
       "Texturing3D",
       "Time",

@@ -50,7 +50,7 @@ test ("shader", () =>
                         options .push ("X3D_ALPHA_MODE_OPAQUE", "X3D_ALPHA_MODE_MASK");
                         options .push ("X3D_CLIP_PLANES")
                         options .push ("X3D_NUM_CLIP_PLANES 1");
-                        options .push ("X3D_TEXTURE_PROJECTORS")
+                        options .push ("X3D_TEXTURE_PROJECTION")
                         options .push (`X3D_NUM_TEXTURE_PROJECTORS ${numTextureXXX}`);
                         options .push ("X3D_STYLE_PROPERTIES");
                         options .push ("X3D_SKINNING", "X3D_NUM_JOINT_SETS 2", "X3D_NUM_DISPLACEMENTS 2")
