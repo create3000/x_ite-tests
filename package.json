@@ -23,7 +23,7 @@
     "testTimeout": 40000
   },
   "dependencies": {
-    "@kayahr/jest-electron-runner": "^29.9.0",
+    "@kayahr/jest-electron-runner": "^29.10.0",
     "jquery": "^3.7.1"
   }
 }
