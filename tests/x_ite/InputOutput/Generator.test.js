@@ -104,6 +104,8 @@ test ("names 2", async () =>
 <!DOCTYPE X3D PUBLIC "ISO//Web3D//DTD X3D ${latestVersion}//EN" "http://www.web3d.org/specifications/x3d-${latestVersion}.dtd">
 <X3D profile='Interchange' version='${latestVersion}' xmlns:xsd='http://www.w3.org/2001/XMLSchema-instance' xsd:noNamespaceSchemaLocation='http://www.web3d.org/specifications/x3d-${latestVersion}.xsd'>
   <Scene>
+    <Group DEF='_99'/>
+    <Group DEF='X_99'/>
     <Group DEF='_4'/>
     <Group DEF='_1'/>
     <Group DEF='_8'/>
@@ -119,13 +121,15 @@ const output = `<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE X3D PUBLIC "ISO//Web3D//DTD X3D ${latestVersion}//EN" "http://www.web3d.org/specifications/x3d-${latestVersion}.dtd">
 <X3D profile='Interchange' version='${latestVersion}' xmlns:xsd='http://www.w3.org/2001/XMLSchema-instance' xsd:noNamespaceSchemaLocation='http://www.web3d.org/specifications/x3d-${latestVersion}.xsd'>
   <Scene>
-    <Group DEF='_1'/>
-    <Group DEF='_2'/>
-    <Group DEF='_3'/>
+    <Group/>
+    <Group DEF='X_99'/>
     <Group DEF='_4'/>
-    <ROUTE fromNode='_1' fromField='children_changed' toNode='_2' toField='set_children'/>
-    <ROUTE fromNode='_1' fromField='children_changed' toNode='_3' toField='set_children'/>
-    <ROUTE fromNode='_1' fromField='children_changed' toNode='_4' toField='set_children'/>
+    <Group DEF='_1'/>
+    <Group DEF='_8'/>
+    <Group DEF='_3'/>
+    <ROUTE fromNode='_4' fromField='children_changed' toNode='_1' toField='set_children'/>
+    <ROUTE fromNode='_4' fromField='children_changed' toNode='_8' toField='set_children'/>
+    <ROUTE fromNode='_4' fromField='children_changed' toNode='_3' toField='set_children'/>
   </Scene>
 </X3D>
 `
