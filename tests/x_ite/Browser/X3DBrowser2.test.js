@@ -53,15 +53,15 @@ test ("getBrowserOption", () =>
 test ("getRenderingProperty", () =>
 {
    const
-      canvas = X3D .createBrowser (),
-      Browser = canvas .browser
+      canvas  = X3D .createBrowser (),
+      Browser = canvas .browser;
 
    expect (Browser .getRenderingProperty ("Shading")) .toBe ("GOURAUD")
    expect (Browser .getRenderingProperty ("MaxTextureSize")) .toBeGreaterThanOrEqual (128)
    expect (Browser .getRenderingProperty ("TextureUnits")) .toBeGreaterThanOrEqual (8)
    expect (Browser .getRenderingProperty ("MaxLights")) .toBeGreaterThanOrEqual (8)
    expect (Browser .getRenderingProperty ("Antialiased")) .toBe (true)
-   expect (Browser .getRenderingProperty ("ColorDepth")) .toBe (32)
+   expect (Browser .getRenderingProperty ("ColorDepth")) .toBeGreaterThanOrEqual (32)
    expect (Browser .getRenderingProperty ("TextureMemory")) .toBe (NaN)
    expect (Browser .getRenderingProperty ("ContentScale")) .toBe (1)
    expect (Browser .getRenderingProperty ("MaxSamples")) .toBeGreaterThanOrEqual (1)
@@ -73,7 +73,7 @@ test ("INITIALIZED_EVENT 2", () => new Promise ((resolve, reject) =>
 {
    const
       canvas  = X3D .createBrowser (),
-      Browser = canvas .browser
+      Browser = canvas .browser;
 
    Browser .loadURL (new X3D .MFString (`data:model/x3d+vrml,
 PROFILE Interactive

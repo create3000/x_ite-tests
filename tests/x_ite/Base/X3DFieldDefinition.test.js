@@ -24,14 +24,14 @@ test ("properties", () =>
 
    expect (fieldDefinitions [1]) .toBeInstanceOf (X3D .X3DFieldDefinition)
    expect (fieldDefinitions [1] .constructor) .toBe (X3D .X3DFieldDefinition)
-   expect (fieldDefinitions [1] .accessType) .toBe (X3D .X3DConstants .initializeOnly)
+   expect (fieldDefinitions [1] .accessType) .toBe (X3D .X3DConstants .inputOutput)
    expect (fieldDefinitions [1] .dataType) .toBe (X3D .X3DConstants .SFString)
    expect (fieldDefinitions [1] .name) .toBe ("title")
    expect (fieldDefinitions [1] .value) .toBeInstanceOf (Fields .SFString)
 
    expect (fieldDefinitions [2]) .toBeInstanceOf (X3D .X3DFieldDefinition)
    expect (fieldDefinitions [2] .constructor) .toBe (X3D .X3DFieldDefinition)
-   expect (fieldDefinitions [2] .accessType) .toBe (X3D .X3DConstants .initializeOnly)
+   expect (fieldDefinitions [2] .accessType) .toBe (X3D .X3DConstants .inputOutput)
    expect (fieldDefinitions [2] .dataType) .toBe (X3D .X3DConstants .MFString)
    expect (fieldDefinitions [2] .name) .toBe ("info")
    expect (fieldDefinitions [2] .value) .toBeInstanceOf (Fields .MFString)
