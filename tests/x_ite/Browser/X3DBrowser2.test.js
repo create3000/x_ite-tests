@@ -46,6 +46,7 @@ test ("getBrowserOption", () =>
    expect (Browser .getBrowserOption ("LogarithmicDepthBuffer")) .toBe (false)
    expect (Browser .getBrowserOption ("Multisampling")) .toBe (4)
    expect (Browser .getBrowserOption ("Notifications")) .toBe (true)
+   expect (Browser .getBrowserOption ("OrderIndependentTransparency")) .toBe (false)
    expect (Browser .getBrowserOption ("StraightenHorizon")) .toBe (true)
    expect (Browser .getBrowserOption ("Timings")) .toBe (false)
 })
