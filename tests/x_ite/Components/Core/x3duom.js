@@ -33,6 +33,8 @@ function node (filename)
    if (!x3doum)
       return;
 
+   const file = sh `cat ${filename}`;
+
    console .log (typeName, x3doum);
 }
 
@@ -40,7 +42,7 @@ function sh (strings, ... values)
 {
    const { execSync } = require ("child_process");
 
-   return execSync (String .raw ({ raw: strings }, ... values), { encoding: "utf8", maxBuffer: 100 * 1024 * 1024 });
+   return execSync (String .raw ({ raw: strings }, ... values), { encoding: "utf8", maxBuffer: 128 * 1024 * 1024 });
 }
 
 function xml (string)
