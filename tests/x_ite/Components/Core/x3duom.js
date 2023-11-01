@@ -6,8 +6,8 @@ const
 // https://www.web3d.org/specifications/X3dUnifiedObjectModel-4.0.xml
 
 const
-   x3doum = xml (sh `wget -q -O - https://www.web3d.org/specifications/X3dUnifiedObjectModel-4.0.xml`),
-   nodes  = new Map (x3doum .X3dUnifiedObjectModel .ConcreteNodes .ConcreteNode .map (node => [node .name, node]));
+   x3duom = xml (sh `wget -q -O - https://www.web3d.org/specifications/X3dUnifiedObjectModel-4.0.xml`),
+   nodes  = new Map (x3duom .X3dUnifiedObjectModel .ConcreteNodes .ConcreteNode .map (node => [node .name, node]));
 
 sh `find ${process .cwd ()}/../x_ite/src/x_ite/Components -type f -mindepth 2`
    .split ("\n")
@@ -26,17 +26,17 @@ function node (filename)
    if (typeName .match (/^X3D/))
       return;
 
-   const x3doum = nodes .get (typeName);
+   const x3duom = nodes .get (typeName);
 
    // Filter non-standard nodes.
 
-   if (!x3doum)
+   if (!x3duom)
       return;
 
    const excludes = new Set (["IS", "USE", "DEF", "id", "class", "style"]);
 
    const
-      fields           = new Map (x3doum .InterfaceDefinition .field .filter (field => !excludes .has (field .name)) .map (field => [field .name, field])),
+      fields           = new Map (x3duom .InterfaceDefinition .field .filter (field => !excludes .has (field .name)) .map (field => [field .name, field])),
       file             = sh `cat ${filename}`,
       fieldDefinitions = file .match (/X3DFieldDefinition \(X3DConstants \.\w+,\s+"\w+",\s+new Fields \.\w+ \(.*?\)\).*?\n/g);
 
@@ -56,12 +56,65 @@ function field (typeName, fieldDefinition, fields)
       accessType = match [1],
       name       = match [2],
       type       = match [3],
-      value      = match [4],
       x3duom     = fields .get (name);
 
-   if (!x3doum)
+   let value = match [4];
+
+   if (!x3duom)
    {
       console .log (`Unknown field '${name}' of node ${typeName} in X3DUOM.`);
+      return;
+   }
+
+   if (x3duom .accessType !== accessType)
+   {
+      console .log (`Field '${name}' has different access type: ${accessType} !== ${x3duom .accessType}.`);
+      return;
+   }
+
+   if (x3duom .type !== type)
+   {
+      console .log (`Field '${name}' has different type: ${type} !== ${x3duom .type}.`);
+      return;
+   }
+
+   if (accessType .match (/^(?:inputOnly|outputOnly)$/))
+      return;
+
+   switch (type)
+   {
+      case "SFBool":
+         value ||= "false";
+         break;
+      case "SFNode":
+         value ||= "NULL";
+         break;
+      case "SFString":
+         x3duom .default ||= "";
+         break;
+      case "SFVec2d":
+      case "SFVec2f":
+         value ||= "0 0";
+         value = value .replaceAll (",", "");
+         break;
+      case "SFVec3d":
+      case "SFVec3f":
+         value ||= "0 0 0";
+         value = value .replaceAll (",", "");
+         break;
+      case "SFVec4d":
+      case "SFVec4f":
+         value ||= "0 0 0 0";
+         value = value .replaceAll (",", "");
+         break;
+      case "MFNode":
+         x3duom .default ||= "";
+         break;
+      }
+
+   if (x3duom .default !== value)
+   {
+      console .log (`Field '${name}' has different value: ${value} !== ${x3duom .default}.`);
       return;
    }
 }
