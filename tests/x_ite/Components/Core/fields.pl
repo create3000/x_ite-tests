@@ -111,10 +111,11 @@ sub field {
    {
       return if $value eq "0" && $codeValue eq "";
       return if $value eq $codeValue;
-      return if $value eq "π/2" && $codeValue eq "1.5708";
+      return if $value eq "π*3/16" && $codeValue eq "0.589049";
+      return if $value eq "π/2" && $codeValue eq "1.570796";
       return if $value eq "π/4" && $codeValue eq "0.785398";
-      return if $value eq "π" && $codeValue eq "3.14159";
-      return if $value eq "-π" && $codeValue eq "-3.14159";
+      return if $value eq "π" && $codeValue eq "3.141592653";
+      return if $value eq "-π" && $codeValue eq "-3.141592653";
    }
    elsif ($type eq "SFImage")
    {
@@ -135,7 +136,7 @@ sub field {
    }
    elsif ($type =~ /^(?:SFMatrix4d|SFMatrix4f)$/o)
    {
-      $value =~s /(\s)/,$1/sgo;
+      $value =~ s/(\s)/,$1/sgo;
 
       return if $value eq "1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1" && $codeValue eq "";
    }
@@ -145,7 +146,10 @@ sub field {
    }
    elsif ($type eq "SFRotation")
    {
+      $codeValue =~ s/,//sgo;
+
       return if $value eq "0 0 1 0" && $codeValue eq "";
+      return if $value eq $codeValue;
    }
    elsif ($type eq "SFString")
    {
