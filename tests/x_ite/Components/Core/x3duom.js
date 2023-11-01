@@ -42,7 +42,7 @@ function node (filename)
 
    if (fieldDefinitions .length !== fields .size)
    {
-      console .log (`${typeName} number of fields differ: ${fieldDefinitions .length} <=> ${fields .size}`);
+      console .log (`${typeName} number of fields differ: ${fieldDefinitions .length} <=> ${fields .size}.`);
       return;
    }
 
