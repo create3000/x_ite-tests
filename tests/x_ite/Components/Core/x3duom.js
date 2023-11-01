@@ -61,7 +61,7 @@ function field (typeName, fieldDefinition, fields)
 
    if (!x3doum)
    {
-      console .log (`Unknown field ${name} of node ${typeName} in X3DUOM.`);
+      console .log (`Unknown field '${name}' of node ${typeName} in X3DUOM.`);
       return;
    }
 }
