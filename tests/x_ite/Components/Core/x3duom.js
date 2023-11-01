@@ -38,11 +38,22 @@ function node (filename)
    const
       fields           = new Map (x3duom .InterfaceDefinition .field .filter (field => !excludes .has (field .name)) .map (field => [field .name, field])),
       file             = sh `cat ${filename}`,
-      fieldDefinitions = file .match (/X3DFieldDefinition \(X3DConstants \.\w+,\s+"\w+",\s+new Fields \.\w+ \(.*?\)\).*?\n/g);
+      fieldDefinitions = file .match (/X3DFieldDefinition \(X3DConstants \.\w+,\s+"\w+",\s+new Fields \.\w+ \(.*?\)\).*?\n/g) .map (fieldDefinition => fieldDefinition .match (/X3DFieldDefinition \(X3DConstants \.(\w+),\s+"(\w+)",\s+new Fields \.(\w+) \((.*?)\)\)/));
 
    if (fieldDefinitions .length !== fields .size)
    {
       console .log (`${typeName} number of fields differ: ${fieldDefinitions .length} <=> ${fields .size}.`);
+
+      const x3duom = fieldDefinitions .filter (f => !fields .has (f [2])) .map (f => f [2]);
+
+      if (x3duom .length)
+         console .log (`  Where [${x3duom}] not in X3DUOM.`)
+
+      const x_ite = [... fields .values ()] .map (f => f .name) .filter (n => !fieldDefinitions .find (f => f [2] === n));
+
+      if (x_ite .length)
+         console .log (`  Where [${x_ite}] not in X_ITE.`);
+
       return;
    }
 
@@ -52,13 +63,12 @@ function node (filename)
 function field (typeName, fieldDefinition, fields)
 {
    const
-      match      = fieldDefinition .match (/X3DFieldDefinition \(X3DConstants \.(\w+),\s+"(\w+)",\s+new Fields \.(\w+) \((.*?)\)\)/),
-      accessType = match [1],
-      name       = match [2],
-      type       = match [3],
+      accessType = fieldDefinition [1],
+      name       = fieldDefinition [2],
+      type       = fieldDefinition [3],
       x3duom     = fields .get (name);
 
-   let value = match [4];
+   let value = fieldDefinition [4];
 
    if (!x3duom)
    {
@@ -124,8 +134,10 @@ function field (typeName, fieldDefinition, fields)
          value ||= "0 0 0 0";
          value = value .replaceAll (",", "");
          break;
+      case "MFFloat":
       case "MFInt32":
       case "MFImage":
+      case "MFString":
          value = value .replaceAll (",", "");
          break;
    }
