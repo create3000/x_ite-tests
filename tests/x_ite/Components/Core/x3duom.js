@@ -33,9 +33,37 @@ function node (filename)
    if (!x3doum)
       return;
 
-   const file = sh `cat ${filename}`;
+   const excludes = new Set (["IS", "USE", "DEF", "id", "class", "style"]);
 
-   console .log (typeName, x3doum);
+   const
+      fields           = new Map (x3doum .InterfaceDefinition .field .filter (field => !excludes .has (field .name)) .map (field => [field .name, field])),
+      file             = sh `cat ${filename}`,
+      fieldDefinitions = file .match (/X3DFieldDefinition \(X3DConstants \.\w+,\s+"\w+",\s+new Fields \.\w+ \(.*?\)\).*?\n/g);
+
+   if (fieldDefinitions .length !== fields .size)
+   {
+      console .log (`${typeName} number of fields differ: ${fieldDefinitions .length} <=> ${fields .size}`);
+      return;
+   }
+
+   fieldDefinitions .forEach (fieldDefinition => field (typeName, fieldDefinition, fields));
+}
+
+function field (typeName, fieldDefinition, fields)
+{
+   const
+      match      = fieldDefinition .match (/X3DFieldDefinition \(X3DConstants \.(\w+),\s+"(\w+)",\s+new Fields \.(\w+) \((.*?)\)\)/),
+      accessType = match [1],
+      name       = match [2],
+      type       = match [3],
+      value      = match [4],
+      x3duom     = fields .get (name);
+
+   if (!x3doum)
+   {
+      console .log (`Unknown field ${name} in node ${typeName}`);
+      return;
+   }
 }
 
 function sh (strings, ... values)
