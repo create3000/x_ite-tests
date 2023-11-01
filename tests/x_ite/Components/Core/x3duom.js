@@ -35,10 +35,16 @@ function node (filename)
 
    const excludes = new Set (["IS", "USE", "DEF", "id", "class", "style"]);
 
+   if (typeName .match (/^(?:Script|ComposedShader|PackagedShader|ShaderPart|ShaderProgram)$/))
+   {
+      excludes .add ("field");
+      excludes .add ("sourceCode");
+   }
+
    const
       fields           = new Map (x3duom .InterfaceDefinition .field .filter (field => !excludes .has (field .name)) .map (field => [field .name, field])),
       file             = sh `cat ${filename}`,
-      fieldDefinitions = file .match (/X3DFieldDefinition \(X3DConstants \.\w+,\s+"\w+",\s+new Fields \.\w+ \(.*?\)\).*?\n/g) .map (fieldDefinition => fieldDefinition .match (/X3DFieldDefinition \(X3DConstants \.(\w+),\s+"(\w+)",\s+new Fields \.(\w+) \((.*?)\)\)/));
+      fieldDefinitions = file .match (/X3DFieldDefinition \(X3DConstants \.\w+,\s+"\w+",\s+new Fields \.\w+ \(.*?\)\),.*?\n/g)  .filter (fieldDefinition => !fieldDefinition .match (/skip test|experimental/)) .map (fieldDefinition => fieldDefinition .match (/X3DFieldDefinition \(X3DConstants \.(\w+),\s+"(\w+)",\s+new Fields \.(\w+) \((.*?)\)\),/)) .filter (f => f [2] !== "blendMode");
 
    if (fieldDefinitions .length !== fields .size)
    {
@@ -92,7 +98,10 @@ function field (typeName, fieldDefinition, fields)
       return;
 
    x3duom .default ||= "";
-   x3duom .default = x3duom .default .replace (/\.0+/g, "");
+   x3duom .default = x3duom .default .replace (/\.0+(?!\d)/g, "");
+
+   value = value .replaceAll ("new Fields .SFColor ()", "0 0 0");
+   value = value .replace (/new Vector[234] \((.*?)\)/g, "$1");
 
    switch (type)
    {
@@ -108,11 +117,20 @@ function field (typeName, fieldDefinition, fields)
       case "SFImage":
          value ||= "0 0 0";
          break;
+      case "SFMatrix3d":
+      case "SFMatrix3f":
+         value ||= "1 0 0 0 1 0 0 0 1";
+         break;
+      case "SFMatrix4d":
+      case "SFMatrix4f":
+         value ||= "1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1";
+         break;
       case "SFNode":
          value ||= "NULL";
          break;
       case "SFRotation":
          value ||= "0 0 1 0";
+         value = value .replaceAll (",", "");
          break;
       case "SFString":
          value = value .replace (/^"|"$/g, "");
@@ -137,13 +155,15 @@ function field (typeName, fieldDefinition, fields)
       case "MFFloat":
       case "MFInt32":
       case "MFImage":
+      case "MFRotation":
       case "MFString":
+      case "MFVec2f":
       case "MFVec3f":
          value = value .replaceAll (",", "");
          break;
    }
 
-   if (x3duom .default !== value)
+   if (value !== x3duom .default)
    {
       console .log (`Field ${type} '${name}' in node ${typeName} has different value: ${value} !== ${x3duom .default}.`);
       return;
