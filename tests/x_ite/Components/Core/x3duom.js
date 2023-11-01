@@ -12,7 +12,7 @@ const
 sh `find ${process .cwd ()}/../x_ite/src/x_ite/Components -type f -mindepth 2`
    .split ("\n")
    .sort ()
-   .slice (10, 11)
+   // .slice (10, 11)
    .forEach (s => node (s));
 
 console .log ("Test done.");
@@ -68,53 +68,71 @@ function field (typeName, fieldDefinition, fields)
 
    if (x3duom .accessType !== accessType)
    {
-      console .log (`Field '${name}' has different access type: ${accessType} !== ${x3duom .accessType}.`);
+      console .log (`Field '${name}' in node ${typeName} has different access type: ${accessType} !== ${x3duom .accessType}.`);
       return;
    }
 
    if (x3duom .type !== type)
    {
-      console .log (`Field '${name}' has different type: ${type} !== ${x3duom .type}.`);
+      console .log (`Field '${name}' in node ${typeName} has different type: ${type} !== ${x3duom .type}.`);
       return;
    }
 
    if (accessType .match (/^(?:inputOnly|outputOnly)$/))
       return;
 
+   x3duom .default ||= "";
+   x3duom .default = x3duom .default .replace (/\.0+/g, "");
+
    switch (type)
    {
       case "SFBool":
          value ||= "false";
          break;
+      case "SFDouble":
+      case "SFFloat":
+      case "SFInt32":
+      case "SFTime":
+         value ||= "0";
+         break;
+      case "SFImage":
+         value ||= "0 0 0";
+         break;
       case "SFNode":
          value ||= "NULL";
          break;
+      case "SFRotation":
+         value ||= "0 0 1 0";
+         break;
       case "SFString":
-         x3duom .default ||= "";
+         value = value .replace (/^"|"$/g, "");
          break;
       case "SFVec2d":
       case "SFVec2f":
          value ||= "0 0";
          value = value .replaceAll (",", "");
          break;
+      case "SFColor":
       case "SFVec3d":
       case "SFVec3f":
          value ||= "0 0 0";
          value = value .replaceAll (",", "");
          break;
+      case "SFColorRGBA":
       case "SFVec4d":
       case "SFVec4f":
          value ||= "0 0 0 0";
          value = value .replaceAll (",", "");
          break;
-      case "MFNode":
-         x3duom .default ||= "";
+      case "MFInt32":
+      case "MFImage":
+         value = value .replaceAll (",", "");
          break;
-      }
+   }
 
    if (x3duom .default !== value)
    {
-      console .log (`Field '${name}' has different value: ${value} !== ${x3duom .default}.`);
+      console .log (`Field ${type} '${name}' in node ${typeName} has different value: ${value} !== ${x3duom .default}.`);
       return;
    }
 }
