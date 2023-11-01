@@ -48,7 +48,7 @@ function node (filename)
 
    if (fieldDefinitions .length !== fields .size)
    {
-      console .log (`${typeName} number of fields differ: ${fieldDefinitions .length} <=> ${fields .size}.`);
+      console .log (`${typeName} number of fields differ (Spec <=> X3DUOM): ${fieldDefinitions .length} <=> ${fields .size}.`);
 
       const x3duom = fieldDefinitions .filter (f => !fields .has (f [2])) .map (f => f [2]);
 
@@ -58,7 +58,7 @@ function node (filename)
       const x_ite = [... fields .values ()] .map (f => f .name) .filter (n => !fieldDefinitions .find (f => f [2] === n));
 
       if (x_ite .length)
-         console .log (`  Where [${x_ite}] not in X_ITE.`);
+         console .log (`  Where [${x_ite}] not in Spec.`);
 
       return;
    }
@@ -84,13 +84,13 @@ function field (typeName, fieldDefinition, fields)
 
    if (x3duom .accessType !== accessType)
    {
-      console .log (`Field '${name}' in node ${typeName} has different access type: ${accessType} !== ${x3duom .accessType}.`);
+      console .log (`Field '${name}' in node ${typeName} has different access type (Spec <=> X3DUOM): ${accessType} !== ${x3duom .accessType}.`);
       return;
    }
 
    if (x3duom .type !== type)
    {
-      console .log (`Field '${name}' in node ${typeName} has different type: ${type} !== ${x3duom .type}.`);
+      console .log (`Field '${name}' in node ${typeName} has different type (Spec <=> X3DUOM): ${type} !== ${x3duom .type}.`);
       return;
    }
 
@@ -165,7 +165,7 @@ function field (typeName, fieldDefinition, fields)
 
    if (value !== x3duom .default)
    {
-      console .log (`Field ${type} '${name}' in node ${typeName} has different value: ${value} !== ${x3duom .default}.`);
+      console .log (`Field ${type} '${name}' in node ${typeName} has different value (Spec <=> X3DUOM): ${value} !== ${x3duom .default}.`);
       return;
    }
 }
