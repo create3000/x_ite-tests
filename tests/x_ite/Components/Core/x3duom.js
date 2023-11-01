@@ -138,6 +138,7 @@ function field (typeName, fieldDefinition, fields)
       case "MFInt32":
       case "MFImage":
       case "MFString":
+      case "MFVec3f":
          value = value .replaceAll (",", "");
          break;
    }
