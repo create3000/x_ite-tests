@@ -152,12 +152,10 @@ function common (typeName, file, x3duom)
          bases .push (x3duom .InterfaceDefinition .AdditionalInheritance .baseType);
    }
 
-   // TODO: too much mess.
-
    // for (const base of bases)
    // {
    //    if (!file .match (new RegExp (`${base}\\.`)))
-   //       console .error (`${typeName} misses base '${base}'.`);
+   //       console .error (`${typeName}: X3DUOM base '${base}' differs from Spec.`);
    // }
 }
 
