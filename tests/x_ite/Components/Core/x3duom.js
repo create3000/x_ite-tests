@@ -98,11 +98,18 @@ function abstractNode (typeName, filename)
 
 function common (typeName, file, x3duom)
 {
+   const name = file .match (/typeName:\s*\{\s*value: "(.*?)",/);
+
+   if (!name || name [1] !== x3duom .name)
+   {
+      console .log (`Node ${typeName} has wrong name (Local <=> X3DUOM): ${name ?.[1]} !== ${x3duom .name}`);
+   }
+
    const componentInfo = file .match (/componentInfo:\s*\{\s*value: Object \.freeze \(\{ name: "(.*?)", level: (\d+) \}\),/s);
 
    if (!componentInfo)
    {
-      console .log (`${typeName} misses componentInfo.`);
+      console .log (`Node ${typeName} misses componentInfo.`);
    }
    else
    {
@@ -110,14 +117,14 @@ function common (typeName, file, x3duom)
 
       if (componentInfo [1] !== x3duom .InterfaceDefinition ?.componentInfo ?.name)
       {
-         console .log (`${typeName} component name differs (Spec <=> X3DUOM): ${componentInfo ?.[1]} <=> ${x3duom .InterfaceDefinition ?.componentInfo ?.name}.`);
+         console .log (`${typeName}: component name differs (Spec <=> X3DUOM): ${componentInfo ?.[1]} <=> ${x3duom .InterfaceDefinition ?.componentInfo ?.name}.`);
       }
 
       // Check component level.
 
       if (componentInfo [2] !== x3duom .InterfaceDefinition ?.componentInfo ?.level)
       {
-         console .log (`${typeName} component level differs (Spec <=> X3DUOM): ${componentInfo ?.[2]} <=> ${x3duom .InterfaceDefinition ?.componentInfo ?.level}.`);
+         console .log (`${typeName}: component level differs (Spec <=> X3DUOM): ${componentInfo ?.[2]} <=> ${x3duom .InterfaceDefinition ?.componentInfo ?.level}.`);
       }
    }
 }
