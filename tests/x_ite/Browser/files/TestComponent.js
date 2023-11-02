@@ -12,7 +12,7 @@ class TestNode extends X3DNode
    static typeName           = "TestNode"
    static componentInfo      = { name: "Test", level: 1 }
    static containerField     = "testContainerField"
-   static specificationRange = Object .freeze (["2.0", "Infinity"])
+   static specificationRange = Object .freeze ({ from: "2.0", to: "Infinity" })
 
    static fieldDefinitions = new FieldDefinitionArray ([
       new X3DFieldDefinition (X3DConstants .inputOutput, "metadata", new Fields .SFNode ()),
