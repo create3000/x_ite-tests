@@ -39,9 +39,9 @@ function node (filename)
 
    const containerField = file .match (/containerField:\s*\{\s*value:\s*"(.*?)",/s);
 
-   if (!containerField || !containerField [1] === x3duom .InterfaceDefinition .containerField .default)
+   if (!containerField || !containerField [1] === x3duom .InterfaceDefinition ?.containerField ?.default)
    {
-      console .log (`${typeName} containerField differs (Spec <=> X3DUOM): ${containerField ?.[1]} <=> ${x3duom .InterfaceDefinition .containerField .default}.`);
+      console .log (`${typeName} containerField differs (Spec <=> X3DUOM): ${containerField ?.[1]} <=> ${x3duom .InterfaceDefinition ?.containerField ?.default}.`);
    }
 
    // Check fields.
