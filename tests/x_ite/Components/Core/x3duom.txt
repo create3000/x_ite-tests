@@ -1,4 +1,3 @@
-node tests/x_ite/Components/Core/x3duom.js
 Field 'solid' in node IndexedQuadSet has different access type (Spec <=> X3DUOM): initializeOnly !== inputOutput.
 Field 'solid' in node QuadSet has different access type (Spec <=> X3DUOM): initializeOnly !== inputOutput.
 ComposedCubeMapTexture number of fields differ (Spec <=> X3DUOM): 9 <=> 8.
