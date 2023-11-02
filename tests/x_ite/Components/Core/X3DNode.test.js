@@ -14,5 +14,5 @@ function sh (strings, ... values)
 {
    const { execSync } = require ("child_process");
 
-   return execSync (String .raw ({ raw: strings }, ... values), { encoding: "utf8", maxBuffer: 128 * 1024 * 1024 });
+   return execSync (String .raw ({ raw: strings }, ... values), { encoding: "utf8", maxBuffer: Infinity });
 }
