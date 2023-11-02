@@ -35,6 +35,15 @@ function node (filename)
 
    const file = sh `cat ${filename}`;
 
+   // Check componentName.
+
+   const componentName = file .match (/componentName:\s*\{\s*value:\s*"(.*?)",/s);
+
+   if (!componentName || !componentName [1] === x3duom .InterfaceDefinition ?.componentInfo ?.name)
+   {
+      console .log (`${typeName} componentName differs (Spec <=> X3DUOM): ${componentName ?.[1]} <=> ${x3duom .InterfaceDefinition ?.componentInfo ?.name}.`);
+   }
+
    // Check containerField.
 
    const containerField = file .match (/containerField:\s*\{\s*value:\s*"(.*?)",/s);
