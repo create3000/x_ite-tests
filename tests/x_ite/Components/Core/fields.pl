@@ -189,7 +189,7 @@ sub field {
    elsif ($type eq "MFColor")
    {
       return if $value eq "[ ]" && $codeValue eq "";
-      return if $value eq "0 0 0" && $codeValue eq "new Fields .SFColor ()";
+      return if $value eq "0 0 0" && $codeValue eq "new Color3 (0, 0, 0)";
    }
    elsif ($type eq "MFColorRGBA")
    {

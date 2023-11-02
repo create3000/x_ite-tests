@@ -1,10 +1,18 @@
-const
-   path = require ("path"),
-   { execFileSync } = require ("child_process");
+const path = require ("path")
 
-test ("default values", () =>
+test ("documentation", () =>
 {
-   const stdout = execFileSync ("perl", [path .resolve (__dirname, "fields.pl")])
-
-   expect (stdout .toString ("utf8")) .toBe ("Test done.\n")
+   expect (sh `perl ${path .resolve (__dirname, "fields.pl")}`) .toBe ("Test done.\n")
 })
+
+test ("x3duom", () =>
+{
+   expect (sh `node ${path .resolve (__dirname, "x3duom.js")}`) .toBe (sh `cat ${path .resolve (__dirname, "x3duom.txt")}`)
+})
+
+function sh (strings, ... values)
+{
+   const { execSync } = require ("child_process");
+
+   return execSync (String .raw ({ raw: strings }, ... values), { encoding: "utf8", maxBuffer: 128 * 1024 * 1024 });
+}
