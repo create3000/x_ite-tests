@@ -6,8 +6,9 @@ const
 // https://www.web3d.org/specifications/X3dUnifiedObjectModel-4.0.xml
 
 const
-   x3duom = xml (sh `wget -q -O - https://www.web3d.org/specifications/X3dUnifiedObjectModel-4.0.xml`),
-   nodes  = new Map (x3duom .X3dUnifiedObjectModel .ConcreteNodes .ConcreteNode .map (node => [node .name, node]));
+   x3duom        = xml (sh `wget -q -O - https://www.web3d.org/specifications/X3dUnifiedObjectModel-4.0.xml`),
+   nodes         = new Map (x3duom .X3dUnifiedObjectModel .ConcreteNodes .ConcreteNode .map (node => [node .name, node])),
+   abstractNodes = new Map (x3duom .X3dUnifiedObjectModel .AbstractNodeTypes .AbstractNodeType .map (node => [node .name, node]));
 
 sh `find "${process .cwd ()}/../x_ite/src/x_ite/Components" -type f -mindepth 2`
    .split ("\n")
@@ -24,7 +25,10 @@ function node (filename)
    // Filter abstract nodes.
 
    if (typeName .match (/^X3D/))
+   {
+      abstractNode (typeName, filename);
       return;
+   }
 
    const x3duom = nodes .get (typeName);
 
@@ -35,14 +39,7 @@ function node (filename)
 
    const file = sh `cat "${filename}"`;
 
-   // Check componentName.
-
-   const componentInfo = file .match (/componentInfo:\s*\{\s*value: Object \.freeze \(\{ name: "(.*?)", level: (\d+) \}\),/s);
-
-   if (!componentInfo || !componentInfo [1] === x3duom .InterfaceDefinition ?.componentInfo ?.name)
-   {
-      console .log (`${typeName} componentName differs (Spec <=> X3DUOM): ${componentInfo ?.[1]} <=> ${x3duom .InterfaceDefinition ?.componentInfo ?.name}.`);
-   }
+   common (typeName, file, x3duom);
 
    // Check containerField.
 
@@ -85,6 +82,44 @@ function node (filename)
    }
 
    fieldDefinitions .forEach (fieldDefinition => field (typeName, fieldDefinition, fields));
+}
+
+function abstractNode (typeName, filename)
+{
+   const x3duom = abstractNodes .get (typeName);
+
+   if (!x3duom)
+      return;
+
+   const file = sh `cat "${filename}"`;
+
+   common (typeName, file, x3duom);
+}
+
+function common (typeName, file, x3duom)
+{
+   const componentInfo = file .match (/componentInfo:\s*\{\s*value: Object \.freeze \(\{ name: "(.*?)", level: (\d+) \}\),/s);
+
+   if (!componentInfo)
+   {
+      console .log (`${typeName} misses componentInfo.`);
+   }
+   else
+   {
+      // Check component name.
+
+      if (componentInfo [1] !== x3duom .InterfaceDefinition ?.componentInfo ?.name)
+      {
+         console .log (`${typeName} component name differs (Spec <=> X3DUOM): ${componentInfo ?.[1]} <=> ${x3duom .InterfaceDefinition ?.componentInfo ?.name}.`);
+      }
+
+      // Check component level.
+
+      if (componentInfo [2] !== x3duom .InterfaceDefinition ?.componentInfo ?.level)
+      {
+         console .log (`${typeName} component level differs (Spec <=> X3DUOM): ${componentInfo ?.[2]} <=> ${x3duom .InterfaceDefinition ?.componentInfo ?.level}.`);
+      }
+   }
 }
 
 function field (typeName, fieldDefinition, fields)
