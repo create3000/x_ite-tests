@@ -22,7 +22,7 @@ test ("concrete-nodes", async () =>
       const node = Browser .currentScene .createNode (ConcreteNode .typeName);
 
       expect (typeof ConcreteNode .typeName) .toBe ("string")
-      expect (typeof ConcreteNode .componentName) .toBe ("string")
+      expect (typeof ConcreteNode .componentInfo .name) .toBe ("string")
       expect (typeof ConcreteNode .containerField) .toBe ("string")
       expect (ConcreteNode .specificationRange) .toBeInstanceOf (Array)
       expect (() => ConcreteNode .specificationRange .sort ()) .toThrow (Error)
@@ -32,11 +32,11 @@ test ("concrete-nodes", async () =>
       expect (node .getFieldDefinitions ()) .toBeInstanceOf (X3D .FieldDefinitionArray)
       expect (node .getFieldDefinitions ()) .toBe (node .getValue () .getFieldDefinitions ())
       expect (node .getValue () .getTypeName ()) .toBe (ConcreteNode .typeName)
-      expect (node .getValue () .getComponentName ()) .toBe (ConcreteNode .componentName)
+      expect (node .getValue () .getComponentName ()) .toBe (ConcreteNode .componentInfo .name)
       expect (node .getValue () .getContainerField ()) .toBe (ConcreteNode .containerField)
       expect (node .getValue () .getSpecificationRange ()) .toBe (ConcreteNode .specificationRange)
       expect (node .getValue () .getFieldDefinitions ()) .toBeInstanceOf (X3D .FieldDefinitionArray)
-      enumerate (["typeName", "componentName", "containerField", "specificationRange", "fieldDefinitions"], ConcreteNode)
+      enumerate (["typeName", "componentInfo", "containerField", "specificationRange", "fieldDefinitions"], ConcreteNode)
    }
 })
 
@@ -50,13 +50,13 @@ test ("abstract-nodes", async () =>
 
       if (AbstractNode .typeName === "X3DPrototypeInstance")
       {
-         expect (typeof AbstractNode .componentName) .toBe ("string")
-         enumerate (["typeName", "componentName", "containerField", "specificationRange"], AbstractNode)
+         expect (typeof AbstractNode .componentInfo .name) .toBe ("string")
+         enumerate (["typeName", "componentInfo", "containerField", "specificationRange"], AbstractNode)
       }
       else
       {
-         expect (typeof AbstractNode .componentName) .toBe ("string")
-         enumerate (["typeName", "componentName"], AbstractNode)
+         expect (typeof AbstractNode .componentInfo .name) .toBe ("string")
+         enumerate (["typeName", "componentInfo"], AbstractNode)
       }
    }
 })

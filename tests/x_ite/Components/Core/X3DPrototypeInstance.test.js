@@ -120,7 +120,7 @@ test ("static-properties", () =>
    const X3DPrototypeInstance = Browser .getAbstractNode ("X3DPrototypeInstance")
 
    expect (X3DPrototypeInstance .typeName) .toBe ("X3DPrototypeInstance")
-   expect (X3DPrototypeInstance .componentName) .toBe ("Core")
+   expect (X3DPrototypeInstance .componentInfo .name) .toBe ("Core")
    expect (X3DPrototypeInstance .containerField) .toBe ("children")
    expect (X3DPrototypeInstance .specificationRange) .toBeInstanceOf (Array)
    expect (() => X3DPrototypeInstance .specificationRange .sort ()) .toThrow (Error)

@@ -37,11 +37,11 @@ function node (filename)
 
    // Check componentName.
 
-   const componentName = file .match (/componentName:\s*\{\s*value:\s*"(.*?)",/s);
+   const componentInfo = file .match (/componentInfo:\s*\{\s*value: Object \.freeze \(\{ name: "(.*?)", level: (\d+) \}\),/s);
 
-   if (!componentName || !componentName [1] === x3duom .InterfaceDefinition ?.componentInfo ?.name)
+   if (!componentInfo || !componentInfo [1] === x3duom .InterfaceDefinition ?.componentInfo ?.name)
    {
-      console .log (`${typeName} componentName differs (Spec <=> X3DUOM): ${componentName ?.[1]} <=> ${x3duom .InterfaceDefinition ?.componentInfo ?.name}.`);
+      console .log (`${typeName} componentName differs (Spec <=> X3DUOM): ${componentInfo ?.[1]} <=> ${x3duom .InterfaceDefinition ?.componentInfo ?.name}.`);
    }
 
    // Check containerField.
