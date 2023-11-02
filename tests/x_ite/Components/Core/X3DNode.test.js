@@ -5,7 +5,7 @@ test ("documentation", () =>
    expect (sh `perl ${path .resolve (__dirname, "fields.pl")}`) .toBe ("Test done.\n")
 })
 
-test ("x3duom", () =>
+test ("X3DUOM", () =>
 {
    expect (sh `node ${path .resolve (__dirname, "x3duom.js")}`) .toBe (sh `cat ${path .resolve (__dirname, "x3duom.txt")}`)
 })
