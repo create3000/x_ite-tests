@@ -32,7 +32,7 @@ test ("concrete-nodes", async () =>
       expect (node .getFieldDefinitions ()) .toBeInstanceOf (X3D .FieldDefinitionArray)
       expect (node .getFieldDefinitions ()) .toBe (node .getValue () .getFieldDefinitions ())
       expect (node .getValue () .getTypeName ()) .toBe (ConcreteNode .typeName)
-      expect (node .getValue () .getComponentName ()) .toBe (ConcreteNode .componentInfo .name)
+      expect (node .getValue () .getComponentInfo () .name) .toBe (ConcreteNode .componentInfo .name)
       expect (node .getValue () .getContainerField ()) .toBe (ConcreteNode .containerField)
       expect (node .getValue () .getSpecificationRange ()) .toBe (ConcreteNode .specificationRange)
       expect (node .getValue () .getFieldDefinitions ()) .toBeInstanceOf (X3D .FieldDefinitionArray)
