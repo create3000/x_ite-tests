@@ -9,7 +9,7 @@ const
    x3duom = xml (sh `wget -q -O - https://www.web3d.org/specifications/X3dUnifiedObjectModel-4.0.xml`),
    nodes  = new Map (x3duom .X3dUnifiedObjectModel .ConcreteNodes .ConcreteNode .map (node => [node .name, node]));
 
-sh `find ${process .cwd ()}/../x_ite/src/x_ite/Components -type f -mindepth 2`
+sh `find "${process .cwd ()}/../x_ite/src/x_ite/Components" -type f -mindepth 2`
    .split ("\n")
    .sort ()
    // .slice (10, 11)
@@ -33,7 +33,7 @@ function node (filename)
    if (!x3duom)
       return;
 
-   const file = sh `cat ${filename}`;
+   const file = sh `cat "${filename}"`;
 
    // Check componentName.
 
