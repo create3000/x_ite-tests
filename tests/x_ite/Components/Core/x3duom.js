@@ -98,12 +98,16 @@ function abstractNode (typeName, filename)
 
 function common (typeName, file, x3duom)
 {
+   // Test typeName.
+   
    const name = file .match (/typeName:\s*\{\s*value: "(.*?)",/);
 
    if (!name || name [1] !== x3duom .name)
    {
       console .log (`Node ${typeName} has wrong name (Local <=> X3DUOM): ${name ?.[1]} !== ${x3duom .name}`);
    }
+
+   // Test componentInfo.
 
    const componentInfo = file .match (/componentInfo:\s*\{\s*value: Object \.freeze \(\{ name: "(.*?)", level: (\d+) \}\),/s);
 
