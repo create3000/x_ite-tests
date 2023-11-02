@@ -52,7 +52,12 @@ function node (filename)
 
    // Check fields.
 
-   const excludes = new Set (["IS", "USE", "DEF", "id", "class", "style"]);
+   const excludes = new Set (["IS", "USE", "DEF", "id", "class"]);
+
+   if (!typeName .match (/^(?:FontStyle|ScreenFontStyle)/))
+   {
+      excludes .add ("style");
+   }
 
    if (typeName .match (/^(?:Script|ComposedShader|PackagedShader|ShaderPart|ShaderProgram)$/))
    {
@@ -99,7 +104,7 @@ function abstractNode (typeName, filename)
 function common (typeName, file, x3duom)
 {
    // Test typeName.
-   
+
    const name = file .match (/typeName:\s*\{\s*value: "(.*?)",/);
 
    if (!name || name [1] !== x3duom .name)
