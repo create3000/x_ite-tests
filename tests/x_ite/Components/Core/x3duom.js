@@ -100,8 +100,7 @@ function field (typeName, fieldDefinition, fields)
    x3duom .default ||= "";
    x3duom .default = x3duom .default .replace (/\.0+(?!\d)/g, "");
 
-   value = value .replaceAll ("new Fields .SFColor ()", "0 0 0");
-   value = value .replace (/new Vector[234] \((.*?)\)/g, "$1");
+   value = value .replace (/new (?:Vector|Color)[234] \((.*?)\)/g, "$1");
 
    switch (type)
    {
@@ -152,6 +151,7 @@ function field (typeName, fieldDefinition, fields)
          value ||= "0 0 0 0";
          value = value .replaceAll (",", "");
          break;
+      case "MFColor":
       case "MFFloat":
       case "MFInt32":
       case "MFImage":
