@@ -98,7 +98,7 @@ function field (typeName, fieldDefinition, fields)
    x3duom .default ||= "";
    x3duom .default = x3duom .default .replace (/\.0+(?!\d)/g, "");
 
-   value = value .replace (/new (?:Vector|Color)[234] \((.*?)\)/g, "$1");
+   value = value .replace (/new (?:Vector|Color|Matrix)[234] \((.*?)\)/g, "$1");
    value = value .replace (/new Rotation4 \(\)/g, "0 0 1 0");
 
    switch (type)
