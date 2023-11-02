@@ -85,13 +85,11 @@ function field (typeName, fieldDefinition, fields)
    if (x3duom .accessType !== accessType)
    {
       console .log (`Field '${name}' in node ${typeName} has different access type (Spec <=> X3DUOM): ${accessType} !== ${x3duom .accessType}.`);
-      return;
    }
 
    if (x3duom .type !== type)
    {
       console .log (`Field '${name}' in node ${typeName} has different type (Spec <=> X3DUOM): ${type} !== ${x3duom .type}.`);
-      return;
    }
 
    if (accessType .match (/^(?:inputOnly|outputOnly)$/))
@@ -101,6 +99,7 @@ function field (typeName, fieldDefinition, fields)
    x3duom .default = x3duom .default .replace (/\.0+(?!\d)/g, "");
 
    value = value .replace (/new (?:Vector|Color)[234] \((.*?)\)/g, "$1");
+   value = value .replace (/new Rotation4 \(\)/g, "0 0 1 0");
 
    switch (type)
    {
