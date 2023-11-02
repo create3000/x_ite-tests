@@ -2,7 +2,7 @@ const path = require ("path")
 
 test ("documentation", () =>
 {
-   expect (sh `perl ${path .resolve (__dirname, "fields.pl")}`) .toBe ("Test done.\n")
+   expect (sh `perl ${path .resolve (__dirname, "documentation.pl")}`) .toBe ("Test done.\n")
 })
 
 test ("X3DUOM", () =>
