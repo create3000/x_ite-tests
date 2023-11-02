@@ -33,6 +33,19 @@ function node (filename)
    if (!x3duom)
       return;
 
+   const file = sh `cat ${filename}`;
+
+   // Check containerField.
+
+   const containerField = file .match (/containerField:\s*\{\s*value:\s*"(.*?)",/s);
+
+   if (!containerField || !containerField [1] === x3duom .InterfaceDefinition .containerField .default)
+   {
+      console .log (`${typeName} containerField differs (Spec <=> X3DUOM): ${containerField ?.[1]} <=> ${x3duom .InterfaceDefinition .containerField .default}.`);
+   }
+
+   // Check fields.
+
    const excludes = new Set (["IS", "USE", "DEF", "id", "class", "style"]);
 
    if (typeName .match (/^(?:Script|ComposedShader|PackagedShader|ShaderPart|ShaderProgram)$/))
@@ -43,7 +56,6 @@ function node (filename)
 
    const
       fields           = new Map (x3duom .InterfaceDefinition .field .filter (field => !excludes .has (field .name)) .map (field => [field .name, field])),
-      file             = sh `cat ${filename}`,
       fieldDefinitions = file .match (/X3DFieldDefinition \(X3DConstants \.\w+,\s+"\w+",\s+new Fields \.\w+ \(.*?\)\),.*?\n/g)  .filter (fieldDefinition => !fieldDefinition .match (/skip test|experimental/)) .map (fieldDefinition => fieldDefinition .match (/X3DFieldDefinition \(X3DConstants \.(\w+),\s+"(\w+)",\s+new Fields \.(\w+) \((.*?)\)\),/)) .filter (f => f [2] !== "blendMode");
 
    if (fieldDefinitions .length !== fields .size)
