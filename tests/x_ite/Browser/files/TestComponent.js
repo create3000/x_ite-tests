@@ -10,7 +10,7 @@ const
 class TestNode extends X3DNode
 {
    static typeName           = "TestNode"
-   static componentInfo      = { name: "Test", level: 1 }
+   static componentInfo      = Object .freeze ({ name: "Test", level: 1 })
    static containerField     = "testContainerField"
    static specificationRange = Object .freeze ({ from: "2.0", to: "Infinity" })
 

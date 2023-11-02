@@ -22,10 +22,13 @@ test ("concrete-nodes", async () =>
       const node = Browser .currentScene .createNode (ConcreteNode .typeName);
 
       expect (typeof ConcreteNode .typeName) .toBe ("string")
+      expect (ConcreteNode .componentInfo) .toBeInstanceOf (Object)
       expect (typeof ConcreteNode .componentInfo .name) .toBe ("string")
+      expect (typeof ConcreteNode .componentInfo .level) .toBe ("number")
       expect (typeof ConcreteNode .containerField) .toBe ("string")
-      expect (ConcreteNode .specificationRange) .toBeInstanceOf (Array)
-      expect (() => ConcreteNode .specificationRange .sort ()) .toThrow (Error)
+      expect (ConcreteNode .specificationRange) .toBeInstanceOf (Object)
+      expect (typeof ConcreteNode .specificationRange .from) .toBe ("string")
+      expect (typeof ConcreteNode .specificationRange .to) .toBe ("string")
       expect (ConcreteNode .fieldDefinitions) .toBeInstanceOf (X3D .FieldDefinitionArray)
       expect (node .getNodeTypeName ()) .toBe (ConcreteNode .typeName)
       expect (node .getNodeTypeName ()) .toBe (node .getValue () .getTypeName ())
