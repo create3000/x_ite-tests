@@ -7,7 +7,8 @@ test ("documentation", () =>
 
 test ("X3DUOM", () =>
 {
-   expect (sh `node ${path .resolve (__dirname, "x3duom.js")}`) .toBe (sh `cat ${path .resolve (__dirname, "x3duom.txt")}`)
+   expect (sh `node ${path .resolve (__dirname, "x3duom.js")}`)
+      .toBe (sh `cat ${path .resolve (__dirname, "x3duom.txt")}`)
 })
 
 function sh (strings, ... values)
