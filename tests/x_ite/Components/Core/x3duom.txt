@@ -1,0 +1,114 @@
+node tests/x_ite/Components/Core/x3duom.js
+Field 'solid' in node IndexedQuadSet has different access type (Spec <=> X3DUOM): initializeOnly !== inputOutput.
+Field 'solid' in node QuadSet has different access type (Spec <=> X3DUOM): initializeOnly !== inputOutput.
+ComposedCubeMapTexture number of fields differ (Spec <=> X3DUOM): 9 <=> 8.
+  Where [textureProperties] not in X3DUOM.
+Field 'size' in node GeneratedCubeMapTexture has different access type (Spec <=> X3DUOM): initializeOnly !== inputOutput.
+Field 'solid' in node ArcClose2D has different access type (Spec <=> X3DUOM): initializeOnly !== inputOutput.
+Field 'solid' in node Disk2D has different access type (Spec <=> X3DUOM): initializeOnly !== inputOutput.
+Field 'size' in node Rectangle2D has different access type (Spec <=> X3DUOM): initializeOnly !== inputOutput.
+Field 'solid' in node Rectangle2D has different access type (Spec <=> X3DUOM): initializeOnly !== inputOutput.
+Field 'solid' in node TriangleSet2D has different access type (Spec <=> X3DUOM): initializeOnly !== inputOutput.
+Field 'size' in node Box has different access type (Spec <=> X3DUOM): initializeOnly !== inputOutput.
+Field 'solid' in node Box has different access type (Spec <=> X3DUOM): initializeOnly !== inputOutput.
+Field 'solid' in node Cone has different access type (Spec <=> X3DUOM): initializeOnly !== inputOutput.
+Field 'solid' in node Cylinder has different access type (Spec <=> X3DUOM): initializeOnly !== inputOutput.
+Field SFInt32 'xDimension' in node ElevationGrid has different value (Spec <=> X3DUOM): 0 !== 2.
+Field SFInt32 'zDimension' in node ElevationGrid has different value (Spec <=> X3DUOM): 0 !== 2.
+Field 'solid' in node ElevationGrid has different access type (Spec <=> X3DUOM): initializeOnly !== inputOutput.
+Field MFFloat 'height' in node ElevationGrid has different value (Spec <=> X3DUOM):  !== 0 0 0 0.
+Field 'solid' in node Extrusion has different access type (Spec <=> X3DUOM): initializeOnly !== inputOutput.
+Field 'orientation' in node Extrusion has different access type (Spec <=> X3DUOM): initializeOnly !== inputOutput.
+Field 'scale' in node Extrusion has different access type (Spec <=> X3DUOM): initializeOnly !== inputOutput.
+Field 'solid' in node IndexedFaceSet has different access type (Spec <=> X3DUOM): initializeOnly !== inputOutput.
+Field 'solid' in node Sphere has different access type (Spec <=> X3DUOM): initializeOnly !== inputOutput.
+Field 'set_height' in node GeoElevationGrid has different type (Spec <=> X3DUOM): MFDouble !== MFFloat.
+Field SFInt32 'xDimension' in node GeoElevationGrid has different value (Spec <=> X3DUOM): 0 !== 2.
+Field SFInt32 'zDimension' in node GeoElevationGrid has different value (Spec <=> X3DUOM): 0 !== 2.
+Field 'solid' in node GeoElevationGrid has different access type (Spec <=> X3DUOM): initializeOnly !== inputOutput.
+Field MFDouble 'height' in node GeoElevationGrid has different value (Spec <=> X3DUOM): 0, 0 !== 0 0 0 0.
+Field SFFloat 'fieldOfView' in node GeoViewpoint has different value (Spec <=> X3DUOM): 0.785398 !== 0.7854.
+Field 'coordIndex' in node HAnimDisplacer has different access type (Spec <=> X3DUOM): inputOutput !== initializeOnly.
+HAnimHumanoid number of fields differ (Spec <=> X3DUOM): 31 <=> 30.
+  Where [motionsEnabled] not in X3DUOM.
+HAnimMotion number of fields differ (Spec <=> X3DUOM): 20 <=> 18.
+  Where [next,previous] not in X3DUOM.
+Field 'closed' in node SplinePositionInterpolator has different access type (Spec <=> X3DUOM): inputOutput !== initializeOnly.
+Field 'closed' in node SplinePositionInterpolator2D has different access type (Spec <=> X3DUOM): inputOutput !== initializeOnly.
+Field 'closed' in node SplineScalarInterpolator has different access type (Spec <=> X3DUOM): inputOutput !== initializeOnly.
+Unknown field 'closed' of node SquadOrientationInterpolator in X3DUOM.
+Field 'order' in node LayerSet has different access type (Spec <=> X3DUOM): inputOutput !== initializeOnly.
+ScreenFontStyle number of fields differ (Spec <=> X3DUOM): 10 <=> 9.
+  Where [style] not in X3DUOM.
+Field 'radius' in node PointLight has different access type (Spec <=> X3DUOM): inputOutput !== initializeOnly.
+Field 'radius' in node SpotLight has different access type (Spec <=> X3DUOM): inputOutput !== initializeOnly.
+Field 'knot' in node NurbsOrientationInterpolator has different access type (Spec <=> X3DUOM): inputOutput !== initializeOnly.
+Field 'solid' in node NurbsPatchSurface has different access type (Spec <=> X3DUOM): initializeOnly !== inputOutput.
+Field 'knot' in node NurbsPositionInterpolator has different access type (Spec <=> X3DUOM): inputOutput !== initializeOnly.
+Field 'solid' in node NurbsSweptSurface has different access type (Spec <=> X3DUOM): initializeOnly !== inputOutput.
+Field 'solid' in node NurbsSwungSurface has different access type (Spec <=> X3DUOM): initializeOnly !== inputOutput.
+Field 'solid' in node NurbsTrimmedSurface has different access type (Spec <=> X3DUOM): initializeOnly !== inputOutput.
+Field 'fieldOfView' in node OrthoViewpoint has different type (Spec <=> X3DUOM): MFFloat !== SFVec4f.
+Field SFFloat 'fieldOfView' in node Viewpoint has different value (Spec <=> X3DUOM): 0.785398 !== 0.7854.
+Field SFFloat 'angle' in node ConeEmitter has different value (Spec <=> X3DUOM): 0.785398 !== 0.7854.
+Field 'color' in node ParticleSystem has different type (Spec <=> X3DUOM): SFNode !== MFNode.
+SurfaceEmitter number of fields differ (Spec <=> X3DUOM): 7 <=> 9.
+  Where [coordIndex,set_coordIndex] not in Spec.
+Field SFRotation 'axisRotation' in node PlaneSensor has different value (Spec <=> X3DUOM): 0 0 1 0 !== 0 1 0 0.
+Field 'solid' in node IndexedTriangleFanSet has different access type (Spec <=> X3DUOM): initializeOnly !== inputOutput.
+Field 'solid' in node IndexedTriangleSet has different access type (Spec <=> X3DUOM): initializeOnly !== inputOutput.
+Field 'solid' in node IndexedTriangleStripSet has different access type (Spec <=> X3DUOM): initializeOnly !== inputOutput.
+Field 'solid' in node TriangleFanSet has different access type (Spec <=> X3DUOM): initializeOnly !== inputOutput.
+Field 'solid' in node TriangleSet has different access type (Spec <=> X3DUOM): initializeOnly !== inputOutput.
+Field 'solid' in node TriangleStripSet has different access type (Spec <=> X3DUOM): initializeOnly !== inputOutput.
+Field 'body2Axis' in node UniversalJoint has different type (Spec <=> X3DUOM): SFVec3f !== SFFloat.
+Field 'name' in node FloatVertexAttribute has different access type (Spec <=> X3DUOM): initializeOnly !== inputOutput.
+Field 'name' in node Matrix3VertexAttribute has different access type (Spec <=> X3DUOM): initializeOnly !== inputOutput.
+Field 'name' in node Matrix4VertexAttribute has different access type (Spec <=> X3DUOM): initializeOnly !== inputOutput.
+Appearance number of fields differ (Spec <=> X3DUOM): 12 <=> 11.
+  Where [backMaterial] not in X3DUOM.
+Analyser number of fields differ (Spec <=> X3DUOM): 19 <=> 21.
+  Where [channelCount,frequencyBinCount] not in Spec.
+AudioDestination number of fields differ (Spec <=> X3DUOM): 8 <=> 11.
+  Where [channelCount,maxChannelCount,mediaDeviceID] not in Spec.
+BiquadFilter number of fields differ (Spec <=> X3DUOM): 19 <=> 20.
+  Where [channelCount] not in Spec.
+BufferAudioSource number of fields differ (Spec <=> X3DUOM): 27 <=> 29.
+  Where [bufferLength] not in X3DUOM.
+  Where [bufferlength,channelCount,length] not in Spec.
+ChannelMerger number of fields differ (Spec <=> X3DUOM): 7 <=> 8.
+  Where [channelCount] not in Spec.
+ChannelSelector number of fields differ (Spec <=> X3DUOM): 8 <=> 9.
+  Where [channelCount] not in Spec.
+ChannelSplitter number of fields differ (Spec <=> X3DUOM): 8 <=> 9.
+  Where [channelCount] not in Spec.
+Convolver number of fields differ (Spec <=> X3DUOM): 17 <=> 18.
+  Where [channelCount] not in Spec.
+Delay number of fields differ (Spec <=> X3DUOM): 17 <=> 18.
+  Where [channelCount] not in Spec.
+DynamicsCompressor number of fields differ (Spec <=> X3DUOM): 21 <=> 22.
+  Where [channelCount] not in Spec.
+Gain number of fields differ (Spec <=> X3DUOM): 15 <=> 16.
+  Where [channelCount] not in Spec.
+OscillatorSource number of fields differ (Spec <=> X3DUOM): 14 <=> 13.
+  Where [periodicWave] not in X3DUOM.
+Sound number of fields differ (Spec <=> X3DUOM): 14 <=> 13.
+  Where [children] not in X3DUOM.
+StreamAudioDestination number of fields differ (Spec <=> X3DUOM): 8 <=> 11.
+  Where [channelCount,mediaDeviceID,streamIdentifier] not in Spec.
+StreamAudioSource number of fields differ (Spec <=> X3DUOM): 12 <=> 14.
+  Where [channelCountMode,channelInterpretation] not in Spec.
+Unknown field 'curve' of node WaveShaper in X3DUOM.
+FontStyle number of fields differ (Spec <=> X3DUOM): 10 <=> 9.
+  Where [style] not in X3DUOM.
+Field 'solid' in node Text has different access type (Spec <=> X3DUOM): initializeOnly !== inputOutput.
+Field SFFloat 'fieldOfView' in node TextureProjector has different value (Spec <=> X3DUOM): 0.785398 !== 0.7854.
+TextureProjectorParallel number of fields differ (Spec <=> X3DUOM): 17 <=> 16.
+  Where [upVector] not in X3DUOM.
+TextureTransform number of fields differ (Spec <=> X3DUOM): 6 <=> 5.
+  Where [mapping] not in X3DUOM.
+TextureTransform3D number of fields differ (Spec <=> X3DUOM): 6 <=> 5.
+  Where [mapping] not in X3DUOM.
+TextureTransformMatrix3D number of fields differ (Spec <=> X3DUOM): 3 <=> 2.
+  Where [mapping] not in X3DUOM.
+Test done.
