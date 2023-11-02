@@ -136,6 +136,29 @@ function common (typeName, file, x3duom)
          console .log (`${typeName}: component level differs (Spec <=> X3DUOM): ${componentInfo ?.[2]} <=> ${x3duom .InterfaceDefinition ?.componentInfo ?.level}.`);
       }
    }
+
+   if (typeName === "X3DNode")
+      return;
+
+   // Test inheritance
+
+   const bases = [x3duom .InterfaceDefinition .Inheritance .baseType];
+
+   if (x3duom .InterfaceDefinition .AdditionalInheritance)
+   {
+      if (Array .isArray (x3duom .InterfaceDefinition .AdditionalInheritance))
+         bases .push (... x3duom .InterfaceDefinition .AdditionalInheritance .map (i => i .baseType));
+      else
+         bases .push (x3duom .InterfaceDefinition .AdditionalInheritance .baseType);
+   }
+
+   // TODO: too much mess.
+
+   // for (const base of bases)
+   // {
+   //    if (!file .match (new RegExp (`${base}\\.`)))
+   //       console .error (`${typeName} misses base '${base}'.`);
+   // }
 }
 
 function field (typeName, fieldDefinition, fields)
