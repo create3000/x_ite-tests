@@ -1,14 +1,14 @@
-const path = require ("path")
+const path = require ("path");
 
 test ("documentation", () =>
 {
-   expect (sh `perl "${path .resolve (__dirname, "documentation.pl")}"`) .toBe ("Test done.\n")
+   expect (sh `perl "${path .resolve (__dirname, "documentation.pl")}"`) .toBe ("Test done.\n");
 })
 
 test ("X3DUOM", () =>
 {
    expect (sh `node "${path .resolve (__dirname, "x3duom.js")}"`)
-      .toBe (sh `cat "${path .resolve (__dirname, "x3duom.txt")}"`)
+      .toBe (sh `cat "${path .resolve (__dirname, "x3duom.txt")}"`);
 })
 
 function sh (strings, ... values)
