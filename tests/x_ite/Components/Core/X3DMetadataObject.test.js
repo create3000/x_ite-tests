@@ -21,6 +21,7 @@ test ("containerField-3.3", async () =>
 </X3D>
    `);
 
+   expect (scene1 .specificationVersion) .toBe ("3.3");
    expect (scene1 .rootNodes) .toHaveLength (1);
    expect (scene1 .rootNodes [0] .getNodeTypeName ()) .toBe ("WorldInfo");
    expect (scene1 .rootNodes [0] .metadata) .not .toBe (null);
@@ -30,6 +31,7 @@ test ("containerField-3.3", async () =>
 
    const scene2 = await Browser .createX3DFromString (scene1 .toXMLString ());
 
+   expect (scene2 .specificationVersion) .toBe (X3D .LATEST_VERSION);
    expect (scene2 .rootNodes) .toHaveLength (1);
    expect (scene2 .rootNodes [0] .getNodeTypeName ()) .toBe ("WorldInfo");
    expect (scene2 .rootNodes [0] .metadata) .not .toBe (null);
@@ -55,6 +57,7 @@ test ("containerField-4.0", async () =>
 </X3D>
    `);
 
+   expect (scene1 .specificationVersion) .toBe ("4.0");
    expect (scene1 .rootNodes) .toHaveLength (1);
    expect (scene1 .rootNodes [0] .getNodeTypeName ()) .toBe ("WorldInfo");
    expect (scene1 .rootNodes [0] .metadata) .not .toBe (null);
@@ -64,6 +67,7 @@ test ("containerField-4.0", async () =>
 
    const scene2 = await Browser .createX3DFromString (scene1 .toXMLString ());
 
+   expect (scene2 .specificationVersion) .toBe (X3D .LATEST_VERSION);
    expect (scene2 .rootNodes) .toHaveLength (1);
    expect (scene2 .rootNodes [0] .getNodeTypeName ()) .toBe ("WorldInfo");
    expect (scene2 .rootNodes [0] .metadata) .not .toBe (null);
