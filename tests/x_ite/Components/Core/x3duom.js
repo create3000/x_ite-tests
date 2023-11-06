@@ -243,15 +243,25 @@ function field (typeName, fieldDefinition, fields)
          value ||= "0 0 0 0";
          value = value .replaceAll (",", "");
          break;
+      case "MFBool":
       case "MFColor":
+      case "MFColorRGBA":
       case "MFDouble":
       case "MFFloat":
       case "MFInt32":
       case "MFImage":
+      case "MFMatrix3d":
+      case "MFMatrix3f":
+      case "MFMatrix4d":
+      case "MFMatrix4f":
       case "MFRotation":
       case "MFString":
+      case "MFVec2d":
       case "MFVec2f":
+      case "MFVec3d":
       case "MFVec3f":
+      case "MFVec4d":
+      case "MFVec4f":
          value = value .replaceAll (",", "");
          break;
    }
