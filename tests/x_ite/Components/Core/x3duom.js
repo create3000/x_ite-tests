@@ -244,6 +244,7 @@ function field (typeName, fieldDefinition, fields)
          value = value .replaceAll (",", "");
          break;
       case "MFColor":
+      case "MFDouble":
       case "MFFloat":
       case "MFInt32":
       case "MFImage":

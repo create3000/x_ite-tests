@@ -15,7 +15,6 @@ Field 'crossSection' in node Extrusion has different access type (Spec <=> X3DUO
 Field 'orientation' in node Extrusion has different access type (Spec <=> X3DUOM): initializeOnly !== inputOnly.
 Field 'scale' in node Extrusion has different access type (Spec <=> X3DUOM): initializeOnly !== inputOnly.
 Field 'spine' in node Extrusion has different access type (Spec <=> X3DUOM): initializeOnly !== inputOnly.
-Field MFDouble 'height' in node GeoElevationGrid has different value (Spec <=> X3DUOM): 0, 0 !== 0 0.
 Field 'size' in node GeoProximitySensor has different access type (Spec <=> X3DUOM): inputOutput !== initializeOnly.
 Field SFFloat 'fieldOfView' in node GeoViewpoint has different value (Spec <=> X3DUOM): 0.785398 !== 0.7854.
 Field SFString 'version' in node HAnimHumanoid has different value (Spec <=> X3DUOM): 2.0 !== 2.
