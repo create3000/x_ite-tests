@@ -190,22 +190,26 @@ for (const Type of Object .keys (X3D .require ("x_ite/Fields/SFMatrix4")))
       a .getTransform (t,r,s,so)
       b .setTransform (t,r,s,so)
 
-      expect (b [ 0]) .toBeCloseTo (a [ 0])
-      expect (b [ 1]) .toBeCloseTo (a [ 1])
-      expect (b [ 2]) .toBeCloseTo (a [ 2])
-      expect (b [ 3]) .toBeCloseTo (a [ 3])
-      expect (b [ 4]) .toBeCloseTo (a [ 4])
-      expect (b [ 5]) .toBeCloseTo (a [ 5])
-      expect (b [ 6]) .toBeCloseTo (a [ 6])
-      expect (b [ 7]) .toBeCloseTo (a [ 7])
-      expect (b [ 8]) .toBeCloseTo (a [ 8])
-      expect (b [ 9]) .toBeCloseTo (a [ 9])
-      expect (b [10]) .toBeCloseTo (a [10])
-      expect (b [11]) .toBeCloseTo (a [11])
-      expect (b [12]) .toBeCloseTo (a [12])
-      expect (b [13]) .toBeCloseTo (a [13])
-      expect (b [14]) .toBeCloseTo (a [14])
-      expect (b [15]) .toBeCloseTo (a [15])
+      for (let i = 0; i < 16; ++ i)
+         expect (b [i]) .toBeCloseTo (a [i]);
+
+      a .getTransform (t,r,s)
+      b .setTransform (t,r,s,so)
+
+      for (let i = 0; i < 16; ++ i)
+         expect (b [i]) .toBeCloseTo (a [i]);
+
+      a .getTransform (t,r)
+      b .setTransform (t,r,s,so)
+
+      for (let i = 0; i < 16; ++ i)
+         expect (b [i]) .toBeCloseTo (a [i]);
+
+      a .getTransform (t)
+      b .setTransform (t,r,s,so)
+
+      for (let i = 0; i < 16; ++ i)
+         expect (b [i]) .toBeCloseTo (a [i]);
 
       a .setTransform ()
       expect ([...a]) .toEqual ([1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1])
