@@ -225,6 +225,25 @@ for (const Type of Object .keys (X3D .require ("x_ite/Fields/SFMatrix4")))
 
       a .setTransform ()
       expect ([...a]) .toEqual ([1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1])
+
+      const
+         Browser = X3D .createBrowser () .browser,
+         n       = Browser .currentScene .createNode ("Transform");
+
+      expect (n .translation      .isTainted ()) .toBe (false);
+      expect (n .rotation         .isTainted ()) .toBe (false);
+      expect (n .scale            .isTainted ()) .toBe (false);
+      expect (n .scaleOrientation .isTainted ()) .toBe (false);
+      expect (n .center           .isTainted ()) .toBe (false);
+
+      a .setTransform (t,r,s,so);
+      a .getTransform (n .translation, n .rotation, n .scale, n .scaleOrientation, n .center);
+
+      expect (n .translation      .isTainted ()) .toBe (true);
+      expect (n .rotation         .isTainted ()) .toBe (true);
+      expect (n .scale            .isTainted ()) .toBe (true);
+      expect (n .scaleOrientation .isTainted ()) .toBe (true);
+      expect (n .center           .isTainted ()) .toBe (false);
    })
 
    test ("determinant", () =>
