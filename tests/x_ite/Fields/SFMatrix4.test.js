@@ -173,15 +173,15 @@ for (const Type of Object .keys (X3D .require ("x_ite/Fields/SFMatrix4")))
 
    test ("get/setTransform", () =>
    {
-      const
+      let
          a = new SFMatrix4 (),
-         b = new SFMatrix4 ()
+         b = new SFMatrix4 ();
 
-      const
+      let
          t = new SFVec3 (),
          r = new SFRotation (),
          s = new SFVec3 (),
-         so = new SFRotation ()
+         so = new SFRotation ();
 
       a .setTransform (new SFVec3 (1,2,3), null, new SFVec3 (4,5,6))
       expect ([...a]) .toEqual ([4,0,0,0, 0,5,0,0, 0,0,6,0, 1,2,3,1])
@@ -193,17 +193,29 @@ for (const Type of Object .keys (X3D .require ("x_ite/Fields/SFMatrix4")))
       for (let i = 0; i < 16; ++ i)
          expect (b [i]) .toBeCloseTo (a [i]);
 
+      b = new SFMatrix4 ();
+      t = new SFVec3 ();
+      r = new SFRotation ();
+      s = new SFVec3 ();
+
       a .getTransform (t,r,s)
       b .setTransform (t,r,s,so)
 
       for (let i = 0; i < 16; ++ i)
          expect (b [i]) .toBeCloseTo (a [i]);
 
+      b = new SFMatrix4 ();
+      t = new SFVec3 ();
+      r = new SFRotation ();
+
       a .getTransform (t,r)
       b .setTransform (t,r,s,so)
 
       for (let i = 0; i < 16; ++ i)
          expect (b [i]) .toBeCloseTo (a [i]);
+
+      b = new SFMatrix4 ();
+      t = new SFVec3 ();
 
       a .getTransform (t)
       b .setTransform (t,r,s,so)
