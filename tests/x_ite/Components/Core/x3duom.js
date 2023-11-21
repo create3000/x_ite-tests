@@ -67,7 +67,7 @@ function node (filename)
 
    const
       fields           = new Map (x3duom .InterfaceDefinition .field .filter (field => !excludes .has (field .name)) .map (field => [field .name, field])),
-      fieldDefinitions = file .match (/X3DFieldDefinition \(X3DConstants \.\w+,\s+"\w+",\s+new Fields \.\w+ \(.*?\)\),.*?\n/g)  .filter (fieldDefinition => !fieldDefinition .match (/skip test|experimental/)) .map (fieldDefinition => fieldDefinition .match (/X3DFieldDefinition \(X3DConstants \.(\w+),\s+"(\w+)",\s+new Fields \.(\w+) \((.*?)\)\),/)) .filter (f => f [2] !== "blendMode");
+      fieldDefinitions = file .match (/X3DFieldDefinition \(X3DConstants \.\w+,\s+"\w+",\s+new Fields \.\w+ \(.*?\)\),.*?\n/g)  .filter (fieldDefinition => !fieldDefinition .match (/skip test|experimental/)) .map (fieldDefinition => fieldDefinition .match (/X3DFieldDefinition \(X3DConstants \.(\w+),\s+"(\w+)",\s+new Fields \.(\w+) \((.*?)\)\),/)) .filter (f => !f [2] .match (/^(?:blendMode|depthMode)$/));
 
    if (fieldDefinitions .length !== fields .size)
    {
