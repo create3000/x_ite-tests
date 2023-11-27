@@ -1,7 +1,8 @@
 #!/usr/bin/env node
 
 const
-   path = require ("path");
+   path   = require ("path"),
+   { sh } = require ("shell-tools");
 
 // https://www.web3d.org/specifications/X3dUnifiedObjectModel-4.0.xml
 
@@ -271,13 +272,6 @@ function field (typeName, fieldDefinition, fields)
       console .log (`Field ${type} '${name}' in node ${typeName} has different value (Spec <=> X3DUOM): ${value} !== ${x3duom .default}.`);
       return;
    }
-}
-
-function sh (strings, ... values)
-{
-   const { execSync } = require ("child_process");
-
-   return execSync (String .raw ({ raw: strings }, ... values), { encoding: "utf8", maxBuffer: Infinity });
 }
 
 function xml (string)
