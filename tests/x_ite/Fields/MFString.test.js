@@ -25,7 +25,7 @@ test ("constructor", () =>
    expect ((field = new MFString (-666), field [0]))            .toBe ("-666")
 })
 
-test ("setValue", () =>
+test ("set1Value", () =>
 {
    const field = new MFString ()
 
@@ -45,6 +45,11 @@ test ("setValue", () =>
    expect ((field [0] = 0xffffffff,      field [0])) .toBe ("4294967295")
    expect ((field [0] = 666,             field [0])) .toBe ("666")
    expect ((field [0] = -666,            field [0])) .toBe ("-666")
+})
+
+test ("setValue", () =>
+{
+   const field = new MFString ()
 
    field .setValue (["1", "2", "3", "4"]);
 

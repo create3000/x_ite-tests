@@ -49,6 +49,8 @@ test ("set1Value", () =>
 
 test ("setValue", () =>
 {
+   const field = new MFTime ()
+
    field .setValue ([1, 2, 3, 4]);
 
    expect (field .equals (new MFTime (1, 2, 3, 4))) .toBe (true);

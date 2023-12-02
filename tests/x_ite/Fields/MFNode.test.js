@@ -41,6 +41,26 @@ test ("constructor", () =>
    expect (field3 [1]) .toBe (node2)
 })
 
+test ("set1Value", () =>
+{
+   const field = new MFNode ()
+
+   field [0] = node1
+
+   expect (field) .toHaveLength (1)
+   expect (field [0]) .toBe (node1)
+
+   field [1] = node2
+
+   expect (field) .toHaveLength (2)
+   expect (field [0]) .toBe (node1)
+   expect (field [1]) .toBe (node2)
+
+   field .setValue ([ ])
+
+   expect (field) .toHaveLength (0)
+})
+
 test ("setValue", () =>
 {
    const field = new MFNode ()
@@ -59,6 +79,12 @@ test ("setValue", () =>
    field .setValue ([ ])
 
    expect (field) .toHaveLength (0)
+
+   field .setValue ([node1 .getValue (), node2 .getValue ()])
+
+   expect (field) .toHaveLength (2)
+   expect (field [0]) .toBe (node1)
+   expect (field [1]) .toBe (node2)
 })
 
 test ("common", () =>

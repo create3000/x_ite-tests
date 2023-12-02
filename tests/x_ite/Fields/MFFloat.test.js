@@ -49,6 +49,7 @@ test ("set1Value", () =>
 
 test ("setValue", () =>
 {
+   const field = new MFFloat ()
 
    field .setValue ([1, 2, 3, 4]);
 

@@ -49,6 +49,8 @@ test ("set1Value", () =>
 
 test ("setValue", () =>
 {
+   const field = new MFDouble ()
+
    field .setValue ([1, 2, 3, 4]);
 
    expect (field .equals (new MFDouble (1, 2, 3, 4))) .toBe (true);

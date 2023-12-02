@@ -49,6 +49,8 @@ test ("set1Value", () =>
 
 test ("setValue", () =>
 {
+   const field = new MFBool ()
+
    field .setValue ([true, false, true, false]);
 
    expect (field .equals (new MFBool (true, false, true, false))) .toBe (true);
