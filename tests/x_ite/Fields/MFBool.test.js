@@ -63,6 +63,10 @@ test ("setValue", () =>
 
    expect (field .equals (new MFBool (true, false, true, false))) .toBe (true);
 
+   field .setValue (new MFBool (true, false, true, false, true, false, true, false));
+
+   expect (field .equals (new MFBool (true, false, true, false, true, false, true, false))) .toBe (true);
+
    field .setValue (new MFBool ());
 
    expect (field .equals (new MFBool ())) .toBe (true);

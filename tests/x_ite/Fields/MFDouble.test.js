@@ -63,6 +63,10 @@ test ("setValue", () =>
 
    expect (field .equals (new MFDouble (1, 2, 3, 4))) .toBe (true);
 
+   field .setValue (new MFDouble (5, 6, 7, 8, 9));
+
+   expect (field .equals (new MFDouble (5, 6, 7, 8, 9))) .toBe (true);
+
    field .setValue (new MFDouble ());
 
    expect (field .equals (new MFDouble ())) .toBe (true);

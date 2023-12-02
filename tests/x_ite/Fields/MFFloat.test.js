@@ -63,6 +63,10 @@ test ("setValue", () =>
 
    expect (field .equals (new MFFloat (1, 2, 3, 4))) .toBe (true);
 
+   field .setValue (new MFFloat (5, 6, 7, 8, 9));
+
+   expect (field .equals (new MFFloat (5, 6, 7, 8, 9))) .toBe (true);
+
    field .setValue (new MFFloat ());
 
    expect (field .equals (new MFFloat ())) .toBe (true);
