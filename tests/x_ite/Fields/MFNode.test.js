@@ -87,6 +87,26 @@ test ("setValue", () =>
    expect (field [1]) .toBe (node2)
 })
 
+test ("assign", () =>
+{
+   const field = new MFNode ()
+
+   field .assign (new MFNode (node1))
+
+   expect (field) .toHaveLength (1)
+   expect (field [0]) .toBe (node1)
+
+   field .assign (new MFNode (node1, node2))
+
+   expect (field) .toHaveLength (2)
+   expect (field [0]) .toBe (node1)
+   expect (field [1]) .toBe (node2)
+
+   field .assign (new MFNode ())
+
+   expect (field) .toHaveLength (0)
+})
+
 test ("common", () =>
 {
    const field = new MFNode ()

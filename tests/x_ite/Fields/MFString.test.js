@@ -54,6 +54,35 @@ test ("setValue", () =>
    field .setValue (["1", "2", "3", "4"]);
 
    expect (field .equals (new MFString ("1", "2", "3", "4"))) .toBe (true);
+
+   field .setValue ([ ]);
+
+   expect (field .equals (new MFString ())) .toBe (true);
+
+   field .setValue (new MFString ("1", "2", "3", "4"));
+
+   expect (field .equals (new MFString ("1", "2", "3", "4"))) .toBe (true);
+
+   field .setValue (new MFString ());
+
+   expect (field .equals (new MFString ())) .toBe (true);
+})
+
+test ("assign", () =>
+{
+   const field = new MFString ()
+
+   field .assign (new MFString ("1", "2", "3", "4"));
+
+   expect (field .equals (new MFString ("1", "2", "3", "4"))) .toBe (true);
+
+   field .assign (new MFString ("5", "6", "7", "8"));
+
+   expect (field .equals (new MFString ("5", "6", "7", "8"))) .toBe (true);
+
+   field .assign (new MFString ());
+
+   expect (field .equals (new MFString ())) .toBe (true);
 })
 
 test ("common", () =>

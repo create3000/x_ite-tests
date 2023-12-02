@@ -12,7 +12,43 @@ test ("setValue", () =>
 
    expect (field .equals (new MFVec3f (new SFVec3f (1, 2, 3), new SFVec3f (4, 5, 6)))) .toBe (true);
 
+   field .setValue ([9, 8, 7, 6, 5, 4, 3, 2]);
+
+   expect (field .equals (new MFVec3f (new SFVec3f (9, 8, 7), new SFVec3f (6, 5, 4)))) .toBe (true);
+
+   field .setValue ([ ]);
+
+   expect (field .equals (new MFVec3f ())) .toBe (true);
+
+   field .setValue (new MFVec3f (new SFVec3f (1, 2, 3), new SFVec3f (4, 5, 6)));
+
+   expect (field .equals (new MFVec3f (new SFVec3f (1, 2, 3), new SFVec3f (4, 5, 6)))) .toBe (true);
+
+   field .setValue (new MFVec3f (new SFVec3f (9, 8, 7), new SFVec3f (6, 5, 4)));
+
+   expect (field .equals (new MFVec3f (new SFVec3f (9, 8, 7), new SFVec3f (6, 5, 4)))) .toBe (true);
+
+   field .setValue ((new MFVec3f ()));
+
+   expect (field .equals (new MFVec3f ())) .toBe (true);
 });
+
+test ("assign", () =>
+{
+   const field = new MFVec3f ()
+
+   field .assign (new MFVec3f (new SFVec3f (1, 2, 3), new SFVec3f (4, 5, 6)));
+
+   expect (field .equals (new MFVec3f (new SFVec3f (1, 2, 3), new SFVec3f (4, 5, 6)))) .toBe (true);
+
+   field .assign (new MFVec3f (new SFVec3f (9, 8, 7), new SFVec3f (6, 5, 4)));
+
+   expect (field .equals (new MFVec3f (new SFVec3f (9, 8, 7), new SFVec3f (6, 5, 4)))) .toBe (true);
+
+   field .assign (new MFVec3f ());
+
+   expect (field .equals (new MFVec3f ())) .toBe (true);
+})
 
 test ("common", () =>
 {

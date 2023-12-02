@@ -54,6 +54,35 @@ test ("setValue", () =>
    field .setValue ([1, 2, 3, 4]);
 
    expect (field .equals (new MFDouble (1, 2, 3, 4))) .toBe (true);
+
+   field .setValue ([ ]);
+
+   expect (field .equals (new MFDouble ())) .toBe (true);
+
+   field .setValue (new MFDouble (1, 2, 3, 4));
+
+   expect (field .equals (new MFDouble (1, 2, 3, 4))) .toBe (true);
+
+   field .setValue (new MFDouble ());
+
+   expect (field .equals (new MFDouble ())) .toBe (true);
+})
+
+test ("assign", () =>
+{
+   const field = new MFDouble ()
+
+   field .assign (new MFDouble (1, 2, 3, 4));
+
+   expect (field .equals (new MFDouble (1, 2, 3, 4))) .toBe (true);
+
+   field .assign (new MFDouble (5, 6, 7, 8));
+
+   expect (field .equals (new MFDouble (5, 6, 7, 8))) .toBe (true);
+
+   field .assign (new MFDouble ());
+
+   expect (field .equals (new MFDouble ())) .toBe (true);
 })
 
 test ("common", () =>
