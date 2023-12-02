@@ -25,7 +25,7 @@ test ("constructor", () =>
    expect ((field = new MFFloat (-666), field [0]))            .toBe (-666)
 })
 
-test ("setValue", () =>
+test ("set1Value", () =>
 {
    const field = new MFFloat ()
 
@@ -45,6 +45,14 @@ test ("setValue", () =>
    expect ((field [0] = 0xffffffff,      field [0])) .toBe (Math .fround (4294967295))
    expect ((field [0] = 666,             field [0])) .toBe (666)
    expect ((field [0] = -666,            field [0])) .toBe (-666)
+})
+
+test ("setValue", () =>
+{
+
+   field .setValue ([1, 2, 3, 4]);
+
+   expect (field .equals (new MFFloat (1, 2, 3, 4))) .toBe (true);
 })
 
 test ("common", () =>

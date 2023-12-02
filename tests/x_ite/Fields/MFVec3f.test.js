@@ -4,6 +4,16 @@ const
    SFVec3f = X3D .SFVec3f,
    comp    = 3
 
+test ("setValue", () =>
+{
+   const field = new MFVec3f ();
+
+   field .setValue ([1, 2, 3, 4, 5, 6]);
+
+   expect (field .equals (new MFVec3f (new SFVec3f (1, 2, 3), new SFVec3f (4, 5, 6)))) .toBe (true);
+
+});
+
 test ("common", () =>
 {
    const field = new MFVec3f ()

@@ -25,7 +25,7 @@ test ("constructor", () =>
    expect ((field = new MFBool (-666), field [0]))            .toBe (true)
 })
 
-test ("setValue", () =>
+test ("set1Value", () =>
 {
    const field = new MFBool ()
 
@@ -45,6 +45,13 @@ test ("setValue", () =>
    expect ((field [0] = 0xffffffff,      field [0])) .toBe (true)
    expect ((field [0] = 666,             field [0])) .toBe (true)
    expect ((field [0] = -666,            field [0])) .toBe (true)
+})
+
+test ("setValue", () =>
+{
+   field .setValue ([true, false, true, false]);
+
+   expect (field .equals (new MFBool (true, false, true, false))) .toBe (true);
 })
 
 test ("common", () =>

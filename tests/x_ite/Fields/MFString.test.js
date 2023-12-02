@@ -45,6 +45,10 @@ test ("setValue", () =>
    expect ((field [0] = 0xffffffff,      field [0])) .toBe ("4294967295")
    expect ((field [0] = 666,             field [0])) .toBe ("666")
    expect ((field [0] = -666,            field [0])) .toBe ("-666")
+
+   field .setValue (["1", "2", "3", "4"]);
+
+   expect (field .equals (new MFString ("1", "2", "3", "4"))) .toBe (true);
 })
 
 test ("common", () =>
