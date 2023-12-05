@@ -17,4 +17,4 @@ Object .assign (global,
    sleep: delay => new Promise (resolve => setTimeout (resolve, delay)),
 })
 
-module .exports = require ("../../x_ite/dist/x_ite")
+module .exports = require ("../../x_ite")
