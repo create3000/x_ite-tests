@@ -7,7 +7,7 @@ const
 // https://www.web3d.org/specifications/X3dUnifiedObjectModel-4.0.xml
 
 const
-   x3duom        = xml ( sh (`wget -q -O - https://www.web3d.org/specifications/X3dUnifiedObjectModel-4.0.xml`)),
+   x3duom        = xml (sh (`wget -q -O - https://www.web3d.org/specifications/X3dUnifiedObjectModel-4.0.xml`)),
    nodes         = new Map (x3duom .X3dUnifiedObjectModel .ConcreteNodes .ConcreteNode .map (node => [node .name, node])),
    abstractNodes = new Map (x3duom .X3dUnifiedObjectModel .AbstractNodeTypes .AbstractNodeType .map (node => [node .name, node]));
 
