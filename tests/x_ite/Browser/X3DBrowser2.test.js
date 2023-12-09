@@ -422,6 +422,47 @@ TestNode { }
    expect (scene .rootNodes [0] .test) .toBe ("TestValue")
 })
 
+test ("baseURL - createX3DFromString - depreciated", () => new Promise (async (resolve, reject) =>
+{
+   const
+      canvas  = X3D .createBrowser (),
+      Browser = canvas .browser
+
+   Browser .baseURL = url .pathToFileURL (path .join (__dirname, "files/"))
+
+   const scene = await Browser .createX3DFromString (`
+PROFILE Core
+COMPONENT Networking : 1
+
+DEF I Inline {
+   url "box.x3d"
+}
+DEF L LoadSensor {
+   children USE I
+}
+   `)
+
+   expect (scene .rootNodes) .toHaveLength (2)
+
+   scene .getNamedNode ("L") .addFieldCallback ("loadTime", "test", (arg) =>
+   {
+      try
+      {
+         const I = scene .getNamedNode ("I")
+
+         expect (typeof arg) .toBe ("number");
+         expect (I .getValue () .getInternalScene () .rootNodes) .toHaveLength (1)
+         expect (I .getValue () .getInternalScene () .rootNodes [0] .getNodeTypeName ()) .toBe ("Transform")
+
+         resolve ()
+      }
+      catch (error)
+      {
+         reject (error .message)
+      }
+   })
+}))
+
 test ("baseURL - createX3DFromString", () => new Promise (async (resolve, reject) =>
 {
    const
@@ -444,12 +485,13 @@ DEF L LoadSensor {
 
    expect (scene .rootNodes) .toHaveLength (2)
 
-   scene .getNamedNode ("L") .addFieldCallback ("loadTime", "test", () =>
+   scene .getNamedNode ("L") .getField ("loadTime") .addFieldCallback ("test", (arg) =>
    {
       try
       {
          const I = scene .getNamedNode ("I")
 
+         expect (typeof arg) .toBe ("number");
          expect (I .getValue () .getInternalScene () .rootNodes) .toHaveLength (1)
          expect (I .getValue () .getInternalScene () .rootNodes [0] .getNodeTypeName ()) .toBe ("Transform")
 
@@ -485,7 +527,9 @@ DEF I Inline {
    {
       try
       {
-         if (loadState .getValue () !== X3D .X3DConstants .COMPLETE_STATE)
+         expect (typeof loadState) .toBe ("number");
+
+         if (loadState !== X3D .X3DConstants .COMPLETE_STATE)
             return
 
          const I = rootNodes [0]

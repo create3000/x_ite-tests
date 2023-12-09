@@ -291,10 +291,11 @@ Transform { }
 Shape { }
 Box { }`), transform, "children")
 
-   transform .getField ("children") .addFieldCallback ("test", () =>
+   transform .getField ("children") .addFieldCallback ("test", (arg) =>
    {
       try
       {
+         expect (transform .children) .toBe (arg)
          expect (transform .children) .toHaveLength (3)
          expect (transform .children) .toBeInstanceOf (X3D .MFNode)
          expect (transform .children [0]) .toBeInstanceOf (X3D .SFNode)
