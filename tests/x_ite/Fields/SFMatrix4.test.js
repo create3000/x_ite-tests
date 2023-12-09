@@ -424,7 +424,7 @@ for (const Type of Object .keys (X3D .require ("x_ite/Fields/SFMatrix4")))
       expect (c [15]) .toBe (1694)
    })
 
-   test ("multVecMatrix", () =>
+   test ("multVecMatrix 3", () =>
    {
       const
          a = new SFMatrix4 (2,3,4,5, 6,7,8,9, 10,11,12,13, 14,15,16,17),
@@ -440,7 +440,24 @@ for (const Type of Object .keys (X3D .require ("x_ite/Fields/SFMatrix4")))
       expect (c [2]) .toBe (642/874)
    })
 
-   test ("multMatrixVec", () =>
+   test ("multVecMatrix 4", () =>
+   {
+      const
+         a = new SFMatrix4 (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16),
+         b = new SFVec4 (17, 18, 19, 20),
+         c = a .transpose () .multVecMatrix (b)
+
+      expect (b) .not .toBe (c)
+      expect (b .getValue ()) .not .toBe (c .getValue ())
+      expect (c) .toBeInstanceOf (SFVec4)
+
+      expect (c [0]) .toBe (190)
+      expect (c [1]) .toBe (486)
+      expect (c [2]) .toBe (782)
+      expect (c [3]) .toBe (1078)
+   })
+
+   test ("multMatrixVec 3", () =>
    {
       const
          a = new SFMatrix4 (2,3,4,5, 6,7,8,9, 10,11,12,13, 14,15,16,17),
@@ -454,6 +471,23 @@ for (const Type of Object .keys (X3D .require ("x_ite/Fields/SFMatrix4")))
       expect (c [0]) .toBe (178/874)
       expect (c [1]) .toBe (410/874)
       expect (c [2]) .toBe (642/874)
+   })
+
+   test ("multMatrixVec 4", () =>
+   {
+      const
+         a = new SFMatrix4 (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16),
+         b = new SFVec4 (17, 18, 19, 20),
+         c = a .multMatrixVec (b)
+
+      expect (b) .not .toBe (c)
+      expect (b .getValue ()) .not .toBe (c .getValue ())
+      expect (c) .toBeInstanceOf (SFVec4)
+
+      expect (c [0]) .toBe (190)
+      expect (c [1]) .toBe (486)
+      expect (c [2]) .toBe (782)
+      expect (c [3]) .toBe (1078)
    })
 
    test ("multDirMatrix", () =>

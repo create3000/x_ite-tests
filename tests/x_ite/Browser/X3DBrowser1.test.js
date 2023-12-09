@@ -291,7 +291,7 @@ Transform { }
 Shape { }
 Box { }`), transform, "children")
 
-   transform .addFieldCallback ("children", "test", () =>
+   transform .getField ("children") .addFieldCallback ("test", () =>
    {
       try
       {

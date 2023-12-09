@@ -485,7 +485,7 @@ DEF I Inline {
    {
       try
       {
-         if (loadState !== X3D .X3DConstants .COMPLETE_STATE)
+         if (loadState .getValue () !== X3D .X3DConstants .COMPLETE_STATE)
             return
 
          const I = rootNodes [0]
