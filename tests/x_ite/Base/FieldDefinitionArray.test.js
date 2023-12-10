@@ -7,6 +7,12 @@ const
    node             = scene .createNode ("WorldInfo"),
    fieldDefinitions = node .getFieldDefinitions ()
 
+test ("index", () =>
+{
+   for (let i = 0; i < fieldDefinitions .length; ++ i)
+      expect (fieldDefinitions [i]) .toBeInstanceOf (X3D .X3DFieldDefinition);
+})
+
 test ("spread", () =>
 {
    expect (fieldDefinitions) .toBeInstanceOf (X3D .FieldDefinitionArray)
