@@ -160,3 +160,10 @@ test ("bom.txt", async () =>
 
    expect (scene .rootNodes) .toHaveLength (27)
 })
+
+test ("unknowns.x3dv", async () =>
+{
+   const scene = await Browser .createX3DFromURL (new X3D .MFString (path .join (__dirname, "files", "X3D", `unknowns.x3dv`)));
+
+   expect (scene .rootNodes) .toHaveLength (2);
+})

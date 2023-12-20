@@ -1,0 +1,34 @@
+#X3D V4.0 utf8 X_ITE V9.1.6
+
+PROFILE Interchange
+
+PROTO Test [
+  inputOutput SFString test ""
+]
+{ }
+
+Transform {
+  children [
+    Test {
+      test "value"
+      unknown 1 2 3
+      baz TRUE
+      lal 123
+      bah "xx"
+      mixed [ "value" 1 2 3 TRUE ]
+      child Foo {
+        baz TRUE
+        lal 123
+        bah "xx"
+      }
+      children [
+        Bat { }
+        Fat { }
+      ]
+    }
+  ]
+}
+
+Shape {
+  geometry Box { }
+}
