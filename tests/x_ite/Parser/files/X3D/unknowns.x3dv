@@ -11,7 +11,7 @@ Transform {
   children [
     Test {
       known "value"
-      # Unknown field and nodes should be ignored.
+      # Unknown fields and nodes should be ignored.
       bool TRUE
       int 123
       float 123.456
