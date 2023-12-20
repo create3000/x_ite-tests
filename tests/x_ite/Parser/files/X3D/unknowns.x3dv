@@ -3,27 +3,69 @@
 PROFILE Interchange
 
 PROTO Test [
-  inputOutput SFString test ""
+  inputOutput SFString known ""
 ]
 { }
 
 Transform {
   children [
     Test {
-      test "value"
-      unknown 1.1 2.2 3.3
-      baz TRUE
-      lal 123
-      bah "xxx"
-      mixed [ "value1" "value2" 1 2 3 4 5 6 TRUE FALSE ]
+      known "value"
+      # Unknown field and nodes should be ignored.
+      bool TRUE
+      int 123
+      float 123.456
+      string "xxx"
+      bools [ TRUE FALSE TRUE ]
+      ints [ 123 456 789 ]
+      floats [ 1.1 2.2 3.3 4.4 5.5 ]
+      string [ "aaa" "bbb" "ccc" ]
+      mixed [ TRUE FALSE TRUE FALSE, 1 2 3 4 5 6, 1.1 2.2 3.3 4.4 5.5, "value1" "value2" ]
       child Foo {
-        baz TRUE
-        lal 123
-        bah "xxx"
+        bool TRUE
+        int 123
+        float 123.456
+        string "xxx"
+        bools [ TRUE FALSE TRUE ]
+        ints [ 123 456 789 ]
+        floats [ 1.1 2.2 3.3 4.4 5.5 ]
+        strings [ "aaa" "bbb" "ccc" ]
+        mixed [ TRUE FALSE TRUE FALSE, 1 2 3 4 5 6, 1.1 2.2 3.3 4.4 5.5, "value1" "value2" ]
+        child Foo {
+          bool TRUE
+          int 123
+          float 123.456
+          string "xxx"
+          bools [ TRUE FALSE TRUE ]
+          ints [ 123 456 789 ]
+          floats [ 1.1 2.2 3.3 4.4 5.5 ]
+          strings [ "aaa" "bbb" "ccc" ]
+          mixed [ TRUE FALSE TRUE FALSE, 1 2 3 4 5 6, 1.1 2.2 3.3 4.4 5.5, "value1" "value2" ]
+        }
       }
       children [
-        Fat { }
-        Bat { }
+        Fat {
+          bool TRUE
+          int 123
+          float 123.456
+          string "xxx"
+          bools [ TRUE FALSE TRUE ]
+          ints [ 123 456 789 ]
+          floats [ 1.1 2.2 3.3 4.4 5.5 ]
+          strings [ "aaa" "bbb" "ccc" ]
+          mixed [ TRUE FALSE TRUE FALSE, 1 2 3 4 5 6, 1.1 2.2 3.3 4.4 5.5, "value1" "value2" ]
+        }
+        Bat {
+          bool TRUE
+          int 123
+          float 123.456
+          string "xxx"
+          bools [ TRUE FALSE TRUE ]
+          ints [ 123 456 789 ]
+          floats [ 1.1 2.2 3.3 4.4 5.5 ]
+          strings [ "aaa" "bbb" "ccc" ]
+          mixed [ TRUE FALSE TRUE FALSE, 1 2 3 4 5 6, 1.1 2.2 3.3 4.4 5.5, "value1" "value2" ]
+        }
       ]
     }
     DEF XXX Unknown {
