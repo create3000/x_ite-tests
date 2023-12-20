@@ -26,6 +26,9 @@ Transform {
         Fat { }
       ]
     }
+    DEF XXX Unknown {
+      foo 42 43 44
+    }
   ]
 }
 
