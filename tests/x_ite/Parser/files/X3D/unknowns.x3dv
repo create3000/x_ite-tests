@@ -11,19 +11,19 @@ Transform {
   children [
     Test {
       test "value"
-      unknown 1 2 3
+      unknown 1.1 2.2 3.3
       baz TRUE
       lal 123
-      bah "xx"
-      mixed [ "value" 1 2 3 TRUE ]
+      bah "xxx"
+      mixed [ "value1" "value2" 1 2 3 4 5 6 TRUE FALSE ]
       child Foo {
         baz TRUE
         lal 123
-        bah "xx"
+        bah "xxx"
       }
       children [
-        Bat { }
         Fat { }
+        Bat { }
       ]
     }
     DEF XXX Unknown {
