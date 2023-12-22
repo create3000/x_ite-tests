@@ -183,3 +183,21 @@ test ("names 3", async () =>
    expect (vrml) .toBe (output)
    expect (json) .toBe (output)
 })
+
+test ("exported node without name", async () =>
+{
+   const
+      scene1 = Browser .createScene (Browser .getProfile ("Full")),
+      node   = scene1 .createNode ("WorldInfo");
+
+   scene1 .rootNodes .push (node);
+   scene1 .addExportedNode ("Export", node);
+
+   expect (scene1 .rootNodes)     .toHaveLength (1);
+   expect (scene1 .exportedNodes) .toHaveLength (1);
+
+   const scene2 = await Browser .createX3DFromString (scene1 .toXMLString ());
+
+   expect (scene2 .rootNodes)     .toHaveLength (1);
+   expect (scene2 .exportedNodes) .toHaveLength (1);
+});
