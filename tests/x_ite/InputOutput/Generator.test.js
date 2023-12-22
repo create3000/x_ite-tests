@@ -201,3 +201,29 @@ test ("exported node without name", async () =>
    expect (scene2 .rootNodes)     .toHaveLength (1);
    expect (scene2 .exportedNodes) .toHaveLength (1);
 });
+
+test ("imported names", async () =>
+{
+   const scene1 = await Browser .createX3DFromString (`
+DEF I Inline {
+   url "data:model/x3d+vrml,
+DEF T Transform { }
+EXPORT T
+   "
+}
+DEF T Transform { }
+IMPORT I.T
+   `);
+
+   expect (scene1 .rootNodes)    .toHaveLength (2);
+   expect (scene1 .importedNodes) .toHaveLength (1);
+
+   const scene2 = await Browser .createX3DFromString (scene1 .toXMLString ());
+
+   expect (scene2 .rootNodes)     .toHaveLength (2);
+   expect (scene2 .importedNodes) .toHaveLength (1);
+
+   expect (scene2 .getNamedNode ("T") .getNodeTypeName ()) .toBe ("Transform");
+   expect (() => scene2 .getImportedNode ("T")) .toThrow (Error);
+   expect (scene2 .importedNodes [0] .importedName) .toMatch (/^T_\d+$/);
+});
