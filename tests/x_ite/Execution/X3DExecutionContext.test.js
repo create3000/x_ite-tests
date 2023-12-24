@@ -619,6 +619,29 @@ Foo { }
    expect (executionContext .getRootNodes () [1] .getNodeName ()) .toBe ("B")
 })
 
+test ("getLocalNode", async () =>
+{
+   const scene = await Browser .createX3DFromString (`
+DEF I Inline {
+   url "data:model/x3d+vrml,
+DEF T TextureTransform { }
+EXPORT T
+   "
+}
+DEF T Transform { }
+IMPORT I.T
+IMPORT I.T AS TT
+   `);
+
+   expect (scene .getLocalNode ("T")) .toBeInstanceOf (X3D .SFNode);
+   expect (scene .getLocalNode ("T") .getNodeTypeName ()) .toBe ("Transform");
+
+   expect (scene .getLocalNode ("TT")) .toBeInstanceOf (X3D .X3DImportedNode);
+   expect (scene .getLocalNode ("TT") .inlineNode) .toBe (scene .getNamedNode ("I"));
+   expect (scene .getLocalNode ("TT") .exportedName) .toBe ("T");
+   expect (scene .getLocalNode ("TT") .importedName) .toBe ("TT");
+});
+
 test ("ProtoDeclarationHandling", async () =>
 {
    const scene = await Browser .createX3DFromString (`
