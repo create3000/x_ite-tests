@@ -795,48 +795,52 @@ DEF T1 Transform { }
 DEF T2 Transform { }
 DEF T3 Transform { }
 DEF T4 Transform { }
-   `)
+   `);
 
-   expect (scene .routes) .toHaveLength (0)
+   expect (scene .routes) .toHaveLength (0);
 
    const
       t1 = scene .getNamedNode ("T1"),
       t2 = scene .getNamedNode ("T2"),
-      t3 = scene .getNamedNode ("T3")
+      t3 = scene .getNamedNode ("T3");
 
    scene .addRoute (t1, "translation", t2, "translation");
 
-   expect (scene .routes) .toHaveLength (1)
-   expect (scene .routes [0] .sourceNode) .toBe (t1)
-   expect (scene .routes [0] .sourceField) .toBe ("translation_changed")
-   expect (scene .routes [0] .destinationNode) .toBe (t2)
-   expect (scene .routes [0] .destinationField) .toBe ("set_translation")
+   expect (scene .routes) .toHaveLength (1);
+   expect (scene .routes [0] .sourceNode) .toBe (t1);
+   expect (scene .routes [0] .sourceField) .toBe ("translation_changed");
+   expect (scene .routes [0] .destinationNode) .toBe (t2);
+   expect (scene .routes [0] .destinationField) .toBe ("set_translation");
 
    const route_t2t3_1 = scene .addRoute (t2, "translation_changed", t3, "set_translation");
-
-   expect (scene .routes) .toHaveLength (2)
-   expect (scene .routes [1] .sourceNode) .toBe (t2)
-   expect (scene .routes [1] .sourceField) .toBe ("translation_changed")
-   expect (scene .routes [1] .destinationNode) .toBe (t3)
-   expect (scene .routes [1] .destinationField) .toBe ("set_translation")
+;
+   expect (scene .routes) .toHaveLength (2);
+   expect (scene .routes [1] .sourceNode) .toBe (t2);
+   expect (scene .routes [1] .sourceField) .toBe ("translation_changed");
+   expect (scene .routes [1] .destinationNode) .toBe (t3);
+   expect (scene .routes [1] .destinationField) .toBe ("set_translation");
 
    const route_t2t3_2 = scene .addRoute (t2, "translation_changed", t3, "set_translation");
 
    expect (scene .routes) .toHaveLength (2);
    expect (route_t2t3_1) .toBe (route_t2t3_2);
 
-   scene .deleteRoute (scene .routes [0])
+   scene .deleteRoute (scene .routes [0]);
 
-   expect (scene .routes) .toHaveLength (1)
-   expect (scene .routes [0] .sourceNode) .toBe (t2)
-   expect (scene .routes [0] .sourceField) .toBe ("translation_changed")
-   expect (scene .routes [0] .destinationNode) .toBe (t3)
-   expect (scene .routes [0] .destinationField) .toBe ("set_translation")
+   expect (scene .routes) .toHaveLength (1);
+   expect (scene .routes [0] .sourceNode) .toBe (t2);
+   expect (scene .routes [0] .sourceField) .toBe ("translation_changed");
+   expect (scene .routes [0] .destinationNode) .toBe (t3);
+   expect (scene .routes [0] .destinationField) .toBe ("set_translation");
 
-   scene .deleteRoute (scene .routes [0] .sourceNode,
-                       scene .routes [0] .sourceField,
-                       scene .routes [0] .destinationNode,
-                       scene .routes [0] .destinationField)
+   const { sourceNode, sourceField, destinationNode, destinationField } = scene .routes [0];
 
-   expect (scene .routes) .toHaveLength (0)
-})
+   scene .deleteRoute (sourceNode, sourceField, destinationNode, destinationField);;
+
+   expect (scene .routes) .toHaveLength (0);
+   expect (() => scene .deleteRoute (sourceNode, sourceField, destinationNode, destinationField)) .not .toThrow (Error);
+   expect (scene .routes) .toHaveLength (0);
+
+   expect (() => scene .addRoute (t1, "translation", t2, "fooBah")) .toThrow (Error);
+   expect (scene .routes) .toHaveLength (0);
+});
