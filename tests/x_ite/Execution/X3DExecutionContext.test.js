@@ -820,10 +820,25 @@ DEF T4 Transform { }
    expect (scene .routes [1] .destinationNode) .toBe (t3);
    expect (scene .routes [1] .destinationField) .toBe ("set_translation");
 
-   const route_t2t3_2 = scene .addRoute (t2, "translation_changed", t3, "set_translation");
+   const route_t2t3_2 = scene .addRoute (t2, "translation", t3, "translation");
 
    expect (scene .routes) .toHaveLength (2);
    expect (route_t2t3_1) .toBe (route_t2t3_2);
+
+   const route_t2t3_3 = scene .addRoute (t2, "set_translation", t3, "translation");
+
+   expect (scene .routes) .toHaveLength (2);
+   expect (route_t2t3_1) .toBe (route_t2t3_3);
+
+   const route_t2t3_4 = scene .addRoute (t2, "translation", t3, "translation_changed");
+
+   expect (scene .routes) .toHaveLength (2);
+   expect (route_t2t3_1) .toBe (route_t2t3_4);
+
+   const route_t2t3_5 = scene .addRoute (t2, "translation_changed", t3, "set_translation");
+
+   expect (scene .routes) .toHaveLength (2);
+   expect (route_t2t3_1) .toBe (route_t2t3_5);
 
    scene .deleteRoute (scene .routes [0]);
 
