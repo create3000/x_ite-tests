@@ -843,4 +843,8 @@ DEF T4 Transform { }
 
    expect (() => scene .addRoute (t1, "translation", t2, "fooBah")) .toThrow (Error);
    expect (scene .routes) .toHaveLength (0);
+   expect (() => scene .addRoute (t1, "fooBah", t2, "translation")) .toThrow (Error);
+   expect (scene .routes) .toHaveLength (0);
+   expect (() => scene .addRoute (t1, "fooBah", t2, "bahFoo")) .toThrow (Error);
+   expect (scene .routes) .toHaveLength (0);
 });
