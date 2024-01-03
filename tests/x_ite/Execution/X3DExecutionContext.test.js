@@ -805,17 +805,25 @@ DEF T4 Transform { }
       t3 = scene .getNamedNode ("T3")
 
    scene .addRoute (t1, "translation", t2, "translation");
-   scene .addRoute (t2, "translation_changed", t3, "set_translation");
 
-   expect (scene .routes) .toHaveLength (2)
+   expect (scene .routes) .toHaveLength (1)
    expect (scene .routes [0] .sourceNode) .toBe (t1)
    expect (scene .routes [0] .sourceField) .toBe ("translation_changed")
    expect (scene .routes [0] .destinationNode) .toBe (t2)
    expect (scene .routes [0] .destinationField) .toBe ("set_translation")
+
+   const route_t2t3_1 = scene .addRoute (t2, "translation_changed", t3, "set_translation");
+
+   expect (scene .routes) .toHaveLength (2)
    expect (scene .routes [1] .sourceNode) .toBe (t2)
    expect (scene .routes [1] .sourceField) .toBe ("translation_changed")
    expect (scene .routes [1] .destinationNode) .toBe (t3)
    expect (scene .routes [1] .destinationField) .toBe ("set_translation")
+
+   const route_t2t3_2 = scene .addRoute (t2, "translation_changed", t3, "set_translation");
+
+   expect (scene .routes) .toHaveLength (2);
+   expect (route_t2t3_1) .toBe (route_t2t3_2);
 
    scene .deleteRoute (scene .routes [0])
 
