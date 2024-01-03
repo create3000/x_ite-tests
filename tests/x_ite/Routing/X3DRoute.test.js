@@ -34,15 +34,15 @@ ROUTE I.value_changed TO T.set_translation
    expect (route .destinationNode) .toBeInstanceOf (X3D .SFNode)
    expect (route .destinationNode) .toBe (scene .getNamedNode ("T"))
    expect (route .destinationNode .getNodeTypeName ()) .toBe ("Transform")
-   expect (route .destinationField) .toBe ("translation")
+   expect (route .destinationField) .toBe ("set_translation")
    expect (route .getSourceNode ()) .toBe (route .sourceNode .getValue ())
-   expect (route .getSourceField () .getName ()) .toBe (route .sourceField)
+   expect (route .getSourceField ()) .toBe (route .sourceField)
    expect (route .getDestinationNode ()) .toBe (route .destinationNode .getValue ())
-   expect (route .getDestinationField () .getName ()) .toBe (route .destinationField)
+   expect (route .getDestinationField ()) .toBe (route .destinationField)
    expect (route .toString ()) .toBe (`[object ${route .getTypeName ()}]`)
 
    expect (route .getId ()) .toBeGreaterThan (0)
-   expect (route .getRouteId ()) .toMatch (/\d+\.\d+/)
+   expect (route .getRouteId ()) .toMatch (/\d+\.\w+\.\d+\.\w+/)
 
    route .sourceNode       = undefined
    route .sourceField      = undefined
@@ -56,7 +56,7 @@ ROUTE I.value_changed TO T.set_translation
    expect (route .destinationNode) .toBeInstanceOf (X3D .SFNode)
    expect (route .destinationNode) .toBe (scene .getNamedNode ("T"))
    expect (route .destinationNode .getNodeTypeName ()) .toBe ("Transform")
-   expect (route .destinationField) .toBe ("translation")
+   expect (route .destinationField) .toBe ("set_translation")
 
    const properties = [
       "sourceNode",

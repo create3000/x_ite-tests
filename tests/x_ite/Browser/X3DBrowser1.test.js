@@ -516,7 +516,7 @@ DEF X Transform { }
    expect (scene .routes [1] .sourceNode) .toBe (scene .rootNodes [1])
    expect (scene .routes [1] .sourceField) .toBe ("value_changed")
    expect (scene .routes [1] .destinationNode) .toBe (scene .rootNodes [2])
-   expect (scene .routes [1] .destinationField) .toBe ("translation")
+   expect (scene .routes [1] .destinationField) .toBe ("set_translation")
 
    Browser .deleteRoute (scene .rootNodes [0], "fraction_changed", scene .rootNodes [1], "set_fraction")
 
@@ -524,7 +524,7 @@ DEF X Transform { }
    expect (scene .routes [0] .sourceNode) .toBe (scene .rootNodes [1])
    expect (scene .routes [0] .sourceField) .toBe ("value_changed")
    expect (scene .routes [0] .destinationNode) .toBe (scene .rootNodes [2])
-   expect (scene .routes [0] .destinationField) .toBe ("translation")
+   expect (scene .routes [0] .destinationField) .toBe ("set_translation")
 
    Browser .deleteRoute (scene .rootNodes [1], "value_changed", scene .rootNodes [2], "translation")
 

@@ -809,21 +809,21 @@ DEF T4 Transform { }
 
    expect (scene .routes) .toHaveLength (2)
    expect (scene .routes [0] .sourceNode) .toBe (t1)
-   expect (scene .routes [0] .sourceField) .toBe ("translation")
+   expect (scene .routes [0] .sourceField) .toBe ("translation_changed")
    expect (scene .routes [0] .destinationNode) .toBe (t2)
-   expect (scene .routes [0] .destinationField) .toBe ("translation")
+   expect (scene .routes [0] .destinationField) .toBe ("set_translation")
    expect (scene .routes [1] .sourceNode) .toBe (t2)
-   expect (scene .routes [1] .sourceField) .toBe ("translation")
+   expect (scene .routes [1] .sourceField) .toBe ("translation_changed")
    expect (scene .routes [1] .destinationNode) .toBe (t3)
-   expect (scene .routes [1] .destinationField) .toBe ("translation")
+   expect (scene .routes [1] .destinationField) .toBe ("set_translation")
 
    scene .deleteRoute (scene .routes [0])
 
    expect (scene .routes) .toHaveLength (1)
    expect (scene .routes [0] .sourceNode) .toBe (t2)
-   expect (scene .routes [0] .sourceField) .toBe ("translation")
+   expect (scene .routes [0] .sourceField) .toBe ("translation_changed")
    expect (scene .routes [0] .destinationNode) .toBe (t3)
-   expect (scene .routes [0] .destinationField) .toBe ("translation")
+   expect (scene .routes [0] .destinationField) .toBe ("set_translation")
 
    scene .deleteRoute (scene .routes [0] .sourceNode,
                        scene .routes [0] .sourceField,
