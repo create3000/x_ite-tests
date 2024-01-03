@@ -835,7 +835,7 @@ DEF T4 Transform { }
 
    const { sourceNode, sourceField, destinationNode, destinationField } = scene .routes [0];
 
-   scene .deleteRoute (sourceNode, sourceField, destinationNode, destinationField);;
+   scene .deleteRoute (sourceNode, sourceField, destinationNode, destinationField);
 
    expect (scene .routes) .toHaveLength (0);
    expect (() => scene .deleteRoute (sourceNode, sourceField, destinationNode, destinationField)) .not .toThrow (Error);
