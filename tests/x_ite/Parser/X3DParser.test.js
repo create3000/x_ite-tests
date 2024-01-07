@@ -230,7 +230,7 @@ test ("proto-import-routes.x3dv", async () =>
       expect (body .routes [1] .sourceNode .getNodeTypeName ()) .toBe ("OrientationInterpolator")
       expect (body .routes [1] .sourceField) .toBe ("value_changed")
       expect (body .routes [1] .destinationNode .inlineNode) .toBeInstanceOf (X3D .SFNode)
-      expect (body .routes [1] .destinationNode .inlineNode .getNodeTypeName ()) .toBeInstanceOf ("Inline")
+      expect (body .routes [1] .destinationNode .inlineNode .getNodeTypeName ()) .toBe ("Inline")
       expect (body .routes [1] .destinationNode .exportedName) .toBe ("Box")
       expect (body .routes [1] .destinationNode .importedName) .toBe ("ImportedBox")
       expect (body .routes [1] .destinationNode .getInlineNode ()) .toBe (body .routes [1] .destinationNode .inlineNode .getValue ())
