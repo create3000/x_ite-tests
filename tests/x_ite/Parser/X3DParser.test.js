@@ -202,6 +202,16 @@ test ("proto-import-routes.x3dv", async () =>
       expect (body .routes [0] .getDestinationNode ()) .toBeInstanceOf (X3D .X3DNode)
       expect (typeof body .routes [0] .getDestinationField ()) .toBe ("string")
 
+      expect (body .routes [0] .getSourceNode ()) .toBe (body .routes [0] .sourceNode .getValue ())
+      expect (body .routes [0] .getSourceField ()) .toBe (body .routes [0] .sourceField)
+      expect (body .routes [0] .getDestinationNode ()) .toBe (body .routes [0] .destinationNode .getValue ())
+      expect (body .routes [0] .getDestinationField ()) .toBe (body .routes [0] .destinationField)
+
+      expect (body .routes [0] .sourceNode .getNodeTypeName ()) .toBe ("TimeSensor")
+      expect (body .routes [0] .sourceField) .toBe ("fraction_changed")
+      expect (body .routes [0] .destinationNode .getNodeTypeName ()) .toBe ("OrientationInterpolator")
+      expect (body .routes [0] .destinationField) .toBe ("set_fraction")
+
       expect (body .routes [1] .sourceNode) .toBeInstanceOf (X3D .SFNode)
       expect (typeof body .routes [1] .sourceField) .toBe ("string")
       expect (body .routes [1] .destinationNode) .toBeInstanceOf (X3D .X3DImportedNode)
@@ -211,5 +221,21 @@ test ("proto-import-routes.x3dv", async () =>
       expect (typeof body .routes [1] .getSourceField ()) .toBe ("string")
       expect (body .routes [1] .getDestinationNode ()) .toBeInstanceOf (X3D .X3DImportedNode)
       expect (typeof body .routes [1] .getDestinationField ()) .toBe ("string")
+
+      expect (body .routes [1] .getSourceNode ()) .toBe (body .routes [1] .sourceNode .getValue ())
+      expect (body .routes [1] .getSourceField ()) .toBe (body .routes [1] .sourceField)
+      expect (body .routes [1] .getDestinationNode ()) .toBe (body .routes [1] .destinationNode)
+      expect (body .routes [1] .getDestinationField ()) .toBe (body .routes [1] .destinationField)
+
+      expect (body .routes [1] .sourceNode .getNodeTypeName ()) .toBe ("OrientationInterpolator")
+      expect (body .routes [1] .sourceField) .toBe ("value_changed")
+      expect (body .routes [1] .destinationNode .inlineNode) .toBeInstanceOf (X3D .SFNode)
+      expect (body .routes [1] .destinationNode .inlineNode .getNodeTypeName ()) .toBeInstanceOf ("Inline")
+      expect (body .routes [1] .destinationNode .exportedName) .toBe ("Box")
+      expect (body .routes [1] .destinationNode .importedName) .toBe ("ImportedBox")
+      expect (body .routes [1] .destinationNode .getInlineNode ()) .toBe (body .routes [1] .destinationNode .inlineNode .getValue ())
+      expect (body .routes [1] .destinationNode .getExportedName ()) .toBe (body .routes [1] .destinationNode .exportedName)
+      expect (body .routes [1] .destinationNode .getImportedName ()) .toBe (body .routes [1] .destinationNode .importedName)
+      expect (body .routes [1] .destinationField) .toBe ("set_rotation")
    }
 })
