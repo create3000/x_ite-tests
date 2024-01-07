@@ -170,38 +170,46 @@ test ("unknowns.x3dv", async () =>
 
 test ("proto-import-routes.x3dv", async () =>
 {
-   const scene = await Browser .createX3DFromURL (new X3D .MFString (path .join (__dirname, "files", "X3D", `proto-import-routes.x3d`)));
+   const scene1 = await Browser .createX3DFromURL (new X3D .MFString (path .join (__dirname, "files", "X3D", `proto-import-routes.x3d`)));
 
-   expect (scene .protos) .toHaveLength (1);
-   expect (scene .rootNodes) .toHaveLength (1);
+   const
+      scene2 = await Browser .createX3DFromString (scene1 .toXMLString ()),
+      scene3 = await Browser .createX3DFromString (scene1 .toVRMLString ()),
+      scene4 = await Browser .createX3DFromString (scene1 .toJSONString ());
 
-   const node = scene .rootNodes [0];
+   for (const scene of [scene1, scene2, scene3, scene4])
+   {
+      expect (scene .protos) .toHaveLength (1);
+      expect (scene .rootNodes) .toHaveLength (1);
 
-   expect (node .getNodeTypeName ()) .toBe ("Test");
+      const node = scene .rootNodes [0];
 
-   const body = node .getValue () .getBody ();
+      expect (node .getNodeTypeName ()) .toBe ("Test");
 
-   expect (body) .toBeInstanceOf (X3D .X3DExecutionContext);
-   expect (body .rootNodes) .toHaveLength (3);
-   expect (body .routes) .toHaveLength (2)
+      const body = node .getValue () .getBody ();
 
-   expect (body .routes [0] .sourceNode) .toBeInstanceOf (X3D .SFNode)
-   expect (typeof body .routes [0] .sourceField) .toBe ("string")
-   expect (body .routes [0] .destinationNode) .toBeInstanceOf (X3D .SFNode)
-   expect (typeof body .routes [0] .destinationField) .toBe ("string")
+      expect (body) .toBeInstanceOf (X3D .X3DExecutionContext);
+      expect (body .rootNodes) .toHaveLength (3);
+      expect (body .routes) .toHaveLength (2)
 
-   expect (body .routes [0] .getSourceNode ()) .toBeInstanceOf (X3D .X3DNode)
-   expect (typeof body .routes [0] .getSourceField ()) .toBe ("string")
-   expect (body .routes [0] .getDestinationNode ()) .toBeInstanceOf (X3D .X3DNode)
-   expect (typeof body .routes [0] .getDestinationField ()) .toBe ("string")
+      expect (body .routes [0] .sourceNode) .toBeInstanceOf (X3D .SFNode)
+      expect (typeof body .routes [0] .sourceField) .toBe ("string")
+      expect (body .routes [0] .destinationNode) .toBeInstanceOf (X3D .SFNode)
+      expect (typeof body .routes [0] .destinationField) .toBe ("string")
 
-   expect (body .routes [1] .sourceNode) .toBeInstanceOf (X3D .SFNode)
-   expect (typeof body .routes [1] .sourceField) .toBe ("string")
-   expect (body .routes [1] .destinationNode) .toBeInstanceOf (X3D .X3DImportedNode)
-   expect (typeof body .routes [1] .destinationField) .toBe ("string")
+      expect (body .routes [0] .getSourceNode ()) .toBeInstanceOf (X3D .X3DNode)
+      expect (typeof body .routes [0] .getSourceField ()) .toBe ("string")
+      expect (body .routes [0] .getDestinationNode ()) .toBeInstanceOf (X3D .X3DNode)
+      expect (typeof body .routes [0] .getDestinationField ()) .toBe ("string")
 
-   expect (body .routes [1] .getSourceNode ()) .toBeInstanceOf (X3D .X3DNode)
-   expect (typeof body .routes [1] .getSourceField ()) .toBe ("string")
-   expect (body .routes [1] .getDestinationNode ()) .toBeInstanceOf (X3D .X3DImportedNode)
-   expect (typeof body .routes [1] .getDestinationField ()) .toBe ("string")
+      expect (body .routes [1] .sourceNode) .toBeInstanceOf (X3D .SFNode)
+      expect (typeof body .routes [1] .sourceField) .toBe ("string")
+      expect (body .routes [1] .destinationNode) .toBeInstanceOf (X3D .X3DImportedNode)
+      expect (typeof body .routes [1] .destinationField) .toBe ("string")
+
+      expect (body .routes [1] .getSourceNode ()) .toBeInstanceOf (X3D .X3DNode)
+      expect (typeof body .routes [1] .getSourceField ()) .toBe ("string")
+      expect (body .routes [1] .getDestinationNode ()) .toBeInstanceOf (X3D .X3DImportedNode)
+      expect (typeof body .routes [1] .getDestinationField ()) .toBe ("string")
+   }
 })
