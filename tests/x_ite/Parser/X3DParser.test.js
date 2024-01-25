@@ -253,12 +253,13 @@ test ("double-import.x3dv", async () =>
    {
       expect (scene .rootNodes) .toHaveLength (3);
       expect (scene .importedNodes) .toHaveLength (2);
-      expect (scene .importedNodes [0] .importedName) .not .toBe ("Box");
-      expect (scene .importedNodes [1] .importedName) .toBe ("Box");
       expect (scene .routes) .toHaveLength (2);
 
-      expect (scene .getImportedNodes () .get (scene .importedNodes [0] .importedName)) .toBe (scene .importedNodes [0]);
-      expect (scene .getImportedNodes () .get (scene .importedNodes [1] .importedName)) .toBe (scene .importedNodes [1]);
+      expect (scene .importedNodes [0]) .toBe (scene .getImportedNodes () .get (scene .importedNodes [0] .importedName));
+      expect (scene .importedNodes [1]) .toBe (scene .getImportedNodes () .get (scene .importedNodes [1] .importedName));
+
+      expect (scene .importedNodes [0] .importedName) .not .toBe ("Box");
+      expect (scene .importedNodes [1] .importedName) .toBe ("Box");
 
       expect (scene .routes [0] .sourceNode) .toBe (scene .importedNodes [0]);
       expect (scene .routes [1] .sourceNode) .toBe (scene .importedNodes [1]);
