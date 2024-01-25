@@ -28,3 +28,8 @@ ROUTE Box.translation_changed TO T.set_translation
 
 DEF Box Transform { }
 ROUTE Box.translation_changed TO T.set_translation
+
+# 4.
+
+DEF Box Transform { }
+ROUTE Box.translation_changed TO T.set_translation
