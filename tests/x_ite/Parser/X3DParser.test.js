@@ -251,20 +251,25 @@ test ("double-import.x3dv", async () =>
 
    for (const scene of [scene1, scene2, scene3, scene4])
    {
-      expect (scene .rootNodes) .toHaveLength (3);
+      expect (scene .rootNodes) .toHaveLength (4);
       expect (scene .importedNodes) .toHaveLength (2);
-      expect (scene .routes) .toHaveLength (2);
+      expect (scene .routes) .toHaveLength (3);
 
       expect (scene .importedNodes [0]) .toBe (scene .getImportedNodes () .get (scene .importedNodes [0] .importedName));
       expect (scene .importedNodes [1]) .toBe (scene .getImportedNodes () .get (scene .importedNodes [1] .importedName));
 
       expect (scene .importedNodes [0] .importedName) .not .toBe ("Box");
-      expect (scene .importedNodes [1] .importedName) .toBe ("Box");
+      expect (scene .importedNodes [1] .importedName) .not .toBe ("Box");
+
+      expect (scene .getNamedNode ("Box") .getNodeName ()) .toBe ("Box");
+      expect (scene .getNamedNode ("Box") .getNodeTypeName ()) .toBe ("Transform");
 
       expect (scene .routes [0] .sourceNode) .toBe (scene .importedNodes [0]);
       expect (scene .routes [1] .sourceNode) .toBe (scene .importedNodes [1]);
+      expect (scene .routes [2] .sourceNode) .toBe (scene .getNamedNode ("Box"));
 
       expect (scene .routes [0] .destinationNode) .toBe (scene .getNamedNode ("T"));
       expect (scene .routes [1] .destinationNode) .toBe (scene .getNamedNode ("T"));
+      expect (scene .routes [2] .destinationNode) .toBe (scene .getNamedNode ("T"));
    }
 });

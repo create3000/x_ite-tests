@@ -215,15 +215,21 @@ DEF T Transform { }
 IMPORT I.T
    `);
 
-   expect (scene1 .rootNodes)    .toHaveLength (2);
+   expect (scene1 .rootNodes)     .toHaveLength (2);
+   expect (scene1 .namedNodes)    .toHaveLength (2);
    expect (scene1 .importedNodes) .toHaveLength (1);
+
+   expect (scene1 .getLocalNode ("T")) .toBe (scene1 .importedNodes [0]);
+   expect (scene1 .getLocalNode ("T")) .toBeInstanceOf (X3D .X3DImportedNode);
+   expect (scene1 .importedNodes [0] .importedName) .toBe ("T");
 
    const scene2 = await Browser .createX3DFromString (scene1 .toXMLString ());
 
    expect (scene2 .rootNodes)     .toHaveLength (2);
+   expect (scene2 .namedNodes)    .toHaveLength (2);
    expect (scene2 .importedNodes) .toHaveLength (1);
 
-   expect (scene2 .getNamedNode ("T") .getNodeTypeName ()) .toBe ("Transform");
-   expect (() => scene2 .getImportedNode ("T")) .toThrow (Error);
-   expect (scene2 .importedNodes [0] .importedName) .toMatch (/^T_\d+$/);
+   expect (scene2 .getLocalNode ("T")) .toBe (scene2 .importedNodes [0]);
+   expect (scene2 .getLocalNode ("T")) .toBeInstanceOf (X3D .X3DImportedNode);
+   expect (scene2 .importedNodes [0] .importedName) .toBe ("T");
 });

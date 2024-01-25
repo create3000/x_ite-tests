@@ -6,6 +6,8 @@ COMPONENT Networking : 1
 
 DEF T Transform { }
 
+# 1.
+
 DEF I1 Inline {
    url "box1.x3d"
 }
@@ -13,9 +15,16 @@ DEF I1 Inline {
 IMPORT I1.Box AS Box
 ROUTE Box.translation_changed TO T.set_translation
 
+# 2.
+
 DEF I2 Inline {
    url "box1.x3d"
 }
 
 IMPORT I2.Box AS Box
+ROUTE Box.translation_changed TO T.set_translation
+
+# 3.
+
+DEF Box Transform { }
 ROUTE Box.translation_changed TO T.set_translation
