@@ -1,0 +1,21 @@
+#X3D V4.0 utf8 X_ITE V8.7.8
+
+PROFILE Interchange
+
+COMPONENT Networking : 1
+
+DEF T Transform { }
+
+DEF I1 Inline {
+   url "box1.x3d"
+}
+
+IMPORT I1.Box AS Box
+ROUTE Box.translation_changed TO T.set_translation
+
+DEF I2 Inline {
+   url "box1.x3d"
+}
+
+IMPORT I2.Box AS Box
+ROUTE Box.translation_changed TO T.set_translation

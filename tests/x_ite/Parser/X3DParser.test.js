@@ -238,4 +238,30 @@ test ("proto-import-routes.x3dv", async () =>
       expect (body .routes [1] .destinationNode .getImportedName ()) .toBe (body .routes [1] .destinationNode .importedName)
       expect (body .routes [1] .destinationField) .toBe ("set_rotation")
    }
-})
+});
+
+test ("double-import.x3dv", async () =>
+{
+   const scene1 = await Browser .createX3DFromURL (new X3D .MFString (path .join (__dirname, "files", "X3D", `double-import.x3dv`)));
+
+   const
+      scene2 = await Browser .createX3DFromString (scene1 .toXMLString ()),
+      scene3 = await Browser .createX3DFromString (scene1 .toVRMLString ()),
+      scene4 = await Browser .createX3DFromString (scene1 .toJSONString ());
+
+   for (const scene of [scene1, scene2, scene3, scene4])
+   {
+      expect (scene .rootNodes) .toHaveLength (3);
+      expect (scene .importedNodes) .toHaveLength (2);
+      expect (scene .routes) .toHaveLength (2);
+
+      expect (scene .getImportedNodes () .get (scene .importedNodes [0] .importedName)) .toBe (scene .importedNodes [0]);
+      expect (scene .getImportedNodes () .get (scene .importedNodes [1] .importedName)) .toBe (scene .importedNodes [1]);
+
+      expect (scene .routes [0] .sourceNode) .toBe (scene .importedNodes [0]);
+      expect (scene .routes [1] .sourceNode) .toBe (scene .importedNodes [1]);
+
+      expect (scene .routes [0] .destinationNode) .toBe (scene .getNamedNode ("T"));
+      expect (scene .routes [1] .destinationNode) .toBe (scene .getNamedNode ("T"));
+   }
+});
