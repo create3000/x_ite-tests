@@ -619,7 +619,7 @@ Foo { }
    expect (executionContext .getRootNodes () [1] .getNodeName ()) .toBe ("B")
 })
 
-test ("getLocalNode", async () =>
+test ("getLocalNode 1", async () =>
 {
    const scene = await Browser .createX3DFromString (`
 DEF I Inline {
@@ -641,6 +641,35 @@ IMPORT I.T AS TT
    expect (scene .getLocalNode ("T") .inlineNode) .toBe (scene .getNamedNode ("I"));
    expect (scene .getLocalNode ("T") .exportedName) .toBe ("T");
    expect (scene .getLocalNode ("T") .importedName) .toBe ("T");
+
+   expect (scene .getLocalNode ("TT")) .toBe (scene .importedNodes [1]);
+   expect (scene .getLocalNode ("TT")) .toBeInstanceOf (X3D .X3DImportedNode);
+   expect (scene .getLocalNode ("TT") .inlineNode) .toBe (scene .getNamedNode ("I"));
+   expect (scene .getLocalNode ("TT") .exportedName) .toBe ("T");
+   expect (scene .getLocalNode ("TT") .importedName) .toBe ("TT");
+});
+
+test ("getLocalNode 2", async () =>
+{
+   const scene = await Browser .createX3DFromString (`
+DEF I Inline {
+   url "data:model/x3d+vrml,
+DEF T TextureTransform { }
+EXPORT T
+   "
+}
+IMPORT I.T
+IMPORT I.T AS TT
+DEF T Transform { }
+   `);
+
+   expect (scene .namedNodes)    .toHaveLength (2);
+   expect (scene .importedNodes) .toHaveLength (2);
+
+   expect (scene .getLocalNode ("T")) .toBe (scene .namedNodes [1]);
+   expect (scene .getLocalNode ("T")) .toBeInstanceOf (X3D .SFNode);
+   expect (scene .getLocalNode ("T") .getNodeName ()) .toBe ("T");
+   expect (scene .getLocalNode ("T")) .toBe (scene .getNamedNode ("T"));
 
    expect (scene .getLocalNode ("TT")) .toBe (scene .importedNodes [1]);
    expect (scene .getLocalNode ("TT")) .toBeInstanceOf (X3D .X3DImportedNode);
