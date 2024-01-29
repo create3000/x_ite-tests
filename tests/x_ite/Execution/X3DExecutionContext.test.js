@@ -309,7 +309,7 @@ test ("getNamedNodes", async () =>
    expect (scene .getNamedNodes () [1]) .toBe (node2)
 })
 
-test ("getUniqueName", async () =>
+test ("getUniqueName 1", async () =>
 {
    const scene = await Browser .createX3DFromString (`
 PROFILE Interchange
@@ -334,7 +334,7 @@ DEF S Shape {
 
    expect (scene .getNamedNodes ()) .toHaveLength (102)
 
-   for (let i = 0; i < 1000; ++ i)
+   for (let i = 0; i < 1_000; ++ i)
    {
       const r = Math .floor (Math .random () * scene .getNamedNodes () .length)
 
@@ -343,7 +343,30 @@ DEF S Shape {
    }
 
    expect (scene .getNamedNodes ()) .toHaveLength (102)
-})
+});
+
+test ("getUniqueName 2", async () =>
+{
+   const scene = await Browser .createX3DFromString (``);
+
+   for (let i = 1; i < 10_000; ++ i)
+   {
+      const name = scene .getUniqueName ();
+
+      expect (name) .toBe (`_${i}`);
+
+      scene .addNamedNode (name, scene .createNode ("WorldInfo"))
+   }
+
+   for (let i = 0; i < 10_000; ++ i)
+   {
+      const name = scene .getUniqueName ("foo");
+
+      expect (name) .toBe (i ? `foo_${i}` : "foo");
+
+      scene .addNamedNode (name, scene .createNode ("WorldInfo"))
+   }
+});
 
 test ("addImportedNode", async () =>
 {
