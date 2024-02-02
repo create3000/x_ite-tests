@@ -25,6 +25,11 @@ test ("access-types", () =>
    expect (Number .isInteger (X3D .X3DConstants .inputOnly)) .toBe (true)
    expect (Number .isInteger (X3D .X3DConstants .outputOnly)) .toBe (true)
    expect (Number .isInteger (X3D .X3DConstants .inputOutput)) .toBe (true)
+
+   expect (X3D .X3DConstants .initializeOnly) .toBe (0b001)
+   expect (X3D .X3DConstants .inputOnly)      .toBe (0b010)
+   expect (X3D .X3DConstants .outputOnly)     .toBe (0b100)
+   expect (X3D .X3DConstants .inputOutput)    .toBe (0b111)
 })
 
 test ("fields", () =>
