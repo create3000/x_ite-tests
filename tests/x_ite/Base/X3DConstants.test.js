@@ -76,5 +76,14 @@ test ("concrete-nodes", async () =>
 test ("abstract-nodes", async () =>
 {
    for (const AbstractType of Object .keys (X3D .X3DConstants) .filter (f => f .startsWith ("X3D")))
-      expect (Number .isInteger (X3D .X3DConstants [AbstractType])) .toBe (true)
-})
+      expect (Number .isInteger (X3D .X3DConstants [AbstractType])) .toBe (true);
+});
+
+test ("reverse mapping", async () =>
+{
+   for (const [key, value] of Object .entries (X3D .X3DConstants))
+   {
+      expect (Number .isInteger (value)) .toBe (true);
+      expect (X3D .X3DConstants [value]) .toBe (key);
+   }
+});
