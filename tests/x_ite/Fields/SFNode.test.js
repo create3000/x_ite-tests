@@ -76,6 +76,12 @@ test ("properties", () =>
    expect ("toString" in node) .toBe (true)
    expect ("foo"      in node) .toBe (false)
 
+   expect (node .hasOwnProperty ("metadata")) .toBe (true)
+   expect (node .hasOwnProperty ("title"))    .toBe (true)
+   expect (node .hasOwnProperty ("info"))     .toBe (true)
+   expect (node .hasOwnProperty ("toString")) .toBe (false)
+   expect (node .hasOwnProperty ("foo"))      .toBe (false)
+
    const properties = [
       "metadata",
       "title",
