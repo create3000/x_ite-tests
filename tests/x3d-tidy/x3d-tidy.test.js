@@ -1,4 +1,4 @@
-const { exec } = require ("child_process")
+const { exec } = require ("child_process");
 
 test ("help", () => new Promise ((resolve, reject) =>
 {
@@ -6,20 +6,20 @@ test ("help", () => new Promise ((resolve, reject) =>
    {
       if (error)
       {
-         reject (error .message)
-         return
+         reject (error .message);
+         return;
       }
 
       if (stderr)
       {
-         reject (stderr)
-         return
+         reject (stderr);
+         return;
       }
 
-      expect (stdout) .toMatch (/x3d-tidy args/)
-      resolve ()
+      expect (stdout) .toMatch (/x3d-tidy args/);
+      resolve ();
    });
-}))
+}));
 
 test ("error", () => new Promise ((resolve, reject) =>
 {
@@ -27,17 +27,17 @@ test ("error", () => new Promise ((resolve, reject) =>
    {
       if (error)
       {
-         reject (error .message)
-         return
+         reject (error .message);
+         return;
       }
 
       if (stderr)
       {
-         expect (stderr) .toMatch (/Couldn't load X3D file./)
-         resolve ()
-         return
+         expect (stderr) .toMatch (/Couldn't load X3D file./);
+         resolve ();
+         return;
       }
 
-      reject ("there should be no stdout")
+      reject ("there should be no stdout");
    });
-}))
+}));
