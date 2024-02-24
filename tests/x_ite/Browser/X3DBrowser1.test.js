@@ -58,7 +58,6 @@ test ("properties", () =>
       "baseURL",
       "currentScene",
       "element",
-      "canvas",
    ]
 
    enumerate (properties, Browser)
