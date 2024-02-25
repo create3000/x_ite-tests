@@ -20,6 +20,7 @@ test ("properties", () =>
    expect (Browser .supportedProfiles) .toBeInstanceOf (X3D .ProfileInfoArray)
    expect (Browser .supportedComponents) .toBeInstanceOf (X3D .ComponentInfoArray)
    expect (Browser .currentScene) .toBeInstanceOf (X3D .X3DScene)
+   expect (Browser .element) .toBe (canvas)
 
    Browser .name                = undefined
    Browser .version             = undefined
@@ -29,6 +30,7 @@ test ("properties", () =>
    Browser .supportedProfiles   = undefined
    Browser .supportedComponents = undefined
    Browser .currentScene        = undefined
+   Browser .element             = undefined
 
    expect (Browser .name) .toBe ("X_ITE")
    expect (Browser .version) .toMatch (/^\d+\.\d+\.\d+$/)
@@ -42,6 +44,7 @@ test ("properties", () =>
    expect (Browser .concreteNodes) .toBeInstanceOf (X3D .ConcreteNodesArray)
    expect (Browser .abstractNodes) .toBeInstanceOf (X3D .AbstractNodesArray)
    expect (Browser .currentScene) .toBeInstanceOf (X3D .X3DScene)
+   expect (Browser .element) .toBe (canvas)
    expect (Browser .toString ()) .toBe (`[object ${Browser .getTypeName ()}]`)
 
    const properties = [
