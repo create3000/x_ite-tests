@@ -6,6 +6,7 @@ test ("construction", () =>
 {
    const canvas = document .createElement ("x3d-canvas")
 
+   expect (canvas) .toBeInstanceOf (X3D .X3DCanvasElement)
    expect (canvas .nodeName) .toBe ("X3D-CANVAS")
    expect (canvas .browser) .toBeInstanceOf (X3D .X3DBrowser)
 
@@ -36,6 +37,7 @@ test ("construction-jquery", () =>
       canvas   = elements [0]
 
    expect (elements) .toHaveLength (1)
+   expect (canvas) .toBeInstanceOf (X3D .X3DCanvasElement)
    expect (canvas .nodeName) .toBe ("X3D-CANVAS")
    expect (canvas .browser) .toBeInstanceOf (X3D .X3DBrowser)
 })

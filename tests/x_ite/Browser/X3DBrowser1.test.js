@@ -10,6 +10,7 @@ test ("properties", () =>
       canvas  = X3D .createBrowser (),
       Browser = canvas .browser
 
+   expect (canvas) .toBeInstanceOf (X3D .X3DCanvasElement)
    expect (Browser) .toBeInstanceOf (X3D .X3DBrowser)
    expect (Browser .constructor) .toBe (X3D .X3DBrowser)
    expect (Browser .name) .toBe ("X_ITE")
