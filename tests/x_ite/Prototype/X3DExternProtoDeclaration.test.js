@@ -11,7 +11,7 @@ const
 
 test ("properties", async () =>
 {
-   const scene   = await Browser .createX3DFromURL (new X3D .MFString (`data:model/x3d+vrml,
+   const scene = await Browser .createX3DFromURL (new X3D .MFString (`data:model/x3d+vrml,
 PROFILE Interactive
 
 EXTERNPROTO Test [
@@ -21,7 +21,7 @@ EXTERNPROTO Test [
 
 PROFILE Interactive
 
-PROTO Test [
+PROTO TestProto [
    initializeOnly SFVec3f size 2 2 2
 ]
 {
@@ -39,7 +39,14 @@ PROTO Test [
 }"
 
 Test { }
+Test { size 4 4 4 }
 `))
+
+   expect (scene .rootNodes) .toHaveLength (2);
+   expect (scene .rootNodes [0] .getNodeTypeName ()) .toBe ("Test");
+   expect (scene .rootNodes [1] .getNodeTypeName ()) .toBe ("Test");
+   expect (scene .rootNodes [0] .size .equals (new X3D .SFVec3f (2,2,2))) .toBe (true);
+   expect (scene .rootNodes [1] .size .equals (new X3D .SFVec3f (4,4,4))) .toBe (true);
 
    expect (scene .externprotos) .toHaveLength (1)
 
