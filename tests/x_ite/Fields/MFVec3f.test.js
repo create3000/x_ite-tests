@@ -56,6 +56,7 @@ test ("common", () =>
 
    expect (field .getType ()) .toBe (X3D .X3DConstants .MFVec3f)
    expect (field .getTypeName ()) .toBe ("MFVec3f")
+   expect (Object .prototype .toString .call (field)) .toBe ("[object MFVec3f]")
 })
 
 test ("copy", () =>

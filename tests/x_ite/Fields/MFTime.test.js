@@ -95,6 +95,7 @@ test ("common", () =>
 
    expect (field .getType ()) .toBe (X3D .X3DConstants .MFTime)
    expect (field .getTypeName ()) .toBe ("MFTime")
+   expect (Object .prototype .toString .call (field)) .toBe ("[object MFTime]")
 })
 
 test ("copy", () =>

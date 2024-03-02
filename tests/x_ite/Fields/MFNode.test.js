@@ -113,6 +113,7 @@ test ("common", () =>
 
    expect (field .getType ()) .toBe (X3D .X3DConstants .MFNode)
    expect (field .getTypeName ()) .toBe ("MFNode")
+   expect (Object .prototype .toString .call (field)) .toBe ("[object MFNode]")
 })
 
 test ("copy", () =>

@@ -20,6 +20,7 @@ test ("properties", () =>
       expect (field .getName ()) .toBe ("")
       expect (field .getType ()) .toBe (X3D .X3DConstants [typeName])
       expect (field .getTypeName ()) .toBe (typeName)
+      expect (Object .prototype .toString .call (field)) .toBe (`[object ${typeName}]`)
 
       expect (field .isReadable ()) .toBe (true)
       expect (field .isWritable ()) .toBe (true)

@@ -112,6 +112,7 @@ test ("common", () =>
 
    expect (field .getType ()) .toBe (X3D .X3DConstants .SFImage)
    expect (field .getTypeName ()) .toBe ("SFImage")
+   expect (Object .prototype .toString .call (field)) .toBe ("[object SFImage]")
 })
 
 test ("copy", () =>

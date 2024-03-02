@@ -57,6 +57,7 @@ test ("common", () =>
 
    expect (field .getType ()) .toBe (X3D .X3DConstants .SFDouble)
    expect (field .getTypeName ()) .toBe ("SFDouble")
+   expect (Object .prototype .toString .call (field)) .toBe ("[object SFDouble]")
 })
 
 test ("copy", () =>

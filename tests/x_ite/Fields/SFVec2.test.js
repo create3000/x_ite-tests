@@ -62,6 +62,7 @@ for (const Type of Object .keys (X3D .require ("x_ite/Fields/SFVec2")))
 
       expect (field .getType ()) .toBe (X3D .X3DConstants [Type])
       expect (field .getTypeName ()) .toBe (Type)
+      expect (Object .prototype .toString .call (field)) .toBe (`[object ${Type}]`)
    })
 
    test ("copy", () =>

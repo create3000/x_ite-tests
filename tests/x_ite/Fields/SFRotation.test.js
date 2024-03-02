@@ -153,6 +153,7 @@ test ("common", () =>
 
    expect (field .getType ()) .toBe (X3D .X3DConstants .SFRotation)
    expect (field .getTypeName ()) .toBe ("SFRotation")
+   expect (Object .prototype .toString .call (field)) .toBe ("[object SFRotation]")
 })
 
 test ("copy", () =>

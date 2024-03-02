@@ -95,6 +95,7 @@ test ("common", () =>
 
    expect (field .getType ()) .toBe (X3D .X3DConstants .MFString)
    expect (field .getTypeName ()) .toBe ("MFString")
+   expect (Object .prototype .toString .call (field)) .toBe ("[object MFString]")
 })
 
 test ("copy", () =>

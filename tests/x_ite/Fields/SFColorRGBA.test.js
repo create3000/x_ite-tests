@@ -82,6 +82,7 @@ test ("common", () =>
 
    expect (field .getType ()) .toBe (X3D .X3DConstants .SFColorRGBA)
    expect (field .getTypeName ()) .toBe ("SFColorRGBA")
+   expect (Object .prototype .toString .call (field)) .toBe ("[object SFColorRGBA]")
 })
 
 test ("copy", () =>

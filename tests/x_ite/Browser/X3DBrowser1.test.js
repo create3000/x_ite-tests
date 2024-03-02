@@ -13,6 +13,7 @@ test ("properties", () =>
    expect (canvas) .toBeInstanceOf (X3D .X3DCanvasElement)
    expect (Browser) .toBeInstanceOf (X3D .X3DBrowser)
    expect (Browser .constructor) .toBe (X3D .X3DBrowser)
+   expect (Object .prototype .toString .call (Browser)) .toBe ("[object X3DBrowser]")
    expect (Browser .name) .toBe ("X_ITE")
    expect (Browser .version) .toMatch (/^\d+\.\d+\.\d+$/)
    expect (Browser .currentSpeed) .toBe (0)

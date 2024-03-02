@@ -10,6 +10,8 @@ test ("common", () =>
 {
    expect (node .getType ()) .toBe (X3D .X3DConstants .SFNode)
    expect (node .getTypeName ()) .toBe ("SFNode")
+   expect (Object .prototype .toString .call (node)) .toBe ("[object SFNode]")
+
    expect (node .getNodeTypeName ()) .toBe ("WorldInfo")
    expect (node .getNodeName ()) .toBe ("")
    expect (node .getNodeDisplayName ()) .toBe ("")
