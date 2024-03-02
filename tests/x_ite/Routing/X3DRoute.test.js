@@ -39,6 +39,10 @@ ROUTE I.value_changed TO T.set_translation
    expect (route .getSourceField ()) .toBe (route .sourceField)
    expect (route .getDestinationNode ()) .toBe (route .destinationNode .getValue ())
    expect (route .getDestinationField ()) .toBe (route .destinationField)
+
+   expect (X3D .X3DRoute .typeName) .toBe ("X3DRoute")
+   expect (route .getTypeName ()) .toBe ("X3DRoute")
+   expect (Object .prototype .toString .call (route)) .toBe (`[object X3DRoute]`)
    expect (route .toString ()) .toBe (`[object ${route .getTypeName ()}]`)
 
    expect (route .getId ()) .toBeGreaterThan (0)

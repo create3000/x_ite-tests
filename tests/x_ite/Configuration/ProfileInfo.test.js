@@ -53,5 +53,8 @@ test ("toString", () =>
 {
    const profile = Browser .getProfile ("Core")
 
+   expect (X3D .ProfileInfo .typeName) .toBe ("ProfileInfo")
+   expect (profile .getTypeName ()) .toBe ("ProfileInfo")
+   expect (Object .prototype .toString .call (profile)) .toBe (`[object ProfileInfo]`)
    expect (profile .toString ()) .toBe (`[object ${profile .getTypeName ()}]`)
 })

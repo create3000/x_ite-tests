@@ -39,5 +39,8 @@ test ("toString", () =>
 {
    const unit = Browser .currentScene .getUnit ("angle")
 
+   expect (X3D .UnitInfo .typeName) .toBe ("UnitInfo")
+   expect (unit .getTypeName ()) .toBe ("UnitInfo")
+   expect (Object .prototype .toString .call (unit)) .toBe (`[object UnitInfo]`)
    expect (unit .toString ()) .toBe (`[object ${unit .getTypeName ()}]`)
 })

@@ -36,6 +36,10 @@ EXPORT N2 AS E2
    expect (exportedNode .exportedName) .toBe ("E1")
    expect (exportedNode .localNode) .toBeInstanceOf (X3D .SFNode)
    expect (exportedNode .localNode) .toBe (scene .getNamedNode ("N1"))
+
+   expect (X3D .X3DExportedNode .typeName) .toBe ("X3DExportedNode")
+   expect (exportedNode .getTypeName ()) .toBe ("X3DExportedNode")
+   expect (Object .prototype .toString .call (exportedNode)) .toBe (`[object X3DExportedNode]`)
    expect (exportedNode .toString ()) .toBe (`[object ${exportedNode .getTypeName ()}]`)
 
    const properties = [

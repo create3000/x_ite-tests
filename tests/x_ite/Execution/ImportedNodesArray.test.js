@@ -53,5 +53,8 @@ test ("toString", () =>
       scene         = Browser .currentScene,
       importedNodes = scene .importedNodes
 
+   expect (X3D .ImportedNodesArray .typeName) .toBe ("ImportedNodesArray")
+   expect (importedNodes .getTypeName ()) .toBe ("ImportedNodesArray")
+   expect (Object .prototype .toString .call (importedNodes)) .toBe (`[object ImportedNodesArray]`)
    expect (importedNodes .toString ()) .toBe (`[object ${importedNodes .getTypeName ()}]`)
 })

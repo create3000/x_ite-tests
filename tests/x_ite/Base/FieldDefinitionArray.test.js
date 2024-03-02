@@ -37,5 +37,8 @@ test ("filter", () =>
 
 test ("toString", () =>
 {
+   expect (X3D .FieldDefinitionArray .typeName) .toBe ("FieldDefinitionArray")
+   expect (fieldDefinitions .getTypeName ()) .toBe ("FieldDefinitionArray")
+   expect (Object .prototype .toString .call (fieldDefinitions)) .toBe (`[object FieldDefinitionArray]`)
    expect (fieldDefinitions .toString ()) .toBe (`[object ${fieldDefinitions .getTypeName ()}]`)
 })

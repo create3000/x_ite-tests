@@ -87,5 +87,8 @@ test ("toString", () =>
       Browser = canvas .browser,
       units   = Browser .currentScene .units
 
+   expect (X3D .UnitInfoArray .typeName) .toBe ("UnitInfoArray")
+   expect (units .getTypeName ()) .toBe ("UnitInfoArray")
+   expect (Object .prototype .toString .call (units)) .toBe (`[object UnitInfoArray]`)
    expect (units .toString ()) .toBe (`[object ${units .getTypeName ()}]`)
 })

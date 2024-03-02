@@ -31,6 +31,10 @@ test ("properties1", () =>
    expect (scene .externprotos) .toBeInstanceOf (X3D .ExternProtoDeclarationArray)
    expect (scene .routes) .toHaveLength (0)
    expect (scene .routes) .toBeInstanceOf (X3D .RouteArray)
+
+   expect (X3D .X3DScene .typeName) .toBe ("X3DScene")
+   expect (scene .getTypeName ()) .toBe ("X3DScene")
+   expect (Object .prototype .toString .call (scene)) .toBe (`[object X3DScene]`)
    expect (scene .toString ()) .toBe (`[object ${scene .getTypeName ()}]`)
 })
 

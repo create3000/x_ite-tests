@@ -44,5 +44,8 @@ test ("toString", () =>
       scene         = Browser .currentScene,
       exportedNodes = scene .exportedNodes
 
+   expect (X3D .ExportedNodesArray .typeName) .toBe ("ExportedNodesArray")
+   expect (exportedNodes .getTypeName ()) .toBe ("ExportedNodesArray")
+   expect (Object .prototype .toString .call (exportedNodes)) .toBe (`[object ExportedNodesArray]`)
    expect (exportedNodes .toString ()) .toBe (`[object ${exportedNodes .getTypeName ()}]`)
 })

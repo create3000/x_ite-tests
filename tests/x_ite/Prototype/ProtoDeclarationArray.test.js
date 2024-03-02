@@ -44,5 +44,8 @@ test ("toString", () =>
       scene  = Browser .currentScene,
       protos = scene .protos
 
+   expect (X3D .ProtoDeclarationArray .typeName) .toBe ("ProtoDeclarationArray")
+   expect (protos .getTypeName ()) .toBe ("ProtoDeclarationArray")
+   expect (Object .prototype .toString .call (protos)) .toBe (`[object ProtoDeclarationArray]`)
    expect (protos .toString ()) .toBe (`[object ${protos .getTypeName ()}]`)
 })

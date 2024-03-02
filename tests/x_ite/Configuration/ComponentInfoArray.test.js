@@ -32,5 +32,8 @@ test ("toString", () =>
 {
    const components = Browser .supportedComponents
 
+   expect (X3D .ComponentInfoArray .typeName) .toBe ("ComponentInfoArray")
+   expect (components .getTypeName ()) .toBe ("ComponentInfoArray")
+   expect (Object .prototype .toString .call (components)) .toBe (`[object ComponentInfoArray]`)
    expect (components .toString ()) .toBe (`[object ${components .getTypeName ()}]`)
 })

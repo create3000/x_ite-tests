@@ -40,6 +40,10 @@ IMPORT I.E2 AS I2
    expect (importedNode .getExportedName ()) .toBe (importedNode .exportedName)
    expect (importedNode .getExportedNode ()) .toBe (importedNode .exportedNode .getValue ())
    expect (importedNode .getImportedName ()) .toBe (importedNode .importedName)
+
+   expect (X3D .X3DImportedNode .typeName) .toBe ("X3DImportedNode")
+   expect (importedNode .getTypeName ()) .toBe ("X3DImportedNode")
+   expect (Object .prototype .toString .call (importedNode)) .toBe (`[object X3DImportedNode]`)
    expect (importedNode .toString ()) .toBe (`[object ${importedNode .getTypeName ()}]`)
 
    importedNode .inlineNode   = undefined

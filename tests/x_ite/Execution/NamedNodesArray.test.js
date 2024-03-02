@@ -78,5 +78,8 @@ test ("toString", () =>
 {
    const namedNodes = Browser .currentScene .namedNodes
 
+   expect (X3D .NamedNodesArray .typeName) .toBe ("NamedNodesArray")
+   expect (namedNodes .getTypeName ()) .toBe ("NamedNodesArray")
+   expect (Object .prototype .toString .call (namedNodes)) .toBe (`[object NamedNodesArray]`)
    expect (namedNodes .toString ()) .toBe (`[object ${namedNodes .getTypeName ()}]`)
 })

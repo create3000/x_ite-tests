@@ -71,6 +71,10 @@ Test { size 4 4 4 }
    expect (externproto .fields [1] .name) .toBe ("size")
    expect (externproto .fields [1] .value) .toBeInstanceOf (X3D .SFVec3f)
    expect (externproto .getName ()) .toBe (externproto .name)
+
+   expect (X3D .X3DExternProtoDeclaration .typeName) .toBe ("X3DExternProtoDeclaration")
+   expect (externproto .getTypeName ()) .toBe ("X3DExternProtoDeclaration")
+   expect (Object .prototype .toString .call (externproto)) .toBe (`[object X3DExternProtoDeclaration]`)
    expect (externproto .toString ()) .toBe (`[object ${externproto .getTypeName ()}]`)
 
    externproto .name = undefined

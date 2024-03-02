@@ -57,5 +57,8 @@ test ("properties", () =>
 
 test ("toString", () =>
 {
+   expect (X3D .X3DFieldDefinition .typeName) .toBe ("X3DFieldDefinition")
+   expect (fieldDefinitions [0] .getTypeName ()) .toBe ("X3DFieldDefinition")
+   expect (Object .prototype .toString .call (fieldDefinitions [0])) .toBe (`[object X3DFieldDefinition]`)
    expect (fieldDefinitions [0] .toString ()) .toBe (`[object ${fieldDefinitions [0] .getTypeName ()}]`)
 })

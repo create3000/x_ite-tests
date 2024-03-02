@@ -48,5 +48,8 @@ test ("toString", () =>
       scene  = Browser .currentScene,
       routes = scene .routes
 
+   expect (X3D .RouteArray .typeName) .toBe ("RouteArray")
+   expect (routes .getTypeName ()) .toBe ("RouteArray")
+   expect (Object .prototype .toString .call (routes)) .toBe (`[object RouteArray]`)
    expect (routes .toString ()) .toBe (`[object ${routes .getTypeName ()}]`)
 })

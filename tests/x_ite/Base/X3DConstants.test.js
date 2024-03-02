@@ -87,3 +87,9 @@ test ("reverse mapping", async () =>
       expect (X3D .X3DConstants [value]) .toBe (key);
    }
 });
+
+test ("toString", () =>
+{
+   expect (Object .prototype .toString .call (X3D .X3DConstants)) .toBe (`[object X3DConstants]`)
+   expect (X3D .X3DConstants .toString ()) .toBe (`[object X3DConstants]`)
+})

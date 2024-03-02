@@ -50,6 +50,10 @@ Test { }
    expect (proto .fields [1] .name) .toBe ("size")
    expect (proto .fields [1] .value) .toBeInstanceOf (X3D .SFVec3f)
    expect (proto .getName ()) .toBe (proto .name)
+
+   expect (X3D .X3DProtoDeclaration .typeName) .toBe ("X3DProtoDeclaration")
+   expect (proto .getTypeName ()) .toBe ("X3DProtoDeclaration")
+   expect (Object .prototype .toString .call (proto)) .toBe (`[object X3DProtoDeclaration]`)
    expect (proto .toString ()) .toBe (`[object ${proto .getTypeName ()}]`)
 
    proto .name = undefined
