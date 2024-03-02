@@ -85,6 +85,7 @@ Test1 { }`)
    expect (instance .getFieldDefinitions () [1] .value .getValue ()) .toBe (123)
    expect (instance .getBody () .rootNodes) .toHaveLength (1)
    expect (instance .getBody () .rootNodes [0] .getNodeTypeName ()) .toBe ("Transform")
+   expect (Object .prototype .toString .call (instance)) .toBe (`[object Test1]`)
 
    instance .setProtoNode (proto2)
 
