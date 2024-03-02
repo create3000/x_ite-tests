@@ -9,6 +9,7 @@ test ("construction", () =>
    expect (canvas) .toBeInstanceOf (X3D .X3DCanvasElement)
    expect (canvas .nodeName) .toBe ("X3D-CANVAS")
    expect (canvas .browser) .toBeInstanceOf (X3D .X3DBrowser)
+   expect (canvas .toString ()) .toBe ("[object X3DCanvasElement]");
 
    const scene = canvas .browser .currentScene
 
