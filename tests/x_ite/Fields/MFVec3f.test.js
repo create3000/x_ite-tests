@@ -605,3 +605,23 @@ test ("unshift", () =>
       expect (a .at (-(i + 1)) .equals (v)) .toBe (true)
    }
 })
+
+test ("enumerate", () =>
+{
+   const properties = [
+      0,1,2
+   ]
+
+   enumerate (properties, new MFVec3f (1,2,3))
+})
+
+test ("enumerate single", () =>
+{
+   const properties = [
+      "x",
+      "y",
+      "z",
+   ]
+
+   enumerate (properties, new MFVec3f () [0])
+})
