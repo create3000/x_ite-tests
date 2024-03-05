@@ -254,10 +254,10 @@ test ("get/set/removeMetaData fields", () =>
    node .getValue () .setMetaData ("Sunrize/MFVec3f", new X3D .MFVec3f (vec, vec));
 
    expect (node .metadata ?.value [0] ?.value ?.equals (new X3D .MFInt32 (2,1,3,1,2))) .toBe (true);
-   expect (node .metadata ?.value [1] ?.value ?.equals (new X3D .MFInt32 (1,2,3))) .toBe (true);
+   expect (node .metadata ?.value [1] ?.value ?.equals (new X3D .MFFloat (1,2,3))) .toBe (true);
    expect (node .metadata ?.value [2] ?.value ?.equals (new X3D .MFBool (true, false, true))) .toBe (true);
    expect (node .metadata ?.value [3] ?.value ?.equals (new X3D .MFInt32 (2,1,3,1,2, 2,1,3,1,2))) .toBe (true);
-   expect (node .metadata ?.value [4] ?.value ?.equals (new X3D .MFInt32 (1,2,3, 1,2,3))) .toBe (true);
+   expect (node .metadata ?.value [4] ?.value ?.equals (new X3D .MFFloat (1,2,3, 1,2,3))) .toBe (true);
 
    let f;
 
