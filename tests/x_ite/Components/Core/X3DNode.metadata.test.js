@@ -243,20 +243,32 @@ test ("get/set/removeMetaData fields", () =>
 {
    const node = Browser .currentScene .createNode ("WorldInfo");
 
-   node .getValue () .setMetaData ("Sunrize/Test/SFImage", new X3D .SFImage (2,1,3, new X3D .MFInt32 (1,2)));
-   node .getValue () .setMetaData ("Sunrize/Test/SFVec3f", new X3D .SFVec3f (1,2,3));
-   node .getValue () .setMetaData ("Sunrize/Test/MFBool",  new X3D .MFBool (true, false, true));
+   const
+      img = new X3D .SFImage (2,1,3, new X3D .MFInt32 (1,2)),
+      vec = new X3D .SFVec3f (1,2,3);
 
-   expect (node .metadata ?.value [0] ?.value [0] ?.value ?.equals (new X3D .MFInt32 (2,1,3,1,2))) .toBe (true);
-   expect (node .metadata ?.value [0] ?.value [1] ?.value ?.equals (new X3D .MFInt32 (1,2,3))) .toBe (true);
-   expect (node .metadata ?.value [0] ?.value [2] ?.value ?.equals (new X3D .MFBool (true, false, true))) .toBe (true);
+   node .getValue () .setMetaData ("Sunrize/SFImage", img);
+   node .getValue () .setMetaData ("Sunrize/SFVec3f", vec);
+   node .getValue () .setMetaData ("Sunrize/MFBool",  new X3D .MFBool (true, false, true));
+   node .getValue () .setMetaData ("Sunrize/MFImage", new X3D .MFImage (img, img));
+   node .getValue () .setMetaData ("Sunrize/MFVec3f", new X3D .MFVec3f (vec, vec));
+
+   expect (node .metadata ?.value [0] ?.value ?.equals (new X3D .MFInt32 (2,1,3,1,2))) .toBe (true);
+   expect (node .metadata ?.value [1] ?.value ?.equals (new X3D .MFInt32 (1,2,3))) .toBe (true);
+   expect (node .metadata ?.value [2] ?.value ?.equals (new X3D .MFBool (true, false, true))) .toBe (true);
+   expect (node .metadata ?.value [3] ?.value ?.equals (new X3D .MFInt32 (2,1,3,1,2, 2,1,3,1,2))) .toBe (true);
+   expect (node .metadata ?.value [4] ?.value ?.equals (new X3D .MFInt32 (1,2,3, 1,2,3))) .toBe (true);
 
    let f;
 
-   f = node .getValue () .getMetaData ("Sunrize/Test/SFImage", new X3D .SFImage ());
-   expect (f .equals (new X3D .SFImage (2,1,3, new X3D .MFInt32 (1,2)))) .toBe (true);
-   f = node .getValue () .getMetaData ("Sunrize/Test/SFVec3f", new X3D .SFVec3f ());
-   expect (f .equals (new X3D .SFVec3f (1,2,3))) .toBe (true);
-   f = node .getValue () .getMetaData ("Sunrize/Test/MFBool", new X3D .MFBool ());
+   f = node .getValue () .getMetaData ("Sunrize/SFImage", new X3D .SFImage ());
+   expect (f .equals (img)) .toBe (true);
+   f = node .getValue () .getMetaData ("Sunrize/SFVec3f", new X3D .SFVec3f ());
+   expect (f .equals (vec)) .toBe (true);
+   f = node .getValue () .getMetaData ("Sunrize/MFBool", new X3D .MFBool ());
    expect (f .equals (new X3D .MFBool (true, false, true))) .toBe (true);
+   f = node .getValue () .getMetaData ("Sunrize/MFImage", new X3D .MFImage ());
+   expect (f .equals (new X3D .MFImage (img, img))) .toBe (true);
+   f = node .getValue () .getMetaData ("Sunrize/MFVec3f", new X3D .MFVec3f ());
+   expect (f .equals (new X3D .MFVec3f (vec, vec))) .toBe (true);
 });
