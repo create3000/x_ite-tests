@@ -589,3 +589,20 @@ test ("unshift", () =>
       expect (a .at (-(i + 1))) .toBe (v)
    }
 })
+
+test ("enumerate", () =>
+{
+   const properties = [
+      0,1,2
+   ]
+
+   enumerate (properties, new MFString ("a", "b", "c"))
+})
+
+test ("enumerate single", () =>
+{
+   const properties = [
+   ]
+
+   enumerate (properties, new MFString () [0])
+})
