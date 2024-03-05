@@ -4,7 +4,7 @@ const
    canvas  = X3D .createBrowser (),
    Browser = canvas .browser;
 
-test ("get/setMetaData", () =>
+test ("get/set/removeMetaData basic types", () =>
 {
    const node = Browser .currentScene .createNode ("WorldInfo");
 
@@ -209,4 +209,22 @@ test ("get/setMetaData", () =>
    node .getValue () .removeMetaData ("Sunrize/Test/strings");
 
    expect (node .metadata) .toBe (null);
+});
+
+test ("get/set/removeMetaData fields", () =>
+{
+   const node = Browser .currentScene .createNode ("WorldInfo");
+
+   node .getValue () .setMetaData ("Sunrize/Test/SFImage", new X3D .SFImage (2,1,3, new X3D .MFInt32 (1,2)));
+   node .getValue () .setMetaData ("Sunrize/Test/SFVec3f", new X3D .SFVec3f (1,2,3));
+
+   expect (node .metadata ?.value [0] ?.value [0] ?.value ?.equals (new X3D .MFInt32 (2,1,3,1,2))) .toBe (true);
+   expect (node .metadata ?.value [0] ?.value [1] ?.value ?.equals (new X3D .MFInt32 (1,2,3))) .toBe (true);
+
+   let f;
+
+   f = node .getValue () .getMetaData ("Sunrize/Test/SFImage", new X3D .SFImage ());
+   expect (f .equals (new X3D .SFImage (2,1,3, new X3D .MFInt32 (1,2)))) .toBe (true);
+   f = node .getValue () .getMetaData ("Sunrize/Test/SFVec3f", new X3D .SFVec3f ());
+   expect (f .equals (new X3D .SFVec3f (1,2,3))) .toBe (true);
 });
