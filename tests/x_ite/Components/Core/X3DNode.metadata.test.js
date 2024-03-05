@@ -25,6 +25,8 @@ test ("get/setMetaData", () =>
    expect (node .metadata .value) .toHaveLength (1);
    expect (node .metadata .value [0] .name) .toBe ("Test");
    expect (node .metadata .value [0] .value) .toHaveLength (2);
+   expect (node .metadata .value [0] .value [0] .name) .toBe ("boolean");
+   expect (node .metadata .value [0] .value [0] .value .equals (new X3D .MFBool (true))) .toBe (true);
    expect (node .metadata .value [0] .value [1] .name) .toBe ("double");
    expect (node .metadata .value [0] .value [1] .value .equals (new X3D .MFDouble (123.456))) .toBe (true);
 
