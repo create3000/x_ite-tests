@@ -40,7 +40,7 @@ test ("constructor", () =>
    expect (v3 .array [4]) .toBe (0)
    expect (v3 .array [5]) .toBe (0)
 
-   const v4 = v2 .copy ()
+   const v4 = new SFImage (... v2)
 
    expect (v4 .equals (v2)) .toBe (true)
    expect (v4 .array) .not .toBe (v2 .array)
