@@ -209,6 +209,34 @@ test ("get/set/removeMetaData basic types", () =>
    node .getValue () .removeMetaData ("Sunrize/Test/strings");
 
    expect (node .metadata) .toBe (null);
+
+   // Override
+
+   node .getValue () .setMetaData ("Sunrize/Test/override", true);
+
+   expect (node .metadata) .toBeInstanceOf (X3D .SFNode);
+   expect (node .metadata .name) .toBe ("Sunrize");
+   expect (node .metadata .value) .toHaveLength (1);
+   expect (node .metadata .value [0] .name) .toBe ("Test");
+   expect (node .metadata .value [0] .value) .toHaveLength (1);
+   expect (node .metadata .value [0] .value [0] .name) .toBe ("override");
+   expect (node .metadata .value [0] .value [0] .value .equals (new X3D .MFBool (true))) .toBe (true);
+
+   node .getValue () .setMetaData ("Sunrize/Test/override", 123);
+
+   expect (node .metadata) .toBeInstanceOf (X3D .SFNode);
+   expect (node .metadata .name) .toBe ("Sunrize");
+   expect (node .metadata .value) .toHaveLength (1);
+   expect (node .metadata .value [0] .name) .toBe ("Test");
+   expect (node .metadata .value [0] .value) .toHaveLength (1);
+   expect (node .metadata .value [0] .value [0] .name) .toBe ("override");
+   expect (node .metadata .value [0] .value [0] .value .equals (new X3D .MFInt32 (123))) .toBe (true);
+
+   // Remove
+
+   node .getValue () .removeMetaData ("Sunrize/Test");
+
+   expect (node .metadata) .toBe (null);
 });
 
 test ("get/set/removeMetaData fields", () =>
