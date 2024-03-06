@@ -273,7 +273,7 @@ test ("get/set/removeMetaData fields", () =>
    expect (f .equals (true)) .toBe (true);
    f = node .getValue () .getMetaData ("Sunrize/SFFloat", new X3D .SFFloat (123));
    expect (f .equals (123)) .toBe (true);
-   f = node .getValue () .getMetaData ("Sunrize/SFImage", new X3D .SFImage (... img));
+   f = node .getValue () .getMetaData ("Sunrize/SFImage", img .copy ());
    expect (f .equals (img)) .toBe (true);
    f = node .getValue () .getMetaData ("Sunrize/SFString", new X3D .SFString ("abc"));
    expect (f .equals ("abc")) .toBe (true);

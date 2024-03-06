@@ -40,12 +40,12 @@ test ("constructor", () =>
    expect (v3 .array [4]) .toBe (0)
    expect (v3 .array [5]) .toBe (0)
 
-   const v4 = new SFImage (... v2)
+   const v4 = [... v2];
 
-   expect (v4 .equals (v2)) .toBe (true)
-   expect (v4 .array) .not .toBe (v2 .array)
-   expect (v4 .array .getValue ()) .not .toBe (v2 .array .getValue ())
-   expect (v4 .array .equals (v2 .array)) .toBe (true)
+   expect (v4 [0]) .toBe (v2 .width);
+   expect (v4 [1]) .toBe (v2 .height);
+   expect (v4 [2]) .toBe (v2 .comp);
+   expect (v4 .slice (3)) .toEqual ([... v2 .array]);
 
    const v5 = new SFImage (1,2,3)
 
