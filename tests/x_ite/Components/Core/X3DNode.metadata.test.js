@@ -237,6 +237,25 @@ test ("get/set/removeMetaData basic types", () =>
    node .getValue () .removeMetaData ("Sunrize/Test");
 
    expect (node .metadata) .toBe (null);
+
+   // Set and remove
+
+   node .getValue () .setMetaData ("Sunrize/Test/foo", 123);
+   node .getValue () .setMetaData ("Sunrize/foo", 234);
+
+   node .getValue () .removeMetaData ("Sunrize/Test/bah");
+
+   expect (node .metadata ?.value) .toHaveLength (2);
+   expect (node .metadata ?.value [0] ?.value) .toHaveLength (1);
+
+   node .getValue () .removeMetaData ("Sunrize/foo");
+
+   expect (node .metadata ?.value) .toHaveLength (1);
+   expect (node .metadata ?.value [0] ?.value) .toHaveLength (1);
+
+   node .getValue () .removeMetaData ("Sunrize/Test/foo");
+
+   expect (node .metadata) .toBe (null);
 });
 
 test ("get/set/removeMetaData fields", () =>
