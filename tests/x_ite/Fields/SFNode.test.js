@@ -91,6 +91,18 @@ test ("properties", () =>
    ]
 
    enumerate (properties, node)
+
+   expect (() => node .foo) .not .toThrow (Error)
+   expect (() => node .foo = 123) .not .toThrow (Error)
+})
+
+test ("getFieldDefinition", () =>
+{
+   expect (node .getFieldDefinition ("metadata") .name) .toBe ("metadata")
+   expect (node .getFieldDefinition ("title") .name) .toBe ("title")
+   expect (node .getFieldDefinition ("info") .name) .toBe ("info")
+
+   expect (() => node .getFieldDefinition ("foo")) .toThrow (Error)
 })
 
 test ("getFieldDefinitions", () =>
@@ -102,6 +114,15 @@ test ("getFieldDefinitions", () =>
    expect (fieldDefinitions [0] .name) .toBe ("metadata")
    expect (fieldDefinitions [1] .name) .toBe ("title")
    expect (fieldDefinitions [2] .name) .toBe ("info")
+})
+
+test ("getField", () =>
+{
+   expect (node .getField ("metadata") .getName ()) .toBe ("metadata")
+   expect (node .getField ("title") .getName ()) .toBe ("title")
+   expect (node .getField ("info") .getName ()) .toBe ("info")
+
+   expect (() => node .getField ("foo")) .toThrow (Error)
 })
 
 test ("toString", () =>
