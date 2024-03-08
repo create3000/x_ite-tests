@@ -249,4 +249,7 @@ test ("metadata", () =>
 
    scene .removeMetaData ("bah");
    expect (scene .getMetaDatas () .size) .toBe (0);
+
+   expect (scene .getMetaData ("foo")) .toBe (undefined);
+   expect (scene .getMetaData ("bah")) .toBe (undefined);
 });
