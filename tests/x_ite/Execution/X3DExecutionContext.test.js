@@ -876,7 +876,7 @@ DEF T4 Transform { }
    expect (scene .routes [0] .destinationField) .toBe ("set_translation");
 
    const route_t2t3_1 = scene .addRoute (t2, "translation_changed", t3, "set_translation");
-;
+
    expect (scene .routes) .toHaveLength (2);
    expect (scene .routes [1] .sourceNode) .toBe (t2);
    expect (scene .routes [1] .sourceField) .toBe ("translation_changed");
