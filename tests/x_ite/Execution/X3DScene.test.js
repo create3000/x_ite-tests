@@ -261,11 +261,24 @@ test ("metadata", () =>
    scene .setMetaData ("bah", ["bah1", "bah2"])
    expect (scene .getMetaDatas () .size) .toBe (2);
    expect (scene .getMetaData ("bah")) .toHaveLength (2);
-   expect (scene .getMetaData ("bah")) .toEqual (["bah1", "bah2"])
+   expect (scene .getMetaData ("bah")) .toEqual (["bah1", "bah2"]);
 
    scene .removeMetaData ("foo");
    expect (scene .getMetaDatas () .size) .toBe (1);
 
    scene .removeMetaData ("bah");
+   expect (scene .getMetaDatas () .size) .toBe (0);
+
+   scene .setMetaData ("foo", [123, true])
+   expect (scene .getMetaDatas () .size) .toBe (1);
+   expect (scene .getMetaData ("foo")) .toHaveLength (2);
+   expect (scene .getMetaData ("foo")) .toEqual (["123", "true"]);
+
+   scene .setMetaData ("foo", 123.456)
+   expect (scene .getMetaDatas () .size) .toBe (1);
+   expect (scene .getMetaData ("foo")) .toHaveLength (1);
+   expect (scene .getMetaData ("foo")) .toEqual (["123.456"]);
+
+   scene .removeMetaData ("foo");
    expect (scene .getMetaDatas () .size) .toBe (0);
 });
