@@ -68,6 +68,7 @@ test ("copy", () =>
 
    expect (v2) .not .toBe (v1)
    expect (v2 .equals (v1)) .toBe (true)
+   expect (v2 .equals (2)) .toBe (true)
 })
 
 test ("equals", () =>
