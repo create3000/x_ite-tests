@@ -1,10 +1,11 @@
-const X3D = require ("../../X3D")
+const
+   X3D     = require ("../../X3D"),
+   canvas  = X3D .createBrowser (),
+   Browser = canvas .browser;
 
 test ("properties1", () =>
 {
    const
-      canvas  = X3D .createBrowser (),
-      Browser = canvas .browser,
       profile = Browser .getProfile ("Full"),
       scene   = Browser .createScene (profile)
 
@@ -41,10 +42,8 @@ test ("properties1", () =>
 test ("properties2", () =>
 {
    const
-      canvas  = X3D .createBrowser (),
-      Browser = canvas .browser,
-      scene   = Browser .createScene (),
-      nodes   = new X3D .MFNode (scene .createNode ("WorldInfo"))
+      scene = Browser .createScene (),
+      nodes = new X3D .MFNode (scene .createNode ("WorldInfo"))
 
    const
       specificationVersion = scene .specificationVersion,
@@ -130,10 +129,7 @@ test ("properties2", () =>
 
 test ("updateUnit", () =>
 {
-   const
-      canvas  = X3D .createBrowser (),
-      Browser = canvas .browser,
-      scene   = Browser .createScene ()
+   const scene = Browser .createScene ()
 
    let angle = scene .getUnit ("angle")
 
@@ -204,3 +200,53 @@ test ("updateUnit", () =>
    expect (mass .conversionFactor) .toBeCloseTo (456.789)
    expect (mass .conversion_factor) .toBeCloseTo (456.789)
 })
+
+test ("metadata", () =>
+{
+   const scene = Browser .createScene (Browser .getProfile ("Interchange"));
+
+   expect (scene .getMetaDatas () .size) .toBe (0);
+
+   scene .addMetaData ("foo", "foo1")
+   expect (scene .getMetaDatas () .size) .toBe (1);
+   expect (scene .getMetaData ("foo")) .toHaveLength (1);
+   expect (scene .getMetaData ("foo")) .toEqual (["foo1"])
+
+   scene .addMetaData ("foo", "foo2")
+   expect (scene .getMetaDatas () .size) .toBe (1);
+   expect (scene .getMetaData ("foo")) .toHaveLength (2);
+   expect (scene .getMetaData ("foo")) .toEqual (["foo1", "foo2"])
+
+   expect (scene .getMetaDatas ()) .not .toBe (scene .getMetaDatas ());
+   expect (scene .getMetaDatas () .get ("foo")) .not .toBe (scene .getMetaDatas () .get ("foo"));
+   expect (scene .getMetaData ("foo")) .not .toBe (scene .getMetaData ("foo"));
+
+   scene .removeMetaData ("foo");
+   expect (scene .getMetaDatas () .size) .toBe (0);
+
+   scene .setMetaData ("foo", "foo1")
+   expect (scene .getMetaDatas () .size) .toBe (1);
+   expect (scene .getMetaData ("foo")) .toHaveLength (1);
+   expect (scene .getMetaData ("foo")) .toEqual (["foo1"])
+
+   scene .setMetaData ("bah", "bah1")
+   expect (scene .getMetaDatas () .size) .toBe (2);
+   expect (scene .getMetaData ("bah")) .toHaveLength (1);
+   expect (scene .getMetaData ("bah")) .toEqual (["bah1"])
+
+   scene .addMetaData ("foo", "foo2")
+   expect (scene .getMetaDatas () .size) .toBe (2);
+   expect (scene .getMetaData ("foo")) .toHaveLength (2);
+   expect (scene .getMetaData ("foo")) .toEqual (["foo1", "foo2"])
+
+   scene .setMetaData ("foo", "foo1")
+   expect (scene .getMetaDatas () .size) .toBe (2);
+   expect (scene .getMetaData ("foo")) .toHaveLength (1);
+   expect (scene .getMetaData ("foo")) .toEqual (["foo1"])
+
+   scene .removeMetaData ("foo");
+   expect (scene .getMetaDatas () .size) .toBe (1);
+
+   scene .removeMetaData ("bah");
+   expect (scene .getMetaDatas () .size) .toBe (0);
+});
