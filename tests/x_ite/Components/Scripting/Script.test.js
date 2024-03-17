@@ -150,7 +150,7 @@ function set_nodes (nodes, time)
 
    const nodes = await new Promise ((resolve, reject) => load (resolve, reject));
 
-   expect (nodes) .toBe (script .getField ("nodes"));
+   expect (nodes) .not .toBe (script .getField ("nodes"));
    expect (nodes) .toHaveLength (3);
    expect (nodes [0] .getNodeTypeName ()) .toBe ("Transform");
    expect (nodes [1] .getNodeTypeName ()) .toBe ("Shape");
