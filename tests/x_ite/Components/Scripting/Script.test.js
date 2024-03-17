@@ -1,52 +1,45 @@
 const
    X3D    = require ("../../../X3D"),
-   Fields = X3D .require ("x_ite/Fields")
+   Fields = X3D .require ("x_ite/Fields");
 
 const
    canvas  = X3D .createBrowser (),
-   browser = canvas .browser // Must be lowercase
+   browser = canvas .browser; // Must be lowercase
 
 test ("environment", async () =>
 {
-   try
-   {
-      await browser .loadComponents (browser .getComponent ("Scripting"))
+   await browser .loadComponents (browser .getComponent ("Scripting"));
 
-      const scene = await browser .createX3DFromString (`
+   const scene = await browser .createX3DFromString (`
 PROFILE Interchange
 COMPONENT Scripting:1
 DEF Script Script {
-   url "ecmascript:"
+url "ecmascript:"
 }
-      `)
+   `);
 
-      const script = scene .getNamedNode ("Script") .getValue ()
+   const script = scene .getNamedNode ("Script") .getValue ();
 
-      expect (script .evaluate ("arguments")) .toHaveLength (0)
-      expect (script .evaluate ("0 in arguments")) .toBe (false)
-      expect (script .evaluate ("1 in arguments")) .toBe (false)
+   expect (script .getExecutionContext ()) .toBe (scene);
+   expect (script .evaluate ("arguments")) .toHaveLength (0);
+   expect (script .evaluate ("0 in arguments")) .toBe (false);
+   expect (script .evaluate ("1 in arguments")) .toBe (false);
 
-      expect (script .evaluate ("TRUE"))  .toBe (true)
-      expect (script .evaluate ("FALSE")) .toBe (false)
-      expect (script .evaluate ("NULL"))  .toBe (null)
+   expect (script .evaluate ("TRUE"))  .toBe (true);
+   expect (script .evaluate ("FALSE")) .toBe (false);
+   expect (script .evaluate ("NULL"))  .toBe (null);
 
-      expect (script .evaluate ("print")) .toBeInstanceOf (Function)
-      expect (script .evaluate ("trace")) .toBeInstanceOf (Function)
+   expect (script .evaluate ("print")) .toBeInstanceOf (Function);
+   expect (script .evaluate ("trace")) .toBeInstanceOf (Function);
 
-      expect (script .evaluate ("Browser")) .toBe (browser)
-      expect (script .evaluate ("Browser .currentScene")) .toBe (scene)
-   }
-   catch (error)
-   {
-      throw new Error (error .message)
-   }
-})
+   expect (script .evaluate ("Browser")) .toBeInstanceOf (X3D .X3DBrowser);
+   expect (script .evaluate ("Browser .currentScene")) .toBe (scene);
+});
 
 test ("SFNode", async () =>
 {
-   try
    {
-      await browser .loadComponents (browser .getComponent ("Scripting"))
+      await browser .loadComponents (browser .getComponent ("Scripting"));
 
       const scene = await browser .createX3DFromString (`#VRML V2.0 utf8
 PROFILE Interchange
@@ -54,25 +47,19 @@ COMPONENT Scripting:1
 DEF Script Script {
    url "ecmascript:"
 }
-      `)
+      `);
 
-      const script = scene .getNamedNode ("Script") .getValue ()
+      const script = scene .getNamedNode ("Script") .getValue ();
 
-      expect (script .evaluate ("SFNode")) .not .toBe (X3D .SFNode)
-      expect (script .evaluate ("new SFNode ('Transform { }')")) .toBeInstanceOf (script .evaluate ("SFNode"))
-      expect (script .evaluate ("new SFNode ('Transform { }')")) .toBeInstanceOf (X3D .SFNode)
-      expect (script .evaluate ("new SFNode ('Transform { }')") .getNodeTypeName ()) .toBe ("Transform")
-      expect (() => script .evaluate ("new SFNode ('NULL')")) .toThrow (Error)
-      expect (browser .getScriptStack ()) .toHaveLength (1)
-   }
-   catch (error)
-   {
-      throw new Error (error .message)
+      expect (script .evaluate ("SFNode")) .not .toBe (X3D .SFNode);
+      expect (script .evaluate ("new SFNode ('Transform { }')")) .toBeInstanceOf (script .evaluate ("SFNode"));
+      expect (script .evaluate ("new SFNode ('Transform { }')")) .toBeInstanceOf (X3D .SFNode);
+      expect (script .evaluate ("new SFNode ('Transform { }')") .getNodeTypeName ()) .toBe ("Transform");
+      expect (() => script .evaluate ("new SFNode ('NULL')")) .toThrow (Error);
    }
 
-   try
    {
-      await browser .loadComponents (browser .getComponent ("Scripting"))
+      await browser .loadComponents (browser .getComponent ("Scripting"));
 
       const scene = await browser .createX3DFromString (`
 PROFILE Interchange
@@ -80,26 +67,21 @@ COMPONENT Scripting:1
 DEF Script Script {
    url "ecmascript:"
 }
-      `)
+      `);
 
-      const script = scene .getNamedNode ("Script") .getValue ()
+      const script = scene .getNamedNode ("Script") .getValue ();
 
-      expect (script .evaluate ("SFNode")) .not .toBe (X3D .SFNode)
-      expect (script .evaluate ("new SFNode ('Transform { }')")) .toBeInstanceOf (script .evaluate ("SFNode"))
-      expect (script .evaluate ("new SFNode ('Transform { }')")) .toBeInstanceOf (X3D .SFNode)
-      expect (script .evaluate ("new SFNode ('Transform { }')") .getNodeTypeName ()) .toBe ("Transform")
-      expect (() => script .evaluate ("new SFNode ('NULL')")) .toThrow (Error)
-      expect (browser .getScriptStack ()) .toHaveLength (1)
+      expect (script .evaluate ("SFNode")) .not .toBe (X3D .SFNode);
+      expect (script .evaluate ("new SFNode ('Transform { }')")) .toBeInstanceOf (script .evaluate ("SFNode"));
+      expect (script .evaluate ("new SFNode ('Transform { }')")) .toBeInstanceOf (X3D .SFNode);
+      expect (script .evaluate ("new SFNode ('Transform { }')") .getNodeTypeName ()) .toBe ("Transform");
+      expect (() => script .evaluate ("new SFNode ('NULL')")) .toThrow (Error);
    }
-   catch (error)
-   {
-      throw new Error (error .message)
-   }
-})
+});
 
 test ("fields", async () =>
 {
-   await browser .loadComponents (browser .getComponent ("Scripting"))
+   await browser .loadComponents (browser .getComponent ("Scripting"));
 
    const scene = await browser .createX3DFromString (`
 PROFILE Interchange
@@ -116,19 +98,19 @@ DEF Script Script {
 
    url "ecmascript:"
 }
-   `)
+   `);
 
-   const script = scene .getNamedNode ("Script") .getValue ()
+   const script = scene .getNamedNode ("Script") .getValue ();
 
-   expect (script .evaluate ("double1")) .toBe (0)
-   expect (script .evaluate ("vector1")) .toBeInstanceOf (Fields .SFVec3f)
-   expect (script .evaluate ("typeof double2")) .toBe ("undefined")
-   expect (script .evaluate ("typeof vector2")) .toBe ("undefined")
-   expect (script .evaluate ("double3")) .toBe (0)
-   expect (script .evaluate ("vector3")) .toBeInstanceOf (Fields .SFVec3f)
-   expect (script .evaluate ("double4")) .toBe (0)
-   expect (script .evaluate ("vector4")) .toBeInstanceOf (Fields .SFVec3f)
-})
+   expect (script .evaluate ("double1")) .toBe (0);
+   expect (script .evaluate ("vector1")) .toBeInstanceOf (Fields .SFVec3f);
+   expect (script .evaluate ("typeof double2")) .toBe ("undefined");
+   expect (script .evaluate ("typeof vector2")) .toBe ("undefined");
+   expect (script .evaluate ("double3")) .toBe (0);
+   expect (script .evaluate ("vector3")) .toBeInstanceOf (Fields .SFVec3f);
+   expect (script .evaluate ("double4")) .toBe (0);
+   expect (script .evaluate ("vector4")) .toBeInstanceOf (Fields .SFVec3f);
+});
 
 test ("createVrmlFromURL", async () =>
 {
@@ -160,35 +142,33 @@ function set_nodes (nodes, time)
 }
    "
 }
-   `)
+   `);
 
    const
       script = scene .getNamedNode ("Script") .getValue (),
-      load   = script .evaluate ("load")
+      load   = script .evaluate ("load");
 
-   browser .getScriptStack () .push (script);
-   const nodes = await new Promise ((resolve, reject) => load (resolve, reject))
-   browser .getScriptStack () .pop ();
+   const nodes = await new Promise ((resolve, reject) => load (resolve, reject));
 
-   expect (nodes) .toBe (script .getField ("nodes"))
-   expect (nodes) .toHaveLength (3)
-   expect (nodes [0] .getNodeTypeName ()) .toBe ("Transform")
-   expect (nodes [1] .getNodeTypeName ()) .toBe ("Shape")
-   expect (nodes [2] .getNodeTypeName ()) .toBe ("Box")
-})
+   expect (nodes) .toBe (script .getField ("nodes"));
+   expect (nodes) .toHaveLength (3);
+   expect (nodes [0] .getNodeTypeName ()) .toBe ("Transform");
+   expect (nodes [1] .getNodeTypeName ()) .toBe ("Shape");
+   expect (nodes [2] .getNodeTypeName ()) .toBe ("Box");
+});
 
 test ("this", async () =>
 {
    try
    {
-      await browser .loadComponents (browser .getComponent ("Scripting"))
+      await browser .loadComponents (browser .getComponent ("Scripting"));
 
-      const script = browser .currentScene .createNode ("Script")
+      const script = browser .currentScene .createNode ("Script");
 
-      expect (script .getValue () .evaluate ("this")) .toBe (script)
+      expect (script .getValue () .evaluate ("this")) .toBe (script);
    }
    catch (error)
    {
-      throw new Error (error .message)
+      throw new Error (error .message);
    }
-})
+});
