@@ -12,9 +12,8 @@ AudioDestination number of fields differ (Spec <=> X3DUOM): 8 <=> 11.
   Where [channelCount,maxChannelCount,mediaDeviceID] not in Spec.
 BiquadFilter number of fields differ (Spec <=> X3DUOM): 19 <=> 20.
   Where [channelCount] not in Spec.
-BufferAudioSource number of fields differ (Spec <=> X3DUOM): 27 <=> 29.
-  Where [bufferLength] not in X3DUOM.
-  Where [bufferlength,channelCount,length] not in Spec.
+BufferAudioSource number of fields differ (Spec <=> X3DUOM): 25 <=> 29.
+  Where [bufferDuration,bufferlength,channelCount,length] not in Spec.
 ChannelMerger number of fields differ (Spec <=> X3DUOM): 7 <=> 8.
   Where [channelCount] not in Spec.
 ChannelSelector number of fields differ (Spec <=> X3DUOM): 8 <=> 9.
