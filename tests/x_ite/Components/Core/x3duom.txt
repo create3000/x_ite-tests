@@ -8,8 +8,8 @@ Field 'name' in node Matrix3VertexAttribute has different type (Spec <=> X3DUOM)
 Field 'name' in node Matrix4VertexAttribute has different type (Spec <=> X3DUOM): SFString !== xs:NMTOKEN.
 Analyser number of fields differ (Spec <=> X3DUOM): 19 <=> 21.
   Where [channelCount,frequencyBinCount] not in Spec.
-AudioDestination number of fields differ (Spec <=> X3DUOM): 8 <=> 11.
-  Where [channelCount,maxChannelCount,mediaDeviceID] not in Spec.
+AudioDestination number of fields differ (Spec <=> X3DUOM): 9 <=> 11.
+  Where [channelCount,maxChannelCount] not in Spec.
 BiquadFilter number of fields differ (Spec <=> X3DUOM): 19 <=> 20.
   Where [channelCount] not in Spec.
 BufferAudioSource number of fields differ (Spec <=> X3DUOM): 25 <=> 29.
@@ -28,6 +28,8 @@ DynamicsCompressor number of fields differ (Spec <=> X3DUOM): 21 <=> 22.
   Where [channelCount] not in Spec.
 Gain number of fields differ (Spec <=> X3DUOM): 15 <=> 16.
   Where [channelCount] not in Spec.
+ListenerPointSource number of fields differ (Spec <=> X3DUOM): 8 <=> 16.
+  Where [elapsedTime,gain,isActive,isPaused,pauseTime,resumeTime,startTime,stopTime] not in Spec.
 OscillatorSource number of fields differ (Spec <=> X3DUOM): 14 <=> 13.
   Where [periodicWave] not in X3DUOM.
 Sound number of fields differ (Spec <=> X3DUOM): 14 <=> 13.
