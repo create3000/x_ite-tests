@@ -34,8 +34,8 @@ OscillatorSource number of fields differ (Spec <=> X3DUOM): 14 <=> 13.
   Where [periodicWave] not in X3DUOM.
 Sound number of fields differ (Spec <=> X3DUOM): 14 <=> 13.
   Where [children] not in X3DUOM.
-StreamAudioDestination number of fields differ (Spec <=> X3DUOM): 9 <=> 11.
-  Where [channelCount,streamIdentifier] not in Spec.
+StreamAudioDestination number of fields differ (Spec <=> X3DUOM): 10 <=> 11.
+  Where [channelCount] not in Spec.
 StreamAudioSource number of fields differ (Spec <=> X3DUOM): 12 <=> 14.
   Where [channelCountMode,channelInterpretation] not in Spec.
 Unknown field 'curve' of node WaveShaper in X3DUOM.
