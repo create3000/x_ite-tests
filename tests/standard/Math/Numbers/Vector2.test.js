@@ -4,6 +4,16 @@ const
 
 test ("constructor", () =>
 {
+   const v0 = new Vector2 ()
+
+   expect (v0) .toEqual ({ x:0, y:0 })
+   expect (v0 [0]) .toBe (0)
+   expect (v0 [1]) .toBe (0)
+   expect (v0 .x) .toBe (0)
+   expect (v0 .y) .toBe (0)
+   expect ([... v0]) .toEqual ([ 0, 0 ])
+   expect (v0) .toHaveLength (2)
+
    const v1 = new Vector2 (0, 0)
 
    expect (v1) .toEqual ({ x:0, y:0 })

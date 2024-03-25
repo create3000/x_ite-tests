@@ -5,21 +5,37 @@ const
 
 test ("constructor", () =>
 {
-   const q = new Quaternion (1, 2, 3, 4)
+   const q0 = new Quaternion ()
 
-   expect (q .x) .toBe (1)
-   expect (q .y) .toBe (2)
-   expect (q .z) .toBe (3)
-   expect (q .w) .toBe (4)
+   expect (q0 .x) .toBe (0)
+   expect (q0 .y) .toBe (0)
+   expect (q0 .z) .toBe (0)
+   expect (q0 .w) .toBe (1)
 
-   expect (q [0]) .toBe (1)
-   expect (q [1]) .toBe (2)
-   expect (q [2]) .toBe (3)
-   expect (q [3]) .toBe (4)
+   expect (q0 [0]) .toBe (0)
+   expect (q0 [1]) .toBe (0)
+   expect (q0 [2]) .toBe (0)
+   expect (q0 [3]) .toBe (1)
 
-   expect (q) .toHaveLength (4)
+   expect (q0) .toHaveLength (4)
 
-   expect ([... q]) .toEqual ([1,2,3,4])
+   expect ([... q0]) .toEqual ([0,0,0,1])
+
+   const q1 = new Quaternion (1, 2, 3, 4)
+
+   expect (q1 .x) .toBe (1)
+   expect (q1 .y) .toBe (2)
+   expect (q1 .z) .toBe (3)
+   expect (q1 .w) .toBe (4)
+
+   expect (q1 [0]) .toBe (1)
+   expect (q1 [1]) .toBe (2)
+   expect (q1 [2]) .toBe (3)
+   expect (q1 [3]) .toBe (4)
+
+   expect (q1) .toHaveLength (4)
+
+   expect ([... q1]) .toEqual ([1,2,3,4])
 })
 
 test ("copy", () =>

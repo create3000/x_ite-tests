@@ -4,6 +4,18 @@ const
 
 test ("constructor", () =>
 {
+   const v0 = new Vector3 ()
+
+   expect (v0) .toEqual ({ x:0, y:0, z:0 })
+   expect (v0 [0]) .toBe (0)
+   expect (v0 [1]) .toBe (0)
+   expect (v0 [2]) .toBe (0)
+   expect (v0 .x) .toBe (0)
+   expect (v0 .y) .toBe (0)
+   expect (v0 .z) .toBe (0)
+   expect ([... v0]) .toEqual ([ 0, 0, 0 ])
+   expect (v0) .toHaveLength (3)
+
    const v1 = new Vector3 (0, 0, 0)
 
    expect (v1) .toEqual ({ x:0, y:0, z:0 })

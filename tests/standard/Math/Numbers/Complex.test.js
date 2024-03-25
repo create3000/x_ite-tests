@@ -4,6 +4,15 @@ const
 
 test ("constructor", () =>
 {
+   const c0 = new Complex ()
+
+   expect (c0 .real) .toBe (0)
+   expect (c0 .imag) .toBe (0)
+   expect (c0 [0]) .toBe (0)
+   expect (c0 [1]) .toBe (0)
+   expect ([... c0]) .toEqual ([0,0])
+   expect (c0) .toHaveLength (2)
+
    const c1 = new Complex (1,2)
 
    expect (c1 .real) .toBe (1)

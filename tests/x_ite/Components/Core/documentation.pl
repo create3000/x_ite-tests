@@ -189,7 +189,7 @@ sub field {
    elsif ($type eq "MFColor")
    {
       return if $value eq "[ ]" && $codeValue eq "";
-      return if $value eq "0 0 0" && $codeValue eq "new Color3 (0, 0, 0)";
+      return if $value eq "0 0 0" && $codeValue eq "new Color3 ()";
    }
    elsif ($type eq "MFColorRGBA")
    {
@@ -251,8 +251,8 @@ sub field {
    elsif ($type =~ /^(?:MFVec3d|MFVec3f)$/o)
    {
       return if $value eq "[ ]" && $codeValue eq "";
-      return if $value eq "0 0 0" && $codeValue eq "new Vector3 (0, 0, 0)";
-      return if $value eq "[ 0 0 0, 0 1 0 ]" && $codeValue eq "new Vector3 (0, 0, 0), new Vector3 (0, 1, 0)";
+      return if $value eq "0 0 0" && $codeValue eq "new Vector3 ()";
+      return if $value eq "[ 0 0 0, 0 1 0 ]" && $codeValue eq "new Vector3 (), new Vector3 (0, 1, 0)";
    }
    elsif ($type =~ /^(?:MFVec4d|MFVec4f)$/o)
    {

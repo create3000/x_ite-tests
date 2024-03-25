@@ -5,6 +5,17 @@ const
 
 test ("constructor", () =>
 {
+   const c0 = new Color3 ()
+
+   expect (c0 .r) .toBe (0)
+   expect (c0 .g) .toBe (0)
+   expect (c0 .b) .toBe (0)
+   expect (c0 [0]) .toBe (0)
+   expect (c0 [1]) .toBe (0)
+   expect (c0 [2]) .toBe (0)
+   expect ([... c0]) .toEqual ([0, 0, 0])
+   expect (c0) .toHaveLength (3)
+
    const c1 = new Color3 (0, 0, 0)
 
    expect (c1 .r) .toBe (0)
