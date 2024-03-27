@@ -21,13 +21,14 @@ test ("statements.x3d", async () =>
       const
          x3d  = scene .toXMLString  ({ style: style }),
          x3dv = scene .toVRMLString ({ style: style }),
-         x3dj = scene .toJSONString ({ style: style })
+         x3dj = scene .toJSONString ({ style: style }),
+         html = scene .toXMLString ({ style: style, closingTags: true });
 
-      const encodings = ["XML", "XML", "VRML", "JSON"]
+      const encodings = ["XML", "XML", "VRML", "JSON", "XML"]
 
       Browser .baseURL = scene .worldURL
 
-      for (const [i, file] of [orig, x3d, x3dv, x3dj] .entries ())
+      for (const [i, file] of [orig, x3d, x3dv, x3dj, html] .entries ())
       {
          const scene = await Browser .createX3DFromURL (new X3D .MFString (`data:model/x3d,${file}`))
 
@@ -64,13 +65,14 @@ test ("fields.x3d", async () =>
       const
          x3d  = scene .toXMLString  ({ style: style }),
          x3dv = scene .toVRMLString ({ style: style }),
-         x3dj = scene .toJSONString ({ style: style })
+         x3dj = scene .toJSONString ({ style: style }),
+         html = scene .toXMLString ({ style: style, closingTags: true });
 
-      const encodings = ["XML", "XML", "VRML", "JSON"]
+      const encodings = ["XML", "XML", "VRML", "JSON", "XML"]
 
       Browser .baseURL = scene .worldURL
 
-      for (const [i, file] of [orig, x3d, x3dv, x3dj] .entries ())
+      for (const [i, file] of [orig, x3d, x3dv, x3dj, html] .entries ())
       {
          const scene = await Browser .createX3DFromURL (new X3D .MFString (`data:model/x3d,${file}`))
 
@@ -99,11 +101,13 @@ test ("nodes", async () =>
    const
       scene1 = await Browser .createX3DFromString (string),
       scene2 = await Browser .createX3DFromString (scene1 .toXMLString ()),
-      scene3 = await Browser .createX3DFromString (scene1 .toJSONString ())
+      scene3 = await Browser .createX3DFromString (scene1 .toJSONString ()),
+      scene4 = await Browser .createX3DFromString (scene1 .toXMLString ({ closingTags: true }))
 
    expect (scene1 .rootNodes) .toHaveLength (Browser .getConcreteNodes () .length)
    expect (scene2 .rootNodes) .toHaveLength (Browser .getConcreteNodes () .length)
    expect (scene3 .rootNodes) .toHaveLength (Browser .getConcreteNodes () .length)
+   expect (scene4 .rootNodes) .toHaveLength (Browser .getConcreteNodes () .length)
 
    for (const [i, node] of scene1 .rootNodes .entries ())
       expect (node .getNodeTypeName ()) .toBe (Browser .getConcreteNodes () [i] .typeName)
@@ -113,7 +117,10 @@ test ("nodes", async () =>
 
    for (const [i, node] of scene3 .rootNodes .entries ())
       expect (node .getNodeTypeName ()) .toBe (Browser .getConcreteNodes () [i] .typeName)
-})
+
+   for (const [i, node] of scene4 .rootNodes .entries ())
+      expect (node .getNodeTypeName ()) .toBe (Browser .getConcreteNodes () [i] .typeName)
+});
 
 test ("initializableReference.x3dv", async () =>
 {
@@ -122,11 +129,13 @@ test ("initializableReference.x3dv", async () =>
       scene = await Browser .createX3DFromString (orig),
       x3d   = await Browser .createX3DFromString (scene .toXMLString ()),
       x3dj  = await Browser .createX3DFromString (scene .toJSONString ()),
-      x3dv  = await Browser .createX3DFromString (scene .toVRMLString ())
+      x3dv  = await Browser .createX3DFromString (scene .toVRMLString ()),
+      html  = await Browser .createX3DFromString (scene .toXMLString ({ closingTags: true }));
 
-   expect (x3d  .toVRMLString ()) .toBe (orig)
-   expect (x3dj .toVRMLString ()) .toBe (orig)
-   expect (x3dv .toVRMLString ()) .toBe (orig)
+   expect (x3d  .toVRMLString ()) .toBe (orig);
+   expect (x3dj .toVRMLString ()) .toBe (orig);
+   expect (x3dv .toVRMLString ()) .toBe (orig);
+   expect (html .toVRMLString ()) .toBe (orig);
 })
 
 test ("doubleFields.x3d", async () =>
@@ -136,11 +145,13 @@ test ("doubleFields.x3d", async () =>
       scene = await Browser .createX3DFromString (orig),
       x3d   = await Browser .createX3DFromString (scene .toXMLString ()),
       x3dj  = await Browser .createX3DFromString (scene .toJSONString ()),
-      x3dv  = await Browser .createX3DFromString (scene .toVRMLString ())
+      x3dv  = await Browser .createX3DFromString (scene .toVRMLString ()),
+      html  = await Browser .createX3DFromString (scene .toXMLString ({ closingTags: true }));
 
-   expect (x3d  .toXMLString ()) .toBe (orig)
-   expect (x3dj .toXMLString ()) .toBe (orig)
-   expect (x3dv .toXMLString ()) .toBe (orig)
+   expect (x3d  .toXMLString ()) .toBe (orig);
+   expect (x3dj .toXMLString ()) .toBe (orig);
+   expect (x3dv .toXMLString ()) .toBe (orig);
+   expect (html .toXMLString ()) .toBe (orig);
 })
 
 test ("base64-with-bom", async () =>
@@ -175,9 +186,10 @@ test ("proto-import-routes.x3dv", async () =>
    const
       scene2 = await Browser .createX3DFromString (scene1 .toXMLString ()),
       scene3 = await Browser .createX3DFromString (scene1 .toVRMLString ()),
-      scene4 = await Browser .createX3DFromString (scene1 .toJSONString ());
+      scene4 = await Browser .createX3DFromString (scene1 .toJSONString ()),
+      scene5 = await Browser .createX3DFromString (scene1 .toXMLString ({ closingTags: true }));
 
-   for (const scene of [scene1, scene2, scene3, scene4])
+   for (const scene of [scene1, scene2, scene3, scene4, scene5])
    {
       expect (scene .protos) .toHaveLength (1);
       expect (scene .rootNodes) .toHaveLength (1);
@@ -247,9 +259,10 @@ test ("double-import.x3dv", async () =>
    const
       scene2 = await Browser .createX3DFromString (scene1 .toXMLString ()),
       scene3 = await Browser .createX3DFromString (scene1 .toVRMLString ()),
-      scene4 = await Browser .createX3DFromString (scene1 .toJSONString ());
+      scene4 = await Browser .createX3DFromString (scene1 .toJSONString ()),
+      scene5 = await Browser .createX3DFromString (scene1 .toXMLString ({ closingTags: true }));
 
-   for (const scene of [scene1, scene2, scene3, scene4])
+   for (const scene of [scene1, scene2, scene3, scene4, scene5])
    {
       expect (scene .rootNodes) .toHaveLength (5);
       expect (scene .namedNodes) .toHaveLength (5);
@@ -291,13 +304,14 @@ test ("proto-with-filled-node-fields.x3d", async () =>
       const
          x3d  = scene .toXMLString  ({ style: style }),
          x3dv = scene .toVRMLString ({ style: style }),
-         x3dj = scene .toJSONString ({ style: style });
+         x3dj = scene .toJSONString ({ style: style }),
+         html = scene .toXMLString ({ style: style, closingTags: true });
 
-      const encodings = ["XML", "XML", "VRML", "JSON"];
+      const encodings = ["XML", "XML", "VRML", "JSON", "XML"];
 
       Browser .baseURL = scene .worldURL;
 
-      for (const [i, file] of [orig, x3d, x3dv, x3dj] .entries ())
+      for (const [i, file] of [orig, x3d, x3dv, x3dj, html] .entries ())
       {
          const scene = await Browser .createX3DFromURL (new X3D .MFString (`data:model/x3d,${file}`));
 
