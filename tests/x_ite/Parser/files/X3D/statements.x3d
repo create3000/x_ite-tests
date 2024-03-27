@@ -11,12 +11,9 @@
     <unit category='length' name='millimetre' conversionFactor='0.001'/>
     <unit category='mass' name='gram' conversionFactor='0.001'/>
     <meta name='created' content='Mon, 08 May 2023 12:03:58 GMT'/>
-    <meta name='comment' content='Rise and Shine'/>
     <meta name='creator' content='Holger Seelig'/>
-    <meta name='generator' content='Sunrize X3D Editor V1.0.43, https://create3000.github.io/sunrize/'/>
-    <meta name='identifier' content='file:///Users/holger/Desktop/X_ITE/x_ite-tests/tests/x_ite/Parser/files/X3D/statements.x3d'/>
-    <meta name='modified' content='Fri, 16 Jun 2023 22:48:05 GMT'/>
-    <meta name='base' content='file:///Users/holger/Desktop/X_ITE/x_ite-tests/tests/x_ite/Parser/files/X3D/statements.x3d'/>
+    <meta name='generator' content='Sunrize X3D Editor V1.6.7, https://create3000.github.io/sunrize/'/>
+    <meta name='modified' content='Wed, 27 Mar 2024 21:29:41 GMT'/>
   </head>
   <Scene>
     <ExternProtoDeclare name='Foo' url='"proto.x3d"'>
