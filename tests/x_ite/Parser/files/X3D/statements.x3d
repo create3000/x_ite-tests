@@ -23,8 +23,7 @@
       <field accessType='inputOutput' type='SFVec3f' name='translation'/>
       <field accessType='inputOutput' type='SFRotation' name='rotation'/>
     </ExternProtoDeclare>
-    <ExternProtoDeclare name='NoURL' url=''>
-    </ExternProtoDeclare>
+    <ExternProtoDeclare name='NoURL' url=''/>
     <ProtoDeclare name='Test'>
       <ProtoInterface>
         <field accessType='inputOnly' type='SFBool' name='set_bind'/>
@@ -64,6 +63,15 @@
         </Appearance>
         <Box DEF='Box'
             size='4000 4000 4000'/>
+      </Shape>
+    </Transform>
+    <Transform DEF='Transform2'
+        rotation='0 1 0 45'>
+      <Shape>
+        <Appearance>
+          <Material/>
+        </Appearance>
+        <Box USE='Box'/>
       </Shape>
     </Transform>
     <ParticleSystem>
