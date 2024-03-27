@@ -30,7 +30,7 @@
         <field accessType='inputOutput' type='SFFloat' name='transparency'/>
         <field accessType='outputOnly' type='SFBool' name='isBound'/>
         <field accessType='inputOutput' type='MFNode' name='children'>
-          <Transform/>
+          <Transform DEF='_1'/>
         </field>
       </ProtoInterface>
       <ProtoBody>

@@ -277,3 +277,39 @@ test ("double-import.x3dv", async () =>
       expect (scene .routes [3] .destinationNode) .toBe (scene .getNamedNode ("T"));
    }
 });
+
+test ("proto-with-filled-node-fields.x3d", async () =>
+{
+   const
+      latestVersion = Browser .createScene () .specificationVersion,
+      scene         = await Browser .createX3DFromURL (new X3D .MFString (url .pathToFileURL (path .join (__dirname, "files", "X3D", `proto-with-filled-node-fields.x3d`))));
+
+   const orig = await fetch (path .join (__dirname, "files", "X3D", `proto-with-filled-node-fields.x3d`)) .then (r => r .text ());
+
+   for (const style of ["TIDY", "COMPACT", "SMALL", "CLEAN"])
+   {
+      const
+         x3d  = scene .toXMLString  ({ style: style }),
+         x3dv = scene .toVRMLString ({ style: style }),
+         x3dj = scene .toJSONString ({ style: style });
+
+      const encodings = ["XML", "XML", "VRML", "JSON"];
+
+      Browser .baseURL = scene .worldURL;
+
+      for (const [i, file] of [orig, x3d, x3dv, x3dj] .entries ())
+      {
+         const scene = await Browser .createX3DFromURL (new X3D .MFString (`data:model/x3d,${file}`));
+
+         expect (scene .encoding) .toBe (encodings [i]);
+
+         if (i)
+            expect (scene .specificationVersion) .toBe (latestVersion);
+
+         expect (scene .toXMLString ()) .toBe (orig);
+         expect (scene .toXMLString  ({ style: style })) .toBe (x3d);
+         expect (scene .toVRMLString ({ style: style })) .toBe (x3dv);
+         expect (scene .toJSONString ({ style: style })) .toBe (x3dj);
+      }
+   }
+});
