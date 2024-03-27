@@ -64,6 +64,7 @@
     </Transform>
     <Transform DEF='_2'/>
     <Transform USE='_2'/>
+    <Transform USE='_2'/>
     <Transform DEF='Transform2'
         rotation='0 1 0 45'>
       <Shape DEF='_3'>
@@ -72,6 +73,7 @@
         </Appearance>
         <Box USE='Box'/>
       </Shape>
+      <Shape USE='_3'/>
       <Shape USE='_3'/>
     </Transform>
     <Transform>
