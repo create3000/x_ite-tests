@@ -10,14 +10,21 @@ test ("setValue", () =>
 
    field .setValue ([1, 2, 3, 4, 5, 6]);
 
+   expect (field) .toHaveLength (2);
    expect (field .equals (new MFVec3f (new SFVec3f (1, 2, 3), new SFVec3f (4, 5, 6)))) .toBe (true);
+   expect (field [0] .equals (new SFVec3f (1, 2, 3))) .toBe (true);
+   expect (field [1] .equals (new SFVec3f (4, 5, 6))) .toBe (true);
 
    field .setValue ([9, 8, 7, 6, 5, 4, 3, 2]);
 
+   expect (field) .toHaveLength (2);
    expect (field .equals (new MFVec3f (new SFVec3f (9, 8, 7), new SFVec3f (6, 5, 4)))) .toBe (true);
+   expect (field [0] .equals (new SFVec3f (9, 8, 7))) .toBe (true);
+   expect (field [1] .equals (new SFVec3f (6, 5, 4))) .toBe (true);
 
    field .setValue ([ ]);
 
+   expect (field) .toHaveLength (0);
    expect (field .equals (new MFVec3f ())) .toBe (true);
 
    field .setValue (new MFVec3f (new SFVec3f (1, 2, 3), new SFVec3f (4, 5, 6)));
