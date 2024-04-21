@@ -342,3 +342,87 @@ test ("get/set/removeMetaData fields", () =>
    f = node .getValue () .getMetaData ("Sunrize/MFVec4d", new X3D .MFVec4d ());
    expect (f .equals (new X3D .MFVec4d (dvec, dvec))) .toBe (true);
 });
+
+test ("get/set/removeMetaData numbers", () =>
+{
+   const node = Browser .currentScene .createNode ("WorldInfo");
+
+   let v;
+
+   v = node .getValue () .getMetaData ("Sunrize/Color3", new X3D .Color3 (0.1,0.2,0.3));
+   expect (v .equals (new X3D .Color3 (0.1,0.2,0.3))) .toBe (true);
+
+   node .getValue () .setMetaData ("Sunrize/Color3", new X3D .Color3 (0.2,0.3,0.4));
+   v = node .getValue () .getMetaData ("Sunrize/Color3", new X3D .Color3 ());
+   expect (v .equals (new X3D .Color3 (0.2,0.3,0.4))) .toBe (true);
+
+   v = node .getValue () .getMetaData ("Sunrize/Color4", new X3D .Color4 (0.1,0.2,0.3,0.4));
+   expect (v .equals (new X3D .Color4 (0.1,0.2,0.3,0.4))) .toBe (true);
+
+   node .getValue () .setMetaData ("Sunrize/Color4", new X3D .Color4 (0.2,0.3,0.4,0.5));
+   v = node .getValue () .getMetaData ("Sunrize/Color4", new X3D .Color4 ());
+   expect (v .equals (new X3D .Color4 (0.2,0.3,0.4,0.5))) .toBe (true);
+
+   v = node .getValue () .getMetaData ("Sunrize/Complex", new X3D .Complex (1,2));
+   expect (v .equals (new X3D .Complex (1,2))) .toBe (true);
+
+   node .getValue () .setMetaData ("Sunrize/Complex", new X3D .Complex (2,3));
+   v = node .getValue () .getMetaData ("Sunrize/Complex", new X3D .Complex ());
+   expect (v .equals (new X3D .Complex (2,3))) .toBe (true);
+
+   v = node .getValue () .getMetaData ("Sunrize/Matrix2", new X3D .Matrix2 (1,2,3,4));
+   expect (v .equals (new X3D .Matrix2 (1,2,3,4))) .toBe (true);
+
+   node .getValue () .setMetaData ("Sunrize/Matrix2", new X3D .Matrix2 (2,3,4,5));
+   v = node .getValue () .getMetaData ("Sunrize/Matrix2", new X3D .Matrix2 ());
+   expect (v .equals (new X3D .Matrix4 (2,3,4,5))) .toBe (true);
+
+   v = node .getValue () .getMetaData ("Sunrize/Matrix3", new X3D .Matrix3 (1,2,3,4,5,6,7,8,9));
+   expect (v .equals (new X3D .Matrix3 (1,2,3,4,5,6,7,8,9))) .toBe (true);
+
+   node .getValue () .setMetaData ("Sunrize/Matrix3", new X3D .Matrix3 (2,3,4,5,6,7,8,9,0));
+   v = node .getValue () .getMetaData ("Sunrize/Matrix3", new X3D .Matrix3 ());
+   expect (v .equals (new X3D .Matrix4 (2,3,4,5,6,7,8,9,0))) .toBe (true);
+
+   v = node .getValue () .getMetaData ("Sunrize/Matrix4", new X3D .Matrix4 (1,2,3,4,5,6,7,8,9,0,1,2,3,4,5,6));
+   expect (v .equals (new X3D .Matrix4 (1,2,3,4,5,6,7,8,9,0,1,2,3,4,5,6))) .toBe (true);
+
+   node .getValue () .setMetaData ("Sunrize/Matrix4", new X3D .Matrix4 (2,3,4,5,6,7,8,9,0,1,2,3,4,5,6,7));
+   v = node .getValue () .getMetaData ("Sunrize/Matrix4", new X3D .Matrix4 ());
+   expect (v .equals (new X3D .Matrix4 (2,3,4,5,6,7,8,9,0,1,2,3,4,5,6,7))) .toBe (true);
+
+   v = node .getValue () .getMetaData ("Sunrize/Quaternion", new X3D .Quaternion (1,2,3,4));
+   expect (v .equals (new X3D .Quaternion (1,2,3,4))) .toBe (true);
+
+   node .getValue () .setMetaData ("Sunrize/Quaternion", new X3D .Quaternion (2,3,4,5));
+   v = node .getValue () .getMetaData ("Sunrize/Quaternion", new X3D .Quaternion ());
+   expect (v .equals (new X3D .Quaternion (2,3,4,5))) .toBe (true);
+
+   v = node .getValue () .getMetaData ("Sunrize/Rotation4", new X3D .Rotation4 (1,2,3,4));
+   expect (v .equals (new X3D .Rotation4 (1,2,3,4))) .toBe (true);
+
+   node .getValue () .setMetaData ("Sunrize/Rotation4", new X3D .Rotation4 (2,3,4,5));
+   v = node .getValue () .getMetaData ("Sunrize/Rotation4", new X3D .Rotation4 ());
+   expect (v .equals (new X3D .Rotation4 (2,3,4,5))) .toBe (true);
+
+   v = node .getValue () .getMetaData ("Sunrize/Vector2", new X3D .Vector2 (1,2));
+   expect (v .equals (new X3D .Vector2 (1,2))) .toBe (true);
+
+   node .getValue () .setMetaData ("Sunrize/Vector2", new X3D .Vector2 (2,3));
+   v = node .getValue () .getMetaData ("Sunrize/Vector2", new X3D .Vector2 ());
+   expect (v .equals (new X3D .Vector2 (2,3))) .toBe (true);
+
+   v = node .getValue () .getMetaData ("Sunrize/Vector3", new X3D .Vector3 (1,2,3));
+   expect (v .equals (new X3D .Vector3 (1,2,3))) .toBe (true);
+
+   node .getValue () .setMetaData ("Sunrize/Vector3", new X3D .Vector3 (2,3,4));
+   v = node .getValue () .getMetaData ("Sunrize/Vector3", new X3D .Vector3 ());
+   expect (v .equals (new X3D .Vector3 (2,3,4))) .toBe (true);
+
+   v = node .getValue () .getMetaData ("Sunrize/Vector4", new X3D .Vector4 (1,2,3,4));
+   expect (v .equals (new X3D .Vector4 (1,2,3,4))) .toBe (true);
+
+   node .getValue () .setMetaData ("Sunrize/Vector4", new X3D .Vector4 (2,3,4,5));
+   v = node .getValue () .getMetaData ("Sunrize/Vector4", new X3D .Vector4 ());
+   expect (v .equals (new X3D .Vector4 (2,3,4,5))) .toBe (true);
+});
