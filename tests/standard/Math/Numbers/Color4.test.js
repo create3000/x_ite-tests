@@ -88,6 +88,19 @@ test ("constructor", () =>
    expect (c4 [3]) .toBe (1)
 })
 
+test ("enumerate", () =>
+{
+   const properties = [
+      "r",
+      "g",
+      "b",
+      "a",
+   ];
+
+   enumerate (properties, new Color4 ());
+   enumerate (properties, new Color4 (0.1, 0.2, 0.3, 0.4));
+});
+
 test ("copy", () =>
 {
    const v1 = new Color4 (0.1, 0.2, 0.3, 0.4)

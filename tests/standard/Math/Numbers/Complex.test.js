@@ -43,6 +43,17 @@ test ("constructor", () =>
    expect (c1) .toHaveLength (2)
 })
 
+test ("enumerate", () =>
+{
+   const properties = [
+      "real",
+      "imag",
+   ];
+
+   enumerate (properties, new Complex ());
+   enumerate (properties, new Complex (1,2));
+});
+
 test ("copy", () =>
 {
    const c1 = new Complex (1,2)

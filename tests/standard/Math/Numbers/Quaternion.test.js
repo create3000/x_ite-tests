@@ -38,6 +38,19 @@ test ("constructor", () =>
    expect ([... q1]) .toEqual ([1,2,3,4])
 })
 
+test ("enumerate", () =>
+{
+   const properties = [
+      "x",
+      "y",
+      "z",
+      "w",
+   ];
+
+   enumerate (properties, new Quaternion ());
+   enumerate (properties, new Quaternion (1, 2, 3, 4));
+});
+
 test ("copy", () =>
 {
    const q = new Quaternion (1, 2, 3, 4)

@@ -50,6 +50,19 @@ test ("constructor", () =>
    expect ([... r2]) .toEqual ([0,0,1,0])
 })
 
+test ("enumerate", () =>
+{
+   const properties = [
+      "x",
+      "y",
+      "z",
+      "angle",
+   ];
+
+   enumerate (properties, new Rotation4 ());
+   enumerate (properties, new Rotation4 (1, 2, 3, 4));
+});
+
 test ("copy", () =>
 {
    const v1 = new Rotation4 (1,2,3,4)

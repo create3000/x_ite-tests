@@ -48,6 +48,19 @@ test ("constructor", () =>
    expect (v2) .toHaveLength (4)
 })
 
+test ("enumerate", () =>
+{
+   const properties = [
+      "x",
+      "y",
+      "z",
+      "w",
+   ];
+
+   enumerate (properties, new Vector4 ());
+   enumerate (properties, new Vector4 (1, 2, 3, 4));
+});
+
 test ("copy", () =>
 {
    const v1 = new Vector4 (2, 3, 4, 5)

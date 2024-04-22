@@ -40,6 +40,14 @@ test ("constructor", () =>
    expect (m2 .order) .toBe (3)
 })
 
+test ("enumerate", () =>
+{
+   const properties = Array .from ({ length: 9 }, (_, i) => `${i}`);
+
+   enumerate (properties, new Matrix3 ());
+   enumerate (properties, new Matrix3 (2,3,4, 5,6,7, 8,9,10));
+});
+
 test ("get1", () =>
 {
    const
