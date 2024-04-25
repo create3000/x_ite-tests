@@ -155,7 +155,7 @@ main ()
       </ShaderPart>
     </ComposedShader>
     <Text
-        string='"\"3D \\ Text\"\"3D \\ Text\""'/>
+        string='"", "\"", "\"3D \\ Text\"\"3D \\ Text\""'/>
     <IMPORT inlineDEF='InlineWithExport' importedDEF='ExportedInstanceFoo'/>
     <IMPORT inlineDEF='InlineWithExport' importedDEF='ExportedInstanceFoo' AS='WithOtherName'/>
     <ROUTE fromNode='Timer' fromField='fraction_changed' toNode='PI' toField='set_fraction'/>
