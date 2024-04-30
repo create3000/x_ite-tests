@@ -18,7 +18,7 @@ main ()
 }
 `;
 
-   new FileLoader (Browser .getWorld ()) .loadDocument (new X3D .MFString (`data:x-shader/x-vertex,${vertex}`), function (data)
+   new FileLoader (Browser .getWorld ()) .loadDocument (new X3D .MFString (encodeURI (`data:x-shader/x-vertex,${vertex}`)), function (data)
    {
       try
       {
