@@ -10,6 +10,7 @@ test ("data-url encoded", () => new Promise ((resolve, reject) =>
 
    const vertex = `#version 300 es
 // Some percent % signs can cause to 100% an error.
+// äöü Umlauts are also difficult.
 
 void
 main ()
@@ -40,6 +41,7 @@ test ("data-url not encoded", () => new Promise ((resolve, reject) =>
 
    const vertex = `#version 300 es
 // Some percent % signs can cause to 100% an error.
+// äöü Umlauts are also difficult.
 
 void
 main ()
