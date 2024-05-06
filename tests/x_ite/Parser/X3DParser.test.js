@@ -48,6 +48,9 @@ test ("statements.x3d", async () =>
          expect (scene .toXMLString  ({ style })) .toBe (x3d)
          expect (scene .toVRMLString ({ style })) .toBe (x3dv)
          expect (scene .toJSONString ({ style })) .toBe (x3dj)
+
+         expect (scene .protos [0] .getBody () .rootNodes [1] .getNodeTypeName ()) .toBe ("Foo");
+         expect (scene .protos [0] .getBody () .rootNodes [1] .translation .equals (new X3D .SFVec3f (0, 3, 0))) .toBe (true);
       }
    }
 });
