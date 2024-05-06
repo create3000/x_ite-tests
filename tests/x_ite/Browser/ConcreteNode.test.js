@@ -27,8 +27,11 @@ test ("addConcreteNode", () =>
 
    Browser .addConcreteNode (Foo);
 
+   expect (typeof X3D .X3DConstants .Foo) .toBe ("number");
+
    const foo = Browser .currentScene .createNode ("Foo");
 
    expect (foo .getNodeTypeName ()) .toBe ("Foo");
+   expect (foo .getNodeType () .includes (X3D .X3DConstants .Foo)) .toBe (true);
    expect (foo .bah) .toBe ("BAH");
 });
