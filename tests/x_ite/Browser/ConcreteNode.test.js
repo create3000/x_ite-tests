@@ -43,6 +43,8 @@ test ("addConcreteNode", async () =>
 
    expect (typeof X3D .X3DConstants .Foo) .toBe ("number");
 
+   // Create instance.
+
    Browser .currentScene .addComponent (Browser .getComponent ("Fun"));
 
    const foo = Browser .currentScene .createNode ("Foo");
