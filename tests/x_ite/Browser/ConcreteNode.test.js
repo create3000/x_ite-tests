@@ -41,7 +41,7 @@ test ("addConcreteNode", async () =>
 
    Browser .addConcreteNode (Foo);
 
-   expect (typeof X3D .X3DConstants .Foo) .toBe ("number");
+   expect (Number .isInteger (X3D .X3DConstants .Foo)) .toBe (true);
 
    // Create instance.
 

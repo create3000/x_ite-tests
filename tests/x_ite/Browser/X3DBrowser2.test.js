@@ -527,7 +527,7 @@ DEF I Inline {
    {
       try
       {
-         expect (typeof loadState) .toBe ("number");
+         expect (Number .isInteger (loadState)) .toBe (true);
 
          if (loadState !== X3D .X3DConstants .COMPLETE_STATE)
             return
