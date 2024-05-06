@@ -44,13 +44,13 @@ test ("statements.x3d", async () =>
          expect (scene .getNamedNode ("Emitter") .mass) .toBeCloseTo (2)
          expect (scene .getNamedNode ("Force") .force .y) .toBeCloseTo (-10)
 
+         expect (scene .protos [0] .getBody () .rootNodes [1] .getNodeTypeName ()) .toBe ("Foo");
+         expect ([... scene .protos [0] .getBody () .rootNodes [1] .translation]) .toEqual ([0, 3, 0]);
+
          expect (scene .toXMLString ()) .toBe (orig)
          expect (scene .toXMLString  ({ style })) .toBe (x3d)
          expect (scene .toVRMLString ({ style })) .toBe (x3dv)
          expect (scene .toJSONString ({ style })) .toBe (x3dj)
-
-         expect (scene .protos [0] .getBody () .rootNodes [1] .getNodeTypeName ()) .toBe ("Foo");
-         expect (scene .protos [0] .getBody () .rootNodes [1] .translation .equals (new X3D .SFVec3f (0, 3, 0))) .toBe (true);
       }
    }
 });
