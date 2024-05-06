@@ -15,6 +15,9 @@ test ("addConcreteNode", async () =>
    expect (() => Browser .getSupportedComponent ("Fun")) .not .toThrow (Error);
    expect (() => Browser .getComponent ("Fun", 1))       .not .toThrow (Error);
 
+   expect (Browser .getSupportedComponent ("Fun") .name) .toBe ("Fun");
+   expect (Browser .getComponent ("Fun", 1)       .name) .toBe ("Fun");
+
    // Add custom concrete node.
 
    class Foo extends X3D .X3DNode
