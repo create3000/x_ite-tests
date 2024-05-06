@@ -19,10 +19,10 @@ test ("statements.x3d", async () =>
    for (const style of ["TIDY", "COMPACT", "SMALL", "CLEAN"])
    {
       const
-         x3d  = scene .toXMLString  ({ style: style }),
-         x3dv = scene .toVRMLString ({ style: style }),
-         x3dj = scene .toJSONString ({ style: style }),
-         html = scene .toXMLString ({ style: style, closingTags: true });
+         x3d  = scene .toXMLString  ({ style }),
+         x3dv = scene .toVRMLString ({ style }),
+         x3dj = scene .toJSONString ({ style }),
+         html = scene .toXMLString ({ style, closingTags: true });
 
       const encodings = ["XML", "XML", "VRML", "JSON", "XML"]
 
@@ -45,12 +45,12 @@ test ("statements.x3d", async () =>
          expect (scene .getNamedNode ("Force") .force .y) .toBeCloseTo (-10)
 
          expect (scene .toXMLString ()) .toBe (orig)
-         expect (scene .toXMLString  ({ style: style })) .toBe (x3d)
-         expect (scene .toVRMLString ({ style: style })) .toBe (x3dv)
-         expect (scene .toJSONString ({ style: style })) .toBe (x3dj)
+         expect (scene .toXMLString  ({ style })) .toBe (x3d)
+         expect (scene .toVRMLString ({ style })) .toBe (x3dv)
+         expect (scene .toJSONString ({ style })) .toBe (x3dj)
       }
    }
-})
+});
 
 test ("fields.x3d", async () =>
 {
@@ -63,10 +63,10 @@ test ("fields.x3d", async () =>
    for (const style of ["TIDY", "COMPACT", "SMALL", "CLEAN"])
    {
       const
-         x3d  = scene .toXMLString  ({ style: style }),
-         x3dv = scene .toVRMLString ({ style: style }),
-         x3dj = scene .toJSONString ({ style: style }),
-         html = scene .toXMLString ({ style: style, closingTags: true });
+         x3d  = scene .toXMLString  ({ style }),
+         x3dv = scene .toVRMLString ({ style }),
+         x3dj = scene .toJSONString ({ style }),
+         html = scene .toXMLString ({ style, closingTags: true });
 
       const encodings = ["XML", "XML", "VRML", "JSON", "XML"]
 
@@ -82,9 +82,9 @@ test ("fields.x3d", async () =>
             expect (scene .specificationVersion) .toBe (latestVersion)
 
          expect (scene .toXMLString ()) .toBe (orig)
-         expect (scene .toXMLString  ({ style: style })) .toBe (x3d)
-         expect (scene .toVRMLString ({ style: style })) .toBe (x3dv)
-         expect (scene .toJSONString ({ style: style })) .toBe (x3dj)
+         expect (scene .toXMLString  ({ style })) .toBe (x3d)
+         expect (scene .toVRMLString ({ style })) .toBe (x3dv)
+         expect (scene .toJSONString ({ style })) .toBe (x3dj)
       }
    }
 })
@@ -302,10 +302,10 @@ test ("proto-with-filled-node-fields.x3d", async () =>
    for (const style of ["TIDY", "COMPACT", "SMALL", "CLEAN"])
    {
       const
-         x3d  = scene .toXMLString  ({ style: style }),
-         x3dv = scene .toVRMLString ({ style: style }),
-         x3dj = scene .toJSONString ({ style: style }),
-         html = scene .toXMLString ({ style: style, closingTags: true });
+         x3d  = scene .toXMLString  ({ style }),
+         x3dv = scene .toVRMLString ({ style }),
+         x3dj = scene .toJSONString ({ style }),
+         html = scene .toXMLString ({ style, closingTags: true });
 
       const encodings = ["XML", "XML", "VRML", "JSON", "XML"];
 
@@ -321,9 +321,9 @@ test ("proto-with-filled-node-fields.x3d", async () =>
             expect (scene .specificationVersion) .toBe (latestVersion);
 
          expect (scene .toXMLString ()) .toBe (orig);
-         expect (scene .toXMLString  ({ style: style })) .toBe (x3d);
-         expect (scene .toVRMLString ({ style: style })) .toBe (x3dv);
-         expect (scene .toJSONString ({ style: style })) .toBe (x3dj);
+         expect (scene .toXMLString  ({ style })) .toBe (x3d);
+         expect (scene .toVRMLString ({ style })) .toBe (x3dv);
+         expect (scene .toJSONString ({ style })) .toBe (x3dj);
       }
    }
 });
