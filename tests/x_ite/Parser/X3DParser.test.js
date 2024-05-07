@@ -330,3 +330,19 @@ test ("proto-with-filled-node-fields.x3d", async () =>
       }
    }
 });
+
+test ("comments", async () =>
+{
+   const scene = await Browser .createX3DFromString (`#X3D V4.0 utf8
+# comment 1
+
+Transform { }
+
+# comment 2
+
+Transform { }
+
+# comment 3`);
+
+   expect (scene .rootNodes) .toHaveLength (2);
+})
