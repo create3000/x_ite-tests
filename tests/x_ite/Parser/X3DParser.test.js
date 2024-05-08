@@ -336,13 +336,208 @@ test ("comments", async () =>
    const scene = await Browser .createX3DFromString (`#X3D V4.0 utf8
 # comment 1
 
-Transform { }
+# comment
+PROFILE
+# comment
+Interchange
+# comment
 
+COMPONENT
+# comment
+Core
+# comment
+:
+# comment
+1
+
+# comment
+UNIT
+# comment
+angle
+# comment
+degree
+# comment
+0.017453292519943295
+
+# comment
+META
+# comment
+"key"
+# comment
+"value"
+
+# comment
+EXTERNPROTO
+# comment
+TestEx
+# comment
+[
+# comment
+]
+# comment
+[
+# comment
+]
+
+# comment
+PROTO
+# comment
+Test
+# comment
+[
+# comment
+]
+# comment
+{
+# comment
+}
+
+# comment
+Switch {
+# comment
+whichChoice
+# comment
+1
+# comment
+}
+
+# comment
+Transform
 # comment 2
+{
+# comment 3
+translation
+# comment 4
+1
+# comment 5
+2
+# comment 6
+3
+# comment 7
+}
 
+# comment 8
+DEF
+# comment 8
+Name
+# comment 8
 Transform { }
 
-# comment 3`);
+# comment
+Coordinate
+# comment
+{
+# comment
+point
+# comment
+[
+# comment
+]
+# comment
+}
 
-   expect (scene .rootNodes) .toHaveLength (2);
+# comment
+Coordinate
+# comment
+{
+# comment
+point
+# comment
+0
+# comment
+0
+# comment
+0
+# comment
+}
+
+# comment
+Coordinate
+{
+# comment
+point
+# comment
+[
+# comment
+0
+# comment
+0
+# comment
+0
+# comment
+,
+# comment
+1
+# comment
+1
+# comment
+1
+# comment
+]
+# comment
+}
+
+# comment
+DEF
+# comment
+I
+# comment
+Inline
+# comment
+{
+# comment
+load
+# comment
+FALSE
+# comment
+}
+
+# comment
+IMPORT
+# comment
+I
+# comment
+.
+# comment
+ExportName
+# comment
+AS
+# comment
+ImportName
+
+# comment
+EXPORT
+# comment
+Name
+# comment
+AS
+# comment
+ExportName
+
+# comment
+ROUTE
+# comment
+Name
+# comment
+.
+# comment
+translation
+# comment
+TO
+# comment
+Name
+# comment
+.
+# comment
+scale
+
+# comment
+
+# comment 9`);
+
+   expect (scene .getMetaDatas () .size) .toBe (1);
+   expect (scene .rootNodes) .toHaveLength (7);
+   expect (scene .importedNodes) .toHaveLength (1);
+   expect (scene .exportedNodes) .toHaveLength (1);
+   expect (scene .routes) .toHaveLength (1);
 })
