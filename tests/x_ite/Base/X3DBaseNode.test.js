@@ -43,6 +43,7 @@ test ("concrete-nodes", async () =>
       expect (node .getValue () .getFieldDefinitions ()) .toBeInstanceOf (X3D .FieldDefinitionArray)
       expect (Object .prototype .toString .call (node .getValue ())) .toBe (`[object ${ConcreteNode .typeName}]`)
       enumerate (["typeName", "componentInfo", "containerField", "specificationRange", "fieldDefinitions"], ConcreteNode)
+      node .dispose ();
    }
 })
 
