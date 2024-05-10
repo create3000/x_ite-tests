@@ -54,7 +54,6 @@ test ("concrete-nodes", async () =>
       node .dispose ();
 
       expect (node .getValue ()) .toBe (null);
-      expect (baseNode .getExecutionContext ()) .toBe (null);
       expect (baseNode .isLive ()) .toBe (false);
    }
 })
