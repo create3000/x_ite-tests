@@ -43,7 +43,19 @@ test ("concrete-nodes", async () =>
       expect (node .getValue () .getFieldDefinitions ()) .toBeInstanceOf (X3D .FieldDefinitionArray)
       expect (Object .prototype .toString .call (node .getValue ())) .toBe (`[object ${ConcreteNode .typeName}]`)
       enumerate (["typeName", "componentInfo", "containerField", "specificationRange", "fieldDefinitions"], ConcreteNode)
+
+      // Dispose.
+
+      const baseNode = node .getValue ();
+
+      expect (baseNode .getExecutionContext ()) .toBe (Browser .currentScene);
+      expect (baseNode .isLive ()) .toBe (true);
+
       node .dispose ();
+
+      expect (node .getValue ()) .toBe (null);
+      expect (baseNode .getExecutionContext ()) .toBe (null);
+      expect (baseNode .isLive ()) .toBe (false);
    }
 })
 
