@@ -30,6 +30,7 @@ test ("concrete-nodes", async () =>
       expect (typeof ConcreteNode .specificationRange .from) .toBe ("string")
       expect (typeof ConcreteNode .specificationRange .to) .toBe ("string")
       expect (ConcreteNode .fieldDefinitions) .toBeInstanceOf (X3D .FieldDefinitionArray)
+      expect (node .getValue ()) .toBeInstanceOf (ConcreteNode)
       expect (node .getNodeType () .length) .toBeGreaterThan (2)
       expect (node .getNodeType () .every (t => Number .isInteger (t))) .toBe (true)
       expect (node .getNodeTypeName ()) .toBe (ConcreteNode .typeName)
@@ -46,9 +47,11 @@ test ("concrete-nodes", async () =>
 
       if (!node .getNodeTypeName () .match (/^(?:RigidBody)$/))
       {
-         expect (() => node .getValue () .copy ()) .not .toThrow (Error);
-         expect (node .getValue () .copy ()) .not .toBe (node .getValue ());
-         expect (node .getValue () .copy () .getTypeName ()) .toBe (node .getNodeTypeName ());
+         const copy = node .getValue () .copy ();
+
+         expect (copy) .toBeInstanceOf (ConcreteNode)
+         expect (copy) .not .toBe (node .getValue ());
+         expect (copy .getTypeName ()) .toBe (node .getNodeTypeName ());
       }
 
       // Dispose.
