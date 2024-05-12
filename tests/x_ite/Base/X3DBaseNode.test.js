@@ -52,6 +52,7 @@ test ("concrete-nodes", async () =>
          expect (copy) .toBeInstanceOf (ConcreteNode)
          expect (copy) .not .toBe (node .getValue ());
          expect (copy .getTypeName ()) .toBe (node .getNodeTypeName ());
+         expect (copy .getExecutionContext ()) .toBe (node .getValue () .getExecutionContext ());
       }
 
       // Dispose.
