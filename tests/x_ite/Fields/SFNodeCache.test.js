@@ -30,7 +30,7 @@ test ("delete", () =>
 test ("add", () =>
 {
    X3D .SFNodeCache .delete (node .getValue ());
-   X3D .SFNodeCache .add (node .getValue (), node);
+   X3D .SFNodeCache .set (node .getValue (), node);
 
    const n = X3D .SFNodeCache .get (node .getValue ());
 
