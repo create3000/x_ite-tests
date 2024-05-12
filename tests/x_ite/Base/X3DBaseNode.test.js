@@ -44,6 +44,13 @@ test ("concrete-nodes", async () =>
       expect (Object .prototype .toString .call (node .getValue ())) .toBe (`[object ${ConcreteNode .typeName}]`)
       enumerate (["typeName", "componentInfo", "containerField", "specificationRange", "fieldDefinitions"], ConcreteNode)
 
+      if (!node .getNodeTypeName () .match (/^(?:RigidBody)$/))
+      {
+         expect (() => node .getValue () .copy ()) .not .toThrow (Error);
+         expect (node .getValue () .copy ()) .not .toBe (node .getValue ());
+         expect (node .getValue () .copy () .getTypeName ()) .toBe (node .getNodeTypeName ());
+      }
+
       // Dispose.
 
       const baseNode = node .getValue ();
