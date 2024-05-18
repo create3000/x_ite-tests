@@ -2,16 +2,19 @@ const X3D = require ("../../X3D")
 
 test ("add/removeParser", () =>
 {
-   const originalParsers = X3D .GoldenGate .Parser .slice ();
+   const originalParsers = X3D .GoldenGate .getParsers ();
 
-   const newParsers = [function () { }, function () { }];
+   // Legacy
+   expect (X3D .GoldenGate .Parser) .toEqual (X3D .GoldenGate .getParsers ());
 
-   X3D .GoldenGate .addParser (... newParsers);
+   const newParsers = [function (scene) { }, function (scene) { }];
 
-   expect (X3D .GoldenGate .Parser) .toHaveLength (originalParsers .length + 2);
+   X3D .GoldenGate .addParsers (... newParsers);
 
-   X3D .GoldenGate .removeParser (... newParsers);
+   expect (X3D .GoldenGate .getParsers ()) .toHaveLength (originalParsers .length + 2);
 
-   expect (X3D .GoldenGate .Parser) .toHaveLength (originalParsers .length);
-   expect (X3D .GoldenGate .Parser) .toEqual (originalParsers);
+   X3D .GoldenGate .removeParsers (... newParsers);
+
+   expect (X3D .GoldenGate .getParsers ()) .toHaveLength (originalParsers .length);
+   expect (X3D .GoldenGate .getParsers ()) .toEqual (originalParsers);
 })
