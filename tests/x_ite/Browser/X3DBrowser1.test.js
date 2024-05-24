@@ -47,6 +47,7 @@ test ("properties", () =>
    expect (Browser .supportedComponents) .toBeInstanceOf (X3D .ComponentInfoArray)
    expect (Browser .concreteNodes) .toBeInstanceOf (X3D .ConcreteNodesArray)
    expect (Browser .abstractNodes) .toBeInstanceOf (X3D .AbstractNodesArray)
+   expect (Browser .fieldTypes) .toBeInstanceOf (X3D .FieldTypesArray)
    expect (Browser .currentScene) .toBeInstanceOf (X3D .X3DScene)
    expect (Browser .element) .toBe (canvas)
    expect (Browser .toString ()) .toBe (`[object ${Browser .getTypeName ()}]`)
@@ -62,6 +63,7 @@ test ("properties", () =>
       "supportedComponents",
       "concreteNodes",
       "abstractNodes",
+      "fieldTypes",
       "baseURL",
       "currentScene",
       "element",
