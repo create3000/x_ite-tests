@@ -30,7 +30,6 @@ sub node {
 
    @fields       = $file   =~ /###\s*[SM]F\w+.*/go;
    @sourceFields = $source =~ /\bX3DFieldDefinition\s*\(.*/go;
-   @sourceFields = grep { !m/\/\/\s*experimental/ } @sourceFields;
 
    say "$typeName fields (" . scalar (@fields) . ") <-> source fields (" . scalar (@sourceFields) . ")" unless @fields == @sourceFields;
 
