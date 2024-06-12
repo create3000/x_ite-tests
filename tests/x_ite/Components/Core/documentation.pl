@@ -104,11 +104,15 @@ sub field {
    }
    elsif ($type eq "SFDouble")
    {
+      $codeValue =~ s/_//g;
+
       return if $value eq "0" && $codeValue eq "";
       return if $value eq $codeValue;
    }
    elsif ($type eq "SFFloat")
    {
+      $codeValue =~ s/_//g;
+
       return if $value eq "0" && $codeValue eq "";
       return if $value eq $codeValue;
       return if $value eq "π*3/16" && $codeValue eq "0.589049";
@@ -125,6 +129,8 @@ sub field {
    }
    elsif ($type eq "SFInt32")
    {
+      $codeValue =~ s/_//g;
+
       return if $value eq "0" && $codeValue eq "";
       return if $value eq $codeValue;
    }
