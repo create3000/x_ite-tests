@@ -78,14 +78,14 @@ test ("constructor", () =>
    c4 .b = 4
    c4 .a = 5
 
-   expect (c4 .r) .toBe (1)
-   expect (c4 .g) .toBe (1)
-   expect (c4 .b) .toBe (1)
-   expect (c4 .a) .toBe (1)
-   expect (c4 [0]) .toBe (1)
-   expect (c4 [1]) .toBe (1)
-   expect (c4 [2]) .toBe (1)
-   expect (c4 [3]) .toBe (1)
+   expect (c4 .r) .toBe (2)
+   expect (c4 .g) .toBe (3)
+   expect (c4 .b) .toBe (4)
+   expect (c4 .a) .toBe (5)
+   expect (c4 [0]) .toBe (2)
+   expect (c4 [1]) .toBe (3)
+   expect (c4 [2]) .toBe (4)
+   expect (c4 [3]) .toBe (5)
 })
 
 test ("enumerate", () =>
