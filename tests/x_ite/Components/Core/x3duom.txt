@@ -6,6 +6,8 @@ Field SFFloat 'angle' in node ConeEmitter has different value (Spec <=> X3DUOM):
 Field 'name' in node FloatVertexAttribute has different type (Spec <=> X3DUOM): SFString !== xs:NMTOKEN.
 Field 'name' in node Matrix3VertexAttribute has different type (Spec <=> X3DUOM): SFString !== xs:NMTOKEN.
 Field 'name' in node Matrix4VertexAttribute has different type (Spec <=> X3DUOM): SFString !== xs:NMTOKEN.
+PhysicalMaterial number of fields differ (Spec <=> X3DUOM): 19 <=> 18.
+  Where [extensions] not in X3DUOM.
 Analyser number of fields differ (Spec <=> X3DUOM): 19 <=> 21.
   Where [channelCount,frequencyBinCount] not in Spec.
 AudioDestination number of fields differ (Spec <=> X3DUOM): 9 <=> 11.
