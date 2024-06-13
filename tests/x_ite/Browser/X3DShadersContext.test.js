@@ -47,6 +47,7 @@ test ("shader", () =>
                      {
                         options .push ("X3D_COLOR_MATERIAL");
                         options .push ("X3D_NORMALS");
+                        options .push ("X3D_TANGENTS");
                         options .push ("X3D_ALPHA_MODE_OPAQUE", "X3D_ALPHA_MODE_MASK");
                         options .push ("X3D_CLIP_PLANES")
                         options .push ("X3D_NUM_CLIP_PLANES 1");
