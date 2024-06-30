@@ -10,7 +10,7 @@ test ("shader", () =>
       ["X3D_UNLIT_MATERIAL", "UnlitShader", "Default", "Unlit"],
       ["X3D_MATERIAL", "GouraudShader", "Gouraud", "Gouraud"],
       ["X3D_MATERIAL", "PhongShader", "Default", "Phong"],
-      ["X3D_PHYSICAL_MATERIAL", "PhysicalMaterialShader", "Default", "PBR"],
+      ["X3D_PHYSICAL_MATERIAL", "PhysicalMaterialShader", "Default", "Physical"],
    ]
 
    const fogs = [
@@ -35,6 +35,7 @@ test ("shader", () =>
                   const options = [ ]
 
                   options .push (option)
+                  options .push ("X3D_COLORSPACE_LINEAR_WHEN_PHYSICAL_MATERIAL")
                   options .push ("X3D_USE_IBL")
                   options .push ("X3D_MATERIAL_METALLIC_ROUGHNESS")
                   options .push ("X3D_LOGARITHMIC_DEPTH_BUFFER");
