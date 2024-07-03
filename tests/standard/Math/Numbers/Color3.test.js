@@ -184,9 +184,47 @@ test ("getHSV", () =>
    expect (c .set (0.5, 0.5, 0.5) .getHSV ([ ]) [2]) .toBeCloseTo (0.5)
 })
 
+test ("linearToSRGB", () =>
+{
+   const c = new Color3 (0, 0, 0);
+
+   expect (c .set (0, 0, 0) .linearToSRGB () [0]) .toBe (0);
+   expect (c .set (0, 0, 0) .linearToSRGB () [1]) .toBe (0);
+   expect (c .set (0, 0, 0) .linearToSRGB () [2]) .toBe (0);
+
+   expect (c .set (1, 1, 1) .linearToSRGB () [0]) .toBe (1);
+   expect (c .set (1, 1, 1) .linearToSRGB () [1]) .toBe (1);
+   expect (c .set (1, 1, 1) .linearToSRGB () [2]) .toBe (1);
+
+   expect (c .set (0.1, 0.2, 0.3) .linearToSRGB () [0]) .toBeCloseTo (0.1 ** (1 / 2.2));
+   expect (c .set (0.1, 0.2, 0.3) .linearToSRGB () [1]) .toBeCloseTo (0.2 ** (1 / 2.2));
+   expect (c .set (0.1, 0.2, 0.3) .linearToSRGB () [2]) .toBeCloseTo (0.3 ** (1 / 2.2));
+
+   expect (c .linearToSRGB ()) .not .toBe (c .linearToSRGB ());
+});
+
+test ("sRGBToLinear", () =>
+{
+   const c = new Color3 (0, 0, 0);
+
+   expect (c .set (0, 0, 0) .sRGBToLinear () [0]) .toBe (0);
+   expect (c .set (0, 0, 0) .sRGBToLinear () [1]) .toBe (0);
+   expect (c .set (0, 0, 0) .sRGBToLinear () [2]) .toBe (0);
+
+   expect (c .set (1, 1, 1) .sRGBToLinear () [0]) .toBe (1);
+   expect (c .set (1, 1, 1) .sRGBToLinear () [1]) .toBe (1);
+   expect (c .set (1, 1, 1) .sRGBToLinear () [2]) .toBe (1);
+
+   expect (c .set (0.1, 0.2, 0.3) .sRGBToLinear () [0]) .toBeCloseTo (0.1 ** 2.2);
+   expect (c .set (0.1, 0.2, 0.3) .sRGBToLinear () [1]) .toBeCloseTo (0.2 ** 2.2);
+   expect (c .set (0.1, 0.2, 0.3) .sRGBToLinear () [2]) .toBeCloseTo (0.3 ** 2.2);
+
+   expect (c .sRGBToLinear ()) .not .toBe (c .sRGBToLinear ());
+});
+
 test ("toString", () =>
 {
-   const c = new Color3 (0.1, 0.2, 0.3)
+   const c = new Color3 (0.1, 0.2, 0.3);
 
-   expect (c .toString ()) .toBe ([... c] .join (" "))
-})
+   expect (c .toString ()) .toBe ([... c] .join (" "));
+});

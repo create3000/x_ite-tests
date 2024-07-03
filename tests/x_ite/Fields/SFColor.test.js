@@ -139,6 +139,52 @@ test ("get/setHSVA", () =>
    }
 })
 
+test ("linearToSRGB", () =>
+{
+   const c1 = new SFColor (0, 0, 0);
+
+   expect (c1 .linearToSRGB () [0]) .toBe (0);
+   expect (c1 .linearToSRGB () [1]) .toBe (0);
+   expect (c1 .linearToSRGB () [2]) .toBe (0);
+
+   const c2 = new SFColor (1, 1, 1);
+
+   expect (c2 .linearToSRGB () [0]) .toBe (1);
+   expect (c2 .linearToSRGB () [1]) .toBe (1);
+   expect (c2 .linearToSRGB () [2]) .toBe (1);
+
+   const c3 = new SFColor (0.1, 0.2, 0.3);
+
+   expect (c3 .linearToSRGB () [0]) .toBeCloseTo (0.1 ** (1 / 2.2));
+   expect (c3 .linearToSRGB () [1]) .toBeCloseTo (0.2 ** (1 / 2.2));
+   expect (c3 .linearToSRGB () [2]) .toBeCloseTo (0.3 ** (1 / 2.2));
+
+   expect (c3 .linearToSRGB ()) .not .toBe (c3 .linearToSRGB ());
+});
+
+test ("sRGBToLinear", () =>
+{
+   const c1 = new SFColor (0, 0, 0);
+
+   expect (c1 .sRGBToLinear () [0]) .toBe (0);
+   expect (c1 .sRGBToLinear () [1]) .toBe (0);
+   expect (c1 .sRGBToLinear () [2]) .toBe (0);
+
+   const c2 = new SFColor (1, 1, 1);
+
+   expect (c2 .sRGBToLinear () [0]) .toBe (1);
+   expect (c2 .sRGBToLinear () [1]) .toBe (1);
+   expect (c2 .sRGBToLinear () [2]) .toBe (1);
+
+   const c3 = new SFColor (0.1, 0.2, 0.3);
+
+   expect (c3 .sRGBToLinear () [0]) .toBeCloseTo (0.1 ** 2.2);
+   expect (c3 .sRGBToLinear () [1]) .toBeCloseTo (0.2 ** 2.2);
+   expect (c3 .sRGBToLinear () [2]) .toBeCloseTo (0.3 ** 2.2);
+
+   expect (c3 .sRGBToLinear ()) .not .toBe (c3 .sRGBToLinear ());
+});
+
 test ("lerp", () =>
 {
    const
