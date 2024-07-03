@@ -231,6 +231,7 @@ test ("linearToSRGB", () =>
    expect (c .set (0.1, 0.2, 0.3, 0.4) .linearToSRGB () [3]) .toBeCloseTo (0.4);
 
    expect (c .linearToSRGB ()) .not .toBe (c .linearToSRGB ());
+   expect (c .linearToSRGB (c)) .toBe (c .linearToSRGB (c));
 });
 
 test ("sRGBToLinear", () =>
@@ -253,6 +254,7 @@ test ("sRGBToLinear", () =>
    expect (c .set (0.1, 0.2, 0.3, 0.4) .sRGBToLinear () [3]) .toBeCloseTo (0.4);
 
    expect (c .sRGBToLinear ()) .not .toBe (c .sRGBToLinear ());
+   expect (c .sRGBToLinear (c)) .toBe (c .sRGBToLinear (c));
 });
 
 test ("toString", () =>
