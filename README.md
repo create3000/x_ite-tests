@@ -1,3 +1,3 @@
 # x_ite-tests
 
-Unit tests for [X_ITE](https://create3000.github.io/x_ite/).
+Unit tests for the X3D Browser [X_ITE](https://github.com/create3000/x_ite).
