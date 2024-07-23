@@ -321,6 +321,12 @@ test ("get/setQuaternion", () =>
    expect (r4 .y) .toBeCloseTo (0);
    expect (r4 .z) .toBeCloseTo (0);
    expect (r4 .angle) .toBeCloseTo (Math .PI/2);
+
+   const v4 = new X3D .Vector4 (1, 2, 3, 4) .normalize ();
+
+   r4 .setQuaternion (1, 2, 3, 4);
+
+   expect (r4 .getQuaternion ()) .toEqual ([... v4]);
 });
 
 test ("inverse", () =>
