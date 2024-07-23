@@ -250,6 +250,9 @@ test ("get/setQuaternion", () =>
    const r1 = new SFRotation (1, 0, 0, Math .PI/2);
 
    expect (r1 .getQuaternion ()) .toHaveLength (4);
+   expect (r1 .getQuaternion ()) .not .toBe (r1 .getQuaternion ());
+   expect (r1 .getQuaternion ()) .toEqual (r1 .getQuaternion ());
+
    expect (r1 .getQuaternion () [0]) .toBeCloseTo (Math .SQRT1_2);
    expect (r1 .getQuaternion () [1]) .toBeCloseTo (0);
    expect (r1 .getQuaternion () [2]) .toBeCloseTo (0);
@@ -258,6 +261,9 @@ test ("get/setQuaternion", () =>
    const r2 = new SFRotation (0, 1, 0, Math .PI);
 
    expect (r2 .getQuaternion ()) .toHaveLength (4);
+   expect (r2 .getQuaternion ()) .not .toBe (r2 .getQuaternion ());
+   expect (r2 .getQuaternion ()) .toEqual (r2 .getQuaternion ());
+
    expect (r2 .getQuaternion () [0]) .toBeCloseTo (0);
    expect (r2 .getQuaternion () [1]) .toBeCloseTo (1);
    expect (r2 .getQuaternion () [2]) .toBeCloseTo (0);
@@ -266,6 +272,9 @@ test ("get/setQuaternion", () =>
    const r3 = new SFRotation (0, 0, 1, Math .PI);
 
    expect (r3 .getQuaternion ()) .toHaveLength (4);
+   expect (r3 .getQuaternion ()) .not .toBe (r3 .getQuaternion ());
+   expect (r3 .getQuaternion ()) .toEqual (r3 .getQuaternion ());
+
    expect (r3 .getQuaternion () [0]) .toBeCloseTo (0);
    expect (r3 .getQuaternion () [1]) .toBeCloseTo (0);
    expect (r3 .getQuaternion () [2]) .toBeCloseTo (1);
