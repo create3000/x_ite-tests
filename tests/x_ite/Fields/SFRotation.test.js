@@ -245,6 +245,55 @@ test ("get/setMatrix", () =>
    expect (b [3]) .toBeCloseTo (Math .PI / 2)
 })
 
+test ("get/setQuaternion", () =>
+{
+   const r1 = new SFRotation (1, 0, 0, Math .PI/2);
+
+   expect (r1 .getQuaternion ()) .toHaveLength (4);
+   expect (r1 .getQuaternion () [0]) .toBeCloseTo (Math .SQRT1_2);
+   expect (r1 .getQuaternion () [1]) .toBeCloseTo (0);
+   expect (r1 .getQuaternion () [2]) .toBeCloseTo (0);
+   expect (r1 .getQuaternion () [3]) .toBeCloseTo (Math .SQRT1_2);
+
+   const r2 = new SFRotation (0, 1, 0, Math .PI);
+
+   expect (r2 .getQuaternion ()) .toHaveLength (4);
+   expect (r2 .getQuaternion () [0]) .toBeCloseTo (0);
+   expect (r2 .getQuaternion () [1]) .toBeCloseTo (1);
+   expect (r2 .getQuaternion () [2]) .toBeCloseTo (0);
+   expect (r2 .getQuaternion () [3]) .toBeCloseTo (0);
+
+   const r3 = new SFRotation (0, 0, 1, Math .PI);
+
+   expect (r3 .getQuaternion ()) .toHaveLength (4);
+   expect (r3 .getQuaternion () [0]) .toBeCloseTo (0);
+   expect (r3 .getQuaternion () [1]) .toBeCloseTo (0);
+   expect (r3 .getQuaternion () [2]) .toBeCloseTo (1);
+   expect (r3 .getQuaternion () [3]) .toBeCloseTo (0);
+
+   const r4 = new SFRotation ();
+
+   expect (r4 .getQuaternion ()) .toHaveLength (4);
+   expect (r4 .getQuaternion () [0]) .toBeCloseTo (0);
+   expect (r4 .getQuaternion () [1]) .toBeCloseTo (0);
+   expect (r4 .getQuaternion () [2]) .toBeCloseTo (0);
+   expect (r4 .getQuaternion () [3]) .toBeCloseTo (1);
+
+   r4 .setQuaternion (Math .SQRT1_2, 0, 0, Math .SQRT1_2);
+
+   expect (r4 .getQuaternion ()) .toHaveLength (4);
+   expect (r4 .getQuaternion () [0]) .toBeCloseTo (Math .SQRT1_2);
+   expect (r4 .getQuaternion () [1]) .toBeCloseTo (0);
+   expect (r4 .getQuaternion () [2]) .toBeCloseTo (0);
+   expect (r4 .getQuaternion () [3]) .toBeCloseTo (Math .SQRT1_2);
+
+   expect (r4 .x) .toBeCloseTo (1);
+   expect (r4 .y) .toBeCloseTo (0);
+   expect (r4 .z) .toBeCloseTo (0);
+   expect (r4 .angle) .toBeCloseTo (Math .PI/2);
+
+});
+
 test ("inverse", () =>
 {
    const
