@@ -300,7 +300,6 @@ test ("get/setQuaternion", () =>
    expect (r4 .y) .toBeCloseTo (0);
    expect (r4 .z) .toBeCloseTo (0);
    expect (r4 .angle) .toBeCloseTo (Math .PI/2);
-
 });
 
 test ("inverse", () =>
