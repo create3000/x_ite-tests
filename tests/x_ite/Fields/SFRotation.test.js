@@ -300,6 +300,27 @@ test ("get/setQuaternion", () =>
    expect (r4 .y) .toBeCloseTo (0);
    expect (r4 .z) .toBeCloseTo (0);
    expect (r4 .angle) .toBeCloseTo (Math .PI/2);
+
+   r4 .setQuaternion (0, 0, 0, 1);
+
+   expect (r4 .getQuaternion ()) .toHaveLength (4);
+   expect (r4 .getQuaternion () [0]) .toBeCloseTo (0);
+   expect (r4 .getQuaternion () [1]) .toBeCloseTo (0);
+   expect (r4 .getQuaternion () [2]) .toBeCloseTo (0);
+   expect (r4 .getQuaternion () [3]) .toBeCloseTo (1);
+
+   r4 .setQuaternion (1, 0, 0, 1);
+
+   expect (r4 .getQuaternion ()) .toHaveLength (4);
+   expect (r4 .getQuaternion () [0]) .toBeCloseTo (Math .SQRT1_2);
+   expect (r4 .getQuaternion () [1]) .toBeCloseTo (0);
+   expect (r4 .getQuaternion () [2]) .toBeCloseTo (0);
+   expect (r4 .getQuaternion () [3]) .toBeCloseTo (Math .SQRT1_2);
+
+   expect (r4 .x) .toBeCloseTo (1);
+   expect (r4 .y) .toBeCloseTo (0);
+   expect (r4 .z) .toBeCloseTo (0);
+   expect (r4 .angle) .toBeCloseTo (Math .PI/2);
 });
 
 test ("inverse", () =>
