@@ -1,6 +1,6 @@
 const
    X3D     = require ("../../X3D"),
-   SFTime = X3D .require ("x_ite/Fields/SFTime")
+   SFTime = X3D .SFTime
 
 test ("constructor", () =>
 {

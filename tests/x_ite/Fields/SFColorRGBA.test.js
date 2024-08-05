@@ -1,6 +1,6 @@
 const
    X3D         = require ("../../X3D"),
-   SFColorRGBA = X3D .require ("x_ite/Fields/SFColorRGBA")
+   SFColorRGBA = X3D .SFColorRGBA
 
 test ("constructor", () =>
 {

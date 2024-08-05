@@ -550,7 +550,7 @@ test ("sort-reverse", () =>
    expect (a [4]) .toBe (true)
    expect (a [5]) .toBe (true)
 
-   const Algorithm = X3D .require ("standard/Math/Algorithm")
+   const Algorithm = X3D .Algorithm
 
    expect (a .sort ((a, b) => Algorithm .cmp (b, a))) .toBe (a)
 

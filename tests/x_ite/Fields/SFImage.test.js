@@ -1,7 +1,7 @@
 const
    X3D     = require ("../../X3D"),
-   SFImage = X3D .require ("x_ite/Fields/SFImage"),
-   MFInt32 = X3D .require ("x_ite/Fields") .MFInt32
+   SFImage = X3D .SFImage,
+   MFInt32 = X3D .Fields .MFInt32
 
 test ("constructor", () =>
 {

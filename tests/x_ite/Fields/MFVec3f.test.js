@@ -577,7 +577,7 @@ test ("sort-reverse", () =>
    expect (a [4] .equals (new SFVec3f (5,6,7))) .toBe (true)
    expect (a [5] .equals (new SFVec3f (5,6,8))) .toBe (true)
 
-   const Algorithm = X3D .require ("standard/Math/Algorithm")
+   const Algorithm = X3D .Algorithm
 
    a .sort ((a, b) => Algorithm .cmp (b .z, a .z))
 

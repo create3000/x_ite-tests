@@ -1,6 +1,6 @@
 const
    X3D       = require ("../../../X3D"),
-   Complex = X3D .require ("standard/Math/Numbers/Complex")
+   Complex = X3D .Complex
 
 test ("constructor", () =>
 {

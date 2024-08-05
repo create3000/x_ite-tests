@@ -1,10 +1,10 @@
 const
    X3D        = require ("../../X3D"),
-   SFRotation = X3D .require ("x_ite/Fields/SFRotation"),
-   SFVec3d    = X3D .require ("x_ite/Fields") .SFVec3d,
-   SFVec3f    = X3D .require ("x_ite/Fields") .SFVec3f,
-   SFMatrix3d = X3D .require ("x_ite/Fields") .SFMatrix3d,
-   SFMatrix3f = X3D .require ("x_ite/Fields") .SFMatrix3f
+   SFRotation = X3D .SFRotation,
+   SFVec3d    = X3D .Fields .SFVec3d,
+   SFVec3f    = X3D .Fields .SFVec3f,
+   SFMatrix3d = X3D .Fields .SFMatrix3d,
+   SFMatrix3f = X3D .Fields .SFMatrix3f
 
 test ("constructor", () =>
 {

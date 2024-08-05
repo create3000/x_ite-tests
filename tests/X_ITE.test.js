@@ -1,8 +1,8 @@
 const
    $                = require ("jquery"),
    X3D              = require ("./X3D"),
-   X3DCanvasElement = X3D .require ("x_ite/X3DCanvasElement"),
-   DEVELOPMENT      = X3D .require ("x_ite/DEVELOPMENT")
+   X3DCanvasElement = X3D .X3DCanvasElement,
+   DEVELOPMENT      = X3D .DEVELOPMENT
 
 test ("createBrowser", () =>
 {

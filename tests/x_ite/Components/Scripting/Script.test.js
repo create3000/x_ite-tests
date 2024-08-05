@@ -1,6 +1,6 @@
 const
    X3D    = require ("../../../X3D"),
-   Fields = X3D .require ("x_ite/Fields");
+   Fields = X3D .Fields;
 
 const
    canvas  = X3D .createBrowser (),

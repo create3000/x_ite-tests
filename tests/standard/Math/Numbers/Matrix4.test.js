@@ -1,9 +1,9 @@
 const
    X3D       = require ("../../../X3D"),
-   Matrix4   = X3D .require ("standard/Math/Numbers/Matrix4"),
-   Vector3   = X3D .require ("standard/Math/Numbers/Vector3"),
-   Vector4   = X3D .require ("standard/Math/Numbers/Vector4"),
-   Rotation4 = X3D .require ("standard/Math/Numbers/Rotation4")
+   Matrix4   = X3D .Matrix4,
+   Vector3   = X3D .Vector3,
+   Vector4   = X3D .Vector4,
+   Rotation4 = X3D .Rotation4
 
 test ("constructor", () =>
 {

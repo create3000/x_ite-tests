@@ -1,7 +1,7 @@
 const
    X3D       = require ("../../../X3D"),
-   Color3    = X3D .require ("standard/Math/Numbers/Color3"),
-   Algorithm = X3D .require ("standard/Math/Algorithm")
+   Color3    = X3D .Color3,
+   Algorithm = X3D .Algorithm
 
 test ("constructor", () =>
 {

@@ -1,6 +1,6 @@
 const
    X3D     = require ("../../X3D"),
-   SFInt32 = X3D .require ("x_ite/Fields/SFInt32")
+   SFInt32 = X3D .SFInt32
 
 test ("constructor", () =>
 {

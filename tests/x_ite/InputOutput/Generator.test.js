@@ -1,6 +1,6 @@
 const
    X3D           = require ("../../X3D"),
-   Generator     = X3D .require ("x_ite/InputOutput/Generator"),
+   Generator     = X3D .Generator,
    Browser       = X3D .createBrowser () .browser,
    latestVersion = Browser .currentScene .specificationVersion
 

@@ -1,6 +1,6 @@
 const
    X3D       = require ("../../X3D"),
-   X3DObject = X3D .require ("x_ite/Base/X3DObject")
+   X3DObject = X3D .X3DObject
 
 const
    canvas  = X3D .createBrowser (),

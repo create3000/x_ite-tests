@@ -1,6 +1,6 @@
 const
    X3D     = require ("../../X3D"),
-   SFDouble = X3D .require ("x_ite/Fields/SFDouble")
+   SFDouble = X3D .SFDouble
 
 test ("constructor", () =>
 {

@@ -1,6 +1,6 @@
 const
    X3D        = require ("../../X3D"),
-   FileLoader = X3D .require ("x_ite/InputOutput/FileLoader")
+   FileLoader = X3D .FileLoader
 
 test ("data-url encoded", () => new Promise ((resolve, reject) =>
 {

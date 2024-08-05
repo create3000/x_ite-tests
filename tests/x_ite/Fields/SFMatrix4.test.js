@@ -14,12 +14,12 @@ const SFVec4Type = {
 
 const SFRotation = X3D .SFRotation
 
-for (const Type of Object .keys (X3D .require ("x_ite/Fields/SFMatrix4")))
+for (const Type of Object .keys (X3D .SFMatrix4))
 {
    const
-      SFMatrix4 = X3D .require ("x_ite/Fields/SFMatrix4") [Type],
-      SFVec3    = X3D .require ("x_ite/Fields/SFVec3") [SFVec3Type [Type]],
-      SFVec4    = X3D .require ("x_ite/Fields/SFVec4") [SFVec4Type [Type]]
+      SFMatrix4 = X3D .SFMatrix4 [Type],
+      SFVec3    = X3D .SFVec3 [SFVec3Type [Type]],
+      SFVec4    = X3D .SFVec4 [SFVec4Type [Type]]
 
    test ("constructor", () =>
    {

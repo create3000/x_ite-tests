@@ -10,12 +10,12 @@ const SFVec3Type = {
    SFMatrix3f: "SFVec3f",
 }
 
-for (const Type of Object .keys (X3D .require ("x_ite/Fields/SFMatrix3")))
+for (const Type of Object .keys (X3D .SFMatrix3))
 {
    const
-      SFMatrix3 = X3D .require ("x_ite/Fields/SFMatrix3") [Type],
-      SFVec2    = X3D .require ("x_ite/Fields/SFVec2") [SFVec2Type [Type]],
-      SFVec3    = X3D .require ("x_ite/Fields/SFVec3") [SFVec3Type [Type]]
+      SFMatrix3 = X3D .SFMatrix3 [Type],
+      SFVec2    = X3D .SFVec2 [SFVec2Type [Type]],
+      SFVec3    = X3D .SFVec3 [SFVec3Type [Type]]
 
    test ("constructor", () =>
    {

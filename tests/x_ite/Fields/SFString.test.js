@@ -1,6 +1,6 @@
 const
    X3D      = require ("../../X3D"),
-   SFString = X3D .require ("x_ite/Fields/SFString")
+   SFString = X3D .SFString
 
 test ("constructor", () =>
 {

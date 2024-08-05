@@ -1,7 +1,7 @@
 const
    X3D     = require ("../../../X3D"),
-   Matrix2 = X3D .require ("standard/Math/Numbers/Matrix2"),
-   Vector2 = X3D .require ("standard/Math/Numbers/Vector2")
+   Matrix2 = X3D .Matrix2,
+   Vector2 = X3D .Vector2
 
 test ("constructor", () =>
 {

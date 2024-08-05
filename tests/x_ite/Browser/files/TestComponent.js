@@ -1,11 +1,11 @@
 const
    X3D                  = window .X3D,
-   Components           = X3D .require ("x_ite/Components"),
-   X3DNode              = X3D .require ("x_ite/Components/Core/X3DNode"),
-   X3DConstants         = X3D .require ("x_ite/Base/X3DConstants"),
-   FieldDefinitionArray = X3D .require ("x_ite/Base/FieldDefinitionArray"),
-   X3DFieldDefinition   = X3D .require ("x_ite/Base/X3DFieldDefinition"),
-   Fields               = X3D .require ("x_ite/Fields")
+   Components           = X3D .Components,
+   X3DNode              = X3D .X3DNode,
+   X3DConstants         = X3D .X3DConstants,
+   FieldDefinitionArray = X3D .FieldDefinitionArray,
+   X3DFieldDefinition   = X3D .X3DFieldDefinition,
+   Fields               = X3D .Fields
 
 class TestNode extends X3DNode
 {

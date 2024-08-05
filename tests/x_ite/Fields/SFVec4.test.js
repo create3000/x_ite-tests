@@ -1,8 +1,8 @@
 const X3D = require ("../../X3D")
 
-for (const Type of Object .keys (X3D .require ("x_ite/Fields/SFVec4")))
+for (const Type of Object .keys (X3D .SFVec4))
 {
-   const SFVec4 = X3D .require ("x_ite/Fields/SFVec4") [Type]
+   const SFVec4 = X3D .SFVec4 [Type]
 
    test ("constructor", () =>
    {
