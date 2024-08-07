@@ -44,7 +44,7 @@ function node (filename)
 
    // Check containerField.
 
-   const containerField = file .match (/containerField:\s*\{\s*value:\s*"(.*?)",/s);
+   const containerField = file .match (/getStaticProperties\s*\(.*?,.*?,.*?,\s*"(.*?)"/s);
 
    if (!containerField || !containerField [1] === x3duom .InterfaceDefinition ?.containerField ?.default)
    {
@@ -106,7 +106,7 @@ function common (typeName, file, x3duom)
 {
    // Test typeName.
 
-   const name = file .match (/typeName:\s*\{\s*value: "(.*?)",/);
+   const name = file .match (/getStaticProperties\s*\(\s*"(.*?)"/s);
 
    if (!name || name [1] !== x3duom .name)
    {
@@ -115,7 +115,7 @@ function common (typeName, file, x3duom)
 
    // Test componentInfo.
 
-   const componentInfo = file .match (/componentInfo:\s*\{\s*value: Object \.freeze \(\{ name: "(.*?)", level: (\d+) \}\),/s);
+   const componentInfo = file .match (/getStaticProperties\s*\(.*?,\s*"(.*?)",\s*(\d+)/s);
 
    if (!componentInfo)
    {
