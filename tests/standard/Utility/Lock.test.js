@@ -34,10 +34,13 @@ test ("constructor", async () =>
       a (100, 222, true) .catch (e => c .push (e)) .finally (() => f .push (222)),
       a (200, 333) .then (v => t .push (v)) .finally (() => f .push (333)),
       a (100, 444) .then (v => t .push (v)) .finally (() => f .push (444)),
+      a (200, 555, true) .catch (e => c .push (e)).finally (() => f .push (555)),
+      a (100, 666) .then (v => t .push (v)) .finally (() => f .push (666)),
    ]);
 
-   expect (r) .toEqual ([111, 111, 222, 222, 333, 333, 444, 444]);
-   expect (t) .toEqual ([111, 333, 444]);
+   expect (r) .toEqual ([111, 111, 222, 222, 333, 333, 444, 444, 555, 555, 666, 666]);
+   expect (t) .toEqual ([111, 333, 444, 666]);
    expect (c [0]) .toBeInstanceOf (Error);
-   expect (f) .toEqual ([111, 222, 333, 444]);
+   expect (c [1]) .toBeInstanceOf (Error);
+   expect (f) .toEqual ([111, 222, 333, 444, 555, 666]);
 });
