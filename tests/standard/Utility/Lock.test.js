@@ -4,13 +4,13 @@ const
 
 const sleep = ms => new Promise (resolve => setTimeout (resolve, ms));
 
-test ("constructor", async () =>
+test ("acquire", async () =>
 {
    const r = [ ];
 
    function a (ms, v, t)
    {
-      return Lock .acquire ("Lock.test 1", async () =>
+      return Lock .acquire ("acquire", async () =>
       {
          r .push (v);
 
