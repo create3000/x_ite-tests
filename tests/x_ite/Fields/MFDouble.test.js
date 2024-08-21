@@ -89,6 +89,14 @@ test ("assign", () =>
    expect (field .equals (new MFDouble ())) .toBe (true);
 })
 
+test ("shrinkToFit", () =>
+{
+   const field = new MFDouble (1, 2, 3, 4);
+
+   expect (field .shrinkToFit ()) .toHaveLength (4);
+   expect (field .shrinkToFit ()) .toBe (field .shrinkToFit ());
+});
+
 test ("common", () =>
 {
    const field = new MFDouble ()

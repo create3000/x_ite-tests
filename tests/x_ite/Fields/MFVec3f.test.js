@@ -57,6 +57,14 @@ test ("assign", () =>
    expect (field .equals (new MFVec3f ())) .toBe (true);
 })
 
+test ("shrinkToFit", () =>
+{
+   const field = new MFVec3f (new SFVec3f (1, 2, 3), new SFVec3f (4, 5, 6));
+
+   expect (field .shrinkToFit ()) .toHaveLength (6);
+   expect (field .shrinkToFit ()) .toBe (field .shrinkToFit ());
+});
+
 test ("common", () =>
 {
    const field = new MFVec3f ()

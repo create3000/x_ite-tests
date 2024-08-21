@@ -89,6 +89,14 @@ test ("assign", () =>
    expect (field .equals (new MFTime ())) .toBe (true);
 })
 
+test ("shrinkToFit", () =>
+{
+   const field = new MFTime (5, 6, 7, 8);
+
+   expect (field .shrinkToFit ()) .toHaveLength (4);
+   expect (field .shrinkToFit ()) .toBe (field .shrinkToFit ());
+});
+
 test ("common", () =>
 {
    const field = new MFTime ()

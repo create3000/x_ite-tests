@@ -85,6 +85,14 @@ test ("assign", () =>
    expect (field .equals (new MFBool ())) .toBe (true);
 })
 
+test ("shrinkToFit", () =>
+{
+   const field = new MFBool (true, false, true, false);
+
+   expect (field .shrinkToFit ()) .toHaveLength (4);
+   expect (field .shrinkToFit ()) .toBe (field .shrinkToFit ());
+});
+
 test ("common", () =>
 {
    const field = new MFBool ()
