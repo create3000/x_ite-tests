@@ -107,6 +107,14 @@ test ("assign", () =>
    expect (field) .toHaveLength (0)
 })
 
+test ("shrinkToFit", () =>
+{
+   const field = new MFNode (node1);
+
+   expect (field .shrinkToFit ()) .toHaveLength (1);
+   expect (field .shrinkToFit ()) .toBe (field .shrinkToFit ());
+});
+
 test ("common", () =>
 {
    const field = new MFNode ()
