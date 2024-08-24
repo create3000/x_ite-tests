@@ -593,3 +593,34 @@ test ("unshift", () =>
       expect (a .at (-(i + 1))) .toBe (v)
    }
 })
+
+test ("concat", () =>
+{
+   const
+      a = new MFBool (true, true),
+      b = a .concat (),
+      c = a .concat (new MFBool (false, false)),
+      d = a .concat (new MFBool (false, false), new MFBool (true, true));
+
+   expect (a) .toHaveLength (2);
+   expect (a [0]) .toBe (true);
+   expect (a [1]) .toBe (true);
+
+   expect (b) .toHaveLength (2);
+   expect (b [0]) .toBe (true);
+   expect (b [1]) .toBe (true);
+
+   expect (c) .toHaveLength (4);
+   expect (c [0]) .toBe (true);
+   expect (c [1]) .toBe (true);
+   expect (c [2]) .toBe (false);
+   expect (c [3]) .toBe (false);
+
+   expect (d) .toHaveLength (6);
+   expect (d [0]) .toBe (true);
+   expect (d [1]) .toBe (true);
+   expect (d [2]) .toBe (false);
+   expect (d [3]) .toBe (false);
+   expect (d [4]) .toBe (true);
+   expect (d [5]) .toBe (true);
+});

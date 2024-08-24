@@ -614,3 +614,34 @@ test ("enumerate single", () =>
 
    enumerate (properties, new MFString () [0])
 })
+
+test ("concat", () =>
+{
+   const
+      a = new MFString ("aaa", "bbb"),
+      b = a .concat (),
+      c = a .concat (new MFString ("ccc", "ddd")),
+      d = a .concat (new MFString ("ccc", "ddd"), new MFString ("eee", "fff"));
+
+   expect (a) .toHaveLength (2);
+   expect (a [0]) .toBe ("aaa");
+   expect (a [1]) .toBe ("bbb");
+
+   expect (b) .toHaveLength (2);
+   expect (b [0]) .toBe ("aaa");
+   expect (b [1]) .toBe ("bbb");
+
+   expect (c) .toHaveLength (4);
+   expect (c [0]) .toBe ("aaa");
+   expect (c [1]) .toBe ("bbb");
+   expect (c [2]) .toBe ("ccc");
+   expect (c [3]) .toBe ("ddd");
+
+   expect (d) .toHaveLength (6);
+   expect (d [0]) .toBe ("aaa");
+   expect (d [1]) .toBe ("bbb");
+   expect (d [2]) .toBe ("ccc");
+   expect (d [3]) .toBe ("ddd");
+   expect (d [4]) .toBe ("eee");
+   expect (d [5]) .toBe ("fff");
+});

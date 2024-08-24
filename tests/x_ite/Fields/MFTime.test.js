@@ -597,3 +597,34 @@ test ("unshift", () =>
       expect (a .at (-(i + 1))) .toBe (v)
    }
 })
+
+test ("concat", () =>
+{
+   const
+      a = new MFTime (111, 222),
+      b = a .concat (),
+      c = a .concat (new MFTime (333, 444)),
+      d = a .concat (new MFTime (333, 444), new MFTime (555, 666));
+
+   expect (a) .toHaveLength (2);
+   expect (a [0]) .toBe (111);
+   expect (a [1]) .toBe (222);
+
+   expect (b) .toHaveLength (2);
+   expect (b [0]) .toBe (111);
+   expect (b [1]) .toBe (222);
+
+   expect (c) .toHaveLength (4);
+   expect (c [0]) .toBe (111);
+   expect (c [1]) .toBe (222);
+   expect (c [2]) .toBe (333);
+   expect (c [3]) .toBe (444);
+
+   expect (d) .toHaveLength (6);
+   expect (d [0]) .toBe (111);
+   expect (d [1]) .toBe (222);
+   expect (d [2]) .toBe (333);
+   expect (d [3]) .toBe (444);
+   expect (d [4]) .toBe (555);
+   expect (d [5]) .toBe (666);
+});
