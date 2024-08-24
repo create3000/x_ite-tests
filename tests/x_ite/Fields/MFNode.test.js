@@ -12,7 +12,7 @@ const
    node4   = scene .createNode ("WorldInfo"),
    node5   = scene .createNode ("WorldInfo"),
    node6   = scene .createNode ("WorldInfo"),
-   node7   = scene .createNode ("WorldInfo")
+   node7   = scene .createNode ("WorldInfo");
 
 scene .addNamedNode ("1", node1)
 scene .addNamedNode ("2", node2)
@@ -719,3 +719,34 @@ test ("dispose", () =>
    for (let i = 0; i < 6; ++ i)
       expect (b [i] .getValue () .getParents () .size) .toBe (1)
 })
+
+test ("concat", () =>
+{
+   const
+      a = new MFNode (node1, node2),
+      b = a .concat (),
+      c = a .concat (new MFNode (node3, node4)),
+      d = a .concat (new MFNode (node3, node4), new MFNode (node5, node6));
+
+   expect (a) .toHaveLength (2);
+   expect (a [0]) .toBe (node1);
+   expect (a [1]) .toBe (node2);
+
+   expect (b) .toHaveLength (2);
+   expect (b [0]) .toBe (node1);
+   expect (b [1]) .toBe (node2);
+
+   expect (c) .toHaveLength (4);
+   expect (c [0]) .toBe (node1);
+   expect (c [1]) .toBe (node2);
+   expect (c [2]) .toBe (node3);
+   expect (c [3]) .toBe (node4);
+
+   expect (d) .toHaveLength (6);
+   expect (d [0]) .toBe (node1);
+   expect (d [1]) .toBe (node2);
+   expect (d [2]) .toBe (node3);
+   expect (d [3]) .toBe (node4);
+   expect (d [4]) .toBe (node5);
+   expect (d [5]) .toBe (node6);
+});

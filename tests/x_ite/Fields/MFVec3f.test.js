@@ -539,13 +539,13 @@ test ("splice", () =>
    for (let i = 0, n = 0; i < N; ++ i)
       expect (a [i] .equals (new SFVec3f (++n,++n,++n))) .toBe (true)
 
-   const e = new MFVec3f (new SFVec3f (1,1,1), new SFVec3f (2,2,2), new SFVec3f (3,3,3), new SFVec3f (4,4,4))
+   const e = new MFVec3f (new SFVec3f (1,2,3), new SFVec3f (4,5,6), new SFVec3f (7,8,9), new SFVec3f (10,11,12))
 
-   expect (e .splice (2) .equals (new MFVec3f (new SFVec3f (3,3,3), new SFVec3f (4,4,4)))) .toBe (true)
-   expect (e .equals (new MFVec3f (new SFVec3f (1,1,1), new SFVec3f (2,2,2)))) .toBe (true)
+   expect (e .splice (2) .equals (new MFVec3f (new SFVec3f (7,8,9), new SFVec3f (10,11,12)))) .toBe (true)
+   expect (e .equals (new MFVec3f (new SFVec3f (1,2,3), new SFVec3f (4,5,6)))) .toBe (true)
 
    expect (e .splice () .equals (new MFVec3f ())) .toBe (true)
-   expect (e .equals (new MFVec3f (new SFVec3f (1,1,1), new SFVec3f (2,2,2)))) .toBe (true)
+   expect (e .equals (new MFVec3f (new SFVec3f (1,2,3), new SFVec3f (4,5,6)))) .toBe (true)
 })
 
 test ("sort-reverse", () =>
@@ -627,7 +627,7 @@ test ("enumerate", () =>
       0,1,2
    ]
 
-   enumerate (properties, new MFVec3f (new SFVec3f (1,1,1), new SFVec3f (2,2,2), new SFVec3f (3,3,3)));
+   enumerate (properties, new MFVec3f (new SFVec3f (1,2,3), new SFVec3f (4,5,6), new SFVec3f (7,8,9)));
 })
 
 test ("enumerate single", () =>
@@ -644,30 +644,30 @@ test ("enumerate single", () =>
 test ("concat", () =>
 {
    const
-      a = new MFVec3f (new SFVec3f (1,1,1), new SFVec3f (2,2,2)),
+      a = new MFVec3f (new SFVec3f (1,2,3), new SFVec3f (4,5,6)),
       b = a .concat (),
-      c = a .concat (new MFVec3f (new SFVec3f (3,3,3), new SFVec3f (4,4,4))),
-      d = a .concat (new MFVec3f (new SFVec3f (3,3,3), new SFVec3f (4,4,4)), new MFVec3f (new SFVec3f (5,5,5), new SFVec3f (6,6,6)));
+      c = a .concat (new MFVec3f (new SFVec3f (7,8,9), new SFVec3f (10,11,12))),
+      d = a .concat (new MFVec3f (new SFVec3f (7,8,9), new SFVec3f (10,11,12)), new MFVec3f (new SFVec3f (13,14,15), new SFVec3f (16,17,18)));
 
    expect (a) .toHaveLength (2);
-   expect (a [0] .equals (new SFVec3f (1,1,1))) .toBe (true);
-   expect (a [1] .equals (new SFVec3f (2,2,2))) .toBe (true);
+   expect (a [0] .equals (new SFVec3f (1,2,3))) .toBe (true);
+   expect (a [1] .equals (new SFVec3f (4,5,6))) .toBe (true);
 
    expect (b) .toHaveLength (2);
-   expect (b [0] .equals (new SFVec3f (1,1,1))) .toBe (true);
-   expect (b [1] .equals (new SFVec3f (2,2,2))) .toBe (true);
+   expect (b [0] .equals (new SFVec3f (1,2,3))) .toBe (true);
+   expect (b [1] .equals (new SFVec3f (4,5,6))) .toBe (true);
 
    expect (c) .toHaveLength (4);
-   expect (c [0] .equals (new SFVec3f (1,1,1))) .toBe (true);
-   expect (c [1] .equals (new SFVec3f (2,2,2))) .toBe (true);
-   expect (c [2] .equals (new SFVec3f (3,3,3))) .toBe (true);
-   expect (c [3] .equals (new SFVec3f (4,4,4))) .toBe (true);
+   expect (c [0] .equals (new SFVec3f (1,2,3))) .toBe (true);
+   expect (c [1] .equals (new SFVec3f (4,5,6))) .toBe (true);
+   expect (c [2] .equals (new SFVec3f (7,8,9))) .toBe (true);
+   expect (c [3] .equals (new SFVec3f (10,11,12))) .toBe (true);
 
    expect (d) .toHaveLength (6);
-   expect (d [0] .equals (new SFVec3f (1,1,1))) .toBe (true);
-   expect (d [1] .equals (new SFVec3f (2,2,2))) .toBe (true);
-   expect (d [2] .equals (new SFVec3f (3,3,3))) .toBe (true);
-   expect (d [3] .equals (new SFVec3f (4,4,4))) .toBe (true);
-   expect (d [4] .equals (new SFVec3f (5,5,5))) .toBe (true);
-   expect (d [5] .equals (new SFVec3f (6,6,6))) .toBe (true);
+   expect (d [0] .equals (new SFVec3f (1,2,3))) .toBe (true);
+   expect (d [1] .equals (new SFVec3f (4,5,6))) .toBe (true);
+   expect (d [2] .equals (new SFVec3f (7,8,9))) .toBe (true);
+   expect (d [3] .equals (new SFVec3f (10,11,12))) .toBe (true);
+   expect (d [4] .equals (new SFVec3f (13,14,15))) .toBe (true);
+   expect (d [5] .equals (new SFVec3f (16,17,18))) .toBe (true);
 });
