@@ -4,8 +4,8 @@
   <head>
     <meta name='created' content='Wed, 20 Mar 2024 18:14:30 GMT'/>
     <meta name='creator' content='Holger Seelig'/>
-    <meta name='generator' content='Sunrize X3D Editor V1.6.7, https://create3000.github.io/sunrize/'/>
-    <meta name='modified' content='Wed, 27 Mar 2024 19:55:52 GMT'/>
+    <meta name='generator' content='Sunrize X3D Editor V1.7.18, https://create3000.github.io/sunrize/'/>
+    <meta name='modified' content='Sun, 08 Sep 2024 15:42:16 GMT'/>
   </head>
   <Scene>
     <ProtoDeclare name='Test'>
@@ -40,21 +40,15 @@
         </Transform>
       </ProtoBody>
     </ProtoDeclare>
-    <WorldInfo>
-      <MetadataSet containerField='metadata'
-          name='Sunrize'
-          reference='https://create3000.github.io/sunrize/'>
-        <MetadataSet
-            name='GridTool'>
-          <MetadataBoolean
-              name='visible'
-              value='true'/>
-        </MetadataSet>
-      </MetadataSet>
-    </WorldInfo>
+    <WorldInfo/>
     <Viewpoint
         description='Initial View'
         position='2.869677 3.854335 8.769781'
         orientation='-0.7765887 0.6177187 0.1238285 0.5052317'/>
+    <ProtoInstance name='Test' DEF='Default'/>
+    <ProtoInstance name='Test' DEF='NULL'>
+      <fieldValue name='child' value='null'/>
+      <fieldValue name='children'/>
+    </ProtoInstance>
   </Scene>
 </X3D>

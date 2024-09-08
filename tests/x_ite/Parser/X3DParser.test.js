@@ -323,6 +323,11 @@ test ("proto-with-filled-node-fields.x3d", async () =>
          if (i)
             expect (scene .specificationVersion) .toBe (latestVersion);
 
+         expect (scene .getNamedNode ("Default") .child) .not .toBe (null);
+         expect (scene .getNamedNode ("Default") .children) .not .toHaveLength (0);
+         expect (scene .getNamedNode ("NULL") .child) .toBe (null);
+         expect (scene .getNamedNode ("NULL") .children) .toHaveLength (0);
+
          expect (scene .toXMLString ()) .toBe (orig);
          expect (scene .toXMLString  ({ style })) .toBe (x3d);
          expect (scene .toVRMLString ({ style })) .toBe (x3dv);
