@@ -24,22 +24,32 @@ test ("properties", () =>
    expect (Browser .currentScene) .toBeInstanceOf (X3D .X3DScene)
    expect (Browser .currentScene .getScene ()) .toBe (null)
    expect (Browser .currentScene .getExecutionContext ()) .toBe (null)
-   expect (Browser .element) .toBe (canvas)
 
-   Browser .name                = undefined
-   Browser .version             = undefined
-   Browser .currentSpeed        = undefined
-   Browser .currentFrameRate    = undefined
-   Browser .description         = "test"
-   Browser .supportedProfiles   = undefined
-   Browser .supportedComponents = undefined
-   Browser .currentScene        = undefined
-   Browser .element             = undefined
+   expect (Browser .element) .toBe (canvas)
+   expect (Browser .activeLayer) .toBeInstanceOf (X3D .SFNode)
+   expect (Browser .activeLayer .getNodeType () .includes (X3D .X3DConstants .X3DLayerNode)) .toBe (true)
+   expect (Browser .activeNavigationInfo) .toBeInstanceOf (X3D .SFNode)
+   expect (Browser .activeNavigationInfo .getNodeType () .includes (X3D .X3DConstants .NavigationInfo)) .toBe (true)
+   expect (Browser .activeViewpoint) .toBeInstanceOf (X3D .SFNode)
+   expect (Browser .activeViewpoint .getNodeType () .includes (X3D .X3DConstants .X3DViewpointNode)) .toBe (true)
+
+   Browser .name                 = undefined
+   Browser .version              = undefined
+   Browser .currentSpeed         = undefined
+   Browser .currentFrameRate     = undefined
+   Browser .description          = "test"
+   Browser .supportedProfiles    = undefined
+   Browser .supportedComponents  = undefined
+   Browser .currentScene         = undefined
+   Browser .element              = undefined
+   Browser .activeLayer          = undefined
+   Browser .activeNavigationInfo = undefined
+   Browser .activeViewpoint      = undefined
 
    expect (Browser .name) .toBe ("X_ITE")
    expect (Browser .version) .toMatch (/^\d+\.\d+\.\d+$/)
    expect (Browser .providerURL) .toMatch (/^https:\/\//)
-   expect (Browser .providerUrl) .toMatch (Browser .providerURL)
+   expect (Browser .providerUrl) .toBe (Browser .providerURL)
    expect (Browser .currentSpeed) .toBe (0)
    expect (Browser .currentFrameRate) .toBe (60)
    expect (Browser .description) .toBe ("test")
@@ -50,6 +60,9 @@ test ("properties", () =>
    expect (Browser .fieldTypes) .toBeInstanceOf (X3D .FieldTypesArray)
    expect (Browser .currentScene) .toBeInstanceOf (X3D .X3DScene)
    expect (Browser .element) .toBe (canvas)
+   expect (Browser .activeLayer) .toBeInstanceOf (X3D .SFNode)
+   expect (Browser .activeNavigationInfo) .toBeInstanceOf (X3D .SFNode)
+   expect (Browser .activeViewpoint) .toBeInstanceOf (X3D .SFNode)
    expect (Browser .toString ()) .toBe (`[object ${Browser .getTypeName ()}]`)
 
    const properties = [
@@ -67,6 +80,9 @@ test ("properties", () =>
       "baseURL",
       "currentScene",
       "element",
+      "activeLayer",
+      "activeNavigationInfo",
+      "activeViewpoint",
    ]
 
    enumerate (properties, Browser)
