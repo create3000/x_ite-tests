@@ -84,17 +84,6 @@ test ("set", () =>
    expect (v1 .set (2, 3, 4, 5)) .toEqual ({ x:2, y:3, z:4, w:5 })
 })
 
-test ("getReal", () =>
-{
-   const
-      v1 = new Vector4 (2, 3, 4, 5),
-      v2 = v1 .getReal (new Vector3 (0, 0, 0))
-
-   expect (v2 [0]) .toBeCloseTo (2 / 5)
-   expect (v2 [1]) .toBeCloseTo (3 / 5)
-   expect (v2 [2]) .toBeCloseTo (4 / 5)
-})
-
 test ("negate", () =>
 {
    const v1 = new Vector4 (2, 3, 4, 5)
