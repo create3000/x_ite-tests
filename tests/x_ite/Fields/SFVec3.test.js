@@ -284,11 +284,6 @@ for (const Type of Object .keys (X3D .SFVec3))
          h = new SFVec3 (1,5,8),
          c = a .clamp (l, h);
 
-         console .log (a .getValue ())
-         console .log (l .getValue ())
-         console .log (h .getValue ())
-         console .log (c .getValue ())
-
       expect (c) .toBeInstanceOf (SFVec3)
       expect (c) .not .toBe (l)
       expect (c) .not .toBe (h)
