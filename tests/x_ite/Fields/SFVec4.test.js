@@ -271,6 +271,22 @@ for (const Type of Object .keys (X3D .SFVec4))
       expect (d .equals (b)) .toBe (true)
    })
 
+   test ("clamp", () =>
+   {
+      const
+         a = new SFVec4 (2,3,4,5),
+         l = new SFVec4 (0,4,0,0),
+         h = new SFVec4 (1,5,8,10),
+         c = a .clamp (l, h);
+
+      expect (c) .toBeInstanceOf (SFVec4)
+      expect (c) .not .toBe (l)
+      expect (c) .not .toBe (h)
+      expect (c .getValue ()) .not .toBe (l .getValue ())
+      expect (c .getValue ()) .not .toBe (h .getValue ())
+      expect (c .getValue ()) .toEqual ({ x: 1, y: 4, z: 4, w: 5 });
+   })
+
    test ("multiply", () =>
    {
       const
