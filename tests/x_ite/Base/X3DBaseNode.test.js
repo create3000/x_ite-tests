@@ -61,11 +61,13 @@ test ("concrete-nodes", async () =>
 
       expect (baseNode .getExecutionContext ()) .toBe (Browser .currentScene);
       expect (baseNode .isLive ()) .toBe (true);
+      expect (node) .toBe (X3D .SFNodeCache .get (baseNode));
 
-      node .dispose ();
+      baseNode .dispose ();
 
       expect (node .getValue ()) .toBe (null);
       expect (baseNode .isLive ()) .toBe (false);
+      expect (node) .not .toBe (X3D .SFNodeCache .get (baseNode));
    }
 })
 

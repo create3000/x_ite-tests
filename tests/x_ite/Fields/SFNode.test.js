@@ -236,6 +236,11 @@ ROUTE S1.appearance TO S2.appearance
       shape4 = scene .getNamedNode ("S4")
 
    const
+      sv1 = shape1 .getValue (),
+      sv3 = shape3 .getValue (),
+      sv4 = shape4 .getValue ();
+
+   const
       t1 = scene .getNamedNode ("T1"),
       t2 = scene .getNamedNode ("T2"),
       s2 = scene .getNamedNode ("S2"),
@@ -276,6 +281,9 @@ ROUTE S1.appearance TO S2.appearance
    expect (scene .getNamedNode ("T2") .children) .toHaveLength (1)
    expect (scene .getNamedNode ("A") .getValue () .getParents () .size) .toBe (2)
    expect (scene .getNamedNode ("B") .getValue () .getParents () .size) .toBe (2)
+   expect (shape1) .toBe (X3D .SFNodeCache .get (sv1));
+   expect (shape3) .toBe (X3D .SFNodeCache .get (sv3));
+   expect (shape4) .toBe (X3D .SFNodeCache .get (sv4));
 
    shape1 .dispose ()
    shape3 .dispose ()
@@ -301,6 +309,9 @@ ROUTE S1.appearance TO S2.appearance
    expect (scene .getNamedNode ("T2") .children) .toHaveLength (0)
    expect (scene .getNamedNode ("A") .getValue () .getParents () .size) .toBe (1)
    expect (scene .getNamedNode ("B") .getValue () .getParents () .size) .toBe (1)
+   expect (shape1) .not .toBe (X3D .SFNodeCache .get (sv1));
+   expect (shape3) .not .toBe (X3D .SFNodeCache .get (sv3));
+   expect (shape4) .not .toBe (X3D .SFNodeCache .get (sv4));
 })
 
 test ("dispose2", () =>
