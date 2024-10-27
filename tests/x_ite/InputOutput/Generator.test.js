@@ -233,3 +233,25 @@ IMPORT I.T
    expect (scene2 .getLocalNode ("T")) .toBeInstanceOf (X3D .X3DImportedNode);
    expect (scene2 .importedNodes [0] .importedName) .toBe ("T");
 });
+
+
+test ("hidden routes", async () =>
+{
+   const scene = await Browser .createX3DFromString (`
+DEF T Transform { }
+   `);
+
+   const x3d  = scene .toXMLString ();
+   const x3dv = scene .toVRMLString ();
+   const json = scene .toJSONString ();
+
+   const t1 = scene .getNamedNode ("T");
+   const t2 = scene .createNode ("Transform");
+
+   Browser .addRoute (t1, "translation", t2, "translation");
+   Browser .addRoute (t2, "rotation", t1, "rotation");
+
+   expect (scene .toXMLString ())  .toBe (x3d);
+   expect (scene .toVRMLString ()) .toBe (x3dv);
+   expect (scene .toJSONString ()) .toBe (json);
+});
