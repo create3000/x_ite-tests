@@ -238,7 +238,7 @@ IMPORT I.T
 test ("hidden routes", async () =>
 {
    const scene = await Browser .createX3DFromString (`
-DEF T Transform { }
+DEF T1 Transform { }
    `);
 
    const x3d  = scene .toXMLString ();
@@ -249,11 +249,20 @@ DEF T Transform { }
    expect (x3dv .includes ("Transform")) .toBe (true);
    expect (json .includes ("Transform")) .toBe (true);
 
-   const t1 = scene .getNamedNode ("T");
+   const t1 = scene .getNamedNode ("T1");
    const t2 = scene .createNode ("Transform");
+   const t3 = scene .createNode ("Transform");
+
+   scene .addNamedNode ("T3", t3);
+
+   expect (scene .namedNodes) .toHaveLength (2);
+   expect (t3 .getNodeName ()) .toBe ("T3");
 
    Browser .addRoute (t1, "translation", t2, "translation");
    Browser .addRoute (t2, "rotation", t1, "rotation");
+
+   Browser .addRoute (t1, "translation", t3, "translation");
+   Browser .addRoute (t3, "rotation", t1, "rotation");
 
    expect (scene .toXMLString ())  .toBe (x3d);
    expect (scene .toVRMLString ()) .toBe (x3dv);
