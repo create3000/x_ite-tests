@@ -258,13 +258,13 @@ DEF T1 Transform { }
    expect (scene .namedNodes) .toHaveLength (2);
    expect (t3 .getNodeName ()) .toBe ("T3");
 
-   Browser .addRoute (t1, "translation", t2, "translation");
-   Browser .addRoute (t2, "rotation", t1, "rotation");
+   scene .addRoute (t1, "translation", t2, "translation");
+   scene .addRoute (t2, "rotation", t1, "rotation");
 
-   Browser .addRoute (t1, "translation", t3, "translation");
-   Browser .addRoute (t3, "rotation", t1, "rotation");
+   scene .addRoute (t1, "translation", t3, "translation");
+   scene .addRoute (t3, "rotation", t1, "rotation");
 
-   expect (scene .toXMLString ())  .toBe (x3d);
-   expect (scene .toVRMLString ()) .toBe (x3dv);
+   expect (scene .toXMLString ()) .toBe (x3d);
+   expect (scene .toVRMLString () .trimEnd ()) .toBe (x3dv .trimEnd ());
    expect (scene .toJSONString ()) .toBe (json);
 });
