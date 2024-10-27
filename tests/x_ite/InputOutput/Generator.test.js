@@ -245,6 +245,10 @@ DEF T Transform { }
    const x3dv = scene .toVRMLString ();
    const json = scene .toJSONString ();
 
+   expect (x3d  .includes ("Transform")) .toBe (true);
+   expect (x3dv .includes ("Transform")) .toBe (true);
+   expect (json .includes ("Transform")) .toBe (true);
+
    const t1 = scene .getNamedNode ("T");
    const t2 = scene .createNode ("Transform");
 
