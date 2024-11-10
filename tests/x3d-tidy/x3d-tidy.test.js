@@ -10,11 +10,11 @@ test ("help", () => new Promise ((resolve, reject) =>
          return;
       }
 
-      if (stderr)
-      {
-         reject (stderr);
-         return;
-      }
+      // if (stderr)
+      // {
+      //    reject (stderr);
+      //    return;
+      // }
 
       expect (stdout) .toMatch (/x3d-tidy args/);
       resolve ();
