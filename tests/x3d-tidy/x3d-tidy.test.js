@@ -25,15 +25,9 @@ test ("error", () => new Promise ((resolve, reject) =>
 {
    exec ("npx --yes x3d-tidy -i does/not/exist -o does/not/exist", (error, stdout, stderr) =>
    {
-      if (error)
+      if (stderr ?? error)
       {
-         reject (error .message);
-         return;
-      }
-
-      if (stderr)
-      {
-         expect (stderr) .toMatch (/Couldn't load X3D file./);
+         expect (stderr ?? error) .toMatch (/Couldn't load X3D file./);
          resolve ();
          return;
       }
