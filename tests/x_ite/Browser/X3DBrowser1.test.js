@@ -133,6 +133,32 @@ DEF VP1 Viewpoint {
    await Browser .loadURL (new X3D .MFString (`data:model/x3d+vrml,
 PROFILE Interactive
 
+DEF VP1 Viewpoint {
+   description "first vp"
+}
+`));
+
+   expect (Browser .activeLayer) .toBe (null);
+   expect (Browser .activeNavigationInfo) .toBe (null);
+   expect (Browser .activeViewpoint) .toBeInstanceOf (X3D .SFNode);
+   expect (Browser .activeViewpoint .getNodeType () .includes (X3D .X3DConstants .X3DViewpointNode)) .toBe (true);
+   expect (Browser .activeViewpoint .getNodeName ()) .toBe ("VP1");
+
+   await Browser .loadURL (new X3D .MFString (`data:model/x3d+vrml,
+PROFILE Interactive
+
+DEF N1 NavigationInfo { }
+`));
+
+   expect (Browser .activeLayer) .toBe (null);
+   expect (Browser .activeNavigationInfo) .toBeInstanceOf (X3D .SFNode);
+   expect (Browser .activeNavigationInfo .getNodeType () .includes (X3D .X3DConstants .NavigationInfo)) .toBe (true);
+   expect (Browser .activeNavigationInfo .getNodeName ()) .toBe ("N1");
+   expect (Browser .activeViewpoint) .toBe (null);
+
+   await Browser .loadURL (new X3D .MFString (`data:model/x3d+vrml,
+PROFILE Interactive
+
 COMPONENT Layering : 1
 
 LayerSet {
