@@ -26,12 +26,9 @@ test ("properties", () =>
    expect (Browser .currentScene .getExecutionContext ()) .toBe (null)
 
    expect (Browser .element) .toBe (canvas)
-   expect (Browser .activeLayer) .toBeInstanceOf (X3D .SFNode)
-   expect (Browser .activeLayer .getNodeType () .includes (X3D .X3DConstants .X3DLayerNode)) .toBe (true)
-   expect (Browser .activeNavigationInfo) .toBeInstanceOf (X3D .SFNode)
-   expect (Browser .activeNavigationInfo .getNodeType () .includes (X3D .X3DConstants .NavigationInfo)) .toBe (true)
-   expect (Browser .activeViewpoint) .toBeInstanceOf (X3D .SFNode)
-   expect (Browser .activeViewpoint .getNodeType () .includes (X3D .X3DConstants .X3DViewpointNode)) .toBe (true)
+   expect (Browser .activeLayer) .toBe (null)
+   expect (Browser .activeNavigationInfo) .toBe (null)
+   expect (Browser .activeViewpoint) .toBe (null)
 
    Browser .name                 = undefined
    Browser .version              = undefined
@@ -59,10 +56,12 @@ test ("properties", () =>
    expect (Browser .abstractNodes) .toBeInstanceOf (X3D .AbstractNodesArray)
    expect (Browser .fieldTypes) .toBeInstanceOf (X3D .FieldTypesArray)
    expect (Browser .currentScene) .toBeInstanceOf (X3D .X3DScene)
+
    expect (Browser .element) .toBe (canvas)
-   expect (Browser .activeLayer) .toBeInstanceOf (X3D .SFNode)
-   expect (Browser .activeNavigationInfo) .toBeInstanceOf (X3D .SFNode)
-   expect (Browser .activeViewpoint) .toBeInstanceOf (X3D .SFNode)
+   expect (Browser .activeLayer) .toBe (null)
+   expect (Browser .activeNavigationInfo) .toBe (null)
+   expect (Browser .activeViewpoint) .toBe (null)
+
    expect (Browser .toString ()) .toBe (`[object ${Browser .getTypeName ()}]`)
 
    const properties = [
@@ -88,7 +87,7 @@ test ("properties", () =>
    enumerate (properties, Browser)
 })
 
-test ("vrml-properties", () =>
+test ("VRML properties", () =>
 {
    const
       canvas  = X3D .createBrowser (),
@@ -107,6 +106,43 @@ test ("vrml-properties", () =>
    expect (Browser .getDescription ()) .toBe ("test-description")
    expect (Browser .description) .toBe ("test-description")
 })
+
+test ("active* properties", async () =>
+{
+   const
+      canvas  = X3D .createBrowser (),
+      Browser = canvas .browser;
+
+   await Browser .loadURL (new X3D .MFString (`data:model/x3d+vrml,
+PROFILE Interactive
+
+COMPONENT Layering : 1
+
+LayerSet {
+   order 1
+   activeLayer 1
+   layers DEF L1 Layer {
+      children [
+         DEF N1 NavigationInfo { }
+         DEF VP1 Viewpoint {
+            description "first vp"
+         }
+      ]
+   }
+}
+`));
+
+   expect (Browser .activeLayer) .toBeInstanceOf (X3D .SFNode);
+   expect (Browser .activeLayer .getNodeType () .includes (X3D .X3DConstants .X3DLayerNode)) .toBe (true);
+   expect (Browser .activeLayer .getNodeName ()) .toBe ("L1");
+   expect (Browser .activeNavigationInfo) .toBeInstanceOf (X3D .SFNode);
+   expect (Browser .activeNavigationInfo .getNodeType () .includes (X3D .X3DConstants .NavigationInfo)) .toBe (true);
+   expect (Browser .activeNavigationInfo .getNodeName ()) .toBe ("N1");
+   expect (Browser .activeViewpoint) .toBeInstanceOf (X3D .SFNode);
+   expect (Browser .activeViewpoint .getNodeType () .includes (X3D .X3DConstants .X3DViewpointNode)) .toBe (true);
+   expect (Browser .activeViewpoint .getNodeName ()) .toBe ("VP1");
+   expect (Browser .activeViewpoint .description) .toBe ("first vp");
+});
 
 test ("getProfile", () =>
 {
@@ -485,15 +521,22 @@ test ("loadURL", async () =>
    await Browser .loadURL (new X3D .MFString (`data:model/x3d+vrml,
 PROFILE Interactive
 
+Viewpoint { }
 Transform { }
 Shape { }
 Box { }
 `))
 
-   expect (Browser .currentScene .rootNodes) .toHaveLength (3)
-   expect (Browser .currentScene .rootNodes [0] .getNodeTypeName ()) .toBe ("Transform")
-   expect (Browser .currentScene .rootNodes [1] .getNodeTypeName ()) .toBe ("Shape")
-   expect (Browser .currentScene .rootNodes [2] .getNodeTypeName ()) .toBe ("Box")
+   expect (Browser .currentScene .rootNodes) .toHaveLength (4)
+   expect (Browser .currentScene .rootNodes [0] .getNodeTypeName ()) .toBe ("Viewpoint")
+   expect (Browser .currentScene .rootNodes [1] .getNodeTypeName ()) .toBe ("Transform")
+   expect (Browser .currentScene .rootNodes [2] .getNodeTypeName ()) .toBe ("Shape")
+   expect (Browser .currentScene .rootNodes [3] .getNodeTypeName ()) .toBe ("Box")
+
+   expect (Browser .activeLayer) .toBe (null)
+   expect (Browser .activeNavigationInfo) .toBe (null)
+   expect (Browser .activeViewpoint) .toBeInstanceOf (X3D .SFNode)
+   expect (Browser .activeViewpoint .getNodeType () .includes (X3D .X3DConstants .X3DViewpointNode)) .toBe (true)
 
    await Browser .loadURL (new X3D .MFString (url .pathToFileURL (path .join (__dirname, "files", "loadURL.x3d"))))
 
@@ -501,6 +544,10 @@ Box { }
    expect (Browser .currentScene .rootNodes [0] .getNodeTypeName ()) .toBe ("Arc2D")
    expect (Browser .currentScene .rootNodes [1] .getNodeTypeName ()) .toBe ("GeoTransform")
    expect (Browser .currentScene .rootNodes [2] .getNodeTypeName ()) .toBe ("HAnimJoint")
+
+   expect (Browser .activeLayer) .toBe (null)
+   expect (Browser .activeNavigationInfo) .toBe (null)
+   expect (Browser .activeViewpoint) .toBe (null)
 })
 
 test ("addRoute/deleteRoute", async () =>
