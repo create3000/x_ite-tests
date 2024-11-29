@@ -142,6 +142,24 @@ LayerSet {
    expect (Browser .activeViewpoint .getNodeType () .includes (X3D .X3DConstants .X3DViewpointNode)) .toBe (true);
    expect (Browser .activeViewpoint .getNodeName ()) .toBe ("VP1");
    expect (Browser .activeViewpoint .description) .toBe ("first vp");
+
+   await Browser .loadURL (new X3D .MFString (`data:model/x3d+vrml,
+PROFILE Interactive
+
+DEF N1 NavigationInfo { }
+DEF VP1 Viewpoint {
+   description "first vp"
+}
+`));
+
+   expect (Browser .activeLayer) .toBe (null);
+   expect (Browser .activeNavigationInfo) .toBeInstanceOf (X3D .SFNode);
+   expect (Browser .activeNavigationInfo .getNodeType () .includes (X3D .X3DConstants .NavigationInfo)) .toBe (true);
+   expect (Browser .activeNavigationInfo .getNodeName ()) .toBe ("N1");
+   expect (Browser .activeViewpoint) .toBeInstanceOf (X3D .SFNode);
+   expect (Browser .activeViewpoint .getNodeType () .includes (X3D .X3DConstants .X3DViewpointNode)) .toBe (true);
+   expect (Browser .activeViewpoint .getNodeName ()) .toBe ("VP1");
+   expect (Browser .activeViewpoint .description) .toBe ("first vp");
 });
 
 test ("getProfile", () =>
