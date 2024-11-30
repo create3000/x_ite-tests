@@ -487,4 +487,50 @@ for (const Type of Object .keys (X3D .SFMatrix3))
       expect (c [7]) .toBe (0);
       expect (c [8]) .toBe (1);
    });
+
+   test ("skewX", () =>
+   {
+      const
+         a = new SFMatrix3 (),
+         c = a .skewX (Math .PI / 8);
+
+      expect (a) .not .toBe (c);
+      expect (a .getValue ()) .not .toBe (c .getValue ());
+      expect (c) .toBeInstanceOf (SFMatrix3);
+
+      expect (c [0]) .toBe (1);
+      expect (c [1]) .toBe (0);
+      expect (c [2]) .toBe (0);
+
+      expect (c [3]) .toBeCloseTo (Math .SQRT2 - 1);
+      expect (c [4]) .toBe (1);
+      expect (c [5]) .toBe (0);
+
+      expect (c [6]) .toBe (0);
+      expect (c [7]) .toBe (0);
+      expect (c [8]) .toBe (1);
+   });
+
+   test ("skewY", () =>
+   {
+      const
+         a = new SFMatrix3 (),
+         c = a .skewY (Math .PI / 8);
+
+      expect (a) .not .toBe (c);
+      expect (a .getValue ()) .not .toBe (c .getValue ());
+      expect (c) .toBeInstanceOf (SFMatrix3);
+
+      expect (c [0]) .toBe (1);
+      expect (c [1]) .toBeCloseTo (Math .SQRT2 - 1);
+      expect (c [2]) .toBe (0);
+
+      expect (c [3]) .toBe (0);
+      expect (c [4]) .toBe (1);
+      expect (c [5]) .toBe (0);
+
+      expect (c [6]) .toBe (0);
+      expect (c [7]) .toBe (0);
+      expect (c [8]) .toBe (1);
+   });
 }
