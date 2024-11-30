@@ -522,4 +522,100 @@ for (const Type of Object .keys (X3D .SFMatrix4))
       expect (c [1]) .toBe (401)
       expect (c [2]) .toBe (629)
    })
+
+   test ("translate", () =>
+   {
+      const
+         a = new SFMatrix4 (),
+         b = new SFVec3 (2,3,4),
+         c = a .translate (b);
+
+      expect (a) .not .toBe (c);
+      expect (a .getValue ()) .not .toBe (c .getValue ());
+      expect (c) .toBeInstanceOf (SFMatrix4);
+
+      expect (c [0]) .toBe (1);
+      expect (c [1]) .toBe (0);
+      expect (c [2]) .toBe (0);
+      expect (c [3]) .toBe (0);
+
+      expect (c [4]) .toBe (0);
+      expect (c [5]) .toBe (1);
+      expect (c [6]) .toBe (0);
+      expect (c [7]) .toBe (0);
+
+      expect (c [8]) .toBe (0);
+      expect (c [9]) .toBe (0);
+      expect (c [10]) .toBe (1);
+      expect (c [11]) .toBe (0);
+
+      expect (c [12]) .toBe (2);
+      expect (c [13]) .toBe (3);
+      expect (c [14]) .toBe (4);
+      expect (c [15]) .toBe (1);
+   });
+
+   test ("rotate", () =>
+   {
+      const
+         a = new SFMatrix4 (),
+         b = new SFRotation (0, 0, 1, Math .PI / 4)
+         c = a .rotate (b);
+
+      expect (a) .not .toBe (c);
+      expect (a .getValue ()) .not .toBe (c .getValue ());
+      expect (c) .toBeInstanceOf (SFMatrix4);
+
+      expect (c [0]) .toBeCloseTo (Math .SQRT1_2);
+      expect (c [1]) .toBeCloseTo (Math .SQRT1_2);
+      expect (c [2]) .toBe (0);
+      expect (c [3]) .toBe (0);
+
+      expect (c [4]) .toBeCloseTo (-Math .SQRT1_2);
+      expect (c [5]) .toBeCloseTo (Math .SQRT1_2);
+      expect (c [6]) .toBe (0);
+      expect (c [7]) .toBe (0);
+
+      expect (c [8]) .toBe (0);
+      expect (c [9]) .toBe (0);
+      expect (c [10]) .toBe (1);
+      expect (c [11]) .toBe (0);
+
+      expect (c [12]) .toBe (0);
+      expect (c [13]) .toBe (0);
+      expect (c [14]) .toBe (0);
+      expect (c [15]) .toBe (1);
+   });
+
+   test ("scale", () =>
+   {
+      const
+         a = new SFMatrix4 (),
+         b = new SFVec3 (2,3,4),
+         c = a .scale (b);
+
+      expect (a) .not .toBe (c);
+      expect (a .getValue ()) .not .toBe (c .getValue ());
+      expect (c) .toBeInstanceOf (SFMatrix4);
+
+      expect (c [0]) .toBe (2);
+      expect (c [1]) .toBe (0);
+      expect (c [2]) .toBe (0);
+      expect (c [3]) .toBe (0);
+
+      expect (c [4]) .toBe (0);
+      expect (c [5]) .toBe (3);
+      expect (c [6]) .toBe (0);
+      expect (c [7]) .toBe (0);
+
+      expect (c [8]) .toBe (0);
+      expect (c [9]) .toBe (0);
+      expect (c [10]) .toBe (4);
+      expect (c [11]) .toBe (0);
+
+      expect (c [12]) .toBe (0);
+      expect (c [13]) .toBe (0);
+      expect (c [14]) .toBe (0);
+      expect (c [15]) .toBe (1);
+   });
 }
