@@ -186,6 +186,58 @@ LayerSet {
    expect (Browser .activeViewpoint .getNodeName ()) .toBe ("VP1");
    expect (Browser .activeViewpoint .description) .toBe ("first vp");
    expect (Browser .activeViewpoint .description) .toBe ("first vp");
+
+   await Browser .loadURL (new X3D .MFString (`data:model/x3d+vrml,
+PROFILE Interactive
+
+COMPONENT Layering : 1
+
+LayerSet {
+   order 1
+   activeLayer 1
+   layers DEF L1 Layer {
+      children [
+         DEF VP1 Viewpoint {
+            description "first vp"
+         }
+      ]
+   }
+}
+`));
+
+   expect (Browser .activeLayer) .toBeInstanceOf (X3D .SFNode);
+   expect (Browser .activeLayer .getNodeType () .includes (X3D .X3DConstants .X3DLayerNode)) .toBe (true);
+   expect (Browser .activeLayer .getNodeName ()) .toBe ("L1");
+   expect (Browser .activeNavigationInfo) .toBe (null);
+   expect (Browser .activeViewpoint) .toBeInstanceOf (X3D .SFNode);
+   expect (Browser .activeViewpoint .getNodeType () .includes (X3D .X3DConstants .X3DViewpointNode)) .toBe (true);
+   expect (Browser .activeViewpoint .getNodeName ()) .toBe ("VP1");
+   expect (Browser .activeViewpoint .description) .toBe ("first vp");
+   expect (Browser .activeViewpoint .description) .toBe ("first vp");
+
+   await Browser .loadURL (new X3D .MFString (`data:model/x3d+vrml,
+PROFILE Interactive
+
+COMPONENT Layering : 1
+
+LayerSet {
+   order 1
+   activeLayer 1
+   layers DEF L1 Layer {
+      children [
+         DEF N1 NavigationInfo { }
+      ]
+   }
+}
+`));
+
+   expect (Browser .activeLayer) .toBeInstanceOf (X3D .SFNode);
+   expect (Browser .activeLayer .getNodeType () .includes (X3D .X3DConstants .X3DLayerNode)) .toBe (true);
+   expect (Browser .activeLayer .getNodeName ()) .toBe ("L1");
+   expect (Browser .activeNavigationInfo) .toBeInstanceOf (X3D .SFNode);
+   expect (Browser .activeNavigationInfo .getNodeType () .includes (X3D .X3DConstants .NavigationInfo)) .toBe (true);
+   expect (Browser .activeNavigationInfo .getNodeName ()) .toBe ("N1");
+   expect (Browser .activeViewpoint) .toBe (null);
 });
 
 test ("getProfile", () =>
