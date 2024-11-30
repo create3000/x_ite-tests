@@ -416,4 +416,75 @@ for (const Type of Object .keys (X3D .SFMatrix3))
       expect (c [0]) .toBe (58)
       expect (c [1]) .toBe (127)
    })
+
+   test ("translate", () =>
+   {
+      const
+         a = new SFMatrix3 (),
+         b = new SFVec2 (2,3),
+         c = a .translate (b);
+
+      expect (a) .not .toBe (c);
+      expect (a .getValue ()) .not .toBe (c .getValue ());
+      expect (c) .toBeInstanceOf (SFMatrix3);
+
+      expect (c [0]) .toBe (1);
+      expect (c [1]) .toBe (0);
+      expect (c [2]) .toBe (0);
+
+      expect (c [3]) .toBe (0);
+      expect (c [4]) .toBe (1);
+      expect (c [5]) .toBe (0);
+
+      expect (c [6]) .toBe (2);
+      expect (c [7]) .toBe (3);
+      expect (c [8]) .toBe (1);
+   });
+
+   test ("rotate", () =>
+   {
+      const
+         a = new SFMatrix3 (),
+         c = a .rotate (Math .PI / 4);
+
+      expect (a) .not .toBe (c);
+      expect (a .getValue ()) .not .toBe (c .getValue ());
+      expect (c) .toBeInstanceOf (SFMatrix3);
+
+      expect (c [0]) .toBeCloseTo (Math .SQRT1_2);
+      expect (c [1]) .toBeCloseTo (Math .SQRT1_2);
+      expect (c [2]) .toBe (0);
+
+      expect (c [3]) .toBeCloseTo (-Math .SQRT1_2);
+      expect (c [4]) .toBeCloseTo (Math .SQRT1_2);
+      expect (c [5]) .toBe (0);
+
+      expect (c [6]) .toBe (0);
+      expect (c [7]) .toBe (0);
+      expect (c [8]) .toBe (1);
+   });
+
+   test ("scale", () =>
+   {
+      const
+         a = new SFMatrix3 (),
+         b = new SFVec2 (2,3),
+         c = a .scale (b);
+
+      expect (a) .not .toBe (c);
+      expect (a .getValue ()) .not .toBe (c .getValue ());
+      expect (c) .toBeInstanceOf (SFMatrix3);
+
+      expect (c [0]) .toBe (2);
+      expect (c [1]) .toBe (0);
+      expect (c [2]) .toBe (0);
+
+      expect (c [3]) .toBe (0);
+      expect (c [4]) .toBe (3);
+      expect (c [5]) .toBe (0);
+
+      expect (c [6]) .toBe (0);
+      expect (c [7]) .toBe (0);
+      expect (c [8]) .toBe (1);
+   });
 }
