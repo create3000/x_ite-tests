@@ -40,13 +40,13 @@ test ("constructor", () =>
 
    const c3 = new Color3 (2, 3, 4)
 
-   expect (c3 .r) .toBe (1)
-   expect (c3 .g) .toBe (1)
-   expect (c3 .b) .toBe (1)
-   expect (c3 [0]) .toBe (1)
-   expect (c3 [1]) .toBe (1)
-   expect (c3 [2]) .toBe (1)
-   expect ([... c3]) .toEqual ([1, 1, 1])
+   expect (c3 .r) .toBe (2)
+   expect (c3 .g) .toBe (3)
+   expect (c3 .b) .toBe (4)
+   expect (c3 [0]) .toBe (2)
+   expect (c3 [1]) .toBe (3)
+   expect (c3 [2]) .toBe (4)
+   expect ([... c3]) .toEqual ([2, 3, 4])
    expect (c3) .toHaveLength (3)
 
    const c4 = new Color3 (0, 0, 0)
@@ -66,12 +66,12 @@ test ("constructor", () =>
    c4 .g = 3
    c4 .b = 4
 
-   expect (c4 .r) .toBe (1)
-   expect (c4 .g) .toBe (1)
-   expect (c4 .b) .toBe (1)
-   expect (c4 [0]) .toBe (1)
-   expect (c4 [1]) .toBe (1)
-   expect (c4 [2]) .toBe (1)
+   expect (c4 .r) .toBe (2)
+   expect (c4 .g) .toBe (3)
+   expect (c4 .b) .toBe (4)
+   expect (c4 [0]) .toBe (2)
+   expect (c4 [1]) .toBe (3)
+   expect (c4 [2]) .toBe (4)
 })
 
 test ("enumerate", () =>
