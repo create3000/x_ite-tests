@@ -549,4 +549,12 @@ scale
    expect (scene .importedNodes) .toHaveLength (1);
    expect (scene .exportedNodes) .toHaveLength (1);
    expect (scene .routes) .toHaveLength (1);
-})
+});
+
+test ("string escape sequences", async () =>
+{
+   const scene = await Browser .createX3DFromURL (new X3D .MFString (url .pathToFileURL (path .join (__dirname, "files", "X3D", "escape-sequences.x3dv"))));
+
+   expect (scene .rootNodes) .toHaveLength (1);
+   expect (scene .rootNodes [0] .string) .toBe ("\\\"\\");
+});

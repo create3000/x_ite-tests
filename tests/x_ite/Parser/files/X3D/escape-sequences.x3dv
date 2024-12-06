@@ -1,0 +1,9 @@
+#X3D V4.0 utf8
+
+PROFILE Core
+
+COMPONENT Scripting : 1
+
+Script {
+   inputOutput SFString string "\\\"\\"
+}

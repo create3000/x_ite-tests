@@ -74,8 +74,8 @@ test ("DoubleFormat", () =>
 test ("names 1", async () =>
 {
    const input = `<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE X3D PUBLIC "ISO//Web3D//DTD X3D ${latestVersion}//EN" "http://www.web3d.org/specifications/x3d-${latestVersion}.dtd">
-<X3D profile='Interchange' version='${latestVersion}' xmlns:xsd='http://www.w3.org/2001/XMLSchema-instance' xsd:noNamespaceSchemaLocation='http://www.web3d.org/specifications/x3d-${latestVersion}.xsd'>
+<!DOCTYPE X3D PUBLIC "ISO//Web3D//DTD X3D ${latestVersion}//EN" "https://www.web3d.org/specifications/x3d-${latestVersion}.dtd">
+<X3D profile='Interchange' version='${latestVersion}' xmlns:xsd='http://www.w3.org/2001/XMLSchema-instance' xsd:noNamespaceSchemaLocation='https://www.web3d.org/specifications/x3d-${latestVersion}.xsd'>
   <Scene>
     <Group DEF='x_4'/>
     <Group DEF='x_1'/>
@@ -101,8 +101,8 @@ test ("names 1", async () =>
 test ("names 2", async () =>
 {
    const input = `<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE X3D PUBLIC "ISO//Web3D//DTD X3D ${latestVersion}//EN" "http://www.web3d.org/specifications/x3d-${latestVersion}.dtd">
-<X3D profile='Interchange' version='${latestVersion}' xmlns:xsd='http://www.w3.org/2001/XMLSchema-instance' xsd:noNamespaceSchemaLocation='http://www.web3d.org/specifications/x3d-${latestVersion}.xsd'>
+<!DOCTYPE X3D PUBLIC "ISO//Web3D//DTD X3D ${latestVersion}//EN" "https://www.web3d.org/specifications/x3d-${latestVersion}.dtd">
+<X3D profile='Interchange' version='${latestVersion}' xmlns:xsd='http://www.w3.org/2001/XMLSchema-instance' xsd:noNamespaceSchemaLocation='https://www.web3d.org/specifications/x3d-${latestVersion}.xsd'>
   <Scene>
     <Group DEF='_99'/>
     <Group DEF='X_99'/>
@@ -118,8 +118,8 @@ test ("names 2", async () =>
 `
 
 const output = `<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE X3D PUBLIC "ISO//Web3D//DTD X3D ${latestVersion}//EN" "http://www.web3d.org/specifications/x3d-${latestVersion}.dtd">
-<X3D profile='Interchange' version='${latestVersion}' xmlns:xsd='http://www.w3.org/2001/XMLSchema-instance' xsd:noNamespaceSchemaLocation='http://www.web3d.org/specifications/x3d-${latestVersion}.xsd'>
+<!DOCTYPE X3D PUBLIC "ISO//Web3D//DTD X3D ${latestVersion}//EN" "https://www.web3d.org/specifications/x3d-${latestVersion}.dtd">
+<X3D profile='Interchange' version='${latestVersion}' xmlns:xsd='http://www.w3.org/2001/XMLSchema-instance' xsd:noNamespaceSchemaLocation='https://www.web3d.org/specifications/x3d-${latestVersion}.xsd'>
   <Scene>
     <Group/>
     <Group DEF='X_99'/>
@@ -160,8 +160,8 @@ test ("names 3", async () =>
    scene .addRoute (g1, "children", g4, "children")
 
    const output = `<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE X3D PUBLIC "ISO//Web3D//DTD X3D ${latestVersion}//EN" "http://www.web3d.org/specifications/x3d-${latestVersion}.dtd">
-<X3D profile='Interchange' version='${latestVersion}' xmlns:xsd='http://www.w3.org/2001/XMLSchema-instance' xsd:noNamespaceSchemaLocation='http://www.web3d.org/specifications/x3d-${latestVersion}.xsd'>
+<!DOCTYPE X3D PUBLIC "ISO//Web3D//DTD X3D ${latestVersion}//EN" "https://www.web3d.org/specifications/x3d-${latestVersion}.dtd">
+<X3D profile='Interchange' version='${latestVersion}' xmlns:xsd='http://www.w3.org/2001/XMLSchema-instance' xsd:noNamespaceSchemaLocation='https://www.web3d.org/specifications/x3d-${latestVersion}.xsd'>
   <Scene>
     <Group DEF='_1'/>
     <Group DEF='_2'/>
