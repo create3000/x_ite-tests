@@ -556,5 +556,7 @@ test ("string escape sequences", async () =>
    const scene = await Browser .createX3DFromURL (new X3D .MFString (url .pathToFileURL (path .join (__dirname, "files", "X3D", "escape-sequences.x3dv"))));
 
    expect (scene .rootNodes) .toHaveLength (1);
-   expect (scene .rootNodes [0] .string) .toBe ("\\\"\\");
+   expect (scene .rootNodes [0] .string [0]) .toBe ("\\\"\\");
+   expect (scene .rootNodes [0] .string [1]) .toBe ("\\\\\\a\\\"\"");
+   expect (scene .rootNodes [0] .string [2]) .toBe ("\\\\\"\\\\");
 });

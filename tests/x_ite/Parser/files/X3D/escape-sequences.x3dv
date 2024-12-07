@@ -5,5 +5,9 @@ PROFILE Core
 COMPONENT Scripting : 1
 
 Script {
-   inputOutput SFString string "\\\"\\"
+   inputOutput MFString string [
+      "\\\"\\",
+      "\\\\\\a\\\"\"",
+      "\\\\\"\\\\",
+   ]
 }
