@@ -64,30 +64,38 @@ test ("copy", () =>
 {
    const
       v1 = new SFString ("2"),
-      v2 = v1 .copy ()
+      v2 = v1 .copy ();
 
-   expect (v2) .not .toBe (v1)
-   expect (v2 .equals (v1)) .toBe (true)
-   expect (v2 .equals ("2")) .toBe (true)
-})
+   expect (v2) .not .toBe (v1);
+   expect (v2 .equals (v1)) .toBe (true);
+   expect (v2 .equals ("2")) .toBe (true);
+});
 
 test ("equals", () =>
 {
    const
       a = new SFString (""),
-      b = new SFString ("1")
+      b = new SFString ("1");
 
-   expect (a .equals (a)) .toBe (true)
-   expect (b .equals (b)) .toBe (true)
-   expect (a .equals (b)) .toBe (false)
-})
+   expect (a .equals (a)) .toBe (true);
+   expect (b .equals (b)) .toBe (true);
+   expect (a .equals (b)) .toBe (false);
+});
 
 test ("isDefaultValue", () =>
 {
    const
       a = new SFString (""),
-      b = new SFString ("1")
+      b = new SFString ("1");
 
-   expect (a .isDefaultValue ()) .toBe (true)
-   expect (b .isDefaultValue ()) .toBe (false)
-})
+   expect (a .isDefaultValue ()) .toBe (true);
+   expect (b .isDefaultValue ()) .toBe (false);
+});
+
+test ("length", () =>
+{
+   expect (new SFString ("")) .toHaveLength (0);
+   expect (new SFString ("1")) .toHaveLength (1);
+   expect (new SFString ("12")) .toHaveLength (2);
+   expect (new SFString ("123")) .toHaveLength (3);
+});
