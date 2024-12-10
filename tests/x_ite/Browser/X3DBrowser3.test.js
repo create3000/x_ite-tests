@@ -25,4 +25,17 @@ test ("X3DScene.isLive", async () =>
 
    expect (scene1 .isLive ()) .toBe (true);
    expect (scene2 .isLive ()) .toBe (true);
+
+   Browser .endUpdate ();
+
+   expect (scene1 .isLive ()) .toBe (false);
+   expect (scene2 .isLive ()) .toBe (false);
+
+   scene1 .dispose ();
+   scene2 .dispose ();
+
+   Browser .beginUpdate ();
+
+   expect (scene1 .isLive ()) .toBe (false);
+   expect (scene2 .isLive ()) .toBe (false);
 });
