@@ -11,7 +11,7 @@ const
 test ("statements.x3d", async () =>
 {
    const
-      latestVersion = Browser .createScene () .specificationVersion,
+      latestVersion = (await Browser .createScene ()) .specificationVersion,
       scene         = await Browser .createX3DFromURL (new X3D .MFString (url .pathToFileURL (path .join (__dirname, "files", "X3D", `statements.x3d`))))
 
    const orig = await fetch (path .join (__dirname, "files", "X3D", `statements.x3d`)) .then (r => r .text ())
@@ -62,7 +62,7 @@ test ("statements.x3d", async () =>
 test ("fields.x3d", async () =>
 {
    const
-      latestVersion = Browser .createScene () .specificationVersion,
+      latestVersion = (await Browser .createScene ()) .specificationVersion,
       scene         = await Browser .createX3DFromURL (new X3D .MFString (url .pathToFileURL (path .join (__dirname, "files", "X3D", `fields.x3d`))))
 
    const orig = await fetch (path .join (__dirname, "files", "X3D", `fields.x3d`)) .then (r => r .text ())
@@ -301,7 +301,7 @@ test ("double-import.x3dv", async () =>
 test ("proto-with-filled-node-fields.x3d", async () =>
 {
    const
-      latestVersion = Browser .createScene () .specificationVersion,
+      latestVersion = (await Browser .createScene ()) .specificationVersion,
       scene         = await Browser .createX3DFromURL (new X3D .MFString (url .pathToFileURL (path .join (__dirname, "files", "X3D", `proto-with-filled-node-fields.x3d`))));
 
    const orig = await fetch (path .join (__dirname, "files", "X3D", `proto-with-filled-node-fields.x3d`)) .then (r => r .text ());

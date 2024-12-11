@@ -317,12 +317,12 @@ test ("getComponent", () =>
       expect (Browser .getComponent (name) .name) .toBe (value)
 })
 
-test ("createScene", () =>
+test ("createScene", async () =>
 {
    const
       canvas  = X3D .createBrowser (),
       Browser = canvas .browser,
-      scene   = Browser .createScene ()
+      scene   = await Browser .createScene ()
 
    expect (scene) .toBeInstanceOf (X3D .X3DScene)
    expect (scene) .toBeInstanceOf (X3D .X3DExecutionContext)
@@ -342,12 +342,12 @@ test ("createScene", () =>
    expect (scene .routes) .toBeInstanceOf (X3D .RouteArray)
 })
 
-test ("createScene2", () =>
+test ("createScene2", async () =>
 {
    const
       canvas  = X3D .createBrowser (),
       Browser = canvas .browser,
-      scene   = Browser .createScene (Browser .getProfile ("Interactive"), Browser .getComponent ("HAnim"), Browser .getComponent ("Picking"))
+      scene   = await Browser .createScene (Browser .getProfile ("Interactive"), Browser .getComponent ("HAnim"), Browser .getComponent ("Picking"))
 
    expect (scene) .toBeInstanceOf (X3D .X3DScene)
    expect (scene) .toBeInstanceOf (X3D .X3DExecutionContext)

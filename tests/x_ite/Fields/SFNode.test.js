@@ -314,10 +314,10 @@ ROUTE S1.appearance TO S2.appearance
    expect (shape4) .not .toBe (X3D .SFNodeCache .get (sv4));
 })
 
-test ("dispose2", () =>
+test ("dispose2", async () =>
 {
    const
-      scene = Browser .createScene (),
+      scene = await Browser .createScene (),
       s1    = scene .createNode ("MetadataSet"),
       s2    = scene .createNode ("MetadataSet"),
       s3    = scene .createNode ("MetadataSet"),
@@ -432,10 +432,10 @@ test ("dispose2", () =>
    expect (scene .rootNodes [0]) .toBe (null)
 })
 
-test ("UserData", () =>
+test ("UserData", async () =>
 {
    const
-      scene = Browser .createScene (),
+      scene = await Browser .createScene (),
       n     = scene .createNode ("MetadataSet")
 
    expect (n .getUserData ("key")) .toBe (undefined)
@@ -448,10 +448,10 @@ test ("UserData", () =>
    expect (n .getUserData ("key")) .toBe (undefined)
 })
 
-test ("NodeUserData", () =>
+test ("NodeUserData", async () =>
 {
    const
-      scene = Browser .createScene (),
+      scene = await Browser .createScene (),
       n     = scene .createNode ("MetadataSet")
 
    expect (n .getNodeUserData ("key")) .toBe (undefined)

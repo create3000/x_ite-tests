@@ -3,11 +3,11 @@ const
    canvas  = X3D .createBrowser (),
    Browser = canvas .browser;
 
-test ("properties1", () =>
+test ("properties1", async () =>
 {
    const
       profile = Browser .getProfile ("Full"),
-      scene   = Browser .createScene (profile)
+      scene   = await Browser .createScene (profile)
 
    expect (scene) .toBeInstanceOf (X3D .X3DScene)
    expect (scene) .toBeInstanceOf (X3D .X3DExecutionContext)
@@ -40,10 +40,10 @@ test ("properties1", () =>
    expect (scene .toString ()) .toBe (`[object ${scene .getTypeName ()}]`)
 })
 
-test ("properties2", () =>
+test ("properties2", async () =>
 {
    const
-      scene = Browser .createScene (),
+      scene = await Browser .createScene (),
       nodes = new X3D .MFNode (scene .createNode ("WorldInfo"))
 
    const
@@ -128,9 +128,9 @@ test ("properties2", () =>
    enumerate (properties, scene)
 })
 
-test ("updateUnit", () =>
+test ("updateUnit", async () =>
 {
-   const scene = Browser .createScene ()
+   const scene = await Browser .createScene ()
 
    let angle = scene .getUnit ("angle")
 
@@ -202,9 +202,9 @@ test ("updateUnit", () =>
    expect (mass .conversion_factor) .toBeCloseTo (456.789)
 })
 
-test ("metadata", () =>
+test ("metadata", async () =>
 {
-   const scene = Browser .createScene (Browser .getProfile ("Interchange"));
+   const scene = await Browser .createScene (Browser .getProfile ("Interchange"));
 
    expect (scene .getMetaDatas () .size) .toBe (0);
 

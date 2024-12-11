@@ -146,7 +146,7 @@ const output = `<?xml version="1.0" encoding="UTF-8"?>
 
 test ("names 3", async () =>
 {
-   const scene = Browser .createScene (Browser .getProfile ("Interchange"))
+   const scene = await Browser .createScene (Browser .getProfile ("Interchange"))
 
    const
       g1 = scene .createNode ("Group"),
@@ -187,7 +187,7 @@ test ("names 3", async () =>
 test ("exported node without name", async () =>
 {
    const
-      scene1 = Browser .createScene (Browser .getProfile ("Full")),
+      scene1 = await Browser .createScene (Browser .getProfile ("Full")),
       node   = scene1 .createNode ("WorldInfo");
 
    scene1 .rootNodes .push (node);
