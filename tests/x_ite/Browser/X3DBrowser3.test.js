@@ -51,3 +51,19 @@ test ("X3DScene.isLive", async () =>
    expect (scene1 .getLive () .getValue ()) .toBe (false);
    expect (scene2 .getLive () .getValue ()) .toBe (false);
 });
+
+test ("blob URL", async () =>
+{
+   const
+      canvas = X3D .createBrowser (),
+      Browser = canvas .browser;
+
+   const
+      blob = new Blob (["PROFILE Interchange Transform { }"], { type: "model/x3d+vrml" }),
+      url  = URL .createObjectURL (blob);
+
+   const scene = await Browser .createX3DFromURL (new X3D .MFString (url));
+
+   expect (scene .rootNodes) .toHaveLength (1);
+   expect (scene .rootNodes [0] .getNodeTypeName ()) .toBe ("Transform");
+});
