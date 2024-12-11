@@ -64,6 +64,7 @@ test ("blob URL", async () =>
 
    const scene = await Browser .createX3DFromURL (new X3D .MFString (url));
 
+   expect (scene .profile .name) .toBe ("Interchange");
    expect (scene .rootNodes) .toHaveLength (1);
    expect (scene .rootNodes [0] .getNodeTypeName ()) .toBe ("Transform");
 });
