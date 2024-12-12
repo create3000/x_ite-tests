@@ -16,7 +16,7 @@ test ("help", () => new Promise ((resolve, reject) =>
       //    return;
       // }
 
-      expect (stdout) .toMatch (/x3d-tidy args/);
+      expect (stdout) .toMatch (/x3d-tidy \[options\]/);
       resolve ();
    });
 }));
