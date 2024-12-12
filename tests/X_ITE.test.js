@@ -2,7 +2,12 @@ const
    $                = require ("jquery"),
    X3D              = require ("./X3D"),
    X3DCanvasElement = X3D .X3DCanvasElement,
-   DEVELOPMENT      = X3D .DEVELOPMENT
+   DEVELOPMENT      = X3D .DEVELOPMENT;
+
+test ("noConflict", () =>
+{
+   expect (X3D .noConflict ()) .toBe (X3D);
+});
 
 test ("createBrowser", () =>
 {
