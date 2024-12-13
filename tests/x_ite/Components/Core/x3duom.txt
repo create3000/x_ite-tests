@@ -39,8 +39,6 @@ StreamAudioDestination number of fields differ (Spec <=> X3DUOM): 10 <=> 11.
 StreamAudioSource number of fields differ (Spec <=> X3DUOM): 12 <=> 14.
   Where [channelCountMode,channelInterpretation] not in Spec.
 Unknown field 'curve' of node WaveShaper in X3DUOM.
-Field SFVec3f 'upVector' in node TextureProjector has different value (Spec <=> X3DUOM): 0 1 0 !== 0 0 1.
 Field SFFloat 'fieldOfView' in node TextureProjector has different value (Spec <=> X3DUOM): 0.785398 !== 0.7854.
-TextureProjectorParallel number of fields differ (Spec <=> X3DUOM): 17 <=> 16.
-  Where [upVector] not in X3DUOM.
+Field 'fieldOfView' in node TextureProjectorParallel has different type (Spec <=> X3DUOM): MFFloat !== SFVec4f.
 Test done.
