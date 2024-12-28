@@ -354,7 +354,7 @@ test ("map", () =>
    const
       N = 10,
       a = new MFNode (),
-      x = [ ]
+      x = [ ];
 
    for (let i = 0; i < N; ++ i)
       expect (a .push (x [i] = scene .createNode ("WorldInfo"))) .toBe (i + 1)
@@ -374,7 +374,7 @@ test ("pop", () =>
    const
       N = 10,
       a = new MFNode (),
-      x = [ ]
+      x = [ ];
 
    expect (a) .toHaveLength (0)
 
@@ -415,7 +415,7 @@ test ("push", () =>
    const
       N = 1_000,
       a = new MFNode (),
-      x = [ ]
+      x = [ ];
 
    expect (a) .toHaveLength (0)
 

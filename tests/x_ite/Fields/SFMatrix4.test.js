@@ -559,7 +559,7 @@ for (const Type of Object .keys (X3D .SFMatrix4))
    {
       const
          a = new SFMatrix4 (),
-         b = new SFRotation (0, 0, 1, Math .PI / 4)
+         b = new SFRotation (0, 0, 1, Math .PI / 4),
          c = a .rotate (b);
 
       expect (a) .not .toBe (c);

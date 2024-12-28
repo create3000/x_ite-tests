@@ -332,8 +332,8 @@ test ("get/setQuaternion", () =>
 test ("inverse", () =>
 {
    const
-      a = new SFRotation (2,3,4,5)
-      b = a .inverse () .multiply (new SFRotation (2,3,4,5))
+      a = new SFRotation (2,3,4,5),
+      b = a .inverse () .multiply (new SFRotation (2,3,4,5));
 
    expect (b) .toBeInstanceOf (SFRotation)
    expect (b) .not .toBe (a)
