@@ -573,14 +573,23 @@ NULL
 
    const vrml = scene1 .toVRMLString ();
 
+   expect (vrml .match (/\bNULL\b/g)) .toHaveLength (4);
+
    const
       scene2 = await Browser .createX3DFromString (scene1 .toXMLString ()),
       scene3 = await Browser .createX3DFromString (scene1 .toVRMLString ()),
       scene4 = await Browser .createX3DFromString (scene1 .toJSONString ()),
       scene5 = await Browser .createX3DFromString (scene1 .toXMLString ({ closingTags: true }));
 
-   expect (scene2 .toVRMLString ()) .toBe (vrml);
-   expect (scene3 .toVRMLString ()) .toBe (vrml);
-   expect (scene4 .toVRMLString ()) .toBe (vrml);
-   expect (scene5 .toVRMLString ()) .toBe (vrml);
+   for (const scene of [scene1, scene2, scene3, scene4, scene5])
+   {
+      expect (scene .rootNodes) .toHaveLength (3);
+      expect (scene .rootNodes [0] .getNodeTypeName ()) .toBe ("Group");
+      expect (scene .rootNodes [0] .children) .toHaveLength (2);
+      expect (scene .rootNodes [0] .children [0]) .toBe (null);
+      expect (scene .rootNodes [0] .children [1]) .toBe (null);
+      expect (scene .rootNodes [1]) .toBe (null);
+      expect (scene .rootNodes [2]) .toBe (null);
+      expect (scene .toVRMLString ()) .toBe (vrml);
+   }
 });
