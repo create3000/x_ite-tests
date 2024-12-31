@@ -564,16 +564,23 @@ test ("string escape sequences", async () =>
 test ("null", async () =>
 {
    const scene1 = await Browser .createX3DFromString (`
+PROTO T [
+   inputOutput SFNode node Group { }
+]
+{ }
 Group {
    children [NULL, NULL]
 }
 NULL
 NULL
+T {
+   node NULL
+}
    `);
 
    const vrml = scene1 .toVRMLString ();
 
-   expect (vrml .match (/\bNULL\b/g)) .toHaveLength (4);
+   expect (vrml .match (/\bNULL\b/g)) .toHaveLength (5);
 
    const
       scene2 = await Browser .createX3DFromString (scene1 .toXMLString ()),
@@ -583,13 +590,15 @@ NULL
 
    for (const scene of [scene1, scene2, scene3, scene4, scene5])
    {
-      expect (scene .rootNodes) .toHaveLength (3);
+      expect (scene .rootNodes) .toHaveLength (4);
       expect (scene .rootNodes [0] .getNodeTypeName ()) .toBe ("Group");
       expect (scene .rootNodes [0] .children) .toHaveLength (2);
       expect (scene .rootNodes [0] .children [0]) .toBe (null);
       expect (scene .rootNodes [0] .children [1]) .toBe (null);
       expect (scene .rootNodes [1]) .toBe (null);
       expect (scene .rootNodes [2]) .toBe (null);
+      expect (scene .rootNodes [3] .getNodeTypeName ()) .toBe ("T");
+      expect (scene .rootNodes [3] .node) .toBe (null);
       expect (scene .toVRMLString ()) .toBe (vrml);
    }
 });
