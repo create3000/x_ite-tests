@@ -560,3 +560,27 @@ test ("string escape sequences", async () =>
    expect (scene .rootNodes [0] .string [1]) .toBe ("\\\\\\a\\\"\"");
    expect (scene .rootNodes [0] .string [2]) .toBe ("\\\\\"\\\\");
 });
+
+test ("null", async () =>
+{
+   const scene1 = await Browser .createX3DFromString (`
+Group {
+   children [NULL, NULL]
+}
+NULL
+NULL
+   `);
+
+   const vrml = scene1 .toVRMLString ();
+
+   const
+      scene2 = await Browser .createX3DFromString (scene1 .toXMLString ()),
+      scene3 = await Browser .createX3DFromString (scene1 .toVRMLString ()),
+      scene4 = await Browser .createX3DFromString (scene1 .toJSONString ()),
+      scene5 = await Browser .createX3DFromString (scene1 .toXMLString ({ closingTags: true }));
+
+   expect (scene2 .toVRMLString ()) .toBe (vrml);
+   expect (scene3 .toVRMLString ()) .toBe (vrml);
+   expect (scene4 .toVRMLString ()) .toBe (vrml);
+   expect (scene5 .toVRMLString ()) .toBe (vrml);
+});
