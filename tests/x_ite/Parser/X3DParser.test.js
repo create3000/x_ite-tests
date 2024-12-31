@@ -566,6 +566,7 @@ test ("null", async () =>
    const scene1 = await Browser .createX3DFromString (`
 PROTO T [
    inputOutput SFNode node Group { }
+   inputOutput MFNode nodes Group { }
 ] { }
 Group {
    children [ NULL, NULL ]
@@ -575,12 +576,13 @@ NULL
 T { }
 T {
    node NULL
+   nodes NULL
 }
    `);
 
    const vrml = scene1 .toVRMLString ();
 
-   expect (vrml .match (/\bNULL\b/g)) .toHaveLength (5);
+   expect (vrml .match (/\bNULL\b/g)) .toHaveLength (6);
 
    const
       scene2 = await Browser .createX3DFromString (scene1 .toXMLString ()),
@@ -599,8 +601,12 @@ T {
       expect (scene .rootNodes [2]) .toBe (null);
       expect (scene .rootNodes [3] .getNodeTypeName ()) .toBe ("T");
       expect (scene .rootNodes [3] .node .getNodeTypeName ()) .toBe ("Group");
+      expect (scene .rootNodes [3] .nodes) .toHaveLength (1);
+      expect (scene .rootNodes [3] .nodes [0] .getNodeTypeName ()) .toBe ("Group");
       expect (scene .rootNodes [4] .getNodeTypeName ()) .toBe ("T");
       expect (scene .rootNodes [4] .node) .toBe (null);
+      expect (scene .rootNodes [4] .nodes) .toHaveLength (1);
+      expect (scene .rootNodes [4] .nodes [0]) .toBe (null);
       expect (scene .toVRMLString ()) .toBe (vrml);
    }
 });
