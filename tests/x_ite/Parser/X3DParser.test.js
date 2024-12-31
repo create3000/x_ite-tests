@@ -566,10 +566,9 @@ test ("null", async () =>
    const scene1 = await Browser .createX3DFromString (`
 PROTO T [
    inputOutput SFNode node Group { }
-]
-{ }
+] { }
 Group {
-   children [NULL, NULL]
+   children [ NULL, NULL ]
 }
 NULL
 NULL
