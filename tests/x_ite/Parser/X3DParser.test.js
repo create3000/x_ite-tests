@@ -572,6 +572,7 @@ Group {
 }
 NULL
 NULL
+T { }
 T {
    node NULL
 }
@@ -589,7 +590,7 @@ T {
 
    for (const scene of [scene1, scene2, scene3, scene4, scene5])
    {
-      expect (scene .rootNodes) .toHaveLength (4);
+      expect (scene .rootNodes) .toHaveLength (5);
       expect (scene .rootNodes [0] .getNodeTypeName ()) .toBe ("Group");
       expect (scene .rootNodes [0] .children) .toHaveLength (2);
       expect (scene .rootNodes [0] .children [0]) .toBe (null);
@@ -597,7 +598,9 @@ T {
       expect (scene .rootNodes [1]) .toBe (null);
       expect (scene .rootNodes [2]) .toBe (null);
       expect (scene .rootNodes [3] .getNodeTypeName ()) .toBe ("T");
-      expect (scene .rootNodes [3] .node) .toBe (null);
+      expect (scene .rootNodes [3] .node .getNodeTypeName ()) .toBe ("Group");
+      expect (scene .rootNodes [4] .getNodeTypeName ()) .toBe ("T");
+      expect (scene .rootNodes [4] .node) .toBe (null);
       expect (scene .toVRMLString ()) .toBe (vrml);
    }
 });
