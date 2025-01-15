@@ -432,6 +432,8 @@ Name
 # comment 8
 Transform { }
 
+#/* block comment */#
+
 # comment
 Coordinate
 # comment
@@ -444,6 +446,11 @@ point
 ]
 # comment
 }
+
+#/* multi
+  * line
+  * comment
+  */#
 
 # comment
 Coordinate
@@ -459,6 +466,8 @@ point
 0
 # comment
 }
+
+#/* block comment */#
 
 # comment
 Coordinate
@@ -486,6 +495,11 @@ point
 # comment
 }
 
+#/* multi
+  * line
+  * comment
+  */#
+
 # comment
 DEF
 # comment
@@ -501,6 +515,11 @@ FALSE
 # comment
 }
 
+#/* multi
+  * line
+  * comment
+  */#
+
 # comment
 IMPORT
 # comment
@@ -514,6 +533,11 @@ AS
 # comment
 ImportName
 
+#/* multi
+  * line
+  * comment
+  */#
+
 # comment
 EXPORT
 # comment
@@ -522,6 +546,11 @@ Name
 AS
 # comment
 ExportName
+
+#/* multi
+  * line
+  * comment
+  */#
 
 # comment
 ROUTE
