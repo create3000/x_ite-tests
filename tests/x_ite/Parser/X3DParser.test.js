@@ -344,6 +344,8 @@ test ("comments", async () =>
 {
    const scene = await Browser .createX3DFromString (`#X3D V4.0 utf8
 # comment 1
+# comment 2
+# comment 3
 
 # comment
 PROFILE
@@ -450,6 +452,12 @@ point
 #/* multi
   * line
   * comment
+  */##/* another multi
+  * line
+  * comment
+  */##/* yet another multi
+  * line
+  * comment
   */#
 
 # comment
@@ -467,7 +475,7 @@ point
 # comment
 }
 
-#/* block comment */#
+#/* block comment */##/* another block comment */##/* yet another block comment */#
 
 # comment
 Coordinate
