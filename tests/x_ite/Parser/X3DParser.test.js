@@ -347,6 +347,12 @@ test ("comments", async () =>
 # comment 2
 # comment 3
 
+# comment 4
+
+# comment 5
+
+# comment 6
+
 # comment
 PROFILE
 # comment
@@ -477,6 +483,8 @@ point
 
 #/* block comment */##/* another block comment */##/* yet another block comment */#
 
+#/* block comment */##/* another block comment */##/* yet another block comment */#
+
 # comment
 Coordinate
 {
@@ -502,6 +510,16 @@ point
 ]
 # comment
 }
+
+#/* multi
+  * line
+  * comment
+  */#
+
+#/* multi
+  * line
+  * comment
+  */#
 
 #/* multi
   * line
