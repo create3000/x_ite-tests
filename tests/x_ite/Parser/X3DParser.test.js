@@ -606,6 +606,24 @@ scale
    expect (scene .routes) .toHaveLength (1);
 });
 
+test ("comments 3.2", async () =>
+{
+   const scene = await Browser .createX3DFromString (`#X3D V3.2 utf8
+
+# comment 1
+
+# Block comments are first introduced in X3D 3.3.
+
+#/*
+# * block comment
+#*/# some text after block comment
+
+Transform { }
+   `);
+
+   expect (scene .rootNodes) .toHaveLength (1);
+});
+
 test ("string escape sequences", async () =>
 {
    const scene = await Browser .createX3DFromURL (new X3D .MFString (url .pathToFileURL (path .join (__dirname, "files", "X3D", "escape-sequences.x3dv"))));
