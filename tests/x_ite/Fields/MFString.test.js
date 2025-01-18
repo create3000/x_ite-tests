@@ -645,3 +645,15 @@ test ("concat", () =>
    expect (d [4]) .toBe ("eee");
    expect (d [5]) .toBe ("fff");
 });
+
+test ("flat", () =>
+{
+   const
+      a = new MFString (),
+      b = new MFString ("1", "2", "3", "4");
+
+   expect (a .flat ()) .toBeInstanceOf (Array);
+   expect (a .flat ()) .toEqual ([ ]);
+   expect (b .flat ()) .toBeInstanceOf (Array);
+   expect (b .flat ()) .toEqual (["1", "2", "3", "4"]);
+});

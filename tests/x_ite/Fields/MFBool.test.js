@@ -624,3 +624,15 @@ test ("concat", () =>
    expect (d [4]) .toBe (true);
    expect (d [5]) .toBe (true);
 });
+
+test ("flat", () =>
+{
+   const
+      a = new MFBool (),
+      b = new MFBool (true, true, false, false);
+
+   expect (a .flat ()) .toBeInstanceOf (Array);
+   expect (a .flat ()) .toEqual ([ ]);
+   expect (b .flat ()) .toBeInstanceOf (Array);
+   expect (b .flat ()) .toEqual ([true, true, false, false]);
+});

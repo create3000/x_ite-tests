@@ -750,3 +750,17 @@ test ("concat", () =>
    expect (d [4]) .toBe (node5);
    expect (d [5]) .toBe (node6);
 });
+
+test ("flat", () =>
+{
+   const
+      a = new MFNode (),
+      b = new MFNode (node1, node2);
+
+   expect (a .flat ()) .toBeInstanceOf (Array);
+   expect (a .flat ()) .toEqual ([ ]);
+   expect (b .flat ()) .toBeInstanceOf (Array);
+   expect (b .flat ()) .toHaveLength (2);
+   expect (b .flat () [0]) .toBe (node1);
+   expect (b .flat () [1]) .toBe (node2);
+});

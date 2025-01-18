@@ -671,3 +671,15 @@ test ("concat", () =>
    expect (d [4] .equals (new SFVec3f (13,14,15))) .toBe (true);
    expect (d [5] .equals (new SFVec3f (16,17,18))) .toBe (true);
 });
+
+test ("flat", () =>
+{
+   const
+      a = new MFVec3f (),
+      b = new MFVec3f (new SFVec3f (1,2,3), new SFVec3f (4,5,6));
+
+   expect (a .flat ()) .toBeInstanceOf (Array);
+   expect (a .flat ()) .toEqual ([ ]);
+   expect (b .flat ()) .toBeInstanceOf (Array);
+   expect (b .flat ()) .toEqual ([1,2,3,4,5,6]);
+});

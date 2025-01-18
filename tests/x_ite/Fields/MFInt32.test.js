@@ -628,3 +628,15 @@ test ("concat", () =>
    expect (d [4]) .toBe (555);
    expect (d [5]) .toBe (666);
 });
+
+test ("flat", () =>
+{
+   const
+      a = new MFInt32 (),
+      b = new MFInt32 (1, 2, 3, 4);
+
+   expect (a .flat ()) .toBeInstanceOf (Array);
+   expect (a .flat ()) .toEqual ([ ]);
+   expect (b .flat ()) .toBeInstanceOf (Array);
+   expect (b .flat ()) .toEqual ([1, 2, 3, 4]);
+});
