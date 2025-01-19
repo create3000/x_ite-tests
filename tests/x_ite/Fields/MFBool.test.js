@@ -636,3 +636,15 @@ test ("flat", () =>
    expect (b .flat ()) .toBeInstanceOf (Array);
    expect (b .flat ()) .toEqual ([true, true, false, false]);
 });
+
+test ("flatMap", () =>
+{
+   const
+      a = new MFBool (),
+      b = new MFBool (true, true, false, false);
+
+   expect (a .flatMap (v => !v)) .toBeInstanceOf (Array);
+   expect (a .flatMap (v => !v)) .toEqual ([ ]);
+   expect (b .flatMap (v => !v)) .toBeInstanceOf (Array);
+   expect (b .flatMap (v => !v)) .toEqual ([false, false, true, true]);
+});

@@ -640,3 +640,15 @@ test ("flat", () =>
    expect (b .flat ()) .toBeInstanceOf (Array);
    expect (b .flat ()) .toEqual ([1.1, 2.2, 3.3, 4.4]);
 });
+
+test ("flatMap", () =>
+{
+   const
+      a = new MFDouble (),
+      b = new MFDouble (1.1, 2.2, 3.3, 4.4);
+
+   expect (a .flatMap (v => v * 2)) .toBeInstanceOf (Array);
+   expect (a .flatMap (v => v * 2)) .toEqual ([ ]);
+   expect (b .flatMap (v => v * 2)) .toBeInstanceOf (Array);
+   expect (b .flatMap (v => v * 2)) .toEqual ([2.2, 4.4, 6.6, 8.8]);
+});

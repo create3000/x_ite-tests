@@ -640,3 +640,15 @@ test ("flat", () =>
    expect (b .flat ()) .toBeInstanceOf (Array);
    expect (b .flat ()) .toEqual ([1, 2, 3, 4]);
 });
+
+test ("flatMap", () =>
+{
+   const
+      a = new MFInt32 (),
+      b = new MFInt32 (1, 2, 3, 4);
+
+   expect (a .flatMap (v => v * 2)) .toBeInstanceOf (Array);
+   expect (a .flatMap (v => v * 2)) .toEqual ([ ]);
+   expect (b .flatMap (v => v * 2)) .toBeInstanceOf (Array);
+   expect (b .flatMap (v => v * 2)) .toEqual ([2, 4, 6, 8]);
+});
