@@ -764,3 +764,17 @@ test ("flat", () =>
    expect (b .flat () [0]) .toBe (node1);
    expect (b .flat () [1]) .toBe (node2);
 });
+
+test ("flatMap", () =>
+{
+   const
+      a = new MFNode (),
+      b = new MFNode (node1, node2);
+
+   expect (a .flatMap (n => n .getNodeTypeName ())) .toBeInstanceOf (Array);
+   expect (a .flatMap (n => n .getNodeTypeName ())) .toEqual ([ ]);
+   expect (b .flatMap (n => n .getNodeTypeName ())) .toBeInstanceOf (Array);
+   expect (b .flatMap (n => n .getNodeTypeName ())) .toHaveLength (2);
+   expect (b .flatMap (n => n .getNodeTypeName ()) [0]) .toBe (node1 .getNodeTypeName ());
+   expect (b .flatMap (n => n .getNodeTypeName ()) [1]) .toBe (node2 .getNodeTypeName ());
+});

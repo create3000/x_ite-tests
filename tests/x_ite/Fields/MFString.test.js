@@ -657,3 +657,15 @@ test ("flat", () =>
    expect (b .flat ()) .toBeInstanceOf (Array);
    expect (b .flat ()) .toEqual (["1", "2", "3", "4"]);
 });
+
+test ("flatMap", () =>
+{
+   const
+      a = new MFString (),
+      b = new MFString ("1", "2", "3", "4");
+
+   expect (a .flatMap (v => v+v)) .toBeInstanceOf (Array);
+   expect (a .flatMap (v => v+v)) .toEqual ([ ]);
+   expect (b .flatMap (v => v+v)) .toBeInstanceOf (Array);
+   expect (b .flatMap (v => v+v)) .toEqual (["11", "22", "33", "44"]);
+});
