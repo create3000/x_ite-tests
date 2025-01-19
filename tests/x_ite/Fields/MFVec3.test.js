@@ -688,4 +688,16 @@ for (const [typeName, MFVec3, SFVec3] of arrays)
       expect (b .flat ()) .toBeInstanceOf (Array);
       expect (b .flat ()) .toEqual ([1,2,3,4,5,6]);
    });
+
+   test ("flatMap", () =>
+   {
+      const
+         a = new MFVec3 (),
+         b = new MFVec3 (new SFVec3 (1,2,3), new SFVec3 (4,5,6));
+
+      expect (a .flatMap (v => v .multiply (2))) .toBeInstanceOf (Array);
+      expect (a .flatMap (v => v .multiply (2))) .toEqual ([ ]);
+      expect (b .flatMap (v => v .multiply (2))) .toBeInstanceOf (Array);
+      expect (b .flatMap (v => v .multiply (2))) .toEqual ([2,4,6,8,10,12]);
+   });
 }
