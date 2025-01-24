@@ -79,10 +79,11 @@ test ("properties", () =>
       "fieldTypes",
       "baseURL",
       "currentScene",
-      "element",
       "activeLayer",
       "activeNavigationInfo",
       "activeViewpoint",
+      "contextMenu",
+      "element",
    ]
 
    enumerate (properties, Browser)
