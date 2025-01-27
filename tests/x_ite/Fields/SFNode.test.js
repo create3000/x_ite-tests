@@ -128,6 +128,8 @@ test ("getField", () =>
 test ("toString", () =>
 {
    expect (node .toXMLString ()) .toMatch (/^<\w+\/>$/)
+   expect (node .toXMLString ()) .toMatch (/^<\w+\/>$/)
+   expect (node .toString ()) .toMatch (/^\w+ { }$/)
    expect (node .toString ()) .toMatch (/^\w+ { }$/)
    expect (new X3D .SFNode () .toString ()) .toBe ("NULL")
 })
@@ -162,7 +164,37 @@ test ("toString", () =>
       n2 = scene .createNode ("MetadataBoolean")
 
    expect (n1 .toString ()) .toBe ("MetadataSet { }")
+   expect (n1 .toString ()) .toBe ("MetadataSet { }")
    expect (n2 .toString ()) .toBe ("MetadataBoolean { }")
+   expect (n2 .toString ()) .toBe ("MetadataBoolean { }")
+})
+
+test ("toXMLString", () =>
+{
+   const
+      n1 = scene .createNode ("MetadataSet"),
+      n2 = scene .createNode ("MetadataBoolean")
+
+   scene .addNamedNode ("N1toXMLString", n1);
+
+   expect (n1 .toXMLString ()) .toBe ("<MetadataSet DEF='N1toXMLString'/>")
+   expect (n1 .toXMLString ()) .toBe ("<MetadataSet DEF='N1toXMLString'/>")
+   expect (n2 .toXMLString ()) .toBe ("<MetadataBoolean/>")
+   expect (n2 .toXMLString ()) .toBe ("<MetadataBoolean/>")
+})
+
+test ("toVRMLString", () =>
+{
+   const
+      n1 = scene .createNode ("MetadataSet"),
+      n2 = scene .createNode ("MetadataBoolean")
+
+   scene .addNamedNode ("N1toVRMLString", n1);
+
+   expect (n1 .toVRMLString ()) .toBe ("DEF N1toVRMLString MetadataSet { }")
+   expect (n1 .toVRMLString ()) .toBe ("DEF N1toVRMLString MetadataSet { }")
+   expect (n2 .toVRMLString ()) .toBe ("MetadataBoolean { }")
+   expect (n2 .toVRMLString ()) .toBe ("MetadataBoolean { }")
 })
 
 test ("parents", () =>
