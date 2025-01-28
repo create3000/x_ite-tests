@@ -197,6 +197,20 @@ test ("toVRMLString", () =>
    expect (n2 .toVRMLString ()) .toBe ("MetadataBoolean { }")
 })
 
+test ("toJSONString", () =>
+{
+   const
+      n1 = scene .createNode ("MetadataSet"),
+      n2 = scene .createNode ("MetadataBoolean")
+
+   scene .addNamedNode ("N1toJSONString", n1);
+
+   expect (n1 .toJSONString ({ style: "CLEAN" })) .toBe ("{\"MetadataSet\":{\"@DEF\":\"N1toJSONString\"}}")
+   expect (n1 .toJSONString ({ style: "CLEAN" })) .toBe ("{\"MetadataSet\":{\"@DEF\":\"N1toJSONString\"}}")
+   expect (n2 .toJSONString ({ style: "CLEAN" })) .toBe ("{\"MetadataBoolean\":{}}")
+   expect (n2 .toJSONString ({ style: "CLEAN" })) .toBe ("{\"MetadataBoolean\":{}}")
+})
+
 test ("parents", () =>
 {
    const
