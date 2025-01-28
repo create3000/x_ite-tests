@@ -205,10 +205,10 @@ test ("toJSONString", () =>
 
    scene .addNamedNode ("N1toJSONString", n1);
 
-   expect (n1 .toJSONString ({ style: "CLEAN" })) .toBe ("{\"MetadataSet\":{\"@DEF\":\"N1toJSONString\"}}")
-   expect (n1 .toJSONString ({ style: "CLEAN" })) .toBe ("{\"MetadataSet\":{\"@DEF\":\"N1toJSONString\"}}")
-   expect (n2 .toJSONString ({ style: "CLEAN" })) .toBe ("{\"MetadataBoolean\":{}}")
-   expect (n2 .toJSONString ({ style: "CLEAN" })) .toBe ("{\"MetadataBoolean\":{}}")
+   expect (n1 .toJSONString ({ style: "CLEAN" })) .toBe (`{"MetadataSet":{"@DEF":"N1toJSONString"}}`)
+   expect (n1 .toJSONString ({ style: "CLEAN" })) .toBe (`{"MetadataSet":{"@DEF":"N1toJSONString"}}`)
+   expect (n2 .toJSONString ({ style: "CLEAN" })) .toBe (`{"MetadataBoolean":{}}`)
+   expect (n2 .toJSONString ({ style: "CLEAN" })) .toBe (`{"MetadataBoolean":{}}`)
 })
 
 test ("parents", () =>
