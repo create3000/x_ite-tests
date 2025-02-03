@@ -10,6 +10,9 @@ test ("X3DScene.isLive", async () =>
       canvas = X3D .createBrowser (),
       Browser = canvas .browser;
 
+   expect (Browser .getLive () .getValue ()) .toBe (true);
+   expect (Browser .isLive ()) .toBe (true);
+
    const scene1 = await Browser .createX3DFromString ("");
 
    expect (scene1 .getLive () .getValue  ()) .toBe (true);
@@ -53,21 +56,21 @@ test ("X3DScene.isLive", async () =>
 });
 
 test ("blob URL", async () =>
-   {
-      const
-         canvas = X3D .createBrowser (),
-         Browser = canvas .browser;
+{
+   const
+      canvas = X3D .createBrowser (),
+      Browser = canvas .browser;
 
-      const
-         blob = new Blob (["PROFILE Interchange Transform { }"], { type: "model/x3d+vrml" }),
-         url  = URL .createObjectURL (blob);
+   const
+      blob = new Blob (["PROFILE Interchange Transform { }"], { type: "model/x3d+vrml" }),
+      url  = URL .createObjectURL (blob);
 
-      const scene = await Browser .createX3DFromURL (new X3D .MFString (url));
+   const scene = await Browser .createX3DFromURL (new X3D .MFString (url));
 
-      expect (scene .profile .name) .toBe ("Interchange");
-      expect (scene .rootNodes) .toHaveLength (1);
-      expect (scene .rootNodes [0] .getNodeTypeName ()) .toBe ("Transform");
-   });
+   expect (scene .profile .name) .toBe ("Interchange");
+   expect (scene .rootNodes) .toHaveLength (1);
+   expect (scene .rootNodes [0] .getNodeTypeName ()) .toBe ("Transform");
+});
 
 test ("replaceWorld", async () =>
 {
