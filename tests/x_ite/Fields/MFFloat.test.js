@@ -23,6 +23,8 @@ test ("constructor", () =>
    expect ((field = new MFFloat (0xffffffff), field [0]))      .toBe (Math .fround (0xffffffff))
    expect ((field = new MFFloat (666), field [0]))             .toBe (666)
    expect ((field = new MFFloat (-666), field [0]))            .toBe (-666)
+
+   expect ((new MFFloat ()) [0]) .toBe (0);
 })
 
 test ("set1Value", () =>

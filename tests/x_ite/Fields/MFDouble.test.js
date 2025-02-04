@@ -23,6 +23,8 @@ test ("constructor", () =>
    expect ((field = new MFDouble (0xffffffff), field [0]))      .toBe (0xffffffff)
    expect ((field = new MFDouble (666), field [0]))             .toBe (666)
    expect ((field = new MFDouble (-666), field [0]))            .toBe (-666)
+
+   expect ((new MFDouble ()) [0]) .toBe (0);
 })
 
 test ("set1Value", () =>

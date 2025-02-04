@@ -23,6 +23,8 @@ test ("constructor", () =>
    expect ((field = new MFString (0xffffffff), field [0]))      .toBe ("4294967295")
    expect ((field = new MFString (666), field [0]))             .toBe ("666")
    expect ((field = new MFString (-666), field [0]))            .toBe ("-666")
+
+   expect ((new MFString ()) [0]) .toBe ("");
 })
 
 test ("set1Value", () =>

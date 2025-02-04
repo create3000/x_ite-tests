@@ -23,6 +23,8 @@ test ("constructor", () =>
    expect ((field = new MFBool (0xffffffff), field [0]))      .toBe (true)
    expect ((field = new MFBool (666), field [0]))             .toBe (true)
    expect ((field = new MFBool (-666), field [0]))            .toBe (true)
+
+   expect ((new MFBool ()) [0]) .toBe (false);
 })
 
 test ("set1Value", () =>

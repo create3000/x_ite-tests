@@ -154,6 +154,8 @@ for (const [typeName, MFVec4, SFVec4] of arrays)
       expect (d) .toHaveLength (2)
       expect (d [0] .equals (new SFVec4 (2, 3, 4, 5))) .toBe (true)
       expect (d [1] .equals (new SFVec4 (3, 4, 5, 6))) .toBe (true)
+
+      expect ((new MFVec4 ()) [0] .equals (new SFVec4 (0,0,0,1))) .toBe (true);
    })
 
    test ("basic-functions", () =>
@@ -271,12 +273,12 @@ for (const [typeName, MFVec4, SFVec4] of arrays)
       a .length = 6
 
       expect (a) .toHaveLength (6)
-      expect (a [0] .equals (new SFVec4 (0,0,0,0))) .toBe (true)
-      expect (a [1] .equals (new SFVec4 (0,0,0,0))) .toBe (true)
-      expect (a [2] .equals (new SFVec4 (0,0,0,0))) .toBe (true)
-      expect (a [3] .equals (new SFVec4 (0,0,0,0))) .toBe (true)
-      expect (a [4] .equals (new SFVec4 (0,0,0,0))) .toBe (true)
-      expect (a [5] .equals (new SFVec4 (0,0,0,0))) .toBe (true)
+      expect (a [0] .equals (new SFVec4 (0,0,0,1))) .toBe (true)
+      expect (a [1] .equals (new SFVec4 (0,0,0,1))) .toBe (true)
+      expect (a [2] .equals (new SFVec4 (0,0,0,1))) .toBe (true)
+      expect (a [3] .equals (new SFVec4 (0,0,0,1))) .toBe (true)
+      expect (a [4] .equals (new SFVec4 (0,0,0,1))) .toBe (true)
+      expect (a [5] .equals (new SFVec4 (0,0,0,1))) .toBe (true)
 
       expect (a .fill (new SFVec4 (1, 2, 3, 4))) .toBe (a)
 

@@ -23,6 +23,8 @@ test ("constructor", () =>
    expect ((field = new MFInt32 (0xffffffff), field [0]))      .toBe (-1)
    expect ((field = new MFInt32 (666), field [0]))             .toBe (666)
    expect ((field = new MFInt32 (-666), field [0]))            .toBe (-666)
+
+   expect ((new MFInt32 ()) [0]) .toBe (0);
 })
 
 test ("set1Value", () =>

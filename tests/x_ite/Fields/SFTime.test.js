@@ -4,7 +4,7 @@ const
 
 test ("constructor", () =>
 {
-   expect (new SFTime ()                .valueOf ()) .toBe (0)
+   expect (new SFTime ()                .valueOf ()) .toBe (-1)
    expect (new SFTime (NaN)             .valueOf ()) .toBe (NaN)
    expect (new SFTime (Infinity)        .valueOf ()) .toBe (Infinity)
    expect (new SFTime (-Infinity)       .valueOf ()) .toBe (-Infinity)

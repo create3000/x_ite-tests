@@ -150,6 +150,8 @@ for (const [typeName, MFVec2, SFVec2] of arrays)
       expect (d) .toHaveLength (2)
       expect (d [0] .equals (new SFVec2 (2, 3))) .toBe (true)
       expect (d [1] .equals (new SFVec2 (3, 4))) .toBe (true)
+
+      expect ((new MFVec2 ()) [0] .equals (new SFVec2 (0,0))) .toBe (true);
    })
 
    test ("basic-functions", () =>

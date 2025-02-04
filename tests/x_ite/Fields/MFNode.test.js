@@ -39,6 +39,8 @@ test ("constructor", () =>
    expect (field3) .toHaveLength (2)
    expect (field3 [0]) .toBe (node1)
    expect (field3 [1]) .toBe (node2)
+
+   expect ((new MFNode ()) [0]) .toBe (null);
 })
 
 test ("set1Value", () =>
