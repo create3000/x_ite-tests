@@ -9,6 +9,7 @@ test ("constructor", () =>
 {
    expect ((new MFRotation ()) [0] .equals (new SFRotation ())) .toBe (true);
    expect ((new MFRotation ()) [0] .equals (new SFRotation (0,0,1,0))) .toBe (true);
+   expect ((new MFRotation ()) [0] .toString ()) .toBe ("0 0 1 0");
 });
 
 test ("length", () =>
