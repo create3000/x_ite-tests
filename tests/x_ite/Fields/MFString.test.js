@@ -671,3 +671,17 @@ test ("flatMap", () =>
    expect (b .flatMap (v => v+v)) .toBeInstanceOf (Array);
    expect (b .flatMap (v => v+v)) .toEqual (["11", "22", "33", "44"]);
 });
+
+test ("length", () =>
+{
+   expect (new MFString () .length) .toBe (0);
+
+   const m = new MFString ();
+
+   m .length = 10;
+
+   expect (m .length) .toBe (10);
+
+   for (let i = 0; i < 10; ++ i)
+      expect (m [i]) .toBe ("");
+});

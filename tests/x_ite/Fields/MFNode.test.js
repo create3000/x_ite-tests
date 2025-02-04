@@ -780,3 +780,24 @@ test ("flatMap", () =>
    expect (b .flatMap (n => n .getNodeTypeName ()) [0]) .toBe (node1 .getNodeTypeName ());
    expect (b .flatMap (n => n .getNodeTypeName ()) [1]) .toBe (node2 .getNodeTypeName ());
 });
+
+test ("length", () =>
+{
+   expect (new MFNode () .length) .toBe (0);
+
+   const m = new MFNode ();
+
+   m .length = 10;
+
+   expect (m .length) .toBe (10);
+
+   for (let i = 0; i < 10; ++ i)
+      expect (m [i]) .toBe (null);
+
+   m .length = 20;
+
+   expect (m .length) .toBe (20);
+
+   for (let i = 0; i < 20; ++ i)
+      expect (m [i]) .toBe (null);
+});

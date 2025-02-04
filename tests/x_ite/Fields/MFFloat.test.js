@@ -654,3 +654,24 @@ test ("flatMap", () =>
    expect (b .flatMap (v => v * 2)) .toBeInstanceOf (Array);
    expect (b .flatMap (v => v * 2)) .toEqual ([2.2, 4.4, 6.6, 8.8] .map (v => Math .fround (v)));
 });
+
+test ("length", () =>
+{
+   expect (new MFFloat () .length) .toBe (0);
+
+   const m = new MFFloat ();
+
+   m .length = 10;
+
+   expect (m .length) .toBe (10);
+
+   for (let i = 0; i < 10; ++ i)
+      expect (m [i]) .toBe (0);
+
+   m .length = 20;
+
+   expect (m .length) .toBe (20);
+
+   for (let i = 0; i < 20; ++ i)
+      expect (m [i]) .toBe (0);
+});

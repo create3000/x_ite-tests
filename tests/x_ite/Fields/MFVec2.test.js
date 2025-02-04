@@ -693,4 +693,25 @@ for (const [typeName, MFVec2, SFVec2] of arrays)
       expect (b .flatMap (v => v .multiply (2))) .toBeInstanceOf (Array);
       expect (b .flatMap (v => v .multiply (2))) .toEqual ([2,4,10,12]);
    });
+
+   test ("length", () =>
+   {
+      expect (new MFVec2 () .length) .toBe (0);
+
+      const m = new MFVec2 ();
+
+      m .length = 10;
+
+      expect (m .length) .toBe (10);
+
+      for (let i = 0; i < 10; ++ i)
+         expect (m [i] .equals (new SFVec2 ())) .toBe (true);
+
+      m .length = 20;
+
+      expect (m .length) .toBe (20);
+
+      for (let i = 0; i < 20; ++ i)
+         expect (m [i] .equals (new SFVec2 ())) .toBe (true);
+   });
 }

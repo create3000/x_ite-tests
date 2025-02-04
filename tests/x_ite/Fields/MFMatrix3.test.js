@@ -13,5 +13,26 @@ for (const [typeName, MFMatrix3, SFMatrix3] of arrays)
    {
       expect ((new MFMatrix3 ()) [0] .equals (new SFMatrix3 ())) .toBe (true);
       expect ((new MFMatrix3 ()) [0] .equals (new SFMatrix3 (1,0,0,0,1,0,0,0,1))) .toBe (true);
-   })
+   });
+
+   test ("length", () =>
+   {
+      expect (new MFMatrix3 () .length) .toBe (0);
+
+      const m = new MFMatrix3 ();
+
+      m .length = 10;
+
+      expect (m .length) .toBe (10);
+
+      for (let i = 0; i < 10; ++ i)
+         expect (m [i] .equals (new SFMatrix3 ())) .toBe (true);
+
+      m .length = 20;
+
+      expect (m .length) .toBe (20);
+
+      for (let i = 0; i < 20; ++ i)
+         expect (m [i] .equals (new SFMatrix3 ())) .toBe (true);
+   });
 }

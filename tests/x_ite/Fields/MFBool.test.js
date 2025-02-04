@@ -650,3 +650,24 @@ test ("flatMap", () =>
    expect (b .flatMap (v => !v)) .toBeInstanceOf (Array);
    expect (b .flatMap (v => !v)) .toEqual ([false, false, true, true]);
 });
+
+test ("length", () =>
+{
+   expect (new MFBool () .length) .toBe (0);
+
+   const m = new MFBool ();
+
+   m .length = 10;
+
+   expect (m .length) .toBe (10);
+
+   for (let i = 0; i < 10; ++ i)
+      expect (m [i]) .toBe (false);
+
+   m .length = 20;
+
+   expect (m .length) .toBe (20);
+
+   for (let i = 0; i < 20; ++ i)
+      expect (m [i]) .toBe (false);
+});
