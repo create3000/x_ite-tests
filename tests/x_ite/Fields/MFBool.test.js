@@ -670,4 +670,23 @@ test ("length", () =>
 
    for (let i = 0; i < 20; ++ i)
       expect (m [i]) .toBe (false);
+
+   // Test shrinking the array and then growing it again.
+
+   for (let i = 0; i < 20; ++ i)
+      m [i] = true;
+
+   m .length = 10;
+
+   expect (m .length) .toBe (10);
+
+   m .length = 20;
+
+   expect (m .length) .toBe (20);
+
+   for (let i = 0; i < 10; ++ i)
+      expect (m [i]) .toBe (true);
+
+   for (let i = 10; i < 20; ++ i)
+      expect (m [i]) .toBe (false);
 });
