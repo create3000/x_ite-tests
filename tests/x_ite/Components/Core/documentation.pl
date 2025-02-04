@@ -163,7 +163,7 @@ sub field {
    }
    elsif ($type eq "SFTime")
    {
-      return if $value eq "0" && $codeValue eq "";
+      return if $value eq "-1" && $codeValue eq "";
       return if $value eq $codeValue;
    }
    elsif ($type =~ /^(?:SFVec2d|SFVec2f)$/o)
@@ -184,7 +184,7 @@ sub field {
    {
       $value =~s /(\s)/,$1/sgo;
 
-      return if $value eq "0, 0, 0, 0" && $codeValue eq "";
+      return if $value eq "0, 0, 0, 1" && $codeValue eq "";
       return if $value eq $codeValue;
    }
    elsif ($type eq "MFBool")
