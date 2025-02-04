@@ -651,14 +651,14 @@ test ("length", () =>
 
    m .length = 10;
 
-   expect (m .length) .toBe (10);
+   expect (m) .toHaveLength (10);
 
    for (let i = 0; i < 10; ++ i)
       expect (m [i]) .toBe (-1);
 
    m .length = 20;
 
-   expect (m .length) .toBe (20);
+   expect (m) .toHaveLength (20);
 
    for (let i = 0; i < 20; ++ i)
       expect (m [i]) .toBe (-1);
@@ -670,11 +670,11 @@ test ("length", () =>
 
    m .length = 10;
 
-   expect (m .length) .toBe (10);
+   expect (m) .toHaveLength (10);
 
    m .length = 20;
 
-   expect (m .length) .toBe (20);
+   expect (m) .toHaveLength (20);
 
    for (let i = 0; i < 10; ++ i)
       expect (m [i]) .toBe (2);

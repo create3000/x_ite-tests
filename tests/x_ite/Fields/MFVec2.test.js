@@ -702,14 +702,14 @@ for (const [typeName, MFVec2, SFVec2] of arrays)
 
       m .length = 10;
 
-      expect (m .length) .toBe (10);
+      expect (m) .toHaveLength (10);
 
       for (let i = 0; i < 10; ++ i)
          expect (m [i] .equals (new SFVec2 ())) .toBe (true);
 
       m .length = 20;
 
-      expect (m .length) .toBe (20);
+      expect (m) .toHaveLength (20);
 
       for (let i = 0; i < 20; ++ i)
          expect (m [i] .equals (new SFVec2 ())) .toBe (true);
@@ -721,11 +721,11 @@ for (const [typeName, MFVec2, SFVec2] of arrays)
 
       m .length = 10;
 
-      expect (m .length) .toBe (10);
+      expect (m) .toHaveLength (10);
 
       m .length = 20;
 
-      expect (m .length) .toBe (20);
+      expect (m) .toHaveLength (20);
 
       for (let i = 0; i < 10; ++ i)
          expect (m [i] .equals (new SFVec2 (2,2))) .toBe (true);
