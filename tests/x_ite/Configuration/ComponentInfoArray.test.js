@@ -8,7 +8,7 @@ test ("constructor", () =>
 {
    const components = Browser .supportedComponents
 
-   expect (components) .toHaveLength (36 + 2) // Annotation + X_ITE
+   expect (components) .toHaveLength (36 + 3) // Annotation + WebXR + X_ITE
    expect (components) .toBeInstanceOf (X3D .ComponentInfoArray)
    expect (components .constructor) .toBe (X3D .ComponentInfoArray)
 })
