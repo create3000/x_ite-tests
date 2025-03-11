@@ -81,6 +81,20 @@ test ("addFieldInterest", () => new Promise ((resolve, reject) =>
    node .translation = new X3D .SFVec3f (2,3,4);
 }));
 
+test ("addFieldCallback", () => new Promise ((resolve, reject) =>
+{
+   const node = Browser .currentScene .createNode ("Transform");
+
+   node .translation .addFieldCallback ("test", value =>
+   {
+      expect (value .equals (new X3D .SFVec3f (2,3,4))) .toBe (true);
+      expect (node .translation .equals (new X3D .SFVec3f (2,3,4))) .toBe (true);
+      resolve ();
+   });
+
+   node .translation = new X3D .SFVec3f (2,3,4);
+}));
+
 test ("user-data", () =>
 {
    const
