@@ -13,6 +13,51 @@ test ("getId", () =>
    expect (Browser .getId ()) .not .toBe (scene .getId ())
 })
 
+test ("addInterest", () => new Promise ((resolve, reject) =>
+{
+   const
+      browser = X3D .createBrowser () .browser,
+      node    = browser .currentScene .createNode ("Transform");
+
+   const object =
+   {
+      callback1 ()
+      {
+         resolve ();
+      },
+   };
+
+   node .translation .addInterest ("callback1", object);
+
+   node .translation .addEvent ();
+}));
+
+test ("add/removeInterest", () => new Promise ((resolve, reject) =>
+{
+   const
+      browser = X3D .createBrowser () .browser,
+      node    = browser .currentScene .createNode ("Transform");
+
+   const object =
+   {
+      callback1 ()
+      {
+         node .translation .removeInterest ("callback1", object);
+         node .translation .addInterest ("callback2", object);
+         node .translation .addEvent ();
+      },
+
+      callback2 ()
+      {
+         resolve ();
+      },
+   };
+
+   node .translation .addInterest ("callback1", object);
+
+   node .translation .addEvent ();
+}));
+
 test ("get/setUserData", () =>
 {
    const s = Symbol (), o = { }
