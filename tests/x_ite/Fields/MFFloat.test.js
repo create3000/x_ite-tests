@@ -27,6 +27,15 @@ test ("constructor", () =>
    expect ((new MFFloat ()) [0]) .toBe (0);
 })
 
+test ("get1Value", () =>
+{
+   const field = new MFFloat ();
+
+   expect (field) .toHaveLength (0);
+   expect (field [0]) .toBe (0);
+   expect (field) .toHaveLength (1);
+});
+
 test ("set1Value", () =>
 {
    const field = new MFFloat ()

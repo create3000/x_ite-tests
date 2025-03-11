@@ -15,6 +15,15 @@ for (const [typeName, MFMatrix4, SFMatrix4] of arrays)
       expect ((new MFMatrix4 ()) [0] .equals (new SFMatrix4 (1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1))) .toBe (true);
    });
 
+   test ("get1Value", () =>
+   {
+      const field = new MFMatrix4 ();
+
+      expect (field) .toHaveLength (0);
+      expect (field [0] .equals (new SFMatrix4 ())) .toBe (true);
+      expect (field) .toHaveLength (1);
+   });
+
    test ("length", () =>
    {
       expect (new MFMatrix4 () .length) .toBe (0);

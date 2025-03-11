@@ -12,6 +12,15 @@ test ("constructor", () =>
    expect ((new MFRotation ()) [0] .toString ()) .toBe ("0 0 1 0");
 });
 
+test ("get1Value", () =>
+{
+   const field = new MFRotation ();
+
+   expect (field) .toHaveLength (0);
+   expect (field [0] .equals (new SFRotation ())) .toBe (true);
+   expect (field) .toHaveLength (1);
+});
+
 test ("length", () =>
 {
    expect (new MFRotation () .length) .toBe (0);

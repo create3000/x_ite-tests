@@ -43,6 +43,15 @@ test ("constructor", () =>
    expect ((new MFNode ()) [0]) .toBe (null);
 })
 
+test ("get1Value", () =>
+{
+   const field = new MFNode ();
+
+   expect (field) .toHaveLength (0);
+   expect (field [0]) .toBe (null);
+   expect (field) .toHaveLength (1);
+});
+
 test ("set1Value", () =>
 {
    const field = new MFNode ()

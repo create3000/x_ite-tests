@@ -9,6 +9,15 @@ const comp = 4;
 
 for (const [typeName, MFVec4, SFVec4] of arrays)
 {
+   test ("get1Value", () =>
+   {
+      const field = new MFVec4 ();
+
+      expect (field) .toHaveLength (0);
+      expect (field [0] .equals (new SFVec4 ())) .toBe (true);
+      expect (field) .toHaveLength (1);
+   });
+
    test ("setValue", () =>
    {
       const field = new MFVec4 ();

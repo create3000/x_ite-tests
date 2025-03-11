@@ -27,6 +27,15 @@ test ("constructor", () =>
    expect ((new MFTime ()) [0]) .toBe (-1);
 })
 
+test ("get1Value", () =>
+{
+   const field = new MFTime ();
+
+   expect (field) .toHaveLength (0);
+   expect (field [0]) .toBe (-1);
+   expect (field) .toHaveLength (1);
+});
+
 test ("set1Value", () =>
 {
    const field = new MFTime ()

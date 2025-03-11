@@ -27,6 +27,15 @@ test ("constructor", () =>
    expect ((new MFBool ()) [0]) .toBe (false);
 })
 
+test ("get1Value", () =>
+{
+   const field = new MFBool ();
+
+   expect (field) .toHaveLength (0);
+   expect (field [0]) .toBe (false);
+   expect (field) .toHaveLength (1);
+});
+
 test ("set1Value", () =>
 {
    const field = new MFBool ()

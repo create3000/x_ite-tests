@@ -27,6 +27,15 @@ test ("constructor", () =>
    expect ((new MFString ()) [0]) .toBe ("");
 })
 
+test ("get1Value", () =>
+{
+   const field = new MFString ();
+
+   expect (field) .toHaveLength (0);
+   expect (field [0]) .toBe ("");
+   expect (field) .toHaveLength (1);
+});
+
 test ("set1Value", () =>
 {
    const field = new MFString ()

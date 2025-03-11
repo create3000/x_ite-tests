@@ -9,6 +9,15 @@ const comp = 2;
 
 for (const [typeName, MFVec2, SFVec2] of arrays)
 {
+   test ("get1Value", () =>
+   {
+      const field = new MFVec2 ();
+
+      expect (field) .toHaveLength (0);
+      expect (field [0] .equals (new SFVec2 ())) .toBe (true);
+      expect (field) .toHaveLength (1);
+   });
+
    test ("setValue", () =>
    {
       const field = new MFVec2 ();

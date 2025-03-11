@@ -15,6 +15,15 @@ for (const [typeName, MFMatrix3, SFMatrix3] of arrays)
       expect ((new MFMatrix3 ()) [0] .equals (new SFMatrix3 (1,0,0,0,1,0,0,0,1))) .toBe (true);
    });
 
+   test ("get1Value", () =>
+   {
+      const field = new MFMatrix3 ();
+
+      expect (field) .toHaveLength (0);
+      expect (field [0] .equals (new SFMatrix3 ())) .toBe (true);
+      expect (field) .toHaveLength (1);
+   });
+
    test ("length", () =>
    {
       expect (new MFMatrix3 () .length) .toBe (0);
