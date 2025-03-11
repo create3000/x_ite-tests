@@ -28,7 +28,6 @@ test ("addInterest", () => new Promise ((resolve, reject) =>
    };
 
    node .translation .addInterest ("callback1", object);
-
    node .translation .addEvent ();
 }));
 
@@ -54,7 +53,6 @@ test ("add/removeInterest", () => new Promise ((resolve, reject) =>
    };
 
    node .translation .addInterest ("callback1", object);
-
    node .translation .addEvent ();
 }));
 
