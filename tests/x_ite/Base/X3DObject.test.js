@@ -15,9 +15,7 @@ test ("getId", () =>
 
 test ("addInterest", () => new Promise ((resolve, reject) =>
 {
-   const
-      browser = X3D .createBrowser () .browser,
-      node    = browser .currentScene .createNode ("Transform");
+   const node = Browser .currentScene .createNode ("Transform");
 
    const object =
    {
@@ -33,9 +31,7 @@ test ("addInterest", () => new Promise ((resolve, reject) =>
 
 test ("add/removeInterest", () => new Promise ((resolve, reject) =>
 {
-   const
-      browser = X3D .createBrowser () .browser,
-      node    = browser .currentScene .createNode ("Transform");
+   const node = Browser .currentScene .createNode ("Transform");
 
    const object =
    {
