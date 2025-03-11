@@ -14,8 +14,12 @@ for (const [typeName, MFVec4, SFVec4] of arrays)
       const field = new MFVec4 ();
 
       expect (field) .toHaveLength (0);
-      expect (field [0] .equals (new SFVec4 ())) .toBe (true);
-      expect (field) .toHaveLength (1);
+
+      for (let i = 0; i < 10; ++ i)
+      {
+         expect (field [i] .equals (new SFVec4 ())) .toBe (true);
+         expect (field) .toHaveLength (i + 1);
+      }
    });
 
    test ("setValue", () =>

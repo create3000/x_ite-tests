@@ -20,8 +20,12 @@ for (const [typeName, MFMatrix3, SFMatrix3] of arrays)
       const field = new MFMatrix3 ();
 
       expect (field) .toHaveLength (0);
-      expect (field [0] .equals (new SFMatrix3 ())) .toBe (true);
-      expect (field) .toHaveLength (1);
+
+      for (let i = 0; i < 10; ++ i)
+      {
+         expect (field [i] .equals (new SFMatrix3 ())) .toBe (true);
+         expect (field) .toHaveLength (i + 1);
+      }
    });
 
    test ("length", () =>

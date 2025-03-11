@@ -48,8 +48,12 @@ test ("get1Value", () =>
    const field = new MFNode ();
 
    expect (field) .toHaveLength (0);
-   expect (field [0]) .toBe (null);
-   expect (field) .toHaveLength (1);
+
+   for (let i = 0; i < 10; ++ i)
+   {
+      expect (field [i]) .toBe (null);
+      expect (field) .toHaveLength (i + 1);
+   }
 });
 
 test ("set1Value", () =>

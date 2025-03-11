@@ -32,8 +32,12 @@ test ("get1Value", () =>
    const field = new MFFloat ();
 
    expect (field) .toHaveLength (0);
-   expect (field [0]) .toBe (0);
-   expect (field) .toHaveLength (1);
+
+   for (let i = 0; i < 10; ++ i)
+   {
+      expect (field [i]) .toBe (0);
+      expect (field) .toHaveLength (i + 1);
+   }
 });
 
 test ("set1Value", () =>

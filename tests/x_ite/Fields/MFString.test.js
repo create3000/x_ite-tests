@@ -32,8 +32,12 @@ test ("get1Value", () =>
    const field = new MFString ();
 
    expect (field) .toHaveLength (0);
-   expect (field [0]) .toBe ("");
-   expect (field) .toHaveLength (1);
+
+   for (let i = 0; i < 10; ++ i)
+   {
+      expect (field [i]) .toBe ("");
+      expect (field) .toHaveLength (i + 1);
+   }
 });
 
 test ("set1Value", () =>
