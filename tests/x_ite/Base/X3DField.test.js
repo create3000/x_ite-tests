@@ -63,14 +63,19 @@ test ("properties", () =>
    }
 });
 
-test ("addFieldInterest", () => new Promise ((resolve, reject) =>
+test ("add/removeFieldInterest", () => new Promise ((resolve, reject) =>
 {
    const node = Browser .currentScene .createNode ("Transform");
+
+   expect (node .translation .getFieldInterests () .size) .toBe (0);
 
    const object =
    {
       callback1 ()
       {
+         node .translation .removeFieldInterest (node .scale);
+         expect (node .translation .getFieldInterests () .size) .toBe (0);
+
          expect (node .scale .equals (new X3D .SFVec3f (2,3,4))) .toBe (true);
          resolve ();
       },
@@ -78,31 +83,47 @@ test ("addFieldInterest", () => new Promise ((resolve, reject) =>
 
    node .scale .addInterest ("callback1", object);
    node .translation .addFieldInterest (node .scale);
+   expect (node .translation .getFieldInterests () .size) .toBe (1);
+
    node .translation = new X3D .SFVec3f (2,3,4);
 }));
 
-test ("addFieldCallback", () => new Promise ((resolve, reject) =>
+test ("add/removeFieldCallback", () => new Promise ((resolve, reject) =>
 {
    const node = Browser .currentScene .createNode ("Material");
 
+   expect (node .getField ("transparency") .getFieldCallbacks () .size) .toBe (0);
+
    node .getField ("transparency") .addFieldCallback ("test", value =>
    {
+      node .getField ("transparency") .removeFieldCallback ("test")
+      expect (node .getField ("transparency") .getFieldCallbacks () .size) .toBe (0);
+
       expect (value) .toBe (0.5);
       resolve ();
    });
 
+   expect (node .getField ("transparency") .getFieldCallbacks () .size) .toBe (1);
+
    node .transparency = 0.5;
 }));
 
-test ("addFieldCallback", () => new Promise ((resolve, reject) =>
+test ("add/removeFieldCallback", () => new Promise ((resolve, reject) =>
 {
    const node = Browser .currentScene .createNode ("Transform");
 
+   expect (node .translation .getFieldCallbacks () .size) .toBe (0);
+
    node .translation .addFieldCallback ("test", value =>
    {
+      node .translation .removeFieldCallback ("test")
+      expect (node .translation .getFieldCallbacks () .size) .toBe (0);
+
       expect (value .equals (new X3D .SFVec3f (2,3,4))) .toBe (true);
       resolve ();
    });
+
+   expect (node .translation .getFieldCallbacks () .size) .toBe (1);
 
    node .translation = new X3D .SFVec3f (2,3,4);
 }));
