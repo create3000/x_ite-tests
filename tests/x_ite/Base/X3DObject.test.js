@@ -43,10 +43,16 @@ test ("add/removeInterest", () => new Promise ((resolve, reject) =>
          node .translation .addInterest ("callback2", object);
          expect (node .translation .hasInterest ("callback2", object)) .toBe (true);
 
-         node .translation .addEvent ();
+         node .scale .addInterest ("callback3", object);
+         node .scale .addEvent ();
       },
 
       callback2 ()
+      {
+         reject (new Error ("Should not be called for improved safety."));
+      },
+
+      callback3 ()
       {
          resolve ();
       },
