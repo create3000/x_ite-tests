@@ -73,10 +73,27 @@ test ("add/removeFieldInterest", () => new Promise ((resolve, reject) =>
    {
       callback1 ()
       {
+         expect (node .scale .equals (new X3D .SFVec3f (2,3,4))) .toBe (true);
+
          node .translation .removeFieldInterest (node .scale);
          expect (node .translation .getFieldInterests () .size) .toBe (0);
 
-         expect (node .scale .equals (new X3D .SFVec3f (2,3,4))) .toBe (true);
+         node .bboxSize .addInterest ("callback2", object);
+         node .translation .addFieldInterest (node .bboxSize);
+         expect (node .translation .getFieldInterests () .size) .toBe (1);
+
+         node .bboxCenter .addInterest ("callback3", object);
+         node .bboxCenter .addEvent ();
+      },
+
+      callback2 ()
+      {
+         reject (new Error ("Should not be called for improved safety."));
+      },
+
+      callback3 ()
+      {
+         expect (node .bboxSize .equals (new X3D .SFVec3f (-1,-1,-1))) .toBe (true);
          resolve ();
       },
    };
