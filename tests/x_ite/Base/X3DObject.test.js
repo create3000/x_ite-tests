@@ -54,7 +54,7 @@ test ("add/removeInterest", () => new Promise ((resolve, reject) =>
 
    node .translation .addInterest ("callback1", object);
    expect (node .translation .hasInterest ("callback1", object)) .toBe (true);
-   
+
    node .translation .addEvent ();
 }));
 

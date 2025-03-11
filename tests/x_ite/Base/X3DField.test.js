@@ -2,6 +2,11 @@ const
    X3D    = require ("../../X3D"),
    Fields = X3D .Fields;
 
+const
+   canvas  = X3D .createBrowser (),
+   Browser = canvas .browser,
+   scene   = Browser .currentScene;
+
 test ("properties", () =>
 {
    for (const typeName of Object .keys (Fields))
@@ -57,6 +62,24 @@ test ("properties", () =>
       expect (field .isOutput ()) .toBe (true);
    }
 });
+
+test ("addFieldInterest", () => new Promise ((resolve, reject) =>
+{
+   const node = Browser .currentScene .createNode ("Transform");
+
+   const object =
+   {
+      callback1 ()
+      {
+         expect (node .scale .equals (new X3D .SFVec3f (2,3,4))) .toBe (true);
+         resolve ();
+      },
+   };
+
+   node .scale .addInterest ("callback1", object);
+   node .translation .addFieldInterest (node .scale);
+   node .translation = new X3D .SFVec3f (2,3,4);
+}));
 
 test ("user-data", () =>
 {
