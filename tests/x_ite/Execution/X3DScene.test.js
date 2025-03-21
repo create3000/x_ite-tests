@@ -60,6 +60,7 @@ test ("properties2", async () =>
       externprotos         = scene .externprotos,
       routes               = scene .routes
 
+   scene .isScene              = undefined
    scene .specificationVersion = undefined
    scene .encoding             = undefined
    scene .profile              = undefined
@@ -75,6 +76,7 @@ test ("properties2", async () =>
 
    expect (scene) .toBeInstanceOf (X3D .X3DScene)
    expect (scene) .toBeInstanceOf (X3D .X3DExecutionContext)
+   expect (scene .isScene) .toBe (true)
    expect (scene .specificationVersion) .toBe (specificationVersion)
    expect (scene .encoding) .toBe (encoding)
    expect (scene .profile) .toBe (profile)
@@ -109,6 +111,7 @@ test ("properties2", async () =>
    expect (scene .routes) .toBeInstanceOf (X3D .RouteArray)
 
    const properties = [
+      "isScene",
       "specificationVersion",
       "encoding",
       "profile",

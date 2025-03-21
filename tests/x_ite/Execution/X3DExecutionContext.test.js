@@ -26,6 +26,7 @@ Test { }
    expect (scene) .toBeInstanceOf (X3D .X3DScene)
    expect (scene) .toBeInstanceOf (X3D .X3DExecutionContext)
    expect (scene .constructor) .toBe (X3D .X3DScene)
+   expect (scene .isScene) .toBe (true)
    expect (scene .specificationVersion) .toMatch (/^\d+\.\d+$/)
    expect (scene .encoding) .toBe ("VRML")
    expect (scene .profile .name) .toBe ("Interactive")
@@ -58,6 +59,7 @@ Test { }
    expect (executionContext) .not .toBeInstanceOf (X3D .X3DScene)
    expect (executionContext) .toBeInstanceOf (X3D .X3DExecutionContext)
    expect (executionContext .constructor) .toBe (X3D .X3DExecutionContext)
+   expect (executionContext .isScene) .toBe (false)
    expect (executionContext .specificationVersion) .toBe (scene .specificationVersion)
    expect (executionContext .encoding) .toBe (scene .encoding)
    expect (executionContext .profile) .toBe (scene .profile)
@@ -99,6 +101,7 @@ Test { }
    expect (executionContext .toString ()) .toBe (`[object ${executionContext .getTypeName ()}]`)
 
    const properties = [
+      "isScene",
       "specificationVersion",
       "encoding",
       "profile",
