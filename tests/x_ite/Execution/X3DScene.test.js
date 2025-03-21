@@ -77,6 +77,7 @@ test ("properties2", async () =>
    expect (scene) .toBeInstanceOf (X3D .X3DScene)
    expect (scene) .toBeInstanceOf (X3D .X3DExecutionContext)
    expect (scene .isScene) .toBe (true)
+   expect (scene .getLocalScene ()) .toBe (scene)
    expect (scene .specificationVersion) .toBe (specificationVersion)
    expect (scene .encoding) .toBe (encoding)
    expect (scene .profile) .toBe (profile)
