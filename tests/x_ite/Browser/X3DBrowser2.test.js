@@ -38,17 +38,26 @@ test ("getBrowserOption", () =>
    expect (Browser .getBrowserOption ("SplashScreen")) .toBe (true)
    expect (Browser .getBrowserOption ("TextureQuality")) .toBe ("MEDIUM")
 
+   expect (Browser .getBrowserOption ("AlwaysUpdateGeometries")) .toBe (false)
+   expect (Browser .getBrowserOption ("AutoUpdate")) .toBe (false)
    expect (Browser .getBrowserOption ("Cache")) .toBe (true)
+   expect (Browser .getBrowserOption ("ColorSpace")) .toBe ("LINEAR_WHEN_PHYSICAL_MATERIAL")
    expect (Browser .getBrowserOption ("ContentScale")) .toBe (1)
    expect (Browser .getBrowserOption ("ContextMenu")) .toBe (true)
    expect (Browser .getBrowserOption ("Debug")) .toBe (false)
+   expect (Browser .getBrowserOption ("Exposure")) .toBe (1)
    expect (Browser .getBrowserOption ("Gravity")) .toBe (9.80665)
+   expect (Browser .getBrowserOption ("LoadUrlObjects")) .toBe (true)
    expect (Browser .getBrowserOption ("LogarithmicDepthBuffer")) .toBe (false)
+   expect (Browser .getBrowserOption ("MetadataReference")) .toBe ("")
    expect (Browser .getBrowserOption ("Multisampling")) .toBe (4)
+   expect (Browser .getBrowserOption ("Mute")) .toBe (false)
    expect (Browser .getBrowserOption ("Notifications")) .toBe (true)
    expect (Browser .getBrowserOption ("OrderIndependentTransparency")) .toBe (false)
    expect (Browser .getBrowserOption ("StraightenHorizon")) .toBe (true)
+   expect (Browser .getBrowserOption ("TextCompression")) .toBe ("CHAR_SPACING")
    expect (Browser .getBrowserOption ("Timings")) .toBe (false)
+   expect (Browser .getBrowserOption ("XRSessionMode")) .toBe ("IMMERSIVE_VR")
 })
 
 test ("getRenderingProperty", () =>
@@ -64,10 +73,14 @@ test ("getRenderingProperty", () =>
    expect (Browser .getRenderingProperty ("Antialiased")) .toBe (true)
    expect (Browser .getRenderingProperty ("ColorDepth")) .toBeGreaterThanOrEqual (32)
    expect (Browser .getRenderingProperty ("TextureMemory")) .toBe (NaN)
+
    expect (Browser .getRenderingProperty ("ContentScale")) .toBe (1)
-   expect (Browser .getRenderingProperty ("MaxSamples")) .toBeGreaterThanOrEqual (1)
-   expect (Browser .getRenderingProperty ("Multisampling")) .toBeGreaterThanOrEqual (1)
    expect (Browser .getRenderingProperty ("LogarithmicDepthBuffer")) .toBe (false)
+   expect (Browser .getRenderingProperty ("MaxAnisotropicDegree")) .toBeGreaterThanOrEqual (1)
+   expect (Browser .getRenderingProperty ("MaxSamples")) .toBeGreaterThanOrEqual (0)
+   expect (Browser .getRenderingProperty ("Multisampling")) .toBeGreaterThanOrEqual (1)
+   expect (Browser .getRenderingProperty ("PixelsPerPoint")) .toBeGreaterThanOrEqual (1)
+   expect (Browser .getRenderingProperty ("XRSession")) .toBe (false)
 })
 
 test ("INITIALIZED_EVENT 2", () => new Promise ((resolve, reject) =>
