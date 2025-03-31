@@ -133,3 +133,20 @@ test ("private/cloneCount", () =>
    Browser .currentScene .rootNodes .length = 0
    expect (dbl .getValue () .getCloneCount ()) .toBe (0)
 })
+
+test ("parents_changed/sceneGraph_changed", async () =>
+{
+   const
+      scene1 = await Browser .createScene (),
+      node1  = scene1 .createNode ("WorldInfo", false);
+
+   node1 .setup ();
+
+   node1 .parents_changed    .setValue (-1),
+   scene .sceneGraph_changed .setValue (-1);
+
+   scene1 .rootNodes .push (node1);
+
+   expect (node1  .parents_changed    .getValue ()) .not .toBe (-1);
+   expect (scene1 .sceneGraph_changed .getValue ()) .not .toBe (-1);
+});
