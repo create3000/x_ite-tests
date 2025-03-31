@@ -568,9 +568,9 @@ test ("baseURL - loadURL", async () =>
 {
    const
       canvas  = X3D .createBrowser (),
-      Browser = canvas .browser
+      Browser = canvas .browser;
 
-   Browser .baseURL = url .pathToFileURL (path .join (__dirname, "files/"))
+   Browser .baseURL = url .pathToFileURL (path .join (__dirname, "files/"));
 
    await Browser .loadURL (new X3D .MFString (`data:model/x3d+vrml,
 PROFILE Core
@@ -582,19 +582,20 @@ DEF I Inline {
 DEF L LoadSensor {
    children USE I
 }
-   `))
+   `));
 
-   const scene = Browser .currentScene
+   const scene = Browser .currentScene;
 
-   expect (scene .worldURL) .toMatch (/^data:/)
-   expect (scene .baseURL) .toMatch (/^file:\/\//)
-   expect (scene .rootNodes) .toHaveLength (2)
+   expect (scene .worldURL) .toMatch (/^data:/);
+   expect (scene .baseURL) .toMatch (/^file:\/\//);
+   expect (scene .rootNodes) .toHaveLength (2);
 
-   const I = scene .getNamedNode ("I")
+   const I = scene .getNamedNode ("I");
 
-   expect (I .getValue () .getInternalScene () .rootNodes) .toHaveLength (1)
-   expect (I .getValue () .getInternalScene () .rootNodes [0] .getNodeTypeName ()) .toBe ("Transform")
-})
+   expect (I .getValue () .checkLoadState ()) .toBe (X3D .X3DConstants .COMPLETE_STATE);
+   expect (I .getValue () .getInternalScene () .rootNodes) .toHaveLength (1);
+   expect (I .getValue () .getInternalScene () .rootNodes [0] .getNodeTypeName ()) .toBe ("Transform");
+});
 
 test ("blob URL", async () =>
 {

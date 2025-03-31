@@ -578,12 +578,12 @@ Shape { }
 Box { }
 `)
 
-   Browser .replaceWorld (scene)
+   await Browser .replaceWorld (scene)
 
    expect (Browser .currentScene) .toBe (scene)
    expect (Browser .currentScene .rootNodes) .toHaveLength (3)
 
-   Browser .replaceWorld (null)
+   await Browser .replaceWorld (null)
 
    expect (Browser .currentScene) .not .toBe (scene)
    expect (Browser .currentScene .rootNodes) .toHaveLength (0)
@@ -602,7 +602,7 @@ Shape { }
 Box { }
 `)
 
-   Browser .replaceWorld (scene .rootNodes)
+   await Browser .replaceWorld (scene .rootNodes)
 
    expect (Browser .currentScene .rootNodes) .toHaveLength (3)
 
