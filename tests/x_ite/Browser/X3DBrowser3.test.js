@@ -88,3 +88,28 @@ test ("replaceWorld", async () =>
    expect (browser .currentScene .rootNodes) .toHaveLength (1);
    expect (browser .currentScene .rootNodes [0] .getNodeTypeName ()) .toBe ("Transform");
 });
+
+test ("getBBox/replaceWorld", async () =>
+{
+   const
+      canvas  = X3D .createBrowser (),
+      browser = canvas .browser,
+      scene   = await browser .createScene (browser .getProfile ("Interactive"));
+
+   const shape = scene .createNode ("Shape");
+   const box   = scene .createNode ("Box");
+
+   box   .size     = new X3D .SFVec3f (4,4,4);
+   shape .geometry = box;
+
+   const bbox1 = shape .getValue () .getBBox (new X3D .Box3 ());
+
+   expect (bbox1 .isEmpty ()) .toBe (true);
+
+   await browser .replaceWorld (scene);
+
+   const bbox2 = shape .getValue () .getBBox (new X3D .Box3 ());
+
+   expect (bbox2 .isEmpty ()) .toBe (false);
+   expect (bbox2 .size .equals (new X3D .Vector3 (4,4,4))) .toBe (true);
+});
