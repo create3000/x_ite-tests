@@ -1,17 +1,17 @@
-const X3D = require ("../../X3D")
+const X3D = require ("../../X3D");
 
 const
    canvas  = X3D .createBrowser (),
    Browser = canvas .browser,
-   scene   = Browser .currentScene
+   scene   = Browser .currentScene;
 
 test ("getType", () =>
 {
-   const node = scene .createNode ("MetadataSet") .getValue ()
+   const node = scene .createNode ("MetadataSet") .getValue ();
 
-   expect (node .getType ()) .toBeInstanceOf (Array)
-   expect (() => node .getType () .reverse ()) .toThrow (Error)
-})
+   expect (node .getType ()) .toBeInstanceOf (Array);
+   expect (() => node .getType () .reverse ()) .toThrow (Error);
+});
 
 test ("concrete-nodes", async () =>
 {
@@ -73,66 +73,66 @@ test ("concrete-nodes", async () =>
 
 test ("abstract-nodes", async () =>
 {
-   await Browser .loadComponents (Browser .getProfile ("Full"))
+   await Browser .loadComponents (Browser .getProfile ("Full"));
 
    for (const AbstractNode of Browser .getAbstractNodes ())
    {
-      expect (typeof AbstractNode .typeName) .toBe ("string")
+      expect (typeof AbstractNode .typeName) .toBe ("string");
 
       if (AbstractNode .typeName === "X3DPrototypeInstance")
       {
-         expect (typeof AbstractNode .componentInfo .name) .toBe ("string")
-         enumerate (["typeName", "componentInfo", "containerField", "specificationRange"], AbstractNode)
+         expect (typeof AbstractNode .componentInfo .name) .toBe ("string");
+         enumerate (["typeName", "componentInfo", "containerField", "specificationRange"], AbstractNode);
       }
       else
       {
-         expect (typeof AbstractNode .componentInfo .name) .toBe ("string")
-         enumerate (["typeName", "componentInfo"], AbstractNode)
+         expect (typeof AbstractNode .componentInfo .name) .toBe ("string");
+         enumerate (["typeName", "componentInfo"], AbstractNode);
       }
    }
-})
+});
 
 test ("private/cloneCount", () =>
 {
    const
       set1 = scene .createNode ("MetadataSet"),
       set2 = scene .createNode ("MetadataSet"),
-      dbl  = scene .createNode ("MetadataDouble")
+      dbl  = scene .createNode ("MetadataDouble");
 
-   set1 .value .push (dbl)
+   set1 .value .push (dbl);
 
-   expect (set1 .getValue () .isPrivate ()) .toBe (false)
-   expect (dbl .getValue () .getCloneCount ()) .toBe (1)
+   expect (set1 .getValue () .isPrivate ()) .toBe (false);
+   expect (dbl .getValue () .getCloneCount ()) .toBe (1);
 
-   set1 .getValue () .setPrivate (true)
-   expect (set1 .getValue () .isPrivate ()) .toBe (true)
-   expect (dbl .getValue () .getCloneCount ()) .toBe (0)
+   set1 .getValue () .setPrivate (true);
+   expect (set1 .getValue () .isPrivate ()) .toBe (true);
+   expect (dbl .getValue () .getCloneCount ()) .toBe (0);
 
-   set1 .getValue () .setPrivate (false)
-   expect (set1 .getValue () .isPrivate ()) .toBe (false)
-   expect (dbl .getValue () .getCloneCount ()) .toBe (1)
+   set1 .getValue () .setPrivate (false);
+   expect (set1 .getValue () .isPrivate ()) .toBe (false);
+   expect (dbl .getValue () .getCloneCount ()) .toBe (1);
 
-   set2 .value .push (dbl)
-   expect (dbl .getValue () .getCloneCount ()) .toBe (2)
+   set2 .value .push (dbl);
+   expect (dbl .getValue () .getCloneCount ()) .toBe (2);
 
-   set1 .value .length = 0
-   expect (dbl .getValue () .getCloneCount ()) .toBe (1)
+   set1 .value .length = 0;
+   expect (dbl .getValue () .getCloneCount ()) .toBe (1);
 
-   set1 .metadata = dbl
-   expect (dbl .getValue () .getCloneCount ()) .toBe (2)
+   set1 .metadata = dbl;
+   expect (dbl .getValue () .getCloneCount ()) .toBe (2);
 
-   set1 .metadata = null
-   expect (dbl .getValue () .getCloneCount ()) .toBe (1)
+   set1 .metadata = null;
+   expect (dbl .getValue () .getCloneCount ()) .toBe (1);
 
-   set2 .value .length = 0
-   expect (dbl .getValue () .getCloneCount ()) .toBe (0)
+   set2 .value .length = 0;
+   expect (dbl .getValue () .getCloneCount ()) .toBe (0);
 
-   Browser .currentScene .rootNodes .push (dbl)
-   expect (dbl .getValue () .getCloneCount ()) .toBe (1)
+   Browser .currentScene .rootNodes .push (dbl);
+   expect (dbl .getValue () .getCloneCount ()) .toBe (1);
 
-   Browser .currentScene .rootNodes .length = 0
-   expect (dbl .getValue () .getCloneCount ()) .toBe (0)
-})
+   Browser .currentScene .rootNodes .length = 0;
+   expect (dbl .getValue () .getCloneCount ()) .toBe (0);
+});
 
 test ("parents_changed/sceneGraph_changed", async () =>
 {
