@@ -11,7 +11,8 @@ for (const [typeName, MFMatrix4, SFMatrix4] of arrays)
 {
    test ("constructor", () =>
    {
-      expect ((new MFMatrix4 ()) [0]) .toBe (undefined);
+      expect ((new MFMatrix4 ()) [0] .equals (new SFMatrix4 ())) .toBe (true);
+      expect ((new MFMatrix4 ()) [0] .equals (new SFMatrix4 (1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1))) .toBe (true);
    });
 
    test ("get1Value", () =>
@@ -22,8 +23,8 @@ for (const [typeName, MFMatrix4, SFMatrix4] of arrays)
 
       for (let i = 0; i < 10; ++ i)
       {
-         expect (field [i]) .toBe (undefined);
-         expect (field) .toHaveLength (0);
+         expect (field [i] .equals (new SFMatrix4 ())) .toBe (true);
+         expect (field) .toHaveLength (i + 1);
       }
    });
 

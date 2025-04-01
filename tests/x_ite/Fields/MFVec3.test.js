@@ -17,8 +17,8 @@ for (const [typeName, MFVec3, SFVec3] of arrays)
 
       for (let i = 0; i < 10; ++ i)
       {
-         expect (field [i]) .toBe (undefined);
-         expect (field) .toHaveLength (0);
+         expect (field [i] .equals (new SFVec3 ())) .toBe (true);
+         expect (field) .toHaveLength (i + 1);
       }
    });
 
@@ -132,8 +132,8 @@ for (const [typeName, MFVec3, SFVec3] of arrays)
       const a = new MFVec3 ()
 
       expect (a) .toHaveLength (0)
-      expect (a [0]) .toBe (undefined)
-      expect (a) .toHaveLength (0)
+      expect (a [0] .equals (new SFVec3 ())) .toBe (true)
+      expect (a) .toHaveLength (1)
 
       const b = new MFVec3 (new SFVec3 (1,2,3),new SFVec3 (2,3,4),new SFVec3 (3,4,5),new SFVec3 (4,5,6),new SFVec3 (5,6,7))
       expect (b) .toHaveLength (5)
@@ -159,7 +159,6 @@ for (const [typeName, MFVec3, SFVec3] of arrays)
       d [0] .x = 2
       d [0] .y = 3
       d [0] .z = 4
-      d .length = 2;
       d [1] .x = 3
       d [1] .y = 4
       d [1] .z = 5
@@ -167,7 +166,7 @@ for (const [typeName, MFVec3, SFVec3] of arrays)
       expect (d [0] .equals (new SFVec3 (2,3,4))) .toBe (true)
       expect (d [1] .equals (new SFVec3 (3,4,5))) .toBe (true)
 
-      expect ((new MFVec3 ()) [0]) .toBe (undefined);
+      expect ((new MFVec3 ()) [0] .equals (new SFVec3 (0,0,0))) .toBe (true);
    })
 
    test ("basic-functions", () =>
@@ -659,7 +658,7 @@ for (const [typeName, MFVec3, SFVec3] of arrays)
          "z",
       ]
 
-      enumerate (properties, new MFVec3 (new SFVec3 ()) [0])
+      enumerate (properties, new MFVec3 () [0])
    })
 
    test ("concat", () =>

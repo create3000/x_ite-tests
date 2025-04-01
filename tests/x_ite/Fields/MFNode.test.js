@@ -30,8 +30,8 @@ test ("constructor", () =>
       field3 = new MFNode (node1, node2)
 
    expect (field1) .toHaveLength (0)
-   expect (field1 [0]) .toBe (undefined)
-   expect (field1) .toHaveLength (0)
+   expect (field1 [0]) .toBe (null)
+   expect (field1) .toHaveLength (1)
 
    expect (field2) .toHaveLength (1)
    expect (field2 [0]) .toBe (node1)
@@ -40,7 +40,7 @@ test ("constructor", () =>
    expect (field3 [0]) .toBe (node1)
    expect (field3 [1]) .toBe (node2)
 
-   expect ((new MFNode ()) [0]) .toBe (undefined);
+   expect ((new MFNode ()) [0]) .toBe (null);
 })
 
 test ("get1Value", () =>
@@ -51,8 +51,8 @@ test ("get1Value", () =>
 
    for (let i = 0; i < 10; ++ i)
    {
-      expect (field [i]) .toBe (undefined);
-      expect (field) .toHaveLength (0);
+      expect (field [i]) .toBe (null);
+      expect (field) .toHaveLength (i + 1);
    }
 });
 
@@ -179,8 +179,8 @@ test ("constructor", () =>
    const a = new MFNode ()
 
    expect (a) .toHaveLength (0)
-   expect (a [0]) .toBe (undefined)
-   expect (a) .toHaveLength (0)
+   expect (a [0]) .toBe (null)
+   expect (a) .toHaveLength (1)
 
    const b = new MFNode (node1, node2, node3, node4, node5)
    expect (b) .toHaveLength (5)
