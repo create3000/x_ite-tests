@@ -457,7 +457,7 @@ DEF L LoadSensor {
 
    expect (scene .rootNodes) .toHaveLength (2)
 
-   scene .getNamedNode ("L") .addFieldCallback ("loadTime", "test", (arg) =>
+   scene .getNamedNode ("L") .addFieldCallback ("test", "loadTime", (arg) =>
    {
       try
       {
