@@ -7,9 +7,7 @@ const comp = 4;
 
 test ("constructor", () =>
 {
-   expect ((new MFRotation ()) [0] .equals (new SFRotation ())) .toBe (true);
-   expect ((new MFRotation ()) [0] .equals (new SFRotation (0,0,1,0))) .toBe (true);
-   expect ((new MFRotation ()) [0] .toString ()) .toBe ("0 0 1 0");
+   expect ((new MFRotation ()) [0]) .toBe (undefined);
 });
 
 test ("get1Value", () =>
@@ -20,8 +18,8 @@ test ("get1Value", () =>
 
    for (let i = 0; i < 10; ++ i)
    {
-      expect (field [i] .equals (new SFRotation ())) .toBe (true);
-      expect (field) .toHaveLength (i + 1);
+      expect (field [i]) .toBe (undefined);
+      expect (field) .toHaveLength (0);
    }
 });
 

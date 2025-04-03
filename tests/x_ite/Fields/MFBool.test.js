@@ -6,7 +6,7 @@ test ("constructor", () =>
 {
    let field
 
-   expect ((field = new MFBool (), field [0]))                .toBe (false)
+   expect ((field = new MFBool (), field [0]))                .toBe (undefined)
    expect ((field = new MFBool (NaN), field [0]))             .toBe (false)
    expect ((field = new MFBool (Infinity), field [0]))        .toBe (true)
    expect ((field = new MFBool (-Infinity), field [0]))       .toBe (true)
@@ -24,7 +24,7 @@ test ("constructor", () =>
    expect ((field = new MFBool (666), field [0]))             .toBe (true)
    expect ((field = new MFBool (-666), field [0]))            .toBe (true)
 
-   expect ((new MFBool ()) [0]) .toBe (false);
+   expect ((new MFBool ()) [0]) .toBe (undefined);
 })
 
 test ("get1Value", () =>
@@ -35,8 +35,8 @@ test ("get1Value", () =>
 
    for (let i = 0; i < 10; ++ i)
    {
-      expect (field [i]) .toBe (false);
-      expect (field) .toHaveLength (i + 1);
+      expect (field [i]) .toBe (undefined);
+      expect (field) .toHaveLength (0);
    }
 });
 
@@ -157,8 +157,8 @@ test ("constructor", () =>
    const a = new MFBool ()
 
    expect (a) .toHaveLength (0)
-   expect (a [0]) .toBe (false)
-   expect (a) .toHaveLength (1)
+   expect (a [0]) .toBe (undefined)
+   expect (a) .toHaveLength (0)
 
    const b = new MFBool (true,false,true,false,true)
    expect (b) .toHaveLength (5)

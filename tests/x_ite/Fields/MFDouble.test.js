@@ -6,7 +6,7 @@ test ("constructor", () =>
 {
    let field
 
-   expect ((field = new MFDouble (), field [0]))                .toBe (0)
+   expect ((field = new MFDouble (), field [0]))                .toBe (undefined)
    expect ((field = new MFDouble (NaN), field [0]))             .toBe (NaN)
    expect ((field = new MFDouble (Infinity), field [0]))        .toBe (Infinity)
    expect ((field = new MFDouble (-Infinity), field [0]))       .toBe (-Infinity)
@@ -24,7 +24,7 @@ test ("constructor", () =>
    expect ((field = new MFDouble (666), field [0]))             .toBe (666)
    expect ((field = new MFDouble (-666), field [0]))            .toBe (-666)
 
-   expect ((new MFDouble ()) [0]) .toBe (0);
+   expect ((new MFDouble ()) [0]) .toBe (undefined);
 })
 
 test ("get1Value", () =>
@@ -35,8 +35,8 @@ test ("get1Value", () =>
 
    for (let i = 0; i < 10; ++ i)
    {
-      expect (field [i]) .toBe (0);
-      expect (field) .toHaveLength (i + 1);
+      expect (field [i]) .toBe (undefined);
+      expect (field) .toHaveLength (0);
    }
 });
 
@@ -161,8 +161,8 @@ test ("constructor", () =>
    const a = new MFDouble ()
 
    expect (a) .toHaveLength (0)
-   expect (a [0]) .toBe (0)
-   expect (a) .toHaveLength (1)
+   expect (a [0]) .toBe (undefined)
+   expect (a) .toHaveLength (0)
 
    const b = new MFDouble (1,2,3,4,5)
    expect (b) .toHaveLength (5)
