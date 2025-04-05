@@ -93,14 +93,17 @@ test ("assign", () =>
 
    field .assign (new MFString ("1", "2", "3", "4"));
 
+   expect (field) .toHaveLength (4);
    expect (field .equals (new MFString ("1", "2", "3", "4"))) .toBe (true);
 
    field .assign (new MFString ("5", "6", "7", "8"));
 
+   expect (field) .toHaveLength (4);
    expect (field .equals (new MFString ("5", "6", "7", "8"))) .toBe (true);
 
    field .assign (new MFString ());
 
+   expect (field) .toHaveLength (0);
    expect (field .equals (new MFString ())) .toBe (true);
 })
 

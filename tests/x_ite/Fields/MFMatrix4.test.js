@@ -67,4 +67,21 @@ for (const [typeName, MFMatrix4, SFMatrix4] of arrays)
       for (let i = 10; i < 20; ++ i)
          expect (m [i] .equals (new SFMatrix4 ())) .toBe (true);
    });
+
+   test ("assign", () =>
+   {
+      const
+         field = new MFMatrix4 (),
+         value = new SFMatrix4 (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16);
+
+      field .assign (new MFMatrix4 (value, value, value, value));
+
+      expect (field) .toHaveLength (4);
+      expect (field .equals (new MFMatrix4 (value, value, value, value))) .toBe (true);
+
+      field .assign (new MFMatrix4 ());
+
+      expect (field) .toHaveLength (0);
+      expect (field .equals (new MFMatrix4 ())) .toBe (true);
+   });
 }

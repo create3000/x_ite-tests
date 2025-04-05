@@ -93,10 +93,12 @@ test ("assign", () =>
 
    field .assign (new MFBool (true, false, true, false));
 
+   expect (field) .toHaveLength (4);
    expect (field .equals (new MFBool (true, false, true, false))) .toBe (true);
 
    field .assign (new MFBool ());
 
+   expect (field) .toHaveLength (0);
    expect (field .equals (new MFBool ())) .toBe (true);
 })
 

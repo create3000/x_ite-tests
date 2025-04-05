@@ -64,14 +64,17 @@ for (const [typeName, MFVec4, SFVec4] of arrays)
 
       field .assign (new MFVec4 (new SFVec4 (1, 2, 3, 4), new SFVec4 (5, 6, 7, 8)));
 
+      expect (field) .toHaveLength (2);
       expect (field .equals (new MFVec4 (new SFVec4 (1, 2, 3, 4), new SFVec4 (5, 6, 7, 8)))) .toBe (true);
 
       field .assign (new MFVec4 (new SFVec4 (9, 8, 7, 6), new SFVec4 (5, 4, 3, 2)));
 
+      expect (field) .toHaveLength (2);
       expect (field .equals (new MFVec4 (new SFVec4 (9, 8, 7, 6), new SFVec4 (5, 4, 3, 2)))) .toBe (true);
 
       field .assign (new MFVec4 ());
 
+      expect (field) .toHaveLength (0);
       expect (field .equals (new MFVec4 ())) .toBe (true);
    })
 

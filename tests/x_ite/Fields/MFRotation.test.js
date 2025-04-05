@@ -64,3 +64,20 @@ test ("length", () =>
    for (let i = 10; i < 20; ++ i)
       expect (m [i] .equals (new SFRotation ())) .toBe (true);
 });
+
+test ("assign", () =>
+{
+   const
+      field = new MFRotation (),
+      value = new SFRotation (1, 2, 3, 4);
+
+   field .assign (new MFRotation (value, value, value, value));
+
+   expect (field) .toHaveLength (4);
+   expect (field .equals (new MFRotation (value, value, value, value))) .toBe (true);
+
+   field .assign (new MFRotation ());
+
+   expect (field) .toHaveLength (0);
+   expect (field .equals (new MFRotation ())) .toBe (true);
+});
