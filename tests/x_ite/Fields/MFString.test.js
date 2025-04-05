@@ -696,6 +696,7 @@ test ("flatMap", () =>
 test ("length", () =>
 {
    expect (new MFString () .length) .toBe (0);
+   expect (new MFString ("1", "2", "3") .length) .toBe (3);
 
    const m = new MFString ();
 

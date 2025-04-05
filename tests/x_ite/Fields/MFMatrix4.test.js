@@ -31,6 +31,7 @@ for (const [typeName, MFMatrix4, SFMatrix4] of arrays)
    test ("length", () =>
    {
       expect (new MFMatrix4 () .length) .toBe (0);
+      expect (new MFMatrix4 (new SFMatrix4 (1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16), new SFMatrix4 (1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16)) .length) .toBe (2);
 
       const m = new MFMatrix4 ();
 

@@ -797,6 +797,7 @@ test ("flatMap", () =>
 test ("length", () =>
 {
    expect (new MFNode () .length) .toBe (0);
+   expect (new MFNode (null, null) .length) .toBe (2);
 
    const m = new MFNode ();
 

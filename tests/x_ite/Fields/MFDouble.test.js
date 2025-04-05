@@ -679,6 +679,7 @@ test ("flatMap", () =>
 test ("length", () =>
 {
    expect (new MFDouble () .length) .toBe (0);
+   expect (new MFDouble (1, 2, 3) .length) .toBe (3);
 
    const m = new MFDouble ();
 

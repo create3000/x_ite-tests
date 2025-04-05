@@ -28,6 +28,7 @@ test ("get1Value", () =>
 test ("length", () =>
 {
    expect (new MFRotation () .length) .toBe (0);
+   expect (new MFRotation (new SFRotation (1,2,3,4), new SFRotation (1,2,3,4)) .length) .toBe (2);
 
    const m = new MFRotation ();
 

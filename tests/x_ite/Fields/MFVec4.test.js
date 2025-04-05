@@ -734,6 +734,7 @@ for (const [typeName, MFVec4, SFVec4] of arrays)
    test ("length", () =>
    {
       expect (new MFVec4 () .length) .toBe (0);
+      expect (new MFVec4 (new SFVec4 (1,2,3,4), new SFVec4 (1,2,3,4)) .length) .toBe (2);
 
       const m = new MFVec4 ();
 

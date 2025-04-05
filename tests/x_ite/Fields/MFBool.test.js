@@ -674,6 +674,7 @@ test ("flatMap", () =>
 test ("length", () =>
 {
    expect (new MFBool () .length) .toBe (0);
+   expect (new MFBool (true, false, true) .length) .toBe (3);
 
    const m = new MFBool ();
 

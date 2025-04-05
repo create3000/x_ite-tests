@@ -679,6 +679,7 @@ test ("flatMap", () =>
 test ("length", () =>
 {
    expect (new MFFloat () .length) .toBe (0);
+   expect (new MFFloat (1, 2, 3) .length) .toBe (3);
 
    const m = new MFFloat ();
 

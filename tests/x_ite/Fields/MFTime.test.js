@@ -667,6 +667,7 @@ test ("flat", () =>
 test ("length", () =>
 {
    expect (new MFTime () .length) .toBe (0);
+   expect (new MFTime (1, 2, 3) .length) .toBe (3);
 
    const m = new MFTime ();
 

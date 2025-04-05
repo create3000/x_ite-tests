@@ -679,6 +679,7 @@ test ("flatMap", () =>
 test ("length", () =>
 {
    expect (new MFInt32 () .length) .toBe (0);
+   expect (new MFInt32 (1, 2, 3) .length) .toBe (3);
 
    const m = new MFInt32 ();
 
