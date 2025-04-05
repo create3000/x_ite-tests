@@ -47,14 +47,17 @@ for (const [typeName, MFVec2, SFVec2] of arrays)
 
       field .setValue (new MFVec2 (new SFVec2 (1, 2), new SFVec2 (5, 6)));
 
+      expect (field) .toHaveLength (2);
       expect (field .equals (new MFVec2 (new SFVec2 (1, 2), new SFVec2 (5, 6)))) .toBe (true);
 
       field .setValue (new MFVec2 (new SFVec2 (9, 8), new SFVec2 (5, 4)));
 
+      expect (field) .toHaveLength (2);
       expect (field .equals (new MFVec2 (new SFVec2 (9, 8), new SFVec2 (5, 4)))) .toBe (true);
 
       field .setValue ((new MFVec2 ()));
 
+      expect (field) .toHaveLength (0);
       expect (field .equals (new MFVec2 ())) .toBe (true);
    });
 

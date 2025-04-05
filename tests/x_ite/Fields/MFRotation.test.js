@@ -65,6 +65,36 @@ test ("length", () =>
       expect (m [i] .equals (new SFRotation ())) .toBe (true);
 });
 
+test ("setValue", () =>
+{
+   const field = new MFRotation ();
+
+   field .setValue ([1, 2, 3, 4, 5, 6, 7, 8]);
+
+   expect (field) .toHaveLength (2);
+   expect (field .equals (new MFRotation (new SFRotation (1, 2, 3, 4), new SFRotation (5, 6, 7, 8)))) .toBe (true);
+
+   field .setValue ([ ]);
+
+   expect (field) .toHaveLength (0);
+   expect (field .equals (new MFRotation ())) .toBe (true);
+
+   field .setValue (new MFRotation (new SFRotation (1, 2, 3, 4)));
+
+   expect (field) .toHaveLength (1);
+   expect (field .equals (new MFRotation (new SFRotation (1, 2, 3, 4)))) .toBe (true);
+
+   field .setValue (new MFRotation (new SFRotation (1, 2, 3, 4), new SFRotation (5, 6, 7, 8)));
+
+   expect (field) .toHaveLength (2);
+   expect (field .equals (new MFRotation (new SFRotation (1, 2, 3, 4), new SFRotation (5, 6, 7, 8)))) .toBe (true);
+
+   field .setValue (new MFRotation ());
+
+   expect (field) .toHaveLength (0);
+   expect (field .equals (new MFRotation ())) .toBe (true);
+});
+
 test ("assign", () =>
 {
    const

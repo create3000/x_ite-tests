@@ -67,6 +67,35 @@ for (const [typeName, MFMatrix4, SFMatrix4] of arrays)
       for (let i = 10; i < 20; ++ i)
          expect (m [i] .equals (new SFMatrix4 ())) .toBe (true);
    });
+   test ("setValue", () =>
+   {
+      const field = new MFMatrix4 ();
+
+      field .setValue ([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32]);
+
+      expect (field) .toHaveLength (2);
+      expect (field .equals (new MFMatrix4 (new SFMatrix4 (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16), new SFMatrix4 (17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32)))) .toBe (true);
+
+      field .setValue ([ ]);
+
+      expect (field) .toHaveLength (0);
+      expect (field .equals (new MFMatrix4 ())) .toBe (true);
+
+      field .setValue (new MFMatrix4 (new SFMatrix4 (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16)));
+
+      expect (field) .toHaveLength (1);
+      expect (field .equals (new MFMatrix4 (new SFMatrix4 (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16)))) .toBe (true);
+
+      field .setValue (new MFMatrix4 (new SFMatrix4 (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16), new SFMatrix4 (17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32)));
+
+      expect (field) .toHaveLength (2);
+      expect (field .equals (new MFMatrix4 (new SFMatrix4 (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16), new SFMatrix4 (17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32)))) .toBe (true);
+
+      field .setValue (new MFMatrix4 ());
+
+      expect (field) .toHaveLength (0);
+      expect (field .equals (new MFMatrix4 ())) .toBe (true);
+   });
 
    test ("assign", () =>
    {
@@ -84,4 +113,5 @@ for (const [typeName, MFMatrix4, SFMatrix4] of arrays)
       expect (field) .toHaveLength (0);
       expect (field .equals (new MFMatrix4 ())) .toBe (true);
    });
+
 }

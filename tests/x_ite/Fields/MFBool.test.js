@@ -68,22 +68,27 @@ test ("setValue", () =>
 
    field .setValue ([true, false, true, false]);
 
+   expect (field) .toHaveLength (4);
    expect (field .equals (new MFBool (true, false, true, false))) .toBe (true);
 
    field .setValue ([ ]);
 
+   expect (field) .toHaveLength (0);
    expect (field .equals (new MFBool ())) .toBe (true);
 
    field .setValue (new MFBool (true, false, true, false));
 
+   expect (field) .toHaveLength (4);
    expect (field .equals (new MFBool (true, false, true, false))) .toBe (true);
 
    field .setValue (new MFBool (true, false, true, false, true, false, true, false));
 
+   expect (field) .toHaveLength (8);
    expect (field .equals (new MFBool (true, false, true, false, true, false, true, false))) .toBe (true);
 
    field .setValue (new MFBool ());
 
+   expect (field) .toHaveLength (0);
    expect (field .equals (new MFBool ())) .toBe (true);
 })
 

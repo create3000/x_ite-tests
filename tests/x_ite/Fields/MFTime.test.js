@@ -68,22 +68,27 @@ test ("setValue", () =>
 
    field .setValue ([1, 2, 3, 4]);
 
+   expect (field) .toHaveLength (4);
    expect (field .equals (new MFTime (1, 2, 3, 4))) .toBe (true);
 
    field .setValue ([ ]);
 
+   expect (field) .toHaveLength (0);
    expect (field .equals (new MFTime ())) .toBe (true);
 
    field .setValue (new MFTime (1, 2, 3, 4));
 
+   expect (field) .toHaveLength (4);
    expect (field .equals (new MFTime (1, 2, 3, 4))) .toBe (true);
 
    field .setValue (new MFTime (5, 6, 7, 8, 9));
 
+   expect (field) .toHaveLength (5);
    expect (field .equals (new MFTime (5, 6, 7, 8, 9))) .toBe (true);
 
    field .setValue (new MFTime ());
 
+   expect (field) .toHaveLength (0);
    expect (field .equals (new MFTime ())) .toBe (true);
 })
 
