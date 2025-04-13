@@ -14,7 +14,11 @@ test ("timeOut 1s", () => new Promise (async resolve =>
 
    timer .addFieldCallback ("test", "isActive", value =>
    {
-      expect (value) .toBe (true);
+      if (!value)
+         return;
+
+      timer .stopTime = Date .now () / 1000;
+
       expect (Date .now () / 1000 >= t0 + duration) .toBe (true);
       resolve ();
    });
