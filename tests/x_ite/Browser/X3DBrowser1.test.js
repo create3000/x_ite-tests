@@ -82,6 +82,9 @@ test ("properties", () =>
       "activeLayer",
       "activeNavigationInfo",
       "activeViewpoint",
+      "browserProperties",
+      "browserOptions",
+      "renderingProperties",
       "contextMenu",
       "element",
    ]
