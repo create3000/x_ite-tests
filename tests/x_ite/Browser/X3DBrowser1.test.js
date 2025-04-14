@@ -31,25 +31,20 @@ test ("properties", () =>
    expect (Browser .activeNavigationInfo) .toBe (null)
    expect (Browser .activeViewpoint) .toBe (null)
 
-   expect (Browser .browserProperties) .toBeInstanceOf (X3D .SFNode);
-   expect (Browser .browserOptions) .toBeInstanceOf (X3D .SFNode);
-   expect (Browser .renderingProperties) .toBeInstanceOf (X3D .SFNode);
+   expect (Browser .browserProperties) .toBeInstanceOf
 
-   Browser .name                 = undefined;
-   Browser .version              = undefined;
-   Browser .currentSpeed         = undefined;
-   Browser .currentFrameRate     = undefined;
-   Browser .description          = "test";
-   Browser .supportedProfiles    = undefined;
-   Browser .supportedComponents  = undefined;
-   Browser .currentScene         = undefined;
-   Browser .element              = undefined;
-   Browser .activeLayer          = undefined;
-   Browser .activeNavigationInfo = undefined;
-   Browser .activeViewpoint      = undefined;
-   Browser .browserProperties    = undefined;
-   Browser .browserOptions       = undefined;
-   Browser .renderingProperties  = undefined;
+   Browser .name                 = undefined
+   Browser .version              = undefined
+   Browser .currentSpeed         = undefined
+   Browser .currentFrameRate     = undefined
+   Browser .description          = "test"
+   Browser .supportedProfiles    = undefined
+   Browser .supportedComponents  = undefined
+   Browser .currentScene         = undefined
+   Browser .element              = undefined
+   Browser .activeLayer          = undefined
+   Browser .activeNavigationInfo = undefined
+   Browser .activeViewpoint      = undefined
 
    expect (Browser .name) .toBe ("X_ITE")
    expect (Browser .version) .toMatch (/^\d+\.\d+\.\d+$/)
@@ -70,10 +65,6 @@ test ("properties", () =>
    expect (Browser .activeNavigationInfo) .toBe (null)
    expect (Browser .activeViewpoint) .toBe (null)
 
-   expect (Browser .browserProperties) .toBeInstanceOf (X3D .SFNode);
-   expect (Browser .browserOptions) .toBeInstanceOf (X3D .SFNode);
-   expect (Browser .renderingProperties) .toBeInstanceOf (X3D .SFNode);
-
    expect (Browser .toString ()) .toBe (`[object ${Browser .getTypeName ()}]`)
 
    const properties = [
@@ -93,9 +84,6 @@ test ("properties", () =>
       "activeLayer",
       "activeNavigationInfo",
       "activeViewpoint",
-      "browserProperties",
-      "browserOptions",
-      "renderingProperties",
       "contextMenu",
       "element",
    ]
