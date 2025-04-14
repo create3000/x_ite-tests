@@ -13,7 +13,7 @@
     "url": "git+https://github.com/create3000/unit-tests.git"
   },
   "author": "Holger Seelig",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/create3000/unit-tests/issues"
   },
