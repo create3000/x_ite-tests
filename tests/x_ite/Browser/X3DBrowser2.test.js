@@ -92,6 +92,39 @@ test ("getBrowserOption", () =>
    Browser .addBrowserOptionCallback ("test", "Timings", () => { });
    Browser .addBrowserOptionCallback ("test", "ToneMapping", () => { });
    Browser .addBrowserOptionCallback ("test", "XRSessionMode", () => { });
+
+   Browser .removeBrowserOptionCallback ("test", "Antialiased");
+   Browser .removeBrowserOptionCallback ("test", "Dashboard");
+   Browser .removeBrowserOptionCallback ("test", "Rubberband");
+   Browser .removeBrowserOptionCallback ("test", "EnableInlineViewpoints");
+   Browser .removeBrowserOptionCallback ("test", "MotionBlur");
+   Browser .removeBrowserOptionCallback ("test", "PrimitiveQuality");
+   Browser .removeBrowserOptionCallback ("test", "QualityWhenMoving");
+   Browser .removeBrowserOptionCallback ("test", "Shading");
+   Browser .removeBrowserOptionCallback ("test", "SplashScreen");
+   Browser .removeBrowserOptionCallback ("test", "TextureQuality");
+
+   Browser .removeBrowserOptionCallback ("test", "AlwaysUpdateGeometries");
+   Browser .removeBrowserOptionCallback ("test", "AutoUpdate");
+   Browser .removeBrowserOptionCallback ("test", "Cache");
+   Browser .removeBrowserOptionCallback ("test", "ColorSpace");
+   Browser .removeBrowserOptionCallback ("test", "ContentScale");
+   Browser .removeBrowserOptionCallback ("test", "ContextMenu");
+   Browser .removeBrowserOptionCallback ("test", "Debug");
+   Browser .removeBrowserOptionCallback ("test", "Exposure");
+   Browser .removeBrowserOptionCallback ("test", "Gravity");
+   Browser .removeBrowserOptionCallback ("test", "LoadUrlObjects");
+   Browser .removeBrowserOptionCallback ("test", "LogarithmicDepthBuffer");
+   Browser .removeBrowserOptionCallback ("test", "MetadataReference");
+   Browser .removeBrowserOptionCallback ("test", "Multisampling");
+   Browser .removeBrowserOptionCallback ("test", "Mute");
+   Browser .removeBrowserOptionCallback ("test", "Notifications");
+   Browser .removeBrowserOptionCallback ("test", "OrderIndependentTransparency");
+   Browser .removeBrowserOptionCallback ("test", "StraightenHorizon");
+   Browser .removeBrowserOptionCallback ("test", "TextCompression");
+   Browser .removeBrowserOptionCallback ("test", "Timings");
+   Browser .removeBrowserOptionCallback ("test", "ToneMapping");
+   Browser .removeBrowserOptionCallback ("test", "XRSessionMode");
 });
 
 test ("getRenderingProperty", () =>
@@ -131,6 +164,22 @@ test ("getRenderingProperty", () =>
    Browser .addRenderingPropertyCallback ("test", "Multisampling", () => { });
    Browser .addRenderingPropertyCallback ("test", "PixelsPerPoint", () => { });
    Browser .addRenderingPropertyCallback ("test", "XRSession", () => { });
+
+   Browser .removeRenderingPropertyCallback ("test", "Shading");
+   Browser .removeRenderingPropertyCallback ("test", "MaxTextureSize");
+   Browser .removeRenderingPropertyCallback ("test", "TextureUnits");
+   Browser .removeRenderingPropertyCallback ("test", "MaxLights");
+   Browser .removeRenderingPropertyCallback ("test", "Antialiased");
+   Browser .removeRenderingPropertyCallback ("test", "ColorDepth");
+   Browser .removeRenderingPropertyCallback ("test", "TextureMemory");
+
+   Browser .removeRenderingPropertyCallback ("test", "ContentScale");
+   Browser .removeRenderingPropertyCallback ("test", "LogarithmicDepthBuffer");
+   Browser .removeRenderingPropertyCallback ("test", "MaxAnisotropicDegree");
+   Browser .removeRenderingPropertyCallback ("test", "MaxSamples");
+   Browser .removeRenderingPropertyCallback ("test", "Multisampling");
+   Browser .removeRenderingPropertyCallback ("test", "PixelsPerPoint");
+   Browser .removeRenderingPropertyCallback ("test", "XRSession");
 });
 
 test ("INITIALIZED_EVENT 2", () => new Promise ((resolve, reject) =>
