@@ -113,3 +113,12 @@ test ("getBBox/replaceWorld", async () =>
    expect (bbox2 .isEmpty ()) .toBe (false);
    expect (bbox2 .size .equals (new X3D .Vector3 (4,4,4))) .toBe (true);
 });
+
+test ("dispose", () =>
+{
+   const
+      canvas  = X3D .createBrowser (),
+      browser = canvas .browser;
+
+   browser .dispose ();
+});
