@@ -4,17 +4,17 @@ Object .assign (global,
    {
       const
          a = { },
-         b = { }
+         b = { };
 
       for (const property in target)
-         a [property] = true
+         a [property] = true;
 
       for (const property of properties)
-         b [property] = true
+         b [property] = true;
 
-      expect (a) .toEqual (b)
+      expect (a) .toEqual (b);
    },
    sleep: delay => new Promise (resolve => setTimeout (resolve, delay)),
-})
+});
 
-module .exports = require ("../../x_ite")
+module .exports = require ("../../x_ite");
