@@ -38,6 +38,7 @@ test ("getBrowserOption", () =>
    expect (Browser .getBrowserOption ("SplashScreen")) .toBe (true);
    expect (Browser .getBrowserOption ("TextureQuality")) .toBe ("MEDIUM");
 
+   expect (Browser .getBrowserOption ("AlwaysUpdateGeometries")) .toBe (false);
    expect (Browser .getBrowserOption ("AutoUpdate")) .toBe (false);
    expect (Browser .getBrowserOption ("Cache")) .toBe (true);
    expect (Browser .getBrowserOption ("ColorSpace")) .toBe ("LINEAR_WHEN_PHYSICAL_MATERIAL");
@@ -70,6 +71,7 @@ test ("getBrowserOption", () =>
    // Browser .addBrowserOptionCallback ("test", "SplashScreen", () => { });
    // Browser .addBrowserOptionCallback ("test", "TextureQuality", () => { });
 
+   // Browser .addBrowserOptionCallback ("test", "AlwaysUpdateGeometries", () => { });
    // Browser .addBrowserOptionCallback ("test", "AutoUpdate", () => { });
    // Browser .addBrowserOptionCallback ("test", "Cache", () => { });
    // Browser .addBrowserOptionCallback ("test", "ColorSpace", () => { });
@@ -102,6 +104,7 @@ test ("getBrowserOption", () =>
    // Browser .removeBrowserOptionCallback ("test", "SplashScreen");
    // Browser .removeBrowserOptionCallback ("test", "TextureQuality");
 
+   // Browser .removeBrowserOptionCallback ("test", "AlwaysUpdateGeometries");
    // Browser .removeBrowserOptionCallback ("test", "AutoUpdate");
    // Browser .removeBrowserOptionCallback ("test", "Cache");
    // Browser .removeBrowserOptionCallback ("test", "ColorSpace");
