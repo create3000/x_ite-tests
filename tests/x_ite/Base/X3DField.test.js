@@ -133,7 +133,7 @@ test ("add/removeFieldCallback", () => new Promise ((resolve, reject) =>
 
    node .translation .addFieldCallback ("test", value =>
    {
-      node .translation .removeFieldCallback ("test")
+      node .translation .removeFieldCallback ("test");
       expect (node .translation .getFieldCallbacks () .size) .toBe (0);
 
       expect (value .equals (new X3D .SFVec3f (2,3,4))) .toBe (true);

@@ -516,3 +516,23 @@ test ("NodeUserData", async () =>
    expect (() => n .setNodeUserData ("key", 123)) .toThrow (Error)
    expect (() => n .removeNodeUserData ("key")) .toThrow (Error)
 })
+
+test ("add/removeFieldCallback", () => new Promise ((resolve, reject) =>
+{
+   const node = Browser .currentScene .createNode ("Transform");
+
+   expect (node .translation .getFieldCallbacks () .size) .toBe (0);
+
+   node .addFieldCallback ("test", "translation", value =>
+   {
+      node .removeFieldCallback ("test", "translation");
+      expect (node .translation .getFieldCallbacks () .size) .toBe (0);
+
+      expect (value .equals (new X3D .SFVec3f (2,3,4))) .toBe (true);
+      resolve ();
+   });
+
+   expect (node .translation .getFieldCallbacks () .size) .toBe (1);
+
+   node .translation = new X3D .SFVec3f (2,3,4);
+}));
