@@ -91,3 +91,24 @@ test ("isDefaultValue", () =>
    expect (a .isDefaultValue ()) .toBe (true)
    expect (b .isDefaultValue ()) .toBe (false)
 })
+
+test ("fromString", () =>
+{
+   const a = new SFBool ();
+
+   a .fromString ("true");
+
+   expect (a .equals (new SFBool (true))) .toBe (true);
+
+   a .fromString ("false");
+
+   expect (a .equals (new SFBool (false))) .toBe (true);
+
+   a .fromString ("TRUE");
+
+   expect (a .equals (new SFBool (true))) .toBe (true);
+
+   a .fromString ("FALSE");
+
+   expect (a .equals (new SFBool (false))) .toBe (true);
+});

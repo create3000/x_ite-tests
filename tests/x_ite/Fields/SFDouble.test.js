@@ -91,3 +91,22 @@ test ("isDefaultValue", () =>
    expect (a .isDefaultValue ()) .toBe (true)
    expect (b .isDefaultValue ()) .toBe (false)
 })
+
+test ("fromString", () =>
+{
+   const a = new SFDouble ();
+
+   a .fromString ("123.456");
+
+   expect (a .equals (new SFDouble (123.456))) .toBe (true);
+
+   a .fromString ("NaN");
+
+   expect (isNaN (a .valueOf ())) .toBe (true);
+
+   a .fromString ("Infinity");
+
+   expect (a .equals (new SFDouble (Infinity))) .toBe (true);
+
+   a .fromString ("pi");
+});

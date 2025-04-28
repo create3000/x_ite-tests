@@ -1,6 +1,7 @@
 const
    X3D    = require ("../../X3D"),
-   MFNode = X3D .MFNode
+   MFNode = X3D .MFNode,
+   SFNode = X3D .SFNode;
 
 const
    canvas  = X3D .createBrowser (),
@@ -814,4 +815,39 @@ test ("length", () =>
 
    for (let i = 0; i < 20; ++ i)
       expect (m [i]) .toBe (null);
+});
+
+test ("fromString", () =>
+{
+   const a = new MFNode ();
+
+   a .fromString ("[ Group { }, Transform { } ]", scene);
+
+   expect (a) .toHaveLength (2);
+   expect (a [0]) .toBeInstanceOf (SFNode);
+   expect (a [1]) .toBeInstanceOf (SFNode);
+   expect (a [0] .getNodeTypeName ()) .toBe ("Group");
+   expect (a [1] .getNodeTypeName ()) .toBe ("Transform");
+
+   a .fromString ("NULL", scene);
+
+   expect (a) .toHaveLength (1);
+   expect (a [0]) .toBe (null);
+
+   a .fromString ("Switch { }", scene);
+
+   expect (a) .toHaveLength (1);
+   expect (a [0]) .toBeInstanceOf (SFNode);
+   expect (a [0] .getNodeTypeName ()) .toBe ("Switch");
+
+   a .fromString ("[ NULL, NULL ]", scene);
+
+   expect (a) .toHaveLength (2);
+   expect (a [0]) .toBe (null);
+   expect (a [1]) .toBe (null);
+
+   a .fromString ("[ ]", scene);
+
+   expect (a) .toHaveLength (0);
+   expect (a .equals (new MFNode ())) .toBe (true);
 });

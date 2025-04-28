@@ -704,3 +704,23 @@ test ("length", () =>
    for (let i = 10; i < 20; ++ i)
       expect (m [i]) .toBe (-1);
 });
+
+test ("fromString", () =>
+{
+   const a = new MFTime ();
+
+   a .fromString ("[1.2 2.3 3.4 4.5 5.6 6.7 7.8 9]");
+
+   expect (a) .toHaveLength (8);
+   expect (a .equals (new MFTime (1.2, 2.3, 3.4, 4.5, 5.6, 6.7, 7.8, 9))) .toBe (true);
+
+   a .fromString ("123.456");
+
+   expect (a) .toHaveLength (1);
+   expect (a .equals (new MFTime (123.456))) .toBe (true);
+
+   a .fromString ("[ ]");
+
+   expect (a) .toHaveLength (0);
+   expect (a .equals (new MFTime ())) .toBe (true);
+});

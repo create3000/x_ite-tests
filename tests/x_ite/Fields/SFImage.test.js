@@ -146,3 +146,12 @@ test ("isDefaultValue", () =>
    expect (a .isDefaultValue ()) .toBe (true)
    expect (b .isDefaultValue ()) .toBe (false)
 })
+
+test ("fromString", () =>
+{
+   const a = new SFImage ();
+
+   a .fromString ("2 3 4 1 2 3 4 5 6");
+
+   expect (a .equals (new SFImage (2, 3, 4, new MFInt32 (1, 2, 3, 4, 5, 6)))) .toBe (true);
+});

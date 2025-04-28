@@ -504,3 +504,12 @@ test ("slerp", () =>
    expect (c [2]) .toBeCloseTo (0)
    expect (c [3]) .toBeCloseTo (Math .PI / 4)
 })
+
+test ("fromString", () =>
+{
+   const a = new SFRotation ();
+
+   a .fromString ("2 3 4 5");
+
+   expect (a .equals (new SFRotation (2, 3, 4, 5))) .toBe (true);
+});

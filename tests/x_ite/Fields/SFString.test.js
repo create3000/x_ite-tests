@@ -99,3 +99,17 @@ test ("length", () =>
    expect (new SFString ("12")) .toHaveLength (2);
    expect (new SFString ("123")) .toHaveLength (3);
 });
+
+test ("fromString", () =>
+{
+   const a = new SFString ();
+
+   a .fromString (`"abcd"`);
+
+   expect (a .equals (new SFString ("abcd"))) .toBe (true);
+
+   a .fromString (`""`);
+
+   expect (a .equals (new SFString ())) .toBe (true);
+});
+

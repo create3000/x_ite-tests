@@ -365,4 +365,13 @@ for (const Type of Object .keys (X3D .SFVec4))
 
       expect (c .equals (new SFVec4 (2,3,4,5))) .toBe (true)
    })
+
+   test ("fromString", () =>
+   {
+      const a = new SFVec4 ();
+
+      a .fromString ("2 3 4 5");
+
+      expect (a .equals (new SFVec4 (2, 3, 4, 5))) .toBe (true);
+   });
 }

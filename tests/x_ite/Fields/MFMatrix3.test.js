@@ -115,4 +115,23 @@ for (const [typeName, MFMatrix3, SFMatrix3] of arrays)
       expect (field .equals (new MFMatrix3 ())) .toBe (true);
    });
 
+   test ("fromString", () =>
+   {
+      const a = new MFMatrix3 ();
+
+      a .fromString ("[1.2 2.3 3.4 4.5 5.6 6.7 7.8 8.9 9, 2.3 3.4 4.5 5.6 6.7 7.8 8.9 9 1.2]");
+
+      expect (a) .toHaveLength (2);
+      expect (a .equals (new MFMatrix3 (new SFMatrix3 (1.2, 2.3, 3.4, 4.5, 5.6, 6.7, 7.8, 8.9, 9), new SFMatrix3 (2.3, 3.4, 4.5, 5.6, 6.7, 7.8, 8.9, 9, 1.2)))) .toBe (true);
+
+      a .fromString ("1 2 3 4 5 6 7 8 9");
+
+      expect (a) .toHaveLength (1);
+      expect (a .equals (new MFMatrix3 (new SFMatrix3 (1, 2, 3, 4, 5, 6, 7, 8, 9)))) .toBe (true);
+
+      a .fromString ("[ ]");
+
+      expect (a) .toHaveLength (0);
+      expect (a .equals (new MFMatrix3 ())) .toBe (true);
+   });
 }

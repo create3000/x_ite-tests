@@ -711,3 +711,28 @@ test ("length", () =>
    for (let i = 10; i < 20; ++ i)
       expect (m [i]) .toBe (false);
 });
+
+test ("fromString", () =>
+{
+   const a = new MFBool ();
+
+   a .fromString ("[true false true false true true false false]");
+
+   expect (a) .toHaveLength (8);
+   expect (a .equals (new MFBool (true, false, true, false, true, true, false, false))) .toBe (true);
+
+   a .fromString ("false");
+
+   expect (a) .toHaveLength (1);
+   expect (a .equals (new MFBool (false))) .toBe (true);
+
+   a .fromString ("[ ]");
+
+   expect (a) .toHaveLength (0);
+   expect (a .equals (new MFBool ())) .toBe (true);
+
+   a .fromString ("[TRUE FALSE TRUE FALSE TRUE TRUE FALSE FALSE]");
+
+   expect (a) .toHaveLength (8);
+   expect (a .equals (new MFBool (true, false, true, false, true, true, false, false))) .toBe (true);
+});

@@ -536,3 +536,26 @@ test ("add/removeFieldCallback", () => new Promise ((resolve, reject) =>
 
    node .translation = new X3D .SFVec3f (2,3,4);
 }));
+
+test ("fromString", () =>
+{
+   const a = new X3D .SFNode ();
+
+   a .fromString ("Transform { }", Browser .currentScene);
+
+   expect (a .equals (new X3D .SFNode ())) .toBe (false);
+   expect (a .getNodeTypeName ()) .toBe ("Transform");
+
+   a .fromString ("NULL", Browser .currentScene);
+
+   expect (a .equals (new X3D .SFNode ())) .toBe (true);
+
+   a .fromString ("Group { }", Browser .currentScene);
+
+   expect (a .equals (new X3D .SFNode ())) .toBe (false);
+   expect (a .getNodeTypeName ()) .toBe ("Group");
+
+   a .fromString ("null", Browser .currentScene);
+
+   expect (a .equals (new X3D .SFNode ())) .toBe (true);
+});

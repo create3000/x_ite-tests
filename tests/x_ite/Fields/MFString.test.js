@@ -726,3 +726,23 @@ test ("length", () =>
    for (let i = 10; i < 20; ++ i)
       expect (m [i]) .toBe ("");
 });
+
+test ("fromString", () =>
+{
+   const a = new MFString ();
+
+   a .fromString (`["1" "2" "3" "4" "5" "6" "7" "9"]`);
+
+   expect (a) .toHaveLength (8);
+   expect (a .equals (new MFString ("1", "2", "3", "4", "5", "6", "7", "9"))) .toBe (true);
+
+   a .fromString (`"123"`);
+
+   expect (a) .toHaveLength (1);
+   expect (a .equals (new MFString ("123"))) .toBe (true);
+
+   a .fromString ("[ ]");
+
+   expect (a) .toHaveLength (0);
+   expect (a .equals (new MFString ())) .toBe (true);
+});

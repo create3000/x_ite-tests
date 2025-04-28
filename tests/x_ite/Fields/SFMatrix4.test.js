@@ -133,12 +133,12 @@ for (const Type of Object .keys (X3D .SFMatrix4))
 
    test ("common", () =>
    {
-      const field = new SFMatrix4 ()
+      const field = new SFMatrix4 ();
 
-      expect (field .getType ()) .toBe (X3D .X3DConstants [Type])
-      expect (field .getTypeName ()) .toBe (Type)
-      expect (Object .prototype .toString .call (field)) .toBe (`[object ${Type}]`)
-   })
+      expect (field .getType ()) .toBe (X3D .X3DConstants [Type]);
+      expect (field .getTypeName ()) .toBe (Type);
+      expect (Object .prototype .toString .call (field)) .toBe (`[object ${Type}]`);
+   });
 
    test ("copy", () =>
    {
@@ -617,5 +617,14 @@ for (const Type of Object .keys (X3D .SFMatrix4))
       expect (c [13]) .toBe (0);
       expect (c [14]) .toBe (0);
       expect (c [15]) .toBe (1);
+   });
+
+   test ("fromString", () =>
+   {
+      const a = new SFMatrix4 ();
+
+      a .fromString ("2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17");
+
+      expect (a .equals (new SFMatrix4 (2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17))) .toBe (true);
    });
 }

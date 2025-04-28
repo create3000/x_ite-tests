@@ -91,3 +91,16 @@ test ("isDefaultValue", () =>
    expect (a .isDefaultValue ()) .toBe (true)
    expect (b .isDefaultValue ()) .toBe (false)
 })
+
+test ("fromString", () =>
+{
+   const a = new SFInt32 ();
+
+   a .fromString ("123");
+
+   expect (a .equals (new SFInt32 (123))) .toBe (true);
+
+   a .fromString ("0xabcdef12");
+
+   expect (a .equals (new SFInt32 (0xabcdef12))) .toBe (true);
+});

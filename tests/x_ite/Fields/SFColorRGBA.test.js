@@ -228,3 +228,20 @@ test ("lerp", () =>
    expect (c [2]) .toBeCloseTo (0.5)
    expect (c [3]) .toBeCloseTo (0.5)
 })
+
+test ("fromString", () =>
+{
+   const a = new SFColorRGBA ();
+
+   a .fromString ("0.2 0.3 0.4 0.5");
+
+   expect (a .equals (new SFColorRGBA (0.2, 0.3, 0.4, 0.5))) .toBe (true);
+
+   a .fromString ("red");
+
+   expect (a .equals (new SFColorRGBA (1, 0, 0, 1))) .toBe (true);
+
+   a .fromString ("0x00ffff00");
+
+   expect (a .equals (new SFColorRGBA (0, 1, 1, 0))) .toBe (true);
+});
