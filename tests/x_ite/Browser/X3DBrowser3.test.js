@@ -122,3 +122,20 @@ test ("dispose", () =>
 
    browser .dispose ();
 });
+
+test ("createX3DFromString2", async () =>
+{
+   const
+      canvas  = X3D .createBrowser (),
+      Browser = canvas .browser;
+
+   const scene1 = await Browser .createX3DFromString (`Transform { }`);
+
+   expect (scene1 .rootNodes) .toHaveLength (1);
+   expect (scene1 .rootNodes [0] .getNodeTypeName ()) .toBe ("Transform");
+
+   const scene2 = await Browser .createX3DFromString (`<Transform/>`);
+
+   expect (scene2 .rootNodes) .toHaveLength (1);
+   expect (scene2 .rootNodes [0] .getNodeTypeName ()) .toBe ("Transform");
+});
