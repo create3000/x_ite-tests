@@ -1,24 +1,24 @@
-const X3D = require ("../../X3D")
+const X3D = require ("../../X3D");
 
 test ("shader", () =>
 {
    const
-      canvas = X3D .createBrowser (),
-      Browser = canvas .browser
+      canvas  = X3D .createBrowser (),
+      Browser = canvas .browser;
 
    const shaders = [
       ["X3D_UNLIT_MATERIAL", "UnlitShader", "Default", "Unlit"],
-      ["X3D_MATERIAL", "GouraudShader", "Gouraud", "Gouraud"],
-      ["X3D_MATERIAL", "PhongShader", "Default", "Phong"],
+      ["X3D_GOURAUD_MATERIAL", "GouraudShader", "Default", "Gouraud"],
+      ["X3D_PHONG_MATERIAL", "PhongShader", "Default", "Phong"],
       ["X3D_PHYSICAL_MATERIAL", "PhysicalMaterialShader", "Default", "Physical"],
-   ]
+   ];
 
    const fogs = [
       "X3D_FOG_COORDS",
       "X3D_FOG_LINEAR",
       "X3D_FOG_EXPONENTIAL",
       "X3D_FOG_NONE",
-   ]
+   ];
 
    let i = 0;
 
@@ -34,10 +34,10 @@ test ("shader", () =>
                {
                   const options = [ ]
 
-                  options .push (option)
-                  options .push ("X3D_COLORSPACE_LINEAR_WHEN_PHYSICAL_MATERIAL")
-                  options .push ("X3D_USE_IBL")
-                  options .push ("X3D_MATERIAL_METALLIC_ROUGHNESS")
+                  options .push (option);
+                  options .push ("X3D_COLORSPACE_LINEAR_WHEN_PHYSICAL_MATERIAL");
+                  options .push ("X3D_USE_IBL");
+                  options .push ("X3D_MATERIAL_METALLIC_ROUGHNESS");
                   options .push ("X3D_LOGARITHMIC_DEPTH_BUFFER");
                   options .push (`X3D_GEOMETRY_${geometry}`);
                   options .push (fogs [i % fogs .length]);
@@ -50,12 +50,12 @@ test ("shader", () =>
                         options .push ("X3D_NORMALS");
                         options .push ("X3D_TANGENTS");
                         options .push ("X3D_ALPHA_MODE_OPAQUE", "X3D_ALPHA_MODE_MASK");
-                        options .push ("X3D_CLIP_PLANES")
+                        options .push ("X3D_CLIP_PLANES");
                         options .push ("X3D_NUM_CLIP_PLANES 1");
-                        options .push ("X3D_TEXTURE_PROJECTION")
+                        options .push ("X3D_TEXTURE_PROJECTION");
                         options .push (`X3D_NUM_TEXTURE_PROJECTORS ${numTextureXXX}`);
                         options .push ("X3D_STYLE_PROPERTIES");
-                        options .push ("X3D_SKINNING", "X3D_NUM_JOINT_SETS 2", "X3D_NUM_DISPLACEMENTS 2")
+                        options .push ("X3D_SKINNING", "X3D_NUM_JOINT_SETS 2", "X3D_NUM_DISPLACEMENTS 2");
                      }
 
                      if (materialTexture)
@@ -90,7 +90,7 @@ test ("shader", () =>
 
                      console .log (option, geometry, texture, numTextureXXX, materialTexture, o);
 
-                     expect (shader .isValid ()) .toBe (true)
+                     expect (shader .isValid ()) .toBe (true);
 
                      ++ i;
                   }
@@ -99,4 +99,4 @@ test ("shader", () =>
          }
       }
    }
-})
+});
