@@ -7,9 +7,9 @@ test ("shader", () =>
       Browser = canvas .browser;
 
    const shaders = [
-      ["X3D_UNLIT_MATERIAL", "UnlitShader", "Default", "Unlit"],
-      ["X3D_GOURAUD_MATERIAL", "GouraudShader", "Default", "Gouraud"],
-      ["X3D_PHONG_MATERIAL", "PhongShader", "Default", "Phong"],
+      ["X3D_UNLIT_MATERIAL",    "UnlitShader",            "Default", "Unlit"],
+      ["X3D_GOURAUD_MATERIAL",  "GouraudShader",          "Default", "Material"],
+      ["X3D_PHONG_MATERIAL",    "PhongShader",            "Default", "Material"],
       ["X3D_PHYSICAL_MATERIAL", "PhysicalMaterialShader", "Default", "Physical"],
    ];
 
