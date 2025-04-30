@@ -106,3 +106,22 @@ test ("getAbsoluteExtents", () =>
    expect (min .equals (new Vector3 (-1, -1.5, -2))) .toBe (true);
    expect (max .equals (new Vector3 (1, 1.5, 2))) .toBe (true);
 });
+
+test ("getPoints", () =>
+{
+   const b1 = new Box3 (new Vector3 (2, 3, 4), new Vector3 (5, 6, 7));
+
+   const points = Array .from ({ length: 8 }, () => new Vector3 ());
+
+   b1 .getPoints (points);
+
+   expect ([... points [0]]) .toEqual ([6, 7.5, 9]);
+   expect ([... points [1]]) .toEqual ([4, 7.5, 9]);
+   expect ([... points [2]]) .toEqual ([4, 4.5, 9]);
+   expect ([... points [3]]) .toEqual ([6, 4.5, 9]);
+
+   expect ([... points [4]]) .toEqual ([6, 7.5, 5]);
+   expect ([... points [5]]) .toEqual ([4, 7.5, 5]);
+   expect ([... points [6]]) .toEqual ([4, 4.5, 5]);
+   expect ([... points [7]]) .toEqual ([6, 4.5, 5]);
+});
