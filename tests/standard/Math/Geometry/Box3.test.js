@@ -125,3 +125,16 @@ test ("getPoints", () =>
    expect ([... points [6]]) .toEqual ([4, 4.5, 5]);
    expect ([... points [7]]) .toEqual ([6, 4.5, 5]);
 });
+
+test ("getAxes", () =>
+{
+   const b1 = new Box3 (new Vector3 (2, 3, 4), new Vector3 (5, 6, 7));
+
+   const axes = Array .from ({ length: 3 }, () => new Vector3 ());
+
+   b1 .getAxes (axes);
+
+   expect ([... axes [0]]) .toEqual ([1, 0, 0]);
+   expect ([... axes [1]]) .toEqual ([0, 1.5, 0]);
+   expect ([... axes [2]]) .toEqual ([0, 0, 2]);
+});
