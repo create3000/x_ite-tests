@@ -86,12 +86,12 @@ test ("getExtents", () =>
 test ("setExtents", () =>
 {
    const b1 = new Box2 ();
-   const min = new Vector2 (4, 4.5, 5);
-   const max = new Vector2 (6, 7.5, 9);
+   const min = new Vector2 (4, 4.5);
+   const max = new Vector2 (6, 7.5);
 
    b1 .setExtents (min, max);
 
-   expect (b1 .size .equals (new Vector2 (2, 3, 4))) .toBe (true);
-   expect (b1 .center .equals (new Vector2 (5, 6, 7))) .toBe (true);
+   expect (b1 .size .equals (new Vector2 (2, 3))) .toBe (true);
+   expect (b1 .center .equals (new Vector2 (5, 6))) .toBe (true);
 });
 
