@@ -59,3 +59,14 @@ test ("assign", () =>
    expect (b2 .size .equals (Vector3 .Zero)) .toBe (true);
    expect (b2 .center .equals (Vector3 .Zero)) .toBe (true);
 });
+
+test ("equals", () =>
+{
+   const b1 = new Box3 ();
+   const b2 = new Box3 (new Vector3 (2, 3, 4), new Vector3 (5, 6, 7));
+
+   expect (b1 .equals (b1)) .toBe (true);
+   expect (b2 .equals (b2)) .toBe (true);
+   expect (b1 .equals (b2)) .toBe (false);
+   expect (b2 .equals (b1)) .toBe (false);
+});
