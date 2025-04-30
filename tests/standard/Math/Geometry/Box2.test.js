@@ -17,3 +17,24 @@ test ("constructor", () =>
    expect (b2 .size .equals (new Vector2 (2, 3))) .toBe (true);
    expect (b2 .center .equals (new Vector2 (5, 6))) .toBe (true);
 });
+
+test ("copy", () =>
+{
+   const b1 = new Box2 ();
+   const c1 = b1 .copy ();
+
+   expect (c1) .not .toBe (b1);
+   expect (c1 .equals (b1)) .toBe (true);
+   expect (c1 .isEmpty ()) .toBe (true);
+   expect (c1 .size .equals (Vector2 .Zero)) .toBe (true);
+   expect (c1 .center .equals (Vector2 .Zero)) .toBe (true);
+
+   const b2 = new Box2 (new Vector2 (2, 3), new Vector2 (5, 6));
+   const c2 = b2 .copy ();
+
+   expect (c2) .not .toBe (b2);
+   expect (c2 .equals (b2)) .toBe (true);
+   expect (c2 .isEmpty ()) .toBe (false);
+   expect (c2 .size .equals (new Vector2 (2, 3))) .toBe (true);
+   expect (c2 .center .equals (new Vector2 (5, 6))) .toBe (true);
+});
