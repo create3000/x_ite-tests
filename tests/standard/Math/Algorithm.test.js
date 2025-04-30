@@ -1,6 +1,6 @@
 const
    X3D       = require ("../../X3D"),
-   Algorithm = X3D .Algorithm
+   Algorithm = X3D .Algorithm;
 
 test ("radians", () =>
 {
