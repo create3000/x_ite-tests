@@ -138,3 +138,16 @@ test ("getAxes", () =>
    expect ([... axes [1]]) .toEqual ([0, 1.5, 0]);
    expect ([... axes [2]]) .toEqual ([0, 0, 2]);
 });
+
+test ("getNormals", () =>
+{
+   const b1 = new Box3 (new Vector3 (2, 3, 4), new Vector3 (5, 6, 7));
+
+   const normals = Array .from ({ length: 3 }, () => new Vector3 ());
+
+   b1 .getNormals (normals);
+
+   expect ([... normals [0]]) .toEqual ([1, 0, 0]);
+   expect ([... normals [1]]) .toEqual ([0, 1, 0]);
+   expect ([... normals [2]]) .toEqual ([0, 0, 1]);
+});
