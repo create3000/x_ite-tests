@@ -48,12 +48,14 @@ test ("assign", () =>
    b1 .assign (b2);
 
    expect (b1 .isEmpty ()) .toBe (false);
+   expect (b1 .equals (b2)) .toBe (true);
    expect (b1 .size .equals (new Vector3 (2, 3, 4))) .toBe (true);
    expect (b1 .center .equals (new Vector3 (5, 6, 7))) .toBe (true);
 
    b2 .assign (b3);
 
    expect (b2 .isEmpty ()) .toBe (true);
+   expect (b2 .equals (b3)) .toBe (true);
    expect (b2 .size .equals (Vector3 .Zero)) .toBe (true);
    expect (b2 .center .equals (Vector3 .Zero)) .toBe (true);
 });
