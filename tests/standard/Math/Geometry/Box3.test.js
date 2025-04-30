@@ -151,3 +151,12 @@ test ("getNormals", () =>
    expect ([... normals [1]]) .toEqual ([0, 1, 0]);
    expect ([... normals [2]]) .toEqual ([0, 0, 1]);
 });
+
+test ("isEmpty", () =>
+{
+   const b1 = new Box3 ();
+   const b2 = new Box3 (new Vector3 (2, 3, 4), new Vector3 (5, 6, 7));
+
+   expect (b1 .isEmpty ()) .toBe (true);
+   expect (b2 .isEmpty ()) .toBe (false);
+});

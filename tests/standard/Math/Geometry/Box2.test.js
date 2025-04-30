@@ -121,3 +121,12 @@ test ("getAbsoluteExtents", () =>
 //    expect ([... points [3]]) .toEqual ([6, 4.5]);
 // });
 
+test ("isEmpty", () =>
+{
+   const b1 = new Box2 ();
+   const b2 = new Box2 (new Vector2 (2, 3), new Vector2 (5, 6));
+
+   expect (b1 .isEmpty ()) .toBe (true);
+   expect (b2 .isEmpty ()) .toBe (false);
+});
+
