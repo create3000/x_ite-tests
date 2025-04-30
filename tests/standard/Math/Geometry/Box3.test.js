@@ -38,3 +38,22 @@ test ("copy", () =>
    expect (c2 .size .equals (new Vector3 (2, 3, 4))) .toBe (true);
    expect (c2 .center .equals (new Vector3 (5, 6, 7))) .toBe (true);
 });
+
+test ("assign", () =>
+{
+   const b1 = new Box3 ();
+   const b2 = new Box3 (new Vector3 (2, 3, 4), new Vector3 (5, 6, 7));
+   const b3 = new Box3 ();
+
+   b1 .assign (b2);
+
+   expect (b1 .isEmpty ()) .toBe (false);
+   expect (b1 .size .equals (new Vector3 (2, 3, 4))) .toBe (true);
+   expect (b1 .center .equals (new Vector3 (5, 6, 7))) .toBe (true);
+
+   b2 .assign (b3);
+
+   expect (b2 .isEmpty ()) .toBe (true);
+   expect (b2 .size .equals (Vector3 .Zero)) .toBe (true);
+   expect (b2 .center .equals (Vector3 .Zero)) .toBe (true);
+});
