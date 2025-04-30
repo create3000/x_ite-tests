@@ -82,3 +82,15 @@ test ("getExtents", () =>
    expect (min .equals (new Vector3 (4, 4.5, 5))) .toBe (true);
    expect (max .equals (new Vector3 (6, 7.5, 9))) .toBe (true);
 });
+
+test ("setExtents", () =>
+{
+   const b1 = new Box3 ();
+   const min = new Vector3 (4, 4.5, 5);
+   const max = new Vector3 (6, 7.5, 9);
+
+   b1 .setExtents (min, max);
+
+   expect (b1 .size .equals (new Vector3 (2, 3, 4))) .toBe (true);
+   expect (b1 .center .equals (new Vector3 (5, 6, 7))) .toBe (true);
+});
