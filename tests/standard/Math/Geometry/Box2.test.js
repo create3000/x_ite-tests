@@ -1,7 +1,8 @@
 const
    X3D     = require ("../../../X3D"),
    Box2    = X3D .Box2,
-   Vector2 = X3D .Vector2;
+   Vector2 = X3D .Vector2,
+   Matrix3 = X3D .Matrix3;
 
 test ("constructor", () =>
 {
@@ -147,5 +148,16 @@ test ("add", () =>
    expect (b1 .equals (b3)) .toBe (true);
    expect (b1 .size .equals (new Vector2 (4, 6))) .toBe (true);
    expect (b1 .center .equals (new Vector2 (5, 6))) .toBe (true);
+});
+
+test ("multRight", () =>
+{
+   const b1 = new Box2 (new Vector2 (2, 3), new Vector2 (5, 6));
+
+   b1 .multRight (new Matrix3 (2, 0, 0,  0, 2, 0,  1, 2, 1));
+
+   expect (b1 .isEmpty ()) .toBe (false);
+   expect (b1 .size .equals (new Vector2 (4, 6))) .toBe (true);
+   expect (b1 .center .equals (new Vector2 (11, 14))) .toBe (true);
 });
 
