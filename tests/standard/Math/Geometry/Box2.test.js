@@ -130,3 +130,14 @@ test ("isEmpty", () =>
    expect (b2 .isEmpty ()) .toBe (false);
 });
 
+test ("add", () =>
+{
+   const b1 = new Box2 ();
+   const b2 = new Box2 (new Vector2 (2, 3), new Vector2 (5, 6));
+
+   b1 .add (b2);
+
+   expect (b1 .isEmpty ()) .toBe (false);
+   expect (b1 .equals (b2)) .toBe (true);
+});
+
