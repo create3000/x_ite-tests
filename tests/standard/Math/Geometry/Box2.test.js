@@ -134,10 +134,18 @@ test ("add", () =>
 {
    const b1 = new Box2 ();
    const b2 = new Box2 (new Vector2 (2, 3), new Vector2 (5, 6));
+   const b3 = new Box2 (new Vector2 (4, 6), new Vector2 (5, 6));
 
    b1 .add (b2);
 
    expect (b1 .isEmpty ()) .toBe (false);
    expect (b1 .equals (b2)) .toBe (true);
+
+   b1 .add (b3);
+
+   expect (b1 .isEmpty ()) .toBe (false);
+   expect (b1 .equals (b3)) .toBe (true);
+   expect (b1 .size .equals (new Vector2 (4, 6))) .toBe (true);
+   expect (b1 .center .equals (new Vector2 (5, 6))) .toBe (true);
 });
 
