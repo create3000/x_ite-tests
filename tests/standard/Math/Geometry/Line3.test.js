@@ -26,6 +26,11 @@ test ("constructor", () =>
    expect (l2 .direction .equals (d1)) .toBe (true);
 
    expect (l2 .equals (l1)) .toBe (true);
+
+   const l3 = new Line3 ();
+
+   expect (l3 .point .equals (Vector3 .Zero)) .toBe (true);
+   expect (l3 .direction .equals (Vector3 .zAxis)) .toBe (true);
 });
 
 test ("copy", () =>
