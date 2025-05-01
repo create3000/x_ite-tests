@@ -27,3 +27,14 @@ test ("constructor", () =>
    expect (pz .normal .equals (Vector3 .zAxis)) .toBe (true);
    expect (pz .distanceFromOrigin) .toBe (1);
 });
+
+test ("copy", () =>
+{
+   const p1 = new Plane3 (Vector3 .xAxis, Vector3 .xAxis);
+   const p2 = p1 .copy ();
+
+   expect (p2 .normal) .not .toBe (p1 .normal);
+   expect (p2 .normal .equals (p1 .normal)) .toBe (true);
+   expect (p2 .distanceFromOrigin) .toBe (p1 .distanceFromOrigin);
+   expect (p2 .equals (p1)) .toBe (true);
+});
