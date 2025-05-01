@@ -97,3 +97,18 @@ test ("set", () =>
    expect (l1 .direction) .not .toBe (d1);
    expect (l1 .direction .equals (d1)) .toBe (true);
 });
+
+test ("setPoints", () =>
+{
+   const p1 = new Vector3 (1, 1, 1);
+   const p2 = new Vector3 (1, 2, 1);
+   const d1 = new Vector3 (0, 1, 0);
+   const l1 = new Line3 ();
+
+   l1 .setPoints (p1, p2);
+
+   expect (l1 .point) .not .toBe (p1);
+   expect (l1 .point .equals (p1)) .toBe (true);
+
+   expect (l1 .direction .equals (d1)) .toBe (true);
+});
