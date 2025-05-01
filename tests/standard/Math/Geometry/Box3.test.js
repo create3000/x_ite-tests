@@ -191,3 +191,26 @@ test ("multRight", () =>
    expect (b1 .size .equals (new Vector3 (4, 6, 8))) .toBe (true);
    expect (b1 .center .equals (new Vector3 (11, 14, 17))) .toBe (true);
 });
+
+test ("multRight", () =>
+{
+   const b1 = new Box3 (new Vector3 (2, 3, 4), new Vector3 (5, 6, 7));
+
+   b1 .multLeft (new Matrix4 (2, 0, 0, 0,  0, 2, 0, 0,  0, 0, 2, 0,  1, 2, 3, 1));
+
+   expect (b1 .isEmpty ()) .toBe (false);
+   expect ([... b1 .size ]) .toEqual ([4, 6, 8]);
+   expect ([... b1 .center]) .toEqual ([6, 9, 13]);
+});
+
+test ("containsPoint", () =>
+{
+   const b1 = new Box3 (new Vector3 (2, 3, 4), new Vector3 (5, 6, 7));
+
+   expect (b1 .containsPoint (new Vector3 (5, 6, 7))) .toBe (true);
+   expect (b1 .containsPoint (new Vector3 (4.5, 5, 6))) .toBe (true);
+   expect (b1 .containsPoint (new Vector3 (4, 4.5, 5))) .toBe (true);
+
+   expect (b1 .containsPoint (new Vector3 (3, 4, 4))) .toBe (false);
+   expect (b1 .containsPoint (new Vector3 (7, 8, 10))) .toBe (false);
+});
