@@ -167,3 +167,21 @@ test ("getDistanceToPoint", () =>
 
    expect (pz .getDistanceToPoint (p3)) .toBe (1);
 });
+
+test ("getPerpendicularVectorToPoint", () =>
+{
+   const px = new Plane3 (Vector3 .xAxis, Vector3 .xAxis);
+   const p1 = new Vector3 (2, 0, 0);
+
+   expect (px .getPerpendicularVectorToPoint (p1) .equals (Vector3 .xAxis)) .toBe (true);
+
+   const py = new Plane3 (Vector3 .yAxis, Vector3 .yAxis);
+   const p2 = new Vector3 (0, 2, 0);
+
+   expect (py .getPerpendicularVectorToPoint (p2) .equals (Vector3 .yAxis)) .toBe (true);
+
+   const pz = new Plane3 (Vector3 .zAxis, Vector3 .zAxis);
+   const p3 = new Vector3 (0, 0, 2);
+
+   expect (pz .getPerpendicularVectorToPoint (p3) .equals (Vector3 .zAxis)) .toBe (true);
+});
