@@ -180,3 +180,13 @@ test ("getPerpendicularVectorToPoint", () =>
    const l3 = new Line2 (p2, d1);
    expect (l1 .intersectsLine (l3, ip)) .toBe (false);
 });
+
+test ("toString", () =>
+{
+   const p1 = new Vector2 (0, 0);
+   const d1 = new Vector2 (0, 0);
+   const l1 = new Line2 (p1, d1);
+
+   expect (typeof l1 .toString ()) .toBe ("string");
+   expect (l1 .toString () .length > 0) .toBe (true);
+});
