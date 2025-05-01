@@ -203,5 +203,5 @@ test ("getPerpendicularVectorToLine", () =>
 
    const pv2 = l1 .getPerpendicularVectorToLine (l3);
 
-   // expect ([... pv2]) .toEqual ([ ]);
+   expect (pv2 .equals (new Vector3 (0, -1, 0))) .toBe (true);
 });
