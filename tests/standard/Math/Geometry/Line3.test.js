@@ -171,3 +171,15 @@ test ("getClosestPointToLine", () =>
 
    expect (l1 .getClosestPointToLine (l3, cp)) .toBe (false);
 });
+
+test ("getPerpendicularVectorToPoint", () =>
+{
+   const p1 = new Vector3 (0, 0, 0);
+   const d1 = new Vector3 (1, 0, 0);
+   const l1 = new Line3 (p1, d1);
+   const p2 = new Vector3 (1, 1, 0);
+
+   const pv = l1 .getPerpendicularVectorToPoint (p2);
+
+   expect (pv .equals (new Vector3 (0, -1, 0))) .toEqual (true);
+});
