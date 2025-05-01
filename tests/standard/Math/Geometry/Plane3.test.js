@@ -75,3 +75,27 @@ test ("equals", () =>
    expect (p4 .distanceFromOrigin) .not .toBe (p3 .distanceFromOrigin);
    expect (p4 .equals (p3)) .not .toBe (true);
 });
+
+test ("set", () =>
+{
+   const px = new Plane3 ();
+
+   px .set (Vector3 .xAxis, Vector3 .xAxis);
+
+   expect (px .normal .equals (Vector3 .xAxis)) .toBe (true);
+   expect (px .distanceFromOrigin) .toBe (1);
+
+   const py = new Plane3 ();
+
+   py .set (Vector3 .yAxis, Vector3 .yAxis);
+
+   expect (py .normal .equals (Vector3 .yAxis)) .toBe (true);
+   expect (py .distanceFromOrigin) .toBe (1);
+
+   const pz = new Plane3 ();
+
+   pz .set (Vector3 .zAxis, Vector3 .zAxis);
+
+   expect (pz .normal .equals (Vector3 .zAxis)) .toBe (true);
+   expect (pz .distanceFromOrigin) .toBe (1);
+});
