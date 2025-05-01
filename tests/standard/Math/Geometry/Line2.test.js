@@ -138,3 +138,15 @@ test ("multMatrixLine", () =>
    expect (l1 .point .equals (Vector2 .Zero)) .toBe (true);
    expect (l1 .direction .equals (Vector2 .yAxis .copy () .negate ())) .toBe (true);
 });
+
+test ("getClosestPointToPoint", () =>
+{
+   const p1 = new Vector2 (0, 0);
+   const d1 = new Vector2 (1, 0);
+   const l1 = new Line2 (p1, d1);
+   const p2 = new Vector2 (1, 1);
+
+   const cp = l1 .getClosestPointToPoint (p2);
+
+   expect (cp .equals (new Vector2 (1, 0))) .toEqual (true);
+});
