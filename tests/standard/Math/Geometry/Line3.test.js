@@ -61,3 +61,19 @@ test ("assign", () =>
 
    expect (l2 .equals (l1)) .toBe (true);
 });
+
+test ("equals", () =>
+{
+   const p1 = new Vector3 (1, 1, 1);
+   const d1 = new Vector3 (0, 1, 0);
+   const l1 = new Line3 (p1, d1);
+   const l2 = new Line3 ();
+   const l3 = new Line3 (p1, d1);
+
+   expect (l1 .equals (l1)) .toBe (true);
+   expect (l2 .equals (l2)) .toBe (true);
+   expect (l1 .equals (l2)) .toBe (false);
+   expect (l2 .equals (l1)) .toBe (false);
+   expect (l1 .equals (l3)) .toBe (true);
+   expect (l3 .equals (l1)) .toBe (true);
+});
