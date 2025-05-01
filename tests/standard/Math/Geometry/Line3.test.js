@@ -15,4 +15,15 @@ test ("constructor", () =>
 
    expect (l1 .direction) .not .toBe (d1);
    expect (l1 .direction .equals (d1)) .toBe (true);
+
+   const p2 = new Vector3 (1, 2, 1);
+   const l2 = Line3 .Points (p1, p2);
+
+   expect (l2 .point) .not .toBe (p1);
+   expect (l2 .point .equals (p1)) .toBe (true);
+
+   expect (l2 .direction) .not .toBe (d1);
+   expect (l2 .direction .equals (d1)) .toBe (true);
+
+   expect (l2 .equals (l1)) .toBe (true);
 });
