@@ -99,3 +99,28 @@ test ("set", () =>
    expect (pz .normal .equals (Vector3 .zAxis)) .toBe (true);
    expect (pz .distanceFromOrigin) .toBe (1);
 });
+
+test ("multRight", () =>
+{
+   const px = new Plane3 (Vector3 .xAxis, Vector3 .xAxis);
+   const m1 = new Matrix4 (0, 1, 0, 0,  -1, 0, 0, 0,  0, 0, 1, 0,  1, 1, 1, -1);
+
+   px .multRight (m1);
+
+   expect (px .normal .equals (Vector3 .yAxis)) .toBe (true);
+   expect (px .distanceFromOrigin) .toBe (-2);
+
+   const py = new Plane3 (Vector3 .yAxis, Vector3 .yAxis);
+
+   py .multRight (m1);
+
+   expect (py .normal .equals (Vector3 .xAxis .copy () .negate ())) .toBe (true);
+   expect (py .distanceFromOrigin) .toBe (0);
+
+   const pz = new Plane3 (Vector3 .zAxis, Vector3 .zAxis);
+
+   pz .multRight (m1);
+
+   expect (pz .normal .equals (Vector3 .zAxis)) .toBe (true);
+   expect (pz .distanceFromOrigin) .toBe (-2);
+});
