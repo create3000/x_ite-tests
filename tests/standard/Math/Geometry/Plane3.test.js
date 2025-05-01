@@ -149,3 +149,21 @@ test ("multLeft", () =>
    expect (pz .normal .equals (Vector3 .zAxis)) .toBe (true);
    expect (pz .distanceFromOrigin) .toBe (0.5);
 });
+
+test ("getDistanceToPoint", () =>
+{
+   const px = new Plane3 (Vector3 .xAxis, Vector3 .xAxis);
+   const p1 = new Vector3 (2, 0, 0);
+
+   expect (px .getDistanceToPoint (p1)) .toBe (1);
+
+   const py = new Plane3 (Vector3 .yAxis, Vector3 .yAxis);
+   const p2 = new Vector3 (0, 2, 0);
+
+   expect (py .getDistanceToPoint (p2)) .toBe (1);
+
+   const pz = new Plane3 (Vector3 .zAxis, Vector3 .zAxis);
+   const p3 = new Vector3 (0, 0, 2);
+
+   expect (pz .getDistanceToPoint (p3)) .toBe (1);
+});
