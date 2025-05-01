@@ -195,3 +195,11 @@ test ("containsPoint", () =>
    expect (b1 .containsPoint (new Vector2 (3, 4))) .toBe (false);
    expect (b1 .containsPoint (new Vector2 (7, 8))) .toBe (false);
 });
+
+test ("toString", () =>
+{
+   const b1 = new Box2 (new Vector2 (4, 4, 4), new Vector2 (0, 0, 0));
+
+   expect (typeof b1 .toString ()) .toBe ("string");
+   expect (b1 .toString () .length > 0) .toBe (true);
+});
