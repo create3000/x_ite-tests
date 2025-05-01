@@ -205,3 +205,26 @@ test ("getPerpendicularVectorToLine", () =>
 
    expect (pv2 .equals (new Vector3 (0, -1, 0))) .toBe (true);
 });
+
+test ("intersectsTriangle", () =>
+{
+   const p1 = new Vector3 (0, 0, 0);
+   const d1 = new Vector3 (0, 0, 1);
+   const l1 = new Line3 (p1, d1);
+
+   const a1 = new Vector3 (-1, -1, 0);
+   const b1 = new Vector3 (1, -1, 0);
+   const c1 = new Vector3 (0, 1, 0);
+   const uvt = { };
+
+   expect (l1 .intersectsTriangle (a1, b1, c1, uvt)) .toBe (true);
+   expect (uvt .u) .toBe (0.25);
+   expect (uvt .v) .toBe (0.25);
+   expect (uvt .t) .toBe (0.5);
+
+   const a2 = new Vector3 (9, -1, 0);
+   const b2 = new Vector3 (11, -1, 0);
+   const c2 = new Vector3 (10, 1, 0);
+
+   expect (l1 .intersectsTriangle (a2, b2, c2, uvt)) .toBe (false);
+});
