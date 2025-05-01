@@ -150,3 +150,24 @@ test ("getClosestPointToPoint", () =>
 
    expect (cp .equals (new Vector3 (1, 0, 0))) .toEqual (true);
 });
+
+test ("getClosestPointToLine", () =>
+{
+   const p1 = new Vector3 (0, 0, 0);
+   const d1 = new Vector3 (1, 0, 0);
+   const l1 = new Line3 (p1, d1);
+
+   const p2 = new Vector3 (1, 1, 0);
+   const d2 = new Vector3 (0, 0, 1);
+   const l2 = new Line3 (p2, d2);
+
+   const cp = new Vector3 ();
+
+   expect (l1 .getClosestPointToLine (l2, cp)) .toBe (true);
+   expect (cp .equals (new Vector3 (1, 0, 0))) .toEqual (true);
+
+   const p3 = new Vector3 (0, 1, 0);
+   const l3 = new Line3 (p3, d1);
+
+   expect (l1 .getClosestPointToLine (l3, cp)) .toBe (false);
+});
