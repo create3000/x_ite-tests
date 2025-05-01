@@ -17,6 +17,18 @@ test ("constructor", () =>
    expect (b2 .isEmpty ()) .toBe (false);
    expect (b2 .size .equals (new Vector2 (2, 3))) .toBe (true);
    expect (b2 .center .equals (new Vector2 (5, 6))) .toBe (true);
+
+   const min = new Vector2 (4, 4.5);
+   const max = new Vector2 (6, 7.5);
+   const b3 = Box2 .Extents (min, max);
+
+   expect (b3 .size .equals (new Vector2 (2, 3))) .toBe (true);
+   expect (b3 .center .equals (new Vector2 (5, 6))) .toBe (true);
+
+   const b4 = Box2 .Points ([min, max]);
+
+   expect (b4 .size .equals (new Vector2 (2, 3))) .toBe (true);
+   expect (b4 .center .equals (new Vector2 (5, 6))) .toBe (true);
 });
 
 test ("copy", () =>
