@@ -125,3 +125,16 @@ test ("multLineMatrix", () =>
    expect (l1 .point .equals (Vector3 .One .copy () .negate ())) .toBe (true);
    expect (l1 .direction .equals (Vector3 .yAxis)) .toBe (true);
 });
+
+test ("multMatrixLine", () =>
+{
+   const p1 = Vector3 .Zero;
+   const d1 = Vector3 .xAxis;
+   const l1 = new Line3 (p1, d1);
+   const m1 = new Matrix4 (0, 1, 0, 0,  -1, 0, 0, 0,  0, 0, 1, 0,  1, 1, 1, -1);
+
+   l1 .multMatrixLine (m1);
+
+   expect (l1 .point .equals (Vector3 .Zero)) .toBe (true);
+   expect (l1 .direction .equals (Vector3 .yAxis .copy () .negate ())) .toBe (true);
+});
