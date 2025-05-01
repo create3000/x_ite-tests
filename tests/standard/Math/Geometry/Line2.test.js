@@ -43,3 +43,21 @@ test ("copy", () =>
 
    expect (l2 .equals (l1)) .toBe (true);
 });
+
+test ("assign", () =>
+{
+   const p1 = new Vector2 (1, 1);
+   const d1 = new Vector2 (0, 1);
+   const l1 = new Line2 (p1, d1);
+   const l2 = new Line2 ();
+
+   l2 .assign (l1);
+
+   expect (l2 .point) .not .toBe (p1);
+   expect (l2 .point .equals (p1)) .toBe (true);
+
+   expect (l2 .direction) .not .toBe (d1);
+   expect (l2 .direction .equals (d1)) .toBe (true);
+
+   expect (l2 .equals (l1)) .toBe (true);
+});
