@@ -183,3 +183,25 @@ test ("getPerpendicularVectorToPoint", () =>
 
    expect (pv .equals (new Vector3 (0, -1, 0))) .toEqual (true);
 });
+
+test ("getPerpendicularVectorToLine", () =>
+{
+   const p1 = new Vector3 (0, 0, 0);
+   const d1 = new Vector3 (1, 0, 0);
+   const l1 = new Line3 (p1, d1);
+
+   const p2 = new Vector3 (1, 1, 0);
+   const d2 = new Vector3 (0, 0, 1);
+   const l2 = new Line3 (p2, d2);
+
+   const pv1 = l1 .getPerpendicularVectorToLine (l2);
+
+   expect (pv1 .equals (new Vector3 (0, -1, 0))) .toBe (true);
+
+   const p3 = new Vector3 (0, 1, 0);
+   const l3 = new Line3 (p3, d1);
+
+   const pv2 = l1 .getPerpendicularVectorToLine (l3);
+
+   // expect ([... pv2]) .toEqual ([ ]);
+});

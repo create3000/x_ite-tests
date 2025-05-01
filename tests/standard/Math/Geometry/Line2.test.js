@@ -162,3 +162,21 @@ test ("getPerpendicularVectorToPoint", () =>
 
    expect (pv .equals (new Vector2 (0, -1))) .toEqual (true);
 });
+
+test ("getPerpendicularVectorToPoint", () =>
+{
+   const p1 = new Vector2 (0, 0);
+   const d1 = new Vector2 (1, 0);
+   const l1 = new Line2 (p1, d1);
+   const p2 = new Vector2 (1, 1);
+   const d2 = new Vector2 (0, 1);
+   const l2 = new Line2 (p2, d2);
+
+   const ip = new Vector2 ();
+
+   expect (l1 .intersectsLine (l2, ip)) .toBe (true);
+   expect (ip .equals (new Vector2 (1, 0))) .toEqual (true);
+
+   const l3 = new Line2 (p2, d1);
+   expect (l1 .intersectsLine (l3, ip)) .toBe (false);
+});
