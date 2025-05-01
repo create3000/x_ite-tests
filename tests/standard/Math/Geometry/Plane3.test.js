@@ -51,3 +51,27 @@ test ("assign", () =>
    expect (p2 .distanceFromOrigin) .toBe (p1 .distanceFromOrigin);
    expect (p2 .equals (p1)) .toBe (true);
 });
+
+test ("equals", () =>
+{
+   const p1 = new Plane3 (Vector3 .xAxis, Vector3 .xAxis);
+   const p2 = new Plane3 ();
+   const p3 = new Plane3 (Vector3 .xAxis, Vector3 .xAxis);
+   const p4 = new Plane3 ();
+
+   expect (p3 .normal .equals (p1 .normal)) .toBe (true);
+   expect (p3 .distanceFromOrigin) .toBe (p1 .distanceFromOrigin);
+   expect (p3 .equals (p1)) .toBe (true);
+
+   expect (p4 .normal .equals (p2 .normal)) .toBe (true);
+   expect (p4 .distanceFromOrigin) .toBe (p2 .distanceFromOrigin);
+   expect (p4 .equals (p2)) .toBe (true);
+
+   expect (p3 .normal .equals (p2 .normal)) .not .toBe (true);
+   expect (p3 .distanceFromOrigin) .not .toBe (p2 .distanceFromOrigin);
+   expect (p3 .equals (p2)) .not .toBe (true);
+
+   expect (p4 .normal .equals (p3 .normal)) .not .toBe (true);
+   expect (p4 .distanceFromOrigin) .not .toBe (p3 .distanceFromOrigin);
+   expect (p4 .equals (p3)) .not .toBe (true);
+});
