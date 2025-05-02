@@ -19,6 +19,11 @@ test ("constructor", () =>
 
 test ("copy", () =>
 {
+   const c1 = new Cylinder3 (new Line3 (Vector3 .Zero, Vector3 .xAxis), 2);
+   const c2 = c1 .copy ();
+
+   expect (c2 .axis .equals (new Line3 (Vector3 .Zero, Vector3 .xAxis))) .toBe (true);
+   expect (c2 .radius) .toBe (2);
 });
 
 test ("assign", () =>
