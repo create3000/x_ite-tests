@@ -28,10 +28,37 @@ test ("copy", () =>
 
 test ("assign", () =>
 {
+   const c1 = new Cylinder3 (new Line3 (Vector3 .Zero, Vector3 .xAxis), 2);
+   const c2 = new Cylinder3 ();
+
+   c2 .assign (c1);
+
+   expect (c2 .axis .equals (new Line3 (Vector3 .Zero, Vector3 .xAxis))) .toBe (true);
+   expect (c2 .radius) .toBe (2);
 });
 
 test ("equals", () =>
 {
+   const c1 = new Cylinder3 (new Line3 (Vector3 .Zero, Vector3 .xAxis), 2);
+   const c2 = new Cylinder3 ();
+   const c3 = new Cylinder3 (new Line3 (Vector3 .Zero, Vector3 .xAxis), 2);
+   const c4 = new Cylinder3 ();
+
+   expect (c3 .axis .equals (c1 .axis)) .toBe (true);
+   expect (c3 .radius) .toBe (c1 .radius);
+   expect (c3 .equals (c1)) .toBe (true);
+
+   expect (c4 .axis .equals (c2 .axis)) .toBe (true);
+   expect (c4 .radius) .toBe (c2 .radius);
+   expect (c4 .equals (c2)) .toBe (true);
+
+   expect (c3 .axis .equals (c2 .axis)) .not .toBe (true);
+   expect (c3 .radius) .not .toBe (c2 .radius);
+   expect (c3 .equals (c2)) .not .toBe (true);
+
+   expect (c4 .axis .equals (c3 .axis)) .not .toBe (true);
+   expect (c4 .radius) .not .toBe (c3 .radius);
+   expect (c4 .equals (c3)) .not .toBe (true);
 });
 
 test ("set", () =>
