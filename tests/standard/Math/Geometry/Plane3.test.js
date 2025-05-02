@@ -173,15 +173,67 @@ test ("getPerpendicularVectorToPoint", () =>
    const px = new Plane3 (Vector3 .xAxis, Vector3 .xAxis);
    const p1 = new Vector3 (2, 0, 0);
 
-   expect (px .getPerpendicularVectorToPoint (p1) .equals (Vector3 .xAxis)) .toBe (true);
+   expect (px .getPerpendicularVectorToPoint (p1) .equals (Vector3 .xAxis .copy () .negate ())) .toBe (true);
 
    const py = new Plane3 (Vector3 .yAxis, Vector3 .yAxis);
    const p2 = new Vector3 (0, 2, 0);
 
-   expect (py .getPerpendicularVectorToPoint (p2) .equals (Vector3 .yAxis)) .toBe (true);
+   expect (py .getPerpendicularVectorToPoint (p2) .equals (Vector3 .yAxis .copy () .negate ())) .toBe (true);
 
    const pz = new Plane3 (Vector3 .zAxis, Vector3 .zAxis);
    const p3 = new Vector3 (0, 0, 2);
 
-   expect (pz .getPerpendicularVectorToPoint (p3) .equals (Vector3 .zAxis)) .toBe (true);
+   expect (pz .getPerpendicularVectorToPoint (p3) .equals (Vector3 .zAxis .copy () .negate ())) .toBe (true);
+});
+
+test ("getClosestPointToPoint", () =>
+{
+   const px = new Plane3 (Vector3 .xAxis, Vector3 .xAxis);
+   const p1 = new Vector3 (2, 0, 0);
+
+   expect (px .getClosestPointToPoint (p1) .equals (Vector3 .xAxis)) .toBe (true);
+
+   const py = new Plane3 (Vector3 .yAxis, Vector3 .yAxis);
+   const p2 = new Vector3 (0, 2, 0);
+
+   expect (py .getClosestPointToPoint (p2) .equals (Vector3 .yAxis)) .toBe (true);
+
+   const pz = new Plane3 (Vector3 .zAxis, Vector3 .zAxis);
+   const p3 = new Vector3 (0, 0, 2);
+
+   expect (pz .getClosestPointToPoint (p3) .equals (Vector3 .zAxis)) .toBe (true);
+});
+
+test ("intersectsLine", () =>
+{
+   const px = new Plane3 (Vector3 .xAxis, Vector3 .xAxis);
+   const l1 = new Line3 (Vector3 .Zero, Vector3 .xAxis);
+   const is = new Vector3 ();
+
+   expect (px .intersectsLine (l1, is)) .toBe (true);
+   expect (is .equals (Vector3 .xAxis)) .toBe (true);
+
+   const py = new Plane3 (Vector3 .yAxis, Vector3 .yAxis);
+   const l2 = new Line3 (Vector3 .Zero, Vector3 .yAxis);
+
+   expect (py .intersectsLine (l2, is)) .toBe (true);
+   expect (is .equals (Vector3 .yAxis)) .toBe (true);
+
+   const pz = new Plane3 (Vector3 .zAxis, Vector3 .zAxis);
+   const l3 = new Line3 (Vector3 .Zero, Vector3 .zAxis);
+
+   expect (pz .intersectsLine (l3, is)) .toBe (true);
+   expect (is .equals (Vector3 .zAxis)) .toBe (true);
+
+   expect (px .intersectsLine (l2, is)) .toBe (false);
+   expect (py .intersectsLine (l3, is)) .toBe (false);
+   expect (pz .intersectsLine (l1, is)) .toBe (false);
+});
+
+test ("toString", () =>
+{
+   const p1 = new Plane3 (Vector3 .xAxis, Vector3 .xAxis);
+
+   expect (typeof p1 .toString ()) .toBe ("string");
+   expect (p1 .toString () .length > 0) .toBe (true);
 });
