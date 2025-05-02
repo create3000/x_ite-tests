@@ -86,6 +86,42 @@ test ("set", () =>
    expect (s1 .equals (s1)) .toBe (true);
 });
 
+test ("intersectsLine", () =>
+{
+   const s1 = new Sphere3 ();
+   const en = new Vector3 ();
+   const ex = new Vector3 ();
+   const lx = new Line3 (Vector3 .Zero, Vector3 .xAxis);
+
+   expect (s1 .intersectsLine (lx, en, ex)) .toBe (true);
+   expect (en .equals (Vector3 .xAxis .copy () .negate ())) .toBe (true);
+   expect (ex .equals (Vector3 .xAxis)) .toBe (true);
+
+   const ly = new Line3 (Vector3 .Zero, Vector3 .yAxis);
+
+   expect (s1 .intersectsLine (ly, en, ex)) .toBe (true);
+   expect (en .equals (Vector3 .yAxis .copy () .negate ())) .toBe (true);
+   expect (ex .equals (Vector3 .yAxis)) .toBe (true);
+
+   const lz = new Line3 (Vector3 .Zero, Vector3 .zAxis);
+
+   expect (s1 .intersectsLine (lz, en, ex)) .toBe (true);
+   expect (en .equals (Vector3 .zAxis .copy () .negate ())) .toBe (true);
+   expect (ex .equals (Vector3 .zAxis)) .toBe (true);
+
+   const ox = new Line3 (new Vector3 (2, 0, 0), Vector3 .yAxis);
+
+   expect (s1 .intersectsLine (ox, en, ex)) .toBe (false);
+
+   const oy = new Line3 (new Vector3 (0, 2, 0), Vector3 .zAxis);
+
+   expect (s1 .intersectsLine (oy, en, ex)) .toBe (false);
+
+   const oz = new Line3 (new Vector3 (0, 0, 2), Vector3 .xAxis);
+
+   expect (s1 .intersectsLine (oz, en, ex)) .toBe (false);
+});
+
 test ("toString", () =>
 {
    const s1 = new Sphere3 ();
