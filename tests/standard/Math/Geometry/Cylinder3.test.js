@@ -63,6 +63,12 @@ test ("equals", () =>
 
 test ("set", () =>
 {
+   const c1 = new Cylinder3 ();
+
+   c1 .set (new Line3 (Vector3 .Zero, Vector3 .xAxis), 2);
+
+   expect (c1 .axis .equals (new Line3 (Vector3 .Zero, Vector3 .xAxis))) .toBe (true);
+   expect (c1 .radius) .toBe (2);
 });
 
 test ("intersectsLine", () =>
