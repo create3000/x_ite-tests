@@ -122,6 +122,22 @@ test ("intersectsLine", () =>
    expect (s1 .intersectsLine (oz, en, ex)) .toBe (false);
 });
 
+test ("intersectsTriangle", () =>
+{
+   const s1 = new Sphere3 ();
+   const a1 = new Vector3 (-1, -1, 0);
+   const b1 = new Vector3 (1, -1, 0);
+   const c1 = new Vector3 (0, 1, 0);
+
+   expect (s1 .intersectsTriangle (a1, b1, c1)) .toBe (true);
+
+   const a2 = new Vector3 (9, -1, 0);
+   const b2 = new Vector3 (11, -1, 0);
+   const c2 = new Vector3 (10, 1, 0);
+
+   expect (s1 .intersectsTriangle (a2, b2, c2)) .toBe (false);
+});
+
 test ("toString", () =>
 {
    const s1 = new Sphere3 ();
