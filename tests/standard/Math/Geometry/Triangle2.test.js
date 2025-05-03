@@ -26,23 +26,15 @@ test ("isPointInTriangle", async () =>
    const c = new Vector2 (0, 1);
 
    const p1 = new Vector2 (0.25, 0.25);
-
-   expect (Triangle2 .isPointInTriangle (p1, a, b, c)) .toBe (true);
-
    const p2 = new Vector2 (1, 1);
-
-   expect (Triangle2 .isPointInTriangle (p2, a, b, c)) .toBe (false);
-
    const p3 = new Vector2 (-1, 1);
-
-   expect (Triangle2 .isPointInTriangle (p3, a, b, c)) .toBe (false);
-
    const p4 = new Vector2 (-1, -1);
-
-   expect (Triangle2 .isPointInTriangle (p4, a, b, c)) .toBe (false);
-
    const p5 = new Vector2 (1, -1);
 
+   expect (Triangle2 .isPointInTriangle (p1, a, b, c)) .toBe (true);
+   expect (Triangle2 .isPointInTriangle (p2, a, b, c)) .toBe (false);
+   expect (Triangle2 .isPointInTriangle (p3, a, b, c)) .toBe (false);
+   expect (Triangle2 .isPointInTriangle (p4, a, b, c)) .toBe (false);
    expect (Triangle2 .isPointInTriangle (p5, a, b, c)) .toBe (false);
 });
 
