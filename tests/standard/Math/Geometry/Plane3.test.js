@@ -98,6 +98,11 @@ test ("set", () =>
 
    expect (pz .normal .equals (Vector3 .zAxis)) .toBe (true);
    expect (pz .distanceFromOrigin) .toBe (1);
+
+   px .set ();
+
+   expect (px .normal .equals (Vector3 .zAxis)) .toBe (true);
+   expect (px .distanceFromOrigin) .toBe (0);
 });
 
 test ("multRight", () =>

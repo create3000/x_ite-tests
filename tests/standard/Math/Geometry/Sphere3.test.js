@@ -84,6 +84,12 @@ test ("set", () =>
    expect (s1 .center .equals (c1)) .toBe (true);
    expect (s1 .center) .not .toBe (c1);
    expect (s1 .equals (s1)) .toBe (true);
+
+   s1 .set ();
+
+   expect (s1 .radius) .toBe (1);
+   expect (s1 .center .equals (Vector3 .Zero)) .toBe (true);
+   expect (s1 .equals (s1)) .toBe (true);
 });
 
 test ("intersectsLine", () =>

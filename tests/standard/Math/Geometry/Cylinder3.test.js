@@ -69,6 +69,11 @@ test ("set", () =>
 
    expect (c1 .axis .equals (new Line3 (Vector3 .Zero, Vector3 .xAxis))) .toBe (true);
    expect (c1 .radius) .toBe (2);
+
+   c1 .set ();
+
+   expect (c1 .axis .equals (new Line3 ())) .toBe (true);
+   expect (c1 .radius) .toBe (1);
 });
 
 test ("intersectsLine", () =>

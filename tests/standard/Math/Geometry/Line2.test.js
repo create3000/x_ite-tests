@@ -96,6 +96,11 @@ test ("set", () =>
 
    expect (l1 .direction) .not .toBe (d1);
    expect (l1 .direction .equals (d1)) .toBe (true);
+
+   l1 .set ();
+
+   expect (l1 .point .equals (Vector2 .Zero)) .toBe (true);
+   expect (l1 .direction .equals (Vector2 .yAxis)) .toBe (true);
 });
 
 test ("setPoints", () =>
