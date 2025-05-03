@@ -102,7 +102,6 @@ test ("set", async () =>
 
    expect (s3 .semiMajorAxis) .toBe (123456);
    expect (s3 .semiMinorAxis) .toBeCloseTo (123044.48);
-
 });
 
 test ("toString", async () =>
