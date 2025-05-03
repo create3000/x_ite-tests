@@ -84,6 +84,7 @@ test ("set", () =>
    const v1 = new Rotation4 (0, 0, 0, 0)
 
    expect ([... v1 .set (1,2,3,4)]) .toEqual ([1,2,3,4])
+   expect ([... v1 .set ()]) .toEqual ([0,0,1,0])
 })
 
 test ("equals", () =>

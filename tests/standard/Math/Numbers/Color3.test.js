@@ -107,6 +107,7 @@ test ("set", () =>
    const v1 = new Color3 (0, 0, 0)
 
    expect ([... v1 .set (0.1, 0.2, 0.3)]) .toEqual ([0.1, 0.2, 0.3])
+   expect ([... v1 .set ()]) .toEqual ([0, 0, 0])
 })
 
 test ("equals", () =>

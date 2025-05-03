@@ -74,6 +74,7 @@ test ("set", () =>
    const v1 = new Vector3 (0, 0, 0)
 
    expect (v1 .set (2, 3, 4)) .toEqual ({ x:2, y:3, z:4 })
+   expect (v1 .set ()) .toEqual ({ x:0, y:0, z:0 })
 })
 
 test ("negate", () =>

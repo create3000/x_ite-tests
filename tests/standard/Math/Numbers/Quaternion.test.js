@@ -72,6 +72,7 @@ test ("set", () =>
    const q = new Quaternion () .set (2, 3, 4, 5)
 
    expect (q .equals (new Quaternion (2, 3, 4, 5))) .toBe (true)
+   expect ([... q .set ()]) .toEqual ([0,0,0,1])
 })
 
 test ("getMatrix/setMatrix", () =>

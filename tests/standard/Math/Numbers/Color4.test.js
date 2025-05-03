@@ -122,6 +122,7 @@ test ("set", () =>
    const v1 = new Color4 (0, 0, 0, 0)
 
    expect ([... v1 .set (0.1, 0.2, 0.3, 0.4)]) .toEqual ([0.1, 0.2, 0.3, 0.4])
+   expect ([... v1 .set ()]) .toEqual ([0, 0, 0, 0])
 })
 
 test ("equals", () =>
