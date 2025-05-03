@@ -51,11 +51,12 @@ test ("triangulatePolygon", () =>
 
 test ("triangulateConvexPolygon", () =>
 {
-   const polygon = [ 0, 1, 2, 3 ];
+   const p1 = [ 0, 1, 2, 3 ];
+   const p2 = [ 0, 1, 2, 3, 4 ];
 
-   polygon .forEach ((v, i) => v .index = i);
+   const t1 = Triangle3 .triangulateConvexPolygon (p1, [ ]);
+   const t2 = Triangle3 .triangulateConvexPolygon (p2, [ ]);
 
-   const triangles = Triangle3 .triangulateConvexPolygon (polygon, [ ]);
-
-   expect (triangles) .toEqual ([0, 1, 2,  0, 2, 3]);
+   expect (t1) .toEqual ([0, 1, 2,  0, 2, 3]);
+   expect (t2) .toEqual ([0, 1, 2,  0, 2, 3,  0, 3, 4]);
 });
