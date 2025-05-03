@@ -84,6 +84,25 @@ test ("equals", () =>
    expect (b2 .equals (b1)) .toBe (false);
 });
 
+test ("set", () =>
+{
+   const b1 = new Box3 (new Vector3 (2, 3, 4), new Vector3 (5, 6, 7));
+
+   b1 .set ();
+
+   expect (b1 .isEmpty ()) .toBe (true);
+   expect (b1 .size .equals (Vector3 .Zero)) .toBe (true);
+   expect (b1 .center .equals (Vector3 .Zero)) .toBe (true);
+
+   const b2 = new Box3 ();
+
+   b2 .set (new Vector3 (2, 3, 4), new Vector3 (5, 6, 7));
+
+   expect (b2 .isEmpty ()) .toBe (false);
+   expect (b2 .size .equals (new Vector3 (2, 3, 4))) .toBe (true);
+   expect (b2 .center .equals (new Vector3 (5, 6, 7))) .toBe (true);
+});
+
 test ("getExtents", () =>
 {
    const b1 = new Box3 (new Vector3 (2, 3, 4), new Vector3 (5, 6, 7));
