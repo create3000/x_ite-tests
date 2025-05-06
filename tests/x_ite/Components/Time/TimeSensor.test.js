@@ -2,6 +2,9 @@ const
    X3D     = require ("../../../X3D"),
    Browser = X3D .createBrowser () .browser;
 
+Browser .setBrowserOption ("AutoUpdate", false);
+Browser .beginUpdate ();
+
 test ("timeOut 1s", () => new Promise (async resolve =>
 {
    const

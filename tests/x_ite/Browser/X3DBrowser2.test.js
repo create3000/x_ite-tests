@@ -39,7 +39,7 @@ test ("getBrowserOption", () =>
    expect (Browser .getBrowserOption ("TextureQuality")) .toBe ("MEDIUM");
 
    expect (Browser .getBrowserOption ("AlwaysUpdateGeometries")) .toBe (false);
-   expect (Browser .getBrowserOption ("AutoUpdate")) .toBe (false);
+   expect (Browser .getBrowserOption ("AutoUpdate")) .toBe (true);
    expect (Browser .getBrowserOption ("Cache")) .toBe (true);
    expect (Browser .getBrowserOption ("ColorSpace")) .toBe ("LINEAR_WHEN_PHYSICAL_MATERIAL");
    expect (Browser .getBrowserOption ("ContentScale")) .toBe (1);

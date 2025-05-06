@@ -1,14 +1,12 @@
-const
-   path = require ("path"),
-   url  = require ("url"),
-   $    = require ("jquery"),
-   X3D  = require ("../../X3D");
+const X3D = require ("../../X3D");
 
 test ("X3DScene.isLive", async () =>
 {
    const
       canvas = X3D .createBrowser (),
       Browser = canvas .browser;
+
+   Browser .beginUpdate ();
 
    expect (Browser .getLive () .getValue ()) .toBe (true);
    expect (Browser .isLive ()) .toBe (true);
