@@ -6,6 +6,9 @@ test ("X3DScene.isLive", async () =>
       canvas = X3D .createBrowser (),
       Browser = canvas .browser;
 
+   expect (Browser .getLive () .getValue ()) .toBe (false);
+   expect (Browser .isLive ()) .toBe (false);
+
    Browser .beginUpdate ();
 
    expect (Browser .getLive () .getValue ()) .toBe (true);
