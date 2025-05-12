@@ -116,7 +116,7 @@ test ("dispose", () =>
       canvas  = X3D .createBrowser (),
       browser = canvas .browser;
 
-   browser .dispose ();
+   expect (() => browser .dispose ()) .not .toThrow (Error);
 });
 
 test ("createX3DFromString2", async () =>
