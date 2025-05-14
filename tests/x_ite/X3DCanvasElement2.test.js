@@ -137,62 +137,68 @@ test ("src-property", () => new Promise ((resolve, reject) =>
 {
    const
       canvas  = $(`<x3d-canvas></x3d-canvas>`),
-      Browser = canvas .prop ("browser")
+      Browser = canvas .prop ("browser");
 
-   canvas [0] .src = `data:model/x3d-xml,
+   const src = `data:model/x3d-xml,
 <X3D profile='Interchange' version='4.0'>
    <Scene>
       <Shape></Shape>
       <Material></Material>
       <Box></Box>
    </Scene>
-</X3D>`
+</X3D>`;
 
-   expect (canvas .prop ("nodeName")) .toBe ("X3D-CANVAS")
-   expect (Browser) .toBeInstanceOf (X3D .X3DBrowser)
-   expect (Browser .currentScene .rootNodes) .toHaveLength (0)
+   canvas .prop ("src", src);
+
+   expect (canvas .prop ("nodeName")) .toBe ("X3D-CANVAS");
+   expect (canvas .prop ("src")) .toBe (src);
+   expect (Browser) .toBeInstanceOf (X3D .X3DBrowser);
+   expect (Browser .currentScene .rootNodes) .toHaveLength (0);
 
    canvas .on ("initialized", () =>
    {
       try
       {
-         expect (Browser .currentScene .profile .name) .toBe ("Interchange")
-         expect (Browser .currentScene .components) .toHaveLength (0)
+         expect (Browser .currentScene .profile .name) .toBe ("Interchange");
+         expect (Browser .currentScene .components) .toHaveLength (0);
 
-         expect (Browser .currentScene .rootNodes) .toHaveLength (3)
-         expect (Browser .currentScene .rootNodes [0] .getNodeTypeName ()) .toBe ("Shape")
-         expect (Browser .currentScene .rootNodes [1] .getNodeTypeName ()) .toBe ("Material")
-         expect (Browser .currentScene .rootNodes [2] .getNodeTypeName ()) .toBe ("Box")
+         expect (Browser .currentScene .rootNodes) .toHaveLength (3);
+         expect (Browser .currentScene .rootNodes [0] .getNodeTypeName ()) .toBe ("Shape");
+         expect (Browser .currentScene .rootNodes [1] .getNodeTypeName ()) .toBe ("Material");
+         expect (Browser .currentScene .rootNodes [2] .getNodeTypeName ()) .toBe ("Box");
 
-         resolve ()
+         resolve ();
       }
       catch (error)
       {
-         reject (error .message)
+         reject (error .message);
       }
-   })
+   });
 
-   canvas .on ("error", () => reject ("onerror"))
-}))
+   canvas .on ("error", () => reject ("onerror"));
+}));
 
 test ("url-property", () => new Promise ((resolve, reject) =>
 {
    const
       canvas  = $(`<x3d-canvas></x3d-canvas>`),
-      Browser = canvas .prop ("browser")
+      Browser = canvas .prop ("browser");
 
-   canvas [0] .url = new X3D .MFString (`data:model/x3d-xml,
+   const url = new X3D .MFString (`data:model/x3d-xml,
 <X3D profile='Interchange' version='4.0'>
    <Scene>
       <Shape></Shape>
       <Material></Material>
       <Box></Box>
    </Scene>
-</X3D>`)
+</X3D>`);
 
-   expect (canvas .prop ("nodeName")) .toBe ("X3D-CANVAS")
-   expect (Browser) .toBeInstanceOf (X3D .X3DBrowser)
-   expect (Browser .currentScene .rootNodes) .toHaveLength (0)
+   canvas .prop ("url", url);
+
+   expect (canvas .prop ("nodeName")) .toBe ("X3D-CANVAS");
+   expect (canvas .prop ("url") .equals (url)) .toBe (true);
+   expect (Browser) .toBeInstanceOf (X3D .X3DBrowser);
+   expect (Browser .currentScene .rootNodes) .toHaveLength (0);
 
    canvas .on ("initialized", () =>
    {
@@ -212,10 +218,10 @@ test ("url-property", () => new Promise ((resolve, reject) =>
       {
          reject (error .message)
       }
-   })
+   });
 
-   canvas .on ("error", () => reject ("onerror"))
-}))
+   canvas .on ("error", () => reject ("onerror"));
+}));
 
 test ("src-attribute", () => new Promise ((resolve, reject) =>
 {
