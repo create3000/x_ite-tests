@@ -59,6 +59,32 @@ test ("constructor", () =>
    expect (v3 [3]) .toBe (2)
    expect ([... v3]) .toEqual ([2, 2, 2, 2])
    expect (v3) .toHaveLength (4)
+
+   const v4 = new Vector4 (2, 3)
+
+   expect (v4 .x) .toBe (2)
+   expect (v4 .y) .toBe (3)
+   expect (v4 .z) .toBe (3)
+   expect (v4 .w) .toBe (3)
+   expect (v4 [0]) .toBe (2)
+   expect (v4 [1]) .toBe (3)
+   expect (v4 [2]) .toBe (3)
+   expect (v4 [3]) .toBe (3)
+   expect ([... v4]) .toEqual ([2, 3, 3, 3])
+   expect (v4) .toHaveLength (4)
+
+   const v5 = new Vector4 (2, 3, 4)
+
+   expect (v5 .x) .toBe (2)
+   expect (v5 .y) .toBe (3)
+   expect (v5 .z) .toBe (4)
+   expect (v5 .w) .toBe (4)
+   expect (v5 [0]) .toBe (2)
+   expect (v5 [1]) .toBe (3)
+   expect (v5 [2]) .toBe (4)
+   expect (v5 [3]) .toBe (4)
+   expect ([... v5]) .toEqual ([2, 3, 4, 4])
+   expect (v5) .toHaveLength (4)
 })
 
 test ("enumerate", () =>
@@ -97,6 +123,8 @@ test ("set", () =>
    expect (v1 .set (2, 3, 4, 5)) .toEqual ({ x:2, y:3, z:4, w:5 })
    expect (v1 .set ()) .toEqual ({ x:0, y:0, z:0, w:0 })
    expect ([... v1 .set (2)]) .toEqual ([2, 2, 2, 2])
+   expect ([... v1 .set (2, 3)]) .toEqual ([2, 3, 3, 3])
+   expect ([... v1 .set (2, 3, 4)]) .toEqual ([2, 3, 4, 4])
 })
 
 test ("negate", () =>
