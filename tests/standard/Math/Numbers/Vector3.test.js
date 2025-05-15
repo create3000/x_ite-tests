@@ -86,6 +86,7 @@ test ("set", () =>
 
    expect (v1 .set (2, 3, 4)) .toEqual ({ x:2, y:3, z:4 })
    expect (v1 .set ()) .toEqual ({ x:0, y:0, z:0 })
+   expect ([... v1 .set (2)]) .toEqual ([2, 2, 2])
 })
 
 test ("negate", () =>

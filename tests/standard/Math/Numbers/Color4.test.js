@@ -136,6 +136,7 @@ test ("set", () =>
 
    expect ([... v1 .set (0.1, 0.2, 0.3, 0.4)]) .toEqual ([0.1, 0.2, 0.3, 0.4])
    expect ([... v1 .set ()]) .toEqual ([0, 0, 0, 0])
+   expect ([... v1 .set (2)]) .toEqual ([2, 2, 2, 2])
 })
 
 test ("equals", () =>
