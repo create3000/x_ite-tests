@@ -194,10 +194,15 @@ function field (typeName, fieldDefinition, fields)
 
    value = value
       .replace (/new Color3 \(\)/g, "0 0 0")
+      .replace (/new Color3 \((\d+)\)/g, "$1 $1 $1")
       .replace (/new Color4 \(\)/g, "0 0 0 0")
+      .replace (/new Color4 \((\d+)\)/g, "$1 $1 $1 $1")
       .replace (/new Vector2 \(\)/g, "0 0")
+      .replace (/new Vector2 \((\d+)\)/g, "$1 $1")
       .replace (/new Vector3 \(\)/g, "0 0 0")
+      .replace (/new Vector3 \((\d+)\)/g, "$1 $1 $1")
       .replace (/new Vector4 \(\)/g, "0 0 0 0")
+      .replace (/new Vector4 \((\d+)\)/g, "$1 $1 $1 $1")
       .replace (/new Rotation4 \(\)/g, "0 0 1 0")
       .replace (/new (?:Vector|Color|Matrix)[234] \((.*?)\)/g, "$1");
 

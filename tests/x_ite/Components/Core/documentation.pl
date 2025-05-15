@@ -249,6 +249,8 @@ sub field {
    }
    elsif ($type =~ /^(?:MFVec2d|MFVec2f)$/o)
    {
+      $codeValue =~ s/Vector2 \((\d+)\)/Vector2 (\1, \1)/g;
+
       return if $value eq "[ ]" && $codeValue eq "";
       return if $value eq "[ 1 1, 1 -1, -1 -1, -1 1, 1 1 ]" && $codeValue eq "new Vector2 (1, 1), new Vector2 (1, -1), new Vector2 (-1, -1), new Vector2 (-1, 1), new Vector2 (1, 1)";
       return if $value eq "1 1" && $codeValue eq "new Vector2 (1, 1)";
