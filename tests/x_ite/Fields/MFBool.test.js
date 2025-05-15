@@ -735,6 +735,8 @@ test ("fromString", () =>
 
    expect (a) .toHaveLength (8);
    expect (a .equals (new MFBool (true, false, true, false, true, true, false, false))) .toBe (true);
+
+   expect (() => a .fromString ("[TRUE foo]")) .toThrow (Error);
 });
 
 test ("fromVRMLString", () =>
@@ -760,6 +762,8 @@ test ("fromVRMLString", () =>
 
    expect (a) .toHaveLength (8);
    expect (a .equals (new MFBool (true, false, true, false, true, true, false, false))) .toBe (true);
+
+   expect (() => a .fromVRMLString ("[TRUE foo]")) .toThrow (Error);
 });
 
 test ("fromXMLString", () =>

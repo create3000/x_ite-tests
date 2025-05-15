@@ -793,6 +793,8 @@ for (const [typeName, MFVec4, SFVec4] of arrays)
       expect (a) .toHaveLength (0);
       expect (a .equals (new MFVec4 ())) .toBe (true);
 
+      expect (() => a .fromString ("[1 2 3 4 foo 6 7 8]")) .toThrow (Error);
+
       const s = Browser .currentScene;
 
       s .updateUnit ("length", "kilometers", 1000);
@@ -822,6 +824,8 @@ for (const [typeName, MFVec4, SFVec4] of arrays)
 
       expect (a) .toHaveLength (0);
       expect (a .equals (new MFVec4 ())) .toBe (true);
+
+      expect (() => a .fromVRMLString ("[1 2 3 4 foo 6 7 8]")) .toThrow (Error);
 
       const s = Browser .currentScene;
 

@@ -745,6 +745,8 @@ test ("fromString", () =>
 
    expect (a) .toHaveLength (0);
    expect (a .equals (new MFString ())) .toBe (true);
+
+   expect (() => a .fromString (`["1" "2" "3" "4" foo "6" "7" "9"]`)) .toThrow (Error);
 });
 
 test ("fromVRMLString", () =>
@@ -765,6 +767,8 @@ test ("fromVRMLString", () =>
 
    expect (a) .toHaveLength (0);
    expect (a .equals (new MFString ())) .toBe (true);
+
+   expect (() => a .fromVRMLString (`["1" "2" "3" "4" foo "6" "7" "9"]`)) .toThrow (Error);
 });
 
 test ("fromXMLString", () =>

@@ -132,6 +132,9 @@ test ("fromString", () =>
 
    expect (a) .toHaveLength (0);
    expect (a .equals (new MFRotation ())) .toBe (true);
+
+   expect (() => a .fromString ("[1 2 3 4 foo 6 7 9]")) .toThrow (Error);
+
    const s = Browser .currentScene;
 
    s .updateUnit ("angle", "degree", Math .PI / 180);
@@ -170,6 +173,8 @@ test ("fromVRMLString", () =>
 
    expect (a) .toHaveLength (0);
    expect (a .equals (new MFRotation ())) .toBe (true);
+
+   expect (() => a .fromVRMLString ("[1 2 3 4 foo 6 7 9]")) .toThrow (Error);
 
    const s = Browser .currentScene;
 

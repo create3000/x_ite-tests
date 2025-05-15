@@ -793,6 +793,8 @@ for (const [typeName, MFVec3, SFVec3] of arrays)
 
       expect (a) .toHaveLength (2);
       expect (a .equals (new MFVec3 (new SFVec3 (1000, 2000, 3000), new SFVec3 (2000, 3000, 4000)))) .toBe (true);
+
+      expect (() => a .fromString ("[1 2 3 4 foo 6 7 8 9]")) .toThrow (Error);
    });
 
    test ("fromVRMLString", () =>
@@ -823,6 +825,8 @@ for (const [typeName, MFVec3, SFVec3] of arrays)
 
       expect (a) .toHaveLength (2);
       expect (a .equals (new MFVec3 (new SFVec3 (1000, 2000, 3000), new SFVec3 (2000, 3000, 4000)))) .toBe (true);
+
+      expect (() => a .fromVRMLString ("[1 2 3 4 foo 6 7 8 9]")) .toThrow (Error);
    });
 
    test ("fromXMLString", () =>

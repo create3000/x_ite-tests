@@ -721,10 +721,10 @@ test ("fromString", () =>
 {
    const a = new MFInt32 ();
 
-   a .fromString ("[1 2 3 4 5 6 7 9]");
+   a .fromString ("[1 2 3 4 5 6 7 8]");
 
    expect (a) .toHaveLength (8);
-   expect (a .equals (new MFInt32 (1, 2, 3, 4, 5, 6, 7, 9))) .toBe (true);
+   expect (a .equals (new MFInt32 (1, 2, 3, 4, 5, 6, 7, 8))) .toBe (true);
 
    a .fromString ("123");
 
@@ -735,16 +735,18 @@ test ("fromString", () =>
 
    expect (a) .toHaveLength (0);
    expect (a .equals (new MFInt32 ())) .toBe (true);
+
+   expect (() => a .fromString ("[1 2 3 4 foo 6 7 8]")) .toThrow (Error);
 });
 
 test ("fromVRMLString", () =>
 {
    const a = new MFInt32 ();
 
-   a .fromVRMLString ("[1 2 3 4 5 6 7 9]");
+   a .fromVRMLString ("[1 2 3 4 5 6 7 8]");
 
    expect (a) .toHaveLength (8);
-   expect (a .equals (new MFInt32 (1, 2, 3, 4, 5, 6, 7, 9))) .toBe (true);
+   expect (a .equals (new MFInt32 (1, 2, 3, 4, 5, 6, 7, 8))) .toBe (true);
 
    a .fromVRMLString ("123");
 
@@ -755,16 +757,18 @@ test ("fromVRMLString", () =>
 
    expect (a) .toHaveLength (0);
    expect (a .equals (new MFInt32 ())) .toBe (true);
+
+   expect (() => a .fromVRMLString ("[1 2 3 4 foo 6 7 8]")) .toThrow (Error);
 });
 
 test ("fromXMLString", () =>
 {
    const a = new MFInt32 ();
 
-   a .fromXMLString ("1 2 3 4 5 6 7 9");
+   a .fromXMLString ("1 2 3 4 5 6 7 8");
 
    expect (a) .toHaveLength (8);
-   expect (a .equals (new MFInt32 (1, 2, 3, 4, 5, 6, 7, 9))) .toBe (true);
+   expect (a .equals (new MFInt32 (1, 2, 3, 4, 5, 6, 7, 8))) .toBe (true);
 
    a .fromXMLString ("123");
 

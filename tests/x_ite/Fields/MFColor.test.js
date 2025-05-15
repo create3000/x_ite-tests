@@ -129,6 +129,8 @@ test ("fromString", () =>
 
    expect (a) .toHaveLength (0);
    expect (a .equals (new MFColor ())) .toBe (true);
+
+   expect (() => a .fromString ("[1.2 2.3 3.4, 2.3 --- 4.5]")) .toThrow (Error);
 });
 
 test ("fromVRMLString", () =>
@@ -149,6 +151,8 @@ test ("fromVRMLString", () =>
 
    expect (a) .toHaveLength (0);
    expect (a .equals (new MFColor ())) .toBe (true);
+
+   expect (() => a .fromVRMLString ("[1.2 2.3 3.4, 2.3 --- 4.5]")) .toThrow (Error);
 });
 
 test ("fromXMLString", () =>

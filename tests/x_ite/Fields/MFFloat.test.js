@@ -737,6 +737,8 @@ test ("fromString", () =>
    expect (a) .toHaveLength (0);
    expect (a .equals (new MFFloat ())) .toBe (true);
 
+   expect (() => a .fromString ("[1.2 2.3 3.4 4.5 foo 6.7 7.8 9]")) .toThrow (Error);
+
    const s = Browser .currentScene;
 
    s .updateUnit ("length", "kilometers", 1000);
@@ -766,6 +768,8 @@ test ("fromVRMLString", () =>
 
    expect (a) .toHaveLength (0);
    expect (a .equals (new MFFloat ())) .toBe (true);
+
+   expect (() => a .fromVRMLString ("[1.2 2.3 3.4 4.5 foo 6.7 7.8 9]")) .toThrow (Error);
 
    const s = Browser .currentScene;
 

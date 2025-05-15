@@ -850,6 +850,8 @@ test ("fromString", () =>
 
    expect (a) .toHaveLength (0);
    expect (a .equals (new MFNode ())) .toBe (true);
+
+   expect (() => a .fromString ("[ Switch { }, foo ]")) .toThrow (Error);
 });
 
 test ("fromVRMLString", () =>
@@ -885,4 +887,6 @@ test ("fromVRMLString", () =>
 
    expect (a) .toHaveLength (0);
    expect (a .equals (new MFNode ())) .toBe (true);
+
+   expect (() => a .fromVRMLString ("[ Switch { }, foo ]")) .toThrow (Error);
 });

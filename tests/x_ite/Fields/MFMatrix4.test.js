@@ -68,7 +68,7 @@ for (const [typeName, MFMatrix4, SFMatrix4] of arrays)
       for (let i = 10; i < 20; ++ i)
          expect (m [i] .equals (new SFMatrix4 ())) .toBe (true);
    });
-   
+
    test ("setValue", () =>
    {
       const field = new MFMatrix4 ();
@@ -134,6 +134,8 @@ for (const [typeName, MFMatrix4, SFMatrix4] of arrays)
 
       expect (a) .toHaveLength (0);
       expect (a .equals (new MFMatrix4 ())) .toBe (true);
+
+      expect (() => a .fromString ("[1 2 3 4 foo 6 7 8 9 10 11 12 13 14 15 16]")) .toThrow (Error);
    });
 
    test ("fromVRMLString", () =>
@@ -154,6 +156,8 @@ for (const [typeName, MFMatrix4, SFMatrix4] of arrays)
 
       expect (a) .toHaveLength (0);
       expect (a .equals (new MFMatrix4 ())) .toBe (true);
+
+      expect (() => a .fromVRMLString ("[1 2 3 4 foo 6 7 8 9 10 11 12 13 14 15 16]")) .toThrow (Error);
    });
 
    test ("fromXMLString", () =>
