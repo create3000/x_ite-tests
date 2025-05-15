@@ -542,4 +542,13 @@ for (const Type of Object .keys (X3D .SFMatrix3))
 
       expect (a .equals (new SFMatrix3 (2, 3, 4, 5, 6, 7, 8, 9, 10))) .toBe (true);
    });
+
+   test ("fromVRMLString", () =>
+   {
+      const a = new SFMatrix3 ();
+
+      a .fromVRMLString ("2 3 4 5 6 7 8 9 10");
+
+      expect (a .equals (new SFMatrix3 (2, 3, 4, 5, 6, 7, 8, 9, 10))) .toBe (true);
+   });
 }

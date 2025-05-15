@@ -559,3 +559,26 @@ test ("fromString", () =>
 
    expect (a .equals (new X3D .SFNode ())) .toBe (true);
 });
+
+test ("fromVRMLString", () =>
+{
+   const a = new X3D .SFNode ();
+
+   a .fromVRMLString ("Transform { }", Browser .currentScene);
+
+   expect (a .equals (new X3D .SFNode ())) .toBe (false);
+   expect (a .getNodeTypeName ()) .toBe ("Transform");
+
+   a .fromVRMLString ("NULL", Browser .currentScene);
+
+   expect (a .equals (new X3D .SFNode ())) .toBe (true);
+
+   a .fromVRMLString ("Group { }", Browser .currentScene);
+
+   expect (a .equals (new X3D .SFNode ())) .toBe (false);
+   expect (a .getNodeTypeName ()) .toBe ("Group");
+
+   a .fromVRMLString ("null", Browser .currentScene);
+
+   expect (a .equals (new X3D .SFNode ())) .toBe (true);
+});

@@ -736,3 +736,23 @@ test ("fromString", () =>
    expect (a) .toHaveLength (0);
    expect (a .equals (new MFFloat ())) .toBe (true);
 });
+
+test ("fromVRMLString", () =>
+{
+   const a = new MFFloat ();
+
+   a .fromVRMLString ("[1.2 2.3 3.4 4.5 5.6 6.7 7.8 9]");
+
+   expect (a) .toHaveLength (8);
+   expect (a .equals (new MFFloat (1.2, 2.3, 3.4, 4.5, 5.6, 6.7, 7.8, 9))) .toBe (true);
+
+   a .fromVRMLString ("123.456");
+
+   expect (a) .toHaveLength (1);
+   expect (a .equals (new MFFloat (123.456))) .toBe (true);
+
+   a .fromVRMLString ("[ ]");
+
+   expect (a) .toHaveLength (0);
+   expect (a .equals (new MFFloat ())) .toBe (true);
+});

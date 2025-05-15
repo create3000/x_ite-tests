@@ -746,3 +746,23 @@ test ("fromString", () =>
    expect (a) .toHaveLength (0);
    expect (a .equals (new MFString ())) .toBe (true);
 });
+
+test ("fromVRMLString", () =>
+{
+   const a = new MFString ();
+
+   a .fromVRMLString (`["1" "2" "3" "4" "5" "6" "7" "9"]`);
+
+   expect (a) .toHaveLength (8);
+   expect (a .equals (new MFString ("1", "2", "3", "4", "5", "6", "7", "9"))) .toBe (true);
+
+   a .fromVRMLString (`"123"`);
+
+   expect (a) .toHaveLength (1);
+   expect (a .equals (new MFString ("123"))) .toBe (true);
+
+   a .fromVRMLString ("[ ]");
+
+   expect (a) .toHaveLength (0);
+   expect (a .equals (new MFString ())) .toBe (true);
+});

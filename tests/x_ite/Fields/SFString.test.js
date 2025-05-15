@@ -113,3 +113,16 @@ test ("fromString", () =>
    expect (a .equals (new SFString ())) .toBe (true);
 });
 
+test ("fromVRMLString", () =>
+{
+   const a = new SFString ();
+
+   a .fromVRMLString (`"abcd"`);
+
+   expect (a .equals (new SFString ("abcd"))) .toBe (true);
+
+   a .fromVRMLString (`""`);
+
+   expect (a .equals (new SFString ())) .toBe (true);
+});
+

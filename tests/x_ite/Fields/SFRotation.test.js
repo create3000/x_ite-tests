@@ -513,3 +513,12 @@ test ("fromString", () =>
 
    expect (a .equals (new SFRotation (2, 3, 4, 5))) .toBe (true);
 });
+
+test ("fromVRMLString", () =>
+{
+   const a = new SFRotation ();
+
+   a .fromVRMLString ("2 3 4 5");
+
+   expect (a .equals (new SFRotation (2, 3, 4, 5))) .toBe (true);
+});

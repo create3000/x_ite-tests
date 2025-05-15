@@ -791,4 +791,24 @@ for (const [typeName, MFVec4, SFVec4] of arrays)
       expect (a) .toHaveLength (0);
       expect (a .equals (new MFVec4 ())) .toBe (true);
    });
+
+   test ("fromVRMLString", () =>
+   {
+      const a = new MFVec4 ();
+
+      a .fromVRMLString ("[1.2 2.3 3.4 4.5, 2.3 3.4 4.5 5.6 ]");
+
+      expect (a) .toHaveLength (2);
+      expect (a .equals (new MFVec4 (new SFVec4 (1.2, 2.3, 3.4, 4.5), new SFVec4 (2.3, 3.4, 4.5, 5.6)))) .toBe (true);
+
+      a .fromVRMLString ("1 2 3 4");
+
+      expect (a) .toHaveLength (1);
+      expect (a .equals (new MFVec4 (new SFVec4 (1, 2, 3, 4)))) .toBe (true);
+
+      a .fromVRMLString ("[ ]");
+
+      expect (a) .toHaveLength (0);
+      expect (a .equals (new MFVec4 ())) .toBe (true);
+   });
 }

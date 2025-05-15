@@ -222,3 +222,20 @@ test ("fromString", () =>
 
    expect (a .equals (new SFColor (0, 1, 1))) .toBe (true);
 });
+
+test ("fromVRMLString", () =>
+{
+   const a = new SFColor ();
+
+   a .fromVRMLString ("0.2 0.3 0.4");
+
+   expect (a .equals (new SFColor (0.2, 0.3, 0.4))) .toBe (true);
+
+   a .fromVRMLString ("red");
+
+   expect (a .equals (new SFColor (1, 0, 0))) .toBe (true);
+
+   a .fromVRMLString ("0x00ffff");
+
+   expect (a .equals (new SFColor (0, 1, 1))) .toBe (true);
+});

@@ -110,3 +110,22 @@ test ("fromString", () =>
 
    a .fromString ("pi");
 });
+
+test ("fromVRMLString", () =>
+{
+   const a = new SFFloat ();
+
+   a .fromVRMLString ("123.456");
+
+   expect (a .equals (new SFFloat (123.456))) .toBe (true);
+
+   a .fromVRMLString ("NaN");
+
+   expect (isNaN (a .valueOf ())) .toBe (true);
+
+   a .fromVRMLString ("Infinity");
+
+   expect (a .equals (new SFFloat (Infinity))) .toBe (true);
+
+   a .fromVRMLString ("pi");
+});

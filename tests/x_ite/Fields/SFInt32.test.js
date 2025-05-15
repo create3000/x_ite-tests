@@ -104,3 +104,16 @@ test ("fromString", () =>
 
    expect (a .equals (new SFInt32 (0xabcdef12))) .toBe (true);
 });
+
+test ("fromVRMLString", () =>
+{
+   const a = new SFInt32 ();
+
+   a .fromVRMLString ("123");
+
+   expect (a .equals (new SFInt32 (123))) .toBe (true);
+
+   a .fromVRMLString ("0xabcdef12");
+
+   expect (a .equals (new SFInt32 (0xabcdef12))) .toBe (true);
+});

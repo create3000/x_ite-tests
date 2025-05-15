@@ -851,3 +851,38 @@ test ("fromString", () =>
    expect (a) .toHaveLength (0);
    expect (a .equals (new MFNode ())) .toBe (true);
 });
+
+test ("fromVRMLString", () =>
+{
+   const a = new MFNode ();
+
+   a .fromVRMLString ("[ Group { }, Transform { } ]", scene);
+
+   expect (a) .toHaveLength (2);
+   expect (a [0]) .toBeInstanceOf (SFNode);
+   expect (a [1]) .toBeInstanceOf (SFNode);
+   expect (a [0] .getNodeTypeName ()) .toBe ("Group");
+   expect (a [1] .getNodeTypeName ()) .toBe ("Transform");
+
+   a .fromVRMLString ("NULL", scene);
+
+   expect (a) .toHaveLength (1);
+   expect (a [0]) .toBe (null);
+
+   a .fromVRMLString ("Switch { }", scene);
+
+   expect (a) .toHaveLength (1);
+   expect (a [0]) .toBeInstanceOf (SFNode);
+   expect (a [0] .getNodeTypeName ()) .toBe ("Switch");
+
+   a .fromVRMLString ("[ NULL, NULL ]", scene);
+
+   expect (a) .toHaveLength (2);
+   expect (a [0]) .toBe (null);
+   expect (a [1]) .toBe (null);
+
+   a .fromVRMLString ("[ ]", scene);
+
+   expect (a) .toHaveLength (0);
+   expect (a .equals (new MFNode ())) .toBe (true);
+});

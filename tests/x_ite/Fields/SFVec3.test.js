@@ -379,4 +379,13 @@ for (const Type of Object .keys (X3D .SFVec3))
 
       expect (a .equals (new SFVec3 (2, 3, 4))) .toBe (true);
    });
+
+   test ("fromVRMLString", () =>
+   {
+      const a = new SFVec3 ();
+
+      a .fromVRMLString ("2 3 4");
+
+      expect (a .equals (new SFVec3 (2, 3, 4))) .toBe (true);
+   });
 }

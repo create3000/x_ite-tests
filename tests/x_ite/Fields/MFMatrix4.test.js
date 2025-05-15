@@ -134,4 +134,24 @@ for (const [typeName, MFMatrix4, SFMatrix4] of arrays)
       expect (a) .toHaveLength (0);
       expect (a .equals (new MFMatrix4 ())) .toBe (true);
    });
+
+   test ("fromVRMLString", () =>
+   {
+      const a = new MFMatrix4 ();
+
+      a .fromVRMLString ("[1.2 2.3 3.4 4.5 5.6 6.7 7.8 8.9 9 10.1 11.2 12.3 13.4 14.5 15.6 16.7, 2.3 3.4 4.5 5.6 6.7 7.8 8.9 9 10.1 11.2 12.3 13.4 14.5 15.6 16.7 17.8]");
+
+      expect (a) .toHaveLength (2);
+      expect (a .equals (new MFMatrix4 (new SFMatrix4 (1.2, 2.3, 3.4, 4.5, 5.6, 6.7, 7.8, 8.9, 9, 10.1, 11.2, 12.3, 13.4, 14.5, 15.6, 16.7), new SFMatrix4 (2.3, 3.4, 4.5, 5.6, 6.7, 7.8, 8.9, 9, 10.1, 11.2, 12.3, 13.4, 14.5, 15.6, 16.7, 17.8)))) .toBe (true);
+
+      a .fromVRMLString ("1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16");
+
+      expect (a) .toHaveLength (1);
+      expect (a .equals (new MFMatrix4 (new SFMatrix4 (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16)))) .toBe (true);
+
+      a .fromVRMLString ("[ ]");
+
+      expect (a) .toHaveLength (0);
+      expect (a .equals (new MFMatrix4 ())) .toBe (true);
+   });
 }
