@@ -132,9 +132,36 @@ test ("fromVRMLString", () =>
 
    const s = Browser .currentScene;
 
-   s .updateUnit ("length", "millimetre", 0.001);
+   s .updateUnit ("length", "kilometers", 1000);
    a .setUnit ("length");
 
    a .fromString ("1", s);
-   expect (a .equals (new SFFloat (0.001))) .toBe (true);
+   expect (a .equals (new SFFloat (1000))) .toBe (true);
+});
+
+test ("fromXMLString", () =>
+{
+   const a = new SFFloat ();
+
+   a .fromXMLString ("123.456");
+
+   expect (a .equals (new SFFloat (123.456))) .toBe (true);
+
+   a .fromXMLString ("NaN");
+
+   expect (isNaN (a .valueOf ())) .toBe (true);
+
+   a .fromXMLString ("Infinity");
+
+   expect (a .equals (new SFFloat (Infinity))) .toBe (true);
+
+   a .fromXMLString ("pi");
+
+   const s = Browser .currentScene;
+
+   s .updateUnit ("length", "kilometers", 1000);
+   a .setUnit ("length");
+
+   a .fromString ("1", s);
+   expect (a .equals (new SFFloat (1000))) .toBe (true);
 });
