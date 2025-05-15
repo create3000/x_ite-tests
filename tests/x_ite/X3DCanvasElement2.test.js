@@ -196,6 +196,7 @@ test ("url-property", () => new Promise ((resolve, reject) =>
    canvas .prop ("url", url);
 
    expect (canvas .prop ("nodeName")) .toBe ("X3D-CANVAS");
+   expect ([... canvas .prop ("url")]) .toEqual ([... url]);
    expect (canvas .prop ("url") .equals (url)) .toBe (true);
    expect (Browser) .toBeInstanceOf (X3D .X3DBrowser);
    expect (Browser .currentScene .rootNodes) .toHaveLength (0);
@@ -241,6 +242,7 @@ test ("multi-url-property", () => new Promise ((resolve, reject) =>
    canvas .prop ("url", url);
 
    expect (canvas .prop ("nodeName")) .toBe ("X3D-CANVAS");
+   expect ([... canvas .prop ("url")]) .toEqual ([... url]);
    expect (canvas .prop ("url") .equals (url)) .toBe (true);
    expect (Browser) .toBeInstanceOf (X3D .X3DBrowser);
    expect (Browser .currentScene .rootNodes) .toHaveLength (0);
