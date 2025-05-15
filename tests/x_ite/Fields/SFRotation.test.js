@@ -1,5 +1,6 @@
 const
    X3D        = require ("../../X3D"),
+   Browser    = X3D .createBrowser () .browser,
    SFRotation = X3D .SFRotation,
    SFVec3d    = X3D .Fields .SFVec3d,
    SFVec3f    = X3D .Fields .SFVec3f,
@@ -512,6 +513,17 @@ test ("fromString", () =>
    a .fromString ("2 3 4 5");
 
    expect (a .equals (new SFRotation (2, 3, 4, 5))) .toBe (true);
+
+   const s = Browser .currentScene;
+
+   s .updateUnit ("angle", "degree", Math .PI / 180);
+   a .setUnit ("angle");
+
+   a .fromXMLString ("1 2 3 90", s);
+   expect (a .x) .toBe (1);
+   expect (a .y) .toBe (2);
+   expect (a .z) .toBe (3);
+   expect (a .angle) .toBeCloseTo (Math .PI / 2);
 });
 
 test ("fromVRMLString", () =>
@@ -521,4 +533,15 @@ test ("fromVRMLString", () =>
    a .fromVRMLString ("2 3 4 5");
 
    expect (a .equals (new SFRotation (2, 3, 4, 5))) .toBe (true);
+
+   const s = Browser .currentScene;
+
+   s .updateUnit ("angle", "degree", Math .PI / 180);
+   a .setUnit ("angle");
+
+   a .fromXMLString ("1 2 3 90", s);
+   expect (a .x) .toBe (1);
+   expect (a .y) .toBe (2);
+   expect (a .z) .toBe (3);
+   expect (a .angle) .toBeCloseTo (Math .PI / 2);
 });
