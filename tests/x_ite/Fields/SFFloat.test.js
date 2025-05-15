@@ -110,6 +110,14 @@ test ("fromString", () =>
    expect (a .equals (new SFFloat (Infinity))) .toBe (true);
 
    a .fromString ("pi");
+
+   const s = Browser .currentScene;
+
+   s .updateUnit ("length", "kilometers", 1000);
+   a .setUnit ("length");
+
+   a .fromString ("1", s);
+   expect (a .equals (new SFFloat (1000))) .toBe (true);
 });
 
 test ("fromVRMLString", () =>
@@ -135,7 +143,7 @@ test ("fromVRMLString", () =>
    s .updateUnit ("length", "kilometers", 1000);
    a .setUnit ("length");
 
-   a .fromString ("1", s);
+   a .fromVRMLString ("1", s);
    expect (a .equals (new SFFloat (1000))) .toBe (true);
 });
 
@@ -162,6 +170,6 @@ test ("fromXMLString", () =>
    s .updateUnit ("length", "kilometers", 1000);
    a .setUnit ("length");
 
-   a .fromString ("1", s);
+   a .fromXMLString ("1", s);
    expect (a .equals (new SFFloat (1000))) .toBe (true);
 });

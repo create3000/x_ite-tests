@@ -736,6 +736,16 @@ test ("fromString", () =>
 
    expect (a) .toHaveLength (0);
    expect (a .equals (new MFFloat ())) .toBe (true);
+
+   const s = Browser .currentScene;
+
+   s .updateUnit ("length", "kilometers", 1000);
+   a .setUnit ("length");
+
+   a .fromString ("[1 2 3]", s);
+
+   expect (a) .toHaveLength (3);
+   expect (a .equals (new MFFloat (1000, 2000, 3000))) .toBe (true);
 });
 
 test ("fromVRMLString", () =>
@@ -756,6 +766,16 @@ test ("fromVRMLString", () =>
 
    expect (a) .toHaveLength (0);
    expect (a .equals (new MFFloat ())) .toBe (true);
+
+   const s = Browser .currentScene;
+
+   s .updateUnit ("length", "kilometers", 1000);
+   a .setUnit ("length");
+
+   a .fromVRMLString ("[1 2 3]", s);
+
+   expect (a) .toHaveLength (3);
+   expect (a .equals (new MFFloat (1000, 2000, 3000))) .toBe (true);
 });
 
 test ("fromXMLString", () =>

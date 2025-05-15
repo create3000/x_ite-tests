@@ -1,5 +1,6 @@
 const
    X3D     = require ("../../X3D"),
+   Browser = X3D .createBrowser () .browser,
    SFDouble = X3D .SFDouble
 
 test ("constructor", () =>
@@ -109,6 +110,14 @@ test ("fromString", () =>
    expect (a .equals (new SFDouble (Infinity))) .toBe (true);
 
    a .fromString ("pi");
+
+   const s = Browser .currentScene;
+
+   s .updateUnit ("length", "kilometers", 1000);
+   a .setUnit ("length");
+
+   a .fromString ("1", s);
+   expect (a .equals (new SFDouble (1000))) .toBe (true);
 });
 
 test ("fromVRMLString", () =>
@@ -128,4 +137,39 @@ test ("fromVRMLString", () =>
    expect (a .equals (new SFDouble (Infinity))) .toBe (true);
 
    a .fromVRMLString ("pi");
+
+   const s = Browser .currentScene;
+
+   s .updateUnit ("length", "kilometers", 1000);
+   a .setUnit ("length");
+
+   a .fromVRMLString ("1", s);
+   expect (a .equals (new SFDouble (1000))) .toBe (true);
+});
+
+test ("fromXMLString", () =>
+{
+   const a = new SFDouble ();
+
+   a .fromXMLString ("123.456");
+
+   expect (a .equals (new SFDouble (123.456))) .toBe (true);
+
+   a .fromXMLString ("NaN");
+
+   expect (isNaN (a .valueOf ())) .toBe (true);
+
+   a .fromXMLString ("Infinity");
+
+   expect (a .equals (new SFDouble (Infinity))) .toBe (true);
+
+   a .fromXMLString ("pi");
+
+   const s = Browser .currentScene;
+
+   s .updateUnit ("length", "kilometers", 1000);
+   a .setUnit ("length");
+
+   a .fromXMLString ("1", s);
+   expect (a .equals (new SFDouble (1000))) .toBe (true);
 });
