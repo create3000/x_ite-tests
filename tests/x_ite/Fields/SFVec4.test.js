@@ -383,6 +383,8 @@ for (const Type of Object .keys (X3D .SFVec4))
 
       a .fromString ("1 2 3 4", s);
       expect (a .equals (new SFVec4 (1000, 2000, 3000, 4000))) .toBe (true);
+
+      expect (() => a .fromString ("foo")) .toThrow (Error);
    });
 
    test ("fromVRMLString", () =>
@@ -400,6 +402,8 @@ for (const Type of Object .keys (X3D .SFVec4))
 
       a .fromVRMLString ("1 2 3 4", s);
       expect (a .equals (new SFVec4 (1000, 2000, 3000, 4000))) .toBe (true);
+
+      expect (() => a .fromVRMLString ("foo")) .toThrow (Error);
    });
 
    test ("fromXMLString", () =>
@@ -417,5 +421,7 @@ for (const Type of Object .keys (X3D .SFVec4))
 
       a .fromXMLString ("1 2 3 4", s);
       expect (a .equals (new SFVec4 (1000, 2000, 3000, 4000))) .toBe (true);
+
+      expect (() => a .fromXMLString ("foo")) .toThrow (Error);
    });
 }

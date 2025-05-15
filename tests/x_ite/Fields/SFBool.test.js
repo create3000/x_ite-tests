@@ -111,6 +111,8 @@ test ("fromString", () =>
    a .fromString ("FALSE");
 
    expect (a .equals (new SFBool (false))) .toBe (true);
+
+   expect (() => a .fromString ("foo")) .toThrow (Error);
 });
 
 test ("fromVRMLString", () =>
@@ -132,6 +134,8 @@ test ("fromVRMLString", () =>
    a .fromVRMLString ("FALSE");
 
    expect (a .equals (new SFBool (false))) .toBe (true);
+
+   expect (() => a .fromVRMLString ("foo")) .toThrow (Error);
 });
 
 test ("fromXMLString", () =>
@@ -153,4 +157,6 @@ test ("fromXMLString", () =>
    a .fromXMLString ("FALSE");
 
    expect (a .equals (new SFBool (false))) .toBe (true);
+
+   expect (() => a .fromXMLString ("foo")) .toThrow (Error);
 });

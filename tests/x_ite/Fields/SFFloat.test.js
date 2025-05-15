@@ -118,6 +118,8 @@ test ("fromString", () =>
 
    a .fromString ("1", s);
    expect (a .equals (new SFFloat (1000))) .toBe (true);
+
+   expect (() => a .fromString ("foo")) .toThrow (Error);
 });
 
 test ("fromVRMLString", () =>
@@ -145,6 +147,8 @@ test ("fromVRMLString", () =>
 
    a .fromVRMLString ("1", s);
    expect (a .equals (new SFFloat (1000))) .toBe (true);
+
+   expect (() => a .fromVRMLString ("foo")) .toThrow (Error);
 });
 
 test ("fromXMLString", () =>
@@ -172,4 +176,6 @@ test ("fromXMLString", () =>
 
    a .fromXMLString ("1", s);
    expect (a .equals (new SFFloat (1000))) .toBe (true);
+
+   expect (() => a .fromXMLString ("foo")) .toThrow (Error);
 });

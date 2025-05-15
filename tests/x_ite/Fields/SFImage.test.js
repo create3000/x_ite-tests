@@ -154,6 +154,8 @@ test ("fromString", () =>
    a .fromString ("2 3 4 1 2 3 4 5 6");
 
    expect (a .equals (new SFImage (2, 3, 4, new MFInt32 (1, 2, 3, 4, 5, 6)))) .toBe (true);
+
+   expect (() => a .fromString ("foo")) .toThrow (Error);
 });
 
 test ("fromVRMLString", () =>
@@ -163,6 +165,8 @@ test ("fromVRMLString", () =>
    a .fromVRMLString ("2 3 4 1 2 3 4 5 6");
 
    expect (a .equals (new SFImage (2, 3, 4, new MFInt32 (1, 2, 3, 4, 5, 6)))) .toBe (true);
+
+   expect (() => a .fromVRMLString ("foo")) .toThrow (Error);
 });
 
 test ("fromXMLString", () =>
@@ -172,4 +176,6 @@ test ("fromXMLString", () =>
    a .fromXMLString ("2 3 4 1 2 3 4 5 6");
 
    expect (a .equals (new SFImage (2, 3, 4, new MFInt32 (1, 2, 3, 4, 5, 6)))) .toBe (true);
+
+   expect (() => a .fromXMLString ("foo")) .toThrow (Error);
 });

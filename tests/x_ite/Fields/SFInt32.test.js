@@ -103,6 +103,8 @@ test ("fromString", () =>
    a .fromString ("0xabcdef12");
 
    expect (a .equals (new SFInt32 (0xabcdef12))) .toBe (true);
+
+   expect (() => a .fromString ("foo")) .toThrow (Error);
 });
 
 test ("fromVRMLString", () =>
@@ -116,6 +118,8 @@ test ("fromVRMLString", () =>
    a .fromVRMLString ("0xabcdef12");
 
    expect (a .equals (new SFInt32 (0xabcdef12))) .toBe (true);
+
+   expect (() => a .fromVRMLString ("foo")) .toThrow (Error);
 });
 
 test ("fromXMLString", () =>
@@ -129,4 +133,6 @@ test ("fromXMLString", () =>
    a .fromXMLString ("0xabcdef12");
 
    expect (a .equals (new SFInt32 (0xabcdef12))) .toBe (true);
+
+   expect (() => a .fromXMLString ("foo")) .toThrow (Error);
 });

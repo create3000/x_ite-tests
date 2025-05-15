@@ -524,6 +524,8 @@ test ("fromString", () =>
    expect (a .y) .toBe (2);
    expect (a .z) .toBe (3);
    expect (a .angle) .toBeCloseTo (Math .PI / 2);
+
+   expect (() => a .fromString ("foo")) .toThrow (Error);
 });
 
 test ("fromVRMLString", () =>
@@ -544,6 +546,8 @@ test ("fromVRMLString", () =>
    expect (a .y) .toBe (2);
    expect (a .z) .toBe (3);
    expect (a .angle) .toBeCloseTo (Math .PI / 2);
+
+   expect (() => a .fromVRMLString ("foo")) .toThrow (Error);
 });
 
 test ("fromXMLString", () =>
@@ -564,4 +568,6 @@ test ("fromXMLString", () =>
    expect (a .y) .toBe (2);
    expect (a .z) .toBe (3);
    expect (a .angle) .toBeCloseTo (Math .PI / 2);
+
+   expect (() => a .fromXMLString ("foo")) .toThrow (Error);
 });

@@ -558,6 +558,8 @@ test ("fromString", () =>
    a .fromString ("null", Browser .currentScene);
 
    expect (a .equals (new X3D .SFNode ())) .toBe (true);
+
+   expect (() => a .fromString ("foo")) .toThrow (Error);
 });
 
 test ("fromVRMLString", () =>
@@ -581,4 +583,6 @@ test ("fromVRMLString", () =>
    a .fromVRMLString ("null", Browser .currentScene);
 
    expect (a .equals (new X3D .SFNode ())) .toBe (true);
+
+   expect (() => a .fromVRMLString ("foo")) .toThrow (Error);
 });

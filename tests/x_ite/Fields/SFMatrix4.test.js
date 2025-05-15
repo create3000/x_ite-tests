@@ -626,6 +626,8 @@ for (const Type of Object .keys (X3D .SFMatrix4))
       a .fromString ("2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17");
 
       expect (a .equals (new SFMatrix4 (2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17))) .toBe (true);
+
+      expect (() => a .fromString ("foo")) .toThrow (Error);
    });
 
    test ("fromVRMLString", () =>
@@ -635,6 +637,8 @@ for (const Type of Object .keys (X3D .SFMatrix4))
       a .fromVRMLString ("2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17");
 
       expect (a .equals (new SFMatrix4 (2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17))) .toBe (true);
+
+      expect (() => a .fromVRMLString ("foo")) .toThrow (Error);
    });
 
    test ("fromXMLString", () =>
@@ -644,5 +648,7 @@ for (const Type of Object .keys (X3D .SFMatrix4))
       a .fromXMLString ("2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17");
 
       expect (a .equals (new SFMatrix4 (2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17))) .toBe (true);
+
+      expect (() => a .fromXMLString ("foo")) .toThrow (Error);
    });
 }

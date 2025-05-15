@@ -109,6 +109,8 @@ test ("fromString", () =>
    expect (a .equals (new SFTime (Infinity))) .toBe (true);
 
    a .fromString ("pi");
+
+   expect (() => a .fromString ("foo")) .toThrow (Error);
 });
 
 test ("fromVRMLString", () =>
@@ -128,6 +130,8 @@ test ("fromVRMLString", () =>
    expect (a .equals (new SFTime (Infinity))) .toBe (true);
 
    a .fromVRMLString ("pi");
+
+   expect (() => a .fromVRMLString ("foo")) .toThrow (Error);
 });
 
 test ("fromXMLString", () =>
@@ -147,4 +151,6 @@ test ("fromXMLString", () =>
    expect (a .equals (new SFTime (Infinity))) .toBe (true);
 
    a .fromXMLString ("pi");
+
+   expect (() => a .fromXMLString ("foo")) .toThrow (Error);
 });
