@@ -121,8 +121,28 @@ test ("fromVRMLString", () =>
 
    expect (a .equals (new SFString ("abcd"))) .toBe (true);
 
+   a .fromVRMLString (`"\\"\\""`);
+
+   expect (a .equals (new SFString (`\"\"`))) .toBe (true);
+
    a .fromVRMLString (`""`);
 
    expect (a .equals (new SFString ())) .toBe (true);
 });
 
+test ("fromXMLString", () =>
+{
+   const a = new SFString ();
+
+   a .fromXMLString (`abcd`);
+
+   expect (a .equals (new SFString ("abcd"))) .toBe (true);
+
+   a .fromXMLString (`""`);
+
+   expect (a .equals (new SFString (`""`))) .toBe (true);
+
+   a .fromXMLString (``);
+
+   expect (a .equals (new SFString ())) .toBe (true);
+});

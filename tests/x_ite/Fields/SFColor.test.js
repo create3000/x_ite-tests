@@ -239,3 +239,20 @@ test ("fromVRMLString", () =>
 
    expect (a .equals (new SFColor (0, 1, 1))) .toBe (true);
 });
+
+test ("fromXMLString", () =>
+{
+   const a = new SFColor ();
+
+   a .fromXMLString ("0.2 0.3 0.4");
+
+   expect (a .equals (new SFColor (0.2, 0.3, 0.4))) .toBe (true);
+
+   a .fromXMLString ("red");
+
+   expect (a .equals (new SFColor (1, 0, 0))) .toBe (true);
+
+   a .fromXMLString ("0x00ffff");
+
+   expect (a .equals (new SFColor (0, 1, 1))) .toBe (true);
+});

@@ -133,3 +133,24 @@ test ("fromVRMLString", () =>
 
    expect (a .equals (new SFBool (false))) .toBe (true);
 });
+
+test ("fromXMLString", () =>
+{
+   const a = new SFBool ();
+
+   a .fromXMLString ("true");
+
+   expect (a .equals (new SFBool (true))) .toBe (true);
+
+   a .fromXMLString ("false");
+
+   expect (a .equals (new SFBool (false))) .toBe (true);
+
+   a .fromXMLString ("TRUE");
+
+   expect (a .equals (new SFBool (true))) .toBe (true);
+
+   a .fromXMLString ("FALSE");
+
+   expect (a .equals (new SFBool (false))) .toBe (true);
+});

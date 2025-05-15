@@ -401,4 +401,21 @@ for (const Type of Object .keys (X3D .SFVec4))
       a .fromVRMLString ("1 2 3 4", s);
       expect (a .equals (new SFVec4 (1000, 2000, 3000, 4000))) .toBe (true);
    });
+
+   test ("fromXMLString", () =>
+   {
+      const a = new SFVec4 ();
+
+      a .fromXMLString ("2 3 4 5");
+
+      expect (a .equals (new SFVec4 (2, 3, 4, 5))) .toBe (true);
+
+      const s = Browser .currentScene;
+
+      s .updateUnit ("length", "kilometers", 1000);
+      a .setUnit ("length");
+
+      a .fromXMLString ("1 2 3 4", s);
+      expect (a .equals (new SFVec4 (1000, 2000, 3000, 4000))) .toBe (true);
+   });
 }

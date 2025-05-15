@@ -130,3 +130,21 @@ test ("fromVRMLString", () =>
    a .fromVRMLString ("pi");
 });
 
+test ("fromXMLString", () =>
+{
+   const a = new SFTime ();
+
+   a .fromXMLString ("123.456");
+
+   expect (a .equals (new SFTime (123.456))) .toBe (true);
+
+   a .fromXMLString ("NaN");
+
+   expect (isNaN (a .valueOf ())) .toBe (true);
+
+   a .fromXMLString ("Infinity");
+
+   expect (a .equals (new SFTime (Infinity))) .toBe (true);
+
+   a .fromXMLString ("pi");
+});

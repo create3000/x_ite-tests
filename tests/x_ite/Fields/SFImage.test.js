@@ -164,3 +164,12 @@ test ("fromVRMLString", () =>
 
    expect (a .equals (new SFImage (2, 3, 4, new MFInt32 (1, 2, 3, 4, 5, 6)))) .toBe (true);
 });
+
+test ("fromXMLString", () =>
+{
+   const a = new SFImage ();
+
+   a .fromXMLString ("2 3 4 1 2 3 4 5 6");
+
+   expect (a .equals (new SFImage (2, 3, 4, new MFInt32 (1, 2, 3, 4, 5, 6)))) .toBe (true);
+});
