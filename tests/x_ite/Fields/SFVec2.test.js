@@ -1,4 +1,6 @@
-const X3D = require ("../../X3D")
+const
+   X3D     = require ("../../X3D"),
+   Browser = X3D .createBrowser () .browser;
 
 for (const Type of Object .keys (X3D .SFVec2))
 {
@@ -368,6 +370,14 @@ for (const Type of Object .keys (X3D .SFVec2))
       a .fromString ("2 3");
 
       expect (a .equals (new SFVec2 (2, 3))) .toBe (true);
+
+      const s = Browser .currentScene;
+
+      s .updateUnit ("length", "kilometers", 1000);
+      a .setUnit ("length");
+
+      a .fromXMLString ("1 2", s);
+      expect (a .equals (new SFVec2 (1000, 2000))) .toBe (true);
    });
 
    test ("fromVRMLString", () =>
@@ -377,5 +387,13 @@ for (const Type of Object .keys (X3D .SFVec2))
       a .fromVRMLString ("2 3");
 
       expect (a .equals (new SFVec2 (2, 3))) .toBe (true);
+
+      const s = Browser .currentScene;
+
+      s .updateUnit ("length", "kilometers", 1000);
+      a .setUnit ("length");
+
+      a .fromXMLString ("1 2", s);
+      expect (a .equals (new SFVec2 (1000, 2000))) .toBe (true);
    });
 }
