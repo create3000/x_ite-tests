@@ -68,6 +68,7 @@ for (const [typeName, MFMatrix4, SFMatrix4] of arrays)
       for (let i = 10; i < 20; ++ i)
          expect (m [i] .equals (new SFMatrix4 ())) .toBe (true);
    });
+   
    test ("setValue", () =>
    {
       const field = new MFMatrix4 ();
