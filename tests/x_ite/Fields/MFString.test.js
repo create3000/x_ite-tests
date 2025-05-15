@@ -766,3 +766,20 @@ test ("fromVRMLString", () =>
    expect (a) .toHaveLength (0);
    expect (a .equals (new MFString ())) .toBe (true);
 });
+
+test ("fromXMLString", () =>
+{
+   const a = new MFString ();
+
+   a .fromXMLString (`"1" "2" "3" "4" "5" "6" "7" "9"`);
+
+   expect (a) .toHaveLength (8);
+   expect (a .equals (new MFString ("1", "2", "3", "4", "5", "6", "7", "9"))) .toBe (true);
+
+   a .fromXMLString (`"123"`);
+
+   expect (a) .toHaveLength (1);
+   expect (a .equals (new MFString ("123"))) .toBe (true);
+
+   expect (() => a .fromXMLString ("")) .toThrow (Error);
+});

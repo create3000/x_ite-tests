@@ -824,4 +824,31 @@ for (const [typeName, MFVec3, SFVec3] of arrays)
       expect (a) .toHaveLength (2);
       expect (a .equals (new MFVec3 (new SFVec3 (1000, 2000, 3000), new SFVec3 (2000, 3000, 4000)))) .toBe (true);
    });
+
+   test ("fromXMLString", () =>
+   {
+      const a = new MFVec3 ();
+
+      a .fromXMLString ("1.2 2.3 3.4, 2.3 3.4 4.5 ");
+
+      expect (a) .toHaveLength (2);
+      expect (a .equals (new MFVec3 (new SFVec3 (1.2, 2.3, 3.4), new SFVec3 (2.3, 3.4, 4.5)))) .toBe (true);
+
+      a .fromXMLString ("1 2 3");
+
+      expect (a) .toHaveLength (1);
+      expect (a .equals (new MFVec3 (new SFVec3 (1, 2, 3)))) .toBe (true);
+
+      expect (() => a .fromXMLString ("")) .toThrow (Error);
+
+      const s = Browser .currentScene;
+
+      s .updateUnit ("length", "kilometers", 1000);
+      a .setUnit ("length");
+
+      a .fromXMLString ("1 2 3, 2 3 4", s);
+
+      expect (a) .toHaveLength (2);
+      expect (a .equals (new MFVec3 (new SFVec3 (1000, 2000, 3000), new SFVec3 (2000, 3000, 4000)))) .toBe (true);
+   });
 }

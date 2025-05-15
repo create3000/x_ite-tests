@@ -190,3 +190,39 @@ test ("fromVRMLString", () =>
    expect (a [1] .z) .toBe (4);
    expect (a [1] .angle) .toBeCloseTo (Math .PI);
 });
+
+test ("fromXMLString", () =>
+{
+   const a = new MFRotation ();
+
+   a .fromXMLString ("1.2 2.3 3.4 4.5, 2.3 3.4 4.5 5.6 ");
+
+   expect (a) .toHaveLength (2);
+   expect (a .equals (new MFRotation (new SFRotation (1.2, 2.3, 3.4, 4.5), new SFRotation (2.3, 3.4, 4.5, 5.6)))) .toBe (true);
+
+   a .fromXMLString ("1 2 3 4");
+
+   expect (a) .toHaveLength (1);
+   expect (a .equals (new MFRotation (new SFRotation (1, 2, 3, 4)))) .toBe (true);
+
+   expect (() => a .fromXMLString ("")) .toThrow (Error);
+
+   const s = Browser .currentScene;
+
+   s .updateUnit ("angle", "degree", Math .PI / 180);
+   a .setUnit ("angle");
+
+   a .fromXMLString ("1 2 3 90, 2 3 4 180", s);
+
+   expect (a) .toHaveLength (2);
+
+   expect (a [0] .x) .toBe (1);
+   expect (a [0] .y) .toBe (2);
+   expect (a [0] .z) .toBe (3);
+   expect (a [0] .angle) .toBeCloseTo (Math .PI / 2);
+
+   expect (a [1] .x) .toBe (2);
+   expect (a [1] .y) .toBe (3);
+   expect (a [1] .z) .toBe (4);
+   expect (a [1] .angle) .toBeCloseTo (Math .PI);
+});

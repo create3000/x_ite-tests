@@ -744,3 +744,20 @@ test ("fromVRMLString", () =>
    expect (a) .toHaveLength (0);
    expect (a .equals (new MFTime ())) .toBe (true);
 });
+
+test ("fromXMLString", () =>
+{
+   const a = new MFTime ();
+
+   a .fromXMLString ("1.2 2.3 3.4 4.5 5.6 6.7 7.8 9");
+
+   expect (a) .toHaveLength (8);
+   expect (a .equals (new MFTime (1.2, 2.3, 3.4, 4.5, 5.6, 6.7, 7.8, 9))) .toBe (true);
+
+   a .fromXMLString ("123.456");
+
+   expect (a) .toHaveLength (1);
+   expect (a .equals (new MFTime (123.456))) .toBe (true);
+
+   expect (() => a .fromXMLString ("")) .toThrow (Error);
+});

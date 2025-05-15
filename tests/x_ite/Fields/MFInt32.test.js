@@ -757,3 +757,20 @@ test ("fromVRMLString", () =>
    expect (a .equals (new MFInt32 ())) .toBe (true);
 });
 
+test ("fromXMLString", () =>
+{
+   const a = new MFInt32 ();
+
+   a .fromXMLString ("1 2 3 4 5 6 7 9");
+
+   expect (a) .toHaveLength (8);
+   expect (a .equals (new MFInt32 (1, 2, 3, 4, 5, 6, 7, 9))) .toBe (true);
+
+   a .fromXMLString ("123");
+
+   expect (a) .toHaveLength (1);
+   expect (a .equals (new MFInt32 (123))) .toBe (true);
+
+   expect (() => a .fromXMLString ("")) .toThrow (Error);
+});
+

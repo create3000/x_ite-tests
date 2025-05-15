@@ -761,3 +761,25 @@ test ("fromVRMLString", () =>
    expect (a) .toHaveLength (8);
    expect (a .equals (new MFBool (true, false, true, false, true, true, false, false))) .toBe (true);
 });
+
+test ("fromXMLString", () =>
+{
+   const a = new MFBool ();
+
+   a .fromXMLString ("true false true false true true false false");
+
+   expect (a) .toHaveLength (8);
+   expect (a .equals (new MFBool (true, false, true, false, true, true, false, false))) .toBe (true);
+
+   a .fromXMLString ("false");
+
+   expect (a) .toHaveLength (1);
+   expect (a .equals (new MFBool (false))) .toBe (true);
+
+   expect (() => a .fromXMLString ("")) .toThrow (Error);
+
+   a .fromXMLString ("TRUE FALSE TRUE FALSE TRUE TRUE FALSE FALSE");
+
+   expect (a) .toHaveLength (8);
+   expect (a .equals (new MFBool (true, false, true, false, true, true, false, false))) .toBe (true);
+});
