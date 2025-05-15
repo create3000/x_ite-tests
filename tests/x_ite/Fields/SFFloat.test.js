@@ -1,5 +1,6 @@
 const
    X3D     = require ("../../X3D"),
+   Browser = X3D .createBrowser () .browser,
    SFFloat = X3D .SFFloat
 
 test ("constructor", () =>
@@ -128,4 +129,12 @@ test ("fromVRMLString", () =>
    expect (a .equals (new SFFloat (Infinity))) .toBe (true);
 
    a .fromVRMLString ("pi");
+
+   const s = Browser .currentScene;
+
+   s .updateUnit ("length", "millimetre", 0.001);
+   a .setUnit ("length");
+
+   a .fromString ("1", s);
+   expect (a .equals (new SFFloat (0.001))) .toBe (true);
 });
