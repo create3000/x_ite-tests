@@ -244,6 +244,8 @@ test ("fromString", () =>
    a .fromString ("0x00ffff00");
 
    expect (a .equals (new SFColorRGBA (0, 1, 1, 0))) .toBe (true);
+
+   expect (() => a .fromString ("---")) .toThrow (Error);
 });
 
 test ("fromVRMLString", () =>
@@ -261,6 +263,8 @@ test ("fromVRMLString", () =>
    a .fromVRMLString ("0x00ffff00");
 
    expect (a .equals (new SFColorRGBA (0, 1, 1, 0))) .toBe (true);
+
+   expect (() => a .fromVRMLString ("---")) .toThrow (Error);
 });
 
 test ("fromXMLString", () =>
@@ -278,4 +282,6 @@ test ("fromXMLString", () =>
    a .fromXMLString ("0x00ffff00");
 
    expect (a .equals (new SFColorRGBA (0, 1, 1, 0))) .toBe (true);
+
+   expect (() => a .fromXMLString ("---")) .toThrow (Error);
 });
