@@ -519,7 +519,7 @@ test ("fromString", () =>
    s .updateUnit ("angle", "degree", Math .PI / 180);
    a .setUnit ("angle");
 
-   a .fromXMLString ("1 2 3 90", s);
+   a .fromString ("1 2 3 90", s);
    expect (a .x) .toBe (1);
    expect (a .y) .toBe (2);
    expect (a .z) .toBe (3);
@@ -539,7 +539,7 @@ test ("fromVRMLString", () =>
    s .updateUnit ("angle", "degree", Math .PI / 180);
    a .setUnit ("angle");
 
-   a .fromXMLString ("1 2 3 90", s);
+   a .fromVRMLString ("1 2 3 90", s);
    expect (a .x) .toBe (1);
    expect (a .y) .toBe (2);
    expect (a .z) .toBe (3);

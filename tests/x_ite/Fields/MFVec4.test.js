@@ -1,4 +1,6 @@
-const X3D  = require ("../../X3D");
+const
+   X3D     = require ("../../X3D"),
+   Browser = X3D .createBrowser () .browser;
 
 const arrays = [
    ["MFVec4d", X3D .MFVec4d, X3D .SFVec4d],
@@ -790,6 +792,16 @@ for (const [typeName, MFVec4, SFVec4] of arrays)
 
       expect (a) .toHaveLength (0);
       expect (a .equals (new MFVec4 ())) .toBe (true);
+
+      const s = Browser .currentScene;
+
+      s .updateUnit ("length", "kilometers", 1000);
+      a .setUnit ("length");
+
+      a .fromString ("[1 2 3 4, 2 3 4 5]", s);
+
+      expect (a) .toHaveLength (2);
+      expect (a .equals (new MFVec4 (new SFVec4 (1000, 2000, 3000, 4000), new SFVec4 (2000, 3000, 4000, 5000)))) .toBe (true);
    });
 
    test ("fromVRMLString", () =>
@@ -810,5 +822,15 @@ for (const [typeName, MFVec4, SFVec4] of arrays)
 
       expect (a) .toHaveLength (0);
       expect (a .equals (new MFVec4 ())) .toBe (true);
+
+      const s = Browser .currentScene;
+
+      s .updateUnit ("length", "kilometers", 1000);
+      a .setUnit ("length");
+
+      a .fromVRMLString ("[1 2 3 4, 2 3 4 5]", s);
+
+      expect (a) .toHaveLength (2);
+      expect (a .equals (new MFVec4 (new SFVec4 (1000, 2000, 3000, 4000), new SFVec4 (2000, 3000, 4000, 5000)))) .toBe (true);
    });
 }

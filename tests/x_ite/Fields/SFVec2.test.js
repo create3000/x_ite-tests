@@ -376,7 +376,7 @@ for (const Type of Object .keys (X3D .SFVec2))
       s .updateUnit ("length", "kilometers", 1000);
       a .setUnit ("length");
 
-      a .fromXMLString ("1 2", s);
+      a .fromString ("1 2", s);
       expect (a .equals (new SFVec2 (1000, 2000))) .toBe (true);
    });
 
@@ -393,7 +393,7 @@ for (const Type of Object .keys (X3D .SFVec2))
       s .updateUnit ("length", "kilometers", 1000);
       a .setUnit ("length");
 
-      a .fromXMLString ("1 2", s);
+      a .fromVRMLString ("1 2", s);
       expect (a .equals (new SFVec2 (1000, 2000))) .toBe (true);
    });
 }
