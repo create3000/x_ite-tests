@@ -72,6 +72,17 @@ test ("constructor", () =>
    expect (c4 [0]) .toBe (2)
    expect (c4 [1]) .toBe (3)
    expect (c4 [2]) .toBe (4)
+
+   const c5 = new Color3 (2)
+
+   expect (c5 .r) .toBe (2)
+   expect (c5 .g) .toBe (2)
+   expect (c5 .b) .toBe (2)
+   expect (c5 [0]) .toBe (2)
+   expect (c5 [1]) .toBe (2)
+   expect (c5 [2]) .toBe (2)
+   expect ([... c5]) .toEqual ([2, 2, 2])
+   expect (c5) .toHaveLength (3)
 })
 
 test ("enumerate", () =>

@@ -33,6 +33,15 @@ test ("constructor", () =>
    expect (v2 .y) .toBe (3)
    expect ([... v2]) .toEqual ([ 2, 3 ])
    expect (v2) .toHaveLength (2)
+
+   const v3 = new Vector2 (2)
+
+   expect (v3 .x) .toBe (2)
+   expect (v3 .y) .toBe (2)
+   expect (v3 [0]) .toBe (2)
+   expect (v3 [1]) .toBe (2)
+   expect ([... v3]) .toEqual ([2, 2])
+   expect (v3) .toHaveLength (2)
 })
 
 

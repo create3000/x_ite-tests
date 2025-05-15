@@ -39,6 +39,17 @@ test ("constructor", () =>
    expect (v2 .z) .toBe (4)
    expect ([... v2]) .toEqual ([ 2, 3, 4 ])
    expect (v2) .toHaveLength (3)
+
+   const v3 = new Vector3 (2)
+
+   expect (v3 .x) .toBe (2)
+   expect (v3 .y) .toBe (2)
+   expect (v3 .z) .toBe (2)
+   expect (v3 [0]) .toBe (2)
+   expect (v3 [1]) .toBe (2)
+   expect (v3 [2]) .toBe (2)
+   expect ([... v3]) .toEqual ([2, 2, 2])
+   expect (v3) .toHaveLength (3)
 })
 
 test ("enumerate", () =>
