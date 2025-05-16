@@ -86,11 +86,13 @@ test ("isDefaultValue", () =>
 {
    const
       a = new SFBool (false),
-      b = new SFBool (true)
+      b = new SFBool (true),
+      c = new SFBool ();
 
-   expect (a .isDefaultValue ()) .toBe (true)
-   expect (b .isDefaultValue ()) .toBe (false)
-})
+   expect (c .isDefaultValue ()) .toBe (true);
+   expect (a .isDefaultValue ()) .toBe (true);
+   expect (b .isDefaultValue ()) .toBe (false);
+});
 
 test ("fromString", () =>
 {

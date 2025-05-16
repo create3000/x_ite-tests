@@ -115,11 +115,13 @@ for (const Type of Object .keys (X3D .SFVec4))
    {
       const
          a = new SFVec4 (0,0,0,1),
-         b = new SFVec4 (2,3,4,5)
+         b = new SFVec4 (2,3,4,5),
+         c = new SFVec4 ();
 
-      expect (a .isDefaultValue ()) .toBe (true)
-      expect (b .isDefaultValue ()) .toBe (false)
-   })
+      expect (c .isDefaultValue ()) .toBe (true);
+      expect (a .isDefaultValue ()) .toBe (true);
+      expect (b .isDefaultValue ()) .toBe (false);
+   });
 
    test ("abs", () =>
    {

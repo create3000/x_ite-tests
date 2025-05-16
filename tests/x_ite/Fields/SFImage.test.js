@@ -141,11 +141,13 @@ test ("isDefaultValue", () =>
 {
    const
       a = new SFImage (0,0,0,new MFInt32 ()),
-      b = new SFImage (1,2,3)
+      b = new SFImage (1,2,3),
+      c = new SFImage ();
 
-   expect (a .isDefaultValue ()) .toBe (true)
-   expect (b .isDefaultValue ()) .toBe (false)
-})
+   expect (c .isDefaultValue ()) .toBe (true);
+   expect (a .isDefaultValue ()) .toBe (true);
+   expect (b .isDefaultValue ()) .toBe (false);
+});
 
 test ("fromString", () =>
 {

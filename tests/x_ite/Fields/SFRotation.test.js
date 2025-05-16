@@ -183,11 +183,13 @@ test ("isDefaultValue", () =>
 {
    const
       a = new SFRotation (0,0,1,0),
-      b = new SFRotation (2,3,4,5)
+      b = new SFRotation (2,3,4,5),
+      c = new SFRotation ();
 
-   expect (a .isDefaultValue ()) .toBe (true)
-   expect (b .isDefaultValue ()) .toBe (false)
-})
+   expect (c .isDefaultValue ()) .toBe (true);
+   expect (a .isDefaultValue ()) .toBe (true);
+   expect (b .isDefaultValue ()) .toBe (false);
+});
 
 test ("get/setAxis", () =>
 {

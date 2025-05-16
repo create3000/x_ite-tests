@@ -86,11 +86,13 @@ test ("isDefaultValue", () =>
 {
    const
       a = new SFTime (-1),
-      b = new SFTime (1)
+      b = new SFTime (1),
+      c = new SFTime ();
 
-   expect (a .isDefaultValue ()) .toBe (true)
-   expect (b .isDefaultValue ()) .toBe (false)
-})
+   expect (c .isDefaultValue ()) .toBe (true);
+   expect (a .isDefaultValue ()) .toBe (true);
+   expect (b .isDefaultValue ()) .toBe (false);
+});
 
 test ("fromString", () =>
 {

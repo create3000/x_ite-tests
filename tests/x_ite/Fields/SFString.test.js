@@ -86,8 +86,10 @@ test ("isDefaultValue", () =>
 {
    const
       a = new SFString (""),
-      b = new SFString ("1");
+      b = new SFString ("1"),
+      c = new SFString ();
 
+   expect (c .isDefaultValue ()) .toBe (true);
    expect (a .isDefaultValue ()) .toBe (true);
    expect (b .isDefaultValue ()) .toBe (false);
 });

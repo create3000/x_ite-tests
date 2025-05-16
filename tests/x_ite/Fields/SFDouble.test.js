@@ -87,11 +87,13 @@ test ("isDefaultValue", () =>
 {
    const
       a = new SFDouble (0),
-      b = new SFDouble (1)
+      b = new SFDouble (1),
+      c = new SFDouble ();
 
-   expect (a .isDefaultValue ()) .toBe (true)
-   expect (b .isDefaultValue ()) .toBe (false)
-})
+   expect (c .isDefaultValue ()) .toBe (true);
+   expect (a .isDefaultValue ()) .toBe (true);
+   expect (b .isDefaultValue ()) .toBe (false);
+});
 
 test ("fromString", () =>
 {

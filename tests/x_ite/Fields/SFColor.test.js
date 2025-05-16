@@ -100,11 +100,13 @@ test ("isDefaultValue", () =>
 {
    const
       a = new SFColor (0,0,0),
-      b = new SFColor (0.2,0.3,0.4)
+      b = new SFColor (0.2,0.3,0.4),
+      c = new SFColor ();
 
-   expect (a .isDefaultValue ()) .toBe (true)
-   expect (b .isDefaultValue ()) .toBe (false)
-})
+   expect (c .isDefaultValue ()) .toBe (true);
+   expect (a .isDefaultValue ()) .toBe (true);
+   expect (b .isDefaultValue ()) .toBe (false);
+});
 
 test ("get/setHSVA", () =>
 {

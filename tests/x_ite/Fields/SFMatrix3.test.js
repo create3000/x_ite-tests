@@ -127,11 +127,13 @@ for (const Type of Object .keys (X3D .SFMatrix3))
    {
       const
          a = new SFMatrix3 (1,0,0, 0,1,0, 0,0,1),
-         b = new SFMatrix3 (2,3,4, 5,6,7, 8,9,10)
+         b = new SFMatrix3 (2,3,4, 5,6,7, 8,9,10),
+         c = new SFMatrix3 ();
 
-      expect (a .isDefaultValue ()) .toBe (true)
-      expect (b .isDefaultValue ()) .toBe (false)
-   })
+      expect (c .isDefaultValue ()) .toBe (true);
+      expect (a .isDefaultValue ()) .toBe (true);
+      expect (b .isDefaultValue ()) .toBe (false);
+   });
 
    test ("get/setTransform", () =>
    {

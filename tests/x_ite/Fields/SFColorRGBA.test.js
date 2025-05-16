@@ -111,11 +111,13 @@ test ("isDefaultValue", () =>
 {
    const
       a = new SFColorRGBA (0,0,0,0),
-      b = new SFColorRGBA (0.2,0.3,0.4,0.5)
+      b = new SFColorRGBA (0.2,0.3,0.4,0.5),
+      c = new SFColorRGBA ();
 
-   expect (a .isDefaultValue ()) .toBe (true)
-   expect (b .isDefaultValue ()) .toBe (false)
-})
+   expect (c .isDefaultValue ()) .toBe (true);
+   expect (a .isDefaultValue ()) .toBe (true);
+   expect (b .isDefaultValue ()) .toBe (false);
+});
 
 test ("get/setHSVA", () =>
 {

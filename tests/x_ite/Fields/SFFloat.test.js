@@ -87,11 +87,13 @@ test ("isDefaultValue", () =>
 {
    const
       a = new SFFloat (0),
-      b = new SFFloat (1)
+      b = new SFFloat (1),
+      c = new SFFloat ();
 
-   expect (a .isDefaultValue ()) .toBe (true)
-   expect (b .isDefaultValue ()) .toBe (false)
-})
+   expect (c .isDefaultValue ()) .toBe (true);
+   expect (a .isDefaultValue ()) .toBe (true);
+   expect (b .isDefaultValue ()) .toBe (false);
+});
 
 test ("fromString", () =>
 {
