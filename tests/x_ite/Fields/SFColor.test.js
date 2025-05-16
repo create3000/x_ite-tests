@@ -23,6 +23,15 @@ test ("constructor", () =>
    expect (v2 [1]) .toBe (0.3)
    expect (v2 [2]) .toBe (0.4)
    expect ([...v2]) .toEqual ([0.2,0.3,0.4])
+
+   const v3 = new SFColor (undefined,undefined,undefined)
+
+   expect (v3 .r) .toBe (NaN)
+   expect (v3 .g) .toBe (NaN)
+   expect (v3 .b) .toBe (NaN)
+   expect (v3 [0]) .toBe (NaN)
+   expect (v3 [1]) .toBe (NaN)
+   expect (v3 [2]) .toBe (NaN)
 })
 
 test ("enumerate", () =>

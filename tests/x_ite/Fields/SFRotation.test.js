@@ -99,6 +99,18 @@ test ("constructor", () =>
    expect (v8 [1]) .toBeCloseTo (1)
    expect (v8 [2]) .toBeCloseTo (0)
    expect (v8 [3]) .toBeCloseTo (Math .PI / 2)
+
+   const v9 = new SFRotation (undefined,undefined,undefined,undefined)
+
+   expect (v9 .x) .toBe (NaN)
+   expect (v9 .y) .toBe (NaN)
+   expect (v9 .z) .toBe (NaN)
+   expect (v9 .angle) .toBe (NaN)
+   expect (v9 [0]) .toBe (NaN)
+   expect (v9 [1]) .toBe (NaN)
+   expect (v9 [2]) .toBe (NaN)
+   expect (v9 [3]) .toBe (NaN)
+
 })
 
 test ("enumerate", () =>

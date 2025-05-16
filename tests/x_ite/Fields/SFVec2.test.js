@@ -23,6 +23,13 @@ for (const Type of Object .keys (X3D .SFVec2))
       expect (v2 [0]) .toBe (2)
       expect (v2 [1]) .toBe (3)
       expect ([...v2]) .toEqual ([2,3])
+
+      const v3 = new SFVec2 (undefined,undefined)
+
+      expect (v3 .x) .toBe (NaN)
+      expect (v3 .y) .toBe (NaN)
+      expect (v3 [0]) .toBe (NaN)
+      expect (v3 [1]) .toBe (NaN)
    })
 
    test ("enumerate", () =>
