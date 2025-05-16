@@ -182,7 +182,7 @@ test ("equals", () =>
 test ("isDefaultValue", () =>
 {
    const
-      a = new SFRotation (),
+      a = new SFRotation (0,0,1,0),
       b = new SFRotation (2,3,4,5)
 
    expect (a .isDefaultValue ()) .toBe (true)

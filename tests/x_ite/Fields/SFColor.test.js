@@ -99,7 +99,7 @@ test ("equals", () =>
 test ("isDefaultValue", () =>
 {
    const
-      a = new SFColor (),
+      a = new SFColor (0,0,0),
       b = new SFColor (0.2,0.3,0.4)
 
    expect (a .isDefaultValue ()) .toBe (true)

@@ -126,7 +126,7 @@ for (const Type of Object .keys (X3D .SFMatrix3))
    test ("isDefaultValue", () =>
    {
       const
-         a = new SFMatrix3 (),
+         a = new SFMatrix3 (1,0,0, 0,1,0, 0,0,1),
          b = new SFMatrix3 (2,3,4, 5,6,7, 8,9,10)
 
       expect (a .isDefaultValue ()) .toBe (true)

@@ -60,11 +60,12 @@ test ("isDefaultValue", () =>
 {
    const
       a = new X3D .SFNode (),
-      b = node
+      b = node;
 
-   expect (a .isDefaultValue ()) .toBe (true)
-   expect (b .isDefaultValue ()) .toBe (false)
-})
+   expect (a .valueOf ()) .toBe (null);
+   expect (a .isDefaultValue ()) .toBe (true);
+   expect (b .isDefaultValue ()) .toBe (false);
+});
 
 test ("properties", () =>
 {

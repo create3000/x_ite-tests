@@ -92,7 +92,7 @@ for (const Type of Object .keys (X3D .SFVec2))
    test ("isDefaultValue", () =>
    {
       const
-         a = new SFVec2 (),
+         a = new SFVec2 (0,0),
          b = new SFVec2 (2,3)
 
       expect (a .isDefaultValue ()) .toBe (true)

@@ -110,7 +110,7 @@ test ("equals", () =>
 test ("isDefaultValue", () =>
 {
    const
-      a = new SFColorRGBA (),
+      a = new SFColorRGBA (0,0,0,0),
       b = new SFColorRGBA (0.2,0.3,0.4,0.5)
 
    expect (a .isDefaultValue ()) .toBe (true)

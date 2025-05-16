@@ -85,7 +85,7 @@ test ("equals", () =>
 test ("isDefaultValue", () =>
 {
    const
-      a = new SFTime (0),
+      a = new SFTime (-1),
       b = new SFTime (1)
 
    expect (a .isDefaultValue ()) .toBe (true)

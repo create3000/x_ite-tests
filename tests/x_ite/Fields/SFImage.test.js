@@ -140,7 +140,7 @@ test ("equals", () =>
 test ("isDefaultValue", () =>
 {
    const
-      a = new SFImage (),
+      a = new SFImage (0,0,0,new MFInt32 ()),
       b = new SFImage (1,2,3)
 
    expect (a .isDefaultValue ()) .toBe (true)
