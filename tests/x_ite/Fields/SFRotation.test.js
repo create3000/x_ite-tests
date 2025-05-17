@@ -158,6 +158,13 @@ test ("getter/setter", () =>
    expect (v1 [2]) .toBe (8)
    expect (v1 [3]) .toBe (9)
    expect ([...v1]) .toEqual ([6,7,8,9])
+
+   v1 [0]  = undefined;
+   v1 [1]  = undefined;
+   v1 [2]  = undefined;
+   v1 [3]  = undefined;
+
+   expect ([...v1]) .toEqual ([NaN,NaN,NaN,NaN])
 })
 
 test ("common", () =>

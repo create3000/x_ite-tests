@@ -47,32 +47,37 @@ test ("enumerate", () =>
 
 test ("getter/setter", () =>
 {
-   const v1 = new SFColor ()
+   const v1 = new SFColor ();
 
-   v1 .r = 0.2
-   v1 .g = 0.3
-   v1 .b = 0.4
+   v1 .r = 0.2;
+   v1 .g = 0.3;
+   v1 .b = 0.4;
 
-   expect (v1 .r) .toBe (0.2)
-   expect (v1 .g) .toBe (0.3)
-   expect (v1 .b) .toBe (0.4)
-   expect (v1 [0]) .toBe (0.2)
-   expect (v1 [1]) .toBe (0.3)
-   expect (v1 [2]) .toBe (0.4)
-   expect ([...v1]) .toEqual ([0.2,0.3,0.4])
+   expect (v1 .r) .toBe (0.2);
+   expect (v1 .g) .toBe (0.3);
+   expect (v1 .b) .toBe (0.4);
+   expect (v1 [0]) .toBe (0.2);
+   expect (v1 [1]) .toBe (0.3);
+   expect (v1 [2]) .toBe (0.4);
+   expect ([...v1]) .toEqual ([0.2,0.3,0.4]);
 
-   v1 [0] = 0.6
-   v1 [1] = 0.7
-   v1 [2] = 0.8
+   v1 [0] = 0.6;
+   v1 [1] = 0.7;
+   v1 [2] = 0.8;
 
-   expect (v1 .r) .toBe (0.6)
-   expect (v1 .g) .toBe (0.7)
-   expect (v1 .b) .toBe (0.8)
-   expect (v1 [0]) .toBe (0.6)
-   expect (v1 [1]) .toBe (0.7)
-   expect (v1 [2]) .toBe (0.8)
-   expect ([...v1]) .toEqual ([0.6,0.7,0.8])
-})
+   expect (v1 .r) .toBe (0.6);
+   expect (v1 .g) .toBe (0.7);
+   expect (v1 .b) .toBe (0.8);
+   expect (v1 [0]) .toBe (0.6);
+   expect (v1 [1]) .toBe (0.7);
+   expect (v1 [2]) .toBe (0.8);
+   expect ([...v1]) .toEqual ([0.6,0.7,0.8]);
+
+   v1 [0] = undefined;
+   v1 [1] = undefined;
+   v1 [2] = undefined;
+   expect ([...v1]) .toEqual ([NaN,NaN,NaN]);
+});
 
 test ("common", () =>
 {

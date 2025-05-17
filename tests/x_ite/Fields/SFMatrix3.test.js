@@ -102,6 +102,18 @@ for (const Type of Object .keys (X3D .SFMatrix3))
       expect (v1 [7]) .toBe (9)
       expect (v1 [8]) .toBe (10)
       expect ([...v1]) .toEqual ([2,3,4, 5,6,7, 8,9,10])
+
+      v1 [0]  = undefined;
+      v1 [1]  = undefined;
+      v1 [2]  = undefined;
+      v1 [3]  = undefined;
+      v1 [4]  = undefined;
+      v1 [5]  = undefined;
+      v1 [6]  = undefined;
+      v1 [7]  = undefined;
+      v1 [8]  = undefined;
+
+      expect ([...v1]) .toEqual ([NaN,NaN,NaN, NaN,NaN,NaN, NaN,NaN,NaN])
    })
 
    test ("common", () =>
