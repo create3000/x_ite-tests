@@ -69,42 +69,53 @@ test ("getter/setter", () =>
 {
    const
       v1 = new SFImage (),
-      array = v1 .array
+      array = v1 .array;
 
-   v1 .width  = 1
-   v1 .height = 2
-   v1 .comp   = 3
-   v1 .array  = new MFInt32 (5,6)
+   v1 .width  = 1;
+   v1 .height = 2;
+   v1 .comp   = 3;
+   v1 .array  = new MFInt32 (5,6);
 
-   expect (v1 .x) .toBe (1)
-   expect (v1 .y) .toBe (2)
-   expect (v1 .width) .toBe (1)
-   expect (v1 .height) .toBe (2)
-   expect (v1 .comp) .toBe (3)
-   expect (v1 .array) .toBe (array)
-   expect (v1 .array) .toHaveLength (2)
-   expect (v1 .array [0]) .toBe (5)
-   expect (v1 .array [1]) .toBe (6)
+   expect (v1 .x) .toBe (1);
+   expect (v1 .y) .toBe (2);
+   expect (v1 .width) .toBe (1);
+   expect (v1 .height) .toBe (2);
+   expect (v1 .comp) .toBe (3);
+   expect (v1 .array) .toBe (array);
+   expect (v1 .array) .toHaveLength (2);
+   expect (v1 .array [0]) .toBe (5);
+   expect (v1 .array [1]) .toBe (6);
 
-   v1 .x     = 2
-   v1 .y     = 3
-   v1 .comp  = 4
-   v1 .array = new MFInt32 (1,2,3,4,5,6)
+   v1 .x     = 2;
+   v1 .y     = 3;
+   v1 .comp  = 4;
+   v1 .array = new MFInt32 (1,2,3,4,5,6);
 
-   expect (v1 .x) .toBe (2)
-   expect (v1 .y) .toBe (3)
-   expect (v1 .width) .toBe (2)
-   expect (v1 .height) .toBe (3)
-   expect (v1 .comp) .toBe (4)
-   expect (v1 .array) .toBe (array)
-   expect (v1 .array) .toHaveLength (6)
-   expect (v1 .array [0]) .toBe (1)
-   expect (v1 .array [1]) .toBe (2)
-   expect (v1 .array [2]) .toBe (3)
-   expect (v1 .array [3]) .toBe (4)
-   expect (v1 .array [4]) .toBe (5)
-   expect (v1 .array [5]) .toBe (6)
-})
+   expect (v1 .x) .toBe (2);
+   expect (v1 .y) .toBe (3);
+   expect (v1 .width) .toBe (2);
+   expect (v1 .height) .toBe (3);
+   expect (v1 .comp) .toBe (4);
+   expect (v1 .array) .toBe (array);
+   expect (v1 .array) .toHaveLength (6);
+   expect (v1 .array [0]) .toBe (1);
+   expect (v1 .array [1]) .toBe (2);
+   expect (v1 .array [2]) .toBe (3);
+   expect (v1 .array [3]) .toBe (4);
+   expect (v1 .array [4]) .toBe (5);
+   expect (v1 .array [5]) .toBe (6);
+
+   v1 .x    = undefined;
+   v1 .y    = undefined;
+   v1 .comp = undefined;
+
+   expect (v1 .x) .toBe (0);
+   expect (v1 .y) .toBe (0);
+   expect (v1 .width) .toBe (0);
+   expect (v1 .height) .toBe (0);
+   expect (v1 .comp) .toBe (0);
+   expect (v1 .array) .toHaveLength (0);
+});
 
 test ("common", () =>
 {

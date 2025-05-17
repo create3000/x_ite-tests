@@ -165,6 +165,13 @@ test ("getter/setter", () =>
    v1 [3]  = undefined;
 
    expect ([...v1]) .toEqual ([NaN,NaN,NaN,NaN])
+
+   v1 .assign (new SFRotation (1,2,3,4));
+   v1 .x     = undefined;
+   v1 .y     = undefined;
+   v1 .z     = undefined;
+   v1 .angle = undefined;
+   expect ([...v1]) .toEqual ([NaN,NaN,NaN,NaN]);
 })
 
 test ("common", () =>

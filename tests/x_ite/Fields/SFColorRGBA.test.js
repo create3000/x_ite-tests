@@ -91,6 +91,13 @@ test ("getter/setter", () =>
    v1 [2] = undefined;
    v1 [3] = undefined;
    expect ([...v1]) .toEqual ([NaN,NaN,NaN,NaN]);
+
+   v1 .assign (new SFColorRGBA (1,2,3,4));
+   v1 .r = undefined;
+   v1 .g = undefined;
+   v1 .b = undefined;
+   v1 .a = undefined;
+   expect ([...v1]) .toEqual ([NaN,NaN,NaN,NaN]);
 });
 
 test ("common", () =>

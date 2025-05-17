@@ -67,6 +67,13 @@ for (const Type of Object .keys (X3D .SFVec2))
       v1 [0] = undefined;
       v1 [1] = undefined;
       expect ([...v1]) .toEqual ([NaN,NaN]);
+
+      v1 .assign (new SFVec2 (1,2));
+      v1 .x = undefined;
+      v1 .y = undefined;
+      v1 .z = undefined;
+      v1 .w = undefined;
+      expect ([...v1]) .toEqual ([NaN,NaN]);
    });
 
    test ("common", () =>
