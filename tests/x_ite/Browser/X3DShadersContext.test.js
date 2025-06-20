@@ -6,7 +6,7 @@ test ("shader", async () =>
       canvas  = X3D .createBrowser (),
       Browser = canvas .browser;
 
-   await Browser .loadComponents (Browser .getComponent ("HAnim"));
+   await Browser .loadComponents (Browser .getComponent ("HAnim"), Browser .getComponent ("X_ITE"));
 
    const shaders = [
       ["X3D_UNLIT_MATERIAL",    "UnlitShader",            "Default", "Unlit"],
@@ -39,6 +39,7 @@ test ("shader", async () =>
                   options .push (option);
                   options .push ("X3D_COLORSPACE_LINEAR_WHEN_PHYSICAL_MATERIAL");
                   options .push ("X3D_USE_IBL");
+                  options .push ("X3D_LIGHTING", "X3D_NUM_LIGHTS 8");
                   options .push ("X3D_MATERIAL_METALLIC_ROUGHNESS");
                   options .push ("X3D_LOGARITHMIC_DEPTH_BUFFER");
                   options .push (`X3D_GEOMETRY_${geometry}`);
@@ -58,6 +59,20 @@ test ("shader", async () =>
                         options .push (`X3D_NUM_TEXTURE_PROJECTORS ${numTextures}`);
                         options .push ("X3D_STYLE_PROPERTIES");
                         options .push ("X3D_SKINNING", "X3D_NUM_JOINT_SETS 2", "X3D_NUM_DISPLACEMENTS 2");
+
+                        options .push ("X3D_ANISOTROPY_MATERIAL_EXT");
+                        options .push ("X3D_CLEARCOAT_MATERIAL_EXT");
+                        options .push ("X3D_DIFFUSE_TRANSMISSION_MATERIAL_EXT");
+                        options .push ("X3D_DISPERSION_MATERIAL_EXT");
+                        options .push ("X3D_EMISSIVE_STRENGTH_MATERIAL_EXT");
+                        options .push ("X3D_IOR_MATERIAL_EXT");
+                        options .push ("X3D_IRIDESCENCE_MATERIAL_EXT");
+                        options .push ("X3D_SHEEN_MATERIAL_EXT");
+                        options .push ("X3D_SPECULAR_MATERIAL_EXT");
+                        options .push ("X3D_TRANSMISSION_MATERIAL_EXT");
+                        options .push ("X3D_VOLUME_MATERIAL_EXT");
+                        options .push ("X3D_VOLUME_SCATTER_MATERIAL_EXT");
+                        options .push ("X3D_SCATTER_SAMPLES_COUNT_EXT 16");
                      }
 
                      if (materialTexture)
