@@ -1,10 +1,12 @@
 const X3D = require ("../../X3D");
 
-test ("shader", () =>
+test ("shader", async () =>
 {
    const
       canvas  = X3D .createBrowser (),
       Browser = canvas .browser;
+
+   await Browser .loadComponents (Browser .getComponent ("HAnim"));
 
    const shaders = [
       ["X3D_UNLIT_MATERIAL",    "UnlitShader",            "Default", "Unlit"],
@@ -28,7 +30,7 @@ test ("shader", () =>
       {
          for (const texture of ["2D", "3D", "CUBE"])
          {
-            for (const numTextureXXX of [1, 2])
+            for (const numTextures of [1, 2])
             {
                for (const materialTexture of [true, false])
                {
@@ -53,7 +55,7 @@ test ("shader", () =>
                         options .push ("X3D_CLIP_PLANES");
                         options .push ("X3D_NUM_CLIP_PLANES 1");
                         options .push ("X3D_TEXTURE_PROJECTION");
-                        options .push (`X3D_NUM_TEXTURE_PROJECTORS ${numTextureXXX}`);
+                        options .push (`X3D_NUM_TEXTURE_PROJECTORS ${numTextures}`);
                         options .push ("X3D_STYLE_PROPERTIES");
                         options .push ("X3D_SKINNING", "X3D_NUM_JOINT_SETS 2", "X3D_NUM_DISPLACEMENTS 2");
                      }
@@ -78,17 +80,17 @@ test ("shader", () =>
                      {
                         options .push ("X3D_TEXTURE");
                         options .push ("X3D_MULTI_TEXTURING");
-                        options .push (`X3D_NUM_TEXTURES ${numTextureXXX}`);
+                        options .push (`X3D_NUM_TEXTURES ${numTextures}`);
                         options .push (`X3D_TEXTURE0_${texture}`);
                         options .push (`X3D_TEXTURE1_${texture}`);
                      }
 
-                     options .push (`X3D_NUM_TEXTURE_TRANSFORMS ${numTextureXXX}`);
-                     options .push (`X3D_NUM_TEXTURE_COORDINATES ${numTextureXXX}`);
+                     options .push (`X3D_NUM_TEXTURE_TRANSFORMS ${numTextures}`);
+                     options .push (`X3D_NUM_TEXTURE_COORDINATES ${numTextures}`);
 
                      const shader = Browser .createShader (name, vertex, fragment, options);
 
-                     console .log (option, geometry, texture, numTextureXXX, materialTexture, o);
+                     console .log (option, geometry, texture, numTextures, materialTexture, o);
 
                      expect (shader .isValid ()) .toBe (true);
 
