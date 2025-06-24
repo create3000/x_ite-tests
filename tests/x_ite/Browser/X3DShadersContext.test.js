@@ -13,6 +13,7 @@ test ("shader", async () =>
       ["X3D_GOURAUD_MATERIAL",             "GouraudShader",          "Default", "Material"],
       ["X3D_PHONG_MATERIAL",               "PhongShader",            "Default", "Material"],
       ["X3D_MATERIAL_METALLIC_ROUGHNESS",  "PhysicalMaterialShader", "Default", "Physical"],
+      ["X3D_VOLUME_SCATTER_PASS",          "PhysicalMaterialShader", "Default", "Physical"],
       ["X3D_MATERIAL_SPECULAR_GLOSSINESS", "SpecularGlossiness",     "Default", "SpecularGlossiness"],
    ];
 
@@ -49,6 +50,10 @@ test ("shader", async () =>
                   {
                      case "X3D_MATERIAL_METALLIC_ROUGHNESS":
                      case "X3D_MATERIAL_SPECULAR_GLOSSINESS":
+                        options .push ("X3D_PHYSICAL_MATERIAL");
+                        break;
+                     case "X3D_VOLUME_SCATTER_PASS":
+                        options .push ("X3D_MATERIAL_METALLIC_ROUGHNESS");
                         options .push ("X3D_PHYSICAL_MATERIAL");
                         break;
                   }
