@@ -699,13 +699,15 @@ test ("parse value of inputOnly and outputOnly fields", async () =>
 PROFILE Interchange
 
 DEF Test Viewpoint {
-  # inputOnly with value
+  # inputOnly with value, skip this
   set_bind TRUE
-  # outputOnly with value
+  # outputOnly with value, skip this
   isBound TRUE
+  description "test"
 }
    `);
 
    expect (scene .rootNodes) .toHaveLength (1);
    expect (scene .rootNodes [0] .getNodeName ()) .toBe ("Test");
+   expect (scene .rootNodes [0] .description) .toBe ("test");
 });
