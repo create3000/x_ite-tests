@@ -622,10 +622,11 @@ test ("comments 3.2", async () =>
 # * block comment
 #*/# some text after block comment
 
-Transform { }
+DEF Test Transform { }
    `);
 
    expect (scene .rootNodes) .toHaveLength (1);
+   expect (scene .rootNodes [0] .getNodeName ()) .toBe ("Test");
 });
 
 test ("string escape sequences", async () =>
@@ -689,4 +690,22 @@ T {
       expect (scene .rootNodes [4] .nodes [1]) .toBe (null);
       expect (scene .toVRMLString ()) .toBe (vrml);
    }
+});
+
+test ("parse value of inputOnly and outputOnly fields", async () =>
+{
+   const scene = await Browser .createX3DFromString (`#X3D V4.0 utf8
+
+PROFILE Interchange
+
+DEF Test Viewpoint {
+  # inputOnly with value
+  set_bind TRUE
+  # outputOnly with value
+  isBound TRUE
+}
+   `);
+
+   expect (scene .rootNodes) .toHaveLength (1);
+   expect (scene .rootNodes [0] .getNodeName ()) .toBe ("Test");
 });
