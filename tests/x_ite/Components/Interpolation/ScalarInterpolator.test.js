@@ -6,7 +6,7 @@ const
    canvas  = X3D .createBrowser (),
    Browser = canvas .browser;
 
-test ("ScalarInterpolator", async () =>
+test ("initial value_changed", async () =>
 {
    const scene = await Browser .createX3DFromString (`#X3D V4.0 utf8
 
