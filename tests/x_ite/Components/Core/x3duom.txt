@@ -1,6 +1,7 @@
 Field SFFloat 'fieldOfView' in node GeoViewpoint has different value (Spec <=> X3DUOM): 0.785398 !== 0.7854.
 Field SFString 'version' in node HAnimHumanoid has different value (Spec <=> X3DUOM): 2.0 !== 2.
-Unknown field 'closed' of node SquadOrientationInterpolator in X3DUOM.
+SquadOrientationInterpolator number of fields differ (Spec <=> X3DUOM): 7 <=> 6.
+  Where [closed] not in X3DUOM.
 Field SFFloat 'fieldOfView' in node Viewpoint has different value (Spec <=> X3DUOM): 0.785398 !== 0.7854.
 Field SFFloat 'angle' in node ConeEmitter has different value (Spec <=> X3DUOM): 0.785398 !== 0.7854.
 Field 'name' in node FloatVertexAttribute has different type (Spec <=> X3DUOM): SFString !== xs:NMTOKEN.
