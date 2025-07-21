@@ -182,10 +182,10 @@ test ("negate", () =>
    expect (b.w) .toBe (4)
 })
 
- test("magnitude (length)", () =>
+ test("norm (length)", () =>
  {
    const q = new Quaternion (3, 4, 5, 6)
-   const m = q .magnitude ()
+   const m = q .norm ()
    expect (m) .toBeCloseTo (9.273618495495704)
  })
 

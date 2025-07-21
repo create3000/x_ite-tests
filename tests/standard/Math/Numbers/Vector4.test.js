@@ -263,18 +263,18 @@ test ("dot", () =>
    expect (v1 .dot (v2)) .toBe (2 * 6 + 3 * 7 + 4 * 8 + 5 * 9)
 })
 
+test ("squaredNorm", () =>
+{
+   const v1 = new Vector4 (2, 3, 4, 5)
+
+   expect (v1 .squaredNorm ()) .toBe (2 * 2 + 3 * 3 + 4 * 4 + 5 * 5)
+})
+
 test ("norm", () =>
 {
    const v1 = new Vector4 (2, 3, 4, 5)
 
-   expect (v1 .norm ()) .toBe (2 * 2 + 3 * 3 + 4 * 4 + 5 * 5)
-})
-
-test ("magnitude", () =>
-{
-   const v1 = new Vector4 (2, 3, 4, 5)
-
-   expect (v1 .magnitude ()) .toBeCloseTo (Math .hypot (2, 3, 4, 5))
+   expect (v1 .norm ()) .toBeCloseTo (Math .hypot (2, 3, 4, 5))
 })
 
 test ("distance", () =>

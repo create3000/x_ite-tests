@@ -197,18 +197,18 @@ test ("dot", () =>
    expect (v1 .dot (v2)) .toBe (2 * 6 + 3 * 7)
 })
 
+test ("squaredNorm", () =>
+{
+   const v1 = new Vector2 (2, 3)
+
+   expect (v1 .squaredNorm ()) .toBe (2 * 2 + 3 * 3)
+})
+
 test ("norm", () =>
 {
    const v1 = new Vector2 (2, 3)
 
-   expect (v1 .norm ()) .toBe (2 * 2 + 3 * 3)
-})
-
-test ("magnitude", () =>
-{
-   const v1 = new Vector2 (2, 3)
-
-   expect (v1 .magnitude ()) .toBeCloseTo (Math .hypot (2, 3))
+   expect (v1 .norm ()) .toBeCloseTo (Math .hypot (2, 3))
 })
 
 test ("distance", () =>
