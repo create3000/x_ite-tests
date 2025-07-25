@@ -140,10 +140,7 @@ COMPONENT WebXR : 1
    `);
 
    for (const component of Browser .supportedComponents)
-   {
-      console .log (component .name, component .level);
       expect (scene1 .hasComponent (component .name)) .toBe (true);
-   }
 });
 
 test ("updateUnit", async () =>
