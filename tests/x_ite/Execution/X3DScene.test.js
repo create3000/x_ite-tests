@@ -154,13 +154,22 @@ PROFILE Interchange
    expect (scene2 .hasComponent (Browser .getComponent ("Geometry3D", 3))) .toBe (false);
 
    const scene3 = await Browser .createX3DFromString (`#X3D V4.1 utf8
-PROFILE Core
-COMPONENT Geometry3D : 2
+PROFILE Interchange
+COMPONENT Geometry3D : 3
    `);
 
    expect (scene3 .hasComponent (Browser .getComponent ("Geometry3D", 1))) .toBe (true);
    expect (scene3 .hasComponent (Browser .getComponent ("Geometry3D", 2))) .toBe (true);
-   expect (scene3 .hasComponent (Browser .getComponent ("Geometry3D", 3))) .toBe (false);
+   expect (scene3 .hasComponent (Browser .getComponent ("Geometry3D", 3))) .toBe (true);
+
+   const scene4 = await Browser .createX3DFromString (`#X3D V4.1 utf8
+PROFILE Core
+COMPONENT Geometry3D : 2
+   `);
+
+   expect (scene4 .hasComponent (Browser .getComponent ("Geometry3D", 1))) .toBe (true);
+   expect (scene4 .hasComponent (Browser .getComponent ("Geometry3D", 2))) .toBe (true);
+   expect (scene4 .hasComponent (Browser .getComponent ("Geometry3D", 3))) .toBe (false);
 });
 
 test ("updateUnit", async () =>
