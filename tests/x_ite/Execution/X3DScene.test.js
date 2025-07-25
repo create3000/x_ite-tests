@@ -130,7 +130,21 @@ test ("properties2", async () =>
    ]
 
    enumerate (properties, scene)
-})
+});
+
+test ("hasComponent", async () =>
+{
+   const scene1 = await Browser .createX3DFromString (`#X3D V4.1 utf8
+COMPONENT X_ITE : 1
+COMPONENT WebXR : 1
+   `);
+
+   for (const component of Browser .supportedComponents)
+   {
+      console .log (component .name, component .level);
+      expect (scene1 .hasComponent (component .name)) .toBe (true);
+   }
+});
 
 test ("updateUnit", async () =>
 {
