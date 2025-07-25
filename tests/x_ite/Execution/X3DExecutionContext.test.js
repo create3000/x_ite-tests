@@ -8,8 +8,8 @@ test ("properties", async () =>
 {
    const scene = await Browser .createX3DFromURL (new X3D .MFString (`data:model/x3d+vrml,
 PROFILE Interactive
-COMPONENT Grouping:1
-COMPONENT Shape:1
+COMPONENT Grouping:3
+COMPONENT Shape:4
 
 PROTO Test [ ]
 {
