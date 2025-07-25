@@ -141,6 +141,26 @@ COMPONENT WebXR : 1
 
    for (const component of Browser .supportedComponents)
       expect (scene1 .hasComponent (component .name)) .toBe (true);
+
+   expect (scene1 .hasComponent (Browser .getComponent ("Geometry3D", 3))) .toBe (true);
+   expect (scene1 .hasComponent (Browser .getComponent ("Geometry3D", 4))) .toBe (true);
+
+   const scene2 = await Browser .createX3DFromString (`#X3D V4.1 utf8
+PROFILE Interchange
+   `);
+
+   expect (scene2 .hasComponent (Browser .getComponent ("Geometry3D", 1))) .toBe (true);
+   expect (scene2 .hasComponent (Browser .getComponent ("Geometry3D", 2))) .toBe (true);
+   expect (scene2 .hasComponent (Browser .getComponent ("Geometry3D", 3))) .toBe (false);
+
+   const scene3 = await Browser .createX3DFromString (`#X3D V4.1 utf8
+PROFILE Core
+COMPONENT Geometry3D : 2
+   `);
+
+   expect (scene3 .hasComponent (Browser .getComponent ("Geometry3D", 1))) .toBe (true);
+   expect (scene3 .hasComponent (Browser .getComponent ("Geometry3D", 2))) .toBe (true);
+   expect (scene3 .hasComponent (Browser .getComponent ("Geometry3D", 3))) .toBe (false);
 });
 
 test ("updateUnit", async () =>
