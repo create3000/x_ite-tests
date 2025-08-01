@@ -698,6 +698,25 @@ test ("parse value of inputOnly and outputOnly fields", async () =>
 
 PROFILE Interchange
 
+COMPONENT Scripting : 1
+
+PROTO Test [
+  # inputOnly with value, skip this
+  inputOnly SFBool set_bind TRUE
+  # outputOnly with value, skip this
+  outputOnly SFBool isBound TRUE
+  inputOutput SFString description "test"
+]
+{ }
+
+DEF Script Script {
+  # inputOnly with value, skip this
+  inputOnly SFBool set_bind TRUE
+  # outputOnly with value, skip this
+  outputOnly SFBool isBound TRUE
+  inputOutput SFString description "test"
+}
+
 DEF Test Viewpoint {
   # inputOnly with value, skip this
   set_bind TRUE
@@ -707,7 +726,11 @@ DEF Test Viewpoint {
 }
    `);
 
-   expect (scene .rootNodes) .toHaveLength (1);
-   expect (scene .rootNodes [0] .getNodeName ()) .toBe ("Test");
+   expect (scene .rootNodes) .toHaveLength (2);
+   expect (scene .protos [0] .name) .toBe ("Test");
+   expect (scene .protos [0] .fields [3] .value .getValue ()) .toBe ("test");
+   expect (scene .rootNodes [0] .getNodeName ()) .toBe ("Script");
    expect (scene .rootNodes [0] .description) .toBe ("test");
+   expect (scene .rootNodes [1] .getNodeName ()) .toBe ("Test");
+   expect (scene .rootNodes [1] .description) .toBe ("test");
 });
