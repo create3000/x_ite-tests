@@ -25,7 +25,6 @@ test ("common", () =>
 
    expect (node .getNodeType ()) .not .toBe (node .getNodeType ())
    expect (node .getNodeType ()) .toEqual ([
-      X3D .X3DConstants .X3DBaseNode,
       X3D .X3DConstants .X3DNode,
       X3D .X3DConstants .X3DChildNode,
       X3D .X3DConstants .X3DInfoNode,

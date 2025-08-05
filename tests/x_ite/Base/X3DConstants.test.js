@@ -54,12 +54,11 @@ test ("internal-nodes", () =>
       "X3DExternProtoDeclaration",
       "X3DProtoDeclaration",
       "X3DProtoDeclarationNode",
-      "X3DBaseNode",
-   ]
+   ];
 
    for (const InternalNode of InternalNodes)
-      expect (Number .isInteger (X3D .X3DConstants [InternalNode])) .toBe (true)
-})
+      expect (Number .isInteger (X3D .X3DConstants [InternalNode])) .toBe (true);
+});
 
 test ("concrete-nodes", async () =>
 {

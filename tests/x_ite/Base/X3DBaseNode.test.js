@@ -31,7 +31,7 @@ test ("concrete-nodes", async () =>
       expect (typeof ConcreteNode .specificationRange .to) .toBe ("string")
       expect (ConcreteNode .fieldDefinitions) .toBeInstanceOf (X3D .FieldDefinitionArray)
       expect (node .getValue ()) .toBeInstanceOf (ConcreteNode)
-      expect (node .getNodeType () .length) .toBeGreaterThan (2)
+      expect (node .getNodeType () .length) .toBeGreaterThan (1)
       expect (node .getNodeType () .every (t => Number .isInteger (t))) .toBe (true)
       expect (node .getNodeTypeName ()) .toBe (ConcreteNode .typeName)
       expect (node .getNodeTypeName ()) .toBe (node .getValue () .getTypeName ())
