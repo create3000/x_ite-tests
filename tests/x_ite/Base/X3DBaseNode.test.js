@@ -15,7 +15,7 @@ test ("getType", () =>
 
 test ("concrete-nodes", async () =>
 {
-   await Browser .loadComponents (Browser .getProfile ("Full"))
+   await Browser .loadComponents (Browser .getProfile ("Full"), Browser .getComponent ("X_ITE"))
 
    for (const ConcreteNode of Browser .getConcreteNodes ())
    {
