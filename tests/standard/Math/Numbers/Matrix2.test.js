@@ -1,7 +1,12 @@
 const
    X3D     = require ("../../../X3D"),
    Matrix2 = X3D .Matrix2,
-   Vector2 = X3D .Vector2
+   Vector2 = X3D .Vector2;
+
+test ("constants", () =>
+{
+   expect (Matrix2 .IDENTITY .equals (new Matrix2 ())) .toBe (true);
+});
 
 test ("constructor", () =>
 {

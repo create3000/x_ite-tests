@@ -3,7 +3,12 @@ const
    Matrix4   = X3D .Matrix4,
    Vector3   = X3D .Vector3,
    Vector4   = X3D .Vector4,
-   Rotation4 = X3D .Rotation4
+   Rotation4 = X3D .Rotation4;
+
+test ("constants", () =>
+{
+   expect (Matrix4 .IDENTITY .equals (new Matrix4 ())) .toBe (true);
+});
 
 test ("constructor", () =>
 {

@@ -3,6 +3,12 @@ const
    Color3    = X3D .Color3,
    Algorithm = X3D .Algorithm
 
+test ("constants", () =>
+{
+   expect (Color3 .BLACK .equals (new Color3 (0,0,0))) .toBe (true);
+   expect (Color3 .WHITE .equals (new Color3 (1))) .toBe (true);
+});
+
 test ("constructor", () =>
 {
    const c0 = new Color3 ()

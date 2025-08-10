@@ -3,7 +3,12 @@ const
    Matrix3 = X3D .Matrix3,
    Vector2 = X3D .Vector2,
    Vector3 = X3D .Vector3,
-   Complex = X3D .Complex
+   Complex = X3D .Complex;
+
+test ("constants", () =>
+{
+   expect (Matrix3 .IDENTITY .equals (new Matrix3 ())) .toBe (true);
+});
 
 test ("constructor", () =>
 {

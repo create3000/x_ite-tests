@@ -1,7 +1,14 @@
 const
    X3D       = require ("../../../X3D"),
    Color4    = X3D .Color4,
-   Algorithm = X3D .Algorithm
+   Algorithm = X3D .Algorithm;
+
+test ("constants", () =>
+{
+   expect (Color4 .BLACK .equals (new Color4 (0,0,0,1))) .toBe (true);
+   expect (Color4 .WHITE .equals (new Color4 (1))) .toBe (true);
+   expect (Color4 .TRANSPARENT .equals (new Color4 (0))) .toBe (true);
+});
 
 test ("constructor", () =>
 {

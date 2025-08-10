@@ -1,9 +1,13 @@
 const
-   X3D        = require ("../../../X3D"),
-   Rotation4  = X3D .Rotation4,
-   Quaternion = X3D .Quaternion,
-   Matrix4    = X3D .Matrix4,
-   Vector3    = X3D .Vector3
+   X3D       = require ("../../../X3D"),
+   Rotation4 = X3D .Rotation4,
+   Matrix4   = X3D .Matrix4,
+   Vector3   = X3D .Vector3
+
+test ("constants", () =>
+{
+   expect (Rotation4 .IDENTITY .equals (new Rotation4 ())) .toBe (true);
+});
 
 test ("constructor", () =>
 {

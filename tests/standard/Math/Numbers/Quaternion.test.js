@@ -1,7 +1,12 @@
 const
    X3D        = require ("../../../X3D"),
    Quaternion = X3D .Quaternion,
-   Matrix3    = X3D .Matrix3
+   Matrix3    = X3D .Matrix3;
+
+test ("constants", () =>
+{
+   expect (Quaternion .IDENTITY .equals (new Quaternion ())) .toBe (true);
+});
 
 test ("constructor", () =>
 {

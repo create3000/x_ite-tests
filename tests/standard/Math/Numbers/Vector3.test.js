@@ -1,6 +1,15 @@
 const
    X3D     = require ("../../../X3D"),
-   Vector3 = X3D .Vector3
+   Vector3 = X3D .Vector3;
+
+test ("constants", () =>
+{
+   expect (Vector3 .ZERO .equals (new Vector3 (0))) .toBe (true);
+   expect (Vector3 .ONE .equals (new Vector3 (1))) .toBe (true);
+   expect (Vector3 .X_AXIS .equals (new Vector3 (1,0,0))) .toBe (true);
+   expect (Vector3 .Y_AXIS .equals (new Vector3 (0,1,0))) .toBe (true);
+   expect (Vector3 .Z_AXIS .equals (new Vector3 (0,0,1))) .toBe (true);
+});
 
 test ("constructor", () =>
 {
