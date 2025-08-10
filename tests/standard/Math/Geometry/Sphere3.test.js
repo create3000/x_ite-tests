@@ -9,8 +9,8 @@ test ("constructor", () =>
    const s1 = new Sphere3 ();
 
    expect (s1 .radius) .toBe (1);
-   expect (s1 .center .equals (Vector3 .Zero)) .toBe (true);
-   expect (s1 .center) .not .toBe (Vector3 .Zero);
+   expect (s1 .center .equals (Vector3 .ZERO)) .toBe (true);
+   expect (s1 .center) .not .toBe (Vector3 .ZERO);
 
    const c2 = new Vector3 (1, 1, 1);
    const s2 = new Sphere3 (2, c2);
@@ -88,7 +88,7 @@ test ("set", () =>
    s1 .set ();
 
    expect (s1 .radius) .toBe (1);
-   expect (s1 .center .equals (Vector3 .Zero)) .toBe (true);
+   expect (s1 .center .equals (Vector3 .ZERO)) .toBe (true);
    expect (s1 .equals (s1)) .toBe (true);
 });
 
@@ -97,33 +97,33 @@ test ("intersectsLine", () =>
    const s1 = new Sphere3 ();
    const en = new Vector3 ();
    const ex = new Vector3 ();
-   const lx = new Line3 (Vector3 .Zero, Vector3 .xAxis);
+   const lx = new Line3 (Vector3 .ZERO, Vector3 .X_AXIS);
 
    expect (s1 .intersectsLine (lx, en, ex)) .toBe (true);
-   expect (en .equals (Vector3 .xAxis .copy () .negate ())) .toBe (true);
-   expect (ex .equals (Vector3 .xAxis)) .toBe (true);
+   expect (en .equals (Vector3 .X_AXIS .copy () .negate ())) .toBe (true);
+   expect (ex .equals (Vector3 .X_AXIS)) .toBe (true);
 
-   const ly = new Line3 (Vector3 .Zero, Vector3 .yAxis);
+   const ly = new Line3 (Vector3 .ZERO, Vector3 .Y_AXIS);
 
    expect (s1 .intersectsLine (ly, en, ex)) .toBe (true);
-   expect (en .equals (Vector3 .yAxis .copy () .negate ())) .toBe (true);
-   expect (ex .equals (Vector3 .yAxis)) .toBe (true);
+   expect (en .equals (Vector3 .Y_AXIS .copy () .negate ())) .toBe (true);
+   expect (ex .equals (Vector3 .Y_AXIS)) .toBe (true);
 
-   const lz = new Line3 (Vector3 .Zero, Vector3 .zAxis);
+   const lz = new Line3 (Vector3 .ZERO, Vector3 .Z_AXIS);
 
    expect (s1 .intersectsLine (lz, en, ex)) .toBe (true);
-   expect (en .equals (Vector3 .zAxis .copy () .negate ())) .toBe (true);
-   expect (ex .equals (Vector3 .zAxis)) .toBe (true);
+   expect (en .equals (Vector3 .Z_AXIS .copy () .negate ())) .toBe (true);
+   expect (ex .equals (Vector3 .Z_AXIS)) .toBe (true);
 
-   const ox = new Line3 (new Vector3 (2, 0, 0), Vector3 .yAxis);
+   const ox = new Line3 (new Vector3 (2, 0, 0), Vector3 .Y_AXIS);
 
    expect (s1 .intersectsLine (ox, en, ex)) .toBe (false);
 
-   const oy = new Line3 (new Vector3 (0, 2, 0), Vector3 .zAxis);
+   const oy = new Line3 (new Vector3 (0, 2, 0), Vector3 .Z_AXIS);
 
    expect (s1 .intersectsLine (oy, en, ex)) .toBe (false);
 
-   const oz = new Line3 (new Vector3 (0, 0, 2), Vector3 .xAxis);
+   const oz = new Line3 (new Vector3 (0, 0, 2), Vector3 .X_AXIS);
 
    expect (s1 .intersectsLine (oz, en, ex)) .toBe (false);
 });

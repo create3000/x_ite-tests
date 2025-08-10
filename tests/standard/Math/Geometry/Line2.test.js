@@ -29,8 +29,8 @@ test ("constructor", () =>
 
    const l3 = new Line2 ();
 
-   expect (l3 .point .equals (Vector2 .Zero)) .toBe (true);
-   expect (l3 .direction .equals (Vector2 .yAxis)) .toBe (true);
+   expect (l3 .point .equals (Vector2 .ZERO)) .toBe (true);
+   expect (l3 .direction .equals (Vector2 .Y_AXIS)) .toBe (true);
 });
 
 test ("copy", () =>
@@ -99,8 +99,8 @@ test ("set", () =>
 
    l1 .set ();
 
-   expect (l1 .point .equals (Vector2 .Zero)) .toBe (true);
-   expect (l1 .direction .equals (Vector2 .yAxis)) .toBe (true);
+   expect (l1 .point .equals (Vector2 .ZERO)) .toBe (true);
+   expect (l1 .direction .equals (Vector2 .Y_AXIS)) .toBe (true);
 });
 
 test ("setPoints", () =>
@@ -120,28 +120,28 @@ test ("setPoints", () =>
 
 test ("multLineMatrix", () =>
 {
-   const p1 = Vector2 .Zero;
-   const d1 = Vector2 .xAxis;
+   const p1 = Vector2 .ZERO;
+   const d1 = Vector2 .X_AXIS;
    const l1 = new Line2 (p1, d1);
    const m1 = new Matrix3 (0, 1, 0,  -1, 0, 0,  1, 1, -1);
 
    l1 .multLineMatrix (m1);
 
-   expect (l1 .point .equals (Vector2 .One .copy () .negate ())) .toBe (true);
-   expect (l1 .direction .equals (Vector2 .yAxis)) .toBe (true);
+   expect (l1 .point .equals (Vector2 .ONE .copy () .negate ())) .toBe (true);
+   expect (l1 .direction .equals (Vector2 .Y_AXIS)) .toBe (true);
 });
 
 test ("multMatrixLine", () =>
 {
-   const p1 = Vector2 .Zero;
-   const d1 = Vector2 .xAxis;
+   const p1 = Vector2 .ZERO;
+   const d1 = Vector2 .X_AXIS;
    const l1 = new Line2 (p1, d1);
    const m1 = new Matrix3 (0, 1, 0,  -1, 0, 0,  1, 1, -1);
 
    l1 .multMatrixLine (m1);
 
-   expect (l1 .point .equals (Vector2 .Zero)) .toBe (true);
-   expect (l1 .direction .equals (Vector2 .yAxis .copy () .negate ())) .toBe (true);
+   expect (l1 .point .equals (Vector2 .ZERO)) .toBe (true);
+   expect (l1 .direction .equals (Vector2 .Y_AXIS .copy () .negate ())) .toBe (true);
 });
 
 test ("getClosestPointToPoint", () =>

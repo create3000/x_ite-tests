@@ -9,8 +9,8 @@ test ("constructor", () =>
    const b1 = new Box3 ();
 
    expect (b1 .isEmpty ()) .toBe (true);
-   expect (b1 .size .equals (Vector3 .Zero)) .toBe (true);
-   expect (b1 .center .equals (Vector3 .Zero)) .toBe (true);
+   expect (b1 .size .equals (Vector3 .ZERO)) .toBe (true);
+   expect (b1 .center .equals (Vector3 .ZERO)) .toBe (true);
 
    const b2 = new Box3 (new Vector3 (2, 3, 4), new Vector3 (5, 6, 7));
 
@@ -39,8 +39,8 @@ test ("copy", () =>
    expect (c1) .not .toBe (b1);
    expect (c1 .equals (b1)) .toBe (true);
    expect (c1 .isEmpty ()) .toBe (true);
-   expect (c1 .size .equals (Vector3 .Zero)) .toBe (true);
-   expect (c1 .center .equals (Vector3 .Zero)) .toBe (true);
+   expect (c1 .size .equals (Vector3 .ZERO)) .toBe (true);
+   expect (c1 .center .equals (Vector3 .ZERO)) .toBe (true);
 
    const b2 = new Box3 (new Vector3 (2, 3, 4), new Vector3 (5, 6, 7));
    const c2 = b2 .copy ();
@@ -69,8 +69,8 @@ test ("assign", () =>
 
    expect (b2 .isEmpty ()) .toBe (true);
    expect (b2 .equals (b3)) .toBe (true);
-   expect (b2 .size .equals (Vector3 .Zero)) .toBe (true);
-   expect (b2 .center .equals (Vector3 .Zero)) .toBe (true);
+   expect (b2 .size .equals (Vector3 .ZERO)) .toBe (true);
+   expect (b2 .center .equals (Vector3 .ZERO)) .toBe (true);
 });
 
 test ("equals", () =>
@@ -91,8 +91,8 @@ test ("set", () =>
    b1 .set ();
 
    expect (b1 .isEmpty ()) .toBe (true);
-   expect (b1 .size .equals (Vector3 .Zero)) .toBe (true);
-   expect (b1 .center .equals (Vector3 .Zero)) .toBe (true);
+   expect (b1 .size .equals (Vector3 .ZERO)) .toBe (true);
+   expect (b1 .center .equals (Vector3 .ZERO)) .toBe (true);
 
    const b2 = new Box3 ();
 

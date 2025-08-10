@@ -11,37 +11,37 @@ test ("constructor", () =>
    expect (c1 .axis .equals (new Line3 ())) .toBe (true);
    expect (c1 .radius) .toBe (1);
 
-   const c2 = new Cylinder3 (new Line3 (Vector3 .Zero, Vector3 .xAxis), 2);
+   const c2 = new Cylinder3 (new Line3 (Vector3 .ZERO, Vector3 .X_AXIS), 2);
 
-   expect (c2 .axis .equals (new Line3 (Vector3 .Zero, Vector3 .xAxis))) .toBe (true);
+   expect (c2 .axis .equals (new Line3 (Vector3 .ZERO, Vector3 .X_AXIS))) .toBe (true);
    expect (c2 .radius) .toBe (2);
 });
 
 test ("copy", () =>
 {
-   const c1 = new Cylinder3 (new Line3 (Vector3 .Zero, Vector3 .xAxis), 2);
+   const c1 = new Cylinder3 (new Line3 (Vector3 .ZERO, Vector3 .X_AXIS), 2);
    const c2 = c1 .copy ();
 
-   expect (c2 .axis .equals (new Line3 (Vector3 .Zero, Vector3 .xAxis))) .toBe (true);
+   expect (c2 .axis .equals (new Line3 (Vector3 .ZERO, Vector3 .X_AXIS))) .toBe (true);
    expect (c2 .radius) .toBe (2);
 });
 
 test ("assign", () =>
 {
-   const c1 = new Cylinder3 (new Line3 (Vector3 .Zero, Vector3 .xAxis), 2);
+   const c1 = new Cylinder3 (new Line3 (Vector3 .ZERO, Vector3 .X_AXIS), 2);
    const c2 = new Cylinder3 ();
 
    c2 .assign (c1);
 
-   expect (c2 .axis .equals (new Line3 (Vector3 .Zero, Vector3 .xAxis))) .toBe (true);
+   expect (c2 .axis .equals (new Line3 (Vector3 .ZERO, Vector3 .X_AXIS))) .toBe (true);
    expect (c2 .radius) .toBe (2);
 });
 
 test ("equals", () =>
 {
-   const c1 = new Cylinder3 (new Line3 (Vector3 .Zero, Vector3 .xAxis), 2);
+   const c1 = new Cylinder3 (new Line3 (Vector3 .ZERO, Vector3 .X_AXIS), 2);
    const c2 = new Cylinder3 ();
-   const c3 = new Cylinder3 (new Line3 (Vector3 .Zero, Vector3 .xAxis), 2);
+   const c3 = new Cylinder3 (new Line3 (Vector3 .ZERO, Vector3 .X_AXIS), 2);
    const c4 = new Cylinder3 ();
 
    expect (c3 .axis .equals (c1 .axis)) .toBe (true);
@@ -65,9 +65,9 @@ test ("set", () =>
 {
    const c1 = new Cylinder3 ();
 
-   c1 .set (new Line3 (Vector3 .Zero, Vector3 .xAxis), 2);
+   c1 .set (new Line3 (Vector3 .ZERO, Vector3 .X_AXIS), 2);
 
-   expect (c1 .axis .equals (new Line3 (Vector3 .Zero, Vector3 .xAxis))) .toBe (true);
+   expect (c1 .axis .equals (new Line3 (Vector3 .ZERO, Vector3 .X_AXIS))) .toBe (true);
    expect (c1 .radius) .toBe (2);
 
    c1 .set ();
@@ -81,8 +81,8 @@ test ("intersectsLine", () =>
    const en = new Vector3 ();
    const ex = new Vector3 ();
 
-   const c1 = new Cylinder3 (new Line3 (Vector3 .Zero, Vector3 .xAxis), 2);
-   const lx = new Line3 (Vector3 .Zero, Vector3 .yAxis);
+   const c1 = new Cylinder3 (new Line3 (Vector3 .ZERO, Vector3 .X_AXIS), 2);
+   const lx = new Line3 (Vector3 .ZERO, Vector3 .Y_AXIS);
 
    expect (c1 .intersectsLine (lx, en, ex)) .toBe (true);
    expect (en .x) .toBeCloseTo (0);
@@ -92,8 +92,8 @@ test ("intersectsLine", () =>
    expect (ex .y) .toBeCloseTo (2);
    expect (ex .z) .toBeCloseTo (0);
 
-   const c2 = new Cylinder3 (new Line3 (Vector3 .Zero, Vector3 .yAxis), 2);
-   const ly = new Line3 (Vector3 .Zero, Vector3 .zAxis);
+   const c2 = new Cylinder3 (new Line3 (Vector3 .ZERO, Vector3 .Y_AXIS), 2);
+   const ly = new Line3 (Vector3 .ZERO, Vector3 .Z_AXIS);
 
    expect (c2 .intersectsLine (ly, en, ex)) .toBe (true);
    expect (en .x) .toBeCloseTo (0);
@@ -103,8 +103,8 @@ test ("intersectsLine", () =>
    expect (ex .y) .toBeCloseTo (0);
    expect (ex .z) .toBeCloseTo (2);
 
-   const c3 = new Cylinder3 (new Line3 (Vector3 .Zero, Vector3 .zAxis), 2);
-   const lz = new Line3 (Vector3 .Zero, Vector3 .xAxis);
+   const c3 = new Cylinder3 (new Line3 (Vector3 .ZERO, Vector3 .Z_AXIS), 2);
+   const lz = new Line3 (Vector3 .ZERO, Vector3 .X_AXIS);
 
    expect (c3 .intersectsLine (lz, en, ex)) .toBe (true);
    expect (en .x) .toBeCloseTo (-2);
@@ -116,15 +116,15 @@ test ("intersectsLine", () =>
 
    // Not precise enough for this tests:
 
-   // const ox = new Line3 (new Vector3 (0, 4, 0), Vector3 .xAxis);
+   // const ox = new Line3 (new Vector3 (0, 4, 0), Vector3 .X_AXIS);
 
    // expect (c1 .intersectsLine (ox, en, ex)) .toBe (true);
 
-   // const oy = new Line3 (new Vector3 (0, 2, 4), Vector3 .yAxis);
+   // const oy = new Line3 (new Vector3 (0, 2, 4), Vector3 .Y_AXIS);
 
    // expect (c1 .intersectsLine (oy, en, ex)) .toBe (false);
 
-   // const oz = new Line3 (new Vector3 (4, 0, 0), Vector3 .zAxis);
+   // const oz = new Line3 (new Vector3 (4, 0, 0), Vector3 .Z_AXIS);
 
    // expect (c1 .intersectsLine (oz, en, ex)) .toBe (false);
 });

@@ -19,7 +19,7 @@ test ("normal", () =>
    const c = new Vector3 (0, 1, 0);
    const n = new Vector3 ();
 
-   expect (Triangle3 .normal (a, b, c, n) .equals (Vector3 .zAxis)) .toBe (true);
+   expect (Triangle3 .normal (a, b, c, n) .equals (Vector3 .Z_AXIS)) .toBe (true);
 });
 
 test ("quadNormal", () =>
@@ -30,7 +30,7 @@ test ("quadNormal", () =>
    const d = new Vector3 (0, 1, 0);
    const n = new Vector3 ();
 
-   expect (Triangle3 .quadNormal (a, b, c, d, n) .equals (Vector3 .zAxis)) .toBe (true);
+   expect (Triangle3 .quadNormal (a, b, c, d, n) .equals (Vector3 .Z_AXIS)) .toBe (true);
 });
 
 test ("triangulatePolygon", () =>
