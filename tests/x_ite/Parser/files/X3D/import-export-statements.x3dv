@@ -1,0 +1,18 @@
+#X3D V4.0 utf8
+
+PROFILE Interchange
+
+DEF S Shape {
+  appearance Appearance {
+    material Material { }
+  }
+  geometry Box { }
+}
+
+DEF I Inline { }
+
+IMPORT I.N DESCRIPTION "Import Test 1"
+IMPORT I.N AS IN DESCRIPTION "Import Test 2"
+
+EXPORT S DESCRIPTION "Export Test 1"
+EXPORT S AS ES DESCRIPTION "Export Test 2"
