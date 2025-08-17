@@ -55,6 +55,17 @@ test ("concrete-nodes", async () =>
          expect (copy .getExecutionContext ()) .toBe (node .getValue () .getExecutionContext ());
       }
 
+      // Field definitions
+
+      for (const fieldDefinition of node .getFieldDefinitions ())
+      {
+         const field = node .getValue () .getField (fieldDefinition .name);
+
+         expect (field .getName ()) .toBe (fieldDefinition .name);
+         expect (field .getAccessType ()) .toBe (fieldDefinition .accessType);
+         expect (field .getType ()) .toBe (fieldDefinition .dataType);
+      }
+
       // Dispose.
 
       const baseNode = node .getValue ();
