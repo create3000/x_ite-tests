@@ -67,6 +67,8 @@ test ("concrete-nodes", async () =>
 
          // Field definitions
 
+         expect (node .getFieldDefinitions ()) .toHaveLength (node .getValue () .getFields () .length);
+
          for (const fieldDefinition of node .getFieldDefinitions ())
          {
             const field = node .getValue () .getField (fieldDefinition .name);
