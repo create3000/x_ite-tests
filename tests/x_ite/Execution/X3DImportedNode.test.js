@@ -63,6 +63,7 @@ IMPORT I.E2 AS I2
       "exportedName",
       "exportedNode",
       "importedName",
+      "description",
    ]
 
    enumerate (properties, importedNode)

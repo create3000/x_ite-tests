@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE X3D PUBLIC "ISO//Web3D//DTD X3D 4.1//EN" "https://www.web3d.org/specifications/x3d-4.1.dtd">
+<X3D profile='Interchange' version='4.1' xmlns:xsd='http://www.w3.org/2001/XMLSchema-instance' xsd:noNamespaceSchemaLocation='https://www.web3d.org/specifications/x3d-4.1.xsd'>
+  <Scene>
+    <Shape DEF='S'>
+      <Appearance>
+        <Material/>
+      </Appearance>
+      <Box/>
+    </Shape>
+    <Inline DEF='I'/>
+    <IMPORT inlineDEF='I' importedDEF='N' DESCRIPTION='Import Test 1'/>
+    <IMPORT inlineDEF='I' importedDEF='N' AS='IN' DESCRIPTION='Import Test 2'/>
+    <EXPORT localDEF='S' DESCRIPTION='Export Test 1'/>
+    <EXPORT localDEF='S' AS='ES' DESCRIPTION='Export Test 2'/>
+  </Scene>
+</X3D>

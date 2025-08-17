@@ -711,3 +711,45 @@ DEF Test Viewpoint {
    expect (scene .rootNodes [0] .getNodeName ()) .toBe ("Test");
    expect (scene .rootNodes [0] .description) .toBe ("test");
 });
+
+test ("import-export-statements.x3d", async () =>
+{
+   const
+      latestVersion = (await Browser .createScene ()) .specificationVersion,
+      scene         = await Browser .createX3DFromURL (new X3D .MFString (url .pathToFileURL (path .join (__dirname, "files", "X3D", `import-export-statements.x3d`))));
+
+   const orig = await fetch (path .join (__dirname, "files", "X3D", `import-export-statements.x3d`)) .then (r => r .text ());
+
+   for (const style of ["TIDY", "COMPACT", "SMALL", "CLEAN"])
+   {
+      const
+         x3d  = scene .toXMLString  ({ style }),
+         x3dv = scene .toVRMLString ({ style }),
+         x3dj = scene .toJSONString ({ style }),
+         html = scene .toXMLString ({ style, closingTags: true });
+
+      const encodings = ["XML", "XML", "VRML", "JSON", "XML"];
+
+      Browser .baseURL = scene .worldURL;
+
+      for (const [i, file] of [orig, x3d, x3dv, x3dj, html] .entries ())
+      {
+         const scene = await Browser .createX3DFromURL (new X3D .MFString (`data:model/x3d,${file}`));
+
+         expect (scene .encoding) .toBe (encodings [i]);
+
+         if (i)
+            expect (scene .specificationVersion) .toBe (latestVersion);
+
+         expect (scene .importedNodes [0] .description) .toBe ("Import Test 1");
+         expect (scene .importedNodes [1] .description) .toBe ("Import Test 2");
+         expect (scene .exportedNodes [0] .description) .toBe ("Export Test 1");
+         expect (scene .exportedNodes [1] .description) .toBe ("Export Test 2");
+
+         expect (scene .toXMLString ()) .toBe (orig);
+         expect (scene .toXMLString  ({ style })) .toBe (x3d);
+         expect (scene .toVRMLString ({ style })) .toBe (x3dv);
+         expect (scene .toJSONString ({ style })) .toBe (x3dj);
+      }
+   }
+});

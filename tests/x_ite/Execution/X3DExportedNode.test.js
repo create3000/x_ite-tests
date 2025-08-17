@@ -45,6 +45,7 @@ EXPORT N2 AS E2
    const properties = [
       "exportedName",
       "localNode",
+      "description",
    ]
 
    enumerate (properties, exportedNode)
