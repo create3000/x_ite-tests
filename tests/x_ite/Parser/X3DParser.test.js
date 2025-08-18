@@ -712,6 +712,24 @@ DEF Test Viewpoint {
    expect (scene .rootNodes [0] .description) .toBe ("test");
 });
 
+// test ("parse proto with name of a build-in node not in profile", async () =>
+// {
+//    const scene = await Browser .createX3DFromString (`#X3D V4.0 utf8
+
+// PROFILE Interchange
+
+// # This proto should be used to create the node below.
+// PROTO ParticleSystem [ ] { }
+
+// DEF Test ParticleSystem { }
+//    `);
+
+//    expect (scene .rootNodes) .toHaveLength (1);
+//    expect (scene .rootNodes [0] .getNodeName ()) .toBe ("Test");
+//    expect (scene .rootNodes [0] .getNodeTypeName ()) .toBe ("ParticleSystem");
+//    expect (scene .rootNodes [0] .getNodeType () .includes (X3D .X3DConstants .X3DPrototypeInstance)) .toBe (true);
+// });
+
 test ("parse proto with name of a build-in node", async () =>
 {
    const scene = await Browser .createX3DFromString (`#X3D V4.0 utf8
@@ -731,4 +749,5 @@ DEF Test Group { }
    const Group = Browser .getConcreteNode ("Group");
 
    expect (scene .rootNodes [0] .getValue ()) .toBeInstanceOf (Group);
+   expect (scene .rootNodes [0] .getNodeType () .includes (X3D .X3DConstants .Group)) .toBe (true);
 });
