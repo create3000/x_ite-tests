@@ -711,3 +711,24 @@ DEF Test Viewpoint {
    expect (scene .rootNodes [0] .getNodeName ()) .toBe ("Test");
    expect (scene .rootNodes [0] .description) .toBe ("test");
 });
+
+test ("parse proto with name of a build-in node", async () =>
+{
+   const scene = await Browser .createX3DFromString (`#X3D V4.0 utf8
+
+PROFILE Interchange
+
+# This proto should not override the built-in Group node.
+PROTO Group [ ] { }
+
+DEF Test Group { }
+   `);
+
+   expect (scene .rootNodes) .toHaveLength (1);
+   expect (scene .rootNodes [0] .getNodeName ()) .toBe ("Test");
+   expect (scene .rootNodes [0] .getNodeTypeName ()) .toBe ("Group");
+
+   const Group = Browser .getConcreteNode ("Group");
+
+   expect (scene .rootNodes [0] .getValue ()) .toBeInstanceOf (Group);
+});
