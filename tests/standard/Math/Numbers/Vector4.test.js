@@ -5,11 +5,18 @@ const
 test ("constants", () =>
 {
    expect (Vector4 .ZERO .equals (new Vector4 (0))) .toBe (true);
+
    expect (Vector4 .ONE .equals (new Vector4 (1))) .toBe (true);
    expect (Vector4 .X_AXIS .equals (new Vector4 (1,0,0,0))) .toBe (true);
    expect (Vector4 .Y_AXIS .equals (new Vector4 (0,1,0,0))) .toBe (true);
    expect (Vector4 .Z_AXIS .equals (new Vector4 (0,0,1,0))) .toBe (true);
    expect (Vector4 .W_AXIS .equals (new Vector4 (0,0,0,1))) .toBe (true);
+
+   expect (Vector4 .NEGATIVE_ONE .equals (new Vector4 (-1))) .toBe (true);
+   expect (Vector4 .NEGATIVE_X_AXIS .equals (new Vector4 (-1,0,0,0))) .toBe (true);
+   expect (Vector4 .NEGATIVE_Y_AXIS .equals (new Vector4 (0,-1,0,0))) .toBe (true);
+   expect (Vector4 .NEGATIVE_Z_AXIS .equals (new Vector4 (0,0,-1,0))) .toBe (true);
+   expect (Vector4 .NEGATIVE_W_AXIS .equals (new Vector4 (0,0,0,-1))) .toBe (true);
 });
 
 test ("constructor", () =>
