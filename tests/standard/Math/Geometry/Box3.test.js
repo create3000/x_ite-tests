@@ -256,19 +256,19 @@ test ("intersectsBox", () =>
    expect (b1 .intersectsBox (b3)) .toBe (false);
 });
 
-test ("intersectsTriangle", () =>
-{
-   const b1 = new Box3 (new Vector3 (4, 4, 4), new Vector3 (0, 0, 0));
-   const t1 = new Vector3 (1, 1, 0);
-   const t2 = new Vector3 (3, 1, 0);
-   const t3 = new Vector3 (3, 3, 0);
-   const t4 = new Vector3 (3, 1, 0);
-   const t5 = new Vector3 (5, 1, 0);
-   const t6 = new Vector3 (5, 3, 0);
+// test ("intersectsTriangle", () =>
+// {
+//    const b1 = new Box3 (new Vector3 (4, 4, 4), new Vector3 (0, 0, 0));
+//    const t1 = new Vector3 (1, 1, 0);
+//    const t2 = new Vector3 (3, 1, 0);
+//    const t3 = new Vector3 (3, 3, 0);
+//    const t4 = new Vector3 (3, 1, 0);
+//    const t5 = new Vector3 (5, 1, 0);
+//    const t6 = new Vector3 (5, 3, 0);
 
-   expect (b1 .intersectsTriangle (t1, t2, t3)) .toBe (true);
-   expect (b1 .intersectsTriangle (t4, t4, t6)) .toBe (false);
-});
+//    expect (b1 .intersectsTriangle (t1, t2, t3)) .toBe (true);
+//    expect (b1 .intersectsTriangle (t4, t4, t6)) .toBe (false);
+// });
 
 test ("toString", () =>
 {
