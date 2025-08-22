@@ -50,6 +50,8 @@ test ("properties", () =>
       "accessType",
       "dataType",
       "name",
+      "appInfo",
+      "documentation",
    ]
 
    enumerate (properties, fieldDefinitions [0])

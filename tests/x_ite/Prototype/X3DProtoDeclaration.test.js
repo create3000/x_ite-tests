@@ -37,6 +37,8 @@ Test { }
    expect (proto .constructor) .toBe (X3D .X3DProtoDeclaration)
    expect (proto .name) .toBe ("Test")
    expect (proto .isExternProto) .toBe (false)
+   expect (proto .appInfo) .toBe ("")
+   expect (proto .documentation) .toBe ("")
    expect (proto .fields) .toBeInstanceOf (X3D .FieldDefinitionArray)
    expect (proto .fields) .toHaveLength (2)
    expect (proto .fields [0]) .toBeInstanceOf (X3D .X3DFieldDefinition)
@@ -58,10 +60,14 @@ Test { }
 
    proto .name = undefined
    proto .isExternProto = undefined
+   proto .appInfo = undefined
+   proto .documentation = undefined
    proto .fields = undefined
 
    expect (proto .name) .toBe ("Test")
    expect (proto .isExternProto) .toBe (false)
+   expect (proto .appInfo) .toBe ("")
+   expect (proto .documentation) .toBe ("")
    expect (proto .fields) .toBeInstanceOf (X3D .FieldDefinitionArray)
    expect (proto .fields) .toHaveLength (2)
    expect (proto .fields [0]) .toBeInstanceOf (X3D .X3DFieldDefinition)
@@ -91,6 +97,8 @@ Test { }
       "name",
       "isExternProto",
       "fields",
+      "appInfo",
+      "documentation",
    ]
 
    enumerate (properties, proto)
