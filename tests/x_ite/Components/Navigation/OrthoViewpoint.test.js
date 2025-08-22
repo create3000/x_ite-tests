@@ -10,4 +10,5 @@ test ("legacy fields", async () =>
 OrthoViewpoint { }`))
 
    expect (scene1 .rootNodes [0] .fieldOfView) .toBeInstanceOf (X3D .MFFloat);
+   expect (scene1 .rootNodes [0] .fieldOfView .equals (new X3D .MFFloat (-1, -1, 1, 1))) .toBe (true);
 });
