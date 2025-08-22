@@ -6,7 +6,7 @@
     <meta name='created' content='Mon, 04 Aug 2025 21:16:32 GMT'/>
     <meta name='creator' content='Holger Seelig'/>
     <meta name='generator' content='Sunrize X3D Editor V1.8.26, https://create3000.github.io/sunrize/'/>
-    <meta name='modified' content='Fri, 22 Aug 2025 15:03:42 GMT'/>
+    <meta name='modified' content='Fri, 22 Aug 2025 15:41:09 GMT'/>
   </head>
   <Scene>
     <ExternProtoDeclare name='ExternText' url='' appinfo='appinfo ExternProtoDeclare' documentation='doc ExternProtoDeclare'>
@@ -17,17 +17,18 @@
         <field accessType='inputOutput' type='SFInt32' name='test1' appinfo='appinfo field1' documentation='doc field1'/>
         <field accessType='inputOutput' type='SFInt32' name='test2' value='1' appinfo='appinfo field2' documentation='doc field2'/>
         <field accessType='inputOutput' type='MFNode' name='test3' appinfo='appinfo field3' documentation='doc field3'>
-          <Group containerField='test3'/>
+          <Group/>
         </field>
       </ProtoInterface>
       <ProtoBody>
+        <Group/>
       </ProtoBody>
     </ProtoDeclare>
     <Script DEF='TestScript'>
       <field accessType='inputOutput' type='SFInt32' name='test1' appinfo='appinfo field1' documentation='doc field1'/>
       <field accessType='inputOutput' type='SFInt32' name='test2' value='1' appinfo='appinfo field2' documentation='doc field2'/>
       <field accessType='inputOutput' type='MFNode' name='test3' appinfo='appinfo field3' documentation='doc field3'>
-        <Group containerField='test3'/>
+        <Group/>
       </field>
 <![CDATA[ecmascript:
 ]]>
