@@ -100,9 +100,9 @@ test ("appinfo.x3d", async () =>
 {
    const
       latestVersion = (await Browser .createScene ()) .specificationVersion,
-      scene         = await Browser .createX3DFromURL (new X3D .MFString (url .pathToFileURL (path .join (__dirname, "files", "X3D", `appinfo.x3d`))))
+      scene         = await Browser .createX3DFromURL (new X3D .MFString (url .pathToFileURL (path .join (__dirname, "files", "X3D", `appinfo.x3d`))));
 
-   const orig = await fetch (path .join (__dirname, "files", "X3D", `appinfo.x3d`)) .then (r => r .text ())
+   const orig = await fetch (path .join (__dirname, "files", "X3D", `appinfo.x3d`)) .then (r => r .text ());
 
    for (const style of ["TIDY", "COMPACT", "SMALL", "CLEAN"])
    {
@@ -110,15 +110,15 @@ test ("appinfo.x3d", async () =>
          x3d  = scene .toXMLString  ({ style }),
          html = scene .toXMLString ({ style, closingTags: true });
 
-      const encodings = ["XML", "XML", "XML"]
+      const encodings = ["XML", "XML", "XML"];
 
       Browser .baseURL = scene .worldURL;
 
       for (const [i, file] of [orig, x3d, html] .entries ())
       {
-         const scene = await Browser .createX3DFromURL (new X3D .MFString (`data:model/x3d,${file}`))
+         const scene = await Browser .createX3DFromURL (new X3D .MFString (`data:model/x3d,${file}`));
 
-         expect (scene .encoding) .toBe (encodings [i])
+         expect (scene .encoding) .toBe (encodings [i]);
 
          if (i)
             expect (scene .specificationVersion) .toBe (latestVersion);
@@ -127,17 +127,36 @@ test ("appinfo.x3d", async () =>
 
          expect (externproto .appInfo) .toBe ("appinfo ExternProtoDeclare");
          expect (externproto .documentation) .toBe ("doc ExternProtoDeclare");
-         expect (externproto .fields [1] .name) .toBe ("test");
-         expect (externproto .fields [1] .appInfo) .toBe ("appinfo field");
-         expect (externproto .fields [1] .documentation) .toBe ("doc field");
+         expect (externproto .fields [1] .name) .toBe ("test1");
+         expect (externproto .fields [1] .appInfo) .toBe ("appinfo field1");
+         expect (externproto .fields [1] .documentation) .toBe ("doc field1");
 
          const proto = scene .protos [0];
 
          expect (proto .appInfo) .toBe ("appinfo ProtoDeclare");
          expect (proto .documentation) .toBe ("doc ProtoDeclare");
-         expect (proto .fields [1] .name) .toBe ("test");
-         expect (proto .fields [1] .appInfo) .toBe ("appinfo field");
-         expect (proto .fields [1] .documentation) .toBe ("doc field");
+         expect (proto .fields [1] .name) .toBe ("test1");
+         expect (proto .fields [1] .appInfo) .toBe ("appinfo field1");
+         expect (proto .fields [1] .documentation) .toBe ("doc field1");
+         expect (proto .fields [2] .name) .toBe ("test2");
+         expect (proto .fields [2] .appInfo) .toBe ("appinfo field2");
+         expect (proto .fields [2] .documentation) .toBe ("doc field2");
+         expect (proto .fields [3] .name) .toBe ("test3");
+         expect (proto .fields [3] .appInfo) .toBe ("appinfo field3");
+         expect (proto .fields [3] .documentation) .toBe ("doc field3");
+
+         const script = scene .getNamedNode ("TestScript");
+         const first  = script .getFieldDefinitions () .findIndex (field => field .name === "test1");
+
+         expect (script .getFieldDefinitions () [first + 0] .name) .toBe ("test1");
+         expect (script .getFieldDefinitions () [first + 0] .appInfo) .toBe ("appinfo field1");
+         expect (script .getFieldDefinitions () [first + 0] .documentation) .toBe ("doc field1");
+         expect (script .getFieldDefinitions () [first + 1] .name) .toBe ("test2");
+         expect (script .getFieldDefinitions () [first + 1] .appInfo) .toBe ("appinfo field2");
+         expect (script .getFieldDefinitions () [first + 1] .documentation) .toBe ("doc field2");
+         expect (script .getFieldDefinitions () [first + 2] .name) .toBe ("test3");
+         expect (script .getFieldDefinitions () [first + 2] .appInfo) .toBe ("appinfo field3");
+         expect (script .getFieldDefinitions () [first + 2] .documentation) .toBe ("doc field3");
 
          expect (scene .toXMLString ()) .toBe (orig);
          expect (scene .toXMLString ({ style })) .toBe (x3d);
