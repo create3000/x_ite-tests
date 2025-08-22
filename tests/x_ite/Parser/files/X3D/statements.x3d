@@ -3,6 +3,7 @@
 <X3D profile='Interchange' version='4.0' xmlns:xsd='http://www.w3.org/2001/XMLSchema-instance' xsd:noNamespaceSchemaLocation='https://www.web3d.org/specifications/x3d-4.0.xsd'>
   <head>
     <component name='CADGeometry' level='2'/>
+    <component name='Geometry2D' level='2'/>
     <component name='ParticleSystems' level='3'/>
     <component name='Scripting' level='1'/>
     <component name='Shaders' level='1'/>
@@ -13,8 +14,8 @@
     <unit category='mass' name='gram' conversionFactor='0.001'/>
     <meta name='created' content='Mon, 08 May 2023 12:03:58 GMT'/>
     <meta name='creator' content='Holger Seelig'/>
-    <meta name='generator' content='Sunrize X3D Editor V1.6.7, https://create3000.github.io/sunrize/'/>
-    <meta name='modified' content='Wed, 27 Mar 2024 21:29:41 GMT'/>
+    <meta name='generator' content='Sunrize X3D Editor V1.8.26, https://create3000.github.io/sunrize/'/>
+    <meta name='modified' content='Fri, 22 Aug 2025 15:13:53 GMT'/>
   </head>
   <Scene>
     <ExternProtoDeclare name='Foo' url='"proto.x3d"'>
