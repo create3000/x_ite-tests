@@ -11,7 +11,6 @@
   <Scene>
     <ExternProtoDeclare name='ExternText' url='' appinfo='appinfo ExternProtoDeclare' documentation='doc ExternProtoDeclare'>
       <field accessType='inputOutput' type='SFInt32' name='test1' appinfo='appinfo field1' documentation='doc field1'/>
-      <field accessType='inputOutput' type='SFInt32' name='test2' appinfo='appinfo field2' documentation='doc field2'/>
     </ExternProtoDeclare>
     <ProtoDeclare name='Test' appinfo='appinfo ProtoDeclare' documentation='doc ProtoDeclare'>
       <ProtoInterface>
