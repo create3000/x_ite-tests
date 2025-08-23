@@ -15,8 +15,8 @@ class TestNode extends X3DNode
    static specificationRange = Object .freeze ({ from: "2.0", to: "Infinity" })
 
    static fieldDefinitions = new FieldDefinitionArray ([
-      new X3DFieldDefinition (X3DConstants .inputOutput, "metadata", new Fields .SFNode ()),
-      new X3DFieldDefinition (X3DConstants .inputOutput, "test",     new Fields .SFString ("TestValue")),
+      new X3DFieldDefinition (X3DConstants .inputOutput, "metadata", new X3D .SFNode ()),
+      new X3DFieldDefinition (X3DConstants .inputOutput, "test",     new X3D .SFString ("TestValue")),
    ])
 
    constructor (executionContext)

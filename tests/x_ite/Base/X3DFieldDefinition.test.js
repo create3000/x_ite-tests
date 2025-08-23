@@ -34,7 +34,7 @@ test ("properties", () =>
    expect (fieldDefinitions [2] .accessType) .toBe (X3D .X3DConstants .inputOutput);
    expect (fieldDefinitions [2] .dataType) .toBe (X3D .X3DConstants .MFString);
    expect (fieldDefinitions [2] .name) .toBe ("info");
-   expect (fieldDefinitions [2] .value) .toBeInstanceOf (Fields .MFString);
+   expect (fieldDefinitions [2] .value) .toBeInstanceOf (X3D .MFString);
 
    fieldDefinitions [0] .accessType = undefined;
    fieldDefinitions [0] .dataType = undefined;
@@ -72,7 +72,7 @@ test ("SAI", () =>
    expect (fieldDefinitions [2] .getAccessType ()) .toBe (X3D .X3DConstants .inputOutput);
    expect (fieldDefinitions [2] .getDataType ()) .toBe (X3D .X3DConstants .MFString);
    expect (fieldDefinitions [2] .getName ()) .toBe ("info");
-   expect (fieldDefinitions [2] .getValue ()) .toBeInstanceOf (Fields .MFString);
+   expect (fieldDefinitions [2] .getValue ()) .toBeInstanceOf (X3D .MFString);
 });
 
 test ("toString", () =>

@@ -103,13 +103,13 @@ DEF Script Script {
    const script = scene .getNamedNode ("Script") .getValue ();
 
    expect (script .evaluate ("double1")) .toBe (0);
-   expect (script .evaluate ("vector1")) .toBeInstanceOf (Fields .SFVec3f);
+   expect (script .evaluate ("vector1")) .toBeInstanceOf (X3D .SFVec3f);
    expect (script .evaluate ("typeof double2")) .toBe ("undefined");
    expect (script .evaluate ("typeof vector2")) .toBe ("undefined");
    expect (script .evaluate ("double3")) .toBe (0);
-   expect (script .evaluate ("vector3")) .toBeInstanceOf (Fields .SFVec3f);
+   expect (script .evaluate ("vector3")) .toBeInstanceOf (X3D .SFVec3f);
    expect (script .evaluate ("double4")) .toBe (0);
-   expect (script .evaluate ("vector4")) .toBeInstanceOf (Fields .SFVec3f);
+   expect (script .evaluate ("vector4")) .toBeInstanceOf (X3D .SFVec3f);
 });
 
 test ("createVrmlFromURL", async () =>
