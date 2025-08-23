@@ -50,6 +50,7 @@ test ("properties", () =>
       "accessType",
       "dataType",
       "name",
+      "value",
       "appInfo",
       "documentation",
    ];
