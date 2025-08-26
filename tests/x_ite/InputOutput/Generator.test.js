@@ -1,6 +1,6 @@
 const
    X3D           = require ("../../X3D"),
-   Generator     = X3D .Generator,
+   VRMLGenerator = X3D .VRMLGenerator,
    Browser       = X3D .createBrowser () .browser,
    latestVersion = Browser .currentScene .specificationVersion
 
@@ -57,7 +57,7 @@ const values = [
 
 test ("FloatFormat", () =>
 {
-   const generator = new Generator ({ })
+   const generator = new VRMLGenerator ({ })
 
    for (const [first, second] of values)
       expect (generator .FloatFormat (first)) .toBe (second)
@@ -65,7 +65,7 @@ test ("FloatFormat", () =>
 
 test ("DoubleFormat", () =>
 {
-   const generator = new Generator ({ doublePrecision: 7 })
+   const generator = new VRMLGenerator ({ doublePrecision: 7 })
 
    for (const [first, second] of values)
       expect (generator .DoubleFormat (first)) .toBe (second)
