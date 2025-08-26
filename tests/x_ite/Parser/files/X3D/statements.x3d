@@ -26,7 +26,7 @@
     <ProtoDeclare name='Test'>
       <ProtoInterface>
         <field accessType='inputOnly' type='SFBool' name='set_bind'/>
-        <field accessType='inputOutput' type='SFFloat' name='transparency'/>
+        <field accessType='inputOutput' type='SFFloat' name='transparency' value='123'/>
         <field accessType='outputOnly' type='SFBool' name='isBound'/>
         <field accessType='inputOutput' type='MFNode' name='children'>
           <Transform DEF='_1'/>
@@ -105,6 +105,12 @@
     <PositionInterpolator DEF='PI'/>
     <Transform DEF='T'/>
     <Script DEF='NewScript'>
+      <field accessType='inputOnly' type='SFBool' name='set_bind'/>
+      <field accessType='inputOutput' type='SFFloat' name='transparency' value='123'/>
+      <field accessType='outputOnly' type='SFBool' name='isBound'/>
+      <field accessType='inputOutput' type='MFNode' name='children'>
+        <Transform/>
+      </field>
 <![CDATA[ecmascript:
 
 function initialize ()
