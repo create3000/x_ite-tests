@@ -92,6 +92,7 @@ test ("fields.x3d", async () =>
          expect (scene .toXMLString  ({ style })) .toBe (x3d);
          expect (scene .toVRMLString ({ style })) .toBe (x3dv);
          expect (scene .toJSONString ({ style })) .toBe (x3dj);
+         expect (scene .toXMLString ({ style, closingTags: true })) .toBe (html);
       }
    }
 });
@@ -162,6 +163,7 @@ test ("appinfo.x3d", async () =>
          expect (scene .toXMLString ()) .toBe (orig);
          expect (scene .toXMLString ({ style })) .toBe (x3d);
          expect (scene .toJSONString ({ style })) .toBe (x3dj);
+         expect (scene .toXMLString ({ style, closingTags: true })) .toBe (html);
       }
    }
 });
@@ -406,6 +408,7 @@ test ("proto-with-filled-node-fields.x3d", async () =>
          expect (scene .toXMLString  ({ style })) .toBe (x3d);
          expect (scene .toVRMLString ({ style })) .toBe (x3dv);
          expect (scene .toJSONString ({ style })) .toBe (x3dj);
+         expect (scene .toXMLString ({ style, closingTags: true })) .toBe (html);
       }
    }
 });
