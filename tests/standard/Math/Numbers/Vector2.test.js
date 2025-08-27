@@ -5,9 +5,14 @@ const
 test ("constants", () =>
 {
    expect (Vector2 .ZERO .equals (new Vector2 (0))) .toBe (true);
+
    expect (Vector2 .ONE .equals (new Vector2 (1))) .toBe (true);
    expect (Vector2 .X_AXIS .equals (new Vector2 (1,0))) .toBe (true);
    expect (Vector2 .Y_AXIS .equals (new Vector2 (0,1))) .toBe (true);
+
+   expect (Vector2 .NEGATIVE_ONE .equals (new Vector2 (-1))) .toBe (true);
+   expect (Vector2 .NEGATIVE_X_AXIS .equals (new Vector2 (-1,0))) .toBe (true);
+   expect (Vector2 .NEGATIVE_Y_AXIS .equals (new Vector2 (0,-1))) .toBe (true);
 });
 
 test ("constructor", () =>

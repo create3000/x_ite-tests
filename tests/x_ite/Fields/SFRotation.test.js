@@ -2,10 +2,10 @@ const
    X3D        = require ("../../X3D"),
    Browser    = X3D .createBrowser () .browser,
    SFRotation = X3D .SFRotation,
-   SFVec3d    = X3D .Fields .SFVec3d,
-   SFVec3f    = X3D .Fields .SFVec3f,
-   SFMatrix3d = X3D .Fields .SFMatrix3d,
-   SFMatrix3f = X3D .Fields .SFMatrix3f
+   SFVec3d    = X3D .SFVec3d,
+   SFVec3f    = X3D .SFVec3f,
+   SFMatrix3d = X3D .SFMatrix3d,
+   SFMatrix3f = X3D .SFMatrix3f
 
 test ("constructor", () =>
 {

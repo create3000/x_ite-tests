@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE X3D PUBLIC "ISO//Web3D//DTD X3D 4.0//EN" "https://www.web3d.org/specifications/x3d-4.0.dtd">
+<X3D profile='Interchange' version='4.0' xmlns:xsd='http://www.w3.org/2001/XMLSchema-instance' xsd:noNamespaceSchemaLocation='https://www.web3d.org/specifications/x3d-4.0.xsd'>
+  <head>
+    <component name='Scripting' level='1'/>
+    <meta name='created' content='Mon, 04 Aug 2025 21:16:32 GMT'/>
+    <meta name='creator' content='Holger Seelig'/>
+    <meta name='generator' content='Sunrize X3D Editor V1.8.26, https://create3000.github.io/sunrize/'/>
+    <meta name='modified' content='Sat, 23 Aug 2025 08:15:38 GMT'/>
+  </head>
+  <Scene>
+    <ExternProtoDeclare name='ExternText' url='' appinfo='appinfo ExternProtoDeclare' documentation='doc ExternProtoDeclare'>
+      <field accessType='inputOutput' type='SFInt32' name='test1' appinfo='appinfo field1' documentation='doc field1'/>
+    </ExternProtoDeclare>
+    <ProtoDeclare name='Test' appinfo='appinfo ProtoDeclare' documentation='doc ProtoDeclare'>
+      <ProtoInterface>
+        <field accessType='inputOutput' type='SFInt32' name='test1' appinfo='appinfo field1' documentation='doc field1'/>
+        <field accessType='inputOutput' type='SFInt32' name='test2' value='1' appinfo='appinfo field2' documentation='doc field2'/>
+        <field accessType='inputOutput' type='MFNode' name='test3' appinfo='appinfo field3' documentation='doc field3'>
+          <Group DEF='_1'/>
+        </field>
+      </ProtoInterface>
+      <ProtoBody>
+        <Group/>
+      </ProtoBody>
+    </ProtoDeclare>
+    <Script DEF='TestScript'>
+      <field accessType='inputOutput' type='SFInt32' name='test1' appinfo='appinfo field1' documentation='doc field1'/>
+      <field accessType='inputOutput' type='SFInt32' name='test2' value='1' appinfo='appinfo field2' documentation='doc field2'/>
+      <field accessType='inputOutput' type='MFNode' name='test3' appinfo='appinfo field3' documentation='doc field3'>
+        <Group/>
+      </field>
+<![CDATA[ecmascript:
+]]>
+    </Script>
+    <ProtoInstance name='Test'/>
+  </Scene>
+</X3D>

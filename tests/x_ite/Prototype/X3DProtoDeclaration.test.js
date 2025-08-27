@@ -37,13 +37,15 @@ Test { }
    expect (proto .constructor) .toBe (X3D .X3DProtoDeclaration)
    expect (proto .name) .toBe ("Test")
    expect (proto .isExternProto) .toBe (false)
+   expect (proto .appInfo) .toBe ("")
+   expect (proto .documentation) .toBe ("")
    expect (proto .fields) .toBeInstanceOf (X3D .FieldDefinitionArray)
    expect (proto .fields) .toHaveLength (2)
    expect (proto .fields [0]) .toBeInstanceOf (X3D .X3DFieldDefinition)
    expect (proto .fields [0] .accessType) .toBe (X3D .X3DConstants .inputOutput)
    expect (proto .fields [0] .dataType) .toBe (X3D .X3DConstants .SFNode)
    expect (proto .fields [0] .name) .toBe ("metadata")
-   expect (proto .fields [0] .value) .toBeInstanceOf (X3D .SFNode)
+   expect (proto .fields [0] .value) .toBe (null)
    expect (proto .fields [1]) .toBeInstanceOf (X3D .X3DFieldDefinition)
    expect (proto .fields [1] .accessType) .toBe (X3D .X3DConstants .initializeOnly)
    expect (proto .fields [1] .dataType) .toBe (X3D .X3DConstants .SFVec3f)
@@ -58,17 +60,21 @@ Test { }
 
    proto .name = undefined
    proto .isExternProto = undefined
+   proto .appInfo = undefined
+   proto .documentation = undefined
    proto .fields = undefined
 
    expect (proto .name) .toBe ("Test")
    expect (proto .isExternProto) .toBe (false)
+   expect (proto .appInfo) .toBe ("")
+   expect (proto .documentation) .toBe ("")
    expect (proto .fields) .toBeInstanceOf (X3D .FieldDefinitionArray)
    expect (proto .fields) .toHaveLength (2)
    expect (proto .fields [0]) .toBeInstanceOf (X3D .X3DFieldDefinition)
    expect (proto .fields [0] .accessType) .toBe (X3D .X3DConstants .inputOutput)
    expect (proto .fields [0] .dataType) .toBe (X3D .X3DConstants .SFNode)
    expect (proto .fields [0] .name) .toBe ("metadata")
-   expect (proto .fields [0] .value) .toBeInstanceOf (X3D .SFNode)
+   expect (proto .fields [0] .value) .toBe (null)
    expect (proto .fields [1]) .toBeInstanceOf (X3D .X3DFieldDefinition)
    expect (proto .fields [1] .accessType) .toBe (X3D .X3DConstants .initializeOnly)
    expect (proto .fields [1] .dataType) .toBe (X3D .X3DConstants .SFVec3f)
@@ -91,6 +97,8 @@ Test { }
       "name",
       "isExternProto",
       "fields",
+      "appInfo",
+      "documentation",
    ]
 
    enumerate (properties, proto)

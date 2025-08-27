@@ -5,10 +5,16 @@ const
 test ("constants", () =>
 {
    expect (Vector3 .ZERO .equals (new Vector3 (0))) .toBe (true);
+
    expect (Vector3 .ONE .equals (new Vector3 (1))) .toBe (true);
    expect (Vector3 .X_AXIS .equals (new Vector3 (1,0,0))) .toBe (true);
    expect (Vector3 .Y_AXIS .equals (new Vector3 (0,1,0))) .toBe (true);
    expect (Vector3 .Z_AXIS .equals (new Vector3 (0,0,1))) .toBe (true);
+
+   expect (Vector3 .NEGATIVE_ONE .equals (new Vector3 (-1))) .toBe (true);
+   expect (Vector3 .NEGATIVE_X_AXIS .equals (new Vector3 (-1,0,0))) .toBe (true);
+   expect (Vector3 .NEGATIVE_Y_AXIS .equals (new Vector3 (0,-1,0))) .toBe (true);
+   expect (Vector3 .NEGATIVE_Z_AXIS .equals (new Vector3 (0,0,-1))) .toBe (true);
 });
 
 test ("constructor", () =>

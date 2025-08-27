@@ -58,13 +58,15 @@ Test { size 4 4 4 }
    expect (externproto .loadState) .toBe (X3D .X3DConstants .COMPLETE_STATE)
    expect (externproto .isExternProto) .toBe (true)
    expect (externproto .urls) .toBeInstanceOf (X3D .MFString)
+   expect (externproto .appInfo) .toBe ("")
+   expect (externproto .documentation) .toBe ("")
    expect (externproto .fields) .toBeInstanceOf (X3D .FieldDefinitionArray)
    expect (externproto .fields) .toHaveLength (2)
    expect (externproto .fields [0]) .toBeInstanceOf (X3D .X3DFieldDefinition)
    expect (externproto .fields [0] .accessType) .toBe (X3D .X3DConstants .inputOutput)
    expect (externproto .fields [0] .dataType) .toBe (X3D .X3DConstants .SFNode)
    expect (externproto .fields [0] .name) .toBe ("metadata")
-   expect (externproto .fields [0] .value) .toBeInstanceOf (X3D .SFNode)
+   expect (externproto .fields [0] .value) .toBe (null)
    expect (externproto .fields [1]) .toBeInstanceOf (X3D .X3DFieldDefinition)
    expect (externproto .fields [1] .accessType) .toBe (X3D .X3DConstants .initializeOnly)
    expect (externproto .fields [1] .dataType) .toBe (X3D .X3DConstants .SFVec3f)
@@ -81,19 +83,23 @@ Test { size 4 4 4 }
    externproto .loadState = undefined
    externproto .isExternProto = undefined
    externproto .urls = undefined
+   externproto .appInfo = undefined
+   externproto .documentation = undefined
    externproto .fields = undefined
 
    expect (externproto .name) .toBe ("Test")
    expect (externproto .loadState) .toBe (X3D .X3DConstants .COMPLETE_STATE)
    expect (externproto .isExternProto) .toBe (true)
    expect (externproto .urls) .toBeInstanceOf (X3D .MFString)
+   expect (externproto .appInfo) .toBe ("")
+   expect (externproto .documentation) .toBe ("")
    expect (externproto .fields) .toBeInstanceOf (X3D .FieldDefinitionArray)
    expect (externproto .fields) .toHaveLength (2)
    expect (externproto .fields [0]) .toBeInstanceOf (X3D .X3DFieldDefinition)
    expect (externproto .fields [0] .accessType) .toBe (X3D .X3DConstants .inputOutput)
    expect (externproto .fields [0] .dataType) .toBe (X3D .X3DConstants .SFNode)
    expect (externproto .fields [0] .name) .toBe ("metadata")
-   expect (externproto .fields [0] .value) .toBeInstanceOf (X3D .SFNode)
+   expect (externproto .fields [0] .value) .toBe (null)
    expect (externproto .fields [1]) .toBeInstanceOf (X3D .X3DFieldDefinition)
    expect (externproto .fields [1] .accessType) .toBe (X3D .X3DConstants .initializeOnly)
    expect (externproto .fields [1] .dataType) .toBe (X3D .X3DConstants .SFVec3f)
@@ -118,6 +124,8 @@ Test { size 4 4 4 }
       "isExternProto",
       "urls",
       "fields",
+      "appInfo",
+      "documentation",
    ]
 
    enumerate (properties, externproto)

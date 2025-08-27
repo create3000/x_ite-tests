@@ -148,7 +148,7 @@ test ("add/removeFieldCallback", () => new Promise ((resolve, reject) =>
 test ("user-data", () =>
 {
    const
-      field = new Fields .SFBool (),
+      field = new X3D .SFBool (),
       sym   = Symbol ();
 
    field .setUserData ("foo", 123);

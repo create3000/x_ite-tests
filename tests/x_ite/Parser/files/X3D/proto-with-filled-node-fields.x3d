@@ -4,14 +4,14 @@
   <head>
     <meta name='created' content='Wed, 20 Mar 2024 18:14:30 GMT'/>
     <meta name='creator' content='Holger Seelig'/>
-    <meta name='generator' content='Sunrize X3D Editor V1.7.18, https://create3000.github.io/sunrize/'/>
-    <meta name='modified' content='Sun, 08 Sep 2024 15:42:16 GMT'/>
+    <meta name='generator' content='Sunrize X3D Editor V1.8.26, https://create3000.github.io/sunrize/'/>
+    <meta name='modified' content='Fri, 22 Aug 2025 15:45:38 GMT'/>
   </head>
   <Scene>
     <ProtoDeclare name='Test'>
       <ProtoInterface>
         <field accessType='inputOutput' type='SFNode' name='child'>
-          <Appearance DEF='_2' containerField='child'>
+          <Appearance DEF='_2'>
             <Material/>
           </Appearance>
         </field>
