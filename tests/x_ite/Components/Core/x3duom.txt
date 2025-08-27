@@ -44,7 +44,6 @@ StreamAudioSource number of fields differ (Spec <=> X3DUOM): 12 <=> 14.
   Where [channelCountMode,channelInterpretation] not in Spec.
 WaveShaper number of fields differ (Spec <=> X3DUOM): 17 <=> 18.
   Where [channelCount] not in Spec.
-Field SFVec3f 'upVector' in node TextureProjector has different value (Spec <=> X3DUOM): 0 0 1 !== 0 1 0.
 Field SFFloat 'fieldOfView' in node TextureProjector has different value (Spec <=> X3DUOM): 0.785398 !== 0.7854.
 Field SFString 'minificationFilter' in node TextureProperties has different value (Spec <=> X3DUOM): DEFAULT !== FASTEST.
 Field SFString 'magnificationFilter' in node TextureProperties has different value (Spec <=> X3DUOM): DEFAULT !== FASTEST.
