@@ -136,7 +136,7 @@ test ("createX3DFromString2", async () =>
    expect (scene2 .rootNodes [0] .getNodeTypeName ()) .toBe ("Transform");
 });
 
-test ("getClosestObject", async () =>
+test ("getClosestObject 1", async () =>
 {
    const
       canvas  = X3D .createBrowser (),
@@ -183,4 +183,64 @@ Collision {
 
    expect (closestObject2 .node) .toBeNull ();
    expect (closestObject2 .distance) .toBe (Infinity);
+});
+
+test ("getClosestObject 2", async () =>
+{
+   const
+      canvas  = X3D .createBrowser (),
+      Browser = canvas .browser;
+
+   const scene1 = await Browser .createX3DFromString (`
+PROFILE Interchange
+
+Collision {
+   children [
+      Transform {
+         children [
+            DEF Box Shape {
+               geometry Box { }
+            }
+         ]
+      }
+      DEF Front Viewpoint {
+         position 0 0 3
+      }
+      DEF Back Viewpoint {
+         position 0 0 -3
+         orientation 0 1 0 3.14159265358979
+      }
+      DEF Left Viewpoint {
+         position -3 0 0
+         orientation 0 -1 0 1.5707963267949
+      }
+      DEF Right Viewpoint {
+         position 3 0 0
+         orientation 0 1 0 1.5707963267949
+      }
+   ]
+}
+`);
+
+   await Browser .replaceWorld (scene1);
+
+   for (const vp of ["Front", "Back", "Left", "Right"])
+   {
+      scene1 .getNamedNode (vp) .set_bind = true;
+      await Browser .nextFrame ();
+
+      expect (scene1 .getNamedNode (vp) .isBound) .toBe (true);
+
+      const closestObject1 = Browser .getClosestObject (new X3D .SFVec3f (0, 0, -1));
+
+      expect (closestObject1 .node) .not .toBeNull ();
+      expect (closestObject1 .node .getNodeTypeName ()) .toBe ("Shape");
+      expect (closestObject1 .node .getNodeName ()) .toBe ("Box");
+      expect (closestObject1 .distance) .toBeCloseTo (2);
+
+      const closestObject2 = Browser .getClosestObject (new X3D .SFVec3f (0, 0, 1));
+
+      expect (closestObject2 .node) .toBeNull ();
+      expect (closestObject2 .distance) .toBe (Infinity);
+   }
 });
