@@ -198,8 +198,13 @@ Collision {
    children [
       Transform {
          children [
-            DEF Box Shape {
+            DEF Near Shape {
                geometry Box { }
+            }
+            DEF Far Shape {
+               geometry Box {
+                  size 1 1 1
+               }
             }
          ]
       }
@@ -235,7 +240,7 @@ Collision {
 
       expect (closestObject1 .node) .not .toBeNull ();
       expect (closestObject1 .node .getNodeTypeName ()) .toBe ("Shape");
-      expect (closestObject1 .node .getNodeName ()) .toBe ("Box");
+      expect (closestObject1 .node .getNodeName ()) .toBe ("Near");
       expect (closestObject1 .distance) .toBeCloseTo (2);
 
       const closestObject2 = Browser .getClosestObject (new X3D .SFVec3f (0, 0, 1));
