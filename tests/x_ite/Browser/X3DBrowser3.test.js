@@ -182,7 +182,7 @@ Collision {
 
    const viewpoints = [
       ["Front", new X3D .SFVec3f (0, 0, -1)],
-      ["Back",  new X3D .SFVec3f (0, 0, 1)],
+      ["Back",  new X3D .SFVec3f (0, 0,  1)],
    ];
 
    await Browser .replaceWorld (scene1);
@@ -257,9 +257,9 @@ Collision {
 
    const viewpoints = [
       ["Front", new X3D .SFVec3f ( 0, 0, -1)],
-      ["Back",  new X3D .SFVec3f ( 0, 0, 1)],
-      ["Left",  new X3D .SFVec3f ( 1, 0, 0)],
-      ["Right", new X3D .SFVec3f (-10, 0, 0)],
+      ["Back",  new X3D .SFVec3f ( 0, 0,  1)],
+      ["Left",  new X3D .SFVec3f ( 1, 0,  0)],
+      ["Right", new X3D .SFVec3f (-1, 0,  0)],
    ];
 
    await Browser .replaceWorld (scene1);
