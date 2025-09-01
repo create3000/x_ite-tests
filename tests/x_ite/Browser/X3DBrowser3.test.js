@@ -181,6 +181,7 @@ Collision {
       scene1 .getNamedNode (vp) .set_bind = true;
       await Browser .nextFrame ();
 
+      expect (scene1 .getNamedNode (vp) .getNodeName ()) .toBe (vp);
       expect (scene1 .getNamedNode (vp) .isBound) .toBe (true);
 
       const closestObject1 = Browser .getClosestObject (new X3D .SFVec3f (0, 0, -1));
@@ -246,6 +247,7 @@ Collision {
       scene1 .getNamedNode (vp) .set_bind = true;
       await Browser .nextFrame ();
 
+      expect (scene1 .getNamedNode (vp) .getNodeName ()) .toBe (vp);
       expect (scene1 .getNamedNode (vp) .isBound) .toBe (true);
 
       const closestObject1 = Browser .getClosestObject (new X3D .SFVec3f (0, 0, -1));
