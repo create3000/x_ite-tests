@@ -1,3 +1,8 @@
+const X3D     = require ("../../../X3D.js");
+const canvas  = X3D .createBrowser ();
+const browser = canvas .browser;
+const scene   = browser .currentScene;
+
 const path = require ("path");
 
 test ("documentation", () =>
@@ -17,3 +22,17 @@ function sh (strings, ... values)
 
    return execSync (String .raw ({ raw: strings }, ... values), { encoding: "utf8", maxBuffer: Infinity });
 }
+
+test ("nodes", async () =>
+{
+   await browser .loadComponents (browser .getProfile ("Full"));
+
+   for (const ConcreteNode of browser .concreteNodes)
+      expect (new ConcreteNode (scene)) .toBeInstanceOf (ConcreteNode);
+
+   for (const ConcreteNode of browser .concreteNodes)
+      expect (scene .createNode (ConcreteNode .typeName) .getNodeTypeName ()) .toBe (ConcreteNode .typeName);
+
+   scene .dispose ();
+   browser .dispose ();
+});
