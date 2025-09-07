@@ -43,7 +43,7 @@ test ("error", () => new Promise ((resolve, reject) =>
 test ("nodes", async () =>
 {
    // Create test file.
-   
+
    const canvas  = X3D .createBrowser ();
    const browser = canvas .browser;
    const scene   = await browser .createScene (browser .getProfile ("Full"), browser .getComponent ("X_ITE"));
@@ -52,7 +52,7 @@ test ("nodes", async () =>
    for (const ConcreteNode of browser .concreteNodes)
       scene .rootNodes .push (scene .createNode (ConcreteNode .typeName));
 
-   fs .writeFileSync (file, scene .toVRMLString ());
+   fs .writeFileSync (file, scene .toVRMLString () .replace (/\s+X_ITE\s+V[\d\.]+/, ""));
 
    // Test
 
