@@ -42,6 +42,8 @@ test ("error", () => new Promise ((resolve, reject) =>
 
 test ("nodes", async () =>
 {
+   // Create test file.
+   
    const canvas  = X3D .createBrowser ();
    const browser = canvas .browser;
    const scene   = await browser .createScene (browser .getProfile ("Full"), browser .getComponent ("X_ITE"));
@@ -52,12 +54,9 @@ test ("nodes", async () =>
 
    fs .writeFileSync (file, scene .toVRMLString ());
 
-   scene .dispose ();
-   browser .dispose ();
-
    // Test
 
-  const output = sh (`npx --yes x3d-tidy -i ${file} -o .x3dv`);
+   const output = sh (`npx --yes x3d-tidy -i ${file} -o .x3dv`);
 
    expect (output .split ("\n") .length) .toBe (568);
 });
