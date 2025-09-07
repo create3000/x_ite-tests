@@ -1,6 +1,8 @@
-const path = require ("path");
-const { exec } = require ("child_process");
+const path = require ("node:path");
+const fs   = require ("node:fs");
+const { exec } = require ("node:child_process");
 const { sh } = require ("shell-tools")
+const X3D = require ("../X3D")
 
 test ("help", () => new Promise ((resolve, reject) =>
 {
@@ -38,10 +40,24 @@ test ("error", () => new Promise ((resolve, reject) =>
    });
 }));
 
-test ("nodes", () =>
+test ("nodes", async () =>
 {
-   const file   = path .join (__dirname, "files", "nodes.x3dv");
-   const output = sh (`npx --yes x3d-tidy -i ${file} -o .x3dv`);
+   const canvas  = X3D .createBrowser ();
+   const browser = canvas .browser;
+   const scene   = await browser .createScene (browser .getProfile ("Full"), browser .getComponent ("X_ITE"));
+   const file    = path .join (__dirname, "files", "nodes.x3dv");
 
-   expect (output .split ("\n") .length) .toBe (532);
+   for (const ConcreteNode of browser .concreteNodes)
+      scene .rootNodes .push (scene .createNode (ConcreteNode .typeName));
+
+   fs .writeFileSync (file, scene .toVRMLString ());
+
+   scene .dispose ();
+   browser .dispose ();
+
+   // Test
+
+  const output = sh (`npx --yes x3d-tidy -i ${file} -o .x3dv`);
+
+   expect (output .split ("\n") .length) .toBe (568);
 });

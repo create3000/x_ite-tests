@@ -25,7 +25,7 @@ function sh (strings, ... values)
 
 test ("nodes", async () =>
 {
-   await browser .loadComponents (browser .getProfile ("Full"));
+   await browser .loadComponents (browser .getProfile ("Full"), browser .getComponent ("X_ITE"));
 
    for (const ConcreteNode of browser .concreteNodes)
       expect (new ConcreteNode (scene)) .toBeInstanceOf (ConcreteNode);
