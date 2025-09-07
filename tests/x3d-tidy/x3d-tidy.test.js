@@ -1,4 +1,6 @@
+const path = require ("path");
 const { exec } = require ("child_process");
+const { sh } = require ("shell-tools")
 
 test ("help", () => new Promise ((resolve, reject) =>
 {
@@ -35,3 +37,11 @@ test ("error", () => new Promise ((resolve, reject) =>
       reject ("there should be no stdout");
    });
 }));
+
+test ("nodes", () =>
+{
+   const file   = path .join (__dirname, "files", "nodes.x3dv");
+   const output = sh (`npx --yes x3d-tidy -i ${file} -o .x3dv`);
+
+   expect (output .split ("\n") .length) .toBe (532);
+});
