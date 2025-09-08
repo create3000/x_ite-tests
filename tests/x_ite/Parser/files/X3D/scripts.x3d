@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE X3D PUBLIC "ISO//Web3D//DTD X3D 4.0//EN" "https://www.web3d.org/specifications/x3d-4.0.dtd">
+<X3D profile='Interchange' version='4.0' xmlns:xsd='http://www.w3.org/2001/XMLSchema-instance' xsd:noNamespaceSchemaLocation='https://www.web3d.org/specifications/x3d-4.0.xsd'>
+  <head>
+    <component name='Scripting' level='1'/>
+    <meta name='created' content='Mon, 08 Sep 2025 11:08:51 GMT'/>
+    <meta name='creator' content='Holger Seelig'/>
+    <meta name='generator' content='Sunrize X3D Editor V1.9.1, https://create3000.github.io/sunrize/'/>
+    <meta name='modified' content='Mon, 08 Sep 2025 11:53:02 GMT'/>
+  </head>
+  <Scene>
+    <Script DEF='OneURL'
+        url='"ecmascript1.js"'/>
+    <Script DEF='TwoURLs'
+        url='"ecmascript1.js", "ecmascript2.js"'/>
+    <Script DEF='OneScript'>
+<![CDATA[ecmascript:
+function initialize ()
+{
+  console .log ('ecmascript');
+}
+]]>
+    </Script>
+    <Script DEF='MixedURLandScript'>
+<![CDATA[ecmascript:
+function initialize ()
+{
+  console .log ('ecmascript');
+}
+]]>
+<![CDATA[ecmascript1.js]]>
+    </Script>
+  </Scene>
+</X3D>
