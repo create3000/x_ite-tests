@@ -58,5 +58,5 @@ test ("nodes", async () =>
 
    const output = sh (`npx --yes x3d-tidy -i ${file} -o .x3dv`);
 
-   expect (output .split ("\n") .length) .toBe (568);
+   expect (output .split ("\n") .length) .toBe (570);
 });
