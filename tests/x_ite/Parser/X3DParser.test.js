@@ -168,7 +168,7 @@ test ("appinfo.x3d", async () =>
    }
 });
 
-test ("scripts.x3dv", async () =>
+test ("scripts.x3d", async () =>
 {
    const
       latestVersion = (await Browser .createScene ()) .specificationVersion,
@@ -198,6 +198,44 @@ test ("scripts.x3dv", async () =>
             expect (scene .specificationVersion) .toBe (latestVersion);
 
          expect (scene .toXMLString ()) .toBe (orig);
+         expect (scene .toXMLString ({ style })) .toBe (x3d);
+         expect (scene .toVRMLString ({ style })) .toBe (x3dv);
+         expect (scene .toJSONString ({ style })) .toBe (x3dj);
+         expect (scene .toXMLString ({ style, closingTags: true })) .toBe (html);
+      }
+   }
+});
+
+test ("scripts.x3dj", async () =>
+{
+   const
+      latestVersion = (await Browser .createScene ()) .specificationVersion,
+      scene         = await Browser .createX3DFromURL (new X3D .MFString (url .pathToFileURL (path .join (__dirname, "files", "X3D", `scripts.x3dj`))));
+
+   const orig = await fetch (path .join (__dirname, "files", "X3D", `scripts.x3dj`)) .then (r => r .text ());
+
+   for (const style of ["TIDY", "COMPACT", "SMALL", "CLEAN"])
+   {
+      const
+         x3d  = scene .toXMLString  ({ style }),
+         html = scene .toXMLString ({ style, closingTags: true }),
+         x3dv = scene .toVRMLString  ({ style }),
+         x3dj = scene .toJSONString  ({ style });
+
+      const encodings = ["JSON", "XML", "XML", "JSON"];
+
+      Browser .baseURL = scene .worldURL;
+
+      for (const [i, file] of [orig, x3d, html, x3dj] .entries ())
+      {
+         const scene = await Browser .createX3DFromURL (new X3D .MFString (`data:model/x3d,${file}`));
+
+         expect (scene .encoding) .toBe (encodings [i]);
+
+         if (i)
+            expect (scene .specificationVersion) .toBe (latestVersion);
+
+         expect (scene .toJSONString ()) .toBe (orig);
          expect (scene .toXMLString ({ style })) .toBe (x3d);
          expect (scene .toVRMLString ({ style })) .toBe (x3dv);
          expect (scene .toJSONString ({ style })) .toBe (x3dj);

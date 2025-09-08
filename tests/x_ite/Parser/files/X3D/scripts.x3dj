@@ -1,0 +1,78 @@
+{ "X3D":
+  {
+    "encoding": "UTF-8",
+    "@profile": "Interchange",
+    "@version": "4.0",
+    "@xsd:noNamespaceSchemaLocation": "https://www.web3d.org/specifications/x3d-4.0.xsd",
+    "JSON schema": "https://www.web3d.org/specifications/x3d-4.0-JSONSchema.json",
+    "head": {
+      "meta": [
+        {
+          "@name": "created",
+          "@content": "Mon, 08 Sep 2025 11:08:51 GMT"
+        },
+        {
+          "@name": "creator",
+          "@content": "Holger Seelig"
+        },
+        {
+          "@name": "generator",
+          "@content": "Sunrize X3D Editor V1.9.1, https://create3000.github.io/sunrize/"
+        },
+        {
+          "@name": "modified",
+          "@content": "Mon, 08 Sep 2025 12:00:32 GMT"
+        }
+      ],
+      "component": [
+        {
+          "@name": "Scripting",
+          "@level": 1
+        }
+      ]
+    },
+    "Scene": {
+      "-children": [
+        { "Script":
+          {
+            "@DEF": "OneURL",
+            "@url": [
+              "ecmascript1.js"
+            ]
+          }
+        },
+        { "Script":
+          {
+            "@DEF": "TwoURLs",
+            "@url": [
+              "ecmascript1.js",
+              "ecmascript2.js"
+            ]
+          }
+        },
+        { "Script":
+          {
+            "@DEF": "OneScript",
+            "#sourceCode": [
+              "ecmascript:",
+              "function initialize ()",
+              "{",
+              "  console .log ('ecmascript');",
+              "}",
+              ""
+            ]
+          }
+        },
+        { "Script":
+          {
+            "@DEF": "MixedURLandScript",
+            "@url": [
+              "ecmascript:\nfunction initialize ()\n{\n  console .log ('ecmascript');\n}\n",
+              "ecmascript1.js"
+            ]
+          }
+        }
+      ]
+    }
+  }
+}
