@@ -23,6 +23,7 @@ test ("cycleTime", () => new Promise (async (resolve, reject) =>
          if (value)
          {
             expect (cycles) .toBe (0);
+            expect (fraction) .toBe (0);
          }
          else
          {
