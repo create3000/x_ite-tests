@@ -32,6 +32,8 @@ test ("events", () => new Promise (async (resolve, reject) =>
          else
          {
             expect (cycles) .toBe (numCycles);
+            expect (elapsedTime) .toBeGreaterThan (0);
+            expect (time) .toBeGreaterThan (0);
             expect (time) .toBeLessThanOrEqual (Browser .getCurrentTime ());
             resolve ();
          }
@@ -76,7 +78,9 @@ test ("events", () => new Promise (async (resolve, reject) =>
    {
       try
       {
+         expect (value) .toBeGreaterThanOrEqual (0);
          expect (value) .toBeGreaterThanOrEqual (elapsedTime);
+
          elapsedTime = value;
       }
       catch (error)
@@ -89,7 +93,9 @@ test ("events", () => new Promise (async (resolve, reject) =>
    {
       try
       {
+         expect (value) .toBeGreaterThanOrEqual (0);
          expect (value) .toBeGreaterThanOrEqual (time);
+
          time = value;
       }
       catch (error)
