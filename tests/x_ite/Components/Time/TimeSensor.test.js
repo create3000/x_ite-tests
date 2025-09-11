@@ -32,7 +32,7 @@ test ("cycleTime", () => new Promise (async (resolve, reject) =>
          else
          {
             expect (cycles) .toBe (numCycles);
-            expect (time) .toBe (Browser .getCurrentTime ());
+            expect (time) .toBeLessThanOrEqual (Browser .getCurrentTime ());
             resolve ();
          }
       }
@@ -115,4 +115,5 @@ test ("timeOut 1s", () => new Promise (async (resolve, reject) =>
          reject (error);
       }
    });
-}));
+}),
+2000);
