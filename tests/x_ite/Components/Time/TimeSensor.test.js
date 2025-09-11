@@ -13,8 +13,10 @@ test ("cycleTime", () => new Promise (async (resolve, reject) =>
       numCycles = 4;
 
    let
-      cycles   = 0,
-      fraction = 0;
+      cycles      = 0,
+      fraction    = 0,
+      elapsedTime = -1,
+      time        = -1;
 
    timer .addFieldCallback ("test", "isActive", value =>
    {
@@ -24,10 +26,13 @@ test ("cycleTime", () => new Promise (async (resolve, reject) =>
          {
             expect (cycles) .toBe (0);
             expect (fraction) .toBe (0);
+            expect (elapsedTime) .toBe (-1);
+            expect (time) .toBe (-1);
          }
          else
          {
             expect (cycles) .toBe (numCycles);
+            expect (time) .toBe (Browser .getCurrentTime ());
             resolve ();
          }
       }
@@ -48,6 +53,9 @@ test ("cycleTime", () => new Promise (async (resolve, reject) =>
          else
             expect (fraction) .toBeGreaterThan (0.6);
 
+         expect (elapsedTime) .toBeGreaterThanOrEqual (0);
+         expect (time) .toBe (Browser .getCurrentTime ());
+
          if (cycles < numCycles)
             return;
 
@@ -62,6 +70,16 @@ test ("cycleTime", () => new Promise (async (resolve, reject) =>
    timer .addFieldCallback ("test", "fraction_changed", value =>
    {
       fraction = value;
+   });
+
+   timer .addFieldCallback ("test", "elapsedTime", value =>
+   {
+      elapsedTime = value;
+   });
+
+   timer .addFieldCallback ("test", "time", value =>
+   {
+      time = value;
    });
 
    timer .cycleInterval = 1 / 3;
