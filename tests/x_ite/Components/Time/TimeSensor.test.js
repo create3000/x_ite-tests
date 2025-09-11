@@ -5,7 +5,7 @@ const
 Browser .setBrowserOption ("AutoUpdate", false);
 Browser .beginUpdate ();
 
-test ("cycleTime", () => new Promise (async (resolve, reject) =>
+test ("events", () => new Promise (async (resolve, reject) =>
 {
    const
       scene     = await Browser .createScene (Browser .getProfile ("Interactive")),
