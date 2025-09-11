@@ -74,12 +74,28 @@ test ("events", () => new Promise (async (resolve, reject) =>
 
    timer .addFieldCallback ("test", "elapsedTime", value =>
    {
-      elapsedTime = value;
+      try
+      {
+         expect (value) .toBeGreaterThanOrEqual (elapsedTime);
+         elapsedTime = value;
+      }
+      catch (error)
+      {
+         reject (error);
+      }
    });
 
    timer .addFieldCallback ("test", "time", value =>
    {
-      time = value;
+      try
+      {
+         expect (value) .toBeGreaterThanOrEqual (time);
+         time = value;
+      }
+      catch (error)
+      {
+         reject (error);
+      }
    });
 
    timer .cycleInterval = 1 / 3;
