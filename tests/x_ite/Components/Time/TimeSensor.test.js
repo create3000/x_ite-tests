@@ -5,7 +5,7 @@ const
 Browser .setBrowserOption ("AutoUpdate", false);
 Browser .beginUpdate ();
 
-test ("cycleTime", () => new Promise (async resolve =>
+test ("cycleTime", () => new Promise (async (resolve, reject) =>
 {
    const
       scene = await Browser .createScene (Browser .getProfile ("Interactive")),
@@ -17,18 +17,25 @@ test ("cycleTime", () => new Promise (async resolve =>
 
    timer .addFieldCallback ("test", "cycleTime", value =>
    {
-      ++ cycles;
+      try
+      {
+         ++ cycles;
 
-      if (cycles === 1)
-         expect (fraction) .toBe (0);
-      else
-         expect (fraction) .toBeGreaterThan (0.6);
+         if (cycles === 1)
+            expect (fraction) .toBe (0);
+         else
+            expect (fraction) .toBeGreaterThan (0.6);
 
-      if (cycles < 4)
-         return;
+         if (cycles < 4)
+            return;
 
-      timer .stopTime = Date .now () / 1000;
-      resolve ();
+         timer .stopTime = Date .now () / 1000;
+         resolve ();
+      }
+      catch (error)
+      {
+         reject (error);
+      }
    });
 
    timer .addFieldCallback ("test", "fraction_changed", value =>
@@ -42,7 +49,7 @@ test ("cycleTime", () => new Promise (async resolve =>
 }),
 2000);
 
-test ("timeOut 1s", () => new Promise (async resolve =>
+test ("timeOut 1s", () => new Promise (async (resolve, reject) =>
 {
    const
       scene    = await Browser .createScene (Browser .getProfile ("Interactive")),
@@ -54,12 +61,19 @@ test ("timeOut 1s", () => new Promise (async resolve =>
 
    timer .addFieldCallback ("test", "isActive", value =>
    {
-      if (!value)
-         return;
+      try
+      {
+         if (!value)
+            return;
 
-      timer .stopTime = Date .now () / 1000;
+         timer .stopTime = Date .now () / 1000;
 
-      expect (Date .now () / 1000 >= t0 + duration) .toBe (true);
-      resolve ();
+         expect (Date .now () / 1000 >= t0 + duration) .toBe (true);
+         resolve ();
+      }
+      catch (error)
+      {
+         reject (error);
+      }
    });
 }));
