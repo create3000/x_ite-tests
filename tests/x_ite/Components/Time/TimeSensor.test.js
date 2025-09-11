@@ -33,7 +33,7 @@ test ("cycleTime", () => new Promise (async resolve =>
       fraction = value;
    });
 
-   timer .cycleInterval = 0.25;
+   timer .cycleInterval = 1 / 3;
    timer .loop          = true;
    timer .startTime     = Date .now () / 1000;
 }),
