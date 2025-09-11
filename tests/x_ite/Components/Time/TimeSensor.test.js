@@ -12,8 +12,8 @@ test ("cycleTime", () => new Promise (async resolve =>
       timer = scene .createNode ("TimeSensor");
 
    let
-      fraction = 0,
-      cycles   = 0;
+      cycles   = 0,
+      fraction = 0;
 
    timer .addFieldCallback ("test", "cycleTime", value =>
    {
