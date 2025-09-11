@@ -59,7 +59,7 @@ test ("cycleTime", () => new Promise (async (resolve, reject) =>
          if (cycles < numCycles)
             return;
 
-         timer .stopTime = Date .now () / 1000;
+         timer .stopTime = Date .now () / 1_000;
       }
       catch (error)
       {
@@ -84,9 +84,9 @@ test ("cycleTime", () => new Promise (async (resolve, reject) =>
 
    timer .cycleInterval = 1 / 3;
    timer .loop          = true;
-   timer .startTime     = Date .now () / 1000;
+   timer .startTime     = Date .now () / 1_000;
 }),
-2000);
+2_000);
 
 test ("timeOut 1s", () => new Promise (async (resolve, reject) =>
 {
@@ -94,7 +94,7 @@ test ("timeOut 1s", () => new Promise (async (resolve, reject) =>
       scene    = await Browser .createScene (Browser .getProfile ("Interactive")),
       timer    = scene .createNode ("TimeSensor"),
       duration = 1,
-      t0       = Date .now () / 1000;
+      t0       = Date .now () / 1_000;
 
    timer .startTime = t0 + duration;
 
@@ -105,9 +105,9 @@ test ("timeOut 1s", () => new Promise (async (resolve, reject) =>
          if (!value)
             return;
 
-         timer .stopTime = Date .now () / 1000;
+         timer .stopTime = Date .now () / 1_000;
 
-         expect (Date .now () / 1000 >= t0 + duration) .toBe (true);
+         expect (Date .now () / 1_000 >= t0 + duration) .toBe (true);
          resolve ();
       }
       catch (error)
@@ -116,4 +116,4 @@ test ("timeOut 1s", () => new Promise (async (resolve, reject) =>
       }
    });
 }),
-2000);
+2_000);

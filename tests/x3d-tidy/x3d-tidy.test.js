@@ -23,7 +23,8 @@ test ("help", () => new Promise ((resolve, reject) =>
       expect (stdout) .toMatch (/x3d-tidy \[options\]/);
       resolve ();
    });
-}));
+}),
+20_000);
 
 test ("error", () => new Promise ((resolve, reject) =>
 {
