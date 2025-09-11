@@ -24,8 +24,11 @@ test ("cycleTime", () => new Promise (async resolve =>
       else
          expect (fraction) .toBeGreaterThan (0.6);
 
-      if (cycles > 3)
-         resolve ();
+      if (cycles < 4)
+         return;
+
+      timer .stopTime = Date .now () / 1000;
+      resolve ();
    });
 
    timer .addFieldCallback ("test", "fraction_changed", value =>
