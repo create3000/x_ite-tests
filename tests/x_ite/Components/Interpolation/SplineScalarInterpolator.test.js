@@ -13,12 +13,19 @@ test ("initial value_changed", async () =>
 PROFILE Interchange
 COMPONENT Interpolation : 5
 
-SplineScalarInterpolator {
+DEF I SplineScalarInterpolator {
    key [0, 1]
    keyValue [5, 6]
 }
+
+DEF R Material { }
+
+ROUTE I.value_changed TO R.set_transparency
    `);
 
-   expect (scene .rootNodes) .toHaveLength (1);
+   await Browser .nextFrame ();
+
+   expect (scene .rootNodes) .toHaveLength (2);
    expect (scene .rootNodes [0] .value_changed) .toBe (5);
+   expect (scene .rootNodes [1] .transparency) .not .toBe (5);
 });
