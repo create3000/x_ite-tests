@@ -38,6 +38,9 @@ test ("shader", async () =>
                {
                   const options = [ ]
 
+                  if (option === "X3D_VOLUME_SCATTER_PASS")
+                     options .push ("X3D_VOLUME_SCATTER_MATERIAL_EXT");
+
                   options .push (option);
                   options .push ("X3D_COLORSPACE_LINEAR_WHEN_PHYSICAL_MATERIAL");
                   options .push ("X3D_USE_IBL");
