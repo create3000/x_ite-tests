@@ -752,7 +752,7 @@ scale
 
 # comment 9`);
 
-   expect (scene .getMetaDatas () .size) .toBe (1);
+   expect (scene .getMetaDatas ()) .toHaveLength (1);
    expect (scene .rootNodes) .toHaveLength (8);
    expect (scene .importedNodes) .toHaveLength (1);
    expect (scene .exportedNodes) .toHaveLength (1);
