@@ -325,4 +325,50 @@ test ("metadata", async () =>
 
    scene .removeMetaData ("foo");
    expect (scene .getMetaDatas ()) .toHaveLength (0);
+
+   scene .addMetaData ("foo1", "111");
+   scene .addMetaData ("foo2", "222");
+   scene .addMetaData ("foo3", "333");
+   scene .addMetaData ("foo4", "444");
+   scene .addMetaData ("foo5", "555");
+
+   expect (scene .getMetaDatas ()) .toEqual ( [
+      ["foo1", "111"],
+      ["foo2", "222"],
+      ["foo3", "333"],
+      ["foo4", "444"],
+      ["foo5", "555"],
+   ]);
+
+   scene .setMetaData ("foo3", "999");
+
+   expect (scene .getMetaDatas ()) .toEqual ( [
+      ["foo1", "111"],
+      ["foo2", "222"],
+      ["foo3", "999"],
+      ["foo4", "444"],
+      ["foo5", "555"],
+   ]);
+
+   scene .setMetaData ("foo6", "666");
+
+   expect (scene .getMetaDatas ()) .toEqual ( [
+      ["foo1", "111"],
+      ["foo2", "222"],
+      ["foo3", "999"],
+      ["foo4", "444"],
+      ["foo5", "555"],
+      ["foo6", "666"],
+   ]);
+
+   scene .setMetaData ("foo1", "aaa");
+
+   expect (scene .getMetaDatas ()) .toEqual ( [
+      ["foo1", "aaa"],
+      ["foo2", "222"],
+      ["foo3", "999"],
+      ["foo4", "444"],
+      ["foo5", "555"],
+      ["foo6", "666"],
+   ]);
 });
