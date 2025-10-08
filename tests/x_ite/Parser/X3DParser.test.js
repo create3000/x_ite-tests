@@ -900,3 +900,21 @@ DEF Test Group { }
    expect (scene .rootNodes [0] .getValue ()) .toBeInstanceOf (Group);
    expect (scene .rootNodes [0] .getNodeType () .includes (X3D .X3DConstants .Group)) .toBe (true);
 });
+
+test ("USE before DEF", async () =>
+{
+   for (const suffix of ["x3d", "x3dv"])
+   {
+      const scene = await Browser .createX3DFromURL (new X3D .MFString (url .pathToFileURL (path .join (__dirname, "files", "X3D", `use-before-def.${suffix}`))));
+
+      expect (scene .rootNodes) .toHaveLength (6);
+
+      expect (scene .rootNodes [0] .children [0] .getNodeTypeName ()) .toBe ("Test");
+      expect (scene .rootNodes [1] .children [0]) .toBe (scene .rootNodes [0] .children [0]);
+      expect (scene .rootNodes [2] .children [0]) .toBe (scene .rootNodes [0] .children [0]);
+
+      expect (scene .rootNodes [3] .children [0] .getNodeTypeName ()) .toBe ("Shape");
+      expect (scene .rootNodes [4] .children [0]) .toBe (scene .rootNodes [3] .children [0]);
+      expect (scene .rootNodes [5] .children [0]) .toBe (scene .rootNodes [3] .children [0]);
+   }
+});
