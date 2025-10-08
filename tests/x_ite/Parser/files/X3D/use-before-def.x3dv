@@ -4,13 +4,29 @@ PROFILE Interchange
 
 PROTO Test [ ]
 {
-  Transform {
-    children Shape {
-      appearance Appearance {
-        material Material { }
+  Group {
+    children [
+      Transform {
+        translation -1 0 0
+        children USE S
       }
-      geometry Box { }
-    }
+      Transform {
+        children DEF S Shape {
+          appearance Appearance {
+            material Material {
+              diffuseColor 1 0 0
+            }
+          }
+          geometry Box {
+            size 0.5 0.5 0.5
+          }
+        }
+      }
+      Transform {
+        translation 1 0 0
+        children USE S
+      }
+    ]
   }
 }
 
@@ -38,7 +54,9 @@ Transform {
   translation 0 -1.5 0
   children DEF S Shape {
     appearance Appearance {
-      material Material { }
+      material Material {
+        diffuseColor 0 1 0
+      }
     }
     geometry Box { }
   }
