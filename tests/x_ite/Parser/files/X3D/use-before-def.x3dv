@@ -1,0 +1,50 @@
+#X3D V4.0 utf8 X_ITE V12.1.0
+
+PROFILE Interchange
+
+PROTO Test [ ]
+{
+  Transform {
+    children Shape {
+      appearance Appearance {
+        material Material { }
+      }
+      geometry Box { }
+    }
+  }
+}
+
+Transform {
+  translation -3 1.5 0
+  children USE P
+}
+
+Transform {
+  translation 0 1.5 0
+  children DEF P Test { }
+}
+
+Transform {
+  translation 3 1.5 0
+  children USE P
+}
+
+Transform {
+  translation -3 -1.5 0
+  children USE S
+}
+
+Transform {
+  translation 0 -1.5 0
+  children DEF S Shape {
+    appearance Appearance {
+      material Material { }
+    }
+    geometry Box { }
+  }
+}
+
+Transform {
+  translation 3 -1.5 0
+  children USE S
+}
