@@ -907,7 +907,7 @@ test ("USE before DEF", async () =>
    {
       const scene = await Browser .createX3DFromURL (new X3D .MFString (url .pathToFileURL (path .join (__dirname, "files", "X3D", `use-before-def.${suffix}`))));
 
-      expect (scene .rootNodes) .toHaveLength (6);
+      expect (scene .rootNodes) .toHaveLength (8);
 
       expect (scene .rootNodes [0] .children [0] .getNodeTypeName ()) .toBe ("Test");
       expect (scene .rootNodes [1] .children [0]) .toBe (scene .rootNodes [0] .children [0]);
@@ -916,5 +916,9 @@ test ("USE before DEF", async () =>
       expect (scene .rootNodes [3] .children [0] .getNodeTypeName ()) .toBe ("Shape");
       expect (scene .rootNodes [4] .children [0]) .toBe (scene .rootNodes [3] .children [0]);
       expect (scene .rootNodes [5] .children [0]) .toBe (scene .rootNodes [3] .children [0]);
+
+      expect (scene .rootNodes [6] .children [0] .getNodeTypeName ()) .toBe ("Shape");
+      expect (scene .rootNodes [6] .children [0]) .not .toBe (scene .rootNodes [3] .children [0]);
+      expect (scene .rootNodes [7] .children [0]) .toBe (scene .rootNodes [6] .children [0]);
    }
 });
