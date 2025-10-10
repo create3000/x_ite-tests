@@ -13,8 +13,10 @@
       <Inline DEF='Inline'
           url='"./use-exported-node-inline.x3dv"'/>
     </Transform>
+    <Transform USE='GreenBox'/>
     <Transform DEF='UseGreenBox'
         translation='1 0 0'>
+      <Transform USE='GreenBox' containerField='metadata'/>
       <Transform USE='GreenBox'/>
     </Transform>
     <IMPORT inlineDEF='Inline' importedDEF='GreenBox'/>
