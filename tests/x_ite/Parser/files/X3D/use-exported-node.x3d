@@ -11,7 +11,7 @@
     <Transform DEF='InlineGreenBox'
         translation='-1 0 0'>
       <Inline DEF='Inline'
-          url='"./inline.x3dv"'/>
+          url='"./use-exported-node-inline.x3dv"'/>
     </Transform>
     <Transform DEF='UseGreenBox'
         translation='1 0 0'>
