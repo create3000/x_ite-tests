@@ -532,75 +532,74 @@ test ("splice", () =>
    const
       N = 10,
       a = new MFNode (),
-      x = [ ]
+      x = [ ];
 
    for (let i = 0; i < N; ++ i)
-      expect (a .push (x [i] = scene .createNode ("WorldInfo"))) .toBe (i + 1)
+      expect (a .push (x [i] = scene .createNode ("WorldInfo"))) .toBe (i + 1);
 
    const
       v0 = a [0],
-      v1 = a .at (-1)
+      v1 = a .at (-1);
 
-   expect (a) .toHaveLength (N)
+   expect (a) .toHaveLength (N);
 
-   const b = a .splice (1,N-2)
+   const b = a .splice (1,N-2);
 
-   expect (a) .toHaveLength (2)
-   expect (b) .toHaveLength (N-2)
-   expect (b) .toBeInstanceOf (MFNode)
-   expect (a [0]) .toBe (v0)
-   expect (a [1]) .toBe (v1)
-
-   for (let i = 0, n = 1; i < N-2; ++ i)
-   {
-      expect (b [i]) .toBe (x [n++])
-      expect (b [i]) .not .toBe (null)
-      expect (b [i] .getNodeTypeName ()) .toBe ("WorldInfo")
-   }
-
-   const c = a .splice (1,0,...b)
-
-   expect (a) .toHaveLength (N)
-   expect (c) .toHaveLength (0)
-   expect (c) .toBeInstanceOf (MFNode)
-
-   for (let i = 0, n = 0; i < N; ++ i)
-      expect (a [i]) .toBe (x [n++])
-
-   const d = a .splice (1,N-2,...b)
-
-   expect (a) .toHaveLength (N)
-   expect (d) .toHaveLength (N-2)
-   expect (d) .toBeInstanceOf (MFNode)
+   expect (a) .toHaveLength (2);
+   expect (b) .toHaveLength (N-2);
+   expect (b) .toBeInstanceOf (MFNode);
+   expect (a [0]) .toBe (v0);
+   expect (a [1]) .toBe (v1);
 
    for (let i = 0, n = 1; i < N-2; ++ i)
    {
-      const v = x [n++]
-      expect (d [i]) .toBe (v)
-      expect (b [i]) .toBe (v)
-      expect (d [i]) .not .toBe (null)
-      expect (b [i]) .not .toBe (null)
-      expect (d [i] .getNodeTypeName ()) .toBe ("WorldInfo")
-      expect (b [i] .getNodeTypeName ()) .toBe ("WorldInfo")
+      expect (b [i]) .toBe (x [n++]);
+      expect (b [i]) .not .toBe (null);
+      expect (b [i] .getNodeTypeName ()) .toBe ("WorldInfo");
+   }
+
+   const c = a .splice (1,0,...b);
+
+   expect (a) .toHaveLength (N);
+   expect (c) .toHaveLength (0);
+   expect (c) .toBeInstanceOf (MFNode);
+
+   for (let i = 0, n = 0; i < N; ++ i)
+      expect (a [i]) .toBe (x [n++]);
+
+   const d = a .splice (1,N-2,...b);
+
+   expect (a) .toHaveLength (N);
+   expect (d) .toHaveLength (N-2);
+   expect (d) .toBeInstanceOf (MFNode);
+
+   for (let i = 0, n = 1; i < N-2; ++ i)
+   {
+      const v = x [n++];
+      expect (d [i]) .toBe (v);
+      expect (b [i]) .toBe (v);
+      expect (d [i]) .not .toBe (null);
+      expect (b [i]) .not .toBe (null);
+      expect (d [i] .getNodeTypeName ()) .toBe ("WorldInfo");
+      expect (b [i] .getNodeTypeName ()) .toBe ("WorldInfo");
    }
 
    for (let i = 0, n = 0; i < N; ++ i)
-      expect (a [i]) .toBe (x [n++])
+      expect (a [i]) .toBe (x [n++]);
 
-   const e = new MFNode (node1, node2, node3, node4)
+   const e = new MFNode (node1, node2, node3, node4);
 
-   expect (e .splice (2) .equals (new MFNode (node3, node4))) .toBe (true)
-   expect (e .equals (new MFNode (node1, node2))) .toBe (true)
+   expect (e .splice (2) .equals (new MFNode (node3, node4))) .toBe (true);
+   expect (e .equals (new MFNode (node1, node2))) .toBe (true);
 
-   expect (e .splice () .equals (new MFNode ())) .toBe (true)
-   expect (e .equals (new MFNode (node1, node2))) .toBe (true)
+   expect (e .splice () .equals (new MFNode ())) .toBe (true);
+   expect (e .equals (new MFNode (node1, node2))) .toBe (true);
 
    const n = new MFNode (node1, node2, node3, node4);
 
    expect (n .splice (-2) .equals (new MFNode (node3, node4))) .toBe (true);
    expect (n .equals (new MFNode (node1, node2))) .toBe (true);
-
-})
+});
 
 test ("sort-reverse", () =>
 {
