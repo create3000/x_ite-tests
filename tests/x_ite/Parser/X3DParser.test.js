@@ -978,7 +978,7 @@ test ("use-exported-node-script.x3dv", async () =>
       expect (S .node1) .toBe (null);
       expect (S .node2) .toBe (null);
 
-      // Scene is returned when all is loaded, thus this should NOT be null.
+      // Scene is returned when all is loaded, so this should NOT be null.
       expect (S .node) .not .toBe (null);
       expect (S .script .node) .not .toBe (null);
    }
