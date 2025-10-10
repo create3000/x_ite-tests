@@ -497,61 +497,66 @@ test ("splice", () =>
 {
    const
       N = 10,
-      a = new MFInt32 ()
+      a = new MFInt32 ();
 
    for (let i = 0, n = 0; i < N; ++ i)
-      expect (a .push (++n)) .toBe (i + 1)
+      expect (a .push (++n)) .toBe (i + 1);
 
    const
       v0 = a [0],
-      v1 = a .at (-1)
+      v1 = a .at (-1);
 
-   expect (a) .toHaveLength (N)
+   expect (a) .toHaveLength (N);
 
-   const b = a .splice (1,N-2)
+   const b = a .splice (1,N-2);
 
-   expect (a) .toHaveLength (2)
-   expect (b) .toHaveLength (N-2)
-   expect (b) .toBeInstanceOf (MFInt32)
-   expect (a [0]) .toBe (v0)
-   expect (a [1]) .toBe (v1)
+   expect (a) .toHaveLength (2);
+   expect (b) .toHaveLength (N-2);
+   expect (b) .toBeInstanceOf (MFInt32);
+   expect (a [0]) .toBe (v0);
+   expect (a [1]) .toBe (v1);
 
    for (let i = 0, n = 1; i < N-2; ++ i)
-      expect (b [i]) .toBe (++n)
+      expect (b [i]) .toBe (++n);
 
-   const c = a .splice (1,0,...b)
+   const c = a .splice (1,0,...b);
 
-   expect (a) .toHaveLength (N)
-   expect (c) .toHaveLength (0)
-   expect (c) .toBeInstanceOf (MFInt32)
+   expect (a) .toHaveLength (N);
+   expect (c) .toHaveLength (0);
+   expect (c) .toBeInstanceOf (MFInt32);
 
    for (let i = 0, n = 0; i < N; ++ i)
-      expect (a [i]) .toBe (++n)
+      expect (a [i]) .toBe (++n);
 
-   const d = a .splice (1,N-2,...b)
+   const d = a .splice (1,N-2,...b);
 
-   expect (a) .toHaveLength (N)
-   expect (d) .toHaveLength (N-2)
-   expect (d) .toBeInstanceOf (MFInt32)
+   expect (a) .toHaveLength (N);
+   expect (d) .toHaveLength (N-2);
+   expect (d) .toBeInstanceOf (MFInt32);
 
    for (let i = 0, n = 1; i < N-2; ++ i)
    {
       const v = ++n
-      expect (d [i]) .toBe (v)
-      expect (b [i]) .toBe (v)
+      expect (d [i]) .toBe (v);
+      expect (b [i]) .toBe (v);
    }
 
    for (let i = 0, n = 0; i < N; ++ i)
-      expect (a [i]) .toBe (++n)
+      expect (a [i]) .toBe (++n);
 
-   const e = new MFInt32 (1, 2, 3, 4)
+   const e = new MFInt32 (1, 2, 3, 4);
 
-   expect (e .splice (2) .equals (new MFInt32 (3, 4))) .toBe (true)
-   expect (e .equals (new MFInt32 (1, 2))) .toBe (true)
+   expect (e .splice (2) .equals (new MFInt32 (3, 4))) .toBe (true);
+   expect (e .equals (new MFInt32 (1, 2))) .toBe (true);
 
-   expect (e .splice () .equals (new MFInt32 ())) .toBe (true)
-   expect (e .equals (new MFInt32 (1, 2))) .toBe (true)
-})
+   expect (e .splice () .equals (new MFInt32 ())) .toBe (true);
+   expect (e .equals (new MFInt32 (1, 2))) .toBe (true);
+
+   const n = new MFInt32 (1, 2, 3, 4);
+
+   expect (n .splice (-2) .equals (new MFInt32 (3, 4))) .toBe (true);
+   expect (n .equals (new MFInt32 (1, 2))) .toBe (true);
+});
 
 test ("sort-reverse", () =>
 {
