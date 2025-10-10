@@ -922,3 +922,43 @@ test ("USE before DEF", async () =>
       expect (scene .rootNodes [7] .children [0]) .toBe (scene .rootNodes [6] .children [0]);
    }
 });
+
+test ("use-exported-node.x3d", async () =>
+{
+   const
+      latestVersion = (await Browser .createScene ()) .specificationVersion,
+      scene         = await Browser .createX3DFromURL (new X3D .MFString (url .pathToFileURL (path .join (__dirname, "files", "X3D", `use-exported-node.x3d`))));
+
+   const orig = await fetch (path .join (__dirname, "files", "X3D", `use-exported-node.x3d`)) .then (r => r .text ());
+
+   for (const style of ["TIDY", "COMPACT", "SMALL", "CLEAN"])
+   {
+      const
+         x3d  = scene .toXMLString  ({ style }),
+         x3dv = scene .toVRMLString ({ style }),
+         x3dj = scene .toJSONString ({ style }),
+         html = scene .toXMLString ({ style, closingTags: true });
+
+      const encodings = ["XML", "XML", "VRML", "JSON", "XML"];
+
+      Browser .baseURL = scene .worldURL;
+
+      for (const [i, file] of [orig, x3d, x3dv, x3dj, html] .entries ())
+      {
+         const scene = await Browser .createX3DFromURL (new X3D .MFString (`data:model/x3d,${file}`));
+
+         expect (scene .encoding) .toBe (encodings [i]);
+
+         if (i)
+            expect (scene .specificationVersion) .toBe (latestVersion);
+
+         expect (scene .rootNodes [0] .children [0] .getValue () .checkLoadState ()) .toBe (X3D .X3DConstants .COMPLETE_STATE);
+
+         expect (scene .toXMLString ()) .toBe (orig);
+         expect (scene .toXMLString  ({ style })) .toBe (x3d);
+         expect (scene .toVRMLString ({ style })) .toBe (x3dv);
+         expect (scene .toJSONString ({ style })) .toBe (x3dj);
+         expect (scene .toXMLString ({ style, closingTags: true })) .toBe (html);
+      }
+   }
+});
