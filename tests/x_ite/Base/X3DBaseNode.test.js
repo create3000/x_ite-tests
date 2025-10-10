@@ -90,15 +90,21 @@ test ("abstract-nodes", async () =>
    {
       expect (typeof AbstractNode .typeName) .toBe ("string");
 
-      if (AbstractNode .typeName === "X3DPrototypeInstance")
+      switch (AbstractNode .typeName)
       {
-         expect (typeof AbstractNode .componentInfo .name) .toBe ("string");
-         enumerate (["typeName", "componentInfo", "containerField", "specificationRange"], AbstractNode);
-      }
-      else
-      {
-         expect (typeof AbstractNode .componentInfo .name) .toBe ("string");
-         enumerate (["typeName", "componentInfo"], AbstractNode);
+         case "X3DPrototypeInstance":
+         case "X3DImportedNodeProxy":
+         {
+            expect (typeof AbstractNode .componentInfo .name) .toBe ("string");
+            enumerate (["typeName", "componentInfo", "containerField", "specificationRange"], AbstractNode);
+            break;
+         }
+         default:
+         {
+            expect (typeof AbstractNode .componentInfo .name) .toBe ("string");
+            enumerate (["typeName", "componentInfo"], AbstractNode);
+            break;
+         }
       }
    }
 });

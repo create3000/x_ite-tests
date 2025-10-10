@@ -594,6 +594,12 @@ test ("splice", () =>
 
    expect (e .splice () .equals (new MFNode ())) .toBe (true)
    expect (e .equals (new MFNode (node1, node2))) .toBe (true)
+
+   const n = new MFNode (node1, node2, node3, node4);
+
+   expect (n .splice (-2) .equals (new MFNode (node3, node4))) .toBe (true);
+   expect (n .equals (new MFNode (node1, node2))) .toBe (true);
+
 })
 
 test ("sort-reverse", () =>
