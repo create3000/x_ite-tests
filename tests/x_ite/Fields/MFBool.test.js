@@ -547,10 +547,10 @@ test ("splice", () =>
    expect (e .splice () .equals (new MFBool ())) .toBe (true)
    expect (e .equals (new MFBool (true, false))) .toBe (true)
 
-   // const n = new MFBool (true, false, true, false);
+   const n = new MFBool (true, false, false, true);
 
-   // expect (n .splice (-2) .equals (new MFBool (true, false))) .toBe (true);
-   // expect (n .equals (new MFBool (true, false))) .toBe (true);
+   expect (n .splice (-2) .equals (new MFBool (false, true))) .toBe (true);
+   expect (n .equals (new MFBool (true, false))) .toBe (true);
 })
 
 test ("sort-reverse", () =>
