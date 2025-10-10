@@ -962,3 +962,22 @@ test ("use-exported-node.x3d", async () =>
       }
    }
 });
+
+test ("use-exported-node-script.x3dv", async () =>
+{
+   for (const suffix of ["x3dv"])
+   {
+      const scene = await Browser .createX3DFromURL (new X3D .MFString (url .pathToFileURL (path .join (__dirname, "files", "X3D", `use-exported-node-script.${suffix}`))));
+
+      expect (scene .rootNodes) .toHaveLength (2);
+
+      const S = scene .getNamedNode ("S");
+
+      expect (S .run)   .toBe (true);
+      expect (S .node1) .toBe (null);
+      expect (S .node2) .toBe (null);
+
+      expect (S .node) .not .toBe (null);
+      expect (S .script .node) .not .toBe (null);
+   }
+});
