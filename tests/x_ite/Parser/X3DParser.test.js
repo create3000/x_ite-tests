@@ -973,10 +973,12 @@ test ("use-exported-node-script.x3dv", async () =>
 
       const S = scene .getNamedNode ("S");
 
+      // Script nodes are initialized very early, so this should be null.
       expect (S .run)   .toBe (true);
       expect (S .node1) .toBe (null);
       expect (S .node2) .toBe (null);
 
+      // Scene is returned when all is loaded, thus this should NOT be null.
       expect (S .node) .not .toBe (null);
       expect (S .script .node) .not .toBe (null);
    }

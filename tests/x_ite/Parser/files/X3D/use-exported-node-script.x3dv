@@ -17,9 +17,9 @@ DEF S Script {
     initializeOnly SFNode node USE GreenBox
   }
 
-  outputOnly SFBool run
-  outputOnly SFNode node1
-  outputOnly SFNode node2
+  inputOutput SFBool run FALSE
+  inputOutput SFNode node1 USE S
+  inputOutput SFNode node2 USE S
 
   url "ecmascript:
 function initialize ()
