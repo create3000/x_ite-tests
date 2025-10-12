@@ -18,8 +18,8 @@ DEF S Script {
   }
 
   inputOutput SFBool run FALSE
-  inputOutput SFNode node1 USE S
-  inputOutput SFNode node2 USE S
+  inputOutput SFNode node1 NULL
+  inputOutput SFNode node2 NULL
 
   url "ecmascript:
 function initialize ()

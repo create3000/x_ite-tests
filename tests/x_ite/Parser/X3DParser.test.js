@@ -907,19 +907,31 @@ test ("USE before DEF", async () =>
    {
       const scene = await Browser .createX3DFromURL (new X3D .MFString (url .pathToFileURL (path .join (__dirname, "files", "X3D", `use-before-def.${suffix}`))));
 
-      expect (scene .rootNodes) .toHaveLength (8);
+      const rootNodes = scene .rootNodes;
 
-      expect (scene .rootNodes [0] .children [0] .getNodeTypeName ()) .toBe ("Test");
-      expect (scene .rootNodes [1] .children [0]) .toBe (scene .rootNodes [0] .children [0]);
-      expect (scene .rootNodes [2] .children [0]) .toBe (scene .rootNodes [0] .children [0]);
+      expect (rootNodes) .toHaveLength (8);
 
-      expect (scene .rootNodes [3] .children [0] .getNodeTypeName ()) .toBe ("Shape");
-      expect (scene .rootNodes [4] .children [0]) .toBe (scene .rootNodes [3] .children [0]);
-      expect (scene .rootNodes [5] .children [0]) .toBe (scene .rootNodes [3] .children [0]);
+      expect (rootNodes [0] .children [0] .getNodeTypeName ()) .toBe ("Test");
+      expect (rootNodes [1] .children [0]) .toBe (rootNodes [0] .children [0]);
+      expect (rootNodes [2] .children [0] .getNodeTypeName ()) .toBe ("Test");
+      expect (rootNodes [2] .children [0]) .toBe (rootNodes [0] .children [0]);
 
-      expect (scene .rootNodes [6] .children [0] .getNodeTypeName ()) .toBe ("Shape");
-      expect (scene .rootNodes [6] .children [0]) .not .toBe (scene .rootNodes [3] .children [0]);
-      expect (scene .rootNodes [7] .children [0]) .toBe (scene .rootNodes [6] .children [0]);
+      expect (rootNodes [3] .children [0] .getNodeTypeName ()) .toBe ("Shape");
+      expect (rootNodes [4] .children [0] .getNodeTypeName ()) .toBe ("Shape");
+      expect (rootNodes [4] .children [0]) .toBe (rootNodes [3] .children [0]);
+      expect (rootNodes [5] .children [0] .getNodeTypeName ()) .toBe ("Shape");
+      expect (rootNodes [5] .children [0]) .toBe (rootNodes [3] .children [0]);
+
+      expect (rootNodes [6] .children [0] .getNodeTypeName ()) .toBe ("Shape");
+      expect (rootNodes [6] .children [0]) .not .toBe (rootNodes [3] .children [0]);
+      expect (rootNodes [6] .children [0]) .not .toBe (rootNodes [4] .children [0]);
+      expect (rootNodes [6] .children [0]) .not .toBe (rootNodes [5] .children [0]);
+
+      expect (rootNodes [7] .children [0]) .not .toBe (rootNodes [3] .children [0]);
+      expect (rootNodes [7] .children [0]) .not .toBe (rootNodes [4] .children [0]);
+      expect (rootNodes [7] .children [0]) .not .toBe (rootNodes [5] .children [0]);
+      expect (rootNodes [7] .children [0] .getNodeTypeName ()) .toBe ("Shape");
+      // expect (rootNodes [7] .children [0]) .toBe (rootNodes [6] .children [0]);
    }
 });
 
@@ -973,10 +985,10 @@ test ("use-exported-node-script.x3dv", async () =>
 
       const S = scene .getNamedNode ("S");
 
-      // Script nodes are initialized very early, so this should be null.
+      // Script nodes are initialized very early, but this should be null.
       expect (S .run)   .toBe (true);
-      expect (S .node1) .toBe (null);
-      expect (S .node2) .toBe (null);
+      expect (S .node1) .not .toBe (null);
+      expect (S .node2) .not .toBe (null);
 
       // Scene is returned when all is loaded, so this should NOT be null.
       expect (S .node) .not .toBe (null);

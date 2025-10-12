@@ -25,8 +25,6 @@ IMPORT I.E1 AS I1
 IMPORT I.E2 AS I2
    `)
 
-   await sleep ();
-
    const importedNode = scene .importedNodes [0]
 
    expect (importedNode) .toBeInstanceOf (X3D .X3DImportedNode)
@@ -35,10 +33,11 @@ IMPORT I.E2 AS I2
    expect (importedNode .exportedName) .toBe ("E1")
    expect (importedNode .exportedNode) .toBeInstanceOf (X3D .SFNode)
    expect (importedNode .exportedNode .getNodeTypeName ()) .toBe ("Group")
+   expect (importedNode .exportedNode .getNodeName ()) .toBe ("I1")
    expect (importedNode .importedName) .toBe ("I1")
    expect (importedNode .getInlineNode ()) .toBe (importedNode .inlineNode .getValue ())
    expect (importedNode .getExportedName ()) .toBe (importedNode .exportedName)
-   expect (importedNode .getExportedNode ()) .toBe (importedNode .exportedNode .getValue ())
+   expect (importedNode .getExportedNode ()) .toBeInstanceOf (X3D .X3DImportedNodeProxy)
    expect (importedNode .getImportedName ()) .toBe (importedNode .importedName)
 
    expect (X3D .X3DImportedNode .typeName) .toBe ("X3DImportedNode")
