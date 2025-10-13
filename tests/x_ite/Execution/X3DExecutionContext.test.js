@@ -393,8 +393,6 @@ EXPORT B
 }
    `)
 
-   await sleep ()
-
    const
       inlineNode = scene .getNamedNode ("I"),
       node1      = inlineNode .getValue () .getInternalScene () .getNamedNode ("S"),
@@ -446,8 +444,6 @@ EXPORT B
 }
    `)
 
-   await sleep ()
-
    const otherInlineNode = otherScene .getNamedNode ("I")
 
    expect (() => scene .addImportedNode (otherInlineNode, "S", "FooBee")) .toThrow (Error)
@@ -468,8 +464,6 @@ EXPORT B
 "
 }
    `)
-
-   await sleep ()
 
    const
       inlineNode = scene .getNamedNode ("I"),
@@ -506,8 +500,6 @@ EXPORT B
 }
    `)
 
-   await sleep ()
-
    const otherInlineNode = otherScene .getNamedNode ("I")
 
    expect (() => scene .updateImportedNode (otherInlineNode, "S", "FooBee")) .toThrow (Error)
@@ -528,8 +520,6 @@ EXPORT B
 "
 }
    `)
-
-   await sleep ()
 
    const
       inlineNode = scene .getNamedNode ("I"),
