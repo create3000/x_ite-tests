@@ -381,28 +381,23 @@ test ("proto-import-routes.x3dv", async () =>
 
       expect (body .routes [1] .sourceNode) .toBeInstanceOf (X3D .SFNode)
       expect (typeof body .routes [1] .sourceField) .toBe ("string")
-      expect (body .routes [1] .destinationNode) .toBeInstanceOf (X3D .X3DImportedNode)
+      expect (body .routes [1] .destinationNode) .toBeInstanceOf (X3D .SFNode)
       expect (typeof body .routes [1] .destinationField) .toBe ("string")
 
       expect (body .routes [1] .getSourceNode ()) .toBeInstanceOf (X3D .X3DNode)
       expect (typeof body .routes [1] .getSourceField ()) .toBe ("string")
-      expect (body .routes [1] .getDestinationNode ()) .toBeInstanceOf (X3D .X3DImportedNode)
+      expect (body .routes [1] .getDestinationNode ()) .toBeInstanceOf (X3D .X3DNode)
       expect (typeof body .routes [1] .getDestinationField ()) .toBe ("string")
 
       expect (body .routes [1] .getSourceNode ()) .toBe (body .routes [1] .sourceNode .getValue ())
       expect (body .routes [1] .getSourceField ()) .toBe (body .routes [1] .sourceField)
-      expect (body .routes [1] .getDestinationNode ()) .toBe (body .routes [1] .destinationNode)
+      expect (body .routes [1] .getDestinationNode ()) .toBe (body .routes [1] .destinationNode .getValue ())
       expect (body .routes [1] .getDestinationField ()) .toBe (body .routes [1] .destinationField)
 
       expect (body .routes [1] .sourceNode .getNodeTypeName ()) .toBe ("OrientationInterpolator")
       expect (body .routes [1] .sourceField) .toBe ("value_changed")
-      expect (body .routes [1] .destinationNode .inlineNode) .toBeInstanceOf (X3D .SFNode)
-      expect (body .routes [1] .destinationNode .inlineNode .getNodeTypeName ()) .toBe ("Inline")
-      expect (body .routes [1] .destinationNode .exportedName) .toBe ("Box")
-      expect (body .routes [1] .destinationNode .importedName) .toBe ("ImportedBox")
-      expect (body .routes [1] .destinationNode .getInlineNode ()) .toBe (body .routes [1] .destinationNode .inlineNode .getValue ())
-      expect (body .routes [1] .destinationNode .getExportedName ()) .toBe (body .routes [1] .destinationNode .exportedName)
-      expect (body .routes [1] .destinationNode .getImportedName ()) .toBe (body .routes [1] .destinationNode .importedName)
+      expect (body .routes [1] .destinationNode .getNodeTypeName ()) .toBe ("Transform")
+      expect (body .routes [1] .destinationNode .getNodeName ()) .toBe ("ImportedBox")
       expect (body .routes [1] .destinationField) .toBe ("set_rotation")
    }
 });
@@ -433,8 +428,8 @@ test ("double-import.x3dv", async () =>
       expect (scene .getNamedNode ("Box") .getNodeName ()) .toBe ("Box");
       expect (scene .getNamedNode ("Box") .getNodeTypeName ()) .toBe ("Transform");
 
-      expect (scene .routes [0] .sourceNode) .toBe (scene .importedNodes [0]);
-      expect (scene .routes [1] .sourceNode) .toBe (scene .importedNodes [1]);
+      expect (scene .routes [0] .sourceNode) .toBe (scene .importedNodes [0] .exportedNode);
+      expect (scene .routes [1] .sourceNode) .toBe (scene .importedNodes [1] .exportedNode);
       expect (scene .routes [2] .sourceNode) .toBeInstanceOf (X3D .SFNode);
       expect (scene .routes [2] .sourceNode .getNodeName ()) .toMatch (/^Box_\d+$/);
       expect (scene .routes [3] .sourceNode) .toBe (scene .getNamedNode ("Box"));
