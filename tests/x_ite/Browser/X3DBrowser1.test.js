@@ -469,12 +469,15 @@ Box { }`), transform, "children")
          expect (transform .children) .toHaveLength (3)
          expect (transform .children) .toBeInstanceOf (X3D .MFNode)
          expect (transform .children [0]) .toBeInstanceOf (X3D .SFNode)
+         expect (transform .children [0] .getValue () .isInitialized ()) .toBe (true);
          expect (transform .children [0] .getNodeTypeName ()) .toBe ("Transform")
          expect (transform .children [0]) .toBe (transform .children [0])
          expect (transform .children [1]) .toBeInstanceOf (X3D .SFNode)
+         expect (transform .children [1] .getValue () .isInitialized ()) .toBe (true);
          expect (transform .children [1] .getNodeTypeName ()) .toBe ("Shape")
          expect (transform .children [1]) .toBe (transform .children [1])
          expect (transform .children [2]) .toBeInstanceOf (X3D .SFNode)
+         expect (transform .children [2] .getValue () .isInitialized ()) .toBe (true);
          expect (transform .children [2] .getNodeTypeName ()) .toBe ("Box")
          expect (transform .children [2]) .toBe (transform .children [2])
 
@@ -567,20 +570,20 @@ Script { }`)
    expect (nodes) .toHaveLength (3)
    expect (nodes) .toBeInstanceOf (X3D .MFNode)
    expect (nodes [0]) .toBeInstanceOf (X3D .SFNode)
+   expect (nodes [0] .getValue () .isInitialized ()) .toBe (true);
    expect (nodes [0] .getNodeTypeName ()) .toBe ("Transform")
    expect (nodes [0]) .toBe (nodes [0])
    expect (nodes [0] .children) .toHaveLength (1)
    expect (nodes [0] .children [0] .getNodeTypeName ()) .toBe ("Shape")
    expect (nodes [0] .children [0] .geometry .getNodeTypeName ()) .toBe ("Box")
    expect (nodes [1]) .toBeInstanceOf (X3D .SFNode)
+   expect (nodes [1] .getValue () .isInitialized ()) .toBe (true);
    expect (nodes [1] .getNodeTypeName ()) .toBe ("Group")
    expect (nodes [1]) .toBe (nodes [1])
    expect (nodes [2]) .toBeInstanceOf (X3D .SFNode)
+   expect (nodes [2] .getValue () .isInitialized ()) .toBe (true);
    expect (nodes [2] .getNodeTypeName ()) .toBe ("Script")
    expect (nodes [2]) .toBe (nodes [2])
-   expect (nodes [0] .getValue () .isInitialized ()) .toBe (true);
-   expect (nodes [1] .getValue () .isInitialized ()) .toBe (true);
-   expect (nodes [2] .getValue () .isInitialized ()) .toBe (true);
 })
 
 test ("replaceWorld", async () =>
