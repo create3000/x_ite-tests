@@ -831,6 +831,8 @@ test ("fromString", () =>
    expect (a) .toHaveLength (2);
    expect (a [0]) .toBeInstanceOf (SFNode);
    expect (a [1]) .toBeInstanceOf (SFNode);
+   expect (a [0] .getValue () .isInitialized ()) .toBe (true);
+   expect (a [1] .getValue () .isInitialized ()) .toBe (true);
    expect (a [0] .getNodeTypeName ()) .toBe ("Group");
    expect (a [1] .getNodeTypeName ()) .toBe ("Transform");
 
@@ -843,6 +845,7 @@ test ("fromString", () =>
 
    expect (a) .toHaveLength (1);
    expect (a [0]) .toBeInstanceOf (SFNode);
+   expect (a [0] .getValue () .isInitialized ()) .toBe (true);
    expect (a [0] .getNodeTypeName ()) .toBe ("Switch");
 
    a .fromString ("[ NULL, NULL ]", scene);
@@ -868,6 +871,8 @@ test ("fromVRMLString", () =>
    expect (a) .toHaveLength (2);
    expect (a [0]) .toBeInstanceOf (SFNode);
    expect (a [1]) .toBeInstanceOf (SFNode);
+   expect (a [0] .getValue () .isInitialized ()) .toBe (true);
+   expect (a [1] .getValue () .isInitialized ()) .toBe (true);
    expect (a [0] .getNodeTypeName ()) .toBe ("Group");
    expect (a [1] .getNodeTypeName ()) .toBe ("Transform");
 
@@ -880,6 +885,7 @@ test ("fromVRMLString", () =>
 
    expect (a) .toHaveLength (1);
    expect (a [0]) .toBeInstanceOf (SFNode);
+   expect (a [0] .getValue () .isInitialized ()) .toBe (true);
    expect (a [0] .getNodeTypeName ()) .toBe ("Switch");
 
    a .fromVRMLString ("[ NULL, NULL ]", scene);

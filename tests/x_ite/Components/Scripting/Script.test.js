@@ -155,6 +155,9 @@ function set_nodes (nodes, time)
    expect (nodes [0] .getNodeTypeName ()) .toBe ("Transform");
    expect (nodes [1] .getNodeTypeName ()) .toBe ("Shape");
    expect (nodes [2] .getNodeTypeName ()) .toBe ("Box");
+   expect (nodes [0] .getValue () .isInitialized ()) .toBe (true);
+   expect (nodes [1] .getValue () .isInitialized ()) .toBe (true);
+   expect (nodes [2] .getValue () .isInitialized ()) .toBe (true);
 });
 
 test ("this", async () =>

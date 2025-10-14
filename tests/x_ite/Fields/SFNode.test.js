@@ -219,6 +219,9 @@ test ("parents", () =>
       n1 = scene .createNode ("MetadataSet"),
       n2 = scene .createNode ("MetadataBoolean")
 
+   expect (n1 .getValue () .isInitialized ()) .toBe (true);
+   expect (n2 .getValue () .isInitialized ()) .toBe (true);
+
    expect (n2 .getValue ()) .not .toBe (null)
    expect (n2 .getValue () .getParents () .size) .toBe (1)
    expect (n2 .getNodeTypeName ()) .toBe ("MetadataBoolean")
@@ -544,6 +547,7 @@ test ("fromString", () =>
    a .fromString ("Transform { }", Browser .currentScene);
 
    expect (a .equals (new X3D .SFNode ())) .toBe (false);
+   expect (a .getValue () .isInitialized ()) .toBe (true);
    expect (a .getNodeTypeName ()) .toBe ("Transform");
 
    a .fromString ("NULL", Browser .currentScene);
@@ -553,6 +557,7 @@ test ("fromString", () =>
    a .fromString ("Group { }", Browser .currentScene);
 
    expect (a .equals (new X3D .SFNode ())) .toBe (false);
+   expect (a .getValue () .isInitialized ()) .toBe (true);
    expect (a .getNodeTypeName ()) .toBe ("Group");
 
    a .fromString ("null", Browser .currentScene);
@@ -569,6 +574,7 @@ test ("fromVRMLString", () =>
    a .fromVRMLString ("Transform { }", Browser .currentScene);
 
    expect (a .equals (new X3D .SFNode ())) .toBe (false);
+   expect (a .getValue () .isInitialized ()) .toBe (true);
    expect (a .getNodeTypeName ()) .toBe ("Transform");
 
    a .fromVRMLString ("NULL", Browser .currentScene);
@@ -578,6 +584,7 @@ test ("fromVRMLString", () =>
    a .fromVRMLString ("Group { }", Browser .currentScene);
 
    expect (a .equals (new X3D .SFNode ())) .toBe (false);
+   expect (a .getValue () .isInitialized ()) .toBe (true);
    expect (a .getNodeTypeName ()) .toBe ("Group");
 
    a .fromVRMLString ("null", Browser .currentScene);

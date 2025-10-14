@@ -63,6 +63,7 @@ Foo {
 }
    `);
 
+   expect (scene .rootNodes [0] .getValue () .isInitialized ()) .toBe (true);
    expect (scene .rootNodes [0] .getNodeTypeName ()) .toBe ("Foo");
    expect (scene .rootNodes [0] .getNodeType () .includes (X3D .X3DConstants .Foo)) .toBe (true);
    expect (scene .rootNodes [0] .bah) .toBe ("BIM");

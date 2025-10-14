@@ -402,6 +402,7 @@ Transform {
    expect (scene .worldURL) .toMatch (/^data:/)
    expect (scene .rootNodes) .toHaveLength (1)
    expect (scene .rootNodes) .toBeInstanceOf (X3D .MFNode)
+   expect (scene .rootNodes [0] .getValue () .isInitialized ()) .toBe (true);
    expect (scene .rootNodes [0]) .toBeInstanceOf (X3D .SFNode)
    expect (scene .rootNodes [0] .getNodeTypeName ()) .toBe ("Transform")
    expect (scene .rootNodes [0]) .toBe (scene .rootNodes [0])
@@ -411,6 +412,7 @@ Transform {
    expect (scene .externprotos) .toBeInstanceOf (X3D .ExternProtoDeclarationArray)
    expect (scene .routes) .toHaveLength (0)
    expect (scene .routes) .toBeInstanceOf (X3D .RouteArray)
+   expect (scene .getNamedNode ("R") .getValue () .isInitialized ()) .toBe (true);
    expect (scene .getNamedNode ("R") .getNodeTypeName ()) .toBe ("Rectangle2D")
 })
 
@@ -428,6 +430,9 @@ Box { }
 `))
 
    expect (scene1 .rootNodes) .toHaveLength (3)
+   expect (scene1 .rootNodes [0] .getValue () .isInitialized ()) .toBe (true);
+   expect (scene1 .rootNodes [1] .getValue () .isInitialized ()) .toBe (true);
+   expect (scene1 .rootNodes [2] .getValue () .isInitialized ()) .toBe (true);
    expect (scene1 .rootNodes [0] .getNodeTypeName ()) .toBe ("Transform")
    expect (scene1 .rootNodes [1] .getNodeTypeName ()) .toBe ("Shape")
    expect (scene1 .rootNodes [2] .getNodeTypeName ()) .toBe ("Box")
@@ -435,6 +440,9 @@ Box { }
    const scene2 = await Browser .createX3DFromURL (new X3D .MFString (url .pathToFileURL (path .join (__dirname, "files", "loadURL.x3d"))))
 
    expect (scene2 .rootNodes) .toHaveLength (3)
+   expect (scene1 .rootNodes [0] .getValue () .isInitialized ()) .toBe (true);
+   expect (scene1 .rootNodes [1] .getValue () .isInitialized ()) .toBe (true);
+   expect (scene1 .rootNodes [2] .getValue () .isInitialized ()) .toBe (true);
    expect (scene2 .rootNodes [0] .getNodeTypeName ()) .toBe ("Arc2D")
    expect (scene2 .rootNodes [1] .getNodeTypeName ()) .toBe ("GeoTransform")
    expect (scene2 .rootNodes [2] .getNodeTypeName ()) .toBe ("HAnimJoint")
@@ -505,6 +513,7 @@ Transform {
    expect (scene .worldURL) .toMatch (/^file:\/\/\/.*$/)
    expect (scene .rootNodes) .toHaveLength (1)
    expect (scene .rootNodes) .toBeInstanceOf (X3D .MFNode)
+   expect (scene .rootNodes [0] .getValue () .isInitialized ()) .toBe (true);
    expect (scene .rootNodes [0]) .toBeInstanceOf (X3D .SFNode)
    expect (scene .rootNodes [0] .getNodeTypeName ()) .toBe ("Transform")
    expect (scene .rootNodes [0]) .toBe (scene .rootNodes [0])
@@ -514,6 +523,7 @@ Transform {
    expect (scene .externprotos) .toBeInstanceOf (X3D .ExternProtoDeclarationArray)
    expect (scene .routes) .toHaveLength (0)
    expect (scene .routes) .toBeInstanceOf (X3D .RouteArray)
+   expect (scene .getNamedNode ("R") .getValue () .isInitialized ()) .toBe (true);
    expect (scene .getNamedNode ("R") .getNodeTypeName ()) .toBe ("NurbsCurve")
 })
 
@@ -532,6 +542,9 @@ Box { }
 `)
 
    expect (scene1 .rootNodes) .toHaveLength (3)
+   expect (scene1 .rootNodes [0] .getValue () .isInitialized ()) .toBe (true);
+   expect (scene1 .rootNodes [1] .getValue () .isInitialized ()) .toBe (true);
+   expect (scene1 .rootNodes [2] .getValue () .isInitialized ()) .toBe (true);
    expect (scene1 .rootNodes [0] .getNodeTypeName ()) .toBe ("Transform")
    expect (scene1 .rootNodes [1] .getNodeTypeName ()) .toBe ("Shape")
    expect (scene1 .rootNodes [2] .getNodeTypeName ()) .toBe ("Box")
@@ -565,6 +578,9 @@ Script { }`)
    expect (nodes [2]) .toBeInstanceOf (X3D .SFNode)
    expect (nodes [2] .getNodeTypeName ()) .toBe ("Script")
    expect (nodes [2]) .toBe (nodes [2])
+   expect (nodes [0] .getValue () .isInitialized ()) .toBe (true);
+   expect (nodes [1] .getValue () .isInitialized ()) .toBe (true);
+   expect (nodes [2] .getValue () .isInitialized ()) .toBe (true);
 })
 
 test ("replaceWorld", async () =>
@@ -579,6 +595,10 @@ Transform { }
 Shape { }
 Box { }
 `)
+
+   expect (scene .rootNodes [0] .getValue () .isInitialized ()) .toBe (true);
+   expect (scene .rootNodes [1] .getValue () .isInitialized ()) .toBe (true);
+   expect (scene .rootNodes [2] .getValue () .isInitialized ()) .toBe (true);
 
    await Browser .replaceWorld (scene)
 
@@ -603,6 +623,10 @@ Transform { }
 Shape { }
 Box { }
 `)
+
+   expect (scene .rootNodes [0] .getValue () .isInitialized ()) .toBe (true);
+   expect (scene .rootNodes [1] .getValue () .isInitialized ()) .toBe (true);
+   expect (scene .rootNodes [2] .getValue () .isInitialized ()) .toBe (true);
 
    await Browser .replaceWorld (scene .rootNodes)
 

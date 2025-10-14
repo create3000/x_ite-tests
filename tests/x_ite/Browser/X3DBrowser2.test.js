@@ -501,7 +501,10 @@ ${typeNames .map (n => `${n}{}`) .join ("\n")}
    expect (scene .encoding) .toBe ("VRML")
 
    for (const [i, typeName] of typeNames .entries ())
-      expect (scene .rootNodes [i] .getNodeTypeName ()) .toBe (typeName)
+   {
+      expect (scene .rootNodes [i] .getValue () .isInitialized ()) .toBe (true);
+      expect (scene .rootNodes [i] .getNodeTypeName ()) .toBe (typeName);
+   }
 })
 
 test ("Profile/Component Handling", async () =>
@@ -528,6 +531,7 @@ TestNode { }
 
    expect (() => Browser .getConcreteNode ("TestNode")) .not .toThrow (Error)
    expect (scene .rootNodes) .toHaveLength (1)
+   expect (scene .rootNodes [0] .getValue () .isInitialized ()) .toBe (true);
    expect (scene .rootNodes [0] .getNodeTypeName ()) .toBe ("TestNode")
    expect (X3D .X3DConstants .TestNode) .toBeGreaterThan (0)
    expect (scene .rootNodes [0] .getNodeType () .includes (X3D .X3DConstants .TestNode)) .toBe (true)
@@ -555,6 +559,8 @@ DEF L LoadSensor {
    `));
 
    expect (scene .rootNodes) .toHaveLength (2);
+   expect (scene .rootNodes [0] .getValue () .isInitialized ()) .toBe (true);
+   expect (scene .rootNodes [1] .getValue () .isInitialized ()) .toBe (true);
 
    const I = scene .getNamedNode ("I");
 
@@ -583,6 +589,8 @@ DEF L LoadSensor {
    `);
 
    expect (scene .rootNodes) .toHaveLength (2);
+   expect (scene .rootNodes [0] .getValue () .isInitialized ()) .toBe (true);
+   expect (scene .rootNodes [1] .getValue () .isInitialized ()) .toBe (true);
 
    const I = scene .getNamedNode ("I");
 
