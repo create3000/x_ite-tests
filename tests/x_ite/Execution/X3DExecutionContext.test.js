@@ -150,15 +150,19 @@ PROTO Foo [
 
    for (const ConcreteNode of Browser .getConcreteNodes ())
    {
-      expect (scene .createNode (ConcreteNode .typeName) .getNodeTypeName ()) .toBe (ConcreteNode .typeName)
-      expect (scene .createNode (ConcreteNode .typeName) .getValue ()) .toBeInstanceOf (ConcreteNode)
+      const node = scene .createNode (ConcreteNode .typeName);
+
+      expect (node) .toBeInstanceOf (X3D .SFNode);
+      expect (node .getValue () .isInitialized ()) .toBe (true);
+      expect (node .getValue ()) .toBeInstanceOf (ConcreteNode);
+      expect (node .getNodeTypeName ()) .toBe (ConcreteNode .typeName);
    }
 
    expect (() => scene .createNode ("Foo")) .toThrow (Error)
 
-   expect (scene .createNode ("TimeSensor") .getNodeTypeName ()) .toBe ("TimeSensor")
-   expect (scene .createNode ("TimeSensor") .enabled) .toBe (true)
-})
+   expect (scene .createNode ("TimeSensor") .getNodeTypeName ()) .toBe ("TimeSensor");
+   expect (scene .createNode ("TimeSensor") .enabled) .toBe (true);
+});
 
 test ("createProto", async () =>
 {
@@ -186,13 +190,22 @@ PROTO Foo [
 }
    `)
 
-   expect (scene .createProto ("Foo") .getNodeTypeName ()) .toBe ("Foo")
-   expect (scene .createProto ("Foo") .test) .toBe (true)
-   expect (scene .createProto ("Bah") .getNodeTypeName ()) .toBe ("Bah")
-   expect (scene .createProto ("Bah") .test) .toBe (false)
+   const foo = scene .createProto ("Foo");
 
-   expect (() => scene .createProto ("WorldInfo")) .toThrow (Error)
-})
+   expect (foo .getValue ()) .toBeInstanceOf (X3D .X3DPrototypeInstance);
+   expect (foo .getValue () .isInitialized ()) .toBe (true);
+   expect (foo .getNodeTypeName ()) .toBe ("Foo");
+   expect (foo .test) .toBe (true);
+
+   const bah = scene .createProto ("Bah");
+
+   expect (bah .getValue ()) .toBeInstanceOf (X3D .X3DPrototypeInstance);
+   expect (bah .getValue () .isInitialized ()) .toBe (true);
+   expect (bah .getNodeTypeName ()) .toBe ("Bah");
+   expect (bah .test) .toBe (false);
+
+   expect (() => scene .createProto ("WorldInfo")) .toThrow (Error);
+});
 
 test ("addNamedNode", async () =>
 {
