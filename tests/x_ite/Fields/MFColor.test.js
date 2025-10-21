@@ -171,3 +171,8 @@ test ("fromXMLString", () =>
 
    expect (() => a .fromXMLString ("")) .toThrow (Error);
 });
+
+test ("enumerate", () =>
+{
+   enumerate (["0", "1", "2"], new MFColor (new SFColor (), new SFColor (), new SFColor ()));
+});

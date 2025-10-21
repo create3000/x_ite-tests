@@ -813,3 +813,8 @@ test ("fromXMLString", () =>
    expect (a) .toHaveLength (3);
    expect (a .equals (new MFDouble (1000, 2000, 3000))) .toBe (true);
 });
+
+test ("enumerate", () =>
+{
+   enumerate (["0", "1", "2"], new MFDouble (1,2,3));
+});

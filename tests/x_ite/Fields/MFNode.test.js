@@ -901,3 +901,8 @@ test ("fromVRMLString", () =>
 
    expect (() => a .fromVRMLString ("[ Switch { }, foo ]")) .toThrow (Error);
 });
+
+test ("enumerate", () =>
+{
+   enumerate (["0", "1", "2"], new MFNode (node1, node2, node3));
+});

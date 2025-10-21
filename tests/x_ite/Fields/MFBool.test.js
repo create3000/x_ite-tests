@@ -792,3 +792,8 @@ test ("fromXMLString", () =>
    expect (a) .toHaveLength (8);
    expect (a .equals (new MFBool (true, false, true, false, true, true, false, false))) .toBe (true);
 });
+
+test ("enumerate", () =>
+{
+   enumerate (["0", "1", "2"], new MFBool (true, false, true));
+});

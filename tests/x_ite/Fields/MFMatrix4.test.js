@@ -176,4 +176,9 @@ for (const [typeName, MFMatrix4, SFMatrix4] of arrays)
 
       expect (() => a .fromXMLString ("")) .toThrow (Error);
    });
+
+   test ("enumerate", () =>
+   {
+      enumerate (["0", "1", "2"], new MFMatrix4 (new SFMatrix4 (), new SFMatrix4 (), new SFMatrix4 ()));
+   });
 }

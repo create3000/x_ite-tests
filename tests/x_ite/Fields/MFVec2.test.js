@@ -851,4 +851,9 @@ for (const [typeName, MFVec2, SFVec2] of arrays)
       expect (a) .toHaveLength (2);
       expect (a .equals (new MFVec2 (new SFVec2 (1000, 2000), new SFVec2 (2000, 3000)))) .toBe (true);
    });
+
+   test ("enumerate", () =>
+   {
+      enumerate (["0", "1", "2"], new MFVec2 (new SFVec2 (), new SFVec2 (), new SFVec2 ()));
+   });
 }

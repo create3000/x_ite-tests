@@ -770,3 +770,8 @@ test ("fromXMLString", () =>
 
    expect (() => a .fromXMLString ("")) .toThrow (Error);
 });
+
+test ("enumerate", () =>
+{
+   enumerate (["0", "1", "2"], new MFTime (1,2,3));
+});
