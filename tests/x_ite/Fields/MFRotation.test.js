@@ -231,3 +231,8 @@ test ("fromXMLString", () =>
    expect (a [1] .z) .toBe (4);
    expect (a [1] .angle) .toBeCloseTo (Math .PI);
 });
+
+test ("enumerate", () =>
+{
+   enumerate (["0", "1", "2"], new MFRotation (new SFRotation (), new SFRotation (), new SFRotation ()));
+});

@@ -250,80 +250,125 @@ test ("metadata", async () =>
 {
    const scene = await Browser .createScene (Browser .getProfile ("Interchange"));
 
-   expect (scene .getMetaDatas () .size) .toBe (0);
+   expect (scene .getMetaDatas ()) .toHaveLength (0);
 
    scene .addMetaData ("foo", "foo1")
-   expect (scene .getMetaDatas () .size) .toBe (1);
+   expect (scene .getMetaDatas ()) .toHaveLength (1);
    expect (scene .getMetaData ("foo")) .toHaveLength (1);
    expect (scene .getMetaData ("foo")) .toEqual (["foo1"])
 
    scene .addMetaData ("foo", "foo2")
-   expect (scene .getMetaDatas () .size) .toBe (1);
+   expect (scene .getMetaDatas ()) .toHaveLength (2);
    expect (scene .getMetaData ("foo")) .toHaveLength (2);
    expect (scene .getMetaData ("foo")) .toEqual (["foo1", "foo2"])
 
    expect (scene .getMetaDatas ()) .not .toBe (scene .getMetaDatas ());
-   expect (scene .getMetaDatas () .get ("foo")) .not .toBe (scene .getMetaDatas () .get ("foo"));
    expect (scene .getMetaData ("foo")) .not .toBe (scene .getMetaData ("foo"));
 
    scene .removeMetaData ("foo");
-   expect (scene .getMetaDatas () .size) .toBe (0);
+   expect (scene .getMetaDatas ()) .toHaveLength (0);
 
    scene .setMetaData ("foo", "foo1")
-   expect (scene .getMetaDatas () .size) .toBe (1);
+   expect (scene .getMetaDatas ()) .toHaveLength (1);
    expect (scene .getMetaData ("foo")) .toHaveLength (1);
    expect (scene .getMetaData ("foo")) .toEqual (["foo1"])
 
    scene .setMetaData ("bah", "bah1")
-   expect (scene .getMetaDatas () .size) .toBe (2);
+   expect (scene .getMetaDatas ()) .toHaveLength (2);
    expect (scene .getMetaData ("bah")) .toHaveLength (1);
    expect (scene .getMetaData ("bah")) .toEqual (["bah1"])
 
    scene .addMetaData ("foo", "foo2")
-   expect (scene .getMetaDatas () .size) .toBe (2);
+   expect (scene .getMetaDatas ()) .toHaveLength (3);
    expect (scene .getMetaData ("foo")) .toHaveLength (2);
    expect (scene .getMetaData ("foo")) .toEqual (["foo1", "foo2"])
 
    scene .setMetaData ("foo", "foo1")
-   expect (scene .getMetaDatas () .size) .toBe (2);
+   expect (scene .getMetaDatas ()) .toHaveLength (2);
    expect (scene .getMetaData ("foo")) .toHaveLength (1);
    expect (scene .getMetaData ("foo")) .toEqual (["foo1"])
 
    scene .removeMetaData ("foo");
-   expect (scene .getMetaDatas () .size) .toBe (1);
+   expect (scene .getMetaDatas ()) .toHaveLength (1);
 
    scene .removeMetaData ("bah");
-   expect (scene .getMetaDatas () .size) .toBe (0);
+   expect (scene .getMetaDatas ()) .toHaveLength (0);
 
    expect (scene .getMetaData ("foo")) .toBe (undefined);
    expect (scene .getMetaData ("bah")) .toBe (undefined);
 
    scene .setMetaData ("foo", ["foo1", "foo2"])
-   expect (scene .getMetaDatas () .size) .toBe (1);
+   expect (scene .getMetaDatas ()) .toHaveLength (2);
    expect (scene .getMetaData ("foo")) .toHaveLength (2);
    expect (scene .getMetaData ("foo")) .toEqual (["foo1", "foo2"])
 
    scene .setMetaData ("bah", ["bah1", "bah2"])
-   expect (scene .getMetaDatas () .size) .toBe (2);
+   expect (scene .getMetaDatas ()) .toHaveLength (4);
    expect (scene .getMetaData ("bah")) .toHaveLength (2);
    expect (scene .getMetaData ("bah")) .toEqual (["bah1", "bah2"]);
 
    scene .removeMetaData ("foo");
-   expect (scene .getMetaDatas () .size) .toBe (1);
+   expect (scene .getMetaDatas ()) .toHaveLength (2);
 
    scene .removeMetaData ("bah");
-   expect (scene .getMetaDatas () .size) .toBe (0);
+   expect (scene .getMetaDatas ()) .toHaveLength (0);
 
    scene .setMetaData ("foo", [123, true])
-   expect (scene .getMetaDatas () .size) .toBe (1);
+   expect (scene .getMetaDatas ()) .toHaveLength (2);
    expect (scene .getMetaData ("foo")) .toHaveLength (2);
    expect (scene .getMetaData ("foo")) .toEqual (["123", "true"]);
 
    scene .setMetaData ("foo", 123.456)
-   expect (scene .getMetaDatas () .size) .toBe (1);
+   expect (scene .getMetaDatas ()) .toHaveLength (1);
    expect (scene .getMetaData ("foo")) .toHaveLength (1);
    expect (scene .getMetaData ("foo")) .toEqual (["123.456"]);
 
    scene .removeMetaData ("foo");
-   expect (scene .getMetaDatas () .size) .toBe (0);
+   expect (scene .getMetaDatas ()) .toHaveLength (0);
+
+   scene .addMetaData ("foo1", "111");
+   scene .addMetaData ("foo2", "222");
+   scene .addMetaData ("foo3", "333");
+   scene .addMetaData ("foo4", "444");
+   scene .addMetaData ("foo5", "555");
+
+   expect (scene .getMetaDatas ()) .toEqual ( [
+      ["foo1", "111"],
+      ["foo2", "222"],
+      ["foo3", "333"],
+      ["foo4", "444"],
+      ["foo5", "555"],
+   ]);
+
+   scene .setMetaData ("foo3", "999");
+
+   expect (scene .getMetaDatas ()) .toEqual ( [
+      ["foo1", "111"],
+      ["foo2", "222"],
+      ["foo3", "999"],
+      ["foo4", "444"],
+      ["foo5", "555"],
+   ]);
+
+   scene .setMetaData ("foo6", "666");
+
+   expect (scene .getMetaDatas ()) .toEqual ( [
+      ["foo1", "111"],
+      ["foo2", "222"],
+      ["foo3", "999"],
+      ["foo4", "444"],
+      ["foo5", "555"],
+      ["foo6", "666"],
+   ]);
+
+   scene .setMetaData ("foo1", "aaa");
+
+   expect (scene .getMetaDatas ()) .toEqual ( [
+      ["foo1", "aaa"],
+      ["foo2", "222"],
+      ["foo3", "999"],
+      ["foo4", "444"],
+      ["foo5", "555"],
+      ["foo6", "666"],
+   ]);
 });

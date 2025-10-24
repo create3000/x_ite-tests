@@ -34,8 +34,6 @@ Gain number of fields differ (Spec <=> X3DUOM): 15 <=> 16.
   Where [channelCount] not in Spec.
 ListenerPointSource number of fields differ (Spec <=> X3DUOM): 8 <=> 16.
   Where [elapsedTime,gain,isActive,isPaused,pauseTime,resumeTime,startTime,stopTime] not in Spec.
-OscillatorSource number of fields differ (Spec <=> X3DUOM): 14 <=> 13.
-  Where [periodicWave] not in X3DUOM.
 Sound number of fields differ (Spec <=> X3DUOM): 14 <=> 13.
   Where [children] not in X3DUOM.
 StreamAudioDestination number of fields differ (Spec <=> X3DUOM): 10 <=> 11.

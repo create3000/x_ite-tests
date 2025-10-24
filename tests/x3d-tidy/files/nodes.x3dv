@@ -516,6 +516,8 @@ TransmissionMaterialExtension { }
 
 VolumeMaterialExtension { }
 
+VolumeScatterMaterialExtension { }
+
 BlendedVolumeStyle { }
 
 BoundaryEnhancementVolumeStyle { }

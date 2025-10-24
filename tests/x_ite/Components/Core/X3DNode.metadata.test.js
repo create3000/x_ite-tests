@@ -16,12 +16,15 @@ test ("get/set/removeMetaData basic types", () =>
    node .getValue () .setMetaData ("Sunrize/Test/boolean", true);
 
    expect (node .metadata) .toBeInstanceOf (X3D .SFNode);
+   expect (node .metadata .getNodeDisplayName ()) .toBe ("Sunrize");
    expect (node .metadata .name) .toBe ("Sunrize");
    expect (node .metadata .reference) .toBe (reference);
    expect (node .metadata .value) .toHaveLength (1);
+   expect (node .metadata .value [0] .getNodeDisplayName ()) .toBe ("Test");
    expect (node .metadata .value [0] .name) .toBe ("Test");
    expect (node .metadata .value [0] .reference) .toBe (reference);
    expect (node .metadata .value [0] .value) .toHaveLength (1);
+   expect (node .metadata .value [0] .value [0] .getNodeDisplayName ()) .toBe ("boolean");
    expect (node .metadata .value [0] .value [0] .name) .toBe ("boolean");
    expect (node .metadata .value [0] .value [0] .reference) .toBe (reference);
    expect (node .metadata .value [0] .value [0] .value .equals (new X3D .MFBool (true))) .toBe (true);
@@ -29,12 +32,15 @@ test ("get/set/removeMetaData basic types", () =>
    node .getValue () .setMetaData ("Sunrize/Test/double", 123.456);
 
    expect (node .metadata) .toBeInstanceOf (X3D .SFNode);
+   expect (node .metadata .getNodeDisplayName ()) .toBe ("Sunrize");
    expect (node .metadata .name) .toBe ("Sunrize");
    expect (node .metadata .reference) .toBe (reference);
    expect (node .metadata .value) .toHaveLength (1);
+   expect (node .metadata .value [0] .getNodeDisplayName ()) .toBe ("Test");
    expect (node .metadata .value [0] .name) .toBe ("Test");
    expect (node .metadata .value [0] .reference) .toBe (reference);
    expect (node .metadata .value [0] .value) .toHaveLength (2);
+   expect (node .metadata .value [0] .value [1] .getNodeDisplayName ()) .toBe ("double");
    expect (node .metadata .value [0] .value [1] .name) .toBe ("double");
    expect (node .metadata .value [0] .value [0] .reference) .toBe (reference);
    expect (node .metadata .value [0] .value [1] .value .equals (new X3D .MFDouble (123.456))) .toBe (true);
@@ -42,12 +48,15 @@ test ("get/set/removeMetaData basic types", () =>
    node .getValue () .setMetaData ("Sunrize/Test/integer", 123);
 
    expect (node .metadata) .toBeInstanceOf (X3D .SFNode);
+   expect (node .metadata .getNodeDisplayName ()) .toBe ("Sunrize");
    expect (node .metadata .name) .toBe ("Sunrize");
    expect (node .metadata .reference) .toBe (reference);
    expect (node .metadata .value) .toHaveLength (1);
+   expect (node .metadata .value [0] .getNodeDisplayName ()) .toBe ("Test");
    expect (node .metadata .value [0] .name) .toBe ("Test");
    expect (node .metadata .value [0] .reference) .toBe (reference);
    expect (node .metadata .value [0] .value) .toHaveLength (3);
+   expect (node .metadata .value [0] .value [2] .getNodeDisplayName ()) .toBe ("integer");
    expect (node .metadata .value [0] .value [2] .name) .toBe ("integer");
    expect (node .metadata .value [0] .value [0] .reference) .toBe (reference);
    expect (node .metadata .value [0] .value [2] .value .equals (new X3D .MFInt32 (123))) .toBe (true);
@@ -55,12 +64,15 @@ test ("get/set/removeMetaData basic types", () =>
    node .getValue () .setMetaData ("Sunrize/Test/string", "abc");
 
    expect (node .metadata) .toBeInstanceOf (X3D .SFNode);
+   expect (node .metadata .getNodeDisplayName ()) .toBe ("Sunrize");
    expect (node .metadata .name) .toBe ("Sunrize");
    expect (node .metadata .reference) .toBe (reference);
    expect (node .metadata .value) .toHaveLength (1);
+   expect (node .metadata .value [0] .getNodeDisplayName ()) .toBe ("Test");
    expect (node .metadata .value [0] .name) .toBe ("Test");
    expect (node .metadata .value [0] .reference) .toBe (reference);
    expect (node .metadata .value [0] .value) .toHaveLength (4);
+   expect (node .metadata .value [0] .value [3] .getNodeDisplayName ()) .toBe ("string");
    expect (node .metadata .value [0] .value [3] .name) .toBe ("string");
    expect (node .metadata .value [0] .value [0] .reference) .toBe (reference);
    expect (node .metadata .value [0] .value [3] .value .equals (new X3D .MFString ("abc"))) .toBe (true);
@@ -81,12 +93,15 @@ test ("get/set/removeMetaData basic types", () =>
    // Remove
 
    expect (node .metadata) .toBeInstanceOf (X3D .SFNode);
+   expect (node .metadata .getNodeDisplayName ()) .toBe ("Sunrize");
    expect (node .metadata .name) .toBe ("Sunrize");
    expect (node .metadata .reference) .toBe (reference);
    expect (node .metadata .value) .toHaveLength (1);
+   expect (node .metadata .value [0] .getNodeDisplayName ()) .toBe ("Test");
    expect (node .metadata .value [0] .name) .toBe ("Test");
    expect (node .metadata .value [0] .reference) .toBe (reference);
    expect (node .metadata .value [0] .value) .toHaveLength (4);
+   expect (node .metadata .value [0] .value [0] .getNodeDisplayName ()) .toBe ("boolean");
    expect (node .metadata .value [0] .value [0] .name) .toBe ("boolean");
    expect (node .metadata .value [0] .value [0] .reference) .toBe (reference);
    expect (node .metadata .value [0] .value [0] .value .equals (new X3D .MFBool (true))) .toBe (true);
@@ -94,12 +109,15 @@ test ("get/set/removeMetaData basic types", () =>
    node .getValue () .removeMetaData ("Sunrize/Test/boolean");
 
    expect (node .metadata) .toBeInstanceOf (X3D .SFNode);
+   expect (node .metadata .getNodeDisplayName ()) .toBe ("Sunrize");
    expect (node .metadata .name) .toBe ("Sunrize");
    expect (node .metadata .reference) .toBe (reference);
    expect (node .metadata .value) .toHaveLength (1);
+   expect (node .metadata .value [0] .getNodeDisplayName ()) .toBe ("Test");
    expect (node .metadata .value [0] .name) .toBe ("Test");
    expect (node .metadata .value [0] .reference) .toBe (reference);
    expect (node .metadata .value [0] .value) .toHaveLength (3);
+   expect (node .metadata .value [0] .value [0] .getNodeDisplayName ()) .toBe ("double");
    expect (node .metadata .value [0] .value [0] .name) .toBe ("double");
    expect (node .metadata .value [0] .value [0] .reference) .toBe (reference);
    expect (node .metadata .value [0] .value [0] .value .equals (new X3D .MFDouble (123.456))) .toBe (true);
@@ -107,12 +125,15 @@ test ("get/set/removeMetaData basic types", () =>
    node .getValue () .removeMetaData ("Sunrize/Test/double");
 
    expect (node .metadata) .toBeInstanceOf (X3D .SFNode);
+   expect (node .metadata .getNodeDisplayName ()) .toBe ("Sunrize");
    expect (node .metadata .name) .toBe ("Sunrize");
    expect (node .metadata .reference) .toBe (reference);
    expect (node .metadata .value) .toHaveLength (1);
-   expect (node .metadata .value [0] .name) .toBe ("Test");
+   expect (node .metadata .getNodeDisplayName ()) .toBe ("Sunrize");
+   expect (node .metadata .name) .toBe ("Sunrize");
    expect (node .metadata .value [0] .reference) .toBe (reference);
    expect (node .metadata .value [0] .value) .toHaveLength (2);
+   expect (node .metadata .value [0] .value [0] .getNodeDisplayName ()) .toBe ("integer");
    expect (node .metadata .value [0] .value [0] .name) .toBe ("integer");
    expect (node .metadata .value [0] .value [0] .reference) .toBe (reference);
    expect (node .metadata .value [0] .value [0] .value .equals (new X3D .MFInt32 (123))) .toBe (true);
@@ -120,12 +141,15 @@ test ("get/set/removeMetaData basic types", () =>
    node .getValue () .removeMetaData ("Sunrize/Test/integer");
 
    expect (node .metadata) .toBeInstanceOf (X3D .SFNode);
+   expect (node .metadata .getNodeDisplayName ()) .toBe ("Sunrize");
    expect (node .metadata .name) .toBe ("Sunrize");
    expect (node .metadata .reference) .toBe (reference);
    expect (node .metadata .value) .toHaveLength (1);
+   expect (node .metadata .value [0] .getNodeDisplayName ()) .toBe ("Test");
    expect (node .metadata .value [0] .name) .toBe ("Test");
    expect (node .metadata .value [0] .reference) .toBe (reference);
    expect (node .metadata .value [0] .value) .toHaveLength (1);
+   expect (node .metadata .value [0] .value [0] .getNodeDisplayName ()) .toBe ("string");
    expect (node .metadata .value [0] .value [0] .name) .toBe ("string");
    expect (node .metadata .value [0] .value [0] .reference) .toBe (reference);
    expect (node .metadata .value [0] .value [0] .value .equals (new X3D .MFString ("abc"))) .toBe (true);
@@ -143,12 +167,15 @@ test ("get/set/removeMetaData basic types", () =>
    node .getValue () .setMetaData ("Sunrize/Test/booleans", [true, false, true]);
 
    expect (node .metadata) .toBeInstanceOf (X3D .SFNode);
+   expect (node .metadata .getNodeDisplayName ()) .toBe ("Sunrize");
    expect (node .metadata .name) .toBe ("Sunrize");
    expect (node .metadata .reference) .toBe (reference);
    expect (node .metadata .value) .toHaveLength (1);
+   expect (node .metadata .value [0] .getNodeDisplayName ()) .toBe ("Test");
    expect (node .metadata .value [0] .name) .toBe ("Test");
    expect (node .metadata .value [0] .reference) .toBe (reference);
    expect (node .metadata .value [0] .value) .toHaveLength (1);
+   expect (node .metadata .value [0] .value [0] .getNodeDisplayName ()) .toBe ("booleans");
    expect (node .metadata .value [0] .value [0] .name) .toBe ("booleans");
    expect (node .metadata .value [0] .value [0] .reference) .toBe (reference);
    expect (node .metadata .value [0] .value [0] .value .equals (new X3D .MFBool (true, false, true))) .toBe (true);
@@ -156,12 +183,15 @@ test ("get/set/removeMetaData basic types", () =>
    node .getValue () .setMetaData ("Sunrize/Test/doubles", [123.456, 234.567, 345.678]);
 
    expect (node .metadata) .toBeInstanceOf (X3D .SFNode);
+   expect (node .metadata .getNodeDisplayName ()) .toBe ("Sunrize");
    expect (node .metadata .name) .toBe ("Sunrize");
    expect (node .metadata .reference) .toBe (reference);
    expect (node .metadata .value) .toHaveLength (1);
+   expect (node .metadata .value [0] .getNodeDisplayName ()) .toBe ("Test");
    expect (node .metadata .value [0] .name) .toBe ("Test");
    expect (node .metadata .value [0] .reference) .toBe (reference);
    expect (node .metadata .value [0] .value) .toHaveLength (2);
+   expect (node .metadata .value [0] .value [1] .getNodeDisplayName ()) .toBe ("doubles");
    expect (node .metadata .value [0] .value [1] .name) .toBe ("doubles");
    expect (node .metadata .value [0] .value [0] .reference) .toBe (reference);
    expect (node .metadata .value [0] .value [1] .value .equals (new X3D .MFDouble (123.456, 234.567, 345.678))) .toBe (true);
@@ -169,12 +199,15 @@ test ("get/set/removeMetaData basic types", () =>
    node .getValue () .setMetaData ("Sunrize/Test/integers", [123, 234, 345]);
 
    expect (node .metadata) .toBeInstanceOf (X3D .SFNode);
+   expect (node .metadata .getNodeDisplayName ()) .toBe ("Sunrize");
    expect (node .metadata .name) .toBe ("Sunrize");
    expect (node .metadata .reference) .toBe (reference);
    expect (node .metadata .value) .toHaveLength (1);
+   expect (node .metadata .value [0] .getNodeDisplayName ()) .toBe ("Test");
    expect (node .metadata .value [0] .name) .toBe ("Test");
    expect (node .metadata .value [0] .reference) .toBe (reference);
    expect (node .metadata .value [0] .value) .toHaveLength (3);
+   expect (node .metadata .value [0] .value [2] .getNodeDisplayName ()) .toBe ("integers");
    expect (node .metadata .value [0] .value [2] .name) .toBe ("integers");
    expect (node .metadata .value [0] .value [0] .reference) .toBe (reference);
    expect (node .metadata .value [0] .value [2] .value .equals (new X3D .MFInt32 (123, 234, 345))) .toBe (true);
@@ -182,12 +215,15 @@ test ("get/set/removeMetaData basic types", () =>
    node .getValue () .setMetaData ("Sunrize/Test/strings", ["abc", "bcd", "cde"]);
 
    expect (node .metadata) .toBeInstanceOf (X3D .SFNode);
+   expect (node .metadata .getNodeDisplayName ()) .toBe ("Sunrize");
    expect (node .metadata .name) .toBe ("Sunrize");
    expect (node .metadata .reference) .toBe (reference);
    expect (node .metadata .value) .toHaveLength (1);
+   expect (node .metadata .value [0] .getNodeDisplayName ()) .toBe ("Test");
    expect (node .metadata .value [0] .name) .toBe ("Test");
    expect (node .metadata .value [0] .reference) .toBe (reference);
    expect (node .metadata .value [0] .value) .toHaveLength (4);
+   expect (node .metadata .value [0] .value [3] .getNodeDisplayName ()) .toBe ("strings");
    expect (node .metadata .value [0] .value [3] .name) .toBe ("strings");
    expect (node .metadata .value [0] .value [0] .reference) .toBe (reference);
    expect (node .metadata .value [0] .value [3] .value .equals (new X3D .MFString ("abc", "bcd", "cde"))) .toBe (true);
@@ -208,12 +244,15 @@ test ("get/set/removeMetaData basic types", () =>
    // Remove
 
    expect (node .metadata) .toBeInstanceOf (X3D .SFNode);
+   expect (node .metadata .getNodeDisplayName ()) .toBe ("Sunrize");
    expect (node .metadata .name) .toBe ("Sunrize");
    expect (node .metadata .reference) .toBe (reference);
    expect (node .metadata .value) .toHaveLength (1);
+   expect (node .metadata .value [0] .getNodeDisplayName ()) .toBe ("Test");
    expect (node .metadata .value [0] .name) .toBe ("Test");
    expect (node .metadata .value [0] .reference) .toBe (reference);
    expect (node .metadata .value [0] .value) .toHaveLength (4);
+   expect (node .metadata .value [0] .value [0] .getNodeDisplayName ()) .toBe ("booleans");
    expect (node .metadata .value [0] .value [0] .name) .toBe ("booleans");
    expect (node .metadata .value [0] .value [0] .reference) .toBe (reference);
    expect (node .metadata .value [0] .value [0] .value .equals (new X3D .MFBool (true, false, true))) .toBe (true);
@@ -221,12 +260,15 @@ test ("get/set/removeMetaData basic types", () =>
    node .getValue () .removeMetaData ("Sunrize/Test/booleans");
 
    expect (node .metadata) .toBeInstanceOf (X3D .SFNode);
+   expect (node .metadata .getNodeDisplayName ()) .toBe ("Sunrize");
    expect (node .metadata .name) .toBe ("Sunrize");
    expect (node .metadata .reference) .toBe (reference);
    expect (node .metadata .value) .toHaveLength (1);
+   expect (node .metadata .value [0] .getNodeDisplayName ()) .toBe ("Test");
    expect (node .metadata .value [0] .name) .toBe ("Test");
    expect (node .metadata .value [0] .reference) .toBe (reference);
    expect (node .metadata .value [0] .value) .toHaveLength (3);
+   expect (node .metadata .value [0] .value [0] .getNodeDisplayName ()) .toBe ("doubles");
    expect (node .metadata .value [0] .value [0] .name) .toBe ("doubles");
    expect (node .metadata .value [0] .value [0] .reference) .toBe (reference);
    expect (node .metadata .value [0] .value [0] .value .equals (new X3D .MFDouble (123.456, 234.567, 345.678))) .toBe (true);
@@ -234,12 +276,15 @@ test ("get/set/removeMetaData basic types", () =>
    node .getValue () .removeMetaData ("Sunrize/Test/doubles");
 
    expect (node .metadata) .toBeInstanceOf (X3D .SFNode);
+   expect (node .metadata .getNodeDisplayName ()) .toBe ("Sunrize");
    expect (node .metadata .name) .toBe ("Sunrize");
    expect (node .metadata .reference) .toBe (reference);
    expect (node .metadata .value) .toHaveLength (1);
+   expect (node .metadata .value [0] .getNodeDisplayName ()) .toBe ("Test");
    expect (node .metadata .value [0] .name) .toBe ("Test");
    expect (node .metadata .value [0] .reference) .toBe (reference);
    expect (node .metadata .value [0] .value) .toHaveLength (2);
+   expect (node .metadata .value [0] .value [0] .getNodeDisplayName ()) .toBe ("integers");
    expect (node .metadata .value [0] .value [0] .name) .toBe ("integers");
    expect (node .metadata .value [0] .value [0] .reference) .toBe (reference);
    expect (node .metadata .value [0] .value [0] .value .equals (new X3D .MFInt32 (123, 234, 345))) .toBe (true);
@@ -247,12 +292,15 @@ test ("get/set/removeMetaData basic types", () =>
    node .getValue () .removeMetaData ("Sunrize/Test/integers");
 
    expect (node .metadata) .toBeInstanceOf (X3D .SFNode);
+   expect (node .metadata .getNodeDisplayName ()) .toBe ("Sunrize");
    expect (node .metadata .name) .toBe ("Sunrize");
    expect (node .metadata .reference) .toBe (reference);
    expect (node .metadata .value) .toHaveLength (1);
+   expect (node .metadata .value [0] .getNodeDisplayName ()) .toBe ("Test");
    expect (node .metadata .value [0] .name) .toBe ("Test");
    expect (node .metadata .value [0] .reference) .toBe (reference);
    expect (node .metadata .value [0] .value) .toHaveLength (1);
+   expect (node .metadata .value [0] .value [0] .getNodeDisplayName ()) .toBe ("strings");
    expect (node .metadata .value [0] .value [0] .name) .toBe ("strings");
    expect (node .metadata .value [0] .value [0] .reference) .toBe (reference);
    expect (node .metadata .value [0] .value [0] .value .equals (new X3D .MFString ("abc", "bcd", "cde"))) .toBe (true);
@@ -266,12 +314,15 @@ test ("get/set/removeMetaData basic types", () =>
    node .getValue () .setMetaData ("Sunrize/Test/override", true);
 
    expect (node .metadata) .toBeInstanceOf (X3D .SFNode);
+   expect (node .metadata .getNodeDisplayName ()) .toBe ("Sunrize");
    expect (node .metadata .name) .toBe ("Sunrize");
    expect (node .metadata .reference) .toBe (reference);
    expect (node .metadata .value) .toHaveLength (1);
+   expect (node .metadata .value [0] .getNodeDisplayName ()) .toBe ("Test");
    expect (node .metadata .value [0] .name) .toBe ("Test");
    expect (node .metadata .value [0] .reference) .toBe (reference);
    expect (node .metadata .value [0] .value) .toHaveLength (1);
+   expect (node .metadata .value [0] .value [0] .getNodeDisplayName ()) .toBe ("override");
    expect (node .metadata .value [0] .value [0] .name) .toBe ("override");
    expect (node .metadata .value [0] .value [0] .reference) .toBe (reference);
    expect (node .metadata .value [0] .value [0] .value .equals (new X3D .MFBool (true))) .toBe (true);
@@ -279,12 +330,15 @@ test ("get/set/removeMetaData basic types", () =>
    node .getValue () .setMetaData ("Sunrize/Test/override", 123);
 
    expect (node .metadata) .toBeInstanceOf (X3D .SFNode);
+   expect (node .metadata .getNodeDisplayName ()) .toBe ("Sunrize");
    expect (node .metadata .name) .toBe ("Sunrize");
    expect (node .metadata .reference) .toBe (reference);
    expect (node .metadata .value) .toHaveLength (1);
+   expect (node .metadata .value [0] .getNodeDisplayName ()) .toBe ("Test");
    expect (node .metadata .value [0] .name) .toBe ("Test");
    expect (node .metadata .value [0] .reference) .toBe (reference);
    expect (node .metadata .value [0] .value) .toHaveLength (1);
+   expect (node .metadata .value [0] .value [0] .getNodeDisplayName ()) .toBe ("override");
    expect (node .metadata .value [0] .value [0] .name) .toBe ("override");
    expect (node .metadata .value [0] .value [0] .reference) .toBe (reference);
    expect (node .metadata .value [0] .value [0] .value .equals (new X3D .MFInt32 (123))) .toBe (true);

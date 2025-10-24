@@ -13,12 +13,19 @@ test ("initial value_changed", async () =>
 PROFILE Interchange
 COMPONENT Interpolation : 5
 
-NormalInterpolator {
+DEF I NormalInterpolator {
    key [0, 1]
    keyValue [5 5 5, 6 6 6, 7 7 7, 8 8 8]
 }
+
+DEF R Normal { }
+
+ROUTE I.value_changed TO R.set_vector
    `);
 
-   expect (scene .rootNodes) .toHaveLength (1);
+   await Browser .nextFrame ();
+
+   expect (scene .rootNodes) .toHaveLength (2);
    expect (scene .rootNodes [0] .value_changed .equals (new X3D .MFVec3f (new X3D .SFVec3f(5,5,5), new X3D .SFVec3f(6,6,6)))) .toBe (true);
+   expect (scene .rootNodes [1] .vector .equals (new X3D .MFVec3f (new X3D .SFVec3f(5,5,5), new X3D .SFVec3f(6,6,6)))) .toBe (false);
 });

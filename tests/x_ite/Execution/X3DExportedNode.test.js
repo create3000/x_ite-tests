@@ -16,8 +16,6 @@ EXPORT N1 AS E1
 EXPORT N2 AS E2 DESCRIPTION "Test Desc"
    `)
 
-   await sleep ();
-
    const exportedNode0 = scene .exportedNodes [0]
 
    expect (exportedNode0) .toBeInstanceOf (X3D .X3DExportedNode)

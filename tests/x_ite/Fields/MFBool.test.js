@@ -546,6 +546,11 @@ test ("splice", () =>
 
    expect (e .splice () .equals (new MFBool ())) .toBe (true)
    expect (e .equals (new MFBool (true, false))) .toBe (true)
+
+   const n = new MFBool (true, false, false, true);
+
+   expect (n .splice (-2) .equals (new MFBool (false, true))) .toBe (true);
+   expect (n .equals (new MFBool (true, false))) .toBe (true);
 })
 
 test ("sort-reverse", () =>
@@ -786,4 +791,9 @@ test ("fromXMLString", () =>
 
    expect (a) .toHaveLength (8);
    expect (a .equals (new MFBool (true, false, true, false, true, true, false, false))) .toBe (true);
+});
+
+test ("enumerate", () =>
+{
+   enumerate (["0", "1", "2"], new MFBool (true, false, true));
 });

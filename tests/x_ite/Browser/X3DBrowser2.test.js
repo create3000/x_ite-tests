@@ -501,7 +501,10 @@ ${typeNames .map (n => `${n}{}`) .join ("\n")}
    expect (scene .encoding) .toBe ("VRML")
 
    for (const [i, typeName] of typeNames .entries ())
-      expect (scene .rootNodes [i] .getNodeTypeName ()) .toBe (typeName)
+   {
+      expect (scene .rootNodes [i] .getValue () .isInitialized ()) .toBe (true);
+      expect (scene .rootNodes [i] .getNodeTypeName ()) .toBe (typeName);
+   }
 })
 
 test ("Profile/Component Handling", async () =>
@@ -528,19 +531,50 @@ TestNode { }
 
    expect (() => Browser .getConcreteNode ("TestNode")) .not .toThrow (Error)
    expect (scene .rootNodes) .toHaveLength (1)
+   expect (scene .rootNodes [0] .getValue () .isInitialized ()) .toBe (true);
    expect (scene .rootNodes [0] .getNodeTypeName ()) .toBe ("TestNode")
    expect (X3D .X3DConstants .TestNode) .toBeGreaterThan (0)
    expect (scene .rootNodes [0] .getNodeType () .includes (X3D .X3DConstants .TestNode)) .toBe (true)
    expect (scene .rootNodes [0] .test) .toBe ("TestValue")
 })
 
-test ("baseURL - createX3DFromString - depreciated", () => new Promise (async (resolve, reject) =>
+test ("baseURL - createX3DFromURL", async () =>
 {
    const
       canvas  = X3D .createBrowser (),
-      Browser = canvas .browser
+      Browser = canvas .browser;
 
-   Browser .baseURL = url .pathToFileURL (path .join (__dirname, "files/"))
+   Browser .baseURL = url .pathToFileURL (path .join (__dirname, "files/"));
+
+   const scene = await Browser .createX3DFromURL (new X3D .MFString (`data:model/x3d+vrml,
+PROFILE Core
+COMPONENT Networking : 1
+
+DEF I Inline {
+   url "box.x3d"
+}
+DEF L LoadSensor {
+   children USE I
+}
+   `));
+
+   expect (scene .rootNodes) .toHaveLength (2);
+   expect (scene .rootNodes [0] .getValue () .isInitialized ()) .toBe (true);
+   expect (scene .rootNodes [1] .getValue () .isInitialized ()) .toBe (true);
+
+   const I = scene .getNamedNode ("I");
+
+   expect (I .getValue () .getInternalScene () .rootNodes) .toHaveLength (1);
+   expect (I .getValue () .getInternalScene () .rootNodes [0] .getNodeTypeName ()) .toBe ("Transform");
+});
+
+test ("baseURL - createX3DFromString", async () =>
+{
+   const
+      canvas  = X3D .createBrowser (),
+      Browser = canvas .browser;
+
+   Browser .baseURL = url .pathToFileURL (path .join (__dirname, "files/"));
 
    const scene = await Browser .createX3DFromString (`
 PROFILE Core
@@ -552,69 +586,17 @@ DEF I Inline {
 DEF L LoadSensor {
    children USE I
 }
-   `)
+   `);
 
-   expect (scene .rootNodes) .toHaveLength (2)
+   expect (scene .rootNodes) .toHaveLength (2);
+   expect (scene .rootNodes [0] .getValue () .isInitialized ()) .toBe (true);
+   expect (scene .rootNodes [1] .getValue () .isInitialized ()) .toBe (true);
 
-   scene .getNamedNode ("L") .addFieldCallback ("test", "loadTime", (arg) =>
-   {
-      try
-      {
-         const I = scene .getNamedNode ("I")
+   const I = scene .getNamedNode ("I");
 
-         expect (typeof arg) .toBe ("number");
-         expect (I .getValue () .getInternalScene () .rootNodes) .toHaveLength (1)
-         expect (I .getValue () .getInternalScene () .rootNodes [0] .getNodeTypeName ()) .toBe ("Transform")
-
-         resolve ()
-      }
-      catch (error)
-      {
-         reject (error .message)
-      }
-   })
-}))
-
-test ("baseURL - createX3DFromString", () => new Promise (async (resolve, reject) =>
-{
-   const
-      canvas  = X3D .createBrowser (),
-      Browser = canvas .browser
-
-   Browser .baseURL = url .pathToFileURL (path .join (__dirname, "files/"))
-
-   const scene = await Browser .createX3DFromString (`
-PROFILE Core
-COMPONENT Networking : 1
-
-DEF I Inline {
-   url "box.x3d"
-}
-DEF L LoadSensor {
-   children USE I
-}
-   `)
-
-   expect (scene .rootNodes) .toHaveLength (2)
-
-   scene .getNamedNode ("L") .getField ("loadTime") .addFieldCallback ("test", (arg) =>
-   {
-      try
-      {
-         const I = scene .getNamedNode ("I")
-
-         expect (typeof arg) .toBe ("number");
-         expect (I .getValue () .getInternalScene () .rootNodes) .toHaveLength (1)
-         expect (I .getValue () .getInternalScene () .rootNodes [0] .getNodeTypeName ()) .toBe ("Transform")
-
-         resolve ()
-      }
-      catch (error)
-      {
-         reject (error .message)
-      }
-   })
-}))
+   expect (I .getValue () .getInternalScene () .rootNodes) .toHaveLength (1);
+   expect (I .getValue () .getInternalScene () .rootNodes [0] .getNodeTypeName ()) .toBe ("Transform");
+});
 
 test ("baseURL - createVrmlFromString", () => new Promise (async (resolve, reject) =>
 {

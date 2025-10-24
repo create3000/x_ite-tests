@@ -511,62 +511,67 @@ for (const [typeName, MFVec2, SFVec2] of arrays)
    {
       const
          N = 10,
-         a = new MFVec2 ()
+         a = new MFVec2 ();
 
       for (let i = 0, n = 0; i < N; ++ i)
-         expect (a .push (new SFVec2 (++n,++n))) .toBe (i + 1)
+         expect (a .push (new SFVec2 (++n,++n))) .toBe (i + 1);
 
       const
          v0 = a [0] .copy (),
-         v1 = a .at (-1) .copy ()
+         v1 = a .at (-1) .copy ();
 
-      expect (a) .toHaveLength (N)
+      expect (a) .toHaveLength (N);
 
-      const b = a .splice (1,N-2)
+      const b = a .splice (1,N-2);
 
-      expect (a) .toHaveLength (2)
-      expect (b) .toHaveLength (N-2)
-      expect (b) .toBeInstanceOf (MFVec2)
-      expect (a [0] .equals (v0)) .toBe (true)
-      expect (a [1] .equals (v1)) .toBe (true)
+      expect (a) .toHaveLength (2);
+      expect (b) .toHaveLength (N-2);
+      expect (b) .toBeInstanceOf (MFVec2);
+      expect (a [0] .equals (v0)) .toBe (true);
+      expect (a [1] .equals (v1)) .toBe (true);
 
       for (let i = 0, n = comp; i < N-2; ++ i)
-         expect (b [i] .equals (new SFVec2 (++n,++n))) .toBe (true)
+         expect (b [i] .equals (new SFVec2 (++n,++n))) .toBe (true);
 
-      const c = a .splice (1,0,...b)
+      const c = a .splice (1,0,...b);
 
-      expect (a) .toHaveLength (N)
-      expect (c) .toHaveLength (0)
-      expect (c) .toBeInstanceOf (MFVec2)
+      expect (a) .toHaveLength (N);
+      expect (c) .toHaveLength (0);
+      expect (c) .toBeInstanceOf (MFVec2);
 
       for (let i = 0, n = 0; i < N; ++ i)
-         expect (a [i] .equals (new SFVec2 (++n,++n))) .toBe (true)
+         expect (a [i] .equals (new SFVec2 (++n,++n))) .toBe (true);
 
-      const d = a .splice (1,N-2,...b)
+      const d = a .splice (1,N-2,...b);
 
-      expect (a) .toHaveLength (N)
-      expect (d) .toHaveLength (N-2)
-      expect (d) .toBeInstanceOf (MFVec2)
+      expect (a) .toHaveLength (N);
+      expect (d) .toHaveLength (N-2);
+      expect (d) .toBeInstanceOf (MFVec2);
 
       for (let i = 0, n = comp; i < N-2; ++ i)
       {
          const v = new SFVec2 (++n,++n)
-         expect (d [i] .equals (v)) .toBe (true)
-         expect (b [i] .equals (v)) .toBe (true)
-         expect (d [i]) .not .toBe (b [i])
+         expect (d [i] .equals (v)) .toBe (true);
+         expect (b [i] .equals (v)) .toBe (true);
+         expect (d [i]) .not .toBe (b [i]);
       }
 
       for (let i = 0, n = 0; i < N; ++ i)
-         expect (a [i] .equals (new SFVec2 (++n,++n))) .toBe (true)
+         expect (a [i] .equals (new SFVec2 (++n,++n))) .toBe (true);
 
-      const e = new MFVec2 (new SFVec2 (1, 2), new SFVec2 (5, 6), new SFVec2 (9, 10), new SFVec2 (13, 14))
+      const e = new MFVec2 (new SFVec2 (1, 2), new SFVec2 (5, 6), new SFVec2 (9, 10), new SFVec2 (13, 14));
 
-      expect (e .splice (2) .equals (new MFVec2 (new SFVec2 (9, 10), new SFVec2 (13, 14)))) .toBe (true)
-      expect (e .equals (new MFVec2 (new SFVec2 (1, 2), new SFVec2 (5, 6)))) .toBe (true)
+      expect (e .splice (2) .equals (new MFVec2 (new SFVec2 (9, 10), new SFVec2 (13, 14)))) .toBe (true);
+      expect (e .equals (new MFVec2 (new SFVec2 (1, 2), new SFVec2 (5, 6)))) .toBe (true);
 
-      expect (e .splice () .equals (new MFVec2 ())) .toBe (true)
-      expect (e .equals (new MFVec2 (new SFVec2 (1, 2), new SFVec2 (5, 6)))) .toBe (true)
-   })
+      expect (e .splice () .equals (new MFVec2 ())) .toBe (true);
+      expect (e .equals (new MFVec2 (new SFVec2 (1, 2), new SFVec2 (5, 6)))) .toBe (true);
+
+      const n = new MFVec2 (new SFVec2 (1, 2), new SFVec2 (5, 6), new SFVec2 (9, 10), new SFVec2 (13, 14));
+
+      expect (n .splice (-2) .equals (new MFVec2 (new SFVec2 (9, 10), new SFVec2 (13, 14)))) .toBe (true);
+      expect (n .equals (new MFVec2 (new SFVec2 (1, 2), new SFVec2 (5, 6)))) .toBe (true);
+   });
 
    test ("sort-reverse", () =>
    {
@@ -845,5 +850,10 @@ for (const [typeName, MFVec2, SFVec2] of arrays)
 
       expect (a) .toHaveLength (2);
       expect (a .equals (new MFVec2 (new SFVec2 (1000, 2000), new SFVec2 (2000, 3000)))) .toBe (true);
+   });
+
+   test ("enumerate", () =>
+   {
+      enumerate (["0", "1", "2"], new MFVec2 (new SFVec2 (), new SFVec2 (), new SFVec2 ()));
    });
 }

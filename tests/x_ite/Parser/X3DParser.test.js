@@ -381,28 +381,23 @@ test ("proto-import-routes.x3dv", async () =>
 
       expect (body .routes [1] .sourceNode) .toBeInstanceOf (X3D .SFNode)
       expect (typeof body .routes [1] .sourceField) .toBe ("string")
-      expect (body .routes [1] .destinationNode) .toBeInstanceOf (X3D .X3DImportedNode)
+      expect (body .routes [1] .destinationNode) .toBeInstanceOf (X3D .SFNode)
       expect (typeof body .routes [1] .destinationField) .toBe ("string")
 
       expect (body .routes [1] .getSourceNode ()) .toBeInstanceOf (X3D .X3DNode)
       expect (typeof body .routes [1] .getSourceField ()) .toBe ("string")
-      expect (body .routes [1] .getDestinationNode ()) .toBeInstanceOf (X3D .X3DImportedNode)
+      expect (body .routes [1] .getDestinationNode ()) .toBeInstanceOf (X3D .X3DNode)
       expect (typeof body .routes [1] .getDestinationField ()) .toBe ("string")
 
       expect (body .routes [1] .getSourceNode ()) .toBe (body .routes [1] .sourceNode .getValue ())
       expect (body .routes [1] .getSourceField ()) .toBe (body .routes [1] .sourceField)
-      expect (body .routes [1] .getDestinationNode ()) .toBe (body .routes [1] .destinationNode)
+      expect (body .routes [1] .getDestinationNode ()) .toBe (body .routes [1] .destinationNode .getValue ())
       expect (body .routes [1] .getDestinationField ()) .toBe (body .routes [1] .destinationField)
 
       expect (body .routes [1] .sourceNode .getNodeTypeName ()) .toBe ("OrientationInterpolator")
       expect (body .routes [1] .sourceField) .toBe ("value_changed")
-      expect (body .routes [1] .destinationNode .inlineNode) .toBeInstanceOf (X3D .SFNode)
-      expect (body .routes [1] .destinationNode .inlineNode .getNodeTypeName ()) .toBe ("Inline")
-      expect (body .routes [1] .destinationNode .exportedName) .toBe ("Box")
-      expect (body .routes [1] .destinationNode .importedName) .toBe ("ImportedBox")
-      expect (body .routes [1] .destinationNode .getInlineNode ()) .toBe (body .routes [1] .destinationNode .inlineNode .getValue ())
-      expect (body .routes [1] .destinationNode .getExportedName ()) .toBe (body .routes [1] .destinationNode .exportedName)
-      expect (body .routes [1] .destinationNode .getImportedName ()) .toBe (body .routes [1] .destinationNode .importedName)
+      expect (body .routes [1] .destinationNode .getNodeTypeName ()) .toBe ("Transform")
+      expect (body .routes [1] .destinationNode .getNodeName ()) .toBe ("ImportedBox")
       expect (body .routes [1] .destinationField) .toBe ("set_rotation")
    }
 });
@@ -433,8 +428,8 @@ test ("double-import.x3dv", async () =>
       expect (scene .getNamedNode ("Box") .getNodeName ()) .toBe ("Box");
       expect (scene .getNamedNode ("Box") .getNodeTypeName ()) .toBe ("Transform");
 
-      expect (scene .routes [0] .sourceNode) .toBe (scene .importedNodes [0]);
-      expect (scene .routes [1] .sourceNode) .toBe (scene .importedNodes [1]);
+      expect (scene .routes [0] .sourceNode) .toBe (scene .importedNodes [0] .exportedNode);
+      expect (scene .routes [1] .sourceNode) .toBe (scene .importedNodes [1] .exportedNode);
       expect (scene .routes [2] .sourceNode) .toBeInstanceOf (X3D .SFNode);
       expect (scene .routes [2] .sourceNode .getNodeName ()) .toMatch (/^Box_\d+$/);
       expect (scene .routes [3] .sourceNode) .toBe (scene .getNamedNode ("Box"));
@@ -752,7 +747,7 @@ scale
 
 # comment 9`);
 
-   expect (scene .getMetaDatas () .size) .toBe (1);
+   expect (scene .getMetaDatas ()) .toHaveLength (1);
    expect (scene .rootNodes) .toHaveLength (8);
    expect (scene .importedNodes) .toHaveLength (1);
    expect (scene .exportedNodes) .toHaveLength (1);
@@ -940,5 +935,100 @@ test ("import-export-statements.x3d", async () =>
          expect (scene .toVRMLString ({ style })) .toBe (x3dv);
          expect (scene .toJSONString ({ style })) .toBe (x3dj);
       }
+   }
+});
+
+test ("USE before DEF", async () =>
+{
+   for (const suffix of ["x3d", "x3dv"])
+   {
+      const scene = await Browser .createX3DFromURL (new X3D .MFString (url .pathToFileURL (path .join (__dirname, "files", "X3D", `use-before-def.${suffix}`))));
+
+      const rootNodes = scene .rootNodes;
+
+      expect (rootNodes) .toHaveLength (8);
+
+      expect (rootNodes [0] .children [0] .getNodeTypeName ()) .toBe ("Test");
+      expect (rootNodes [1] .children [0]) .toBe (rootNodes [0] .children [0]);
+      expect (rootNodes [2] .children [0] .getNodeTypeName ()) .toBe ("Test");
+      expect (rootNodes [2] .children [0]) .toBe (rootNodes [0] .children [0]);
+
+      expect (rootNodes [3] .children [0] .getNodeTypeName ()) .toBe ("Shape");
+      expect (rootNodes [4] .children [0] .getNodeTypeName ()) .toBe ("Shape");
+      expect (rootNodes [4] .children [0]) .toBe (rootNodes [3] .children [0]);
+      expect (rootNodes [5] .children [0] .getNodeTypeName ()) .toBe ("Shape");
+      expect (rootNodes [5] .children [0]) .toBe (rootNodes [3] .children [0]);
+
+      expect (rootNodes [6] .children [0] .getNodeTypeName ()) .toBe ("Shape");
+      expect (rootNodes [6] .children [0]) .not .toBe (rootNodes [3] .children [0]);
+      expect (rootNodes [6] .children [0]) .not .toBe (rootNodes [4] .children [0]);
+      expect (rootNodes [6] .children [0]) .not .toBe (rootNodes [5] .children [0]);
+
+      expect (rootNodes [7] .children [0]) .not .toBe (rootNodes [3] .children [0]);
+      expect (rootNodes [7] .children [0]) .not .toBe (rootNodes [4] .children [0]);
+      expect (rootNodes [7] .children [0]) .not .toBe (rootNodes [5] .children [0]);
+      expect (rootNodes [7] .children [0] .getNodeTypeName ()) .toBe ("Shape");
+      // expect (rootNodes [7] .children [0]) .toBe (rootNodes [6] .children [0]);
+   }
+});
+
+test ("use-exported-node.x3d", async () =>
+{
+   const
+      latestVersion = (await Browser .createScene ()) .specificationVersion,
+      scene         = await Browser .createX3DFromURL (new X3D .MFString (url .pathToFileURL (path .join (__dirname, "files", "X3D", `use-exported-node.x3d`))));
+
+   const orig = await fetch (path .join (__dirname, "files", "X3D", `use-exported-node.x3d`)) .then (r => r .text ());
+
+   for (const style of ["TIDY", "COMPACT", "SMALL", "CLEAN"])
+   {
+      const
+         x3d  = scene .toXMLString  ({ style }),
+         x3dv = scene .toVRMLString ({ style }),
+         x3dj = scene .toJSONString ({ style }),
+         html = scene .toXMLString ({ style, closingTags: true });
+
+      const encodings = ["XML", "XML", "VRML", "JSON", "XML"];
+
+      Browser .baseURL = scene .worldURL;
+
+      for (const [i, file] of [orig, x3d, x3dv, x3dj, html] .entries ())
+      {
+         const scene = await Browser .createX3DFromURL (new X3D .MFString (`data:model/x3d,${file}`));
+
+         expect (scene .encoding) .toBe (encodings [i]);
+
+         if (i)
+            expect (scene .specificationVersion) .toBe (latestVersion);
+
+         expect (scene .rootNodes [0] .children [0] .getValue () .checkLoadState ()) .toBe (X3D .X3DConstants .COMPLETE_STATE);
+
+         expect (scene .toXMLString ()) .toBe (orig);
+         expect (scene .toXMLString  ({ style })) .toBe (x3d);
+         expect (scene .toVRMLString ({ style })) .toBe (x3dv);
+         expect (scene .toJSONString ({ style })) .toBe (x3dj);
+         expect (scene .toXMLString ({ style, closingTags: true })) .toBe (html);
+      }
+   }
+});
+
+test ("use-exported-node-script.x3dv", async () =>
+{
+   for (const suffix of ["x3dv"])
+   {
+      const scene = await Browser .createX3DFromURL (new X3D .MFString (url .pathToFileURL (path .join (__dirname, "files", "X3D", `use-exported-node-script.${suffix}`))));
+
+      expect (scene .rootNodes) .toHaveLength (2);
+
+      const S = scene .getNamedNode ("S");
+
+      // Script nodes are initialized very early, but this should be null.
+      expect (S .run)   .toBe (true);
+      expect (S .node1) .not .toBe (null);
+      expect (S .node2) .not .toBe (null);
+
+      // Scene is returned when all is loaded, so this should NOT be null.
+      expect (S .node) .not .toBe (null);
+      expect (S .script .node) .not .toBe (null);
    }
 });

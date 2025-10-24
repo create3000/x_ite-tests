@@ -1,0 +1,34 @@
+#X3D V4.0 utf8 X_ITE V12.1.1
+
+PROFILE Interchange
+
+COMPONENT Scripting : 1
+
+DEF InlineGreenBox Transform {
+  translation -1 0 0
+  children DEF Inline Inline {
+    url "use-exported-node-inline.x3dv"
+  }
+}
+
+DEF S Script {
+  initializeOnly SFNode node USE GreenBox
+  initializeOnly SFNode script Script {
+    initializeOnly SFNode node USE GreenBox
+  }
+
+  inputOutput SFBool run FALSE
+  inputOutput SFNode node1 NULL
+  inputOutput SFNode node2 NULL
+
+  url "ecmascript:
+function initialize ()
+{
+  run   = true;
+  node1 = node;
+  node2 = script .node;
+}
+  "
+}
+
+IMPORT Inline.GreenBox

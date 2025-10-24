@@ -13,12 +13,19 @@ test ("initial value_changed", async () =>
 PROFILE Interchange
 COMPONENT Interpolation : 5
 
-SquadOrientationInterpolator {
+DEF I SquadOrientationInterpolator {
    key [0, 1]
    keyValue [5 5 5 5, 6 6 6 6]
 }
+
+DEF R Transform { }
+
+ROUTE I.value_changed TO R.set_rotation
    `);
 
-   expect (scene .rootNodes) .toHaveLength (1);
+   await Browser .nextFrame ();
+
+   expect (scene .rootNodes) .toHaveLength (2);
    expect (scene .rootNodes [0] .value_changed .equals (new X3D .SFRotation (5,5,5,5))) .toBe (true);
+   expect (scene .rootNodes [1] .rotation .equals (new X3D .SFRotation (5,5,5,5))) .toBe (false);
 });
