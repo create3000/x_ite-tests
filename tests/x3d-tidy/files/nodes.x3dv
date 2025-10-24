@@ -1,4 +1,4 @@
-#X3D V4.0 utf8
+#X3D V4.1 utf8
 
 PROFILE Full
 
@@ -376,6 +376,8 @@ HAnimMotion {
   endFrame -1
 }
 
+HAnimPose { }
+
 HAnimSegment { }
 
 HAnimSite { }
@@ -385,6 +387,8 @@ KeySensor {
 }
 
 StringSensor { }
+
+FontLibrary { }
 
 FontStyle { }
 
