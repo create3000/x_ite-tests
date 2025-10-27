@@ -18,7 +18,10 @@ test ("properties", () =>
       expect (Type .typeName) .toBe (typeName);
 
       expect (field) .toBeInstanceOf (X3D .X3DField);
-      if (typeName .startsWith ("MF")) expect (field) .toBeInstanceOf (X3D .X3DArrayField);
+      if (typeName .startsWith ("MF"))
+         expect (field) .toBeInstanceOf (X3D .X3DArrayField);
+      else
+         expect (field) .not .toBeInstanceOf (X3D .X3DArrayField);
       expect (field) .toBeInstanceOf (Fields [typeName]);
       expect (field .constructor) .toBe (Fields [typeName]);
 
