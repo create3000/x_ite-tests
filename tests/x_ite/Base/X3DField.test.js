@@ -24,7 +24,9 @@ test ("properties", () =>
 
       expect (field .getName ()) .toBe ("");
       expect (field .getType ()) .toBe (X3D .X3DConstants [typeName]);
+      expect (field .getType ()) .toBe (Fields [typeName] .type);
       expect (field .getTypeName ()) .toBe (typeName);
+      expect (field .getTypeName ()) .toBe (Fields [typeName] .typeName);
       expect (Object .prototype .toString .call (field)) .toBe (`[object ${typeName}]`);
 
       expect (field .isReadable ()) .toBe (true);
