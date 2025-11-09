@@ -159,3 +159,12 @@ test ("upperBound", () =>
    expect (Algorithm .upperBound (a, 0, a .length, 5))   .toBe (6);
    expect (Algorithm .upperBound (a, 0, a .length, 5.5)) .toBe (6);
 });
+
+test ("slerp", () =>
+{
+   const a = new X3D .Rotation4 (1, 2, 3, 3);
+   const b = new X3D .Rotation4 (-1, -2, -3, -3);
+
+   expect (a .copy () .slerp (a, 0) .equals (a)) .toBe (true);
+   expect (a .copy () .slerp (b, 0) .equals (a)) .toBe (true);
+});
