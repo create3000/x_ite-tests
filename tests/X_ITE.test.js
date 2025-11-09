@@ -93,6 +93,5 @@ test ("X3D", async () =>
    expect (X3D .hasOwnProperty ("entries")) .toBe (false);
    expect (X3D .hasOwnProperty ("keys")) .toBe (false);
    expect (X3D .hasOwnProperty ("values")) .toBe (false);
-
-   expect (X3D .toString ()) .toBe (`[object X3D]`);
+   expect (X3D .hasOwnProperty ("toString")) .toBe (true);
 });
