@@ -66,8 +66,8 @@ Test { }
 
    expect (proto .name) .toBe ("Test");
    expect (proto .isExternProto) .toBe (false);
-   expect (proto .appInfo) .toBe ("");
-   expect (proto .documentation) .toBe ("");
+   expect (proto .appInfo) .toBe ("undefined");
+   expect (proto .documentation) .toBe ("undefined");
    expect (proto .fields) .toBeInstanceOf (X3D .FieldDefinitionArray);
    expect (proto .fields) .toHaveLength (2);
    expect (proto .fields [0]) .toBeInstanceOf (X3D .X3DFieldDefinition);

@@ -91,8 +91,8 @@ Test { size 4 4 4 }
    expect (externproto .loadState) .toBe (X3D .X3DConstants .COMPLETE_STATE);
    expect (externproto .isExternProto) .toBe (true);
    expect (externproto .urls) .toBeInstanceOf (X3D .MFString);
-   expect (externproto .appInfo) .toBe ("");
-   expect (externproto .documentation) .toBe ("");
+   expect (externproto .appInfo) .toBe ("undefined");
+   expect (externproto .documentation) .toBe ("undefined");
    expect (externproto .fields) .toBeInstanceOf (X3D .FieldDefinitionArray);
    expect (externproto .fields) .toHaveLength (2);
    expect (externproto .fields [0]) .toBeInstanceOf (X3D .X3DFieldDefinition);
