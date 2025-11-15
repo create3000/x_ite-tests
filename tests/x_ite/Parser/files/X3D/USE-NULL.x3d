@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE X3D PUBLIC "ISO//Web3D//DTD X3D 4.0//EN" "https://www.web3d.org/specifications/x3d-4.0.dtd">
+<X3D profile='Interchange' version='4.0' xmlns:xsd='http://www.w3.org/2001/XMLSchema-instance' xsd:noNamespaceSchemaLocation='https://www.web3d.org/specifications/x3d-4.0.xsd'>
+  <head>
+    <meta name='creator' content='Holger Seelig'/>
+    <meta name='created' content='Sat, 15 Nov 2025 10:17:39 GMT'/>
+    <meta name='modified' content='Sat, 15 Nov 2025 10:32:17 GMT'/>
+    <meta name='generator' content='Sunrize X3D Editor V1.11.6, https://create3000.github.io/sunrize/'/>
+  </head>
+  <Scene>
+    <Inline DEF='_1'
+        url='"box1.x3d"'/>
+    <Transform DEF='C_1'/>
+    <Transform USE='C_1'/>
+    <Transform USE='C_1'/>
+    <NULL/>
+    <NULL/>
+    <Transform USE='C_1'/>
+    <NULL/>
+    <Transform USE='C_1'/>
+    <Transform DEF='D1_1'/>
+    <NULL/>
+    <Transform USE='Box'/>
+    <Transform USE='C_1'/>
+    <Transform USE='Box'/>
+    <Transform DEF='D2_1'/>
+    <Transform DEF='Children'>
+      <Transform USE='C_1' containerField='metadata'/>
+      <Transform USE='C_1'/>
+      <Transform USE='C_1'/>
+      <NULL containerField='children'/>
+      <NULL containerField='children'/>
+      <Transform USE='C_1'/>
+      <NULL containerField='children'/>
+      <Transform USE='C_1'/>
+      <Transform DEF='D3'/>
+      <NULL containerField='children'/>
+      <Transform DEF='D4'/>
+    </Transform>
+    <IMPORT inlineDEF='_1' importedDEF='Box'/>
+  </Scene>
+</X3D>
