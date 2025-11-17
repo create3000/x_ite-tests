@@ -598,9 +598,11 @@ test ("toString", () =>
 {
    const a = scene .createNode ("MetadataBoolean");
    const b = scene .createNode ("MetadataDouble");
+   const n = new X3D .SFNode ();
 
    expect (a .toString ()) .toBe ("MetadataBoolean { }");
    expect (b .toString ()) .toBe ("MetadataDouble { }");
+   expect (n .toString ()) .toBe ("NULL");
 
    expect (a .toString ({ style: "CLEAN" })) .toBe ("MetadataBoolean{}");
    expect (b .toString ({ style: "CLEAN" })) .toBe ("MetadataDouble{}");
