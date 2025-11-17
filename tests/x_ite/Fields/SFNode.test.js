@@ -606,4 +606,5 @@ test ("toString", () =>
 
    expect (a .toString ({ style: "CLEAN" })) .toBe ("MetadataBoolean{}");
    expect (b .toString ({ style: "CLEAN" })) .toBe ("MetadataDouble{}");
+   expect (n .toString ({ style: "CLEAN" })) .toBe ("NULL");
 });
