@@ -192,3 +192,12 @@ test ("fromXMLString", () =>
 
    expect (() => a .fromXMLString ("foo")) .toThrow (Error);
 });
+
+test ("toString", () =>
+{
+   const a = new SFImage (1, 2, 3, new MFInt32 (1, 2));
+   const b = new SFImage (2, 3, 4, new MFInt32 (1, 2, 3, 4, 5, 6));
+
+   expect (a .toString ({ style: "CLEAN" })) .toBe ("1 2 3 0x1 0x2");
+   expect (b .toString ({ style: "CLEAN" })) .toBe ("2 3 4 0x1 0x2 0x3 0x4 0x5 0x6");
+});

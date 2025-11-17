@@ -138,3 +138,12 @@ test ("fromXMLString", () =>
 
    expect (() => a .fromXMLString ("foo")) .toThrow (Error);
 });
+
+test ("toString", () =>
+{
+   const a = new SFInt32 (1);
+   const b = new SFInt32 (2);
+
+   expect (a .toString ()) .toBe ("1");
+   expect (b .toString ()) .toBe ("2");
+});

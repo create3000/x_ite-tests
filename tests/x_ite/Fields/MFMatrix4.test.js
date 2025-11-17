@@ -181,4 +181,15 @@ for (const [typeName, MFMatrix4, SFMatrix4] of arrays)
    {
       enumerate (["0", "1", "2"], new MFMatrix4 (new SFMatrix4 (), new SFMatrix4 (), new SFMatrix4 ()));
    });
+
+   test ("toString", () =>
+   {
+      const a = new MFMatrix4 ();
+      const b = new MFMatrix4 (new SFMatrix4 (1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16));
+      const c = new MFMatrix4 (new SFMatrix4 (1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16), new SFMatrix4 (17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32));
+
+      expect (a .toString ({ style: "CLEAN" })) .toBe ("[]");
+      expect (b .toString ({ style: "CLEAN" })) .toBe ("1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16");
+      expect (c .toString ({ style: "CLEAN" })) .toBe ("[1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32]");
+   });
 }

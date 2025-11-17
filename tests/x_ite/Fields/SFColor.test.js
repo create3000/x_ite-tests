@@ -285,3 +285,12 @@ test ("fromXMLString", () =>
 
    expect (() => a .fromXMLString ("---")) .toThrow (Error);
 });
+
+test ("toString", () =>
+{
+   const a = new SFColor (1,2,3);
+   const b = new SFColor (5,6,7);
+
+   expect (a .toString ()) .toBe ("1 2 3");
+   expect (b .toString ()) .toBe ("5 6 7");
+});

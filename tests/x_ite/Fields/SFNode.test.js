@@ -593,3 +593,15 @@ test ("fromVRMLString", () =>
 
    expect (() => a .fromVRMLString ("foo")) .toThrow (Error);
 });
+
+test ("toString", () =>
+{
+   const a = scene .createNode ("MetadataBoolean");
+   const b = scene .createNode ("MetadataDouble");
+
+   expect (a .toString ()) .toBe ("MetadataBoolean { }");
+   expect (b .toString ()) .toBe ("MetadataDouble { }");
+
+   expect (a .toString ({ style: "CLEAN" })) .toBe ("MetadataBoolean{}");
+   expect (b .toString ({ style: "CLEAN" })) .toBe ("MetadataDouble{}");
+});

@@ -856,4 +856,15 @@ for (const [typeName, MFVec2, SFVec2] of arrays)
    {
       enumerate (["0", "1", "2"], new MFVec2 (new SFVec2 (), new SFVec2 (), new SFVec2 ()));
    });
+
+   test ("toString", () =>
+   {
+      const a = new MFVec2 ();
+      const b = new MFVec2 (new SFVec2 (1,2));
+      const c = new MFVec2 (new SFVec2 (1,2), new SFVec2 (5,6));
+
+      expect (a .toString ({ style: "CLEAN" })) .toBe ("[]");
+      expect (b .toString ({ style: "CLEAN" })) .toBe ("1 2");
+      expect (c .toString ({ style: "CLEAN" })) .toBe ("[1 2 5 6]");
+   });
 }

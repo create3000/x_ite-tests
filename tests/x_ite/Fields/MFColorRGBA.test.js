@@ -176,3 +176,14 @@ test ("enumerate", () =>
 {
    enumerate (["0", "1", "2"], new MFColorRGBA (new SFColorRGBA (), new SFColorRGBA (), new SFColorRGBA ()));
 });
+
+test ("toString", () =>
+{
+   const a = new MFColorRGBA ();
+   const b = new MFColorRGBA (new SFColorRGBA (1,2,3,4));
+   const c = new MFColorRGBA (new SFColorRGBA (1,2,3,4), new SFColorRGBA (5,6,7,8));
+
+   expect (a .toString ({ style: "CLEAN" })) .toBe ("[]");
+   expect (b .toString ({ style: "CLEAN" })) .toBe ("1 2 3 4");
+   expect (c .toString ({ style: "CLEAN" })) .toBe ("[1 2 3 4 5 6 7 8]");
+});

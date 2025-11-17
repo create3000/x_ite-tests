@@ -181,3 +181,12 @@ test ("fromXMLString", () =>
 
    expect (() => a .fromXMLString ("foo")) .toThrow (Error);
 });
+
+test ("toString", () =>
+{
+   const a = new SFFloat (1);
+   const b = new SFFloat (2);
+
+   expect (a .toString ()) .toBe ("1");
+   expect (b .toString ()) .toBe ("2");
+});

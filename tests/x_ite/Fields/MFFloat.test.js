@@ -818,3 +818,14 @@ test ("enumerate", () =>
 {
    enumerate (["0", "1", "2"], new MFFloat (1,2,3));
 });
+
+test ("toString", () =>
+{
+   const a = new MFFloat ();
+   const b = new MFFloat (1);
+   const c = new MFFloat (1, 2);
+
+   expect (a .toString ({ style: "CLEAN" })) .toBe ("[]");
+   expect (b .toString ({ style: "CLEAN" })) .toBe ("1");
+   expect (c .toString ({ style: "CLEAN" })) .toBe ("[1 2]");
+});

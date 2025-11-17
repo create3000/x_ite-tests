@@ -236,3 +236,14 @@ test ("enumerate", () =>
 {
    enumerate (["0", "1", "2"], new MFRotation (new SFRotation (), new SFRotation (), new SFRotation ()));
 });
+
+test ("toString", () =>
+{
+   const a = new MFRotation ();
+   const b = new MFRotation (new SFRotation (1,2,3,4));
+   const c = new MFRotation (new SFRotation (1,2,3,4), new SFRotation (5,6,7,8));
+
+   expect (a .toString ({ style: "CLEAN" })) .toBe ("[]");
+   expect (b .toString ({ style: "CLEAN" })) .toBe ("1 2 3 4");
+   expect (c .toString ({ style: "CLEAN" })) .toBe ("[1 2 3 4 5 6 7 8]");
+});

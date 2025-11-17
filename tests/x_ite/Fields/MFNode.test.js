@@ -906,3 +906,14 @@ test ("enumerate", () =>
 {
    enumerate (["0", "1", "2"], new MFNode (node1, node2, node3));
 });
+
+test ("toString", () =>
+{
+   const a = new MFNode ();
+   const b = new MFNode (scene .createNode ("WorldInfo"));
+   const c = new MFNode (scene .createNode ("MetadataBoolean"), scene .createNode ("MetadataDouble"));
+
+   expect (a .toString ({ style: "CLEAN" })) .toBe ("[]");
+   expect (b .toString ({ style: "CLEAN" })) .toBe ("WorldInfo{}");
+   expect (c .toString ({ style: "CLEAN" })) .toBe ("[MetadataBoolean{}MetadataDouble{}]");
+});

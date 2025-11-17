@@ -452,4 +452,13 @@ for (const Type of Object .keys (X3D .SFVec3))
 
       expect (() => a .fromXMLString ("foo")) .toThrow (Error);
    });
+
+   test ("toString", () =>
+   {
+      const a = new SFVec3 (1,2,3);
+      const b = new SFVec3 (5,6,7);
+
+      expect (a .toString ()) .toBe ("1 2 3");
+      expect (b .toString ()) .toBe ("5 6 7");
+   });
 }

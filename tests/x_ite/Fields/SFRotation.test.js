@@ -599,3 +599,12 @@ test ("fromXMLString", () =>
 
    expect (() => a .fromXMLString ("foo")) .toThrow (Error);
 });
+
+test ("toString", () =>
+{
+   const a = new SFRotation (1,2,3,4);
+   const b = new SFRotation (5,6,7,8);
+
+   expect (a .toString ()) .toBe ("1 2 3 4");
+   expect (b .toString ()) .toBe ("5 6 7 8");
+});

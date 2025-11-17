@@ -156,3 +156,12 @@ test ("fromXMLString", () =>
 
    expect (() => a .fromXMLString ("foo")) .toThrow (Error);
 });
+
+test ("toString", () =>
+{
+   const a = new SFTime (1);
+   const b = new SFTime (2);
+
+   expect (a .toString ()) .toBe ("1");
+   expect (b .toString ()) .toBe ("2");
+});

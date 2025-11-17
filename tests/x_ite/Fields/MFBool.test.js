@@ -797,3 +797,14 @@ test ("enumerate", () =>
 {
    enumerate (["0", "1", "2"], new MFBool (true, false, true));
 });
+
+test ("toString", () =>
+{
+   const a = new MFBool ();
+   const b = new MFBool (true);
+   const c = new MFBool (true, false);
+
+   expect (a .toString ({ style: "CLEAN" })) .toBe ("[]");
+   expect (b .toString ({ style: "CLEAN" })) .toBe ("TRUE");
+   expect (c .toString ({ style: "CLEAN" })) .toBe ("[TRUE FALSE]");
+});

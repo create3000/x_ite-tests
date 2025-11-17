@@ -592,4 +592,13 @@ for (const Type of Object .keys (X3D .SFMatrix3))
 
       expect (() => a .fromXMLString ("foo")) .toThrow (Error);
    });
+
+   test ("toString", () =>
+   {
+      const a = new SFMatrix3 (1,2,3,4,5,6,7,8,9);
+      const b = new SFMatrix3 (10,11,12,13,14,15,16,17,18);
+
+      expect (a .toString ()) .toBe ("1 2 3 4 5 6 7 8 9");
+      expect (b .toString ()) .toBe ("10 11 12 13 14 15 16 17 18");
+   });
 }

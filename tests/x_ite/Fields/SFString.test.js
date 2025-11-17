@@ -148,3 +148,12 @@ test ("fromXMLString", () =>
 
    expect (a .equals (new SFString ())) .toBe (true);
 });
+
+test ("toString", () =>
+{
+   const a = new SFString ("a");
+   const b = new SFString ("b");
+
+   expect (a .toString ()) .toBe (`"a"`);
+   expect (b .toString ()) .toBe (`"b"`);
+});

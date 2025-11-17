@@ -797,3 +797,14 @@ test ("enumerate", () =>
 {
    enumerate (["0", "1", "2"], new MFString ("a", "b", "c"));
 });
+
+test ("toString", () =>
+{
+   const a = new MFString ();
+   const b = new MFString ("a");
+   const c = new MFString ("a", "b");
+
+   expect (a .toString ({ style: "CLEAN" })) .toBe (`[]`);
+   expect (b .toString ({ style: "CLEAN" })) .toBe (`"a"`);
+   expect (c .toString ({ style: "CLEAN" })) .toBe (`["a" "b"]`);
+});

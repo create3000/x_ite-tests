@@ -176,3 +176,14 @@ test ("enumerate", () =>
 {
    enumerate (["0", "1", "2"], new MFColor (new SFColor (), new SFColor (), new SFColor ()));
 });
+
+test ("toString", () =>
+{
+   const a = new MFColor ();
+   const b = new MFColor (new SFColor (1,2,3));
+   const c = new MFColor (new SFColor (1,2,3), new SFColor (5,6,7));
+
+   expect (a .toString ({ style: "CLEAN" })) .toBe ("[]");
+   expect (b .toString ({ style: "CLEAN" })) .toBe ("1 2 3");
+   expect (c .toString ({ style: "CLEAN" })) .toBe ("[1 2 3 5 6 7]");
+});
