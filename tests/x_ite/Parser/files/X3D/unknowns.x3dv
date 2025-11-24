@@ -5,7 +5,11 @@ PROFILE Interchange
 PROTO Test [
   inputOutput SFString known ""
 ]
-{ }
+{
+  Foo {
+    unknown IS known
+  }
+}
 
 Transform {
   children [
