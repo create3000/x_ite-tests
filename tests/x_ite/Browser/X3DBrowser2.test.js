@@ -49,6 +49,7 @@ test ("getBrowserOption", () =>
    expect (Browser .getBrowserOption ("Gravity")) .toBe (9.80665);
    expect (Browser .getBrowserOption ("LoadUrlObjects")) .toBe (true);
    expect (Browser .getBrowserOption ("LogarithmicDepthBuffer")) .toBe (false);
+   expect (Browser .getBrowserOption ("MaximumFrameRate")) .toBe (80);
    expect (Browser .getBrowserOption ("MetadataReference")) .toBe ("");
    expect (Browser .getBrowserOption ("Multisampling")) .toBe (4);
    expect (Browser .getBrowserOption ("Mute")) .toBe (false);
@@ -58,6 +59,7 @@ test ("getBrowserOption", () =>
    expect (Browser .getBrowserOption ("TextCompression")) .toBe ("CHAR_SPACING");
    expect (Browser .getBrowserOption ("Timings")) .toBe (false);
    expect (Browser .getBrowserOption ("ToneMapping")) .toBe ("NONE");
+   expect (Browser .getBrowserOption ("WallFriction")) .toBe (0);
    expect (Browser .getBrowserOption ("XRSessionMode")) .toBe ("IMMERSIVE_VR");
 
    // Browser .addBrowserOptionCallback ("test", "Antialiased", () => { });
