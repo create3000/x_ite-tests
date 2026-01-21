@@ -1,7 +1,10 @@
 Field SFFloat 'fieldOfView' in node GeoViewpoint has different value (Spec <=> X3DUOM): 0.785398 !== 0.7854.
 Field SFString 'version' in node HAnimHumanoid has different value (Spec <=> X3DUOM): 2.0 !== 2.
+HAnimJoint number of fields differ (Spec <=> X3DUOM): 24 <=> 22.
+  Where [minAngle,maxAngle] not in X3DUOM.
 SquadOrientationInterpolator number of fields differ (Spec <=> X3DUOM): 7 <=> 6.
   Where [closed] not in X3DUOM.
+Field 'fieldOfView' in node OrthoViewpoint has different type (Spec <=> X3DUOM): SFVec4f !== MFFloat.
 Field SFFloat 'fieldOfView' in node Viewpoint has different value (Spec <=> X3DUOM): 0.785398 !== 0.7854.
 Field SFFloat 'angle' in node ConeEmitter has different value (Spec <=> X3DUOM): 0.785398 !== 0.7854.
 Field 'name' in node FloatVertexAttribute has different type (Spec <=> X3DUOM): SFString !== xs:NMTOKEN.
@@ -39,9 +42,7 @@ StreamAudioSource number of fields differ (Spec <=> X3DUOM): 12 <=> 14.
   Where [channelCountMode,channelInterpretation] not in Spec.
 WaveShaper number of fields differ (Spec <=> X3DUOM): 17 <=> 18.
   Where [channelCount] not in Spec.
-Field SFVec3f 'upVector' in node TextureProjector has different value (Spec <=> X3DUOM): 0 0 1 !== 0 1 0.
 Field SFFloat 'fieldOfView' in node TextureProjector has different value (Spec <=> X3DUOM): 0.785398 !== 0.7854.
-Field SFVec3f 'upVector' in node TextureProjectorParallel has different value (Spec <=> X3DUOM): 0 0 1 !== 0 1 0.
 Field SFString 'minificationFilter' in node TextureProperties has different value (Spec <=> X3DUOM): DEFAULT !== FASTEST.
 Field SFString 'magnificationFilter' in node TextureProperties has different value (Spec <=> X3DUOM): DEFAULT !== FASTEST.
 Field SFString 'textureCompression' in node TextureProperties has different value (Spec <=> X3DUOM): DEFAULT !== FASTEST.
