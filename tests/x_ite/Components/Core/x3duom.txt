@@ -1,5 +1,6 @@
 Field SFFloat 'fieldOfView' in node GeoViewpoint has different value (Spec <=> X3DUOM): 0.785398 !== 0.7854.
-Field SFString 'version' in node HAnimHumanoid has different value (Spec <=> X3DUOM): 2.0 !== 2.
+HAnimHumanoid number of fields differ (Spec <=> X3DUOM): 32 <=> 31.
+  Where [children] not in X3DUOM.
 HAnimJoint number of fields differ (Spec <=> X3DUOM): 24 <=> 22.
   Where [minAngle,maxAngle] not in X3DUOM.
 SquadOrientationInterpolator number of fields differ (Spec <=> X3DUOM): 7 <=> 6.
@@ -7,6 +8,7 @@ SquadOrientationInterpolator number of fields differ (Spec <=> X3DUOM): 7 <=> 6.
 Field 'fieldOfView' in node OrthoViewpoint has different type (Spec <=> X3DUOM): SFVec4f !== MFFloat.
 Field SFFloat 'fieldOfView' in node Viewpoint has different value (Spec <=> X3DUOM): 0.785398 !== 0.7854.
 Field SFFloat 'angle' in node ConeEmitter has different value (Spec <=> X3DUOM): 0.785398 !== 0.7854.
+Field 'particleLifetime' in node ParticleSystem has different type (Spec <=> X3DUOM): SFTime !== SFFloat.
 Field 'name' in node FloatVertexAttribute has different type (Spec <=> X3DUOM): SFString !== xs:NMTOKEN.
 Field 'name' in node Matrix3VertexAttribute has different type (Spec <=> X3DUOM): SFString !== xs:NMTOKEN.
 Field 'name' in node Matrix4VertexAttribute has different type (Spec <=> X3DUOM): SFString !== xs:NMTOKEN.
