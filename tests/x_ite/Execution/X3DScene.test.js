@@ -177,13 +177,16 @@ test ("addComponent", async () =>
    const scene1 = await Browser .createScene (Browser .getProfile ("Core"));
 
    expect (scene1 .getComponents ()) .toHaveLength (0);
-   expect (scene1 .hasComponent (Browser .getComponent ("Shape"))) .toBe (false);
+   expect (scene1 .hasComponent (Browser .getComponent ("Shape", 3))) .toBe (false);
 
-   scene1 .addComponent (Browser .getComponent ("Shape"));
+   scene1 .addComponent (Browser .getComponent ("Shape", 3));
 
    expect (scene1 .getComponents ()) .toHaveLength (1);
-   expect (scene1 .hasComponent (Browser .getComponent ("Shape"))) .toBe (true);
-   expect (() => scene1 .addComponent (Browser .getComponent ("Shape"))) .toThrow (Error);
+   expect (scene1 .hasComponent (Browser .getComponent ("Shape", 3))) .toBe (true);
+   expect (() => scene1 .addComponent (Browser .getComponent ("Shape", 1))) .toThrow (Error);
+   expect (() => scene1 .addComponent (Browser .getComponent ("Shape", 2))) .toThrow (Error);
+   expect (() => scene1 .addComponent (Browser .getComponent ("Shape", 3))) .toThrow (Error);
+   expect (() => scene1 .addComponent (Browser .getComponent ("Shape", 4))) .toThrow (Error);
 });
 
 test ("updateComponent", async () =>
