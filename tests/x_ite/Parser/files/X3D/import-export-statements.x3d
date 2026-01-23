@@ -9,9 +9,9 @@
       <Box/>
     </Shape>
     <Inline DEF='I'/>
-    <IMPORT inlineDEF='I' importedDEF='N' DESCRIPTION='Import Test 1'/>
-    <IMPORT inlineDEF='I' importedDEF='N' AS='IN' DESCRIPTION='Import Test 2'/>
-    <EXPORT localDEF='S' DESCRIPTION='Export Test 1'/>
-    <EXPORT localDEF='S' AS='ES' DESCRIPTION='Export Test 2'/>
+    <IMPORT inlineDEF='I' importedDEF='N' description='Import Test 1'/>
+    <IMPORT inlineDEF='I' importedDEF='N' AS='IN' description='Import Test 2'/>
+    <EXPORT localDEF='S' description='Export Test 1'/>
+    <EXPORT localDEF='S' AS='ES' description='Export Test 2'/>
   </Scene>
 </X3D>
