@@ -172,6 +172,68 @@ COMPONENT Geometry3D : 2
    expect (scene4 .hasComponent (Browser .getComponent ("Geometry3D", 3))) .toBe (false);
 });
 
+test ("addComponent", async () =>
+{
+   const scene1 = await Browser .createScene (Browser .getProfile ("Core"));
+
+   expect (scene1 .getComponents ()) .toHaveLength (0);
+   expect (scene1 .hasComponent (Browser .getComponent ("Shape"))) .toBe (false);
+
+   scene1 .addComponent (Browser .getComponent ("Shape"));
+
+   expect (scene1 .getComponents ()) .toHaveLength (1);
+   expect (scene1 .hasComponent (Browser .getComponent ("Shape"))) .toBe (true);
+   expect (() => scene1 .addComponent (Browser .getComponent ("Shape"))) .toThrow (Error);
+});
+
+test ("updateComponent", async () =>
+{
+   const scene1 = await Browser .createScene (Browser .getProfile ("Core"));
+
+   expect (scene1 .getComponents ()) .toHaveLength (0);
+   expect (scene1 .hasComponent (Browser .getComponent ("Shape", 1))) .toBe (false);
+   expect (scene1 .hasComponent (Browser .getComponent ("Shape", 2))) .toBe (false);
+
+   scene1 .updateComponent (Browser .getComponent ("Shape", 1));
+
+   expect (scene1 .getComponents ()) .toHaveLength (1);
+   expect (scene1 .hasComponent (Browser .getComponent ("Shape", 1))) .toBe (true);
+   expect (scene1 .hasComponent (Browser .getComponent ("Shape", 2))) .toBe (false);
+
+   scene1 .updateComponent (Browser .getComponent ("Shape", 2));
+
+   expect (scene1 .getComponents ()) .toHaveLength (1);
+   expect (scene1 .hasComponent (Browser .getComponent ("Shape", 1))) .toBe (true);
+   expect (scene1 .hasComponent (Browser .getComponent ("Shape", 2))) .toBe (true);
+
+   scene1 .updateComponent (Browser .getComponent ("Shape", 1));
+
+   expect (scene1 .getComponents ()) .toHaveLength (1);
+   expect (scene1 .hasComponent (Browser .getComponent ("Shape", 1))) .toBe (true);
+   expect (scene1 .hasComponent (Browser .getComponent ("Shape", 2))) .toBe (false);
+
+   const scene2 = await Browser .createScene (Browser .getProfile ("Immersive"));
+
+   expect (scene2 .getComponents ()) .toHaveLength (0);
+   expect (scene2 .hasComponent (Browser .getComponent ("Shape", 1))) .toBe (true);
+   expect (scene2 .hasComponent (Browser .getComponent ("Shape", 2))) .toBe (true);
+   expect (scene2 .hasComponent (Browser .getComponent ("Shape", 3))) .toBe (false);
+
+   scene2 .updateComponent (Browser .getComponent ("Shape", 3));
+
+   expect (scene2 .getComponents ()) .toHaveLength (1);
+   expect (scene2 .hasComponent (Browser .getComponent ("Shape", 1))) .toBe (true);
+   expect (scene2 .hasComponent (Browser .getComponent ("Shape", 2))) .toBe (true);
+   expect (scene2 .hasComponent (Browser .getComponent ("Shape", 3))) .toBe (true);
+
+   scene2 .updateComponent (Browser .getComponent ("Shape", 2));
+
+   expect (scene2 .getComponents ()) .toHaveLength (0);
+   expect (scene2 .hasComponent (Browser .getComponent ("Shape", 1))) .toBe (true);
+   expect (scene2 .hasComponent (Browser .getComponent ("Shape", 2))) .toBe (true);
+   expect (scene2 .hasComponent (Browser .getComponent ("Shape", 3))) .toBe (false);
+});
+
 test ("updateUnit", async () =>
 {
    const scene = await Browser .createScene ()
