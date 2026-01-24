@@ -20,12 +20,12 @@ test ("constructor", () =>
 
    const min = new Vector3 (4, 4.5, 5);
    const max = new Vector3 (6, 7.5, 9);
-   const b3 = Box3 .Extents (min, max);
+   const b3 = Box3 .fromExtents (min, max);
 
    expect (b3 .size .equals (new Vector3 (2, 3, 4))) .toBe (true);
    expect (b3 .center .equals (new Vector3 (5, 6, 7))) .toBe (true);
 
-   const b4 = Box3 .Points ([min, max]);
+   const b4 = Box3 .fromPoints ([min, max]);
 
    expect (b4 .size .equals (new Vector3 (2, 3, 4))) .toBe (true);
    expect (b4 .center .equals (new Vector3 (5, 6, 7))) .toBe (true);
