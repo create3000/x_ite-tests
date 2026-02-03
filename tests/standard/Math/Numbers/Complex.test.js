@@ -79,7 +79,7 @@ test ("set", () =>
 
 test ("setPolar", () =>
 {
-   const c1 = Complex .Polar (1, Math .PI / 4)
+   const c1 = Complex .fromPolar (1, Math .PI / 4)
 
    expect (c1 .real) .toBeCloseTo (Math .SQRT1_2)
    expect (c1 .imag) .toBeCloseTo (Math .SQRT1_2)
