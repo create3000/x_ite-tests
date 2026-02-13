@@ -25,8 +25,8 @@
   },
   "dependencies": {
     "@kayahr/jest-electron-runner": "^29.15.0",
-    "fast-xml-parser": "^5.3.3",
-    "jquery": "^3.7.1",
+    "fast-xml-parser": "^5.3.5",
+    "jquery": "^4.0.0",
     "shell-tools": "^1.1.9"
   }
 }
