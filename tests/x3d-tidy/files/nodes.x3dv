@@ -372,9 +372,7 @@ HAnimHumanoid { }
 
 HAnimJoint { }
 
-HAnimMotion {
-  endFrame -1
-}
+HAnimMotion { }
 
 HAnimPose { }
 
