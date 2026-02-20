@@ -231,10 +231,14 @@ test ("updateComponent", async () =>
 
    scene2 .updateComponent (Browser .getComponent ("Shape", 2));
 
-   expect (scene2 .getComponents ()) .toHaveLength (0);
+   expect (scene2 .getComponents ()) .toHaveLength (1);
    expect (scene2 .hasComponent (Browser .getComponent ("Shape", 1))) .toBe (true);
    expect (scene2 .hasComponent (Browser .getComponent ("Shape", 2))) .toBe (true);
    expect (scene2 .hasComponent (Browser .getComponent ("Shape", 3))) .toBe (false);
+
+   scene2 .removeComponent ("Shape");
+
+   expect (scene2 .getComponents ()) .toHaveLength (0);
 });
 
 test ("updateUnit", async () =>

@@ -142,6 +142,8 @@ Anchor { }
 
 Inline { }
 
+InlineGeometry { }
+
 LoadSensor { }
 
 CylinderSensor { }
