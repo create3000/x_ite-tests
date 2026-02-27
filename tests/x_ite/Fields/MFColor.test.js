@@ -68,25 +68,25 @@ test ("setValue", () =>
 {
    const field = new MFColor ();
 
-   field .setValue ([1, 2, 3, 10, 11, 12]);
+   field .setValue ([.1, .2, .3, .4, .5, .6]);
 
    expect (field) .toHaveLength (2);
-   expect (field .equals (new MFColor (new SFColor (1, 2, 3), new SFColor (10, 11, 12)))) .toBe (true);
+   expect (field .equals (new MFColor (new SFColor (.1, .2, .3), new SFColor (.4, .5, .6)))) .toBe (true);
 
    field .setValue ([ ]);
 
    expect (field) .toHaveLength (0);
    expect (field .equals (new MFColor ())) .toBe (true);
 
-   field .setValue (new MFColor (new SFColor (1, 2, 3)));
+   field .setValue (new MFColor (new SFColor (.1, .2, .3)));
 
    expect (field) .toHaveLength (1);
-   expect (field .equals (new MFColor (new SFColor (1, 2, 3)))) .toBe (true);
+   expect (field .equals (new MFColor (new SFColor (.1, .2, .3)))) .toBe (true);
 
-   field .setValue (new MFColor (new SFColor (1, 2, 3), new SFColor (10, 11, 12)));
+   field .setValue (new MFColor (new SFColor (.1, .2, .3), new SFColor (.4, .5, .6)));
 
    expect (field) .toHaveLength (2);
-   expect (field .equals (new MFColor (new SFColor (1, 2, 3), new SFColor (10, 11, 12)))) .toBe (true);
+   expect (field .equals (new MFColor (new SFColor (.1, .2, .3), new SFColor (.4, .5, .6)))) .toBe (true);
 
    field .setValue (new MFColor ());
 
@@ -115,15 +115,15 @@ test ("fromString", () =>
 {
    const a = new MFColor ();
 
-   a .fromString ("[1.2 2.3 3.4, 2.3 3.4 4.5]");
+   a .fromString ("[.2 .3 .4, .3 .4 .5]");
 
    expect (a) .toHaveLength (2);
-   expect (a .equals (new MFColor (new SFColor (1.2, 2.3, 3.4), new SFColor (2.3, 3.4, 4.5)))) .toBe (true);
+   expect (a .equals (new MFColor (new SFColor (.2, .3, .4), new SFColor (.3, .4, .5)))) .toBe (true);
 
-   a .fromString ("1 2 3");
+   a .fromString (".1 .2 .3");
 
    expect (a) .toHaveLength (1);
-   expect (a .equals (new MFColor (new SFColor (1, 2, 3)))) .toBe (true);
+   expect (a .equals (new MFColor (new SFColor (.1, .2, .3)))) .toBe (true);
 
    a .fromString ("[ ]");
 
@@ -137,15 +137,15 @@ test ("fromVRMLString", () =>
 {
    const a = new MFColor ();
 
-   a .fromVRMLString ("[1.2 2.3 3.4, 2.3 3.4 4.5]");
+   a .fromVRMLString ("[.2 .3 .4, .3 .4 .5]");
 
    expect (a) .toHaveLength (2);
-   expect (a .equals (new MFColor (new SFColor (1.2, 2.3, 3.4), new SFColor (2.3, 3.4, 4.5)))) .toBe (true);
+   expect (a .equals (new MFColor (new SFColor (.2, .3, .4), new SFColor (.3, .4, .5)))) .toBe (true);
 
-   a .fromVRMLString ("1 2 3 4 5 6 7 8 9");
+   a .fromVRMLString (".1 .2 .3 .4 .5 .6 .7 .8 .9");
 
    expect (a) .toHaveLength (1);
-   expect (a .equals (new MFColor (new SFColor (1, 2, 3)))) .toBe (true);
+   expect (a .equals (new MFColor (new SFColor (.1, .2, .3)))) .toBe (true);
 
    a .fromVRMLString ("[ ]");
 
@@ -159,15 +159,15 @@ test ("fromXMLString", () =>
 {
    const a = new MFColor ();
 
-   a .fromXMLString ("1.2 2.3 3.4, 2.3 3.4 4.5");
+   a .fromXMLString ("0.2 0.3 0.4, 0.3 0.4 0.5");
 
    expect (a) .toHaveLength (2);
-   expect (a .equals (new MFColor (new SFColor (1.2, 2.3, 3.4), new SFColor (2.3, 3.4, 4.5)))) .toBe (true);
+   expect (a .equals (new MFColor (new SFColor (0.2, 0.3, 0.4), new SFColor (0.3, 0.4, 0.5)))) .toBe (true);
 
-   a .fromXMLString ("1 2 3");
+   a .fromXMLString (".1 .2 .3");
 
    expect (a) .toHaveLength (1);
-   expect (a .equals (new MFColor (new SFColor (1, 2, 3)))) .toBe (true);
+   expect (a .equals (new MFColor (new SFColor (.1, .2, .3)))) .toBe (true);
 
    expect (() => a .fromXMLString ("")) .toThrow (Error);
 });
@@ -180,10 +180,10 @@ test ("enumerate", () =>
 test ("toString", () =>
 {
    const a = new MFColor ();
-   const b = new MFColor (new SFColor (1,2,3));
-   const c = new MFColor (new SFColor (1,2,3), new SFColor (5,6,7));
+   const b = new MFColor (new SFColor (.1,.2,.3));
+   const c = new MFColor (new SFColor (.1,.2,.3), new SFColor (.5,.6,.7));
 
    expect (a .toString ({ style: "CLEAN" })) .toBe ("[]");
-   expect (b .toString ({ style: "CLEAN" })) .toBe ("1 2 3");
-   expect (c .toString ({ style: "CLEAN" })) .toBe ("[1 2 3 5 6 7]");
+   expect (b .toString ({ style: "CLEAN" })) .toBe ("0.1 0.2 0.3");
+   expect (c .toString ({ style: "CLEAN" })) .toBe ("[0.1 0.2 0.3 0.5 0.6 0.7]");
 });

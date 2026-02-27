@@ -68,25 +68,25 @@ test ("setValue", () =>
 {
    const field = new MFColorRGBA ();
 
-   field .setValue ([1, 2, 3, 4,  10, 11, 12, 13]);
+   field .setValue ([.1, .2, .3, .4,  .5, .6, .7, .8]);
 
    expect (field) .toHaveLength (2);
-   expect (field .equals (new MFColorRGBA (new SFColorRGBA (1, 2, 3, 4), new SFColorRGBA (10, 11, 12, 13)))) .toBe (true);
+   expect (field .equals (new MFColorRGBA (new SFColorRGBA (.1, .2, .3, .4), new SFColorRGBA (.5, .6, .7, .8)))) .toBe (true);
 
    field .setValue ([ ]);
 
    expect (field) .toHaveLength (0);
    expect (field .equals (new MFColorRGBA ())) .toBe (true);
 
-   field .setValue (new MFColorRGBA (new SFColorRGBA (1, 2, 3, 4)));
+   field .setValue (new MFColorRGBA (new SFColorRGBA (.1, .2, .3, .4)));
 
    expect (field) .toHaveLength (1);
-   expect (field .equals (new MFColorRGBA (new SFColorRGBA (1, 2, 3, 4)))) .toBe (true);
+   expect (field .equals (new MFColorRGBA (new SFColorRGBA (.1, .2, .3, .4)))) .toBe (true);
 
-   field .setValue (new MFColorRGBA (new SFColorRGBA (1, 2, 3, 4), new SFColorRGBA (10, 11, 12, 13)));
+   field .setValue (new MFColorRGBA (new SFColorRGBA (.1, .2, .3, .4), new SFColorRGBA (.5, .6, .7, .8)));
 
    expect (field) .toHaveLength (2);
-   expect (field .equals (new MFColorRGBA (new SFColorRGBA (1, 2, 3, 4), new SFColorRGBA (10, 11, 12, 13)))) .toBe (true);
+   expect (field .equals (new MFColorRGBA (new SFColorRGBA (.1, .2, .3, .4), new SFColorRGBA (.5, .6, .7, .8)))) .toBe (true);
 
    field .setValue (new MFColorRGBA ());
 
@@ -115,15 +115,15 @@ test ("fromString", () =>
 {
    const a = new MFColorRGBA ();
 
-   a .fromString ("[1.2 2.3 3.4 4.5, 2.3 3.4 4.5 5.6]");
+   a .fromString ("[.2 .3 .4 .5, .3 .4 .5 .6]");
 
    expect (a) .toHaveLength (2);
-   expect (a .equals (new MFColorRGBA (new SFColorRGBA (1.2, 2.3, 3.4, 4.5), new SFColorRGBA (2.3, 3.4, 4.5, 5.6)))) .toBe (true);
+   expect (a .equals (new MFColorRGBA (new SFColorRGBA (.2, .3, .4, .5), new SFColorRGBA (.3, .4, .5, .6)))) .toBe (true);
 
-   a .fromString ("1 2 3 4");
+   a .fromString (".1 .2 .3 .4");
 
    expect (a) .toHaveLength (1);
-   expect (a .equals (new MFColorRGBA (new SFColorRGBA (1, 2, 3, 4)))) .toBe (true);
+   expect (a .equals (new MFColorRGBA (new SFColorRGBA (.1, .2, .3, .4)))) .toBe (true);
 
    a .fromString ("[ ]");
 
@@ -137,15 +137,15 @@ test ("fromVRMLString", () =>
 {
    const a = new MFColorRGBA ();
 
-   a .fromVRMLString ("[1.2 2.3 3.4 4.5, 2.3 3.4 4.5 5.6]");
+   a .fromVRMLString ("[.2 .3 .4 .5, .3 .4 .5 .6]");
 
    expect (a) .toHaveLength (2);
-   expect (a .equals (new MFColorRGBA (new SFColorRGBA (1.2, 2.3, 3.4, 4.5), new SFColorRGBA (2.3, 3.4, 4.5, 5.6)))) .toBe (true);
+   expect (a .equals (new MFColorRGBA (new SFColorRGBA (.2, .3, .4, .5), new SFColorRGBA (.3, .4, .5, .6)))) .toBe (true);
 
-   a .fromVRMLString ("1 2 3 4");
+   a .fromVRMLString (".1 .2 .3 .4");
 
    expect (a) .toHaveLength (1);
-   expect (a .equals (new MFColorRGBA (new SFColorRGBA (1, 2, 3, 4)))) .toBe (true);
+   expect (a .equals (new MFColorRGBA (new SFColorRGBA (.1, .2, .3, .4)))) .toBe (true);
 
    a .fromVRMLString ("[ ]");
 
@@ -159,15 +159,15 @@ test ("fromXMLString", () =>
 {
    const a = new MFColorRGBA ();
 
-   a .fromXMLString ("1.2 2.3 3.4 4.5, 2.3 3.4 4.5 5.6");
+   a .fromXMLString (".2 .3 .4 .5, .3 .4 .5 .6");
 
    expect (a) .toHaveLength (2);
-   expect (a .equals (new MFColorRGBA (new SFColorRGBA (1.2, 2.3, 3.4, 4.5), new SFColorRGBA (2.3, 3.4, 4.5, 5.6)))) .toBe (true);
+   expect (a .equals (new MFColorRGBA (new SFColorRGBA (.2, .3, .4, .5), new SFColorRGBA (.3, .4, .5, .6)))) .toBe (true);
 
-   a .fromXMLString ("1 2 3 4");
+   a .fromXMLString (".1 .2 .3 .4");
 
    expect (a) .toHaveLength (1);
-   expect (a .equals (new MFColorRGBA (new SFColorRGBA (1, 2, 3, 4)))) .toBe (true);
+   expect (a .equals (new MFColorRGBA (new SFColorRGBA (.1, .2, .3, .4)))) .toBe (true);
 
    expect (() => a .fromXMLString ("")) .toThrow (Error);
 });
@@ -180,10 +180,10 @@ test ("enumerate", () =>
 test ("toString", () =>
 {
    const a = new MFColorRGBA ();
-   const b = new MFColorRGBA (new SFColorRGBA (1,2,3,4));
-   const c = new MFColorRGBA (new SFColorRGBA (1,2,3,4), new SFColorRGBA (5,6,7,8));
+   const b = new MFColorRGBA (new SFColorRGBA (.1,.2,.3,.4));
+   const c = new MFColorRGBA (new SFColorRGBA (.1,.2,.3,.4), new SFColorRGBA (.5,.6,.7,.8));
 
    expect (a .toString ({ style: "CLEAN" })) .toBe ("[]");
-   expect (b .toString ({ style: "CLEAN" })) .toBe ("1 2 3 4");
-   expect (c .toString ({ style: "CLEAN" })) .toBe ("[1 2 3 4 5 6 7 8]");
+   expect (b .toString ({ style: "CLEAN" })) .toBe ("0.1 0.2 0.3 0.4");
+   expect (c .toString ({ style: "CLEAN" })) .toBe ("[0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8]");
 });

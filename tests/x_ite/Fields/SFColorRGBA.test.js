@@ -314,9 +314,9 @@ test ("fromXMLString", () =>
 
 test ("toString", () =>
 {
-   const a = new SFColorRGBA (1,2,3,4);
-   const b = new SFColorRGBA (5,6,7,8);
+   const a = new SFColorRGBA (.1,.2,.3,.4);
+   const b = new SFColorRGBA (.5,.6,.7,.8);
 
-   expect (a .toString ()) .toBe ("1 2 3 4");
-   expect (b .toString ()) .toBe ("5 6 7 8");
+   expect (a .toString ()) .toBe ("0.1 0.2 0.3 0.4");
+   expect (b .toString ()) .toBe ("0.5 0.6 0.7 0.8");
 });
