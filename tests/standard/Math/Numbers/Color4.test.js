@@ -80,19 +80,33 @@ test ("constructor", () =>
    expect (c4 [2]) .toBe (0.3)
    expect (c4 [3]) .toBe (0.4)
 
-   c4 .r = 2
-   c4 .g = 3
-   c4 .b = 4
-   c4 .a = 5
+   c4 .r = 2;
+   c4 .g = 3;
+   c4 .b = 4;
+   c4 .a = 5;
 
-   expect (c4 .r) .toBe (1)
-   expect (c4 .g) .toBe (1)
-   expect (c4 .b) .toBe (1)
-   expect (c4 .a) .toBe (1)
-   expect (c4 [0]) .toBe (1)
-   expect (c4 [1]) .toBe (1)
-   expect (c4 [2]) .toBe (1)
-   expect (c4 [3]) .toBe (1)
+   expect (c4 .r) .toBe (1);
+   expect (c4 .g) .toBe (1);
+   expect (c4 .b) .toBe (1);
+   expect (c4 .a) .toBe (1);
+   expect (c4 [0]) .toBe (1);
+   expect (c4 [1]) .toBe (1);
+   expect (c4 [2]) .toBe (1);
+   expect (c4 [3]) .toBe (1);
+
+   c4 .r = -1;
+   c4 .g = -1;
+   c4 .b = -1;
+   c4 .a = -1;
+
+   expect (c4 .r) .toBe (0);
+   expect (c4 .g) .toBe (0);
+   expect (c4 .b) .toBe (0);
+   expect (c4 .a) .toBe (0);
+   expect (c4 [0]) .toBe (0);
+   expect (c4 [1]) .toBe (0);
+   expect (c4 [2]) .toBe (0);
+   expect (c4 [3]) .toBe (0);
 
    const c5 = new Color4 (.2)
 
@@ -132,6 +146,20 @@ test ("constructor", () =>
    expect (c7 [3]) .toBe (.4)
    expect ([... c7]) .toEqual ([.2, .3, .4, .4])
    expect (c7) .toHaveLength (4)
+
+   const c8 = new Color4 (2, 3, 4, 5);
+
+   expect (c8 .r) .toBe (1);
+   expect (c8 .g) .toBe (1);
+   expect (c8 .b) .toBe (1);
+   expect (c8 .a) .toBe (1);
+
+   const c9 = new Color4 (-1, -1, -1, -1);
+
+   expect (c9 .r) .toBe (0);
+   expect (c9 .g) .toBe (0);
+   expect (c9 .b) .toBe (0);
+   expect (c9 .a) .toBe (0);
 })
 
 test ("enumerate", () =>
@@ -165,14 +193,16 @@ test ("assign", () =>
 
 test ("set", () =>
 {
-   const v1 = new Color4 (0, 0, 0, 0)
+   const v1 = new Color4 (0, 0, 0, 0);
 
-   expect ([... v1 .set (0.1, 0.2, 0.3, 0.4)]) .toEqual ([0.1, 0.2, 0.3, 0.4])
-   expect ([... v1 .set ()]) .toEqual ([0, 0, 0, 0])
-   expect ([... v1 .set (2)]) .toEqual ([1, 1, 1, 1])
-   expect ([... v1 .set (2, 3)]) .toEqual ([1, 1, 1, 1])
-   expect ([... v1 .set (2, 3, 4)]) .toEqual ([1, 1, 1, 1])
-})
+   expect ([... v1 .set (0.1, 0.2, 0.3, 0.4)]) .toEqual ([0.1, 0.2, 0.3, 0.4]);
+   expect ([... v1 .set ()]) .toEqual ([0, 0, 0, 0]);
+   expect ([... v1 .set (2)]) .toEqual ([1, 1, 1, 1]);
+   expect ([... v1 .set (2, 3)]) .toEqual ([1, 1, 1, 1]);
+   expect ([... v1 .set (2, 3, 4)]) .toEqual ([1, 1, 1, 1]);
+   expect ([... v1 .set (2, 3, 4, 5)]) .toEqual ([1, 1, 1, 1]);
+   expect ([... v1 .set (-1, -1, -1, -1)]) .toEqual ([0, 0, 0, 0]);
+});
 
 test ("equals", () =>
 {

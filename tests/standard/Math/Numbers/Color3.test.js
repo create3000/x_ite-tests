@@ -79,6 +79,17 @@ test ("constructor", () =>
    expect (c4 [1]) .toBe (1)
    expect (c4 [2]) .toBe (1)
 
+   c4 .r = -1;
+   c4 .g = -1;
+   c4 .b = -1;
+
+   expect (c4 .r) .toBe (0);
+   expect (c4 .g) .toBe (0);
+   expect (c4 .b) .toBe (0);
+   expect (c4 [0]) .toBe (0);
+   expect (c4 [1]) .toBe (0);
+   expect (c4 [2]) .toBe (0);
+
    const c5 = new Color3 (.2)
 
    expect (c5 .r) .toBe (.2)
@@ -100,6 +111,18 @@ test ("constructor", () =>
    expect (c6 [2]) .toBe (.3)
    expect ([... c6]) .toEqual ([.2, .3, .3])
    expect (c6) .toHaveLength (3)
+
+   const c7 = new Color3 (2, 3, 4);
+
+   expect (c7 .r) .toBe (1);
+   expect (c7 .g) .toBe (1);
+   expect (c7 .b) .toBe (1);
+
+   const c8 = new Color3 (-1, -1, -1);
+
+   expect (c8 .r) .toBe (0);
+   expect (c8 .g) .toBe (0);
+   expect (c8 .b) .toBe (0);
 })
 
 test ("enumerate", () =>
@@ -132,13 +155,15 @@ test ("assign", () =>
 
 test ("set", () =>
 {
-   const v1 = new Color3 (0, 0, 0)
+   const v1 = new Color3 (0, 0, 0);
 
-   expect ([... v1 .set (0.1, 0.2, 0.3)]) .toEqual ([0.1, 0.2, 0.3])
-   expect ([... v1 .set ()]) .toEqual ([0, 0, 0])
-   expect ([... v1 .set (.2)]) .toEqual ([.2, .2, .2])
-   expect ([... v1 .set (2, 3)]) .toEqual ([1, 1, 1])
-})
+   expect ([... v1 .set (0.1, 0.2, 0.3)]) .toEqual ([0.1, 0.2, 0.3]);
+   expect ([... v1 .set ()]) .toEqual ([0, 0, 0]);
+   expect ([... v1 .set (.2)]) .toEqual ([.2, .2, .2]);
+   expect ([... v1 .set (2, 3)]) .toEqual ([1, 1, 1]);
+   expect ([... v1 .set (2, 3, 4)]) .toEqual ([1, 1, 1]);
+   expect ([... v1 .set (-1, -1, -1)]) .toEqual ([0, 0, 0]);
+});
 
 test ("equals", () =>
 {
