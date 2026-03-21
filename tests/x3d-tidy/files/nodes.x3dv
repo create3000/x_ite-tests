@@ -276,6 +276,8 @@ MultiTextureTransform { }
 
 PixelTexture { }
 
+RenderedTexture { }
+
 TextureCoordinate { }
 
 TextureCoordinateGenerator { }
