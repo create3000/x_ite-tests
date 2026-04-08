@@ -258,7 +258,7 @@ test ("getProfile", () =>
       "Interactive",
       "Interchange",
       "MedicalInterchange",
-      "MPEG-4",
+      "MPEG4Interactive",
    ]
 
    for (const name of profiles)
