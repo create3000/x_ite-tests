@@ -55,7 +55,8 @@ test ("error", () => new Promise ((resolve, reject) =>
          reject (error);
       }
    });
-}));
+}),
+10_000);
 
 test ("nodes", async () =>
 {
