@@ -354,9 +354,22 @@ test ("equals", () =>
    }
 })
 
+test ("reflect", () =>
+{
+   const
+      v1 = new Vector3 (-1, 0, -1),
+      v2 = new Vector3 (0, 0, 1);
+
+   v1 .reflect (v2);
+
+   expect (v1 [0]) .toBe (-1);
+   expect (v1 [1]) .toBe (0);
+   expect (v1 [2]) .toBe (1);
+});
+
 test ("toString", () =>
 {
-   const v = new Vector3 (3, 4, 5)
+   const v = new Vector3 (3, 4, 5);
 
-   expect (v .toString ()) .toBe ([... v] .join (" "))
-})
+   expect (v .toString ()) .toBe ([... v] .join (" "));
+});

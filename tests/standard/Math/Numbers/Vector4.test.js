@@ -383,9 +383,23 @@ test ("equals", () =>
    }
 })
 
+test ("reflect", () =>
+{
+   const
+      v1 = new Vector4 (-1, 0, -1, 0),
+      v2 = new Vector4 (0, 0, 1, 0);
+
+   v1 .reflect (v2);
+
+   expect (v1 [0]) .toBe (-1);
+   expect (v1 [1]) .toBe (0);
+   expect (v1 [2]) .toBe (1);
+   expect (v1 [3]) .toBe (0);
+});
+
 test ("toString", () =>
 {
-   const v = new Vector4 (3, 4, 5, 6)
+   const v = new Vector4 (3, 4, 5, 6);
 
-   expect (v .toString ()) .toBe ([... v] .join (" "))
-})
+   expect (v .toString ()) .toBe ([... v] .join (" "));
+});

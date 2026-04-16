@@ -383,6 +383,22 @@ for (const Type of Object .keys (X3D .SFVec2))
       expect (c .equals (new SFVec2 (2,3))) .toBe (true)
    })
 
+   test ("reflect", () =>
+   {
+      const
+         a = new SFVec2 (-1,-1),
+         b = new SFVec2 (0,1),
+         c = a .reflect (b);
+
+      expect (c) .toBeInstanceOf (SFVec2);
+      expect (c) .not .toBe (a);
+      expect (c) .not .toBe (b);
+      expect (c .getValue ()) .not .toBe (a .getValue ());
+      expect (c .getValue ()) .not .toBe (b .getValue ());
+
+      expect (c .equals (new SFVec2 (-1,1))) .toBe (true);
+   });
+
    test ("fromString", () =>
    {
       const a = new SFVec2 ();

@@ -394,6 +394,22 @@ for (const Type of Object .keys (X3D .SFVec4))
       expect (c .equals (new SFVec4 (2,3,4,5))) .toBe (true)
    })
 
+   test ("reflect", () =>
+   {
+      const
+         a = new SFVec4 (-1,-1,0,0),
+         b = new SFVec4 (0,1,0,0),
+         c = a .reflect (b);
+
+      expect (c) .toBeInstanceOf (SFVec4);
+      expect (c) .not .toBe (a);
+      expect (c) .not .toBe (b);
+      expect (c .getValue ()) .not .toBe (a .getValue ());
+      expect (c .getValue ()) .not .toBe (b .getValue ());
+
+      expect (c .equals (new SFVec4 (-1,1,0,0))) .toBe (true);
+   });
+
    test ("fromString", () =>
    {
       const a = new SFVec4 ();
