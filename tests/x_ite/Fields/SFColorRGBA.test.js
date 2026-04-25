@@ -255,6 +255,16 @@ test ("lerp", () =>
    expect (c [3]) .toBeCloseTo (0.5)
 })
 
+test ("static fromString", () =>
+{
+   expect (SFColorRGBA .fromString ("0.2 0.3 0.4 0.5") .equals (new SFColorRGBA (0.2, 0.3, 0.4, 0.5))) .toBe (true);
+   expect (SFColorRGBA .fromString ("red") .equals (new SFColorRGBA (1, 0, 0, 1))) .toBe (true);
+   expect (SFColorRGBA .fromString ("0x00ffff00") .equals (new SFColorRGBA (0, 1, 1, 0))) .toBe (true);
+   expect (SFColorRGBA .fromString ("rgba(255, 0, 255, 1)") .equals (new SFColorRGBA (1, 0, 1, 1))) .toBe (true);
+
+   expect (() => SFColorRGBA .fromString ("---")) .toThrow (Error);
+});
+
 test ("fromString", () =>
 {
    const a = new SFColorRGBA ();
@@ -294,6 +304,10 @@ test ("fromVRMLString", () =>
 
    expect (a .equals (new SFColorRGBA (0, 1, 1, 0))) .toBe (true);
 
+   a .fromVRMLString ("rgba(255, 0, 255, 1)");
+
+   expect (a .equals (new SFColorRGBA (1, 0, 1, 1))) .toBe (true);
+
    expect (() => a .fromVRMLString ("---")) .toThrow (Error);
 });
 
@@ -312,6 +326,10 @@ test ("fromXMLString", () =>
    a .fromXMLString ("0x00ffff00");
 
    expect (a .equals (new SFColorRGBA (0, 1, 1, 0))) .toBe (true);
+
+   a .fromXMLString ("rgba(255, 0, 255, 1)");
+
+   expect (a .equals (new SFColorRGBA (1, 0, 1, 1))) .toBe (true);
 
    expect (() => a .fromXMLString ("---")) .toThrow (Error);
 });

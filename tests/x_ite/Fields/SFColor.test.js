@@ -229,6 +229,16 @@ test ("lerp", () =>
    expect (c [2]) .toBeCloseTo (0.5)
 })
 
+test ("static fromString", () =>
+{
+   expect (SFColor .fromString ("0.2 0.3 0.4") .equals (new SFColor (0.2, 0.3, 0.4))) .toBe (true);
+   expect (SFColor .fromString ("red") .equals (new SFColor (1, 0, 0))) .toBe (true);
+   expect (SFColor .fromString ("0x00ffff") .equals (new SFColor (0, 1, 1))) .toBe (true);
+   expect (SFColor .fromString ("rgb(255, 0, 255)") .equals (new SFColor (1, 0, 1))) .toBe (true);
+
+   expect (() => SFColor .fromString ("---")) .toThrow (Error);
+});
+
 test ("fromString", () =>
 {
    const a = new SFColor ();
@@ -268,6 +278,10 @@ test ("fromVRMLString", () =>
 
    expect (a .equals (new SFColor (0, 1, 1))) .toBe (true);
 
+   a .fromVRMLString ("rgb(255, 0, 255)");
+
+   expect (a .equals (new SFColor (1, 0, 1))) .toBe (true);
+
    expect (() => a .fromVRMLString ("---")) .toThrow (Error);
 });
 
@@ -286,6 +300,10 @@ test ("fromXMLString", () =>
    a .fromXMLString ("0x00ffff");
 
    expect (a .equals (new SFColor (0, 1, 1))) .toBe (true);
+
+   a .fromXMLString ("rgb(255, 0, 255)");
+
+   expect (a .equals (new SFColor (1, 0, 1))) .toBe (true);
 
    expect (() => a .fromXMLString ("---")) .toThrow (Error);
 });
