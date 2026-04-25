@@ -271,6 +271,10 @@ test ("fromString", () =>
 
    expect (a .equals (new SFColorRGBA (0, 1, 1, 0))) .toBe (true);
 
+   a .fromString ("rgba(255, 0, 255, 1)");
+
+   expect (a .equals (new SFColorRGBA (1, 0, 1, 1))) .toBe (true);
+
    expect (() => a .fromString ("---")) .toThrow (Error);
 });
 
