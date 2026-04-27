@@ -7,6 +7,9 @@ const
 
 test ("constants", () =>
 {
+   for (let i = 0; i < 16; ++ i)
+      expect (Matrix4 .ZERO [i]) .toBe (0);
+
    expect (Matrix4 .IDENTITY .equals (new Matrix4 ())) .toBe (true);
 });
 
