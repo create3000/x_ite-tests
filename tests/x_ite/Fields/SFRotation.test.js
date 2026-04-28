@@ -113,6 +113,17 @@ test ("constructor", () =>
 
 })
 
+test ("fromQuaternion", () =>
+{
+   const v1 = SFRotation .fromQuaternion (0.5, 0.5, 0.5, 0.5)
+   const q1 = v1 .getQuaternion ();
+
+   expect (q1 [0]) .toEqual (0.5);
+   expect (q1 [1]) .toEqual (0.5);
+   expect (q1 [2]) .toEqual (0.5);
+   expect (q1 [3]) .toEqual (0.5);
+});
+
 test ("enumerate", () =>
 {
    const properties = [
