@@ -34,14 +34,14 @@ for (const Type of Object .keys (X3D .SFVec4))
 
       const v3 = new SFVec4 (undefined,undefined,undefined,undefined)
 
-      expect (v3 .x) .toBe (NaN)
-      expect (v3 .y) .toBe (NaN)
-      expect (v3 .z) .toBe (NaN)
-      expect (v3 .w) .toBe (NaN)
-      expect (v3 [0]) .toBe (NaN)
-      expect (v3 [1]) .toBe (NaN)
-      expect (v3 [2]) .toBe (NaN)
-      expect (v3 [3]) .toBe (NaN)
+      expect (v3 .x) .toBe (0)
+      expect (v3 .y) .toBe (0)
+      expect (v3 .z) .toBe (0)
+      expect (v3 .w) .toBe (1)
+      expect (v3 [0]) .toBe (0)
+      expect (v3 [1]) .toBe (0)
+      expect (v3 [2]) .toBe (0)
+      expect (v3 [3]) .toBe (1)
    })
 
    test ("enumerate", () =>

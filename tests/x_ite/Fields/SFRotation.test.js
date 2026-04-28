@@ -56,7 +56,7 @@ test ("constructor", () =>
    expect (v4 [2]) .toBeCloseTo (0)
    expect (v4 [3]) .toBeCloseTo (Math .PI / 2)
 
-   const v5 = new SFRotation (new SFMatrix3f (0,0,-1,0,1,0,1,0,0))
+   const v5 = SFRotation .fromMatrix (new SFMatrix3f (0,0,-1,0,1,0,1,0,0))
 
    expect (v5 .x) .toBeCloseTo (0)
    expect (v5 .y) .toBeCloseTo (1)
@@ -89,7 +89,7 @@ test ("constructor", () =>
    expect (v7 [2]) .toBeCloseTo (0)
    expect (v7 [3]) .toBeCloseTo (Math .PI / 2)
 
-   const v8 = new SFRotation (new SFMatrix3d (0,0,-1,0,1,0,1,0,0))
+   const v8 = SFRotation .fromMatrix (new SFMatrix3d (0,0,-1,0,1,0,1,0,0))
 
    expect (v8 .x) .toBeCloseTo (0)
    expect (v8 .y) .toBeCloseTo (1)
@@ -102,14 +102,14 @@ test ("constructor", () =>
 
    const v9 = new SFRotation (undefined,undefined,undefined,undefined)
 
-   expect (v9 .x) .toBe (NaN)
-   expect (v9 .y) .toBe (NaN)
-   expect (v9 .z) .toBe (NaN)
-   expect (v9 .angle) .toBe (NaN)
-   expect (v9 [0]) .toBe (NaN)
-   expect (v9 [1]) .toBe (NaN)
-   expect (v9 [2]) .toBe (NaN)
-   expect (v9 [3]) .toBe (NaN)
+   expect (v9 .x) .toBe (0)
+   expect (v9 .y) .toBe (0)
+   expect (v9 .z) .toBe (1)
+   expect (v9 .angle) .toBe (0)
+   expect (v9 [0]) .toBe (0)
+   expect (v9 [1]) .toBe (0)
+   expect (v9 [2]) .toBe (1)
+   expect (v9 [3]) .toBe (0)
 
 })
 
@@ -397,9 +397,9 @@ test ("multiply", () =>
       a = new SFRotation (new SFVec3f (1,2,3) .normalize (), 4),
       b = new SFRotation (5,6,7,8),
       c = a .multiply (b),
-      d = new SFRotation (a .getMatrix () .multRight (b .getMatrix ())),
+      d = SFRotation .fromMatrix (a .getMatrix () .multRight (b .getMatrix ())),
       e = a .multiply (b) .multiply (b .inverse ()),
-      f = new SFRotation (a .getMatrix () .multRight (b .getMatrix ()) .multRight (b .getMatrix () .inverse ()))
+      f = SFRotation .fromMatrix (a .getMatrix () .multRight (b .getMatrix ()) .multRight (b .getMatrix () .inverse ()))
 
    expect (c) .toBeInstanceOf (SFRotation)
    expect (c) .not .toBe (a)

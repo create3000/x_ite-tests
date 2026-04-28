@@ -8,7 +8,7 @@ test ("constructor", () =>
    expect (new SFTime (NaN)             .valueOf ()) .toBe (NaN)
    expect (new SFTime (Infinity)        .valueOf ()) .toBe (Infinity)
    expect (new SFTime (-Infinity)       .valueOf ()) .toBe (-Infinity)
-   expect (new SFTime (undefined)       .valueOf ()) .toBe (NaN)
+   expect (new SFTime (undefined)       .valueOf ()) .toBe (-1)
    expect (new SFTime (null)            .valueOf ()) .toBe (0)
    expect (new SFTime ({})              .valueOf ()) .toBe (NaN)
    expect (new SFTime ("")              .valueOf ()) .toBe (0)

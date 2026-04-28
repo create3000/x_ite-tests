@@ -9,7 +9,7 @@ test ("constructor", () =>
    expect (new SFDouble (NaN)             .valueOf ()) .toBe (NaN)
    expect (new SFDouble (Infinity)        .valueOf ()) .toBe (Infinity)
    expect (new SFDouble (-Infinity)       .valueOf ()) .toBe (-Infinity)
-   expect (new SFDouble (undefined)       .valueOf ()) .toBe (NaN)
+   expect (new SFDouble (undefined)       .valueOf ()) .toBe (0)
    expect (new SFDouble (null)            .valueOf ()) .toBe (0)
    expect (new SFDouble ({})              .valueOf ()) .toBe (NaN)
    expect (new SFDouble ("")              .valueOf ()) .toBe (0)

@@ -26,12 +26,12 @@ test ("constructor", () =>
 
    const v3 = new SFColor (undefined,undefined,undefined)
 
-   expect (v3 .r) .toBe (NaN)
-   expect (v3 .g) .toBe (NaN)
-   expect (v3 .b) .toBe (NaN)
-   expect (v3 [0]) .toBe (NaN)
-   expect (v3 [1]) .toBe (NaN)
-   expect (v3 [2]) .toBe (NaN)
+   expect (v3 .r) .toBe (0)
+   expect (v3 .g) .toBe (0)
+   expect (v3 .b) .toBe (0)
+   expect (v3 [0]) .toBe (0)
+   expect (v3 [1]) .toBe (0)
+   expect (v3 [2]) .toBe (0)
 })
 
 test ("enumerate", () =>

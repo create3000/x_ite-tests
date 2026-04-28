@@ -45,7 +45,7 @@ for (const Type of Object .keys (X3D .SFMatrix3))
       expect (v2 [8]) .toBe (10)
       expect ([...v2]) .toEqual ([2,3,4, 5,6,7, 8,9,10])
 
-      const v3 = new SFMatrix3 (new SFVec3 (2,3,4), new SFVec3 (5,6,7), new SFVec3 (8,9,10))
+      const v3 = new SFMatrix3 (... new SFVec3 (2,3,4), ... new SFVec3 (5,6,7), ... new SFVec3 (8,9,10))
 
       expect (v3 [0]) .toBe (2)
       expect (v3 [1]) .toBe (3)
@@ -60,15 +60,15 @@ for (const Type of Object .keys (X3D .SFMatrix3))
 
       const v4 = new SFMatrix3 (undefined,undefined,undefined,undefined,undefined,undefined,undefined,undefined,undefined)
 
-      expect (v4 [0]) .toBe (NaN)
-      expect (v4 [1]) .toBe (NaN)
-      expect (v4 [2]) .toBe (NaN)
-      expect (v4 [3]) .toBe (NaN)
-      expect (v4 [4]) .toBe (NaN)
-      expect (v4 [5]) .toBe (NaN)
-      expect (v4 [6]) .toBe (NaN)
-      expect (v4 [7]) .toBe (NaN)
-      expect (v4 [8]) .toBe (NaN)
+      expect (v4 [0]) .toBe (1)
+      expect (v4 [1]) .toBe (0)
+      expect (v4 [2]) .toBe (0)
+      expect (v4 [3]) .toBe (0)
+      expect (v4 [4]) .toBe (1)
+      expect (v4 [5]) .toBe (0)
+      expect (v4 [6]) .toBe (0)
+      expect (v4 [7]) .toBe (0)
+      expect (v4 [8]) .toBe (1)
    })
 
    test ("enumerate", () =>

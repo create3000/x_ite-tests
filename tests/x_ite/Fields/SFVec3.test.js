@@ -30,12 +30,12 @@ for (const Type of Object .keys (X3D .SFVec3))
 
       const v3 = new SFVec3 (undefined,undefined,undefined)
 
-      expect (v3 .x) .toBe (NaN)
-      expect (v3 .y) .toBe (NaN)
-      expect (v3 .z) .toBe (NaN)
-      expect (v3 [0]) .toBe (NaN)
-      expect (v3 [1]) .toBe (NaN)
-      expect (v3 [2]) .toBe (NaN)
+      expect (v3 .x) .toBe (0)
+      expect (v3 .y) .toBe (0)
+      expect (v3 .z) .toBe (0)
+      expect (v3 [0]) .toBe (0)
+      expect (v3 [1]) .toBe (0)
+      expect (v3 [2]) .toBe (0)
    })
 
    test ("enumerate", () =>

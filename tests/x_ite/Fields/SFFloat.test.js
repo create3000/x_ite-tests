@@ -9,7 +9,7 @@ test ("constructor", () =>
    expect (new SFFloat (NaN)             .valueOf ()) .toBe (NaN)
    expect (new SFFloat (Infinity)        .valueOf ()) .toBe (Infinity)
    expect (new SFFloat (-Infinity)       .valueOf ()) .toBe (-Infinity)
-   expect (new SFFloat (undefined)       .valueOf ()) .toBe (NaN)
+   expect (new SFFloat (undefined)       .valueOf ()) .toBe (0)
    expect (new SFFloat (null)            .valueOf ()) .toBe (0)
    expect (new SFFloat ({})              .valueOf ()) .toBe (NaN)
    expect (new SFFloat ("")              .valueOf ()) .toBe (0)
