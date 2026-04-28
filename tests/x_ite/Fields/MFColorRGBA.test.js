@@ -7,7 +7,7 @@ const comp = 4;
 
 test ("constructor", () =>
 {
-   expect ((new MFColorRGBA ()) [0] .equals (new SFColorRGBA ())) .toBe (true);
+   expect ((new MFColorRGBA ()) [0]) .toBe (undefined);
 });
 
 test ("get1Value", () =>
@@ -18,8 +18,8 @@ test ("get1Value", () =>
 
    for (let i = 0; i < 10; ++ i)
    {
-      expect (field [i] .equals (new SFColorRGBA ())) .toBe (true);
-      expect (field) .toHaveLength (i + 1);
+      expect (field [i]) .toBe (undefined);
+      expect (field) .toHaveLength (0);
    }
 });
 
