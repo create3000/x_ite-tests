@@ -24,8 +24,8 @@
     "testSequencer": "./CustomTestSequencer.js"
   },
   "dependencies": {
-    "@create3000/jest-electron-runner": "^29.15.1",
-    "fast-xml-parser": "^5.5.11",
+    "@create3000/jest-electron-runner": "^29.15.2",
+    "fast-xml-parser": "^5.7.2",
     "jquery": "^4.0.0",
     "shell-tools": "^1.1.9"
   }

@@ -190,7 +190,7 @@ function field (typeName, fieldDefinition, fields)
       return;
 
    x3duom .default ||= "";
-   x3duom .default = x3duom .default .replace (/\.0+(?!\d)/g, "");
+   x3duom .default = x3duom .default .replace (/\.0+(?!\d)/g, "") .replaceAll ("&#34;", '"');
 
    value = value
       .replace (/new Color3 \(\)/g, "0 0 0")
