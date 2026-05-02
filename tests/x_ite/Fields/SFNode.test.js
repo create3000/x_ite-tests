@@ -608,3 +608,34 @@ test ("toString", () =>
    expect (b .toString ({ style: "CLEAN" })) .toBe ("MetadataDouble{}");
    expect (n .toString ({ style: "CLEAN" })) .toBe ("NULL");
 });
+
+test ("proxy", () =>
+{
+   const node = scene .createNode ("WorldInfo");
+
+   const properties1 = [
+      "metadata",
+      "title",
+      "info",
+   ];
+
+   expect (node .foo) .toBe (undefined);
+   enumerate (properties1, node);
+
+   node .foo = 123;
+   expect (node .foo) .toBe (123);
+
+   const properties2 = [
+      "metadata",
+      "title",
+      "info",
+      "foo",
+   ];
+
+   enumerate (properties2, node);
+
+   delete node .foo;
+
+   expect (node .foo) .toBe (undefined);
+   enumerate (properties1, node);
+});

@@ -92,3 +92,57 @@ test ("toString", () =>
    expect (Object .prototype .toString .call (units)) .toBe (`[object UnitInfoArray]`)
    expect (units .toString ()) .toBe (`[object ${units .getTypeName ()}]`)
 })
+
+test ("proxy", () =>
+{
+   const
+      canvas  = X3D .createBrowser (),
+      Browser = canvas .browser,
+      units   = Browser .currentScene .units
+
+   const properties1 = [
+      "0",
+      "1",
+      "2",
+      "3",
+   ];
+
+   expect (units [0]) .toBeInstanceOf (X3D .UnitInfo);
+   expect (units [1]) .toBeInstanceOf (X3D .UnitInfo);
+   expect (units [2]) .toBeInstanceOf (X3D .UnitInfo);
+   expect (units [3]) .toBeInstanceOf (X3D .UnitInfo);
+   expect (units .foo) .toBe (undefined);
+   enumerate (properties1, units);
+
+   units .foo = 123;
+   expect (units .foo) .toBe (123);
+
+   const properties2 = [
+      "0",
+      "1",
+      "2",
+      "3",
+      "foo",
+   ];
+
+   enumerate (properties2, units);
+
+   units [0] = undefined;
+   units [1] = undefined;
+   units [2] = undefined;
+   units [3] = undefined;
+
+   delete units [0];
+   delete units [1];
+   delete units [2];
+   delete units [3];
+
+   delete units .foo;
+
+   expect (units [0]) .toBeInstanceOf (X3D .UnitInfo);
+   expect (units [1]) .toBeInstanceOf (X3D .UnitInfo);
+   expect (units [2]) .toBeInstanceOf (X3D .UnitInfo);
+   expect (units [3]) .toBeInstanceOf (X3D .UnitInfo);
+   expect (units .foo) .toBe (undefined);
+   enumerate (properties1, units);
+});

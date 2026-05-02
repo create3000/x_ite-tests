@@ -798,3 +798,34 @@ test ("toString", () =>
    expect (b .toString ({ style: "CLEAN" })) .toBe ("1");
    expect (c .toString ({ style: "CLEAN" })) .toBe ("[1 2]");
 });
+
+test ("proxy", () =>
+{
+   const field = new MFInt32 (1,2,3);
+
+   const properties1 = [
+      "0",
+      "1",
+      "2",
+   ];
+
+   expect (field .foo) .toBe (undefined);
+   enumerate (properties1, field);
+
+   field .foo = 123;
+   expect (field .foo) .toBe (123);
+
+   const properties2 = [
+      "0",
+      "1",
+      "2",
+      "foo",
+   ];
+
+   enumerate (properties2, field);
+
+   delete field .foo;
+
+   expect (field .foo) .toBe (undefined);
+   enumerate (properties1, field);
+});
