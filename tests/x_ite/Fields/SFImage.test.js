@@ -105,6 +105,12 @@ test ("getter/setter", () =>
    expect (v1 .array [4]) .toBe (5);
    expect (v1 .array [5]) .toBe (6);
 
+   v1 .array .length = 123;
+   expect (v1 .array) .toHaveLength (6);
+
+   v1 .array .length = 0;
+   expect (v1 .array) .toHaveLength (6);
+
    v1 .x    = undefined;
    v1 .y    = undefined;
    v1 .comp = undefined;
