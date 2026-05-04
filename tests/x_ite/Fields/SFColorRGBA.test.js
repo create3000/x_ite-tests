@@ -2,6 +2,13 @@ const
    X3D         = require ("../../X3D"),
    SFColorRGBA = X3D .SFColorRGBA
 
+test ("constants", () =>
+{
+   expect (SFColorRGBA .TRANSPARENT .equals (new SFColorRGBA (0,0,0,0))) .toBe (true);
+   expect (SFColorRGBA .WHITE       .equals (new SFColorRGBA (1,1,1,1))) .toBe (true);
+   expect (SFColorRGBA .BLACK       .equals (new SFColorRGBA (0,0,0,1))) .toBe (true);
+});
+
 test ("constructor", () =>
 {
    const v1 = new SFColorRGBA ()

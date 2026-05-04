@@ -7,6 +7,11 @@ const
    SFMatrix3d = X3D .SFMatrix3d,
    SFMatrix3f = X3D .SFMatrix3f
 
+test ("constants", () =>
+{
+   expect (SFRotation .IDENTITY .equals (new SFRotation (0,0,1,0))) .toBe (true);
+});
+
 test ("constructor", () =>
 {
    const v1 = new SFRotation ()

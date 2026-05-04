@@ -4,7 +4,17 @@ const
 
 for (const Type of Object .keys (X3D .SFVec4))
 {
-   const SFVec4 = X3D .SFVec4 [Type]
+   const SFVec4 = X3D .SFVec4 [Type];
+
+   test ("constants", () =>
+   {
+      expect (SFVec4 .ZERO   .equals (new SFVec4 (0,0,0,0))) .toBe (true);
+      expect (SFVec4 .ONE    .equals (new SFVec4 (1,1,1,1))) .toBe (true);
+      expect (SFVec4 .X_AXIS .equals (new SFVec4 (1,0,0,0))) .toBe (true);
+      expect (SFVec4 .Y_AXIS .equals (new SFVec4 (0,1,0,0))) .toBe (true);
+      expect (SFVec4 .Z_AXIS .equals (new SFVec4 (0,0,1,0))) .toBe (true);
+      expect (SFVec4 .W_AXIS .equals (new SFVec4 (0,0,0,1))) .toBe (true);
+   });
 
    test ("constructor", () =>
    {

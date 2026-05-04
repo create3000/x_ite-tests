@@ -6,6 +6,14 @@ for (const Type of Object .keys (X3D .SFVec2))
 {
    const SFVec2 = X3D .SFVec2 [Type]
 
+   test ("constants", () =>
+   {
+      expect (SFVec2 .ZERO   .equals (new SFVec2 (0,0))) .toBe (true);
+      expect (SFVec2 .ONE    .equals (new SFVec2 (1,1))) .toBe (true);
+      expect (SFVec2 .X_AXIS .equals (new SFVec2 (1,0))) .toBe (true);
+      expect (SFVec2 .Y_AXIS .equals (new SFVec2 (0,1))) .toBe (true);
+   });
+
    test ("constructor", () =>
    {
       const v1 = new SFVec2 ()

@@ -2,6 +2,12 @@ const
    X3D     = require ("../../X3D"),
    SFColor = X3D .SFColor
 
+test ("constants", () =>
+{
+   expect (SFColor .WHITE .equals (new SFColor (1,1,1))) .toBe (true);
+   expect (SFColor .BLACK .equals (new SFColor (0,0,0))) .toBe (true);
+});
+
 test ("constructor", () =>
 {
    const v1 = new SFColor ()

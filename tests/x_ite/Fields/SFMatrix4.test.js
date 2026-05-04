@@ -21,6 +21,12 @@ for (const Type of Object .keys (X3D .SFMatrix4))
       SFVec3    = X3D .SFVec3 [SFVec3Type [Type]],
       SFVec4    = X3D .SFVec4 [SFVec4Type [Type]]
 
+   test ("constants", () =>
+   {
+      expect (SFMatrix4 .ZERO     .equals (new SFMatrix4 (0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0))) .toBe (true);
+      expect (SFMatrix4 .IDENTITY .equals (new SFMatrix4 (1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1))) .toBe (true);
+   });
+
    test ("constructor", () =>
    {
       const v1 = new SFMatrix4 ()
