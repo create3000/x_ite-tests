@@ -13,6 +13,11 @@ for (const Type of Object .keys (X3D .SFVec3))
       expect (SFVec3 .X_AXIS .equals (new SFVec3 (1,0,0))) .toBe (true);
       expect (SFVec3 .Y_AXIS .equals (new SFVec3 (0,1,0))) .toBe (true);
       expect (SFVec3 .Z_AXIS .equals (new SFVec3 (0,0,1))) .toBe (true);
+
+      expect (SFVec3 .NEGATIVE_ONE    .equals (new SFVec3 (-1,-1,-1))) .toBe (true);
+      expect (SFVec3 .NEGATIVE_X_AXIS .equals (new SFVec3 (-1,0,0))) .toBe (true);
+      expect (SFVec3 .NEGATIVE_Y_AXIS .equals (new SFVec3 (0,-1,0))) .toBe (true);
+      expect (SFVec3 .NEGATIVE_Z_AXIS .equals (new SFVec3 (0,0,-1))) .toBe (true);
    });
 
    test ("constructor", () =>
