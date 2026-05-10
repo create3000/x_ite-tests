@@ -70,6 +70,7 @@ test ("properties", () =>
    const properties = [
       "name",
       "version",
+      "scriptURL",
       "providerURL",
       "currentSpeed",
       "currentFrameRate",
