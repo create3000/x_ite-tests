@@ -26,7 +26,7 @@ test ("shader", async () =>
 
    let i = 0;
 
-   for (const [option, name, vertex, fragment] of shaders)
+   for (const [option, name, vertexShader, fragmentShader] of shaders)
    {
       for (const geometry of ["0D", "1D", "2D", "3D"])
       {
@@ -122,7 +122,7 @@ test ("shader", async () =>
                      options .push (`X3D_NUM_TEXTURE_TRANSFORMS ${numTextures}`);
                      options .push (`X3D_NUM_TEXTURE_COORDINATES ${numTextures}`);
 
-                     const shader = Browser .createShader (name, vertex, fragment, options);
+                     const shader = Browser .createShader ({ name, vertexShader, fragmentShader, options });
 
                      console .log (option, geometry, texture, numTextures, materialTexture, o);
 
