@@ -73,36 +73,42 @@ test ("inverse", () =>
 {
    // https://www.wolframalpha.com/calculators/matrix-inverse-calculator
 
-   const m = new Matrix2 (1,2, 4,3) .inverse ()
+   const m = new Matrix2 (1,2, 4,3) .inverse ();
 
-   expect (m [0]) .toBeCloseTo (-3 / 5)
-   expect (m [1]) .toBeCloseTo ( 2 / 5)
-   expect (m [2]) .toBeCloseTo ( 4 / 5)
-   expect (m [3]) .toBeCloseTo (-1 / 5)
+   expect (m [0]) .toBeCloseTo (-3 / 5);
+   expect (m [1]) .toBeCloseTo ( 2 / 5);
+   expect (m [2]) .toBeCloseTo ( 4 / 5);
+   expect (m [3]) .toBeCloseTo (-1 / 5);
 
-   const m2 = new Matrix2 (1,3, 4,5) .inverse ()
+   const m2 = new Matrix2 (1,3, 4,5) .inverse ();
 
-   expect (m2 [0]) .toBeCloseTo (-5/7)
-   expect (m2 [1]) .toBeCloseTo ( 3/7)
-   expect (m2 [2]) .toBeCloseTo ( 4/7)
-   expect (m2 [3]) .toBeCloseTo (-1/7)
+   expect (m2 [0]) .toBeCloseTo (-5/7);
+   expect (m2 [1]) .toBeCloseTo ( 3/7);
+   expect (m2 [2]) .toBeCloseTo ( 4/7);
+   expect (m2 [3]) .toBeCloseTo (-1/7);
 
-   const m3 = new Matrix2 (1,3, 4,5) .inverse () .inverse ()
+   const m3 = new Matrix2 (1,3, 4,5) .inverse () .inverse ();
 
-   expect (m3 [0]) .toBeCloseTo (1)
-   expect (m3 [1]) .toBeCloseTo (3)
-   expect (m3 [2]) .toBeCloseTo (4)
-   expect (m3 [3]) .toBeCloseTo (5)
+   expect (m3 [0]) .toBeCloseTo (1);
+   expect (m3 [1]) .toBeCloseTo (3);
+   expect (m3 [2]) .toBeCloseTo (4);
+   expect (m3 [3]) .toBeCloseTo (5);
 
-   const m4 = new Matrix2 (1,3, 4,5)
+   const m4 = new Matrix2 (1,3, 4,5);
 
-   m4 .multRight (m4 .copy () .inverse ())
+   m4 .multRight (m4 .copy () .inverse ());
 
-   expect (m4 [0]) .toBeCloseTo (1)
-   expect (m4 [1]) .toBeCloseTo (0)
-   expect (m4 [2]) .toBeCloseTo (0)
-   expect (m4 [3]) .toBeCloseTo (1)
-})
+   expect (m4 [0]) .toBeCloseTo (1);
+   expect (m4 [1]) .toBeCloseTo (0);
+   expect (m4 [2]) .toBeCloseTo (0);
+   expect (m4 [3]) .toBeCloseTo (1);
+
+   const m5 = new Matrix2 (1,2, 2,4);
+
+   m5 .inverse ();
+
+   expect (m5 .equals (Matrix2 .ZERO)) .toBe (true);
+});
 
 test ("multRight", () =>
 {

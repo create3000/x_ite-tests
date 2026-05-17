@@ -248,84 +248,90 @@ test ("inverse", () =>
 {
    // https://www.wolframalpha.com/calculators/matrix-inverse-calculator
 
-   const m = new Matrix4 (3,2,1,0.1, 2,3,1,0.2, 2,1,3,0.3, 1,2,3,4) .inverse ()
+   const m = new Matrix4 (3,2,1,0.1, 2,3,1,0.2, 2,1,3,0.3, 1,2,3,4) .inverse ();
 
-   expect (m [ 0]) .toBeCloseTo (0.678241)
-   expect (m [ 1]) .toBeCloseTo (-0.428241)
-   expect (m [ 2]) .toBeCloseTo (-0.0949074)
-   expect (m [ 3]) .toBeCloseTo (0.0115741)
-   expect (m [ 4]) .toBeCloseTo (-0.349537)
-   expect (m [ 5]) .toBeCloseTo (0.599537)
-   expect (m [ 6]) .toBeCloseTo (-0.0671296)
-   expect (m [ 7]) .toBeCloseTo (-0.0162037)
-   expect (m [ 8]) .toBeCloseTo (-0.363426)
-   expect (m [ 9]) .toBeCloseTo (0.113426)
-   expect (m [10]) .toBeCloseTo (0.446759)
-   expect (m [11]) .toBeCloseTo (-0.0300926)
-   expect (m [12]) .toBeCloseTo (0.277778)
-   expect (m [13]) .toBeCloseTo (-0.277778)
-   expect (m [14]) .toBeCloseTo (-0.277778)
-   expect (m [15]) .toBeCloseTo (0.277778)
+   expect (m [ 0]) .toBeCloseTo (0.678241);
+   expect (m [ 1]) .toBeCloseTo (-0.428241);
+   expect (m [ 2]) .toBeCloseTo (-0.0949074);
+   expect (m [ 3]) .toBeCloseTo (0.0115741);
+   expect (m [ 4]) .toBeCloseTo (-0.349537);
+   expect (m [ 5]) .toBeCloseTo (0.599537);
+   expect (m [ 6]) .toBeCloseTo (-0.0671296);
+   expect (m [ 7]) .toBeCloseTo (-0.0162037);
+   expect (m [ 8]) .toBeCloseTo (-0.363426);
+   expect (m [ 9]) .toBeCloseTo (0.113426);
+   expect (m [10]) .toBeCloseTo (0.446759);
+   expect (m [11]) .toBeCloseTo (-0.0300926);
+   expect (m [12]) .toBeCloseTo (0.277778);
+   expect (m [13]) .toBeCloseTo (-0.277778);
+   expect (m [14]) .toBeCloseTo (-0.277778);
+   expect (m [15]) .toBeCloseTo (0.277778);
 
-   const m2 = new Matrix4 (1,2,4,0.4, 5,6,8,0.8, 9,10,12,0.12, 14,15,16,17) .inverse ()
+   const m2 = new Matrix4 (1,2,4,0.4, 5,6,8,0.8, 9,10,12,0.12, 14,15,16,17) .inverse ();
 
-   expect (m2 [ 0]) .toBeCloseTo (-932/27)
-   expect (m2 [ 1]) .toBeCloseTo (1729/27)
-   expect (m2 [ 2]) .toBeCloseTo (-770/27)
-   expect (m2 [ 3]) .toBeCloseTo (-2)
-   expect (m2 [ 4]) .toBeCloseTo (457/9)
-   expect (m2 [ 5]) .toBeCloseTo (-860/9)
-   expect (m2 [ 6]) .toBeCloseTo (385/9)
-   expect (m2 [ 7]) .toBeCloseTo (3)
-   expect (m2 [ 8]) .toBeCloseTo (-197/12)
-   expect (m2 [ 9]) .toBeCloseTo (379/12)
-   expect (m2 [10]) .toBeCloseTo (-85/6)
-   expect (m2 [11]) .toBeCloseTo (-1)
-   expect (m2 [12]) .toBeCloseTo (-25/27)
-   expect (m2 [13]) .toBeCloseTo (50/27)
-   expect (m2 [14]) .toBeCloseTo (-25/27)
-   expect (m2 [15]) .toBeCloseTo (0)
+   expect (m2 [ 0]) .toBeCloseTo (-932/27);
+   expect (m2 [ 1]) .toBeCloseTo (1729/27);
+   expect (m2 [ 2]) .toBeCloseTo (-770/27);
+   expect (m2 [ 3]) .toBeCloseTo (-2);
+   expect (m2 [ 4]) .toBeCloseTo (457/9);
+   expect (m2 [ 5]) .toBeCloseTo (-860/9);
+   expect (m2 [ 6]) .toBeCloseTo (385/9);
+   expect (m2 [ 7]) .toBeCloseTo (3);
+   expect (m2 [ 8]) .toBeCloseTo (-197/12);
+   expect (m2 [ 9]) .toBeCloseTo (379/12);
+   expect (m2 [10]) .toBeCloseTo (-85/6);
+   expect (m2 [11]) .toBeCloseTo (-1);
+   expect (m2 [12]) .toBeCloseTo (-25/27);
+   expect (m2 [13]) .toBeCloseTo (50/27);
+   expect (m2 [14]) .toBeCloseTo (-25/27);
+   expect (m2 [15]) .toBeCloseTo (0);
 
-   const m3 = new Matrix4 (3,2,1,0.1, 2,3,1,0.2, 2,1,3,0.3, 1,2,3,4) .inverse () .inverse ()
+   const m3 = new Matrix4 (3,2,1,0.1, 2,3,1,0.2, 2,1,3,0.3, 1,2,3,4) .inverse () .inverse ();
 
-   expect (m3 [ 0]) .toBeCloseTo (3)
-   expect (m3 [ 1]) .toBeCloseTo (2)
-   expect (m3 [ 2]) .toBeCloseTo (1,)
-   expect (m3 [ 3]) .toBeCloseTo (0.1)
-   expect (m3 [ 4]) .toBeCloseTo (2)
-   expect (m3 [ 5]) .toBeCloseTo (3)
-   expect (m3 [ 6]) .toBeCloseTo (1)
-   expect (m3 [ 7]) .toBeCloseTo (0.2)
-   expect (m3 [ 8]) .toBeCloseTo (2)
-   expect (m3 [ 9]) .toBeCloseTo (1)
-   expect (m3 [10]) .toBeCloseTo (3)
-   expect (m3 [11]) .toBeCloseTo (0.3)
-   expect (m3 [12]) .toBeCloseTo (1)
-   expect (m3 [13]) .toBeCloseTo (2)
-   expect (m3 [14]) .toBeCloseTo (3)
-   expect (m3 [15]) .toBeCloseTo (4)
+   expect (m3 [ 0]) .toBeCloseTo (3);
+   expect (m3 [ 1]) .toBeCloseTo (2);
+   expect (m3 [ 2]) .toBeCloseTo (1);
+   expect (m3 [ 3]) .toBeCloseTo (0.1);
+   expect (m3 [ 4]) .toBeCloseTo (2);
+   expect (m3 [ 5]) .toBeCloseTo (3);
+   expect (m3 [ 6]) .toBeCloseTo (1);
+   expect (m3 [ 7]) .toBeCloseTo (0.2);
+   expect (m3 [ 8]) .toBeCloseTo (2);
+   expect (m3 [ 9]) .toBeCloseTo (1);
+   expect (m3 [10]) .toBeCloseTo (3);
+   expect (m3 [11]) .toBeCloseTo (0.3);
+   expect (m3 [12]) .toBeCloseTo (1);
+   expect (m3 [13]) .toBeCloseTo (2);
+   expect (m3 [14]) .toBeCloseTo (3);
+   expect (m3 [15]) .toBeCloseTo (4);
 
-   const m4 = new Matrix4 (3,2,1,0.1, 2,3,1,0.2, 2,1,3,0.3, 1,2,3,4)
+   const m4 = new Matrix4 (3,2,1,0.1, 2,3,1,0.2, 2,1,3,0.3, 1,2,3,4);
 
-   m4 .multRight (m4 .copy () .inverse ())
+   m4 .multRight (m4 .copy () .inverse ());
 
-   expect (m4 [ 0]) .toBeCloseTo (1)
-   expect (m4 [ 1]) .toBeCloseTo (0)
-   expect (m4 [ 2]) .toBeCloseTo (0)
-   expect (m4 [ 3]) .toBeCloseTo (0)
-   expect (m4 [ 4]) .toBeCloseTo (0)
-   expect (m4 [ 5]) .toBeCloseTo (1)
-   expect (m4 [ 6]) .toBeCloseTo (0)
-   expect (m4 [ 7]) .toBeCloseTo (0)
-   expect (m4 [ 8]) .toBeCloseTo (0)
-   expect (m4 [ 9]) .toBeCloseTo (0)
-   expect (m4 [10]) .toBeCloseTo (1)
-   expect (m4 [11]) .toBeCloseTo (0)
-   expect (m4 [12]) .toBeCloseTo (0)
-   expect (m4 [13]) .toBeCloseTo (0)
-   expect (m4 [14]) .toBeCloseTo (0)
-   expect (m4 [15]) .toBeCloseTo (1)
-})
+   expect (m4 [ 0]) .toBeCloseTo (1);
+   expect (m4 [ 1]) .toBeCloseTo (0);
+   expect (m4 [ 2]) .toBeCloseTo (0);
+   expect (m4 [ 3]) .toBeCloseTo (0);
+   expect (m4 [ 4]) .toBeCloseTo (0);
+   expect (m4 [ 5]) .toBeCloseTo (1);
+   expect (m4 [ 6]) .toBeCloseTo (0);
+   expect (m4 [ 7]) .toBeCloseTo (0);
+   expect (m4 [ 8]) .toBeCloseTo (0);
+   expect (m4 [ 9]) .toBeCloseTo (0);
+   expect (m4 [10]) .toBeCloseTo (1);
+   expect (m4 [11]) .toBeCloseTo (0);
+   expect (m4 [12]) .toBeCloseTo (0);
+   expect (m4 [13]) .toBeCloseTo (0);
+   expect (m4 [14]) .toBeCloseTo (0);
+   expect (m4 [15]) .toBeCloseTo (1);
+
+   const m5 = new Matrix4 (1,2,3,4, 5,6,7,8, 9,10,11,12, 13,14,15,16);
+
+   m5 .inverse ();
+
+   expect (m5 .equals (Matrix4 .ZERO)) .toBe (true);
+});
 
 test ("multRight", () =>
 {

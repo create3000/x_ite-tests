@@ -237,14 +237,20 @@ test ("normalize", () =>
 {
    const
       v1 = new Vector3 (2, 3, 4),
-      l  = Math .hypot (2, 3, 4)
+      l  = Math .hypot (2, 3, 4);
 
-   v1 .normalize ()
+   v1 .normalize ();
 
-   expect (v1 [0]) .toBeCloseTo (2 / l)
-   expect (v1 [1]) .toBeCloseTo (3 / l)
-   expect (v1 [2]) .toBeCloseTo (4 / l)
-})
+   expect (v1 [0]) .toBeCloseTo (2 / l);
+   expect (v1 [1]) .toBeCloseTo (3 / l);
+   expect (v1 [2]) .toBeCloseTo (4 / l);
+
+   const v2 = new Vector3 (0);
+
+   v2 .normalize ();
+
+   expect (v2 .equals (Vector3 .ZERO)) .toBe (true);
+});
 
 test ("dot", () =>
 {

@@ -260,15 +260,21 @@ test ("normalize", () =>
 {
    const
       v1 = new Vector4 (2, 3, 4, 5),
-      l  = Math .hypot (2, 3, 4, 5)
+      l  = Math .hypot (2, 3, 4, 5);
 
-   v1 .normalize ()
+   v1 .normalize ();
 
-   expect (v1 [0]) .toBeCloseTo (2 / l)
-   expect (v1 [1]) .toBeCloseTo (3 / l)
-   expect (v1 [2]) .toBeCloseTo (4 / l)
-   expect (v1 [3]) .toBeCloseTo (5 / l)
-})
+   expect (v1 [0]) .toBeCloseTo (2 / l);
+   expect (v1 [1]) .toBeCloseTo (3 / l);
+   expect (v1 [2]) .toBeCloseTo (4 / l);
+   expect (v1 [3]) .toBeCloseTo (5 / l);
+
+   const v2 = new Vector4 (0);
+
+   v2 .normalize ();
+
+   expect (v2 .equals (Vector4 .ZERO)) .toBe (true);
+});
 
 test ("dot", () =>
 {
