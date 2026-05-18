@@ -108,6 +108,10 @@ test ("inverse", () =>
    m5 .inverse ();
 
    expect (m5 .equals (Matrix2 .ZERO)) .toBe (true);
+
+   m5 .set (3, 6, 1 ,2);
+
+   expect (m5 .equals (Matrix2 .ZERO)) .toBe (true);
 });
 
 test ("multRight", () =>
