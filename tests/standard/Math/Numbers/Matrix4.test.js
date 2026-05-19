@@ -66,7 +66,7 @@ test ("get1", () =>
       t  = new Vector3 (0, 0, 0),
       s  = new Vector3 (1, 1, 1)
 
-   m1 .get (t, null, s)
+   m1 .getTransform (t, null, s)
 
    expect (t [0]) .toBeCloseTo (14)
    expect (t [1]) .toBeCloseTo (15)
@@ -82,7 +82,7 @@ test ("get1", () =>
       r  = new Rotation4 ()
 
    m2 .rotate (new Rotation4 (... a, 5))
-   m2 .get (null, r)
+   m2 .getTransform (null, r)
 
    expect (r [0]) .toBeCloseTo (-0.3713906763541037)
    expect (r [1]) .toBeCloseTo (-0.5570860145311556)
@@ -92,7 +92,7 @@ test ("get1", () =>
    const m3 = new Matrix4 ()
 
    m3 .rotate (new Rotation4 (0, 0, 1, 5))
-   m3 .get (null, r)
+   m3 .getTransform (null, r)
 
    expect (r [0]) .toBeCloseTo (0)
    expect (r [1]) .toBeCloseTo (0)
@@ -103,8 +103,8 @@ test ("get1", () =>
       m4 = new Matrix4 (),
       so = new Rotation4 ()
 
-   m4 .set (null, null, new Vector3 (1, 2, 1), new Rotation4 (0, 0, 1, Math .PI / 4))
-   m4 .get (null, null, s, so)
+   m4 .setTransform (null, null, new Vector3 (1, 2, 1), new Rotation4 (0, 0, 1, Math .PI / 4))
+   m4 .getTransform (null, null, s, so)
 
    expect (s [0]) .toBeCloseTo (2)
    expect (s [1]) .toBeCloseTo (1)
@@ -121,12 +121,12 @@ test ("get1", () =>
 
    expect ([... m3]) .toEqual ([1, 0, 0, 0,  0, 1, 0, 0,  0, 0, 1, 0,  0, 0, 0, 1])
 
-   m3 .set (new Vector3 (1, 2, 3))
+   m3 .setTransform (new Vector3 (1, 2, 3))
 
    v1 = m3 .multVecMatrix (new Vector3 (2,3,4))
 
-   m3 .get (t)
-   m4 .set (t)
+   m3 .getTransform (t)
+   m4 .setTransform (t)
 
    v2 = m4 .multVecMatrix (new Vector3 (2,3,4))
 
@@ -134,12 +134,12 @@ test ("get1", () =>
    expect (v1 [1]) .toBeCloseTo (v2 [1])
    expect (v1 [2]) .toBeCloseTo (v2 [2])
 
-   m3 .set (new Vector3 (1, 2, 3), new Rotation4 (1,2,3,4))
+   m3 .setTransform (new Vector3 (1, 2, 3), new Rotation4 (1,2,3,4))
 
    v1 = m3 .multVecMatrix (new Vector3 (2,3,4))
 
-   m3 .get (t, r)
-   m4 .set (t, r)
+   m3 .getTransform (t, r)
+   m4 .setTransform (t, r)
 
    v2 = m4 .multVecMatrix (new Vector3 (2,3,4))
 
@@ -147,12 +147,12 @@ test ("get1", () =>
    expect (v1 [1]) .toBeCloseTo (v2 [1])
    expect (v1 [2]) .toBeCloseTo (v2 [2])
 
-   m3 .set (new Vector3 (1, 2, 3), new Rotation4 (1,2,3,4), new Vector3 (1,2,3))
+   m3 .setTransform (new Vector3 (1, 2, 3), new Rotation4 (1,2,3,4), new Vector3 (1,2,3))
 
    v1 = m3 .multVecMatrix (new Vector3 (2,3,4))
 
-   m3 .get (t, r, s)
-   m4 .set (t, r, s)
+   m3 .getTransform (t, r, s)
+   m4 .setTransform (t, r, s)
 
    v2 = m4 .multVecMatrix (new Vector3 (2,3,4))
 
@@ -160,12 +160,12 @@ test ("get1", () =>
    expect (v1 [1]) .toBeCloseTo (v2 [1])
    expect (v1 [2]) .toBeCloseTo (v2 [2])
 
-   m3 .set (new Vector3 (1, 2, 3), new Rotation4 (1,2,3,4), new Vector3 (1,2,3), new Rotation4 (1,2,3,4))
+   m3 .setTransform (new Vector3 (1, 2, 3), new Rotation4 (1,2,3,4), new Vector3 (1,2,3), new Rotation4 (1,2,3,4))
 
    v1 = m3 .multVecMatrix (new Vector3 (2,3,4))
 
-   m3 .get (t, r, s, so)
-   m4 .set (t, r, s, so)
+   m3 .getTransform (t, r, s, so)
+   m4 .setTransform (t, r, s, so)
 
    v2 = m4 .multVecMatrix (new Vector3 (2,3,4))
 
@@ -173,12 +173,12 @@ test ("get1", () =>
    expect (v1 [1]) .toBeCloseTo (v2 [1])
    expect (v1 [2]) .toBeCloseTo (v2 [2])
 
-   m3 .set (new Vector3 (1, 2, 3), new Rotation4 (1,2,3,4), new Vector3 (1,2,3), new Rotation4 (1,2,3,4), new Vector3 (1,2,3))
+   m3 .setTransform (new Vector3 (1, 2, 3), new Rotation4 (1,2,3,4), new Vector3 (1,2,3), new Rotation4 (1,2,3,4), new Vector3 (1,2,3))
 
    v1 = m3 .multVecMatrix (new Vector3 (2,3,4))
 
-   m3 .get (t, r, s, so, new Vector3 (1,2,3))
-   m4 .set (t, r, s, so, new Vector3 (1,2,3))
+   m3 .getTransform (t, r, s, so, new Vector3 (1,2,3))
+   m4 .setTransform (t, r, s, so, new Vector3 (1,2,3))
 
    v2 = m4 .multVecMatrix (new Vector3 (2,3,4))
 
@@ -215,7 +215,7 @@ test ("set2", () =>
       r  = new Rotation4 (2, 3, 4, 5),
       s  = new Vector3 (5, 6, 7)
 
-   m1 .set (t, null, s)
+   m1 .setTransform (t, null, s)
 
    expect ([... m1]) .toEqual ([
       5, 0, 0, 0,
@@ -224,7 +224,7 @@ test ("set2", () =>
       2, 3, 4, 1,
    ])
 
-   m1 .set (t, r, s)
+   m1 .setTransform (t, r, s)
 
    expect (m1 [ 0]) .toBeCloseTo (1.91233700630701)
    expect (m1 [ 1]) .toBeCloseTo (-2.820316230908796)

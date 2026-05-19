@@ -267,7 +267,7 @@ test ("multLeft", () =>
 
    r1 .multLeft (r2)
    m1 .multLeft (m2)
-   m1 .get (null, r)
+   m1 .getTransform (null, r)
 
    if (r1 .getQuaternion () .dot (r .getQuaternion ()) < 0)
       r1 .setQuaternion (r1 .getQuaternion () .negate ())
@@ -289,7 +289,7 @@ test ("multRight", () =>
 
    r1 .multRight (r2)
    m1 .multRight (m2)
-   m1 .get (null, r)
+   m1 .getTransform (null, r)
 
    if (r1 .getQuaternion () .dot (r .getQuaternion ()) < 0)
       r1 .setQuaternion (r1 .getQuaternion () .negate ())
