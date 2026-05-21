@@ -40,6 +40,10 @@ for (const [typeName, MFMatrix3, SFMatrix3] of arrays)
       expect (field [field .length]) .toBe (undefined);
       expect (field [-1]) .toBe (undefined);
       expect (field) .toHaveLength (2);
+
+      field [2] = new SFMatrix3 ();
+      expect (field) .toHaveLength (3);
+      expect (field [2]) .toBeInstanceOf (SFMatrix3);
    });
 
    test ("length", () =>

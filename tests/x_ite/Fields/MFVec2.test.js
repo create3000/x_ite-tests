@@ -37,6 +37,10 @@ for (const [typeName, MFVec2, SFVec2] of arrays)
       expect (field [field .length]) .toBe (undefined);
       expect (field [-1]) .toBe (undefined);
       expect (field) .toHaveLength (2);
+
+      field [2] = new SFVec2 ();
+      expect (field) .toHaveLength (3);
+      expect (field [2]) .toBeInstanceOf (SFVec2);
    });
 
    test ("setValue", () =>

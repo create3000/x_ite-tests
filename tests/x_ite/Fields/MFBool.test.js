@@ -53,6 +53,10 @@ test ("get1Value", () =>
    expect (field [field .length]) .toBe (undefined);
    expect (field [-1]) .toBe (undefined);
    expect (field) .toHaveLength (2);
+
+   field [2] = true;
+   expect (field) .toHaveLength (3);
+   expect (typeof field [2]) .toBe ("boolean");
 });
 
 test ("set1Value", () =>
