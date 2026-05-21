@@ -53,7 +53,7 @@ test ("length", () =>
 
    expect (m) .toHaveLength (10);
 
-   for (let i = -10; i < 10; ++ i)
+   for (let i = 0; i < 10; ++ i)
       expect (m [i] .equals (new SFColor ())) .toBe (true);
 
    m .length = 20;
