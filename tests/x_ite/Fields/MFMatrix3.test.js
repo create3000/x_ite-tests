@@ -25,6 +25,9 @@ for (const [typeName, MFMatrix3, SFMatrix3] of arrays)
          expect (field [i]) .toBe (undefined);
          expect (field) .toHaveLength (0);
       }
+
+      expect (field [field .length]) .toBe (undefined);
+      expect (field [-1]) .toBe (undefined);
    });
 
    test ("length", () =>

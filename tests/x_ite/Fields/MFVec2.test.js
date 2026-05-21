@@ -22,6 +22,9 @@ for (const [typeName, MFVec2, SFVec2] of arrays)
          expect (field [i]) .toBe (undefined);
          expect (field) .toHaveLength (0);
       }
+
+      expect (field [field .length]) .toBe (undefined);
+      expect (field [-1]) .toBe (undefined);
    });
 
    test ("setValue", () =>

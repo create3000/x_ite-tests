@@ -39,6 +39,9 @@ test ("get1Value", () =>
       expect (field [i]) .toBe (undefined);
       expect (field) .toHaveLength (0);
    }
+
+   expect (field [field .length]) .toBe (undefined);
+   expect (field [-1]) .toBe (undefined);
 });
 
 test ("set1Value", () =>

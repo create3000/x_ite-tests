@@ -40,7 +40,10 @@ test ("properties", () =>
    expect (units [3] .name) .toBe ("kilogram")
    expect (units [3] .conversionFactor) .toBe (1)
    expect (units [3] .conversion_factor) .toBe (1)
-})
+
+   expect (units [units .length]) .toBe (undefined);
+   expect (units [-1]) .toBe (undefined);
+});
 
 test ("spread", async () =>
 {
