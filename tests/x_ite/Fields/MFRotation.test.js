@@ -17,7 +17,7 @@ test ("get1Value", () =>
 
    expect (field) .toHaveLength (0);
 
-   for (let i = 0; i < 10; ++ i)
+   for (let i = -10; i < 10; ++ i)
    {
       expect (field [i]) .toBe (undefined);
       expect (field) .toHaveLength (0);
