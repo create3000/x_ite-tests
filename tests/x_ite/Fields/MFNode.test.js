@@ -387,11 +387,10 @@ test ("map", () =>
 {
    const
       N = 10,
-      a = new MFNode (),
-      x = [ ];
+      a = new MFNode ();
 
    for (let i = 0; i < N; ++ i)
-      expect (a .push (x [i] = scene .createNode ("WorldInfo"))) .toBe (i + 1)
+      expect (a .push (scene .createNode ("WorldInfo"))) .toBe (i + 1)
 
    expect (a) .toHaveLength (N)
 
@@ -410,20 +409,19 @@ test ("pop", () =>
       a = new MFNode (),
       x = [ ];
 
-   expect (a) .toHaveLength (0)
+   expect (a) .toHaveLength (0);
 
    for (let i = 0, n = 0; i < N; ++ i)
    {
-      const v = x [i] = scene .createNode ("WorldInfo")
-      a .push (v)
-      expect (a [i]) .toBe (v)
-      expect (a) .toHaveLength (i + 1)
+      x [i] = scene .createNode ("WorldInfo");
+      a .push (x [i]);
+      expect (a [i]) .toBe (x [i]);
+      expect (a) .toHaveLength (i + 1);
    }
 
    for (let i = 0; i < N; ++ i)
    {
-      const v = x [i]
-      expect (a [i]) .toBe (v)
+      expect (a [i]) .toBe (x [i]);
    }
 
    const b = a .slice ()
@@ -438,8 +436,7 @@ test ("pop", () =>
 
       for (let i = 0; i < a .length; ++ i)
       {
-         const v = x [i]
-         expect (a [i]) .toBe (v)
+         expect (a [i]) .toBe (x [i]);
       }
    }
 })
@@ -512,11 +509,10 @@ test ("slice", () =>
 {
    const
       N = 10,
-      a = new MFNode (),
-      x = [ ]
+      a = new MFNode ();
 
    for (let i = 0; i < N; ++ i)
-      expect (a .push (x [i] = scene .createNode ("WorldInfo"))) .toBe (i + 1)
+      expect (a .push (scene .createNode ("WorldInfo"))) .toBe (i + 1)
 
    expect (a) .toHaveLength (N)
 
