@@ -28,6 +28,18 @@ for (const [typeName, MFMatrix4, SFMatrix4] of arrays)
 
       expect (field [field .length]) .toBe (undefined);
       expect (field [-1]) .toBe (undefined);
+      expect (field) .toHaveLength (0);
+
+      field .push (new SFMatrix4 ());
+      field .push (new SFMatrix4 ());
+
+      expect (field) .toHaveLength (2);
+      expect (field [0]) .toBeInstanceOf (SFMatrix4);
+      expect (field [1]) .toBeInstanceOf (SFMatrix4);
+
+      expect (field [field .length]) .toBe (undefined);
+      expect (field [-1]) .toBe (undefined);
+      expect (field) .toHaveLength (2);
    });
 
    test ("length", () =>

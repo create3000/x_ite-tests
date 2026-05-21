@@ -25,6 +25,18 @@ test ("get1Value", () =>
 
    expect (field [field .length]) .toBe (undefined);
    expect (field [-1]) .toBe (undefined);
+   expect (field) .toHaveLength (0);
+
+   field .push (new SFRotation ());
+   field .push (new SFRotation ());
+
+   expect (field) .toHaveLength (2);
+   expect (field [0]) .toBeInstanceOf (SFRotation);
+   expect (field [1]) .toBeInstanceOf (SFRotation);
+
+   expect (field [field .length]) .toBe (undefined);
+   expect (field [-1]) .toBe (undefined);
+   expect (field) .toHaveLength (2);
 });
 
 test ("length", () =>

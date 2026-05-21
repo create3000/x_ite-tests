@@ -58,6 +58,18 @@ test ("get1Value", () =>
 
    expect (field [field .length]) .toBe (undefined);
    expect (field [-1]) .toBe (undefined);
+   expect (field) .toHaveLength (0);
+
+   field .push (node1);
+   field .push (node2);
+
+   expect (field) .toHaveLength (2);
+   expect (field [0]) .toBeInstanceOf (SFNode);
+   expect (field [1]) .toBeInstanceOf (SFNode);
+
+   expect (field [field .length]) .toBe (undefined);
+   expect (field [-1]) .toBe (undefined);
+   expect (field) .toHaveLength (2);
 });
 
 test ("set1Value", () =>

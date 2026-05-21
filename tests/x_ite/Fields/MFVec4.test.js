@@ -25,6 +25,18 @@ for (const [typeName, MFVec4, SFVec4] of arrays)
 
       expect (field [field .length]) .toBe (undefined);
       expect (field [-1]) .toBe (undefined);
+      expect (field) .toHaveLength (0);
+
+      field .push (new SFVec4 ());
+      field .push (new SFVec4 ());
+
+      expect (field) .toHaveLength (2);
+      expect (field [0]) .toBeInstanceOf (SFVec4);
+      expect (field [1]) .toBeInstanceOf (SFVec4);
+
+      expect (field [field .length]) .toBe (undefined);
+      expect (field [-1]) .toBe (undefined);
+      expect (field) .toHaveLength (2);
    });
 
    test ("setValue", () =>

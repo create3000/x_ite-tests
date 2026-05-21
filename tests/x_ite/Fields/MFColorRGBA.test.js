@@ -24,6 +24,18 @@ test ("get1Value", () =>
 
    expect (field [field .length]) .toBe (undefined);
    expect (field [-1]) .toBe (undefined);
+   expect (field) .toHaveLength (0);
+
+   field .push (new SFColorRGBA ());
+   field .push (new SFColorRGBA ());
+
+   expect (field) .toHaveLength (2);
+   expect (field [0]) .toBeInstanceOf (SFColorRGBA);
+   expect (field [1]) .toBeInstanceOf (SFColorRGBA);
+
+   expect (field [field .length]) .toBe (undefined);
+   expect (field [-1]) .toBe (undefined);
+   expect (field) .toHaveLength (2);
 });
 
 test ("length", () =>

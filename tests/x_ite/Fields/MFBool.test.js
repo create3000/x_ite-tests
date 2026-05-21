@@ -41,6 +41,18 @@ test ("get1Value", () =>
 
    expect (field [field .length]) .toBe (undefined);
    expect (field [-1]) .toBe (undefined);
+   expect (field) .toHaveLength (0);
+
+   field .push (true);
+   field .push (false);
+
+   expect (field) .toHaveLength (2);
+   expect (typeof field [0]) .toBe ("boolean");
+   expect (typeof field [1]) .toBe ("boolean");
+
+   expect (field [field .length]) .toBe (undefined);
+   expect (field [-1]) .toBe (undefined);
+   expect (field) .toHaveLength (2);
 });
 
 test ("set1Value", () =>
