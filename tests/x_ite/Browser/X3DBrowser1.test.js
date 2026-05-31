@@ -504,32 +504,51 @@ Transform {
    children Shape {
       geometry DEF R NurbsCurve { }
    }
-}`)
+}`);
 
-   expect (scene) .toBeInstanceOf (X3D .X3DScene)
-   expect (scene) .toBeInstanceOf (X3D .X3DExecutionContext)
-   expect (scene .specificationVersion) .toMatch (/^\d+\.\d+$/)
-   expect (scene .encoding) .toBe ("VRML")
-   expect (scene .profile .name) .toBe ("Interactive")
-   expect (scene .components) .toHaveLength (1)
-   expect (scene .components) .toBeInstanceOf (X3D .ComponentInfoArray)
-   expect (scene .components [0] .name) .toBe ("NURBS")
-   expect (scene .worldURL) .toMatch (/^file:\/\/\/.*$/)
-   expect (scene .rootNodes) .toHaveLength (1)
-   expect (scene .rootNodes) .toBeInstanceOf (X3D .MFNode)
+   expect (scene) .toBeInstanceOf (X3D .X3DScene);
+   expect (scene) .toBeInstanceOf (X3D .X3DExecutionContext);
+   expect (scene .specificationVersion) .toMatch (/^\d+\.\d+$/);
+   expect (scene .encoding) .toBe ("VRML");
+   expect (scene .profile .name) .toBe ("Interactive");
+   expect (scene .components) .toHaveLength (1);
+   expect (scene .components) .toBeInstanceOf (X3D .ComponentInfoArray);
+   expect (scene .components [0] .name) .toBe ("NURBS");
+   expect (scene .worldURL) .toMatch (/^file:\/\/\/.*$/);
+   expect (scene .rootNodes) .toHaveLength (1);
+   expect (scene .rootNodes) .toBeInstanceOf (X3D .MFNode);
    expect (scene .rootNodes [0] .getValue () .isInitialized ()) .toBe (true);
-   expect (scene .rootNodes [0]) .toBeInstanceOf (X3D .SFNode)
-   expect (scene .rootNodes [0] .getNodeTypeName ()) .toBe ("Transform")
-   expect (scene .rootNodes [0]) .toBe (scene .rootNodes [0])
-   expect (scene .protos) .toHaveLength (0)
-   expect (scene .protos) .toBeInstanceOf (X3D .ProtoDeclarationArray)
-   expect (scene .externprotos) .toHaveLength (0)
-   expect (scene .externprotos) .toBeInstanceOf (X3D .ExternProtoDeclarationArray)
-   expect (scene .routes) .toHaveLength (0)
-   expect (scene .routes) .toBeInstanceOf (X3D .RouteArray)
+   expect (scene .rootNodes [0]) .toBeInstanceOf (X3D .SFNode);
+   expect (scene .rootNodes [0] .getNodeTypeName ()) .toBe ("Transform");
+   expect (scene .rootNodes [0]) .toBe (scene .rootNodes [0]);
+   expect (scene .protos) .toHaveLength (0);
+   expect (scene .protos) .toBeInstanceOf (X3D .ProtoDeclarationArray);
+   expect (scene .externprotos) .toHaveLength (0);
+   expect (scene .externprotos) .toBeInstanceOf (X3D .ExternProtoDeclarationArray);
+   expect (scene .routes) .toHaveLength (0);
+   expect (scene .routes) .toBeInstanceOf (X3D .RouteArray);
    expect (scene .getNamedNode ("R") .getValue () .isInitialized ()) .toBe (true);
-   expect (scene .getNamedNode ("R") .getNodeTypeName ()) .toBe ("NurbsCurve")
-})
+   expect (scene .getNamedNode ("R") .getNodeTypeName ()) .toBe ("NurbsCurve");
+
+   const empty = await Browser .createX3DFromString ("");
+
+   expect (empty) .toBeInstanceOf (X3D .X3DScene);
+   expect (empty) .toBeInstanceOf (X3D .X3DExecutionContext);
+   expect (empty .specificationVersion) .toMatch (/^\d+\.\d+$/);
+   expect (empty .encoding) .toBe ("XML");
+   expect (empty .profile .name) .toBe ("Full");
+   expect (empty .components) .toHaveLength (0);
+   expect (empty .components) .toBeInstanceOf (X3D .ComponentInfoArray);
+   expect (empty .worldURL) .toMatch (/^file:\/\/\/.*$/);
+   expect (empty .rootNodes) .toHaveLength (0);
+   expect (empty .rootNodes) .toBeInstanceOf (X3D .MFNode);
+   expect (empty .protos) .toHaveLength (0);
+   expect (empty .protos) .toBeInstanceOf (X3D .ProtoDeclarationArray);
+   expect (empty .externprotos) .toHaveLength (0);
+   expect (empty .externprotos) .toBeInstanceOf (X3D .ExternProtoDeclarationArray);
+   expect (empty .routes) .toHaveLength (0);
+   expect (empty .routes) .toBeInstanceOf (X3D .RouteArray);
+});
 
 test ("createX3DFromString2", async () =>
 {
