@@ -28,5 +28,10 @@
     "fast-xml-parser": "^5.7.2",
     "jquery": "^4.0.0",
     "shell-tools": "^1.1.9"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.4.1",
+    "globals": "^17.6.0"
   }
 }
