@@ -277,3 +277,16 @@ test ("toString", () =>
    expect (typeof b1 .toString ()) .toBe ("string");
    expect (b1 .toString () .length > 0) .toBe (true);
 });
+
+test ("fromArray", () =>
+{
+   const b1 = Box3 .fromArray ([-1, -1, -1,  1, 1, 1], 3);
+
+   expect (b1 .size .equals (new Vector3 (2, 2, 2))) .toBe (true);
+   expect (b1 .center .equals (new Vector3 ())) .toBe (true);
+
+   const b2 = Box3 .fromArray ([-1, -1, -1, 1,  1, 1, 1, 1], 4);
+
+   expect (b2 .size .equals (new Vector3 (2, 2, 2))) .toBe (true);
+   expect (b2 .center .equals (new Vector3 ())) .toBe (true);
+});
