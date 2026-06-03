@@ -290,7 +290,7 @@ test ("fromArray", () =>
    expect (b2 .size .equals (new Vector3 (2, 2, 2))) .toBe (true);
    expect (b2 .center .equals (new Vector3 ())) .toBe (true);
 
-   const b3 = Box3 .fromArray ([-2, -3, -4,  5, 6, 7], 3);
+   const b3 = Box3 .fromArray ([-2, -3, -4,  1, 1, 1,  5, 6, 7], 3);
 
    expect (b3 .size .equals (new Vector3 (7, 9, 11))) .toBe (true);
    expect (b3 .center .equals (new Vector3 (1.5))) .toBe (true);
