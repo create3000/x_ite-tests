@@ -1088,3 +1088,18 @@ test ("use-exported-node-script.x3dv", async () =>
       expect (S .script .node) .not .toBe (null);
    }
 });
+
+test ("box1", async () =>
+{
+   const scene1 = await Browser .createX3DFromURL (new X3D .MFString (url .pathToFileURL (path .join (__dirname, "files", "X3D", "box1.x3d"))));
+
+   expect (scene1 .rootNodes)     .toHaveLength (1);
+   expect (scene1 .namedNodes)    .toHaveLength (1);
+   expect (scene1 .exportedNodes) .toHaveLength (1);
+
+   const scene2 = await Browser .createX3DFromURL (new X3D .MFString (url .pathToFileURL (path .join (__dirname, "files", "X3D", "box1.x3d.gz"))));
+
+   expect (scene2 .rootNodes)     .toHaveLength (1);
+   expect (scene2 .namedNodes)    .toHaveLength (1);
+   expect (scene2 .exportedNodes) .toHaveLength (1);
+});
