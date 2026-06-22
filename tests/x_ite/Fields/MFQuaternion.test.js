@@ -154,9 +154,6 @@ test ("fromString", () =>
 
    const s = Browser .currentScene;
 
-   s .updateUnit ("angle", "degree", Math .PI / 180);
-   a .setUnit ("angle");
-
    a .fromString ("[1 2 3 90, 2 3 4 180]", s);
 
    expect (a) .toHaveLength (2);
@@ -164,12 +161,12 @@ test ("fromString", () =>
    expect (a [0] .x) .toBe (1);
    expect (a [0] .y) .toBe (2);
    expect (a [0] .z) .toBe (3);
-   expect (a [0] .angle) .toBeCloseTo (Math .PI / 2);
+   expect (a [0] .w) .toBe (90);
 
    expect (a [1] .x) .toBe (2);
    expect (a [1] .y) .toBe (3);
    expect (a [1] .z) .toBe (4);
-   expect (a [1] .angle) .toBeCloseTo (Math .PI);
+   expect (a [1] .w) .toBe (180);
 });
 
 test ("fromVRMLString", () =>
@@ -195,9 +192,6 @@ test ("fromVRMLString", () =>
 
    const s = Browser .currentScene;
 
-   s .updateUnit ("angle", "degree", Math .PI / 180);
-   a .setUnit ("angle");
-
    a .fromVRMLString ("[1 2 3 90, 2 3 4 180]", s);
 
    expect (a) .toHaveLength (2);
@@ -205,12 +199,12 @@ test ("fromVRMLString", () =>
    expect (a [0] .x) .toBe (1);
    expect (a [0] .y) .toBe (2);
    expect (a [0] .z) .toBe (3);
-   expect (a [0] .angle) .toBeCloseTo (Math .PI / 2);
+   expect (a [0] .w) .toBe (90);
 
    expect (a [1] .x) .toBe (2);
    expect (a [1] .y) .toBe (3);
    expect (a [1] .z) .toBe (4);
-   expect (a [1] .angle) .toBeCloseTo (Math .PI);
+   expect (a [1] .w) .toBe (180);
 });
 
 test ("fromXMLString", () =>
@@ -231,9 +225,6 @@ test ("fromXMLString", () =>
 
    const s = Browser .currentScene;
 
-   s .updateUnit ("angle", "degree", Math .PI / 180);
-   a .setUnit ("angle");
-
    a .fromXMLString ("1 2 3 90, 2 3 4 180", s);
 
    expect (a) .toHaveLength (2);
@@ -241,12 +232,12 @@ test ("fromXMLString", () =>
    expect (a [0] .x) .toBe (1);
    expect (a [0] .y) .toBe (2);
    expect (a [0] .z) .toBe (3);
-   expect (a [0] .angle) .toBeCloseTo (Math .PI / 2);
+   expect (a [0] .w) .toBe (90);
 
    expect (a [1] .x) .toBe (2);
    expect (a [1] .y) .toBe (3);
    expect (a [1] .z) .toBe (4);
-   expect (a [1] .angle) .toBeCloseTo (Math .PI);
+   expect (a [1] .w) .toBe (180);
 });
 
 test ("enumerate", () =>
