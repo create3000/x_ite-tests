@@ -60,5 +60,4 @@ Field SFString 'minificationFilter' in node TextureProperties has different valu
 Field SFString 'magnificationFilter' in node TextureProperties has different value (Spec <=> X3DUOM): DEFAULT !== FASTEST.
 Field SFString 'textureCompression' in node TextureProperties has different value (Spec <=> X3DUOM): DEFAULT !== FASTEST.
 GaussianSplats: component name differs (Spec <=> X3DUOM): X_ITE <=> GaussianSplats.
-Field 'orientations' in node GaussianSplats has different type (Spec <=> X3DUOM): MFVec4f !== MFQuaternion.
 Test done.

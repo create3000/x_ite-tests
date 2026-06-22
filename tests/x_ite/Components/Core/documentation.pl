@@ -232,6 +232,11 @@ sub field {
    {
       return if $value eq "[ ]" && $codeValue eq "";
    }
+   elsif ($type eq "MFQuaternion")
+   {
+      return if $value eq "[ ]" && $codeValue eq "";
+      return if $value eq "0 0 0 0" && $codeValue eq "new SFQuaternion ()";
+   }
    elsif ($type eq "MFRotation")
    {
       return if $value eq "[ ]" && $codeValue eq "";
