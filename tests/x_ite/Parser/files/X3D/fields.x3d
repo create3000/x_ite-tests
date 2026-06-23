@@ -63,6 +63,7 @@
             <field accessType='initializeOnly' type='SFMatrix4d' name='sfmatrix4ds' value='1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16'/>
             <field accessType='initializeOnly' type='SFMatrix4f' name='sfmatrix4fs' value='1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16'/>
             <field accessType='initializeOnly' type='SFNode' name='sfnodes'/>
+            <field accessType='initializeOnly' type='SFQuaternion' name='sfquaternions' value='1 2 3 4'/>
             <field accessType='initializeOnly' type='SFRotation' name='sfrotations' value='1 2 3 4'/>
             <field accessType='initializeOnly' type='SFString' name='sfstrings' value='abc'/>
             <field accessType='initializeOnly' type='SFTime' name='sftimes' value='123.123'/>
