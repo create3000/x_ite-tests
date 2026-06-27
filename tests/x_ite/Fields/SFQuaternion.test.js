@@ -289,21 +289,18 @@ test ("multiply", () =>
    expect (b .equals (new SFQuaternion (4,8,12,16))) .toBe (true);
 });
 
-// test ("multQuat", () =>
-// {
-//    const
-//       a = new SFQuaternion (... new SFRotation (new SFVec3f (1,2,3) .normalize (), 4) .getQuaternion ()),
-//       b = new SFQuaternion (... new SFRotation (5,6,7,8) .getQuaternion ()),
-//       c = a .multQuat (b),
-//       d = SFQuaternion .fromMatrix (a .getMatrix () .multRight (b .getMatrix ())),
-//       e = a .multQuat (b) .multQuat (b .inverse ()),
-//       f = SFQuaternion .fromMatrix (a .getMatrix () .multRight (b .getMatrix ()) .multRight (b .getMatrix () .inverse ()))
+test ("multQuat", () =>
+{
+   const
+      a = new SFQuaternion (1, 2, 3, 4),
+      b = new SFQuaternion (5, 6, 7, 8),
+      c = a .multQuat (b);
 
-//    expect (c) .toBeInstanceOf (SFQuaternion)
-//    expect (c) .not .toBe (a)
-//    expect (c) .not .toBe (b)
-//    expect (c .getValue ()) .not .toBe (a .getValue ())
-//    expect (c .getValue ()) .not .toBe (b .getValue ())
+   expect (c) .toBeInstanceOf (SFQuaternion);
+   expect (c) .not .toBe (a);
+   expect (c) .not .toBe (b);
+   expect (c .getValue ()) .not .toBe (a .getValue ());
+   expect (c .getValue ()) .not .toBe (b .getValue ());
 
 //    expect (d .x) .toBeCloseTo (-c .x)
 //    expect (d .y) .toBeCloseTo (-c .y)
@@ -335,19 +332,18 @@ test ("multiply", () =>
 //    expect (f [1]) .toBeCloseTo (e [1])
 //    expect (f [2]) .toBeCloseTo (e [2])
 //    expect (f [3]) .toBeCloseTo (e [3])
-// })
+});
 
-// test ("multVec", () =>
-// {
-//    const zAxis = new SFVec3f (0,0,1)
+test ("multVec", () =>
+{
+   const
+      r1 = new SFQuaternion (1,2,3,4) .normalize (),
+      v1 = r1 .multVec (SFVec3f .Z_AXIS)
 
-//    const
-//       r1 = new SFQuaternion (zAxis, new SFVec3f (1,0,0)),
-//       v1 = r1 .multVec (zAxis)
+   expect (v1) .toBeInstanceOf (SFVec3f);
+   expect (v1) .not .toBe (r1 .multVec (SFVec3f .Z_AXIS));
+   expect (v1 .getValue ()) .not .toBe (r1 .multVec (SFVec3f .Z_AXIS) .getValue ());
 
-//    expect (v1) .toBeInstanceOf (SFVec3f)
-//    expect (v1) .not .toBe (r1 .multVec (zAxis))
-//    expect (v1 .getValue ()) .not .toBe (r1 .multVec (zAxis) .getValue ())
 //    expect (v1 [0]) .toBeCloseTo (1)
 //    expect (v1 [1]) .toBeCloseTo (0)
 //    expect (v1 [2]) .toBeCloseTo (0)
@@ -371,43 +367,19 @@ test ("multiply", () =>
 //    expect (v3 [0]) .toBeCloseTo (Math .SQRT1_2)
 //    expect (v3 [1]) .toBeCloseTo (Math .SQRT1_2)
 //    expect (v3 [2]) .toBeCloseTo (0)
-// })
+});
 
-// test ("multVec-double", () =>
-// {
-//    const zAxis = new SFVec3d (0,0,1)
+test ("multVec-double", () =>
+{
+   const
+      r1 = new SFQuaternion (1,2,3,4) .normalize (),
+      v1 = r1 .multVec (SFVec3d .Z_AXIS)
 
-//    const
-//       r1 = new SFQuaternion (zAxis, new SFVec3d (1,0,0)),
-//       v1 = r1 .multVec (zAxis)
+   expect (v1) .toBeInstanceOf (SFVec3d);
+   expect (v1) .not .toBe (r1 .multVec (SFVec3d .Z_AXIS));
+   expect (v1 .getValue ()) .not .toBe (r1 .multVec (SFVec3d .Z_AXIS) .getValue ());
 
-//    expect (v1) .toBeInstanceOf (SFVec3d)
-//    expect (v1) .not .toBe (r1 .multVec (zAxis))
-//    expect (v1 .getValue ()) .not .toBe (r1 .multVec (zAxis) .getValue ())
-//    expect (v1 [0]) .toBeCloseTo (1)
-//    expect (v1 [1]) .toBeCloseTo (0)
-//    expect (v1 [2]) .toBeCloseTo (0)
-
-//    const
-//       r2 = new SFQuaternion (zAxis, new SFVec3d (1,0,1)),
-//       v2 = r2 .multVec (zAxis)
-
-//    expect (v2) .toBeInstanceOf (SFVec3d)
-//    expect (v2) .not .toBe (r2 .multVec (zAxis))
-//    expect (v2 [0]) .toBeCloseTo (Math .SQRT1_2)
-//    expect (v2 [1]) .toBeCloseTo (0)
-//    expect (v2 [2]) .toBeCloseTo (Math .SQRT1_2)
-
-//    const
-//       r3 = new SFQuaternion (zAxis, new SFVec3d (1,1,0)),
-//       v3 = r3 .multVec (zAxis)
-
-//    expect (v3) .toBeInstanceOf (SFVec3d)
-//    expect (v3) .not .toBe (r3 .multVec (zAxis))
-//    expect (v3 [0]) .toBeCloseTo (Math .SQRT1_2)
-//    expect (v3 [1]) .toBeCloseTo (Math .SQRT1_2)
-//    expect (v3 [2]) .toBeCloseTo (0)
-// })
+});
 
 test ("negate", () =>
 {
@@ -443,18 +415,18 @@ test ("normalize", () =>
    expect (b .length ()) .toBeCloseTo (1);
 });
 
-// test ("slerp", () =>
-// {
-//    const
-//       a = new SFQuaternion (),
-//       b = new SFQuaternion (new SFVec3f (0,0,1), new SFVec3f (1,0,0)),
-//       c = a .slerp (b, 0.5)
+test ("slerp", () =>
+{
+   const
+      a = new SFQuaternion (1,2,3,4),
+      b = new SFQuaternion (5,6,7,8),
+      c = a .slerp (b, 0.5);
 
-//    expect (c) .toBeInstanceOf (SFQuaternion)
-//    expect (c) .not .toBe (a)
-//    expect (c) .not .toBe (b)
-//    expect (c .getValue ()) .not .toBe (a .getValue ())
-//    expect (c .getValue ()) .not .toBe (b .getValue ())
+   expect (c) .toBeInstanceOf (SFQuaternion);
+   expect (c) .not .toBe (a);
+   expect (c) .not .toBe (b);
+   expect (c .getValue ()) .not .toBe (a .getValue ());
+   expect (c .getValue ()) .not .toBe (b .getValue ());
 
 //    expect (c .x) .toBeCloseTo (0)
 //    expect (c .y) .toBeCloseTo (1)
@@ -464,7 +436,7 @@ test ("normalize", () =>
 //    expect (c [1]) .toBeCloseTo (1)
 //    expect (c [2]) .toBeCloseTo (0)
 //    expect (c [3]) .toBeCloseTo (Math .PI / 4)
-// })
+});
 
 test ("subtract", () =>
 {
