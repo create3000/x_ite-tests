@@ -378,7 +378,12 @@ test ("inverse", () =>
 {
    const
       a = new SFRotation (2,3,4,5),
-      b = a .inverse () .multiply (new SFRotation (2,3,4,5));
+      i = a .inverse (),
+      b = i .multiply (new SFRotation (2,3,4,5));
+
+   expect (i) .toBeInstanceOf (SFRotation);
+   expect (i) .not .toBe (a);
+   expect (i .getValue ()) .not .toBe (a .getValue ());
 
    expect (b) .toBeInstanceOf (SFRotation)
    expect (b) .not .toBe (a)

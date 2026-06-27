@@ -237,34 +237,39 @@ test ("inverse", () =>
 {
    const
       a = new SFQuaternion (2,3,4,5),
-      b = a .inverse () .multQuat (new SFQuaternion (2,3,4,5));
+      i = a .inverse (),
+      b = i .multQuat (new SFQuaternion (2,3,4,5));
 
-   expect (b) .toBeInstanceOf (SFQuaternion)
-   expect (b) .not .toBe (a)
-   expect (b .getValue ()) .not .toBe (a .getValue ())
+   expect (i) .toBeInstanceOf (SFQuaternion);
+   expect (i) .not .toBe (a);
+   expect (i .getValue ()) .not .toBe (a .getValue ());
 
-   expect (b .x) .toBeCloseTo (0)
-   expect (b .y) .toBeCloseTo (0)
-   expect (b .z) .toBeCloseTo (0)
-   expect (b .w) .toBeCloseTo (54)
-   expect (b [0]) .toBeCloseTo (0)
-   expect (b [1]) .toBeCloseTo (0)
-   expect (b [2]) .toBeCloseTo (0)
-   expect (b [3]) .toBeCloseTo (54)
+   expect (b) .toBeInstanceOf (SFQuaternion);
+   expect (b) .not .toBe (a);
+   expect (b .getValue ()) .not .toBe (a .getValue ());
+
+   expect (b .x) .toBeCloseTo (0);
+   expect (b .y) .toBeCloseTo (0);
+   expect (b .z) .toBeCloseTo (0);
+   expect (b .w) .toBeCloseTo (54);
+   expect (b [0]) .toBeCloseTo (0);
+   expect (b [1]) .toBeCloseTo (0);
+   expect (b [2]) .toBeCloseTo (0);
+   expect (b [3]) .toBeCloseTo (54);
 
    const
       c = new SFQuaternion (2,3,4,5) .inverse () .inverse () .inverse (),
-      d = new SFQuaternion (2,3,4,5) .inverse ()
+      d = new SFQuaternion (2,3,4,5) .inverse ();
 
-   expect (c .x) .toBeCloseTo (d .x)
-   expect (c .y) .toBeCloseTo (d .y)
-   expect (c .z) .toBeCloseTo (d .z)
-   expect (c .w) .toBeCloseTo (d .w)
-   expect (c [0]) .toBeCloseTo (d [0])
-   expect (c [1]) .toBeCloseTo (d [1])
-   expect (c [2]) .toBeCloseTo (d [2])
-   expect (c [3]) .toBeCloseTo (d [3])
-})
+   expect (c .x) .toBeCloseTo (d .x);
+   expect (c .y) .toBeCloseTo (d .y);
+   expect (c .z) .toBeCloseTo (d .z);
+   expect (c .w) .toBeCloseTo (d .w);
+   expect (c [0]) .toBeCloseTo (d [0]);
+   expect (c [1]) .toBeCloseTo (d [1]);
+   expect (c [2]) .toBeCloseTo (d [2]);
+   expect (c [3]) .toBeCloseTo (d [3]);
+});
 
 test ("length", () =>
 {
