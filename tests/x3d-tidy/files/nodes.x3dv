@@ -506,8 +506,6 @@ DispersionMaterialExtension { }
 
 EmissiveStrengthMaterialExtension { }
 
-GaussianSplats { }
-
 InstancedShape { }
 
 IORMaterialExtension { }
