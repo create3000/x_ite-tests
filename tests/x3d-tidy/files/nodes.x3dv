@@ -332,6 +332,8 @@ IntegerTrigger { }
 
 TimeTrigger { }
 
+GaussianSplats { }
+
 Arc2D { }
 
 ArcClose2D { }

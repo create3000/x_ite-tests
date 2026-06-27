@@ -203,7 +203,7 @@ test ("inverse", () =>
 {
    const
       a = new SFQuaternion (2,3,4,5),
-      b = a .inverse () .multiply (new SFQuaternion (2,3,4,5));
+      b = a .inverse () .multQuat (new SFQuaternion (2,3,4,5));
 
    expect (b) .toBeInstanceOf (SFQuaternion)
    expect (b) .not .toBe (a)
@@ -232,14 +232,14 @@ test ("inverse", () =>
    expect (c [3]) .toBeCloseTo (d [3])
 })
 
-// test ("multiply", () =>
+// test ("multQuat", () =>
 // {
 //    const
 //       a = new SFQuaternion (... new SFRotation (new SFVec3f (1,2,3) .normalize (), 4) .getQuaternion ()),
 //       b = new SFQuaternion (... new SFRotation (5,6,7,8) .getQuaternion ()),
-//       c = a .multiply (b),
+//       c = a .multQuat (b),
 //       d = SFQuaternion .fromMatrix (a .getMatrix () .multRight (b .getMatrix ())),
-//       e = a .multiply (b) .multiply (b .inverse ()),
+//       e = a .multQuat (b) .multQuat (b .inverse ()),
 //       f = SFQuaternion .fromMatrix (a .getMatrix () .multRight (b .getMatrix ()) .multRight (b .getMatrix () .inverse ()))
 
 //    expect (c) .toBeInstanceOf (SFQuaternion)
