@@ -31,7 +31,14 @@ test ("nodes", async () =>
       expect (new ConcreteNode (scene)) .toBeInstanceOf (ConcreteNode);
 
    for (const ConcreteNode of browser .concreteNodes)
-      expect (scene .createNode (ConcreteNode .typeName) .getNodeTypeName ()) .toBe (ConcreteNode .typeName);
+   {
+      const node = scene .createNode (ConcreteNode .typeName);
+
+      expect (node .getNodeTypeName ()) .toBe (ConcreteNode .typeName);
+
+      for (const type of node .getNodeType ())
+         expect (typeof type) .toBe ("number");
+   }
 
    scene .dispose ();
    browser .dispose ();
