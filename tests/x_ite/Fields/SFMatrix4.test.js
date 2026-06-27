@@ -302,22 +302,26 @@ for (const Type of Object .keys (X3D .SFMatrix4))
 
    test ("inverse", () =>
    {
-      const a = new SFMatrix4 ()
+      const a = new SFMatrix4 ();
 
-      a .setTransform (new SFVec3 (2,3,4), new SFRotation (5,6,7,8), new SFVec3 (4,5,6), new SFRotation (6,7,8,9))
+      a .setTransform (new SFVec3 (2,3,4), new SFRotation (5,6,7,8), new SFVec3 (4,5,6), new SFRotation (6,7,8,9));
 
       const
-         b = a .multRight (a .inverse ()),
-         c = a .multLeft (a .inverse ())
+         i = a .inverse (),
+         b = a .multRight (i),
+         c = a .multLeft (i);
 
-      expect (a) .not .toBe (b)
-      expect (a) .not .toBe (c)
-      expect (b) .not .toBe (c)
-      expect (a .getValue ()) .not .toBe (b .getValue ())
-      expect (a .getValue ()) .not .toBe (c .getValue ())
-      expect (b .getValue ()) .not .toBe (c .getValue ())
-      expect (b) .toBeInstanceOf (SFMatrix4)
-      expect (c) .toBeInstanceOf (SFMatrix4)
+      expect (a) .not .toBe (i);
+      expect (a) .not .toBe (b);
+      expect (a) .not .toBe (c);
+      expect (b) .not .toBe (c);
+      expect (a .getValue ()) .not .toBe (i .getValue ());
+      expect (a .getValue ()) .not .toBe (b .getValue ());
+      expect (a .getValue ()) .not .toBe (c .getValue ());
+      expect (b .getValue ()) .not .toBe (c .getValue ());
+      expect (i) .toBeInstanceOf (SFMatrix4);
+      expect (b) .toBeInstanceOf (SFMatrix4);
+      expect (c) .toBeInstanceOf (SFMatrix4);
 
       expect (b [ 0]) .toBeCloseTo (1)
       expect (b [ 1]) .toBeCloseTo (0)
