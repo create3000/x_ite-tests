@@ -170,6 +170,35 @@ test ("isDefaultValue", () =>
    expect (b .isDefaultValue ()) .toBe (false);
 });
 
+test ("add", () =>
+{
+   const
+      a = new SFQuaternion (2,3,4,5),
+      b = new SFQuaternion (6,7,8,9),
+      c = a .add (b);
+
+   expect (c) .toBeInstanceOf (SFQuaternion);
+   expect (c) .not .toBe (a);
+   expect (c) .not .toBe (b);
+   expect (c .getValue ()) .not .toBe (a .getValue ());
+   expect (c .getValue ()) .not .toBe (b .getValue ());
+
+   expect (c .equals (new SFQuaternion (8,10,12,14))) .toBe (true);
+});
+
+test ("divide", () =>
+{
+   const
+      a = new SFQuaternion (2,4,6,8),
+      b = a .divide (2);
+
+   expect (b) .toBeInstanceOf (SFQuaternion);
+   expect (b) .not .toBe (a);
+   expect (b .getValue ()) .not .toBe (a .getValue ());
+
+   expect (b .equals (new SFQuaternion (1,2,3,4))) .toBe (true);
+});
+
 test ("get/setMatrix", () =>
 {
    const a = new SFQuaternion (0,0,0,1);
@@ -198,6 +227,11 @@ test ("get/setMatrix", () =>
    expect (b [2]) .toBeCloseTo (0)
    expect (b [3]) .toBeCloseTo (Math .SQRT1_2)
 })
+
+test ("dot", () =>
+{
+   expect (new SFQuaternion (2,3,4,5) .dot (new SFQuaternion (6,7,8,9))) .toBe (110);
+});
 
 test ("inverse", () =>
 {
@@ -231,6 +265,24 @@ test ("inverse", () =>
    expect (c [2]) .toBeCloseTo (d [2])
    expect (c [3]) .toBeCloseTo (d [3])
 })
+
+test ("length", () =>
+{
+   expect (new SFQuaternion (2,3,4,5) .length ()) .toBe (Math .hypot (2,3,4,5));
+});
+
+test ("multiply", () =>
+{
+   const
+      a = new SFQuaternion (2,4,6,8),
+      b = a .multiply (2);
+
+   expect (b) .toBeInstanceOf (SFQuaternion);
+   expect (b) .not .toBe (a);
+   expect (b .getValue ()) .not .toBe (a .getValue ());
+
+   expect (b .equals (new SFQuaternion (4,8,12,16))) .toBe (true);
+});
 
 // test ("multQuat", () =>
 // {
@@ -352,6 +404,40 @@ test ("inverse", () =>
 //    expect (v3 [2]) .toBeCloseTo (0)
 // })
 
+test ("negate", () =>
+{
+   const
+      a = new SFQuaternion (2,3,4,5),
+      b = a .negate (),
+      c = b .negate ();
+
+   expect (b) .toBeInstanceOf (SFQuaternion);
+   expect (b) .not .toBe (a);
+   expect (b .getValue ()) .not .toBe (a .getValue ());
+
+   expect (c) .toBeInstanceOf (SFQuaternion);
+   expect (c) .not .toBe (a);
+   expect (c) .not .toBe (b);
+   expect (c .getValue ()) .not .toBe (a .getValue ());
+   expect (c .getValue ()) .not .toBe (b .getValue ());
+
+   expect (b .equals (new SFQuaternion (-2,-3,-4,-5))) .toBe (true);
+   expect (c .equals (a)) .toBe (true);
+});
+
+test ("normalize", () =>
+{
+   const
+      a = new SFQuaternion (4,9,16,25),
+      b = a .normalize ();
+
+   expect (b) .toBeInstanceOf (SFQuaternion);
+   expect (b) .not .toBe (a);
+   expect (b .getValue ()) .not .toBe (a .getValue ());
+
+   expect (b .length ()) .toBeCloseTo (1);
+});
+
 // test ("slerp", () =>
 // {
 //    const
@@ -374,6 +460,22 @@ test ("inverse", () =>
 //    expect (c [2]) .toBeCloseTo (0)
 //    expect (c [3]) .toBeCloseTo (Math .PI / 4)
 // })
+
+test ("subtract", () =>
+{
+   const
+      a = new SFQuaternion (8,10,12,14),
+      b = new SFQuaternion (6,7,8,9),
+      c = a .subtract (b);
+
+   expect (c) .toBeInstanceOf (SFQuaternion);
+   expect (c) .not .toBe (a);
+   expect (c) .not .toBe (b);
+   expect (c .getValue ()) .not .toBe (a .getValue ());
+   expect (c .getValue ()) .not .toBe (b .getValue ());
+
+   expect (c .equals (new SFQuaternion (2,3,4,5))) .toBe (true);
+});
 
 test ("fromString", () =>
 {
