@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "jest --silent",
-    "test-docs": "perl tests/x_ite/Components/Core/documentation.pl",
-    "test-x3duom": "node tests/x_ite/Components/Core/x3duom.js > tests/x_ite/Components/Core/x3duom.txt"
+    "test:docs": "perl tests/x_ite/Components/Core/documentation.pl",
+    "test:x3duom": "node tests/x_ite/Components/Core/x3duom.js > tests/x_ite/Components/Core/x3duom.txt"
   },
   "repository": {
     "type": "git",
