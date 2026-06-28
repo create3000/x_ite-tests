@@ -1,11 +1,12 @@
 const
-   X3D        = require ("../../X3D"),
-   Browser    = X3D .createBrowser () .browser,
-   SFRotation = X3D .SFRotation,
-   SFVec3d    = X3D .SFVec3d,
-   SFVec3f    = X3D .SFVec3f,
-   SFMatrix3d = X3D .SFMatrix3d,
-   SFMatrix3f = X3D .SFMatrix3f
+   X3D          = require ("../../X3D"),
+   Browser      = X3D .createBrowser () .browser,
+   SFRotation   = X3D .SFRotation,
+   SFQuaternion = X3D .SFQuaternion,
+   SFVec3d      = X3D .SFVec3d,
+   SFVec3f      = X3D .SFVec3f,
+   SFMatrix3d   = X3D .SFMatrix3d,
+   SFMatrix3f   = X3D .SFMatrix3f
 
 test ("constants", () =>
 {
@@ -120,7 +121,7 @@ test ("constructor", () =>
 
 test ("fromQuaternion", () =>
 {
-   const v1 = SFRotation .fromQuaternion (0.5, 0.5, 0.5, 0.5)
+   const v1 = SFRotation .fromQuaternion (new SFQuaternion (0.5, 0.5, 0.5, 0.5))
    const q1 = v1 .getQuaternion ();
 
    expect (q1 [0]) .toEqual (0.5);
@@ -294,7 +295,7 @@ test ("get/setQuaternion", () =>
 {
    const r1 = new SFRotation (1, 0, 0, Math .PI/2);
 
-   expect (r1 .getQuaternion ()) .toHaveLength (4);
+   expect (r1 .getQuaternion ()) .toBeInstanceOf (SFQuaternion);
    expect (r1 .getQuaternion ()) .not .toBe (r1 .getQuaternion ());
    expect (r1 .getQuaternion ()) .toEqual (r1 .getQuaternion ());
 
@@ -305,7 +306,7 @@ test ("get/setQuaternion", () =>
 
    const r2 = new SFRotation (0, 1, 0, Math .PI);
 
-   expect (r2 .getQuaternion ()) .toHaveLength (4);
+   expect (r2 .getQuaternion ()) .toBeInstanceOf (SFQuaternion);
    expect (r2 .getQuaternion ()) .not .toBe (r2 .getQuaternion ());
    expect (r2 .getQuaternion ()) .toEqual (r2 .getQuaternion ());
 
@@ -316,7 +317,7 @@ test ("get/setQuaternion", () =>
 
    const r3 = new SFRotation (0, 0, 1, Math .PI);
 
-   expect (r3 .getQuaternion ()) .toHaveLength (4);
+   expect (r3 .getQuaternion ()) .toBeInstanceOf (SFQuaternion);
    expect (r3 .getQuaternion ()) .not .toBe (r3 .getQuaternion ());
    expect (r3 .getQuaternion ()) .toEqual (r3 .getQuaternion ());
 
@@ -327,15 +328,15 @@ test ("get/setQuaternion", () =>
 
    const r4 = new SFRotation ();
 
-   expect (r4 .getQuaternion ()) .toHaveLength (4);
+   expect (r4 .getQuaternion ()) .toBeInstanceOf (SFQuaternion);
    expect (r4 .getQuaternion () [0]) .toBeCloseTo (0);
    expect (r4 .getQuaternion () [1]) .toBeCloseTo (0);
    expect (r4 .getQuaternion () [2]) .toBeCloseTo (0);
    expect (r4 .getQuaternion () [3]) .toBeCloseTo (1);
 
-   r4 .setQuaternion (Math .SQRT1_2, 0, 0, Math .SQRT1_2);
+   r4 .setQuaternion (new SFQuaternion (Math .SQRT1_2, 0, 0, Math .SQRT1_2));
 
-   expect (r4 .getQuaternion ()) .toHaveLength (4);
+   expect (r4 .getQuaternion ()) .toBeInstanceOf (SFQuaternion);
    expect (r4 .getQuaternion () [0]) .toBeCloseTo (Math .SQRT1_2);
    expect (r4 .getQuaternion () [1]) .toBeCloseTo (0);
    expect (r4 .getQuaternion () [2]) .toBeCloseTo (0);
@@ -346,17 +347,17 @@ test ("get/setQuaternion", () =>
    expect (r4 .z) .toBeCloseTo (0);
    expect (r4 .angle) .toBeCloseTo (Math .PI/2);
 
-   r4 .setQuaternion (0, 0, 0, 1);
+   r4 .setQuaternion (new SFQuaternion (0, 0, 0, 1));
 
-   expect (r4 .getQuaternion ()) .toHaveLength (4);
+   expect (r4 .getQuaternion ()) .toBeInstanceOf (SFQuaternion);
    expect (r4 .getQuaternion () [0]) .toBeCloseTo (0);
    expect (r4 .getQuaternion () [1]) .toBeCloseTo (0);
    expect (r4 .getQuaternion () [2]) .toBeCloseTo (0);
    expect (r4 .getQuaternion () [3]) .toBeCloseTo (1);
 
-   r4 .setQuaternion (1, 0, 0, 1);
+   r4 .setQuaternion (new SFQuaternion (1, 0, 0, 1));
 
-   expect (r4 .getQuaternion ()) .toHaveLength (4);
+   expect (r4 .getQuaternion ()) .toBeInstanceOf (SFQuaternion);
    expect (r4 .getQuaternion () [0]) .toBeCloseTo (Math .SQRT1_2);
    expect (r4 .getQuaternion () [1]) .toBeCloseTo (0);
    expect (r4 .getQuaternion () [2]) .toBeCloseTo (0);
@@ -369,9 +370,9 @@ test ("get/setQuaternion", () =>
 
    const v4 = new X3D .Vector4 (1, 2, 3, 4) .normalize ();
 
-   r4 .setQuaternion (1, 2, 3, 4);
+   r4 .setQuaternion (new SFQuaternion (1, 2, 3, 4));
 
-   expect (r4 .getQuaternion ()) .toEqual ([... v4]);
+   expect ([... r4 .getQuaternion ()]) .toEqual ([... v4]);
 });
 
 test ("inverse", () =>
