@@ -192,6 +192,14 @@ test ("multVecRot", () =>
    expect (v5 [0]) .toBeCloseTo (w5 [0]);
    expect (v5 [1]) .toBeCloseTo (w5 [1]);
    expect (v5 [2]) .toBeCloseTo (w5 [2]);
+
+   const r6 = new Rotation4 (4,8,2, Math.PI/2);
+   const v6 = new Vector3 (1,2,3);
+   const w6 = r6 .multVecRot (v6);
+
+   expect (w6 [0]) .toBeCloseTo (3.4202741405);
+   expect (w6 [1]) .toBeCloseTo (1.385101025);
+   expect (w6 [2]) .toBeCloseTo (0.619047619);
 });
 
 test ("multRotVec", () =>
