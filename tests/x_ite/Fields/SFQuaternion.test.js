@@ -309,13 +309,15 @@ test ("multQuatVec", () =>
 {
    const
       r1 = new SFQuaternion (1, 2, 3, 4),
-      v1 = r1 .multQuatVec (SFVec3f .Z_AXIS);
+      v1 = r1 .multQuatVec (SFVec3f .Z_AXIS),
+      m1 = r1 .getMatrix () .multMatrixVec (SFVec3f .Z_AXIS);
 
    expect (v1) .toBeInstanceOf (SFVec3f);
    expect (v1) .not .toBe (r1 .multVecQuat (SFVec3f .Z_AXIS));
    expect (v1 .getValue ()) .not .toBe (r1 .multVecQuat (SFVec3f .Z_AXIS) .getValue ());
 
    expect ([... v1]) .toEqual ([-10, 20, -9]);
+   expect ([... m1]) .toEqual ([-10, 20, -9]);
 
    {
       const
@@ -335,13 +337,15 @@ test ("multVecQuat:double", () =>
 {
    const
       r1 = new SFQuaternion (1, 2, 3, 4),
-      v1 = r1 .multQuatVec (SFVec3d .Z_AXIS);
+      v1 = r1 .multQuatVec (SFVec3d .Z_AXIS),
+      m1 = r1 .getMatrix () .multMatrixVec (SFVec3d .Z_AXIS);
 
    expect (v1) .toBeInstanceOf (SFVec3d);
    expect (v1) .not .toBe (r1 .multVecQuat (SFVec3d .Z_AXIS));
    expect (v1 .getValue ()) .not .toBe (r1 .multVecQuat (SFVec3d .Z_AXIS) .getValue ());
 
    expect ([... v1]) .toEqual ([-10, 20, -9]);
+   expect ([... m1]) .toEqual ([-10, 20, -9]);
 
    {
       const
@@ -379,13 +383,15 @@ test ("multVecQuat", () =>
 {
    const
       r1 = new SFQuaternion (1, 2, 3, 4),
-      v1 = r1 .multVecQuat (SFVec3f .Z_AXIS);
+      v1 = r1 .multVecQuat (SFVec3f .Z_AXIS),
+      m1 = r1 .getMatrix () .multVecMatrix (SFVec3f .Z_AXIS);
 
    expect (v1) .toBeInstanceOf (SFVec3f);
    expect (v1) .not .toBe (r1 .multVecQuat (SFVec3f .Z_AXIS));
    expect (v1 .getValue ()) .not .toBe (r1 .multVecQuat (SFVec3f .Z_AXIS) .getValue ());
 
    expect ([... v1]) .toEqual ([22, 4, -9]);
+   expect ([... m1]) .toEqual ([22, 4, -9]);
 
    {
       const
@@ -405,13 +411,15 @@ test ("multVecQuat:double", () =>
 {
    const
       r1 = new SFQuaternion (1, 2, 3, 4),
-      v1 = r1 .multVecQuat (SFVec3d .Z_AXIS);
+      v1 = r1 .multVecQuat (SFVec3d .Z_AXIS),
+      m1 = r1 .getMatrix () .multVecMatrix (SFVec3d .Z_AXIS);
 
    expect (v1) .toBeInstanceOf (SFVec3d);
    expect (v1) .not .toBe (r1 .multVecQuat (SFVec3d .Z_AXIS));
    expect (v1 .getValue ()) .not .toBe (r1 .multVecQuat (SFVec3d .Z_AXIS) .getValue ());
 
    expect ([... v1]) .toEqual ([22, 4, -9]);
+   expect ([... m1]) .toEqual ([22, 4, -9]);
 
    {
       const
