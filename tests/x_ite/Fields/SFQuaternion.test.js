@@ -338,10 +338,10 @@ test ("multQuatVec", () =>
    {
       const
          v = new SFVec3f (8, 7, 6),
-         a = new SFQuaternion (1, 2, 3, 4) .normalize (),
+         a = new SFQuaternion (1, 2, 3, 4),
          b = new SFQuaternion (... v, 0),
          c = a .multRight (b) .multRight (a .inverse ()),
-         d = a .multQuatVec (v);
+         d = a .normalize () .multQuatVec (v);
 
       expect (c [0]) .toBeCloseTo (d [0]);
       expect (c [1]) .toBeCloseTo (d [1]);
@@ -366,10 +366,10 @@ test ("multVecQuat:double", () =>
    {
       const
          v = new SFVec3d (8, 7, 6),
-         a = new SFQuaternion (1, 2, 3, 4) .normalize (),
+         a = new SFQuaternion (1, 2, 3, 4),
          b = new SFQuaternion (... v, 0),
          c = a .multRight (b) .multRight (a .inverse ()),
-         d = a .multQuatVec (v);
+         d = a .normalize () .multQuatVec (v);
 
       expect (c [0]) .toBeCloseTo (d [0]);
       expect (c [1]) .toBeCloseTo (d [1]);
@@ -412,10 +412,10 @@ test ("multVecQuat", () =>
    {
       const
          v = new SFVec3f (8, 7, 6),
-         a = new SFQuaternion (1, 2, 3, 4) .normalize (),
+         a = new SFQuaternion (1, 2, 3, 4),
          b = new SFQuaternion (... v, 0),
          c = a .multLeft (b) .multLeft (a .inverse ()),
-         d = a .multVecQuat (v);
+         d = a .normalize () .multVecQuat (v);
 
       expect (c [0]) .toBeCloseTo (d [0]);
       expect (c [1]) .toBeCloseTo (d [1]);
@@ -440,10 +440,10 @@ test ("multVecQuat:double", () =>
    {
       const
          v = new SFVec3d (8, 7, 6),
-         a = new SFQuaternion (1, 2, 3, 4) .normalize (),
+         a = new SFQuaternion (1, 2, 3, 4),
          b = new SFQuaternion (... v, 0),
          c = a .multLeft (b) .multLeft (a .inverse ()),
-         d = a .multVecQuat (v);
+         d = a .normalize () .multVecQuat (v);
 
       expect (c [0]) .toBeCloseTo (d [0]);
       expect (c [1]) .toBeCloseTo (d [1]);
