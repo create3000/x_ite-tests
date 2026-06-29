@@ -2,10 +2,8 @@ const
    X3D          = require ("../../X3D"),
    Browser      = X3D .createBrowser () .browser,
    SFQuaternion = X3D .SFQuaternion,
-   SFRotation   = X3D .SFRotation,
    SFVec3d      = X3D .SFVec3d,
    SFVec3f      = X3D .SFVec3f,
-   SFMatrix3d   = X3D .SFMatrix3d,
    SFMatrix3f   = X3D .SFMatrix3f
 
 test ("constants", () =>
@@ -414,8 +412,8 @@ test ("normalize", () =>
 test ("slerp", () =>
 {
    const
-      a = new SFQuaternion (1,2,3,4),
-      b = new SFQuaternion (5,6,7,8),
+      a = new SFQuaternion (8, -4, -9 ,2),
+      b = new SFQuaternion (1, -4, 6, -7),
       c = a .slerp (b, 0.5);
 
    expect (c) .toBeInstanceOf (SFQuaternion);
@@ -424,14 +422,7 @@ test ("slerp", () =>
    expect (c .getValue ()) .not .toBe (a .getValue ());
    expect (c .getValue ()) .not .toBe (b .getValue ());
 
-//    expect (c .x) .toBeCloseTo (0)
-//    expect (c .y) .toBeCloseTo (1)
-//    expect (c .z) .toBeCloseTo (0)
-//    expect (c .w) .toBeCloseTo (Math .PI / 4)
-//    expect (c [0]) .toBeCloseTo (0)
-//    expect (c [1]) .toBeCloseTo (1)
-//    expect (c [2]) .toBeCloseTo (0)
-//    expect (c [3]) .toBeCloseTo (Math .PI / 4)
+   expect ([... c]) .toEqual ([8, -4, -9, 2]);
 });
 
 test ("subtract", () =>
