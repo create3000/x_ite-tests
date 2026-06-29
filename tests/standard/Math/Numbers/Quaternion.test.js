@@ -1,7 +1,8 @@
 const
    X3D        = require ("../../../X3D"),
    Quaternion = X3D .Quaternion,
-   Matrix3    = X3D .Matrix3;
+   Matrix3    = X3D .Matrix3,
+   Vector3    = X3D .Vector3;
 
 test ("constants", () =>
 {
@@ -126,10 +127,10 @@ test ("negate", () =>
    expect (b .y) .toBe (-2);
    expect (b .z) .toBe (-3);
    expect (b .w) .toBe (-4);
- });
+});
 
- test ("inverse", () =>
- {
+test ("inverse", () =>
+{
    const a = new Quaternion (1, 2, 3, 4) .normalize ();
    const b = a .copy () .inverse ();
    const c = a .copy () .multLeft (b);
@@ -144,10 +145,10 @@ test ("negate", () =>
    expect (d .y) .toBeCloseTo (0);
    expect (d .z) .toBeCloseTo (0);
    expect (d .w) .toBeCloseTo (1);
- });
+});
 
- test ("add", () =>
- {
+test ("add", () =>
+{
    const a = new Quaternion (1, 2, 3, 4);
    const b = new Quaternion (5, 6, 7, 8);
    const c = a .add (b);
@@ -155,10 +156,10 @@ test ("negate", () =>
    expect (c.y) .toBe (8);
    expect (c.z) .toBe (10);
    expect (c.w) .toBe (12);
- });
+});
 
- test ("subtract", () =>
- {
+test ("subtract", () =>
+{
    const a = new Quaternion (5, 6, 7, 8);
    const b = new Quaternion (1, 2, 3, 4);
    const c = a .subtract (b);
@@ -166,9 +167,10 @@ test ("negate", () =>
    expect (c.y) .toBe (4);
    expect (c.z) .toBe (4);
    expect (c.w) .toBe (4);
- });
+});
 
- test ("multiply", () => {
+test ("multiply", () =>
+{
    const a = new Quaternion (1, 2, 3, 4);
    const b = a .multiply (5);
    expect (b.x) .toBe (5);
@@ -177,8 +179,49 @@ test ("negate", () =>
    expect (b.w) .toBe (20);
  });
 
- test ("divide", () =>
- {
+ test ("multLeft", () =>
+{
+   const a = new Quaternion (2, 3, 4, 5);
+   const b = new Quaternion (6, 7, 8, 9);
+   const c = a .multLeft (b);
+
+   expect (c.x) .toBe (44);
+   expect (c.y) .toBe (70);
+   expect (c.z) .toBe (72);
+   expect (c.w) .toBe (-20);
+
+   const a1 = new Quaternion (2, 3, 4, 5);
+   const b1 = new Quaternion (6, 7, 8, 9);
+   const c1 = b1 .multLeft (a1);
+
+   expect (c1.x) .toBe (52);
+   expect (c1.y) .toBe (54);
+   expect (c1.z) .toBe (80);
+   expect (c1.w) .toBe (-20);
+});
+
+test ("multRight", () => {
+   const a = new Quaternion (2, 3, 4, 5);
+   const b = new Quaternion (6, 7, 8, 9);
+   const c = a .multRight (b);
+
+   expect (c.x) .toBe (52);
+   expect (c.y) .toBe (54);
+   expect (c.z) .toBe (80);
+   expect (c.w) .toBe (-20);
+
+   const a1 = new Quaternion (2, 3, 4, 5);
+   const b1 = new Quaternion (6, 7, 8, 9);
+   const c1 = b1 .multRight (a1);
+
+   expect (c1.x) .toBe (44);
+   expect (c1.y) .toBe (70);
+   expect (c1.z) .toBe (72);
+   expect (c1.w) .toBe (-20);
+});
+
+test ("divide", () =>
+{
    const a = new Quaternion (2, 4, 6, 8);
    const b = a .divide (2);
    expect (b.x) .toBe (1);
@@ -187,16 +230,49 @@ test ("negate", () =>
    expect (b.w) .toBe (4);
 });
 
- test("norm (length)", () =>
- {
+test ("multVecQuat", () =>
+{
+   const a = new Quaternion (2, 4, 6, 8);
+   const b = new Vector3 (3,4,5);
+   const c = a .multVecQuat (b);
+
+   expect ([... c]) .toEqual ([-189, 100, 5]);
+});
+
+test ("multQuatVec", () =>
+{
+   const a = new Quaternion (2, 4, 6, 8);
+   const b = new Vector3 (3,4,5);
+   const c = a .multQuatVec (b);
+
+   expect ([... c]) .toEqual ([-61, -156, 133]);
+});
+
+test ("norm (length)", () =>
+{
    const q = new Quaternion (3, 4, 5, 6);
    const m = q .norm ();
    expect (m) .toBeCloseTo (9.273618495495704);
- });
+});
 
- test ("toString", () =>
- {
-    const q = new Quaternion (3, 4, 5, 6);
+test ("normalize", () =>
+{
+   const q = new Quaternion (2, 2, 2, 2);
+   const n = q .normalize ();
+   expect ([... n]) .toEqual ([0.5, 0.5, 0.5, 0.5]);
+});
 
-    expect (q .toString ()) .toBe ([... q] .join (" "));
- });
+test ("dot", () =>
+{
+   const a = new Quaternion (2, 3, 4, 5);
+   const b = new Quaternion (5, 6, 7, 8);
+
+   expect (a .dot (b)) .toEqual (2*5 + 3*6 + 4*7 + 5*8);
+});
+
+test ("toString", () =>
+{
+   const q = new Quaternion (3, 4, 5, 6);
+
+   expect (q .toString ()) .toBe ([... q] .join (" "));
+});
