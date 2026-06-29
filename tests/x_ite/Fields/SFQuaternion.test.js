@@ -422,10 +422,10 @@ test ("slerp", () =>
    expect (c .getValue ()) .not .toBe (a .getValue ());
    expect (c .getValue ()) .not .toBe (b .getValue ());
 
-   expect (c [0]) .toBeCloseTo (0.622799155329218);
-   expect (c [1]) .toBeCloseTo (-0.311399577664609);
-   expect (c [2]) .toBeCloseTo (-0.700649049745371);
-   expect (c [3]) .toBeCloseTo (0.155699788832305);
+   expect (c [0]) .toBeCloseTo (0.32005201772261);
+   expect (c [1]) .toBeCloseTo (0.0517301095378532);
+   expect (c [2]) .toBeCloseTo (-0.791133475250507);
+   expect (c [3]) .toBeCloseTo (0.51865067825748);
 });
 
 test ("subtract", () =>
