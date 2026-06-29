@@ -184,6 +184,22 @@ test ("add", () =>
    expect (c .equals (new SFQuaternion (8,10,12,14))) .toBe (true);
 });
 
+test ("conjugate", () =>
+{
+   const
+      a = new SFQuaternion (2,3,4,5),
+      b = a .conjugate ();
+
+   expect (b) .toBeInstanceOf (SFQuaternion);
+   expect (b) .not .toBe (a);
+   expect (b .getValue ()) .not .toBe (a .getValue ());
+
+   expect (b [0]) .toBe (-a [0]);
+   expect (b [1]) .toBe (-a [1]);
+   expect (b [2]) .toBe (-a [2]);
+   expect (b [3]) .toBe (a [3]);
+});
+
 test ("divide", () =>
 {
    const
@@ -249,11 +265,11 @@ test ("inverse", () =>
    expect (b .x) .toBeCloseTo (0);
    expect (b .y) .toBeCloseTo (0);
    expect (b .z) .toBeCloseTo (0);
-   expect (b .w) .toBeCloseTo (54);
+   expect (b .w) .toBeCloseTo (1);
    expect (b [0]) .toBeCloseTo (0);
    expect (b [1]) .toBeCloseTo (0);
    expect (b [2]) .toBeCloseTo (0);
-   expect (b [3]) .toBeCloseTo (54);
+   expect (b [3]) .toBeCloseTo (1);
 
    const
       c = new SFQuaternion (2,3,4,5) .inverse () .inverse () .inverse (),

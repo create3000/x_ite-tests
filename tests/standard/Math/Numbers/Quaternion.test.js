@@ -119,6 +119,16 @@ test ("equals", () =>
    expect (a .equals (c)) .toBe (false);
 });
 
+test ("conjugate", () =>
+{
+   const a = new Quaternion (1, 2, 3, 4);
+   const b = a .conjugate ();
+   expect (b .x) .toBe (-1);
+   expect (b .y) .toBe (-2);
+   expect (b .z) .toBe (-3);
+   expect (b .w) .toBe (4);
+});
+
 test ("negate", () =>
 {
    const a = new Quaternion (1, 2, 3, 4);
@@ -131,7 +141,7 @@ test ("negate", () =>
 
 test ("inverse", () =>
 {
-   const a = new Quaternion (1, 2, 3, 4) .normalize ();
+   const a = new Quaternion (1, 2, 3, 4);
    const b = a .copy () .inverse ();
    const c = a .copy () .multLeft (b);
    const d = a .copy () .multRight (b);
