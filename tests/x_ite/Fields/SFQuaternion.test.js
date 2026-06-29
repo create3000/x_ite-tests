@@ -293,32 +293,49 @@ test ("multLeft", () =>
 {
    const
       a = new SFQuaternion (1, 2, 3, 4),
-      b = new SFQuaternion (5, 6, 7, 8),
-      c = a .multLeft (b);
+      b = new SFQuaternion (8, 7, 6, 5),
+      c = b .multLeft (a);
 
    expect (c) .toBeInstanceOf (SFQuaternion);
    expect (c) .not .toBe (a);
    expect (c) .not .toBe (b);
    expect (c .getValue ()) .not .toBe (a .getValue ());
    expect (c .getValue ()) .not .toBe (b .getValue ());
+
+   expect ([... c]) .toEqual ([46, 20, 48, -20]);
 });
 
 test ("multQuatVec", () =>
 {
    const
-      r1 = new SFQuaternion (1,2,3,4) .normalize (),
-      v1 = r1 .multQuatVec (SFVec3f .Z_AXIS)
+      r1 = new SFQuaternion (1, 2, 3, 4),
+      v1 = r1 .multQuatVec (SFVec3f .Z_AXIS);
 
    expect (v1) .toBeInstanceOf (SFVec3f);
-   expect (v1) .not .toBe (r1 .multQuatVec (SFVec3f .Z_AXIS));
-   expect (v1 .getValue ()) .not .toBe (r1 .multQuatVec (SFVec3f .Z_AXIS) .getValue ());
+   expect (v1) .not .toBe (r1 .multVecQuat (SFVec3f .Z_AXIS));
+   expect (v1 .getValue ()) .not .toBe (r1 .multVecQuat (SFVec3f .Z_AXIS) .getValue ());
+
+   expect ([... v1]) .toEqual ([-10, 20, -9]);
+});
+
+test ("multVecQuat:double", () =>
+{
+   const
+      r1 = new SFQuaternion (1, 2, 3, 4),
+      v1 = r1 .multQuatVec (SFVec3d .Z_AXIS);
+
+   expect (v1) .toBeInstanceOf (SFVec3d);
+   expect (v1) .not .toBe (r1 .multVecQuat (SFVec3d .Z_AXIS));
+   expect (v1 .getValue ()) .not .toBe (r1 .multVecQuat (SFVec3d .Z_AXIS) .getValue ());
+
+   expect ([... v1]) .toEqual ([-10, 20, -9]);
 });
 
 test ("multRight", () =>
 {
    const
       a = new SFQuaternion (1, 2, 3, 4),
-      b = new SFQuaternion (5, 6, 7, 8),
+      b = new SFQuaternion (8, 7, 6, 5),
       c = a .multRight (b);
 
    expect (c) .toBeInstanceOf (SFQuaternion);
@@ -326,29 +343,34 @@ test ("multRight", () =>
    expect (c) .not .toBe (b);
    expect (c .getValue ()) .not .toBe (a .getValue ());
    expect (c .getValue ()) .not .toBe (b .getValue ());
+
+   expect ([... c]) .toEqual ([46, 20, 48, -20]);
 });
 
 test ("multVecQuat", () =>
 {
    const
-      r1 = new SFQuaternion (1,2,3,4) .normalize (),
-      v1 = r1 .multVecQuat (SFVec3f .Z_AXIS)
+      r1 = new SFQuaternion (1, 2, 3, 4),
+      v1 = r1 .multVecQuat (SFVec3f .Z_AXIS);
 
    expect (v1) .toBeInstanceOf (SFVec3f);
    expect (v1) .not .toBe (r1 .multVecQuat (SFVec3f .Z_AXIS));
    expect (v1 .getValue ()) .not .toBe (r1 .multVecQuat (SFVec3f .Z_AXIS) .getValue ());
+
+   expect ([... v1]) .toEqual ([22, 4, -9]);
 });
 
-test ("multVecQuat-double", () =>
+test ("multVecQuat:double", () =>
 {
    const
-      r1 = new SFQuaternion (1,2,3,4) .normalize (),
+      r1 = new SFQuaternion (1, 2, 3, 4),
       v1 = r1 .multVecQuat (SFVec3d .Z_AXIS)
 
    expect (v1) .toBeInstanceOf (SFVec3d);
    expect (v1) .not .toBe (r1 .multVecQuat (SFVec3d .Z_AXIS));
    expect (v1 .getValue ()) .not .toBe (r1 .multVecQuat (SFVec3d .Z_AXIS) .getValue ());
 
+   expect ([... v1]) .toEqual ([22, 4, -9]);
 });
 
 test ("negate", () =>
