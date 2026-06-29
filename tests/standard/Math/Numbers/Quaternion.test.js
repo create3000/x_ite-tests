@@ -233,14 +233,14 @@ test ("divide", () =>
 test ("multVecQuat", () =>
 {
    const a = new Quaternion (2, 4, 6, 8);
-   const b = new Vector3 (3,4,5);
+   const b = new Vector3 (3, 4, 5);
    const c = a .multVecQuat (b);
 
    expect ([... c]) .toEqual ([-189, 100, 5]);
 
    {
       const a = new Quaternion (2, 4, 6, 8) .getMatrix ();
-      const b = new Vector3 (3,4,5);
+      const b = new Vector3 (3, 4, 5);
       const c = a .multVecMatrix (b);
 
       expect ([... c]) .toEqual ([-189, 100, 5]);
@@ -250,14 +250,14 @@ test ("multVecQuat", () =>
 test ("multQuatVec", () =>
 {
    const a = new Quaternion (2, 4, 6, 8);
-   const b = new Vector3 (3,4,5);
+   const b = new Vector3 (3, 4, 5);
    const c = a .multQuatVec (b);
 
    expect ([... c]) .toEqual ([-61, -156, 133]);
 
    {
       const a = new Quaternion (2, 4, 6, 8) .getMatrix ();
-      const b = new Vector3 (3,4,5);
+      const b = new Vector3 (3, 4, 5);
       const c = a .multMatrixVec (b);
 
       expect ([... c]) .toEqual ([-61, -156, 133]);
