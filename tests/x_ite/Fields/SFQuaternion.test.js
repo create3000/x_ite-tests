@@ -294,7 +294,8 @@ test ("multLeft", () =>
    const
       a = new SFQuaternion (1, 2, 3, 4),
       b = new SFQuaternion (8, 7, 6, 5),
-      c = b .multLeft (a);
+      c = b .multLeft (a),
+      d = a .multLeft (b);
 
    expect (c) .toBeInstanceOf (SFQuaternion);
    expect (c) .not .toBe (a);
@@ -303,6 +304,7 @@ test ("multLeft", () =>
    expect (c .getValue ()) .not .toBe (b .getValue ());
 
    expect ([... c]) .toEqual ([46, 20, 48, -20]);
+   expect ([... d]) .toEqual ([28, 56, 30, -20]);
 });
 
 test ("multQuatVec", () =>
@@ -336,7 +338,8 @@ test ("multRight", () =>
    const
       a = new SFQuaternion (1, 2, 3, 4),
       b = new SFQuaternion (8, 7, 6, 5),
-      c = a .multRight (b);
+      c = a .multRight (b),
+      d = b .multRight (a);
 
    expect (c) .toBeInstanceOf (SFQuaternion);
    expect (c) .not .toBe (a);
@@ -345,6 +348,7 @@ test ("multRight", () =>
    expect (c .getValue ()) .not .toBe (b .getValue ());
 
    expect ([... c]) .toEqual ([46, 20, 48, -20]);
+   expect ([... d]) .toEqual ([28, 56, 30, -20]);
 });
 
 test ("multVecQuat", () =>
