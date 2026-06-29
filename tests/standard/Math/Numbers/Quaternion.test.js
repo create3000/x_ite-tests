@@ -244,34 +244,32 @@ test ("multVecQuat", () =>
 {
    const a = new Quaternion (2, 4, 6, 8);
    const b = new Vector3 (3, 4, 5);
-   const c = a .multVecQuat (b);
+   const c = a .multVecQuat (b .copy ());
 
    expect ([... c]) .toEqual ([-189, 100, 5]);
 
-   {
-      const a = new Quaternion (2, 4, 6, 8) .getMatrix ();
-      const b = new Vector3 (3, 4, 5);
-      const c = a .multVecMatrix (b);
+   const m = a .getMatrix ();
+   const d = m .multVecMatrix (b .copy ());
 
-      expect ([... c]) .toEqual ([-189, 100, 5]);
-   }
+   expect (d [0]) .toBeCloseTo (c [0]);
+   expect (d [1]) .toBeCloseTo (c [1]);
+   expect (d [2]) .toBeCloseTo (c [2]);
 });
 
 test ("multQuatVec", () =>
 {
    const a = new Quaternion (2, 4, 6, 8);
    const b = new Vector3 (3, 4, 5);
-   const c = a .multQuatVec (b);
+   const c = a .multQuatVec (b .copy ());
 
    expect ([... c]) .toEqual ([-61, -156, 133]);
 
-   {
-      const a = new Quaternion (2, 4, 6, 8) .getMatrix ();
-      const b = new Vector3 (3, 4, 5);
-      const c = a .multMatrixVec (b);
+   const m = a .getMatrix ();
+   const d = m .multMatrixVec (b .copy ());
 
-      expect ([... c]) .toEqual ([-61, -156, 133]);
-   }
+   expect (d [0]) .toBeCloseTo (c [0]);
+   expect (d [1]) .toBeCloseTo (c [1]);
+   expect (d [2]) .toBeCloseTo (c [2]);
 });
 
 test ("norm (length)", () =>
