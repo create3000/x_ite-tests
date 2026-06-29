@@ -412,8 +412,8 @@ test ("normalize", () =>
 test ("slerp", () =>
 {
    const
-      a = new SFQuaternion (8, -4, -9 ,2),
-      b = new SFQuaternion (1, -4, 6, -7),
+      a = new SFQuaternion (8, -4, -9 ,2) .normalize (),
+      b = new SFQuaternion (1, -4, 6, -7) .normalize (),
       c = a .slerp (b, 0.5);
 
    expect (c) .toBeInstanceOf (SFQuaternion);
@@ -422,7 +422,10 @@ test ("slerp", () =>
    expect (c .getValue ()) .not .toBe (a .getValue ());
    expect (c .getValue ()) .not .toBe (b .getValue ());
 
-   expect ([... c]) .toEqual ([8, -4, -9, 2]);
+   expect (c [0]) .toBeCloseTo (0.622799155329218);
+   expect (c [1]) .toBeCloseTo (-0.311399577664609);
+   expect (c [2]) .toBeCloseTo (-0.700649049745371);
+   expect (c [3]) .toBeCloseTo (0.155699788832305);
 });
 
 test ("subtract", () =>
