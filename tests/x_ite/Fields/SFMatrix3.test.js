@@ -366,31 +366,31 @@ for (const Type of Object .keys (X3D .SFMatrix3))
       const
          a = new SFMatrix3 (2,3,4, 5,6,7, 8,9,10),
          b = new SFVec2 (11,12),
-         c = a .transpose () .multVecMatrix (b)
+         c = a .transpose () .multVecMatrix (b);
 
-      expect (b) .not .toBe (c)
-      expect (b .getValue ()) .not .toBe (c .getValue ())
-      expect (c) .toBeInstanceOf (SFVec2)
+      expect (b) .not .toBe (c);
+      expect (b .getValue ()) .not .toBe (c .getValue ());
+      expect (c) .toBeInstanceOf (SFVec2);
 
-      expect (c [0]) .toBe (62/206)
-      expect (c [1]) .toBe (134/206)
-   })
+      expect (c [0]) .toBe (62/206);
+      expect (c [1]) .toBe (134/206);
+   });
 
    test ("multVecMatrix 3", () =>
    {
       const
          a = new SFMatrix3 (2,3,4, 6,7,8, 10,11,12),
          b = new SFVec3 (18,19,20),
-         c = a .transpose () .multVecMatrix (b)
+         c = a .transpose () .multVecMatrix (b);
 
-      expect (b) .not .toBe (c)
-      expect (b .getValue ()) .not .toBe (c .getValue ())
-      expect (c) .toBeInstanceOf (SFVec3)
+      expect (b) .not .toBe (c);
+      expect (b .getValue ()) .not .toBe (c .getValue ());
+      expect (c) .toBeInstanceOf (SFVec3);
 
-      expect (c [0]) .toBe (173)
-      expect (c [1]) .toBe (401)
-      expect (c [2]) .toBe (629)
-   })
+      expect (c [0]) .toBe (173);
+      expect (c [1]) .toBe (401);
+      expect (c [2]) .toBe (629);
+   });
 
    test ("multMatrixVec 2", () =>
    {
