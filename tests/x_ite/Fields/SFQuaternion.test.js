@@ -329,8 +329,8 @@ test ("multQuatVec", () =>
       m1 = r1 .getMatrix () .multMatrixVec (SFVec3f .Z_AXIS);
 
    expect (v1) .toBeInstanceOf (SFVec3f);
-   expect (v1) .not .toBe (r1 .multVecQuat (SFVec3f .Z_AXIS));
-   expect (v1 .getValue ()) .not .toBe (r1 .multVecQuat (SFVec3f .Z_AXIS) .getValue ());
+   expect (v1) .not .toBe (r1 .multQuatVec (SFVec3f .Z_AXIS));
+   expect (v1 .getValue ()) .not .toBe (r1 .multQuatVec (SFVec3f .Z_AXIS) .getValue ());
 
    expect ([... v1]) .toEqual ([-10, 20, -9]);
    expect ([... m1]) .toEqual ([-10, 20, -9]);
@@ -338,14 +338,19 @@ test ("multQuatVec", () =>
    {
       const
          v = new SFVec3f (8, 7, 6),
-         a = new SFQuaternion (1, 2, 3, 4),
-         b = new SFQuaternion (... v, 0),
-         c = a .multRight (b) .multRight (a .inverse ()),
-         d = a .normalize () .multQuatVec (v);
+         u = new SFQuaternion (... v, 0),
+         q = new SFQuaternion (1, 2, 3, 4),
+         a = q .normalize () .multQuatVec (v),
+         b = q .multRight (u) .multRight (q .inverse ()),
+         c = q .normalize () .getMatrix () .multMatrixVec (v);
 
-      expect (c [0]) .toBeCloseTo (d [0]);
-      expect (c [1]) .toBeCloseTo (d [1]);
-      expect (c [2]) .toBeCloseTo (d [2]);
+      expect (a [0]) .toBeCloseTo (b [0]);
+      expect (a [1]) .toBeCloseTo (b [1]);
+      expect (a [2]) .toBeCloseTo (b [2]);
+
+      expect (a [0]) .toBeCloseTo (c [0]);
+      expect (a [1]) .toBeCloseTo (c [1]);
+      expect (a [2]) .toBeCloseTo (c [2]);
    }
 });
 
@@ -357,8 +362,8 @@ test ("multVecQuat:double", () =>
       m1 = r1 .getMatrix () .multMatrixVec (SFVec3d .Z_AXIS);
 
    expect (v1) .toBeInstanceOf (SFVec3d);
-   expect (v1) .not .toBe (r1 .multVecQuat (SFVec3d .Z_AXIS));
-   expect (v1 .getValue ()) .not .toBe (r1 .multVecQuat (SFVec3d .Z_AXIS) .getValue ());
+   expect (v1) .not .toBe (r1 .multQuatVec (SFVec3d .Z_AXIS));
+   expect (v1 .getValue ()) .not .toBe (r1 .multQuatVec (SFVec3d .Z_AXIS) .getValue ());
 
    expect ([... v1]) .toEqual ([-10, 20, -9]);
    expect ([... m1]) .toEqual ([-10, 20, -9]);
@@ -366,14 +371,19 @@ test ("multVecQuat:double", () =>
    {
       const
          v = new SFVec3d (8, 7, 6),
-         a = new SFQuaternion (1, 2, 3, 4),
-         b = new SFQuaternion (... v, 0),
-         c = a .multRight (b) .multRight (a .inverse ()),
-         d = a .normalize () .multQuatVec (v);
+         u = new SFQuaternion (... v, 0),
+         q = new SFQuaternion (1, 2, 3, 4),
+         a = q .normalize () .multQuatVec (v),
+         b = q .multRight (u) .multRight (q .inverse ()),
+         c = q .normalize () .getMatrix () .multMatrixVec (v);
 
-      expect (c [0]) .toBeCloseTo (d [0]);
-      expect (c [1]) .toBeCloseTo (d [1]);
-      expect (c [2]) .toBeCloseTo (d [2]);
+      expect (a [0]) .toBeCloseTo (b [0]);
+      expect (a [1]) .toBeCloseTo (b [1]);
+      expect (a [2]) .toBeCloseTo (b [2]);
+
+      expect (a [0]) .toBeCloseTo (c [0]);
+      expect (a [1]) .toBeCloseTo (c [1]);
+      expect (a [2]) .toBeCloseTo (c [2]);
    }
 });
 
@@ -412,14 +422,19 @@ test ("multVecQuat", () =>
    {
       const
          v = new SFVec3f (8, 7, 6),
-         a = new SFQuaternion (1, 2, 3, 4),
-         b = new SFQuaternion (... v, 0),
-         c = a .multLeft (b) .multLeft (a .inverse ()),
-         d = a .normalize () .multVecQuat (v);
+         u = new SFQuaternion (... v, 0),
+         q = new SFQuaternion (1, 2, 3, 4),
+         a = q .normalize () .multVecQuat (v),
+         b = q .multLeft (u) .multLeft (q .inverse ()),
+         c = q .normalize () .getMatrix () .multVecMatrix (v);
 
-      expect (c [0]) .toBeCloseTo (d [0]);
-      expect (c [1]) .toBeCloseTo (d [1]);
-      expect (c [2]) .toBeCloseTo (d [2]);
+      expect (a [0]) .toBeCloseTo (b [0]);
+      expect (a [1]) .toBeCloseTo (b [1]);
+      expect (a [2]) .toBeCloseTo (b [2]);
+
+      expect (a [0]) .toBeCloseTo (c [0]);
+      expect (a [1]) .toBeCloseTo (c [1]);
+      expect (a [2]) .toBeCloseTo (c [2]);
    }
 });
 
@@ -440,14 +455,19 @@ test ("multVecQuat:double", () =>
    {
       const
          v = new SFVec3d (8, 7, 6),
-         a = new SFQuaternion (1, 2, 3, 4),
-         b = new SFQuaternion (... v, 0),
-         c = a .multLeft (b) .multLeft (a .inverse ()),
-         d = a .normalize () .multVecQuat (v);
+         u = new SFQuaternion (... v, 0),
+         q = new SFQuaternion (1, 2, 3, 4),
+         a = q .normalize () .multVecQuat (v),
+         b = q .multLeft (u) .multLeft (q .inverse ()),
+         c = q .normalize () .getMatrix () .multVecMatrix (v);
 
-      expect (c [0]) .toBeCloseTo (d [0]);
-      expect (c [1]) .toBeCloseTo (d [1]);
-      expect (c [2]) .toBeCloseTo (d [2]);
+      expect (a [0]) .toBeCloseTo (b [0]);
+      expect (a [1]) .toBeCloseTo (b [1]);
+      expect (a [2]) .toBeCloseTo (b [2]);
+
+      expect (a [0]) .toBeCloseTo (c [0]);
+      expect (a [1]) .toBeCloseTo (c [1]);
+      expect (a [2]) .toBeCloseTo (c [2]);
    }
 });
 
