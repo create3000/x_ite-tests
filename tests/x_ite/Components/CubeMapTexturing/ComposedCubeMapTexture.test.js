@@ -1,8 +1,8 @@
-const X3D = require ("../../../X3D")
+const X3D = require ("../../../X3D");
 
 const
    canvas  = X3D .createBrowser (),
-   Browser = canvas .browser
+   Browser = canvas .browser;
 
 test ("Removed fields", async () =>
 {
@@ -14,18 +14,18 @@ ComposedCubeMapTexture {
    right ImageTexture { }
    top ImageTexture { }
    bottom ImageTexture { }
-}`))
+}`));
 
-   expect (scene1 .rootNodes [0] .front  .getNodeTypeName ()) .toBe ("ImageTexture")
-   expect (scene1 .rootNodes [0] .back   .getNodeTypeName ()) .toBe ("ImageTexture")
-   expect (scene1 .rootNodes [0] .left   .getNodeTypeName ()) .toBe ("ImageTexture")
-   expect (scene1 .rootNodes [0] .right  .getNodeTypeName ()) .toBe ("ImageTexture")
-   expect (scene1 .rootNodes [0] .top    .getNodeTypeName ()) .toBe ("ImageTexture")
-   expect (scene1 .rootNodes [0] .bottom .getNodeTypeName ()) .toBe ("ImageTexture")
-   expect (scene1 .rootNodes [0] .frontTexture  .getNodeTypeName ()) .toBe ("ImageTexture")
-   expect (scene1 .rootNodes [0] .backTexture   .getNodeTypeName ()) .toBe ("ImageTexture")
-   expect (scene1 .rootNodes [0] .leftTexture   .getNodeTypeName ()) .toBe ("ImageTexture")
-   expect (scene1 .rootNodes [0] .rightTexture  .getNodeTypeName ()) .toBe ("ImageTexture")
-   expect (scene1 .rootNodes [0] .topTexture    .getNodeTypeName ()) .toBe ("ImageTexture")
-   expect (scene1 .rootNodes [0] .bottomTexture .getNodeTypeName ()) .toBe ("ImageTexture")
-})
+   expect (scene1 .rootNodes [0] .front  .getNodeTypeName ()) .toBe ("ImageTexture");
+   expect (scene1 .rootNodes [0] .back   .getNodeTypeName ()) .toBe ("ImageTexture");
+   expect (scene1 .rootNodes [0] .left   .getNodeTypeName ()) .toBe ("ImageTexture");
+   expect (scene1 .rootNodes [0] .right  .getNodeTypeName ()) .toBe ("ImageTexture");
+   expect (scene1 .rootNodes [0] .top    .getNodeTypeName ()) .toBe ("ImageTexture");
+   expect (scene1 .rootNodes [0] .bottom .getNodeTypeName ()) .toBe ("ImageTexture");
+   expect (scene1 .rootNodes [0] .frontTexture  .getNodeTypeName ()) .toBe ("ImageTexture");
+   expect (scene1 .rootNodes [0] .backTexture   .getNodeTypeName ()) .toBe ("ImageTexture");
+   expect (scene1 .rootNodes [0] .leftTexture   .getNodeTypeName ()) .toBe ("ImageTexture");
+   expect (scene1 .rootNodes [0] .rightTexture  .getNodeTypeName ()) .toBe ("ImageTexture");
+   expect (scene1 .rootNodes [0] .topTexture    .getNodeTypeName ()) .toBe ("ImageTexture");
+   expect (scene1 .rootNodes [0] .bottomTexture .getNodeTypeName ()) .toBe ("ImageTexture");
+});

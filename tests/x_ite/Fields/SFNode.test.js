@@ -1,59 +1,59 @@
-const X3D = require ("../../X3D")
+const X3D = require ("../../X3D");
 
 const
    canvas  = X3D .createBrowser (),
    Browser = canvas .browser,
    scene   = Browser .currentScene,
-   node    = scene .createNode ("WorldInfo")
+   node    = scene .createNode ("WorldInfo");
 
 test ("common", () =>
 {
-   expect (node .getType ()) .toBe (X3D .X3DConstants .SFNode)
-   expect (node .getTypeName ()) .toBe ("SFNode")
-   expect (Object .prototype .toString .call (node)) .toBe ("[object SFNode]")
+   expect (node .getType ()) .toBe (X3D .X3DConstants .SFNode);
+   expect (node .getTypeName ()) .toBe ("SFNode");
+   expect (Object .prototype .toString .call (node)) .toBe ("[object SFNode]");
 
-   expect (node .getNodeTypeName ()) .toBe ("WorldInfo")
-   expect (node .getNodeName ()) .toBe ("")
-   expect (node .getNodeDisplayName ()) .toBe ("")
+   expect (node .getNodeTypeName ()) .toBe ("WorldInfo");
+   expect (node .getNodeName ()) .toBe ("");
+   expect (node .getNodeDisplayName ()) .toBe ("");
 
-   scene .addNamedNode ("NodeName_123", node)
+   scene .addNamedNode ("NodeName_123", node);
 
-   expect (node .getNodeName ()) .toBe ("NodeName_123")
-   expect (node .getNodeDisplayName ()) .toBe ("NodeName")
+   expect (node .getNodeName ()) .toBe ("NodeName_123");
+   expect (node .getNodeDisplayName ()) .toBe ("NodeName");
 
-   scene .removeNamedNode ("NodeName_123")
+   scene .removeNamedNode ("NodeName_123");
 
-   expect (node .getNodeType ()) .not .toBe (node .getNodeType ())
+   expect (node .getNodeType ()) .not .toBe (node .getNodeType ());
    expect (node .getNodeType ()) .toEqual ([
       X3D .X3DConstants .X3DNode,
       X3D .X3DConstants .X3DChildNode,
       X3D .X3DConstants .X3DInfoNode,
       X3D .X3DConstants .WorldInfo,
-   ])
+   ]);
 
-   expect (node .valueOf ()) .toBe (node .valueOf ())
-})
+   expect (node .valueOf ()) .toBe (node .valueOf ());
+});
 
 test ("copy", () =>
 {
    const
       a = new X3D .SFNode (),
-      b = node
+      b = node;
 
-   expect (a .copy () .equals (a)) .toBe (true)
-   expect (b .copy () .equals (b)) .toBe (true)
-})
+   expect (a .copy () .equals (a)) .toBe (true);
+   expect (b .copy () .equals (b)) .toBe (true);
+});
 
 test ("equals", () =>
 {
    const
       a = new X3D .SFNode (),
-      b = node
+      b = node;
 
-   expect (a .equals (a)) .toBe (true)
-   expect (b .equals (b)) .toBe (true)
-   expect (a .equals (b)) .toBe (false)
-})
+   expect (a .equals (a)) .toBe (true);
+   expect (b .equals (b)) .toBe (true);
+   expect (a .equals (b)) .toBe (false);
+});
 
 test ("isDefaultValue", () =>
 {
@@ -62,7 +62,7 @@ test ("isDefaultValue", () =>
       b = node,
       c = new X3D .SFNode (null);
 
-   expect (c .isDefaultValue ()) .toBe (true)
+   expect (c .isDefaultValue ()) .toBe (true);
    expect (a .valueOf ()) .toBe (null);
    expect (a .isDefaultValue ()) .toBe (true);
    expect (b .isDefaultValue ()) .toBe (false);
@@ -70,176 +70,176 @@ test ("isDefaultValue", () =>
 
 test ("properties", () =>
 {
-   expect (node .metadata) .toBe (null)
-   expect (node .title) .toBe ("")
-   expect (node .info) .toBeInstanceOf (X3D .MFString)
+   expect (node .metadata) .toBe (null);
+   expect (node .title) .toBe ("");
+   expect (node .info) .toBeInstanceOf (X3D .MFString);
 
-   expect ("metadata" in node) .toBe (true)
-   expect ("title"    in node) .toBe (true)
-   expect ("info"     in node) .toBe (true)
-   expect ("toString" in node) .toBe (true)
-   expect ("foo"      in node) .toBe (false)
+   expect ("metadata" in node) .toBe (true);
+   expect ("title"    in node) .toBe (true);
+   expect ("info"     in node) .toBe (true);
+   expect ("toString" in node) .toBe (true);
+   expect ("foo"      in node) .toBe (false);
 
-   expect (node .hasOwnProperty ("metadata")) .toBe (true)
-   expect (node .hasOwnProperty ("title"))    .toBe (true)
-   expect (node .hasOwnProperty ("info"))     .toBe (true)
-   expect (node .hasOwnProperty ("toString")) .toBe (false)
-   expect (node .hasOwnProperty ("foo"))      .toBe (false)
+   expect (node .hasOwnProperty ("metadata")) .toBe (true);
+   expect (node .hasOwnProperty ("title"))    .toBe (true);
+   expect (node .hasOwnProperty ("info"))     .toBe (true);
+   expect (node .hasOwnProperty ("toString")) .toBe (false);
+   expect (node .hasOwnProperty ("foo"))      .toBe (false);
 
    const properties = [
       "metadata",
       "title",
       "info",
-   ]
+   ];
 
-   enumerate (properties, node)
+   enumerate (properties, node);
 
-   expect (() => node .foo) .not .toThrow (Error)
-   expect (() => node .foo = 123) .not .toThrow (Error)
-})
+   expect (() => node .foo) .not .toThrow (Error);
+   expect (() => node .foo = 123) .not .toThrow (Error);
+});
 
 test ("getFieldDefinition", () =>
 {
-   expect (node .getFieldDefinition ("metadata") .name) .toBe ("metadata")
-   expect (node .getFieldDefinition ("title") .name) .toBe ("title")
-   expect (node .getFieldDefinition ("info") .name) .toBe ("info")
+   expect (node .getFieldDefinition ("metadata") .name) .toBe ("metadata");
+   expect (node .getFieldDefinition ("title") .name) .toBe ("title");
+   expect (node .getFieldDefinition ("info") .name) .toBe ("info");
 
-   expect (() => node .getFieldDefinition ("foo")) .toThrow (Error)
-})
+   expect (() => node .getFieldDefinition ("foo")) .toThrow (Error);
+});
 
 test ("getFieldDefinitions", () =>
 {
-   const fieldDefinitions = node .getFieldDefinitions ()
+   const fieldDefinitions = node .getFieldDefinitions ();
 
-   expect (fieldDefinitions) .toBeInstanceOf (X3D .FieldDefinitionArray)
-   expect (fieldDefinitions) .toHaveLength (3)
-   expect (fieldDefinitions [0] .name) .toBe ("metadata")
-   expect (fieldDefinitions [1] .name) .toBe ("title")
-   expect (fieldDefinitions [2] .name) .toBe ("info")
-})
+   expect (fieldDefinitions) .toBeInstanceOf (X3D .FieldDefinitionArray);
+   expect (fieldDefinitions) .toHaveLength (3);
+   expect (fieldDefinitions [0] .name) .toBe ("metadata");
+   expect (fieldDefinitions [1] .name) .toBe ("title");
+   expect (fieldDefinitions [2] .name) .toBe ("info");
+});
 
 test ("getField", () =>
 {
-   expect (node .getField ("metadata") .getName ()) .toBe ("metadata")
-   expect (node .getField ("title") .getName ()) .toBe ("title")
-   expect (node .getField ("info") .getName ()) .toBe ("info")
+   expect (node .getField ("metadata") .getName ()) .toBe ("metadata");
+   expect (node .getField ("title") .getName ()) .toBe ("title");
+   expect (node .getField ("info") .getName ()) .toBe ("info");
 
-   expect (() => node .getField ("foo")) .toThrow (Error)
-})
+   expect (() => node .getField ("foo")) .toThrow (Error);
+});
 
 test ("toString", () =>
 {
-   expect (node .toXMLString ()) .toMatch (/^<\w+\/>$/)
-   expect (node .toXMLString ()) .toMatch (/^<\w+\/>$/)
-   expect (node .toString ()) .toMatch (/^\w+ { }$/)
-   expect (node .toString ()) .toMatch (/^\w+ { }$/)
-   expect (new X3D .SFNode () .toString ()) .toBe ("NULL")
-})
+   expect (node .toXMLString ()) .toMatch (/^<\w+\/>$/);
+   expect (node .toXMLString ()) .toMatch (/^<\w+\/>$/);
+   expect (node .toString ()) .toMatch (/^\w+ { }$/);
+   expect (node .toString ()) .toMatch (/^\w+ { }$/);
+   expect (new X3D .SFNode () .toString ()) .toBe ("NULL");
+});
 
 test ("user-data", () =>
 {
    const
       field = node,
-      sym   = Symbol ()
+      sym   = Symbol ();
 
-   field .setNodeUserData ("foo", 123)
-   field .setNodeUserData ("bah", 234)
-   field .setNodeUserData (sym,   345)
+   field .setNodeUserData ("foo", 123);
+   field .setNodeUserData ("bah", 234);
+   field .setNodeUserData (sym,   345);
 
-   expect (field .getNodeUserData ("foo")) .toBe (123)
-   expect (field .getNodeUserData ("bah")) .toBe (234)
-   expect (field .getNodeUserData (sym)) .toBe (345)
+   expect (field .getNodeUserData ("foo")) .toBe (123);
+   expect (field .getNodeUserData ("bah")) .toBe (234);
+   expect (field .getNodeUserData (sym)) .toBe (345);
 
-   field .removeNodeUserData ("foo")
-   field .removeNodeUserData ("bah")
-   field .removeNodeUserData (sym)
+   field .removeNodeUserData ("foo");
+   field .removeNodeUserData ("bah");
+   field .removeNodeUserData (sym);
 
-   expect (field .getNodeUserData ("foo")) .toBe (undefined)
-   expect (field .getNodeUserData ("bah")) .toBe (undefined)
-   expect (field .getNodeUserData (sym)) .toBe (undefined)
-})
+   expect (field .getNodeUserData ("foo")) .toBe (undefined);
+   expect (field .getNodeUserData ("bah")) .toBe (undefined);
+   expect (field .getNodeUserData (sym)) .toBe (undefined);
+});
 
 test ("toString", () =>
 {
    const
       n1 = scene .createNode ("MetadataSet"),
-      n2 = scene .createNode ("MetadataBoolean")
+      n2 = scene .createNode ("MetadataBoolean");
 
-   expect (n1 .toString ()) .toBe ("MetadataSet { }")
-   expect (n1 .toString ()) .toBe ("MetadataSet { }")
-   expect (n2 .toString ()) .toBe ("MetadataBoolean { }")
-   expect (n2 .toString ()) .toBe ("MetadataBoolean { }")
-})
+   expect (n1 .toString ()) .toBe ("MetadataSet { }");
+   expect (n1 .toString ()) .toBe ("MetadataSet { }");
+   expect (n2 .toString ()) .toBe ("MetadataBoolean { }");
+   expect (n2 .toString ()) .toBe ("MetadataBoolean { }");
+});
 
 test ("toXMLString", () =>
 {
    const
       n1 = scene .createNode ("MetadataSet"),
-      n2 = scene .createNode ("MetadataBoolean")
+      n2 = scene .createNode ("MetadataBoolean");
 
    scene .addNamedNode ("N1toXMLString", n1);
 
-   expect (n1 .toXMLString ()) .toBe ("<MetadataSet DEF='N1toXMLString'/>")
-   expect (n1 .toXMLString ()) .toBe ("<MetadataSet DEF='N1toXMLString'/>")
-   expect (n2 .toXMLString ()) .toBe ("<MetadataBoolean/>")
-   expect (n2 .toXMLString ()) .toBe ("<MetadataBoolean/>")
-})
+   expect (n1 .toXMLString ()) .toBe ("<MetadataSet DEF='N1toXMLString'/>");
+   expect (n1 .toXMLString ()) .toBe ("<MetadataSet DEF='N1toXMLString'/>");
+   expect (n2 .toXMLString ()) .toBe ("<MetadataBoolean/>");
+   expect (n2 .toXMLString ()) .toBe ("<MetadataBoolean/>");
+});
 
 test ("toVRMLString", () =>
 {
    const
       n1 = scene .createNode ("MetadataSet"),
-      n2 = scene .createNode ("MetadataBoolean")
+      n2 = scene .createNode ("MetadataBoolean");
 
    scene .addNamedNode ("N1toVRMLString", n1);
 
-   expect (n1 .toVRMLString ()) .toBe ("DEF N1toVRMLString MetadataSet { }")
-   expect (n1 .toVRMLString ()) .toBe ("DEF N1toVRMLString MetadataSet { }")
-   expect (n2 .toVRMLString ()) .toBe ("MetadataBoolean { }")
-   expect (n2 .toVRMLString ()) .toBe ("MetadataBoolean { }")
-})
+   expect (n1 .toVRMLString ()) .toBe ("DEF N1toVRMLString MetadataSet { }");
+   expect (n1 .toVRMLString ()) .toBe ("DEF N1toVRMLString MetadataSet { }");
+   expect (n2 .toVRMLString ()) .toBe ("MetadataBoolean { }");
+   expect (n2 .toVRMLString ()) .toBe ("MetadataBoolean { }");
+});
 
 test ("toJSONString", () =>
 {
    const
       n1 = scene .createNode ("MetadataSet"),
-      n2 = scene .createNode ("MetadataBoolean")
+      n2 = scene .createNode ("MetadataBoolean");
 
    scene .addNamedNode ("N1toJSONString", n1);
 
-   expect (n1 .toJSONString ({ style: "CLEAN" })) .toBe (`{"MetadataSet":{"@DEF":"N1toJSONString"}}`)
-   expect (n1 .toJSONString ({ style: "CLEAN" })) .toBe (`{"MetadataSet":{"@DEF":"N1toJSONString"}}`)
-   expect (n2 .toJSONString ({ style: "CLEAN" })) .toBe (`{"MetadataBoolean":{}}`)
-   expect (n2 .toJSONString ({ style: "CLEAN" })) .toBe (`{"MetadataBoolean":{}}`)
-})
+   expect (n1 .toJSONString ({ style: "CLEAN" })) .toBe (`{"MetadataSet":{"@DEF":"N1toJSONString"}}`);
+   expect (n1 .toJSONString ({ style: "CLEAN" })) .toBe (`{"MetadataSet":{"@DEF":"N1toJSONString"}}`);
+   expect (n2 .toJSONString ({ style: "CLEAN" })) .toBe (`{"MetadataBoolean":{}}`);
+   expect (n2 .toJSONString ({ style: "CLEAN" })) .toBe (`{"MetadataBoolean":{}}`);
+});
 
 test ("parents", () =>
 {
    const
       n1 = scene .createNode ("MetadataSet"),
-      n2 = scene .createNode ("MetadataBoolean")
+      n2 = scene .createNode ("MetadataBoolean");
 
    expect (n1 .getValue () .isInitialized ()) .toBe (true);
    expect (n2 .getValue () .isInitialized ()) .toBe (true);
 
-   expect (n2 .getValue ()) .not .toBe (null)
-   expect (n2 .getValue () .getParents () .size) .toBe (1)
-   expect (n2 .getNodeTypeName ()) .toBe ("MetadataBoolean")
+   expect (n2 .getValue ()) .not .toBe (null);
+   expect (n2 .getValue () .getParents () .size) .toBe (1);
+   expect (n2 .getNodeTypeName ()) .toBe ("MetadataBoolean");
 
-   n1 .metadata = n2
+   n1 .metadata = n2;
 
-   expect (n1 .metadata) .toBe (n2)
-   expect (n2 .getValue ()) .not .toBe (null)
-   expect (n2 .getValue () .getParents () .size) .toBe (2)
-   expect (n2 .getNodeTypeName ()) .toBe ("MetadataBoolean")
+   expect (n1 .metadata) .toBe (n2);
+   expect (n2 .getValue ()) .not .toBe (null);
+   expect (n2 .getValue () .getParents () .size) .toBe (2);
+   expect (n2 .getNodeTypeName ()) .toBe ("MetadataBoolean");
 
-   n1 .metadata = null
+   n1 .metadata = null;
 
-   expect (n1 .metadata) .toBe (null)
-   expect (n2 .getValue ()) .not .toBe (null)
-   expect (n2 .getValue () .getParents () .size) .toBe (1)
-   expect (n2 .getNodeTypeName ()) .toBe ("MetadataBoolean")
-})
+   expect (n1 .metadata) .toBe (null);
+   expect (n2 .getValue ()) .not .toBe (null);
+   expect (n2 .getValue () .getParents () .size) .toBe (1);
+   expect (n2 .getNodeTypeName ()) .toBe ("MetadataBoolean");
+});
 
 test ("dispose1", async () =>
 {
@@ -373,152 +373,152 @@ test ("dispose2", async () =>
       s4    = scene .createNode ("MetadataSet"),
       s5    = scene .createNode ("MetadataSet"),
       s6    = scene .createNode ("MetadataSet"),
-      m1    = scene .createNode ("MetadataBoolean")
+      m1    = scene .createNode ("MetadataBoolean");
 
-   expect (scene .rootNodes) .toHaveLength (0)
+   expect (scene .rootNodes) .toHaveLength (0);
 
-   scene .rootNodes .push (s1, s2, s3, null, m1, s4, s5, s6, s2)
-   s1 .metadata = m1
-   s2 .metadata = m1
-   s3 .metadata = m1
-   s4 .metadata = m1
-   s5 .metadata = m1
-   s6 .metadata = m1
+   scene .rootNodes .push (s1, s2, s3, null, m1, s4, s5, s6, s2);
+   s1 .metadata = m1;
+   s2 .metadata = m1;
+   s3 .metadata = m1;
+   s4 .metadata = m1;
+   s5 .metadata = m1;
+   s6 .metadata = m1;
 
-   expect (scene .rootNodes) .toHaveLength (9)
-   expect (scene .rootNodes [0]) .toBe (s1)
-   expect (scene .rootNodes [1]) .toBe (s2)
-   expect (scene .rootNodes [2]) .toBe (s3)
-   expect (scene .rootNodes [3]) .toBe (null)
-   expect (scene .rootNodes [4]) .toBe (m1)
-   expect (scene .rootNodes [5]) .toBe (s4)
-   expect (scene .rootNodes [6]) .toBe (s5)
-   expect (scene .rootNodes [7]) .toBe (s6)
-   expect (scene .rootNodes [8]) .toBe (s2)
-   expect (s1 .metadata) .toBe (m1)
-   expect (s2 .metadata) .toBe (m1)
-   expect (s3 .metadata) .toBe (m1)
-   expect (s4 .metadata) .toBe (m1)
-   expect (s5 .metadata) .toBe (m1)
-   expect (s6 .metadata) .toBe (m1)
+   expect (scene .rootNodes) .toHaveLength (9);
+   expect (scene .rootNodes [0]) .toBe (s1);
+   expect (scene .rootNodes [1]) .toBe (s2);
+   expect (scene .rootNodes [2]) .toBe (s3);
+   expect (scene .rootNodes [3]) .toBe (null);
+   expect (scene .rootNodes [4]) .toBe (m1);
+   expect (scene .rootNodes [5]) .toBe (s4);
+   expect (scene .rootNodes [6]) .toBe (s5);
+   expect (scene .rootNodes [7]) .toBe (s6);
+   expect (scene .rootNodes [8]) .toBe (s2);
+   expect (s1 .metadata) .toBe (m1);
+   expect (s2 .metadata) .toBe (m1);
+   expect (s3 .metadata) .toBe (m1);
+   expect (s4 .metadata) .toBe (m1);
+   expect (s5 .metadata) .toBe (m1);
+   expect (s6 .metadata) .toBe (m1);
 
-   expect (m1 .getValue ()) .not .toBe (null)
-   m1 .dispose ()
-   expect (m1 .getValue ()) .toBe (null)
+   expect (m1 .getValue ()) .not .toBe (null);
+   m1 .dispose ();
+   expect (m1 .getValue ()) .toBe (null);
 
-   expect (scene .rootNodes) .toHaveLength (8)
-   expect (scene .rootNodes [0]) .toBe (s1)
-   expect (scene .rootNodes [1]) .toBe (s2)
-   expect (scene .rootNodes [2]) .toBe (s3)
-   expect (scene .rootNodes [3]) .toBe (null)
-   expect (scene .rootNodes [4]) .toBe (s4)
-   expect (scene .rootNodes [5]) .toBe (s5)
-   expect (scene .rootNodes [6]) .toBe (s6)
-   expect (scene .rootNodes [7]) .toBe (s2)
-   expect (s1 .metadata) .toBe (null)
-   expect (s2 .metadata) .toBe (null)
-   expect (s3 .metadata) .toBe (null)
-   expect (s4 .metadata) .toBe (null)
-   expect (s5 .metadata) .toBe (null)
-   expect (s6 .metadata) .toBe (null)
+   expect (scene .rootNodes) .toHaveLength (8);
+   expect (scene .rootNodes [0]) .toBe (s1);
+   expect (scene .rootNodes [1]) .toBe (s2);
+   expect (scene .rootNodes [2]) .toBe (s3);
+   expect (scene .rootNodes [3]) .toBe (null);
+   expect (scene .rootNodes [4]) .toBe (s4);
+   expect (scene .rootNodes [5]) .toBe (s5);
+   expect (scene .rootNodes [6]) .toBe (s6);
+   expect (scene .rootNodes [7]) .toBe (s2);
+   expect (s1 .metadata) .toBe (null);
+   expect (s2 .metadata) .toBe (null);
+   expect (s3 .metadata) .toBe (null);
+   expect (s4 .metadata) .toBe (null);
+   expect (s5 .metadata) .toBe (null);
+   expect (s6 .metadata) .toBe (null);
 
-   expect (s5 .getValue ()) .not .toBe (null)
-   s5 .dispose ()
-   expect (s5 .getValue ()) .toBe (null)
+   expect (s5 .getValue ()) .not .toBe (null);
+   s5 .dispose ();
+   expect (s5 .getValue ()) .toBe (null);
 
-   expect (scene .rootNodes) .toHaveLength (7)
-   expect (scene .rootNodes [0]) .toBe (s1)
-   expect (scene .rootNodes [1]) .toBe (s2)
-   expect (scene .rootNodes [2]) .toBe (s3)
-   expect (scene .rootNodes [3]) .toBe (null)
-   expect (scene .rootNodes [4]) .toBe (s4)
-   expect (scene .rootNodes [5]) .toBe (s6)
-   expect (scene .rootNodes [6]) .toBe (s2)
+   expect (scene .rootNodes) .toHaveLength (7);
+   expect (scene .rootNodes [0]) .toBe (s1);
+   expect (scene .rootNodes [1]) .toBe (s2);
+   expect (scene .rootNodes [2]) .toBe (s3);
+   expect (scene .rootNodes [3]) .toBe (null);
+   expect (scene .rootNodes [4]) .toBe (s4);
+   expect (scene .rootNodes [5]) .toBe (s6);
+   expect (scene .rootNodes [6]) .toBe (s2);
 
-   expect (s2 .getValue ()) .not .toBe (null)
-   s2 .dispose ()
-   expect (s2 .getValue ()) .toBe (null)
+   expect (s2 .getValue ()) .not .toBe (null);
+   s2 .dispose ();
+   expect (s2 .getValue ()) .toBe (null);
 
-   expect (scene .rootNodes) .toHaveLength (5)
-   expect (scene .rootNodes [0]) .toBe (s1)
-   expect (scene .rootNodes [1]) .toBe (s3)
-   expect (scene .rootNodes [2]) .toBe (null)
-   expect (scene .rootNodes [3]) .toBe (s4)
-   expect (scene .rootNodes [4]) .toBe (s6)
+   expect (scene .rootNodes) .toHaveLength (5);
+   expect (scene .rootNodes [0]) .toBe (s1);
+   expect (scene .rootNodes [1]) .toBe (s3);
+   expect (scene .rootNodes [2]) .toBe (null);
+   expect (scene .rootNodes [3]) .toBe (s4);
+   expect (scene .rootNodes [4]) .toBe (s6);
 
-   expect (s1 .getValue ()) .not .toBe (null)
-   s1 .dispose ()
-   expect (s1 .getValue ()) .toBe (null)
+   expect (s1 .getValue ()) .not .toBe (null);
+   s1 .dispose ();
+   expect (s1 .getValue ()) .toBe (null);
 
-   expect (scene .rootNodes) .toHaveLength (4)
-   expect (scene .rootNodes [0]) .toBe (s3)
-   expect (scene .rootNodes [1]) .toBe (null)
-   expect (scene .rootNodes [2]) .toBe (s4)
-   expect (scene .rootNodes [3]) .toBe (s6)
+   expect (scene .rootNodes) .toHaveLength (4);
+   expect (scene .rootNodes [0]) .toBe (s3);
+   expect (scene .rootNodes [1]) .toBe (null);
+   expect (scene .rootNodes [2]) .toBe (s4);
+   expect (scene .rootNodes [3]) .toBe (s6);
 
-   expect (s4 .getValue ()) .not .toBe (null)
-   s4 .dispose ()
-   expect (s4 .getValue ()) .toBe (null)
+   expect (s4 .getValue ()) .not .toBe (null);
+   s4 .dispose ();
+   expect (s4 .getValue ()) .toBe (null);
 
-   expect (scene .rootNodes) .toHaveLength (3)
-   expect (scene .rootNodes [0]) .toBe (s3)
-   expect (scene .rootNodes [1]) .toBe (null)
-   expect (scene .rootNodes [2]) .toBe (s6)
+   expect (scene .rootNodes) .toHaveLength (3);
+   expect (scene .rootNodes [0]) .toBe (s3);
+   expect (scene .rootNodes [1]) .toBe (null);
+   expect (scene .rootNodes [2]) .toBe (s6);
 
-   expect (s3 .getValue ()) .not .toBe (null)
-   s3 .dispose ()
-   expect (s3 .getValue ()) .toBe (null)
+   expect (s3 .getValue ()) .not .toBe (null);
+   s3 .dispose ();
+   expect (s3 .getValue ()) .toBe (null);
 
-   expect (scene .rootNodes) .toHaveLength (2)
-   expect (scene .rootNodes [0]) .toBe (null)
-   expect (scene .rootNodes [1]) .toBe (s6)
+   expect (scene .rootNodes) .toHaveLength (2);
+   expect (scene .rootNodes [0]) .toBe (null);
+   expect (scene .rootNodes [1]) .toBe (s6);
 
-   expect (s6 .getValue ()) .not .toBe (null)
-   s6 .dispose ()
-   expect (s6 .getValue ()) .toBe (null)
+   expect (s6 .getValue ()) .not .toBe (null);
+   s6 .dispose ();
+   expect (s6 .getValue ()) .toBe (null);
 
-   expect (scene .rootNodes) .toHaveLength (1)
-   expect (scene .rootNodes [0]) .toBe (null)
-})
+   expect (scene .rootNodes) .toHaveLength (1);
+   expect (scene .rootNodes [0]) .toBe (null);
+});
 
 test ("UserData", async () =>
 {
    const
       scene = await Browser .createScene (),
-      n     = scene .createNode ("MetadataSet")
+      n     = scene .createNode ("MetadataSet");
 
-   expect (n .getUserData ("key")) .toBe (undefined)
+   expect (n .getUserData ("key")) .toBe (undefined);
 
-   n .setUserData ("key", 123)
-   expect (n .getUserData ("key")) .toBe (123)
+   n .setUserData ("key", 123);
+   expect (n .getUserData ("key")) .toBe (123);
 
-   n .removeUserData ("key")
+   n .removeUserData ("key");
 
-   expect (n .getUserData ("key")) .toBe (undefined)
-})
+   expect (n .getUserData ("key")) .toBe (undefined);
+});
 
 test ("NodeUserData", async () =>
 {
    const
       scene = await Browser .createScene (),
-      n     = scene .createNode ("MetadataSet")
+      n     = scene .createNode ("MetadataSet");
 
-   expect (n .getNodeUserData ("key")) .toBe (undefined)
+   expect (n .getNodeUserData ("key")) .toBe (undefined);
 
-   n .setNodeUserData ("key", 123)
-   expect (n .getNodeUserData ("key")) .toBe (123)
-   expect (n .getUserData ("key")) .toBe (undefined)
+   n .setNodeUserData ("key", 123);
+   expect (n .getNodeUserData ("key")) .toBe (123);
+   expect (n .getUserData ("key")) .toBe (undefined);
 
-   n .removeNodeUserData ("key")
+   n .removeNodeUserData ("key");
 
-   expect (n .getNodeUserData ("key")) .toBe (undefined)
+   expect (n .getNodeUserData ("key")) .toBe (undefined);
 
-   n .dispose ()
+   n .dispose ();
 
-   expect (() => n .getNodeUserData ("key")) .toThrow (Error)
-   expect (() => n .setNodeUserData ("key", 123)) .toThrow (Error)
-   expect (() => n .removeNodeUserData ("key")) .toThrow (Error)
-})
+   expect (() => n .getNodeUserData ("key")) .toThrow (Error);
+   expect (() => n .setNodeUserData ("key", 123)) .toThrow (Error);
+   expect (() => n .removeNodeUserData ("key")) .toThrow (Error);
+});
 
 test ("add/removeFieldCallback", () => new Promise ((resolve, reject) =>
 {

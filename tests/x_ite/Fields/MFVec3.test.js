@@ -84,7 +84,7 @@ for (const [typeName, MFVec3, SFVec3] of arrays)
 
    test ("assign", () =>
    {
-      const field = new MFVec3 ()
+      const field = new MFVec3 ();
 
       field .assign (new MFVec3 (new SFVec3 (1, 2, 3), new SFVec3 (4, 5, 6)));
 
@@ -100,7 +100,7 @@ for (const [typeName, MFVec3, SFVec3] of arrays)
 
       expect (field) .toHaveLength (0);
       expect (field .equals (new MFVec3 ())) .toBe (true);
-   })
+   });
 
    test ("shrinkToFit", () =>
    {
@@ -112,428 +112,428 @@ for (const [typeName, MFVec3, SFVec3] of arrays)
 
    test ("common", () =>
    {
-      const field = new MFVec3 ()
+      const field = new MFVec3 ();
 
-      expect (field .getType ()) .toBe (X3D .X3DConstants [typeName])
-      expect (field .getTypeName ()) .toBe (typeName)
-      expect (Object .prototype .toString .call (field)) .toBe (`[object ${typeName}]`)
-   })
+      expect (field .getType ()) .toBe (X3D .X3DConstants [typeName]);
+      expect (field .getTypeName ()) .toBe (typeName);
+      expect (Object .prototype .toString .call (field)) .toBe (`[object ${typeName}]`);
+   });
 
    test ("copy", () =>
    {
       const
          a = new MFVec3 (new SFVec3 (1,2,3),new SFVec3 (4,5,6),new SFVec3 (7,8,9)),
-         b = a .copy ()
+         b = a .copy ();
 
-      expect (b) .toBeInstanceOf (MFVec3)
-      expect (b) .toHaveLength (a .length)
-      expect (b .equals (a)) .toBe (true)
-      expect (b .getValue ()) .not .toBe (a .getValue ())
-   })
+      expect (b) .toBeInstanceOf (MFVec3);
+      expect (b) .toHaveLength (a .length);
+      expect (b .equals (a)) .toBe (true);
+      expect (b .getValue ()) .not .toBe (a .getValue ());
+   });
 
    test ("equals", () =>
    {
       const
          a = new MFVec3 (),
          b = new MFVec3 (new SFVec3 (1,2,3),new SFVec3 (4,5,6)),
-         c = new MFVec3 (new SFVec3 (1,2,3),new SFVec3 (4,5,6))
+         c = new MFVec3 (new SFVec3 (1,2,3),new SFVec3 (4,5,6));
 
-      expect (a .equals (a)) .toBe (true)
-      expect (b .equals (b)) .toBe (true)
-      expect (a .equals (b)) .toBe (false)
-      expect (b .equals (c)) .toBe (true)
-   })
+      expect (a .equals (a)) .toBe (true);
+      expect (b .equals (b)) .toBe (true);
+      expect (a .equals (b)) .toBe (false);
+      expect (b .equals (c)) .toBe (true);
+   });
 
    test ("isDefaultValue", () =>
    {
       const
          a = new MFVec3 (),
-         b = new MFVec3 (new SFVec3 ())
+         b = new MFVec3 (new SFVec3 ());
 
-      expect (a .isDefaultValue ()) .toBe (true)
-      expect (b .isDefaultValue ()) .toBe (false)
-   })
+      expect (a .isDefaultValue ()) .toBe (true);
+      expect (b .isDefaultValue ()) .toBe (false);
+   });
 
    test ("constructor", () =>
    {
-      const a = new MFVec3 ()
+      const a = new MFVec3 ();
 
-      expect (a) .toHaveLength (0)
-      expect (a [0]) .toBe (undefined)
-      expect (a) .toHaveLength (0)
+      expect (a) .toHaveLength (0);
+      expect (a [0]) .toBe (undefined);
+      expect (a) .toHaveLength (0);
 
-      const b = new MFVec3 (new SFVec3 (1,2,3),new SFVec3 (2,3,4),new SFVec3 (3,4,5),new SFVec3 (4,5,6),new SFVec3 (5,6,7))
-      expect (b) .toHaveLength (5)
-      expect (b [0] .equals (new SFVec3 (1,2,3))) .toBe (true)
-      expect (b [1] .equals (new SFVec3 (2,3,4))) .toBe (true)
-      expect (b [2] .equals (new SFVec3 (3,4,5))) .toBe (true)
-      expect (b [3] .equals (new SFVec3 (4,5,6))) .toBe (true)
-      expect (b [4] .equals (new SFVec3 (5,6,7))) .toBe (true)
+      const b = new MFVec3 (new SFVec3 (1,2,3),new SFVec3 (2,3,4),new SFVec3 (3,4,5),new SFVec3 (4,5,6),new SFVec3 (5,6,7));
+      expect (b) .toHaveLength (5);
+      expect (b [0] .equals (new SFVec3 (1,2,3))) .toBe (true);
+      expect (b [1] .equals (new SFVec3 (2,3,4))) .toBe (true);
+      expect (b [2] .equals (new SFVec3 (3,4,5))) .toBe (true);
+      expect (b [3] .equals (new SFVec3 (4,5,6))) .toBe (true);
+      expect (b [4] .equals (new SFVec3 (5,6,7))) .toBe (true);
 
-      const c = [... b]
-      expect (c) .toHaveLength (5)
-      expect (c [0] .equals (new SFVec3 (1,2,3))) .toBe (true)
-      expect (c [1] .equals (new SFVec3 (2,3,4))) .toBe (true)
-      expect (c [2] .equals (new SFVec3 (3,4,5))) .toBe (true)
-      expect (c [3] .equals (new SFVec3 (4,5,6))) .toBe (true)
-      expect (c [4] .equals (new SFVec3 (5,6,7))) .toBe (true)
+      const c = [... b];
+      expect (c) .toHaveLength (5);
+      expect (c [0] .equals (new SFVec3 (1,2,3))) .toBe (true);
+      expect (c [1] .equals (new SFVec3 (2,3,4))) .toBe (true);
+      expect (c [2] .equals (new SFVec3 (3,4,5))) .toBe (true);
+      expect (c [3] .equals (new SFVec3 (4,5,6))) .toBe (true);
+      expect (c [4] .equals (new SFVec3 (5,6,7))) .toBe (true);
       for (let i = 0; i < 5; ++ i)
-         expect (c [i]) .toBe (b [i])
+         expect (c [i]) .toBe (b [i]);
 
-      const d = new MFVec3 (new SFVec3 (1,2,3))
-      expect (d) .toHaveLength (1)
-      expect (d [0] .equals (new SFVec3 (1,2,3))) .toBe (true)
-      d [0] .x = 2
-      d [0] .y = 3
-      d [0] .z = 4
+      const d = new MFVec3 (new SFVec3 (1,2,3));
+      expect (d) .toHaveLength (1);
+      expect (d [0] .equals (new SFVec3 (1,2,3))) .toBe (true);
+      d [0] .x = 2;
+      d [0] .y = 3;
+      d [0] .z = 4;
       d .length = 2;
-      d [1] .x = 3
-      d [1] .y = 4
-      d [1] .z = 5
-      expect (d) .toHaveLength (2)
-      expect (d [0] .equals (new SFVec3 (2,3,4))) .toBe (true)
-      expect (d [1] .equals (new SFVec3 (3,4,5))) .toBe (true)
+      d [1] .x = 3;
+      d [1] .y = 4;
+      d [1] .z = 5;
+      expect (d) .toHaveLength (2);
+      expect (d [0] .equals (new SFVec3 (2,3,4))) .toBe (true);
+      expect (d [1] .equals (new SFVec3 (3,4,5))) .toBe (true);
 
       expect ((new MFVec3 ()) [0]) .toBe (undefined);
-   })
+   });
 
    test ("basic-functions", () =>
    {
-      const a = new MFVec3 (new SFVec3 (1,2,3))
+      const a = new MFVec3 (new SFVec3 (1,2,3));
 
-      expect (a [0] .x) .toBe (1)
-      expect (a [0] .y) .toBe (2)
-      expect (a [0] .z) .toBe (3)
-      a [1] = new SFVec3 (3,4,5)
-      expect (a [1] .x) .toBe (3)
-      expect (a [1] .y) .toBe (4)
-      expect (a [1] .z) .toBe (5)
-      a .push (new SFVec3 (4,5,6))
-      expect (a .at (-1) .x) .toBe (4)
-      expect (a .at (-1) .y) .toBe (5)
-      expect (a .at (-1) .z) .toBe (6)
-      a .unshift (new SFVec3 (5,6,7))
-      expect (a [0] .x) .toBe (5)
-      expect (a [0] .y) .toBe (6)
-      expect (a [0] .z) .toBe (7)
-      expect (a) .toHaveLength (4)
-      expect (a .splice (1, 1, new SFVec3 (6,7,8))) .toHaveLength (1)
-      expect (a [1] .x) .toBe (6)
-      expect (a [1] .y) .toBe (7)
-      expect (a [1] .z) .toBe (8)
-      expect (a .splice (1, 1, new SFVec3 (7,8,9))) .toHaveLength (1)
-      expect (a [1] .x) .toBe (7)
-      expect (a [1] .y) .toBe (8)
-      expect (a [1] .z) .toBe (9)
-      expect (a .splice (1, 0, new SFVec3 (8,9,0))) .toHaveLength (0)
-      expect (a) .toHaveLength (5)
-      expect (a [0] .equals (new SFVec3 (5,6,7))) .toBe (true)
-      expect (a [1] .equals (new SFVec3 (8,9,0))) .toBe (true)
-      expect (a [2] .equals (new SFVec3 (7,8,9))) .toBe (true)
-      expect (a [3] .equals (new SFVec3 (3,4,5))) .toBe (true)
-      expect (a [4] .equals (new SFVec3 (4,5,6))) .toBe (true)
+      expect (a [0] .x) .toBe (1);
+      expect (a [0] .y) .toBe (2);
+      expect (a [0] .z) .toBe (3);
+      a [1] = new SFVec3 (3,4,5);
+      expect (a [1] .x) .toBe (3);
+      expect (a [1] .y) .toBe (4);
+      expect (a [1] .z) .toBe (5);
+      a .push (new SFVec3 (4,5,6));
+      expect (a .at (-1) .x) .toBe (4);
+      expect (a .at (-1) .y) .toBe (5);
+      expect (a .at (-1) .z) .toBe (6);
+      a .unshift (new SFVec3 (5,6,7));
+      expect (a [0] .x) .toBe (5);
+      expect (a [0] .y) .toBe (6);
+      expect (a [0] .z) .toBe (7);
+      expect (a) .toHaveLength (4);
+      expect (a .splice (1, 1, new SFVec3 (6,7,8))) .toHaveLength (1);
+      expect (a [1] .x) .toBe (6);
+      expect (a [1] .y) .toBe (7);
+      expect (a [1] .z) .toBe (8);
+      expect (a .splice (1, 1, new SFVec3 (7,8,9))) .toHaveLength (1);
+      expect (a [1] .x) .toBe (7);
+      expect (a [1] .y) .toBe (8);
+      expect (a [1] .z) .toBe (9);
+      expect (a .splice (1, 0, new SFVec3 (8,9,0))) .toHaveLength (0);
+      expect (a) .toHaveLength (5);
+      expect (a [0] .equals (new SFVec3 (5,6,7))) .toBe (true);
+      expect (a [1] .equals (new SFVec3 (8,9,0))) .toBe (true);
+      expect (a [2] .equals (new SFVec3 (7,8,9))) .toBe (true);
+      expect (a [3] .equals (new SFVec3 (3,4,5))) .toBe (true);
+      expect (a [4] .equals (new SFVec3 (4,5,6))) .toBe (true);
 
-      expect (a .fill (new SFVec3 (5,6,7))) .toBe (a)
-      expect (a) .toHaveLength (5)
-      expect (a [0] .equals (new SFVec3 (5,6,7))) .toBe (true)
-      expect (a [1] .equals (new SFVec3 (5,6,7))) .toBe (true)
-      expect (a [2] .equals (new SFVec3 (5,6,7))) .toBe (true)
-      expect (a [3] .equals (new SFVec3 (5,6,7))) .toBe (true)
-      expect (a [4] .equals (new SFVec3 (5,6,7))) .toBe (true)
+      expect (a .fill (new SFVec3 (5,6,7))) .toBe (a);
+      expect (a) .toHaveLength (5);
+      expect (a [0] .equals (new SFVec3 (5,6,7))) .toBe (true);
+      expect (a [1] .equals (new SFVec3 (5,6,7))) .toBe (true);
+      expect (a [2] .equals (new SFVec3 (5,6,7))) .toBe (true);
+      expect (a [3] .equals (new SFVec3 (5,6,7))) .toBe (true);
+      expect (a [4] .equals (new SFVec3 (5,6,7))) .toBe (true);
 
-      expect (a .includes (new SFVec3 (9,9,9))) .toBe (false)
-      expect (a .indexOf (new SFVec3 (9,9,9))) .toBe (-1)
-      expect (a .lastIndexOf (new SFVec3 (9,9,9))) .toBe (-1)
+      expect (a .includes (new SFVec3 (9,9,9))) .toBe (false);
+      expect (a .indexOf (new SFVec3 (9,9,9))) .toBe (-1);
+      expect (a .lastIndexOf (new SFVec3 (9,9,9))) .toBe (-1);
 
-      expect (a .includes (a [0])) .toBe (true)
-      expect (a .indexOf (a [0])) .toBe (0)
-      expect (a .lastIndexOf (a .at (-1))) .toBe (a .length - 1)
+      expect (a .includes (a [0])) .toBe (true);
+      expect (a .indexOf (a [0])) .toBe (0);
+      expect (a .lastIndexOf (a .at (-1))) .toBe (a .length - 1);
 
-      a [1] = new SFVec3 (4,5,6)
-      a [3] = new SFVec3 (4,5,6)
+      a [1] = new SFVec3 (4,5,6);
+      a [3] = new SFVec3 (4,5,6);
 
-      expect (a .includes (a [1])) .toBe (true)
-      expect (a .indexOf (a [1])) .toBe (1)
-      expect (a .lastIndexOf (a [3])) .toBe (3)
+      expect (a .includes (a [1])) .toBe (true);
+      expect (a .indexOf (a [1])) .toBe (1);
+      expect (a .lastIndexOf (a [3])) .toBe (3);
 
-      expect (a .splice (0, 5, new SFVec3 (1,2,3),new SFVec3 (2,3,4),new SFVec3 (3,4,5),new SFVec3 (4,5,6),new SFVec3 (5,6,7))) .toHaveLength (5)
-      expect (a) .toHaveLength (5)
-      expect (a [0] .equals (new SFVec3 (1,2,3))) .toBe (true)
-      expect (a [1] .equals (new SFVec3 (2,3,4))) .toBe (true)
-      expect (a [2] .equals (new SFVec3 (3,4,5))) .toBe (true)
-      expect (a [3] .equals (new SFVec3 (4,5,6))) .toBe (true)
-      expect (a [4] .equals (new SFVec3 (5,6,7))) .toBe (true)
-   })
+      expect (a .splice (0, 5, new SFVec3 (1,2,3),new SFVec3 (2,3,4),new SFVec3 (3,4,5),new SFVec3 (4,5,6),new SFVec3 (5,6,7))) .toHaveLength (5);
+      expect (a) .toHaveLength (5);
+      expect (a [0] .equals (new SFVec3 (1,2,3))) .toBe (true);
+      expect (a [1] .equals (new SFVec3 (2,3,4))) .toBe (true);
+      expect (a [2] .equals (new SFVec3 (3,4,5))) .toBe (true);
+      expect (a [3] .equals (new SFVec3 (4,5,6))) .toBe (true);
+      expect (a [4] .equals (new SFVec3 (5,6,7))) .toBe (true);
+   });
 
    test ("at", () =>
    {
       const
          N = 10,
-         a = new MFVec3 ()
+         a = new MFVec3 ();
 
       for (let i = 0, n = 0; i < N; ++ i)
-         expect (a .push (new SFVec3 (++n,++n,++n))) .toBe (i + 1)
+         expect (a .push (new SFVec3 (++n,++n,++n))) .toBe (i + 1);
 
       for (let i = 0, n = 0; i < N; ++ i)
       {
-         const v = new SFVec3 (++n,++n,++n)
-         expect (a .at (i)) .toBe (a [i])
-         expect (a .at (i) .equals (v)) .toBe (true)
-         expect (a .at (i - N) .equals (a [i])) .toBe (true)
-         expect (a .at (i - N) .equals (v)) .toBe (true)
+         const v = new SFVec3 (++n,++n,++n);
+         expect (a .at (i)) .toBe (a [i]);
+         expect (a .at (i) .equals (v)) .toBe (true);
+         expect (a .at (i - N) .equals (a [i])) .toBe (true);
+         expect (a .at (i - N) .equals (v)) .toBe (true);
       }
-   })
+   });
 
    test ("entries", () =>
    {
       const
          N = 10,
-         a = new MFVec3 ()
+         a = new MFVec3 ();
 
       for (let i = 0, n = 0; i < N; ++ i)
-         expect (a .push (new SFVec3 (++n,++n,++n))) .toBe (i + 1)
+         expect (a .push (new SFVec3 (++n,++n,++n))) .toBe (i + 1);
 
-      expect ([... a .entries ()]) .toHaveLength (N)
+      expect ([... a .entries ()]) .toHaveLength (N);
 
       for (const [i, value] of a .entries ())
-         expect (value) .toBe (a [i])
-   })
+         expect (value) .toBe (a [i]);
+   });
 
    test ("fill", () =>
    {
-      const a = new MFVec3 ()
+      const a = new MFVec3 ();
 
-      a .length = 6
+      a .length = 6;
 
-      expect (a) .toHaveLength (6)
-      expect (a [0] .equals (new SFVec3 (0,0,0))) .toBe (true)
-      expect (a [1] .equals (new SFVec3 (0,0,0))) .toBe (true)
-      expect (a [2] .equals (new SFVec3 (0,0,0))) .toBe (true)
-      expect (a [3] .equals (new SFVec3 (0,0,0))) .toBe (true)
-      expect (a [4] .equals (new SFVec3 (0,0,0))) .toBe (true)
-      expect (a [5] .equals (new SFVec3 (0,0,0))) .toBe (true)
+      expect (a) .toHaveLength (6);
+      expect (a [0] .equals (new SFVec3 (0,0,0))) .toBe (true);
+      expect (a [1] .equals (new SFVec3 (0,0,0))) .toBe (true);
+      expect (a [2] .equals (new SFVec3 (0,0,0))) .toBe (true);
+      expect (a [3] .equals (new SFVec3 (0,0,0))) .toBe (true);
+      expect (a [4] .equals (new SFVec3 (0,0,0))) .toBe (true);
+      expect (a [5] .equals (new SFVec3 (0,0,0))) .toBe (true);
 
-      expect (a .fill (new SFVec3 (1,2,3))) .toBe (a)
+      expect (a .fill (new SFVec3 (1,2,3))) .toBe (a);
 
-      expect (a) .toHaveLength (6)
-      expect (a [0] .equals (new SFVec3 (1,2,3))) .toBe (true)
-      expect (a [1] .equals (new SFVec3 (1,2,3))) .toBe (true)
-      expect (a [2] .equals (new SFVec3 (1,2,3))) .toBe (true)
-      expect (a [3] .equals (new SFVec3 (1,2,3))) .toBe (true)
-      expect (a [4] .equals (new SFVec3 (1,2,3))) .toBe (true)
-      expect (a [5] .equals (new SFVec3 (1,2,3))) .toBe (true)
+      expect (a) .toHaveLength (6);
+      expect (a [0] .equals (new SFVec3 (1,2,3))) .toBe (true);
+      expect (a [1] .equals (new SFVec3 (1,2,3))) .toBe (true);
+      expect (a [2] .equals (new SFVec3 (1,2,3))) .toBe (true);
+      expect (a [3] .equals (new SFVec3 (1,2,3))) .toBe (true);
+      expect (a [4] .equals (new SFVec3 (1,2,3))) .toBe (true);
+      expect (a [5] .equals (new SFVec3 (1,2,3))) .toBe (true);
 
-      expect (a .fill (new SFVec3 (4,5,6))) .toBe (a)
+      expect (a .fill (new SFVec3 (4,5,6))) .toBe (a);
 
-      expect (a) .toHaveLength (6)
-      expect (a [0] .equals (new SFVec3 (4,5,6))) .toBe (true)
-      expect (a [1] .equals (new SFVec3 (4,5,6))) .toBe (true)
-      expect (a [2] .equals (new SFVec3 (4,5,6))) .toBe (true)
-      expect (a [3] .equals (new SFVec3 (4,5,6))) .toBe (true)
-      expect (a [4] .equals (new SFVec3 (4,5,6))) .toBe (true)
-      expect (a [5] .equals (new SFVec3 (4,5,6))) .toBe (true)
-   })
+      expect (a) .toHaveLength (6);
+      expect (a [0] .equals (new SFVec3 (4,5,6))) .toBe (true);
+      expect (a [1] .equals (new SFVec3 (4,5,6))) .toBe (true);
+      expect (a [2] .equals (new SFVec3 (4,5,6))) .toBe (true);
+      expect (a [3] .equals (new SFVec3 (4,5,6))) .toBe (true);
+      expect (a [4] .equals (new SFVec3 (4,5,6))) .toBe (true);
+      expect (a [5] .equals (new SFVec3 (4,5,6))) .toBe (true);
+   });
 
    test ("filter", () =>
    {
       const
          N = 10,
-         a = new MFVec3 ()
+         a = new MFVec3 ();
 
       for (let i = 0, n = 0; i < N; ++ i)
-         expect (a .push (new SFVec3 (++n,++n,++n))) .toBe (i + 1)
+         expect (a .push (new SFVec3 (++n,++n,++n))) .toBe (i + 1);
 
-      const b = a .filter (v => v.x % 2)
+      const b = a .filter (v => v.x % 2);
 
-      expect (b) .toBeInstanceOf (MFVec3)
-      expect (b) .toHaveLength (N / 2)
+      expect (b) .toBeInstanceOf (MFVec3);
+      expect (b) .toHaveLength (N / 2);
 
       for (let i = 0; i < N / 2; ++ i)
       {
-         expect (b [i]) .not .toBe (a [i * 2])
-         expect (b [i] .equals (a [i * 2])) .toBe (true)
+         expect (b [i]) .not .toBe (a [i * 2]);
+         expect (b [i] .equals (a [i * 2])) .toBe (true);
       }
-   })
+   });
 
    test ("find", () =>
    {
       const
          N = 10,
-         a = new MFVec3 ()
+         a = new MFVec3 ();
 
       for (let i = 0, n = 0; i < N; ++ i)
-         expect (a .push (new SFVec3 (++n,++n,++n))) .toBe (i + 1)
+         expect (a .push (new SFVec3 (++n,++n,++n))) .toBe (i + 1);
 
       const
          b = a .find (v => v .equals (new SFVec3 (1,2,3))),
-         c = a .find (v => v .equals (new SFVec3 ()))
+         c = a .find (v => v .equals (new SFVec3 ()));
 
-      expect (b) .toBe (a [0])
-      expect (c) .toBe (undefined)
-   })
+      expect (b) .toBe (a [0]);
+      expect (c) .toBe (undefined);
+   });
 
    test ("keys", () =>
    {
       const
          N = 10,
-         a = new MFVec3 ()
+         a = new MFVec3 ();
 
-      a .length = N
-      expect (a .keys ()) .toEqual (new Array (N) .keys ())
-      a .length = N/2
-      expect (a .keys ()) .toEqual (new Array (N/2) .keys ())
-   })
+      a .length = N;
+      expect (a .keys ()) .toEqual (new Array (N) .keys ());
+      a .length = N/2;
+      expect (a .keys ()) .toEqual (new Array (N/2) .keys ());
+   });
 
    test ("map", () =>
    {
       const
          N = 10,
-         a = new MFVec3 ()
+         a = new MFVec3 ();
 
       for (let i = 0, n = 0; i < N; ++ i)
-         expect (a .push (new SFVec3 (++n,++n,++n))) .toBe (i + 1)
+         expect (a .push (new SFVec3 (++n,++n,++n))) .toBe (i + 1);
 
-      expect (a) .toHaveLength (N)
+      expect (a) .toHaveLength (N);
 
-      const b = a .map (v => v)
+      const b = a .map (v => v);
 
-      expect (b) .toBeInstanceOf (MFVec3)
+      expect (b) .toBeInstanceOf (MFVec3);
 
       for (let i = 0; i < N; ++ i)
       {
-         expect (b [i]) .not .toBe (a [i])
-         expect (b [i] .equals (a [i])) .toBe (true)
+         expect (b [i]) .not .toBe (a [i]);
+         expect (b [i] .equals (a [i])) .toBe (true);
       }
-   })
+   });
 
    test ("pop", () =>
    {
       const
          N = 10,
-         a = new MFVec3 ()
+         a = new MFVec3 ();
 
-      expect (a) .toHaveLength (0)
+      expect (a) .toHaveLength (0);
 
       for (let i = 0, n = 0; i < N; ++ i)
       {
-         const v = new SFVec3 (++n,++n,++n)
-         a .push (v)
-         expect (a [i] .equals (v)) .toBe (true)
-         expect (a) .toHaveLength (i + 1)
+         const v = new SFVec3 (++n,++n,++n);
+         a .push (v);
+         expect (a [i] .equals (v)) .toBe (true);
+         expect (a) .toHaveLength (i + 1);
       }
 
       for (let i = 0, n = 0; i < N; ++ i)
       {
-         const v = new SFVec3 (++n,++n,++n)
-         expect (a [i] .equals (v)) .toBe (true)
+         const v = new SFVec3 (++n,++n,++n);
+         expect (a [i] .equals (v)) .toBe (true);
       }
 
-      const b = a .slice ()
+      const b = a .slice ();
 
       for (let j = 0; j < N; ++ j)
       {
-         expect (a .pop () .equals (b .pop ())) .toBe (true)
-         expect (a) .toHaveLength (N - j - 1)
+         expect (a .pop () .equals (b .pop ())) .toBe (true);
+         expect (a) .toHaveLength (N - j - 1);
 
          for (let i = 0, n = 0; i < a .length; ++ i)
          {
-            const v = new SFVec3 (++n,++n,++n)
-            expect (a [i] .equals (v)) .toBe (true)
+            const v = new SFVec3 (++n,++n,++n);
+            expect (a [i] .equals (v)) .toBe (true);
          }
       }
-   })
+   });
 
    test ("push", () =>
    {
       const
          N = 1_000,
-         a = new MFVec3 ()
+         a = new MFVec3 ();
 
-      expect (a) .toHaveLength (0)
+      expect (a) .toHaveLength (0);
 
       for (let i = 0, n = 0; i < N; ++ i)
       {
-         const v = new SFVec3 (++n,++n,++n)
-         expect (a .push (v)) .toBe (i + 1)
-         expect (a [i] .equals (v)) .toBe (true)
-         expect (a) .toHaveLength (i + 1)
+         const v = new SFVec3 (++n,++n,++n);
+         expect (a .push (v)) .toBe (i + 1);
+         expect (a [i] .equals (v)) .toBe (true);
+         expect (a) .toHaveLength (i + 1);
       }
 
       for (let i = 0, n = 0; i < N; ++ i)
       {
-         const v = new SFVec3 (++n,++n,++n)
-         expect (a [i] .equals (v)) .toBe (true)
+         const v = new SFVec3 (++n,++n,++n);
+         expect (a [i] .equals (v)) .toBe (true);
       }
-   })
+   });
 
    test ("shift", () =>
    {
       const
          N = 10,
-         a = new MFVec3 ()
+         a = new MFVec3 ();
 
       for (let i = 0, n = 0; i < N; ++ i)
       {
-         const v = new SFVec3 (++n,++n,++n)
-         a .push (v)
-         expect (a [i] .equals (v)) .toBe (true)
-         expect (a) .toHaveLength (i + 1)
+         const v = new SFVec3 (++n,++n,++n);
+         a .push (v);
+         expect (a [i] .equals (v)) .toBe (true);
+         expect (a) .toHaveLength (i + 1);
       }
 
       for (let i = 0, n = 0; i < N; ++ i)
       {
-         const v = new SFVec3 (++n,++n,++n)
-         expect (a [i] .equals (v)) .toBe (true)
+         const v = new SFVec3 (++n,++n,++n);
+         expect (a [i] .equals (v)) .toBe (true);
       }
 
-      const b = a .slice ()
+      const b = a .slice ();
 
       for (let j = 0; j < N; ++ j)
       {
-         expect (a .shift () .equals (b .shift ())) .toBe (true)
-         expect (a) .toHaveLength (N - j - 1)
+         expect (a .shift () .equals (b .shift ())) .toBe (true);
+         expect (a) .toHaveLength (N - j - 1);
 
          for (let i = 0, n = j * comp + comp; i < a .length; ++ i)
          {
-            const v = new SFVec3 (++n,++n,++n)
-            expect (a [i] .equals (v)) .toBe (true)
+            const v = new SFVec3 (++n,++n,++n);
+            expect (a [i] .equals (v)) .toBe (true);
          }
       }
-   })
+   });
 
    test ("slice", () =>
    {
       const
          N = 10,
-         a = new MFVec3 ()
+         a = new MFVec3 ();
 
       for (let i = 0, n = 0; i < N; ++ i)
-         expect (a .push (new SFVec3 (++n,++n,++n))) .toBe (i + 1)
+         expect (a .push (new SFVec3 (++n,++n,++n))) .toBe (i + 1);
 
-      expect (a) .toHaveLength (N)
+      expect (a) .toHaveLength (N);
 
-      const b = a .slice ()
+      const b = a .slice ();
 
-      expect (b) .toHaveLength (N)
-      expect (b) .toBeInstanceOf (MFVec3)
+      expect (b) .toHaveLength (N);
+      expect (b) .toBeInstanceOf (MFVec3);
 
       for (let i = 0; i < N; ++ i)
       {
-         expect (b [i]) .not .toBe (a [i])
-         expect (b [i] .equals (a [i])) .toBe (true)
+         expect (b [i]) .not .toBe (a [i]);
+         expect (b [i] .equals (a [i])) .toBe (true);
       }
 
-      const c = a .slice (1, N - 1)
+      const c = a .slice (1, N - 1);
 
-      expect (c) .toHaveLength (N - 2)
-      expect (c) .toBeInstanceOf (MFVec3)
+      expect (c) .toHaveLength (N - 2);
+      expect (c) .toBeInstanceOf (MFVec3);
 
       for (let i = 0, j = 1; i < N - 2; ++ i, ++ j)
       {
-         expect (c [i]) .not .toBe (a [j])
-         expect (c [i] .equals (a [j])) .toBe (true)
+         expect (c [i]) .not .toBe (a [j]);
+         expect (c [i] .equals (a [j])) .toBe (true);
       }
-   })
+   });
 
    test ("splice", () =>
    {
@@ -548,7 +548,7 @@ for (const [typeName, MFVec3, SFVec3] of arrays)
          v0 = a [0] .copy (),
          v1 = a .at (-1) .copy ();
 
-      expect (a) .toHaveLength (N)
+      expect (a) .toHaveLength (N);
 
       const b = a .splice (1,N-2);
 
@@ -608,80 +608,80 @@ for (const [typeName, MFVec3, SFVec3] of arrays)
                               new SFVec3 (3,4,5),
                               new SFVec3 (4,5,6),
                               new SFVec3 (5,6,7),
-                              new SFVec3 (5,6,8))
+                              new SFVec3 (5,6,8));
 
-      expect (a) .toHaveLength (6)
-      expect (a [0] .equals (new SFVec3 (1,2,3))) .toBe (true)
-      expect (a [1] .equals (new SFVec3 (2,3,4))) .toBe (true)
-      expect (a [2] .equals (new SFVec3 (3,4,5))) .toBe (true)
-      expect (a [3] .equals (new SFVec3 (4,5,6))) .toBe (true)
-      expect (a [4] .equals (new SFVec3 (5,6,7))) .toBe (true)
-      expect (a [5] .equals (new SFVec3 (5,6,8))) .toBe (true)
+      expect (a) .toHaveLength (6);
+      expect (a [0] .equals (new SFVec3 (1,2,3))) .toBe (true);
+      expect (a [1] .equals (new SFVec3 (2,3,4))) .toBe (true);
+      expect (a [2] .equals (new SFVec3 (3,4,5))) .toBe (true);
+      expect (a [3] .equals (new SFVec3 (4,5,6))) .toBe (true);
+      expect (a [4] .equals (new SFVec3 (5,6,7))) .toBe (true);
+      expect (a [5] .equals (new SFVec3 (5,6,8))) .toBe (true);
 
-      expect (a .reverse ()) .toBe (a)
+      expect (a .reverse ()) .toBe (a);
 
-      expect (a) .toHaveLength (6)
-      expect (a [0] .equals (new SFVec3 (5,6,8))) .toBe (true)
-      expect (a [1] .equals (new SFVec3 (5,6,7))) .toBe (true)
-      expect (a [2] .equals (new SFVec3 (4,5,6))) .toBe (true)
-      expect (a [3] .equals (new SFVec3 (3,4,5))) .toBe (true)
-      expect (a [4] .equals (new SFVec3 (2,3,4))) .toBe (true)
-      expect (a [5] .equals (new SFVec3 (1,2,3))) .toBe (true)
+      expect (a) .toHaveLength (6);
+      expect (a [0] .equals (new SFVec3 (5,6,8))) .toBe (true);
+      expect (a [1] .equals (new SFVec3 (5,6,7))) .toBe (true);
+      expect (a [2] .equals (new SFVec3 (4,5,6))) .toBe (true);
+      expect (a [3] .equals (new SFVec3 (3,4,5))) .toBe (true);
+      expect (a [4] .equals (new SFVec3 (2,3,4))) .toBe (true);
+      expect (a [5] .equals (new SFVec3 (1,2,3))) .toBe (true);
 
-      expect (a .sort ()) .toBe (a)
+      expect (a .sort ()) .toBe (a);
 
-      expect (a) .toHaveLength (6)
-      expect (a [0] .equals (new SFVec3 (1,2,3))) .toBe (true)
-      expect (a [1] .equals (new SFVec3 (2,3,4))) .toBe (true)
-      expect (a [2] .equals (new SFVec3 (3,4,5))) .toBe (true)
-      expect (a [3] .equals (new SFVec3 (4,5,6))) .toBe (true)
-      expect (a [4] .equals (new SFVec3 (5,6,7))) .toBe (true)
-      expect (a [5] .equals (new SFVec3 (5,6,8))) .toBe (true)
+      expect (a) .toHaveLength (6);
+      expect (a [0] .equals (new SFVec3 (1,2,3))) .toBe (true);
+      expect (a [1] .equals (new SFVec3 (2,3,4))) .toBe (true);
+      expect (a [2] .equals (new SFVec3 (3,4,5))) .toBe (true);
+      expect (a [3] .equals (new SFVec3 (4,5,6))) .toBe (true);
+      expect (a [4] .equals (new SFVec3 (5,6,7))) .toBe (true);
+      expect (a [5] .equals (new SFVec3 (5,6,8))) .toBe (true);
 
-      const Algorithm = X3D .Algorithm
+      const Algorithm = X3D .Algorithm;
 
-      a .sort ((a, b) => Algorithm .cmp (b .z, a .z))
+      a .sort ((a, b) => Algorithm .cmp (b .z, a .z));
 
-      expect (a) .toHaveLength (6)
-      expect (a [0] .equals (new SFVec3 (5,6,8))) .toBe (true)
-      expect (a [1] .equals (new SFVec3 (5,6,7))) .toBe (true)
-      expect (a [2] .equals (new SFVec3 (4,5,6))) .toBe (true)
-      expect (a [3] .equals (new SFVec3 (3,4,5))) .toBe (true)
-      expect (a [4] .equals (new SFVec3 (2,3,4))) .toBe (true)
-      expect (a [5] .equals (new SFVec3 (1,2,3))) .toBe (true)
-   })
+      expect (a) .toHaveLength (6);
+      expect (a [0] .equals (new SFVec3 (5,6,8))) .toBe (true);
+      expect (a [1] .equals (new SFVec3 (5,6,7))) .toBe (true);
+      expect (a [2] .equals (new SFVec3 (4,5,6))) .toBe (true);
+      expect (a [3] .equals (new SFVec3 (3,4,5))) .toBe (true);
+      expect (a [4] .equals (new SFVec3 (2,3,4))) .toBe (true);
+      expect (a [5] .equals (new SFVec3 (1,2,3))) .toBe (true);
+   });
 
    test ("unshift", () =>
    {
       const
          N = 1_000,
-         a = new MFVec3 ()
+         a = new MFVec3 ();
 
-      expect (a) .toHaveLength (0)
+      expect (a) .toHaveLength (0);
 
       for (let i = 0, n = 0; i < N; ++ i)
       {
-         const v = new SFVec3 (++n,++n,++n)
-         expect (a .unshift (v)) .toBe (i + 1)
-         expect (a [0] .equals (v)) .toBe (true)
-         expect (a) .toHaveLength (i + 1)
+         const v = new SFVec3 (++n,++n,++n);
+         expect (a .unshift (v)) .toBe (i + 1);
+         expect (a [0] .equals (v)) .toBe (true);
+         expect (a) .toHaveLength (i + 1);
       }
 
       for (let i = 0, n = 0; i < N; ++ i)
       {
-         const v = new SFVec3 (++n,++n,++n)
-         expect (a .at (-(i + 1)) .equals (v)) .toBe (true)
+         const v = new SFVec3 (++n,++n,++n);
+         expect (a .at (-(i + 1)) .equals (v)) .toBe (true);
       }
-   })
+   });
 
    test ("enumerate", () =>
    {
       const properties = [
          0,1,2
-      ]
+      ];
 
       enumerate (properties, new MFVec3 (new SFVec3 (1,2,3), new SFVec3 (4,5,6), new SFVec3 (7,8,9)));
-   })
+   });
 
    test ("enumerate single", () =>
    {
@@ -689,10 +689,10 @@ for (const [typeName, MFVec3, SFVec3] of arrays)
          "x",
          "y",
          "z",
-      ]
+      ];
 
-      enumerate (properties, new MFVec3 (new SFVec3 ()) [0])
-   })
+      enumerate (properties, new MFVec3 (new SFVec3 ()) [0]);
+   });
 
    test ("concat", () =>
    {

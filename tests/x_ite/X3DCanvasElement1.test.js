@@ -62,7 +62,7 @@ test ("onload-listener", () => new Promise ((resolve, reject) =>
       {
          reject (error .message);
       }
-   })
+   });
 
    canvas [0] .addEventListener ("error", () => reject ("onerror"));
 }));
@@ -86,7 +86,7 @@ test ("onload-event", () => new Promise ((resolve, reject) =>
       {
          reject (error .message);
       }
-   })
+   });
 
    canvas .on ("error", () => reject ("onerror"));
 }));
@@ -110,7 +110,7 @@ test ("onload-property", () => new Promise ((resolve, reject) =>
       {
          reject (error .message);
       }
-   }
+   };
 
    canvas [0] .onerror = reject;
 }));
@@ -134,7 +134,7 @@ test ("oninitialized-listener", () => new Promise ((resolve, reject) =>
       {
          reject (error .message);
       }
-   })
+   });
 
    canvas [0] .addEventListener ("error", () => reject ("onerror"));
 }));
@@ -158,7 +158,7 @@ test ("oninitialized-event", () => new Promise ((resolve, reject) =>
       {
          reject (error .message);
       }
-   })
+   });
 
    canvas .on ("error", () => reject ("onerror"));
 }));
@@ -182,7 +182,7 @@ test ("oninitialized-property", () => new Promise ((resolve, reject) =>
       {
          reject (error .message);
       }
-   }
+   };
 
    canvas [0] .onerror = reject;
 }));
@@ -206,7 +206,7 @@ test ("onshutdown-listener", () => new Promise ((resolve, reject) =>
       {
          reject (error .message);
       }
-   })
+   });
 
    canvas [0] .addEventListener ("error", () => reject ("onerror"));
 }));
@@ -230,7 +230,7 @@ test ("onshutdown-event", () => new Promise ((resolve, reject) =>
       {
          reject (error .message);
       }
-   })
+   });
 
    canvas .on ("error", () => reject ("onerror"));
 }));
@@ -254,7 +254,7 @@ test ("onshutdown-property", () => new Promise ((resolve, reject) =>
       {
          reject (error .message);
       }
-   }
+   };
 
    canvas [0] .onerror = reject;
 }));
@@ -279,7 +279,7 @@ test ("onerror-listener", () => new Promise ((resolve, reject) =>
       {
          reject (error .message);
       }
-   })
+   });
 }));
 
 test ("onerror-event", () => new Promise ((resolve, reject) =>

@@ -12,73 +12,73 @@ test ("constants", () =>
 
 test ("constructor", () =>
 {
-   const c0 = new Color4 ()
+   const c0 = new Color4 ();
 
-   expect (c0 .r) .toBe (0)
-   expect (c0 .g) .toBe (0)
-   expect (c0 .b) .toBe (0)
-   expect (c0 .a) .toBe (0)
-   expect (c0 [0]) .toBe (0)
-   expect (c0 [1]) .toBe (0)
-   expect (c0 [2]) .toBe (0)
-   expect (c0 [3]) .toBe (0)
-   expect ([... c0]) .toEqual ([0, 0, 0, 0])
-   expect (c0) .toHaveLength (4)
+   expect (c0 .r) .toBe (0);
+   expect (c0 .g) .toBe (0);
+   expect (c0 .b) .toBe (0);
+   expect (c0 .a) .toBe (0);
+   expect (c0 [0]) .toBe (0);
+   expect (c0 [1]) .toBe (0);
+   expect (c0 [2]) .toBe (0);
+   expect (c0 [3]) .toBe (0);
+   expect ([... c0]) .toEqual ([0, 0, 0, 0]);
+   expect (c0) .toHaveLength (4);
 
-   const c1 = new Color4 (0, 0, 0, 0)
+   const c1 = new Color4 (0, 0, 0, 0);
 
-   expect (c1 .r) .toBe (0)
-   expect (c1 .g) .toBe (0)
-   expect (c1 .b) .toBe (0)
-   expect (c1 .a) .toBe (0)
-   expect (c1 [0]) .toBe (0)
-   expect (c1 [1]) .toBe (0)
-   expect (c1 [2]) .toBe (0)
-   expect (c1 [3]) .toBe (0)
-   expect ([... c1]) .toEqual ([0, 0, 0, 0])
-   expect (c1) .toHaveLength (4)
+   expect (c1 .r) .toBe (0);
+   expect (c1 .g) .toBe (0);
+   expect (c1 .b) .toBe (0);
+   expect (c1 .a) .toBe (0);
+   expect (c1 [0]) .toBe (0);
+   expect (c1 [1]) .toBe (0);
+   expect (c1 [2]) .toBe (0);
+   expect (c1 [3]) .toBe (0);
+   expect ([... c1]) .toEqual ([0, 0, 0, 0]);
+   expect (c1) .toHaveLength (4);
 
-   const c2 = new Color4 (0.1, 0.2, 0.3, 0.4)
+   const c2 = new Color4 (0.1, 0.2, 0.3, 0.4);
 
-   expect (c2 .r) .toBe (0.1)
-   expect (c2 .g) .toBe (0.2)
-   expect (c2 .b) .toBe (0.3)
-   expect (c2 .a) .toBe (0.4)
-   expect (c2 [0]) .toBe (0.1)
-   expect (c2 [1]) .toBe (0.2)
-   expect (c2 [2]) .toBe (0.3)
-   expect (c2 [3]) .toBe (0.4)
-   expect ([... c2]) .toEqual ([0.1, 0.2, 0.3, 0.4])
-   expect (c2) .toHaveLength (4)
+   expect (c2 .r) .toBe (0.1);
+   expect (c2 .g) .toBe (0.2);
+   expect (c2 .b) .toBe (0.3);
+   expect (c2 .a) .toBe (0.4);
+   expect (c2 [0]) .toBe (0.1);
+   expect (c2 [1]) .toBe (0.2);
+   expect (c2 [2]) .toBe (0.3);
+   expect (c2 [3]) .toBe (0.4);
+   expect ([... c2]) .toEqual ([0.1, 0.2, 0.3, 0.4]);
+   expect (c2) .toHaveLength (4);
 
-   const c3 = new Color4 (2, 3, 4, 5)
+   const c3 = new Color4 (2, 3, 4, 5);
 
-   expect (c3 .r) .toBe (1)
-   expect (c3 .g) .toBe (1)
-   expect (c3 .b) .toBe (1)
-   expect (c3 .a) .toBe (1)
-   expect (c3 [0]) .toBe (1)
-   expect (c3 [1]) .toBe (1)
-   expect (c3 [2]) .toBe (1)
-   expect (c3 [3]) .toBe (1)
-   expect ([... c3]) .toEqual ([1, 1, 1, 1])
-   expect (c3) .toHaveLength (4)
+   expect (c3 .r) .toBe (1);
+   expect (c3 .g) .toBe (1);
+   expect (c3 .b) .toBe (1);
+   expect (c3 .a) .toBe (1);
+   expect (c3 [0]) .toBe (1);
+   expect (c3 [1]) .toBe (1);
+   expect (c3 [2]) .toBe (1);
+   expect (c3 [3]) .toBe (1);
+   expect ([... c3]) .toEqual ([1, 1, 1, 1]);
+   expect (c3) .toHaveLength (4);
 
-   const c4 = new Color4 (0, 0, 0, 0)
+   const c4 = new Color4 (0, 0, 0, 0);
 
-   c4 .r = 0.1
-   c4 .g = 0.2
-   c4 .b = 0.3
-   c4 .a = 0.4
+   c4 .r = 0.1;
+   c4 .g = 0.2;
+   c4 .b = 0.3;
+   c4 .a = 0.4;
 
-   expect (c4 .r) .toBe (0.1)
-   expect (c4 .g) .toBe (0.2)
-   expect (c4 .b) .toBe (0.3)
-   expect (c4 .a) .toBe (0.4)
-   expect (c4 [0]) .toBe (0.1)
-   expect (c4 [1]) .toBe (0.2)
-   expect (c4 [2]) .toBe (0.3)
-   expect (c4 [3]) .toBe (0.4)
+   expect (c4 .r) .toBe (0.1);
+   expect (c4 .g) .toBe (0.2);
+   expect (c4 .b) .toBe (0.3);
+   expect (c4 .a) .toBe (0.4);
+   expect (c4 [0]) .toBe (0.1);
+   expect (c4 [1]) .toBe (0.2);
+   expect (c4 [2]) .toBe (0.3);
+   expect (c4 [3]) .toBe (0.4);
 
    c4 .r = 2;
    c4 .g = 3;
@@ -108,44 +108,44 @@ test ("constructor", () =>
    expect (c4 [2]) .toBe (0);
    expect (c4 [3]) .toBe (0);
 
-   const c5 = new Color4 (.2)
+   const c5 = new Color4 (.2);
 
-   expect (c5 .r) .toBe (.2)
-   expect (c5 .g) .toBe (.2)
-   expect (c5 .b) .toBe (.2)
-   expect (c5 .a) .toBe (.2)
-   expect (c5 [0]) .toBe (.2)
-   expect (c5 [1]) .toBe (.2)
-   expect (c5 [2]) .toBe (.2)
-   expect (c5 [3]) .toBe (.2)
-   expect ([... c5]) .toEqual ([.2, .2, .2, .2])
-   expect (c5) .toHaveLength (4)
+   expect (c5 .r) .toBe (.2);
+   expect (c5 .g) .toBe (.2);
+   expect (c5 .b) .toBe (.2);
+   expect (c5 .a) .toBe (.2);
+   expect (c5 [0]) .toBe (.2);
+   expect (c5 [1]) .toBe (.2);
+   expect (c5 [2]) .toBe (.2);
+   expect (c5 [3]) .toBe (.2);
+   expect ([... c5]) .toEqual ([.2, .2, .2, .2]);
+   expect (c5) .toHaveLength (4);
 
-   const c6 = new Color4 (.2, .3)
+   const c6 = new Color4 (.2, .3);
 
-   expect (c6 .r) .toBe (.2)
-   expect (c6 .g) .toBe (.3)
-   expect (c6 .b) .toBe (.3)
-   expect (c6 .a) .toBe (.3)
-   expect (c6 [0]) .toBe (.2)
-   expect (c6 [1]) .toBe (.3)
-   expect (c6 [2]) .toBe (.3)
-   expect (c6 [3]) .toBe (.3)
-   expect ([... c6]) .toEqual ([.2, .3, .3, .3])
-   expect (c6) .toHaveLength (4)
+   expect (c6 .r) .toBe (.2);
+   expect (c6 .g) .toBe (.3);
+   expect (c6 .b) .toBe (.3);
+   expect (c6 .a) .toBe (.3);
+   expect (c6 [0]) .toBe (.2);
+   expect (c6 [1]) .toBe (.3);
+   expect (c6 [2]) .toBe (.3);
+   expect (c6 [3]) .toBe (.3);
+   expect ([... c6]) .toEqual ([.2, .3, .3, .3]);
+   expect (c6) .toHaveLength (4);
 
-   const c7 = new Color4 (.2, .3, .4)
+   const c7 = new Color4 (.2, .3, .4);
 
-   expect (c7 .r) .toBe (.2)
-   expect (c7 .g) .toBe (.3)
-   expect (c7 .b) .toBe (.4)
-   expect (c7 .a) .toBe (.4)
-   expect (c7 [0]) .toBe (.2)
-   expect (c7 [1]) .toBe (.3)
-   expect (c7 [2]) .toBe (.4)
-   expect (c7 [3]) .toBe (.4)
-   expect ([... c7]) .toEqual ([.2, .3, .4, .4])
-   expect (c7) .toHaveLength (4)
+   expect (c7 .r) .toBe (.2);
+   expect (c7 .g) .toBe (.3);
+   expect (c7 .b) .toBe (.4);
+   expect (c7 .a) .toBe (.4);
+   expect (c7 [0]) .toBe (.2);
+   expect (c7 [1]) .toBe (.3);
+   expect (c7 [2]) .toBe (.4);
+   expect (c7 [3]) .toBe (.4);
+   expect ([... c7]) .toEqual ([.2, .3, .4, .4]);
+   expect (c7) .toHaveLength (4);
 
    const c8 = new Color4 (2, 3, 4, 5);
 
@@ -160,7 +160,7 @@ test ("constructor", () =>
    expect (c9 .g) .toBe (0);
    expect (c9 .b) .toBe (0);
    expect (c9 .a) .toBe (0);
-})
+});
 
 test ("enumerate", () =>
 {
@@ -177,19 +177,19 @@ test ("enumerate", () =>
 
 test ("copy", () =>
 {
-   const v1 = new Color4 (0.1, 0.2, 0.3, 0.4)
+   const v1 = new Color4 (0.1, 0.2, 0.3, 0.4);
 
-   expect ([... v1 .copy ()]) .toEqual ([0.1, 0.2, 0.3, 0.4])
-})
+   expect ([... v1 .copy ()]) .toEqual ([0.1, 0.2, 0.3, 0.4]);
+});
 
 test ("assign", () =>
 {
    const
       v1 = new Color4 (0, 0, 0, 0),
-      v2 = new Color4 (0.1, 0.2, 0.3, 0.4)
+      v2 = new Color4 (0.1, 0.2, 0.3, 0.4);
 
-   expect ([... v1 .assign (v2)]) .toEqual ([0.1, 0.2, 0.3, 0.4])
-})
+   expect ([... v1 .assign (v2)]) .toEqual ([0.1, 0.2, 0.3, 0.4]);
+});
 
 test ("set", () =>
 {
@@ -208,88 +208,88 @@ test ("equals", () =>
 {
    const
       a = new Color4 (0.1, 0.2, 0.3, 0.4),
-      b = new Color4 (0.1, 0.2, 0.3, 0.4)
+      b = new Color4 (0.1, 0.2, 0.3, 0.4);
 
-   expect (a .equals (b)) .toBe (true)
+   expect (a .equals (b)) .toBe (true);
 
    for (let i = 0; i < a .length; ++ i)
    {
-      const c = a .copy ()
+      const c = a .copy ();
 
-      c [i] = 0
+      c [i] = 0;
 
-      expect (a .equals (c)) .toBe (false)
+      expect (a .equals (c)) .toBe (false);
    }
-})
+});
 
 test ("getHSVA", () =>
 {
-   const c = new Color4 (0, 0, 0, 0)
+   const c = new Color4 (0, 0, 0, 0);
 
-   expect (c .set (0, 0, 0, 0) .getHSVA ([ ])) .toEqual ([0, 0, 0, 0])
-   expect (c .set (1, 1, 1, 1) .getHSVA ([ ])) .toEqual ([0, 0, 1, 1])
-   expect (c .set (1, 0, 0, 1) .getHSVA ([ ])) .toEqual ([0, 1, 1, 1])
+   expect (c .set (0, 0, 0, 0) .getHSVA ([ ])) .toEqual ([0, 0, 0, 0]);
+   expect (c .set (1, 1, 1, 1) .getHSVA ([ ])) .toEqual ([0, 0, 1, 1]);
+   expect (c .set (1, 0, 0, 1) .getHSVA ([ ])) .toEqual ([0, 1, 1, 1]);
 
-   expect (c .set (1, 0.5, 0, 1) .getHSVA ([ ]) [0]) .toBeCloseTo (Algorithm .radians (30))
-   expect (c .set (1, 0.5, 0, 1) .getHSVA ([ ]) [1]) .toBeCloseTo (1)
-   expect (c .set (1, 0.5, 0, 1) .getHSVA ([ ]) [2]) .toBeCloseTo (1)
-   expect (c .set (1, 0.5, 0, 1) .getHSVA ([ ]) [3]) .toBe (1)
+   expect (c .set (1, 0.5, 0, 1) .getHSVA ([ ]) [0]) .toBeCloseTo (Algorithm .radians (30));
+   expect (c .set (1, 0.5, 0, 1) .getHSVA ([ ]) [1]) .toBeCloseTo (1);
+   expect (c .set (1, 0.5, 0, 1) .getHSVA ([ ]) [2]) .toBeCloseTo (1);
+   expect (c .set (1, 0.5, 0, 1) .getHSVA ([ ]) [3]) .toBe (1);
 
-   expect (c .set (1, 1, 0, 1) .getHSVA ([ ]) [0]) .toBeCloseTo (Algorithm .radians (60))
-   expect (c .set (1, 1, 0, 1) .getHSVA ([ ]) [1]) .toBeCloseTo (1)
-   expect (c .set (1, 1, 0, 1) .getHSVA ([ ]) [2]) .toBeCloseTo (1)
-   expect (c .set (1, 0.5, 0, 1) .getHSVA ([ ]) [3]) .toBe (1)
+   expect (c .set (1, 1, 0, 1) .getHSVA ([ ]) [0]) .toBeCloseTo (Algorithm .radians (60));
+   expect (c .set (1, 1, 0, 1) .getHSVA ([ ]) [1]) .toBeCloseTo (1);
+   expect (c .set (1, 1, 0, 1) .getHSVA ([ ]) [2]) .toBeCloseTo (1);
+   expect (c .set (1, 0.5, 0, 1) .getHSVA ([ ]) [3]) .toBe (1);
 
-   expect (c .set (0.5, 1, 0, 1) .getHSVA ([ ]) [0]) .toBeCloseTo (Algorithm .radians (90))
-   expect (c .set (0.5, 1, 0, 1) .getHSVA ([ ]) [1]) .toBeCloseTo (1)
-   expect (c .set (0.5, 1, 0, 1) .getHSVA ([ ]) [2]) .toBeCloseTo (1)
-   expect (c .set (1, 0.5, 0, 1) .getHSVA ([ ]) [3]) .toBe (1)
+   expect (c .set (0.5, 1, 0, 1) .getHSVA ([ ]) [0]) .toBeCloseTo (Algorithm .radians (90));
+   expect (c .set (0.5, 1, 0, 1) .getHSVA ([ ]) [1]) .toBeCloseTo (1);
+   expect (c .set (0.5, 1, 0, 1) .getHSVA ([ ]) [2]) .toBeCloseTo (1);
+   expect (c .set (1, 0.5, 0, 1) .getHSVA ([ ]) [3]) .toBe (1);
 
-   expect (c .set (0, 1, 0, 1) .getHSVA ([ ]) [0]) .toBeCloseTo (Algorithm .radians (120))
-   expect (c .set (0, 1, 0, 1) .getHSVA ([ ]) [1]) .toBeCloseTo (1)
-   expect (c .set (0, 1, 0, 1) .getHSVA ([ ]) [2]) .toBeCloseTo (1)
-   expect (c .set (1, 0.5, 0, 1) .getHSVA ([ ]) [3]) .toBe (1)
+   expect (c .set (0, 1, 0, 1) .getHSVA ([ ]) [0]) .toBeCloseTo (Algorithm .radians (120));
+   expect (c .set (0, 1, 0, 1) .getHSVA ([ ]) [1]) .toBeCloseTo (1);
+   expect (c .set (0, 1, 0, 1) .getHSVA ([ ]) [2]) .toBeCloseTo (1);
+   expect (c .set (1, 0.5, 0, 1) .getHSVA ([ ]) [3]) .toBe (1);
 
-   expect (c .set (0, 1, 0.5, 1) .getHSVA ([ ]) [0]) .toBeCloseTo (Algorithm .radians (150))
-   expect (c .set (0, 1, 0.5, 1) .getHSVA ([ ]) [1]) .toBeCloseTo (1)
-   expect (c .set (0, 1, 0.5, 1) .getHSVA ([ ]) [2]) .toBeCloseTo (1)
-   expect (c .set (1, 0.5, 0, 1) .getHSVA ([ ]) [3]) .toBe (1)
+   expect (c .set (0, 1, 0.5, 1) .getHSVA ([ ]) [0]) .toBeCloseTo (Algorithm .radians (150));
+   expect (c .set (0, 1, 0.5, 1) .getHSVA ([ ]) [1]) .toBeCloseTo (1);
+   expect (c .set (0, 1, 0.5, 1) .getHSVA ([ ]) [2]) .toBeCloseTo (1);
+   expect (c .set (1, 0.5, 0, 1) .getHSVA ([ ]) [3]) .toBe (1);
 
-   expect (c .set (0, 1, 1, 1) .getHSVA ([ ]) [0]) .toBeCloseTo (Algorithm .radians (180))
-   expect (c .set (0, 1, 1, 1) .getHSVA ([ ]) [1]) .toBeCloseTo (1)
-   expect (c .set (0, 1, 1, 1) .getHSVA ([ ]) [2]) .toBeCloseTo (1)
-   expect (c .set (1, 0.5, 0, 1) .getHSVA ([ ]) [3]) .toBe (1)
+   expect (c .set (0, 1, 1, 1) .getHSVA ([ ]) [0]) .toBeCloseTo (Algorithm .radians (180));
+   expect (c .set (0, 1, 1, 1) .getHSVA ([ ]) [1]) .toBeCloseTo (1);
+   expect (c .set (0, 1, 1, 1) .getHSVA ([ ]) [2]) .toBeCloseTo (1);
+   expect (c .set (1, 0.5, 0, 1) .getHSVA ([ ]) [3]) .toBe (1);
 
-   expect (c .set (0, 0.5, 1, 1) .getHSVA ([ ]) [0]) .toBeCloseTo (Algorithm .radians (210))
-   expect (c .set (0, 0.5, 1, 1) .getHSVA ([ ]) [1]) .toBeCloseTo (1)
-   expect (c .set (0, 0.5, 1, 1) .getHSVA ([ ]) [2]) .toBeCloseTo (1)
-   expect (c .set (1, 0.5, 0, 1) .getHSVA ([ ]) [3]) .toBe (1)
+   expect (c .set (0, 0.5, 1, 1) .getHSVA ([ ]) [0]) .toBeCloseTo (Algorithm .radians (210));
+   expect (c .set (0, 0.5, 1, 1) .getHSVA ([ ]) [1]) .toBeCloseTo (1);
+   expect (c .set (0, 0.5, 1, 1) .getHSVA ([ ]) [2]) .toBeCloseTo (1);
+   expect (c .set (1, 0.5, 0, 1) .getHSVA ([ ]) [3]) .toBe (1);
 
-   expect (c .set (0, 0, 1, 1) .getHSVA ([ ]) [0]) .toBeCloseTo (Algorithm .radians (240))
-   expect (c .set (0, 0, 1, 1) .getHSVA ([ ]) [1]) .toBeCloseTo (1)
-   expect (c .set (0, 0, 1, 1) .getHSVA ([ ]) [2]) .toBeCloseTo (1)
-   expect (c .set (1, 0.5, 0, 1) .getHSVA ([ ]) [3]) .toBe (1)
+   expect (c .set (0, 0, 1, 1) .getHSVA ([ ]) [0]) .toBeCloseTo (Algorithm .radians (240));
+   expect (c .set (0, 0, 1, 1) .getHSVA ([ ]) [1]) .toBeCloseTo (1);
+   expect (c .set (0, 0, 1, 1) .getHSVA ([ ]) [2]) .toBeCloseTo (1);
+   expect (c .set (1, 0.5, 0, 1) .getHSVA ([ ]) [3]) .toBe (1);
 
-   expect (c .set (0.5, 0, 1, 1) .getHSVA ([ ]) [0]) .toBeCloseTo (Algorithm .radians (270))
-   expect (c .set (0.5, 0, 1, 1) .getHSVA ([ ]) [1]) .toBeCloseTo (1)
-   expect (c .set (0.5, 0, 1, 1) .getHSVA ([ ]) [2]) .toBeCloseTo (1)
-   expect (c .set (1, 0.5, 0, 1) .getHSVA ([ ]) [3]) .toBe (1)
+   expect (c .set (0.5, 0, 1, 1) .getHSVA ([ ]) [0]) .toBeCloseTo (Algorithm .radians (270));
+   expect (c .set (0.5, 0, 1, 1) .getHSVA ([ ]) [1]) .toBeCloseTo (1);
+   expect (c .set (0.5, 0, 1, 1) .getHSVA ([ ]) [2]) .toBeCloseTo (1);
+   expect (c .set (1, 0.5, 0, 1) .getHSVA ([ ]) [3]) .toBe (1);
 
-   expect (c .set (1, 0, 1, 1) .getHSVA ([ ]) [0]) .toBeCloseTo (Algorithm .radians (300))
-   expect (c .set (1, 0, 1, 1) .getHSVA ([ ]) [1]) .toBeCloseTo (1)
-   expect (c .set (1, 0, 1, 1) .getHSVA ([ ]) [2]) .toBeCloseTo (1)
-   expect (c .set (1, 0.5, 0, 1) .getHSVA ([ ]) [3]) .toBe (1)
+   expect (c .set (1, 0, 1, 1) .getHSVA ([ ]) [0]) .toBeCloseTo (Algorithm .radians (300));
+   expect (c .set (1, 0, 1, 1) .getHSVA ([ ]) [1]) .toBeCloseTo (1);
+   expect (c .set (1, 0, 1, 1) .getHSVA ([ ]) [2]) .toBeCloseTo (1);
+   expect (c .set (1, 0.5, 0, 1) .getHSVA ([ ]) [3]) .toBe (1);
 
-   expect (c .set (1, 0, 0.5, 1) .getHSVA ([ ]) [0]) .toBeCloseTo (Algorithm .radians (330))
-   expect (c .set (1, 0, 0.5, 1) .getHSVA ([ ]) [1]) .toBeCloseTo (1)
-   expect (c .set (1, 0, 0.5, 1) .getHSVA ([ ]) [2]) .toBeCloseTo (1)
-   expect (c .set (1, 0.5, 0, 1) .getHSVA ([ ]) [3]) .toBe (1)
+   expect (c .set (1, 0, 0.5, 1) .getHSVA ([ ]) [0]) .toBeCloseTo (Algorithm .radians (330));
+   expect (c .set (1, 0, 0.5, 1) .getHSVA ([ ]) [1]) .toBeCloseTo (1);
+   expect (c .set (1, 0, 0.5, 1) .getHSVA ([ ]) [2]) .toBeCloseTo (1);
+   expect (c .set (1, 0.5, 0, 1) .getHSVA ([ ]) [3]) .toBe (1);
 
-   expect (c .set (0.5, 0.5, 0.5, 1) .getHSVA ([ ]) [0]) .toBeCloseTo (0)
-   expect (c .set (0.5, 0.5, 0.5, 1) .getHSVA ([ ]) [1]) .toBeCloseTo (0)
-   expect (c .set (0.5, 0.5, 0.5, 1) .getHSVA ([ ]) [2]) .toBeCloseTo (0.5)
-   expect (c .set (0.5, 0.5, 0.5, 1) .getHSVA ([ ]) [3]) .toBe (1)
-})
+   expect (c .set (0.5, 0.5, 0.5, 1) .getHSVA ([ ]) [0]) .toBeCloseTo (0);
+   expect (c .set (0.5, 0.5, 0.5, 1) .getHSVA ([ ]) [1]) .toBeCloseTo (0);
+   expect (c .set (0.5, 0.5, 0.5, 1) .getHSVA ([ ]) [2]) .toBeCloseTo (0.5);
+   expect (c .set (0.5, 0.5, 0.5, 1) .getHSVA ([ ]) [3]) .toBe (1);
+});
 
 test ("linearToSRGB", () =>
 {

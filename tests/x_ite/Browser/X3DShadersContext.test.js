@@ -36,7 +36,7 @@ test ("shader", async () =>
             {
                for (const materialTexture of [true, false])
                {
-                  const options = [ ]
+                  const options = [ ];
 
                   if (option === "X3D_VOLUME_SCATTER_PASS")
                      options .push ("X3D_VOLUME_SCATTER_MATERIAL_EXT");

@@ -5,7 +5,7 @@ const
    Browser   = canvas .browser,
    reference = "test reference";
 
-Browser .setBrowserOption ("MetadataReference", reference)
+Browser .setBrowserOption ("MetadataReference", reference);
 
 test ("get/set/removeMetaData basic types", () =>
 {

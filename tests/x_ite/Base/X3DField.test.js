@@ -118,7 +118,7 @@ test ("add/removeFieldCallback", () => new Promise ((resolve, reject) =>
 
    node .getField ("transparency") .addFieldCallback ("test", value =>
    {
-      node .getField ("transparency") .removeFieldCallback ("test")
+      node .getField ("transparency") .removeFieldCallback ("test");
       expect (node .getField ("transparency") .getFieldCallbacks () .size) .toBe (0);
 
       expect (value) .toBe (0.5);

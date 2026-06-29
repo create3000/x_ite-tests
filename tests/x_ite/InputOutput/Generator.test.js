@@ -2,7 +2,7 @@ const
    X3D           = require ("../../X3D"),
    VRMLGenerator = X3D .VRMLGenerator,
    Browser       = X3D .createBrowser () .browser,
-   latestVersion = Browser .currentScene .specificationVersion
+   latestVersion = Browser .currentScene .specificationVersion;
 
 const values = [
    [NaN, "NaN"],
@@ -57,19 +57,19 @@ const values = [
 
 test ("FloatFormat", () =>
 {
-   const generator = new VRMLGenerator ({ })
+   const generator = new VRMLGenerator ({ });
 
    for (const [first, second] of values)
-      expect (generator .FloatFormat (first)) .toBe (second)
-})
+      expect (generator .FloatFormat (first)) .toBe (second);
+});
 
 test ("DoubleFormat", () =>
 {
-   const generator = new VRMLGenerator ({ doublePrecision: 7 })
+   const generator = new VRMLGenerator ({ doublePrecision: 7 });
 
    for (const [first, second] of values)
-      expect (generator .DoubleFormat (first)) .toBe (second)
-})
+      expect (generator .DoubleFormat (first)) .toBe (second);
+});
 
 test ("names 1", async () =>
 {
@@ -86,17 +86,17 @@ test ("names 1", async () =>
     <ROUTE fromNode='x_4' fromField='children_changed' toNode='x_3' toField='set_children'/>
   </Scene>
 </X3D>
-`
+`;
 
    const
       xml  = await Browser .createX3DFromString (input),
       vrml = await Browser .createX3DFromString (xml .toVRMLString ()),
-      json = await Browser .createX3DFromString (xml .toJSONString ())
+      json = await Browser .createX3DFromString (xml .toJSONString ());
 
-   expect (xml  .toXMLString ()) .toBe (input)
-   expect (vrml .toXMLString ()) .toBe (input)
-   expect (json .toXMLString ()) .toBe (input)
-})
+   expect (xml  .toXMLString ()) .toBe (input);
+   expect (vrml .toXMLString ()) .toBe (input);
+   expect (json .toXMLString ()) .toBe (input);
+});
 
 test ("names 2", async () =>
 {
@@ -115,7 +115,7 @@ test ("names 2", async () =>
     <ROUTE fromNode='_4' fromField='children_changed' toNode='_3' toField='set_children'/>
   </Scene>
 </X3D>
-`
+`;
 
 const output = `<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE X3D PUBLIC "ISO//Web3D//DTD X3D ${latestVersion}//EN" "https://www.web3d.org/specifications/x3d-${latestVersion}.dtd">
@@ -132,32 +132,32 @@ const output = `<?xml version="1.0" encoding="UTF-8"?>
     <ROUTE fromNode='_4' fromField='children_changed' toNode='_3' toField='set_children'/>
   </Scene>
 </X3D>
-`
+`;
 
    const
       xml  = await Browser .createX3DFromString (input),
       vrml = await Browser .createX3DFromString (xml .toVRMLString ()),
-      json = await Browser .createX3DFromString (xml .toJSONString ())
+      json = await Browser .createX3DFromString (xml .toJSONString ());
 
-   expect (xml  .toXMLString ()) .toBe (output)
-   expect (vrml .toXMLString ()) .toBe (output)
-   expect (json .toXMLString ()) .toBe (output)
-})
+   expect (xml  .toXMLString ()) .toBe (output);
+   expect (vrml .toXMLString ()) .toBe (output);
+   expect (json .toXMLString ()) .toBe (output);
+});
 
 test ("names 3", async () =>
 {
-   const scene = await Browser .createScene (Browser .getProfile ("Interchange"))
+   const scene = await Browser .createScene (Browser .getProfile ("Interchange"));
 
    const
       g1 = scene .createNode ("Group"),
       g2 = scene .createNode ("Group"),
       g3 = scene .createNode ("Group"),
-      g4 = scene .createNode ("Group")
+      g4 = scene .createNode ("Group");
 
-   scene .rootNodes .push (g1, g2, g3, g4)
-   scene .addRoute (g1, "children", g2, "children")
-   scene .addRoute (g1, "children", g3, "children")
-   scene .addRoute (g1, "children", g4, "children")
+   scene .rootNodes .push (g1, g2, g3, g4);
+   scene .addRoute (g1, "children", g2, "children");
+   scene .addRoute (g1, "children", g3, "children");
+   scene .addRoute (g1, "children", g4, "children");
 
    const output = `<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE X3D PUBLIC "ISO//Web3D//DTD X3D ${latestVersion}//EN" "https://www.web3d.org/specifications/x3d-${latestVersion}.dtd">
@@ -172,17 +172,17 @@ test ("names 3", async () =>
     <ROUTE fromNode='_1' fromField='children_changed' toNode='_4' toField='set_children'/>
   </Scene>
 </X3D>
-`
+`;
 
    const
       xml  = scene .toXMLString (),
       vrml = (await Browser .createX3DFromString (scene .toVRMLString ())) .toXMLString (),
-      json = (await Browser .createX3DFromString (scene .toJSONString ())) .toXMLString ()
+      json = (await Browser .createX3DFromString (scene .toJSONString ())) .toXMLString ();
 
-   expect (xml)  .toBe (output)
-   expect (vrml) .toBe (output)
-   expect (json) .toBe (output)
-})
+   expect (xml)  .toBe (output);
+   expect (vrml) .toBe (output);
+   expect (json) .toBe (output);
+});
 
 test ("exported node without name", async () =>
 {

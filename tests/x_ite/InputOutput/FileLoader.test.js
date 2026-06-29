@@ -1,12 +1,12 @@
 const
    X3D        = require ("../../X3D"),
-   FileLoader = X3D .FileLoader
+   FileLoader = X3D .FileLoader;
 
 test ("data-url encoded", () => new Promise ((resolve, reject) =>
 {
    const
       canvas  = X3D .createBrowser (),
-      Browser = canvas .browser
+      Browser = canvas .browser;
 
    const vertex = `#version 300 es
 // Some percent % signs can cause to 100% an error.
@@ -23,21 +23,21 @@ main ()
    {
       try
       {
-         expect (data) .toBe (vertex)
-         resolve ()
+         expect (data) .toBe (vertex);
+         resolve ();
       }
       catch (error)
       {
-         reject (error .message)
+         reject (error .message);
       }
    });
-}))
+}));
 
 test ("data-url not encoded", () => new Promise ((resolve, reject) =>
 {
    const
       canvas  = X3D .createBrowser (),
-      Browser = canvas .browser
+      Browser = canvas .browser;
 
    const vertex = `#version 300 es
 // Some percent % signs can cause to 100% an error.
@@ -54,15 +54,15 @@ main ()
    {
       try
       {
-         expect (data) .toBe (vertex)
-         resolve ()
+         expect (data) .toBe (vertex);
+         resolve ();
       }
       catch (error)
       {
-         reject (error .message)
+         reject (error .message);
       }
    });
-}))
+}));
 
 test .each ([
    ["ecmascript:"],
@@ -73,7 +73,7 @@ test .each ([
 {
    const
       canvas  = X3D .createBrowser (),
-      Browser = canvas .browser
+      Browser = canvas .browser;
 
    const text = `
 // Some percent % signs can cause to 100% an error.
@@ -88,12 +88,12 @@ function test ()
    {
       try
       {
-         expect (data) .toBe (text)
-         resolve ()
+         expect (data) .toBe (text);
+         resolve ();
       }
       catch (error)
       {
-         reject (error .message)
+         reject (error .message);
       }
    });
-}))
+}));

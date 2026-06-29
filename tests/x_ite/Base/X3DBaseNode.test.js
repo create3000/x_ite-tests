@@ -31,35 +31,35 @@ test ("concrete-nodes", async () =>
 
          const node = scene .createNode (ConcreteNode .typeName);
 
-         expect (typeof ConcreteNode .typeName) .toBe ("string")
-         expect (ConcreteNode .componentInfo) .toBeInstanceOf (Object)
-         expect (typeof ConcreteNode .componentInfo .name) .toBe ("string")
-         expect (Number .isInteger (ConcreteNode .componentInfo .level)) .toBe (true)
-         expect (typeof ConcreteNode .containerField) .toBe ("string")
-         expect (ConcreteNode .specificationRange) .toBeInstanceOf (Object)
-         expect (typeof ConcreteNode .specificationRange .from) .toBe ("string")
-         expect (typeof ConcreteNode .specificationRange .to) .toBe ("string")
-         expect (ConcreteNode .fieldDefinitions) .toBeInstanceOf (X3D .FieldDefinitionArray)
-         expect (node .getValue ()) .toBeInstanceOf (ConcreteNode)
-         expect (node .getNodeType () .length) .toBeGreaterThan (1)
-         expect (node .getNodeType () .every (t => Number .isInteger (t))) .toBe (true)
-         expect (node .getNodeTypeName ()) .toBe (ConcreteNode .typeName)
-         expect (node .getNodeTypeName ()) .toBe (node .getValue () .getTypeName ())
-         expect (node .getFieldDefinitions ()) .toBeInstanceOf (X3D .FieldDefinitionArray)
-         expect (node .getFieldDefinitions ()) .toBe (node .getValue () .getFieldDefinitions ())
-         expect (node .getValue () .getTypeName ()) .toBe (ConcreteNode .typeName)
-         expect (node .getValue () .getComponentInfo () .name) .toBe (ConcreteNode .componentInfo .name)
-         expect (node .getValue () .getContainerField ()) .toBe (ConcreteNode .containerField)
-         expect (node .getValue () .getSpecificationRange ()) .toBe (ConcreteNode .specificationRange)
-         expect (node .getValue () .getFieldDefinitions ()) .toBeInstanceOf (X3D .FieldDefinitionArray)
-         expect (Object .prototype .toString .call (node .getValue ())) .toBe (`[object ${ConcreteNode .typeName}]`)
-         enumerate (["typeName", "componentInfo", "containerField", "specificationRange", "fieldDefinitions"], ConcreteNode)
+         expect (typeof ConcreteNode .typeName) .toBe ("string");
+         expect (ConcreteNode .componentInfo) .toBeInstanceOf (Object);
+         expect (typeof ConcreteNode .componentInfo .name) .toBe ("string");
+         expect (Number .isInteger (ConcreteNode .componentInfo .level)) .toBe (true);
+         expect (typeof ConcreteNode .containerField) .toBe ("string");
+         expect (ConcreteNode .specificationRange) .toBeInstanceOf (Object);
+         expect (typeof ConcreteNode .specificationRange .from) .toBe ("string");
+         expect (typeof ConcreteNode .specificationRange .to) .toBe ("string");
+         expect (ConcreteNode .fieldDefinitions) .toBeInstanceOf (X3D .FieldDefinitionArray);
+         expect (node .getValue ()) .toBeInstanceOf (ConcreteNode);
+         expect (node .getNodeType () .length) .toBeGreaterThan (1);
+         expect (node .getNodeType () .every (t => Number .isInteger (t))) .toBe (true);
+         expect (node .getNodeTypeName ()) .toBe (ConcreteNode .typeName);
+         expect (node .getNodeTypeName ()) .toBe (node .getValue () .getTypeName ());
+         expect (node .getFieldDefinitions ()) .toBeInstanceOf (X3D .FieldDefinitionArray);
+         expect (node .getFieldDefinitions ()) .toBe (node .getValue () .getFieldDefinitions ());
+         expect (node .getValue () .getTypeName ()) .toBe (ConcreteNode .typeName);
+         expect (node .getValue () .getComponentInfo () .name) .toBe (ConcreteNode .componentInfo .name);
+         expect (node .getValue () .getContainerField ()) .toBe (ConcreteNode .containerField);
+         expect (node .getValue () .getSpecificationRange ()) .toBe (ConcreteNode .specificationRange);
+         expect (node .getValue () .getFieldDefinitions ()) .toBeInstanceOf (X3D .FieldDefinitionArray);
+         expect (Object .prototype .toString .call (node .getValue ())) .toBe (`[object ${ConcreteNode .typeName}]`);
+         enumerate (["typeName", "componentInfo", "containerField", "specificationRange", "fieldDefinitions"], ConcreteNode);
 
          if (!node .getNodeTypeName () .match (/^(?:RigidBody)$/))
          {
             const copy = node .getValue () .copy ();
 
-            expect (copy) .toBeInstanceOf (ConcreteNode)
+            expect (copy) .toBeInstanceOf (ConcreteNode);
             expect (copy) .not .toBe (node .getValue ());
             expect (copy .getTypeName ()) .toBe (node .getNodeTypeName ());
             expect (copy .getExecutionContext ()) .toBe (node .getValue () .getExecutionContext ());

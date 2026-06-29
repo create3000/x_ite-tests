@@ -1,8 +1,8 @@
-const X3D = require ("../../../X3D")
+const X3D = require ("../../../X3D");
 
 const
    canvas  = X3D .createBrowser (),
-   Browser = canvas .browser
+   Browser = canvas .browser;
 
 test ("Removed fields", async () =>
 {
@@ -10,10 +10,10 @@ test ("Removed fields", async () =>
 ParticleSystem {
    colorRamp Color { }
    texCoordRamp TextureCoordinate { }
-}`))
+}`));
 
-   expect (scene1 .rootNodes [0] .colorRamp .getNodeTypeName ()) .toBe ("Color")
-   expect (scene1 .rootNodes [0] .texCoordRamp .getNodeTypeName ()) .toBe ("TextureCoordinate")
-   expect (scene1 .rootNodes [0] .color .getNodeTypeName ()) .toBe ("Color")
-   expect (scene1 .rootNodes [0] .texCoord .getNodeTypeName ()) .toBe ("TextureCoordinate")
-})
+   expect (scene1 .rootNodes [0] .colorRamp .getNodeTypeName ()) .toBe ("Color");
+   expect (scene1 .rootNodes [0] .texCoordRamp .getNodeTypeName ()) .toBe ("TextureCoordinate");
+   expect (scene1 .rootNodes [0] .color .getNodeTypeName ()) .toBe ("Color");
+   expect (scene1 .rootNodes [0] .texCoord .getNodeTypeName ()) .toBe ("TextureCoordinate");
+});

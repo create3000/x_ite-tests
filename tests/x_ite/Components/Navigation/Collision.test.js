@@ -1,8 +1,8 @@
-const X3D = require ("../../../X3D")
+const X3D = require ("../../../X3D");
 
 const
    canvas  = X3D .createBrowser (),
-   Browser = canvas .browser
+   Browser = canvas .browser;
 
 test ("VRML fields", async () =>
 {
@@ -12,10 +12,10 @@ Collision {
 }
 Collision {
    collide TRUE
-}`))
+}`));
 
-   expect (scene1 .rootNodes [0] .collide) .toBe (false)
-   expect (scene1 .rootNodes [1] .collide) .toBe (true)
-   expect (scene1 .rootNodes [0] .enabled) .toBe (false)
-   expect (scene1 .rootNodes [1] .enabled) .toBe (true)
-})
+   expect (scene1 .rootNodes [0] .collide) .toBe (false);
+   expect (scene1 .rootNodes [1] .collide) .toBe (true);
+   expect (scene1 .rootNodes [0] .enabled) .toBe (false);
+   expect (scene1 .rootNodes [1] .enabled) .toBe (true);
+});

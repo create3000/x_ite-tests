@@ -4,7 +4,7 @@ const
 
 for (const Type of Object .keys (X3D .SFVec2))
 {
-   const SFVec2 = X3D .SFVec2 [Type]
+   const SFVec2 = X3D .SFVec2 [Type];
 
    test ("constants", () =>
    {
@@ -20,39 +20,39 @@ for (const Type of Object .keys (X3D .SFVec2))
 
    test ("constructor", () =>
    {
-      const v1 = new SFVec2 ()
+      const v1 = new SFVec2 ();
 
-      expect (v1 .x) .toBe (0)
-      expect (v1 .y) .toBe (0)
-      expect (v1 [0]) .toBe (0)
-      expect (v1 [1]) .toBe (0)
-      expect ([...v1]) .toEqual ([0,0])
+      expect (v1 .x) .toBe (0);
+      expect (v1 .y) .toBe (0);
+      expect (v1 [0]) .toBe (0);
+      expect (v1 [1]) .toBe (0);
+      expect ([...v1]) .toEqual ([0,0]);
 
-      const v2 = new SFVec2 (2,3)
+      const v2 = new SFVec2 (2,3);
 
-      expect (v2 .x) .toBe (2)
-      expect (v2 .y) .toBe (3)
-      expect (v2 [0]) .toBe (2)
-      expect (v2 [1]) .toBe (3)
-      expect ([...v2]) .toEqual ([2,3])
+      expect (v2 .x) .toBe (2);
+      expect (v2 .y) .toBe (3);
+      expect (v2 [0]) .toBe (2);
+      expect (v2 [1]) .toBe (3);
+      expect ([...v2]) .toEqual ([2,3]);
 
-      const v3 = new SFVec2 (undefined,undefined)
+      const v3 = new SFVec2 (undefined,undefined);
 
-      expect (v3 .x) .toBe (0)
-      expect (v3 .y) .toBe (0)
-      expect (v3 [0]) .toBe (0)
-      expect (v3 [1]) .toBe (0)
-   })
+      expect (v3 .x) .toBe (0);
+      expect (v3 .y) .toBe (0);
+      expect (v3 [0]) .toBe (0);
+      expect (v3 [1]) .toBe (0);
+   });
 
    test ("enumerate", () =>
    {
       const properties = [
          "x",
          "y",
-      ]
+      ];
 
-      enumerate (properties, new SFVec2 ())
-   })
+      enumerate (properties, new SFVec2 ());
+   });
 
    test ("getter/setter", () =>
    {
@@ -90,34 +90,34 @@ for (const Type of Object .keys (X3D .SFVec2))
 
    test ("common", () =>
    {
-      const field = new SFVec2 ()
+      const field = new SFVec2 ();
 
-      expect (field .getType ()) .toBe (X3D .X3DConstants [Type])
-      expect (field .getTypeName ()) .toBe (Type)
-      expect (Object .prototype .toString .call (field)) .toBe (`[object ${Type}]`)
-   })
+      expect (field .getType ()) .toBe (X3D .X3DConstants [Type]);
+      expect (field .getTypeName ()) .toBe (Type);
+      expect (Object .prototype .toString .call (field)) .toBe (`[object ${Type}]`);
+   });
 
    test ("copy", () =>
    {
       const
          v1 = new SFVec2 (2,3),
-         v2 = v1 .copy ()
+         v2 = v1 .copy ();
 
-      expect (v2) .not .toBe (v1)
-      expect (v2 .getValue ()) .not .toBe (v1 .getValue ())
-      expect (v2 .equals (v1)) .toBe (true)
-   })
+      expect (v2) .not .toBe (v1);
+      expect (v2 .getValue ()) .not .toBe (v1 .getValue ());
+      expect (v2 .equals (v1)) .toBe (true);
+   });
 
    test ("equals", () =>
    {
       const
          a = new SFVec2 (2,3),
-         b = new SFVec2 (6,7)
+         b = new SFVec2 (6,7);
 
-      expect (a .equals (a)) .toBe (true)
-      expect (b .equals (b)) .toBe (true)
-      expect (a .equals (b)) .toBe (false)
-   })
+      expect (a .equals (a)) .toBe (true);
+      expect (b .equals (b)) .toBe (true);
+      expect (a .equals (b)) .toBe (false);
+   });
 
    test ("isDefaultValue", () =>
    {
@@ -136,104 +136,104 @@ for (const Type of Object .keys (X3D .SFVec2))
       const
          a = new SFVec2 (2,3),
          b = a .abs (),
-         c = a .negate () .abs ()
+         c = a .negate () .abs ();
 
-      expect (b) .toBeInstanceOf (SFVec2)
-      expect (b) .not .toBe (a)
-      expect (b .getValue ()) .not .toBe (a .getValue ())
+      expect (b) .toBeInstanceOf (SFVec2);
+      expect (b) .not .toBe (a);
+      expect (b .getValue ()) .not .toBe (a .getValue ());
 
-      expect (b .equals (a)) .toBe (true)
-      expect (c .equals (a)) .toBe (true)
-   })
+      expect (b .equals (a)) .toBe (true);
+      expect (c .equals (a)) .toBe (true);
+   });
 
    test ("add", () =>
    {
       const
          a = new SFVec2 (2,3),
          b = new SFVec2 (6,7),
-         c = a .add (b)
+         c = a .add (b);
 
-      expect (c) .toBeInstanceOf (SFVec2)
-      expect (c) .not .toBe (a)
-      expect (c) .not .toBe (b)
-      expect (c .getValue ()) .not .toBe (a .getValue ())
-      expect (c .getValue ()) .not .toBe (b .getValue ())
+      expect (c) .toBeInstanceOf (SFVec2);
+      expect (c) .not .toBe (a);
+      expect (c) .not .toBe (b);
+      expect (c .getValue ()) .not .toBe (a .getValue ());
+      expect (c .getValue ()) .not .toBe (b .getValue ());
 
-      expect (c .equals (new SFVec2 (8,10))) .toBe (true)
-   })
+      expect (c .equals (new SFVec2 (8,10))) .toBe (true);
+   });
 
    test ("distance", () =>
    {
-      expect (new SFVec2 (2,3) .distance (new SFVec2 (6,7))) .toBeCloseTo (5.656854249492381)
-   })
+      expect (new SFVec2 (2,3) .distance (new SFVec2 (6,7))) .toBeCloseTo (5.656854249492381);
+   });
 
    test ("divide", () =>
    {
       const
          a = new SFVec2 (2,4),
-         b = a .divide (2)
+         b = a .divide (2);
 
-      expect (b) .toBeInstanceOf (SFVec2)
-      expect (b) .not .toBe (a)
-      expect (b .getValue ()) .not .toBe (a .getValue ())
+      expect (b) .toBeInstanceOf (SFVec2);
+      expect (b) .not .toBe (a);
+      expect (b .getValue ()) .not .toBe (a .getValue ());
 
-      expect (b .equals (new SFVec2 (1,2))) .toBe (true)
-   })
+      expect (b .equals (new SFVec2 (1,2))) .toBe (true);
+   });
 
    test ("divVec", () =>
    {
       const
          a = new SFVec2 (4,9),
          b = new SFVec2 (2,3),
-         c = a .divVec (b)
+         c = a .divVec (b);
 
-      expect (c) .toBeInstanceOf (SFVec2)
-      expect (c) .not .toBe (a)
-      expect (c) .not .toBe (b)
-      expect (c .getValue ()) .not .toBe (a .getValue ())
-      expect (c .getValue ()) .not .toBe (b .getValue ())
+      expect (c) .toBeInstanceOf (SFVec2);
+      expect (c) .not .toBe (a);
+      expect (c) .not .toBe (b);
+      expect (c .getValue ()) .not .toBe (a .getValue ());
+      expect (c .getValue ()) .not .toBe (b .getValue ());
 
-      expect (c .equals (new SFVec2 (2,3))) .toBe (true)
-   })
+      expect (c .equals (new SFVec2 (2,3))) .toBe (true);
+   });
 
    test ("dot", () =>
    {
-      expect (new SFVec2 (2,3) .dot (new SFVec2 (6,7))) .toBe (33)
-   })
+      expect (new SFVec2 (2,3) .dot (new SFVec2 (6,7))) .toBe (33);
+   });
 
    test ("inverse", () =>
    {
       const
          a = new SFVec2 (2,3),
-         b = a .inverse ()
+         b = a .inverse ();
 
-      expect (b) .toBeInstanceOf (SFVec2)
-      expect (b) .not .toBe (a)
-      expect (b .getValue ()) .not .toBe (a .getValue ())
+      expect (b) .toBeInstanceOf (SFVec2);
+      expect (b) .not .toBe (a);
+      expect (b .getValue ()) .not .toBe (a .getValue ());
 
-      expect (b .equals (new SFVec2 (1/2,1/3))) .toBe (true)
-   })
+      expect (b .equals (new SFVec2 (1/2,1/3))) .toBe (true);
+   });
 
    test ("length", () =>
    {
-      expect (new SFVec2 (2,3) .length ()) .toBe (Math .hypot (2,3))
-   })
+      expect (new SFVec2 (2,3) .length ()) .toBe (Math .hypot (2,3));
+   });
 
    test ("lerp", () =>
    {
       const
          a = new SFVec2 (2,3),
          b = new SFVec2 (4,6),
-         c = a .lerp (b, 0.5)
+         c = a .lerp (b, 0.5);
 
-      expect (c) .toBeInstanceOf (SFVec2)
-      expect (c) .not .toBe (a)
-      expect (c) .not .toBe (b)
-      expect (c .getValue ()) .not .toBe (a .getValue ())
-      expect (c .getValue ()) .not .toBe (b .getValue ())
+      expect (c) .toBeInstanceOf (SFVec2);
+      expect (c) .not .toBe (a);
+      expect (c) .not .toBe (b);
+      expect (c .getValue ()) .not .toBe (a .getValue ());
+      expect (c .getValue ()) .not .toBe (b .getValue ());
 
-      expect (c .equals (new SFVec2 (3,4.5))) .toBe (true)
-   })
+      expect (c .equals (new SFVec2 (3,4.5))) .toBe (true);
+   });
 
    test ("min", () =>
    {
@@ -241,23 +241,23 @@ for (const Type of Object .keys (X3D .SFVec2))
          a = new SFVec2 (2,3),
          b = new SFVec2 (4,9),
          c = a .min (b),
-         d = b .min (a)
+         d = b .min (a);
 
-      expect (c) .toBeInstanceOf (SFVec2)
-      expect (c) .not .toBe (a)
-      expect (c) .not .toBe (b)
-      expect (c .getValue ()) .not .toBe (a .getValue ())
-      expect (c .getValue ()) .not .toBe (b .getValue ())
+      expect (c) .toBeInstanceOf (SFVec2);
+      expect (c) .not .toBe (a);
+      expect (c) .not .toBe (b);
+      expect (c .getValue ()) .not .toBe (a .getValue ());
+      expect (c .getValue ()) .not .toBe (b .getValue ());
 
-      expect (d) .toBeInstanceOf (SFVec2)
-      expect (d) .not .toBe (a)
-      expect (d) .not .toBe (b)
-      expect (d .getValue ()) .not .toBe (a .getValue ())
-      expect (d .getValue ()) .not .toBe (b .getValue ())
+      expect (d) .toBeInstanceOf (SFVec2);
+      expect (d) .not .toBe (a);
+      expect (d) .not .toBe (b);
+      expect (d .getValue ()) .not .toBe (a .getValue ());
+      expect (d .getValue ()) .not .toBe (b .getValue ());
 
-      expect (c .equals (a)) .toBe (true)
-      expect (d .equals (a)) .toBe (true)
-   })
+      expect (c .equals (a)) .toBe (true);
+      expect (d .equals (a)) .toBe (true);
+   });
 
    test ("max", () =>
    {
@@ -265,23 +265,23 @@ for (const Type of Object .keys (X3D .SFVec2))
          a = new SFVec2 (2,3),
          b = new SFVec2 (4,9),
          c = a .max (b),
-         d = b .max (a)
+         d = b .max (a);
 
-      expect (c) .toBeInstanceOf (SFVec2)
-      expect (c) .not .toBe (a)
-      expect (c) .not .toBe (b)
-      expect (c .getValue ()) .not .toBe (a .getValue ())
-      expect (c .getValue ()) .not .toBe (b .getValue ())
+      expect (c) .toBeInstanceOf (SFVec2);
+      expect (c) .not .toBe (a);
+      expect (c) .not .toBe (b);
+      expect (c .getValue ()) .not .toBe (a .getValue ());
+      expect (c .getValue ()) .not .toBe (b .getValue ());
 
-      expect (d) .toBeInstanceOf (SFVec2)
-      expect (d) .not .toBe (a)
-      expect (d) .not .toBe (b)
-      expect (d .getValue ()) .not .toBe (a .getValue ())
-      expect (d .getValue ()) .not .toBe (b .getValue ())
+      expect (d) .toBeInstanceOf (SFVec2);
+      expect (d) .not .toBe (a);
+      expect (d) .not .toBe (b);
+      expect (d .getValue ()) .not .toBe (a .getValue ());
+      expect (d .getValue ()) .not .toBe (b .getValue ());
 
-      expect (c .equals (b)) .toBe (true)
-      expect (d .equals (b)) .toBe (true)
-   })
+      expect (c .equals (b)) .toBe (true);
+      expect (d .equals (b)) .toBe (true);
+   });
 
 
    test ("clamp", () =>
@@ -292,13 +292,13 @@ for (const Type of Object .keys (X3D .SFVec2))
          h = new SFVec2 (1,5),
          c = a .clamp (l, h);
 
-      expect (c) .toBeInstanceOf (SFVec2)
-      expect (c) .not .toBe (l)
-      expect (c) .not .toBe (h)
-      expect (c .getValue ()) .not .toBe (l .getValue ())
-      expect (c .getValue ()) .not .toBe (h .getValue ())
+      expect (c) .toBeInstanceOf (SFVec2);
+      expect (c) .not .toBe (l);
+      expect (c) .not .toBe (h);
+      expect (c .getValue ()) .not .toBe (l .getValue ());
+      expect (c .getValue ()) .not .toBe (h .getValue ());
       expect (c .getValue ()) .toEqual ({ x: 1, y: 4 });
-   })
+   });
 
    test ("clamp2", () =>
    {
@@ -308,92 +308,92 @@ for (const Type of Object .keys (X3D .SFVec2))
          h = new SFVec2 (5,8),
          c = a .clamp (l, h);
 
-      expect (c) .toBeInstanceOf (SFVec2)
-      expect (c) .not .toBe (l)
-      expect (c) .not .toBe (h)
-      expect (c .getValue ()) .not .toBe (l .getValue ())
-      expect (c .getValue ()) .not .toBe (h .getValue ())
+      expect (c) .toBeInstanceOf (SFVec2);
+      expect (c) .not .toBe (l);
+      expect (c) .not .toBe (h);
+      expect (c .getValue ()) .not .toBe (l .getValue ());
+      expect (c .getValue ()) .not .toBe (h .getValue ());
       expect (c .getValue ()) .toEqual ({ x: 4, y: 4 });
-   })
+   });
 
    test ("multiply", () =>
    {
       const
          a = new SFVec2 (2,4),
-         b = a .multiply (2)
+         b = a .multiply (2);
 
-      expect (b) .toBeInstanceOf (SFVec2)
-      expect (b) .not .toBe (a)
-      expect (b .getValue ()) .not .toBe (a .getValue ())
+      expect (b) .toBeInstanceOf (SFVec2);
+      expect (b) .not .toBe (a);
+      expect (b .getValue ()) .not .toBe (a .getValue ());
 
-      expect (b .equals (new SFVec2 (4,8))) .toBe (true)
-   })
+      expect (b .equals (new SFVec2 (4,8))) .toBe (true);
+   });
 
    test ("multVec", () =>
    {
       const
          a = new SFVec2 (4,9),
          b = new SFVec2 (2,3),
-         c = a .multVec (b)
+         c = a .multVec (b);
 
-      expect (c) .toBeInstanceOf (SFVec2)
-      expect (c) .not .toBe (a)
-      expect (c) .not .toBe (b)
-      expect (c .getValue ()) .not .toBe (a .getValue ())
-      expect (c .getValue ()) .not .toBe (b .getValue ())
+      expect (c) .toBeInstanceOf (SFVec2);
+      expect (c) .not .toBe (a);
+      expect (c) .not .toBe (b);
+      expect (c .getValue ()) .not .toBe (a .getValue ());
+      expect (c .getValue ()) .not .toBe (b .getValue ());
 
-      expect (c .equals (new SFVec2 (8,27))) .toBe (true)
-   })
+      expect (c .equals (new SFVec2 (8,27))) .toBe (true);
+   });
 
    test ("negate", () =>
    {
       const
          a = new SFVec2 (2,3),
          b = a .negate (),
-         c = b .negate ()
+         c = b .negate ();
 
-      expect (b) .toBeInstanceOf (SFVec2)
-      expect (b) .not .toBe (a)
-      expect (b .getValue ()) .not .toBe (a .getValue ())
+      expect (b) .toBeInstanceOf (SFVec2);
+      expect (b) .not .toBe (a);
+      expect (b .getValue ()) .not .toBe (a .getValue ());
 
-      expect (c) .toBeInstanceOf (SFVec2)
-      expect (c) .not .toBe (a)
-      expect (c) .not .toBe (b)
-      expect (c .getValue ()) .not .toBe (a .getValue ())
-      expect (c .getValue ()) .not .toBe (b .getValue ())
+      expect (c) .toBeInstanceOf (SFVec2);
+      expect (c) .not .toBe (a);
+      expect (c) .not .toBe (b);
+      expect (c .getValue ()) .not .toBe (a .getValue ());
+      expect (c .getValue ()) .not .toBe (b .getValue ());
 
-      expect (b .equals (new SFVec2 (-2,-3))) .toBe (true)
-      expect (c .equals (a)) .toBe (true)
-   })
+      expect (b .equals (new SFVec2 (-2,-3))) .toBe (true);
+      expect (c .equals (a)) .toBe (true);
+   });
 
    test ("normalize", () =>
    {
       const
          a = new SFVec2 (4,9),
-         b = a .normalize ()
+         b = a .normalize ();
 
-      expect (b) .toBeInstanceOf (SFVec2)
-      expect (b) .not .toBe (a)
-      expect (b .getValue ()) .not .toBe (a .getValue ())
+      expect (b) .toBeInstanceOf (SFVec2);
+      expect (b) .not .toBe (a);
+      expect (b .getValue ()) .not .toBe (a .getValue ());
 
-      expect (b .length ()) .toBeCloseTo (1)
-   })
+      expect (b .length ()) .toBeCloseTo (1);
+   });
 
    test ("subtract", () =>
    {
       const
          a = new SFVec2 (8,10),
          b = new SFVec2 (6,7),
-         c = a .subtract (b)
+         c = a .subtract (b);
 
-      expect (c) .toBeInstanceOf (SFVec2)
-      expect (c) .not .toBe (a)
-      expect (c) .not .toBe (b)
-      expect (c .getValue ()) .not .toBe (a .getValue ())
-      expect (c .getValue ()) .not .toBe (b .getValue ())
+      expect (c) .toBeInstanceOf (SFVec2);
+      expect (c) .not .toBe (a);
+      expect (c) .not .toBe (b);
+      expect (c .getValue ()) .not .toBe (a .getValue ());
+      expect (c .getValue ()) .not .toBe (b .getValue ());
 
-      expect (c .equals (new SFVec2 (2,3))) .toBe (true)
-   })
+      expect (c .equals (new SFVec2 (2,3))) .toBe (true);
+   });
 
    test ("reflect", () =>
    {

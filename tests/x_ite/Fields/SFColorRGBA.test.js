@@ -1,6 +1,6 @@
 const
    X3D         = require ("../../X3D"),
-   SFColorRGBA = X3D .SFColorRGBA
+   SFColorRGBA = X3D .SFColorRGBA;
 
 test ("constants", () =>
 {
@@ -11,41 +11,41 @@ test ("constants", () =>
 
 test ("constructor", () =>
 {
-   const v1 = new SFColorRGBA ()
+   const v1 = new SFColorRGBA ();
 
-   expect (v1 .r) .toBe (0)
-   expect (v1 .g) .toBe (0)
-   expect (v1 .b) .toBe (0)
-   expect (v1 .a) .toBe (0)
-   expect (v1 [0]) .toBe (0)
-   expect (v1 [1]) .toBe (0)
-   expect (v1 [2]) .toBe (0)
-   expect (v1 [3]) .toBe (0)
-   expect ([...v1]) .toEqual ([0,0,0,0])
+   expect (v1 .r) .toBe (0);
+   expect (v1 .g) .toBe (0);
+   expect (v1 .b) .toBe (0);
+   expect (v1 .a) .toBe (0);
+   expect (v1 [0]) .toBe (0);
+   expect (v1 [1]) .toBe (0);
+   expect (v1 [2]) .toBe (0);
+   expect (v1 [3]) .toBe (0);
+   expect ([...v1]) .toEqual ([0,0,0,0]);
 
-   const v2 = new SFColorRGBA (0.2,0.3,0.4,0.5)
+   const v2 = new SFColorRGBA (0.2,0.3,0.4,0.5);
 
-   expect (v2 .r) .toBe (0.2)
-   expect (v2 .g) .toBe (0.3)
-   expect (v2 .b) .toBe (0.4)
-   expect (v2 .a) .toBe (0.5)
-   expect (v2 [0]) .toBe (0.2)
-   expect (v2 [1]) .toBe (0.3)
-   expect (v2 [2]) .toBe (0.4)
-   expect (v2 [3]) .toBe (0.5)
-   expect ([...v2]) .toEqual ([0.2,0.3,0.4,0.5])
+   expect (v2 .r) .toBe (0.2);
+   expect (v2 .g) .toBe (0.3);
+   expect (v2 .b) .toBe (0.4);
+   expect (v2 .a) .toBe (0.5);
+   expect (v2 [0]) .toBe (0.2);
+   expect (v2 [1]) .toBe (0.3);
+   expect (v2 [2]) .toBe (0.4);
+   expect (v2 [3]) .toBe (0.5);
+   expect ([...v2]) .toEqual ([0.2,0.3,0.4,0.5]);
 
-   const v3 = new SFColorRGBA (undefined,undefined,undefined,undefined)
+   const v3 = new SFColorRGBA (undefined,undefined,undefined,undefined);
 
-   expect (v3 .r) .toBe (0)
-   expect (v3 .g) .toBe (0)
-   expect (v3 .b) .toBe (0)
-   expect (v3 .a) .toBe (0)
-   expect (v3 [0]) .toBe (0)
-   expect (v3 [1]) .toBe (0)
-   expect (v3 [2]) .toBe (0)
-   expect (v3 [3]) .toBe (0)
-})
+   expect (v3 .r) .toBe (0);
+   expect (v3 .g) .toBe (0);
+   expect (v3 .b) .toBe (0);
+   expect (v3 .a) .toBe (0);
+   expect (v3 [0]) .toBe (0);
+   expect (v3 [1]) .toBe (0);
+   expect (v3 [2]) .toBe (0);
+   expect (v3 [3]) .toBe (0);
+});
 
 test ("enumerate", () =>
 {
@@ -54,10 +54,10 @@ test ("enumerate", () =>
       "g",
       "b",
       "a",
-   ]
+   ];
 
-   enumerate (properties, new SFColorRGBA ())
-})
+   enumerate (properties, new SFColorRGBA ());
+});
 
 test ("getter/setter", () =>
 {
@@ -109,34 +109,34 @@ test ("getter/setter", () =>
 
 test ("common", () =>
 {
-   const field = new SFColorRGBA ()
+   const field = new SFColorRGBA ();
 
-   expect (field .getType ()) .toBe (X3D .X3DConstants .SFColorRGBA)
-   expect (field .getTypeName ()) .toBe ("SFColorRGBA")
-   expect (Object .prototype .toString .call (field)) .toBe ("[object SFColorRGBA]")
-})
+   expect (field .getType ()) .toBe (X3D .X3DConstants .SFColorRGBA);
+   expect (field .getTypeName ()) .toBe ("SFColorRGBA");
+   expect (Object .prototype .toString .call (field)) .toBe ("[object SFColorRGBA]");
+});
 
 test ("copy", () =>
 {
    const
       v1 = new SFColorRGBA (0.2,0.3,0.4,0.5),
-      v2 = v1 .copy ()
+      v2 = v1 .copy ();
 
-   expect (v2) .not .toBe (v1)
-   expect (v2 .getValue ()) .not .toBe (v1 .getValue ())
-   expect (v2 .equals (v1)) .toBe (true)
-})
+   expect (v2) .not .toBe (v1);
+   expect (v2 .getValue ()) .not .toBe (v1 .getValue ());
+   expect (v2 .equals (v1)) .toBe (true);
+});
 
 test ("equals", () =>
 {
    const
       a = new SFColorRGBA (0.2,0.3,0.4,0.5),
-      b = new SFColorRGBA (0.6,0.7,0.8,0.9)
+      b = new SFColorRGBA (0.6,0.7,0.8,0.9);
 
-   expect (a .equals (a)) .toBe (true)
-   expect (b .equals (b)) .toBe (true)
-   expect (a .equals (b)) .toBe (false)
-})
+   expect (a .equals (a)) .toBe (true);
+   expect (b .equals (b)) .toBe (true);
+   expect (a .equals (b)) .toBe (false);
+});
 
 test ("isDefaultValue", () =>
 {
@@ -155,37 +155,37 @@ test ("get/setHSVA", () =>
    const
       a = new SFColorRGBA (0.2,0.3,0.4,0.5),
       b = new SFColorRGBA (),
-      hsva = a .getHSVA ()
+      hsva = a .getHSVA ();
 
-   expect (hsva) .toBeInstanceOf (Array)
-   expect (hsva) .not .toBe (a .getHSVA ())
+   expect (hsva) .toBeInstanceOf (Array);
+   expect (hsva) .not .toBe (a .getHSVA ());
 
-   b .setHSVA (...hsva)
+   b .setHSVA (...hsva);
 
-   expect (b .r)  .toBeCloseTo (a .r)
-   expect (b .g)  .toBeCloseTo (a .g)
-   expect (b .b)  .toBeCloseTo (a .b)
-   expect (b .a)  .toBeCloseTo (a .a)
-   expect (b [0]) .toBeCloseTo (a [0])
-   expect (b [1]) .toBeCloseTo (a [1])
-   expect (b [2]) .toBeCloseTo (a [2])
-   expect (b [3]) .toBeCloseTo (a [3])
+   expect (b .r)  .toBeCloseTo (a .r);
+   expect (b .g)  .toBeCloseTo (a .g);
+   expect (b .b)  .toBeCloseTo (a .b);
+   expect (b .a)  .toBeCloseTo (a .a);
+   expect (b [0]) .toBeCloseTo (a [0]);
+   expect (b [1]) .toBeCloseTo (a [1]);
+   expect (b [2]) .toBeCloseTo (a [2]);
+   expect (b [3]) .toBeCloseTo (a [3]);
 
    for (let i = 0; i <= 12; ++ i)
    {
-      a .setHSVA (i/12 * Math .PI * 2, 0.5, 0.5, 0.5)
-      b .setHSVA (... a .getHSVA ())
+      a .setHSVA (i/12 * Math .PI * 2, 0.5, 0.5, 0.5);
+      b .setHSVA (... a .getHSVA ());
 
-      expect (b .r)  .toBeCloseTo (a .r)
-      expect (b .g)  .toBeCloseTo (a .g)
-      expect (b .b)  .toBeCloseTo (a .b)
-      expect (b .a)  .toBeCloseTo (a .a)
-      expect (b [0]) .toBeCloseTo (a [0])
-      expect (b [1]) .toBeCloseTo (a [1])
-      expect (b [2]) .toBeCloseTo (a [2])
-      expect (b [3]) .toBeCloseTo (a [3])
+      expect (b .r)  .toBeCloseTo (a .r);
+      expect (b .g)  .toBeCloseTo (a .g);
+      expect (b .b)  .toBeCloseTo (a .b);
+      expect (b .a)  .toBeCloseTo (a .a);
+      expect (b [0]) .toBeCloseTo (a [0]);
+      expect (b [1]) .toBeCloseTo (a [1]);
+      expect (b [2]) .toBeCloseTo (a [2]);
+      expect (b [3]) .toBeCloseTo (a [3]);
    }
-})
+});
 
 test ("linearToSRGB", () =>
 {
@@ -244,23 +244,23 @@ test ("lerp", () =>
    const
       a = new SFColorRGBA (0,0,0,0),
       b = new SFColorRGBA (1,1,1,1),
-      c = a .lerp (b, 0.5)
+      c = a .lerp (b, 0.5);
 
-   expect (c) .toBeInstanceOf (SFColorRGBA)
-   expect (c) .not .toBe (a)
-   expect (c) .not .toBe (b)
-   expect (c .getValue ()) .not .toBe (a .getValue ())
-   expect (c .getValue ()) .not .toBe (b .getValue ())
+   expect (c) .toBeInstanceOf (SFColorRGBA);
+   expect (c) .not .toBe (a);
+   expect (c) .not .toBe (b);
+   expect (c .getValue ()) .not .toBe (a .getValue ());
+   expect (c .getValue ()) .not .toBe (b .getValue ());
 
-   expect (c .r)  .toBeCloseTo (0.5)
-   expect (c .g)  .toBeCloseTo (0.5)
-   expect (c .b)  .toBeCloseTo (0.5)
-   expect (c .a)  .toBeCloseTo (0.5)
-   expect (c [0]) .toBeCloseTo (0.5)
-   expect (c [1]) .toBeCloseTo (0.5)
-   expect (c [2]) .toBeCloseTo (0.5)
-   expect (c [3]) .toBeCloseTo (0.5)
-})
+   expect (c .r)  .toBeCloseTo (0.5);
+   expect (c .g)  .toBeCloseTo (0.5);
+   expect (c .b)  .toBeCloseTo (0.5);
+   expect (c .a)  .toBeCloseTo (0.5);
+   expect (c [0]) .toBeCloseTo (0.5);
+   expect (c [1]) .toBeCloseTo (0.5);
+   expect (c [2]) .toBeCloseTo (0.5);
+   expect (c [3]) .toBeCloseTo (0.5);
+});
 
 test ("static fromString", () =>
 {

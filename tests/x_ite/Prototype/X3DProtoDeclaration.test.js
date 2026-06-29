@@ -101,7 +101,7 @@ Test { }
       "fields",
       "appInfo",
       "documentation",
-   ]
+   ];
 
    enumerate (properties, proto);
 });

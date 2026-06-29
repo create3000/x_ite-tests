@@ -3,7 +3,7 @@ const
    path = require ("path"),
    url  = require ("url");
 
-const X3D = require ("../../X3D")
+const X3D = require ("../../X3D");
 
 const
    canvas  = X3D .createBrowser (),
@@ -40,7 +40,7 @@ PROTO TestProto [
 
 Test { }
 Test { size 4 4 4 }
-`))
+`));
 
    expect (scene .rootNodes) .toHaveLength (2);
    expect (scene .rootNodes [0] .getNodeTypeName ()) .toBe ("Test");

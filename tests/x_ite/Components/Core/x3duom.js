@@ -77,7 +77,7 @@ function node (filename)
       const x3duom = fieldDefinitions .filter (f => !fields .has (f [2])) .map (f => f [2]);
 
       if (x3duom .length)
-         console .log (`  Where [${x3duom}] not in X3DUOM.`)
+         console .log (`  Where [${x3duom}] not in X3DUOM.`);
 
       const x_ite = [... fields .values ()] .map (f => f .name) .filter (n => !fieldDefinitions .find (f => f [2] === n));
 
@@ -287,7 +287,7 @@ function field (typeName, fieldDefinition, fields)
 
 function xml (string)
 {
-   const { XMLParser } = require ("fast-xml-parser")
+   const { XMLParser } = require ("fast-xml-parser");
 
    const parser = new XMLParser ({
       ignoreAttributes: false,

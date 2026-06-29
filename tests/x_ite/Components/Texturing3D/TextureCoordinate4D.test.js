@@ -1,6 +1,6 @@
 const
    X3D     = require ("../../../X3D"),
-   Browser = X3D .createBrowser () .browser
+   Browser = X3D .createBrowser () .browser;
 
 test ("use", async () =>
 {
@@ -46,7 +46,7 @@ Shape {
       coord USE C
    }
 }
-`
+`;
 
-   await expect (Browser .createX3DFromString (input)) .resolves .toBeInstanceOf (X3D .X3DScene)
-})
+   await expect (Browser .createX3DFromString (input)) .resolves .toBeInstanceOf (X3D .X3DScene);
+});

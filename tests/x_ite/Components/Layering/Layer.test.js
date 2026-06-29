@@ -1,8 +1,8 @@
-const X3D = require ("../../../X3D")
+const X3D = require ("../../../X3D");
 
 const
    canvas  = X3D .createBrowser (),
-   Browser = canvas .browser
+   Browser = canvas .browser;
 
 test ("Removed fields", async () =>
 {
@@ -12,10 +12,10 @@ Layer {
 }
 Layer {
    isPickable TRUE
-}`))
+}`));
 
-   expect (scene1 .rootNodes [0] .isPickable) .toBe (false)
-   expect (scene1 .rootNodes [1] .isPickable) .toBe (true)
-   expect (scene1 .rootNodes [0] .pickable) .toBe (false)
-   expect (scene1 .rootNodes [1] .pickable) .toBe (true)
-})
+   expect (scene1 .rootNodes [0] .isPickable) .toBe (false);
+   expect (scene1 .rootNodes [1] .isPickable) .toBe (true);
+   expect (scene1 .rootNodes [0] .pickable) .toBe (false);
+   expect (scene1 .rootNodes [1] .pickable) .toBe (true);
+});

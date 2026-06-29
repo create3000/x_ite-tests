@@ -1,4 +1,4 @@
-const X3D = require ("../../X3D")
+const X3D = require ("../../X3D");
 
 test ("add/removeParser", () =>
 {
@@ -20,4 +20,4 @@ test ("add/removeParser", () =>
 
    expect (X3D .GoldenGate .getParsers ()) .toHaveLength (originalParsers .length);
    expect (X3D .GoldenGate .getParsers ()) .toEqual (originalParsers);
-})
+});

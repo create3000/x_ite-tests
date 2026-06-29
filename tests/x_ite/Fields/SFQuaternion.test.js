@@ -4,7 +4,7 @@ const
    SFQuaternion = X3D .SFQuaternion,
    SFVec3d      = X3D .SFVec3d,
    SFVec3f      = X3D .SFVec3f,
-   SFMatrix3f   = X3D .SFMatrix3f
+   SFMatrix3f   = X3D .SFMatrix3f;
 
 test ("constants", () =>
 {
@@ -26,19 +26,19 @@ test ("constructor", () =>
    expect (v1 [3]) .toBe (0);
    expect ([...v1]) .toEqual ([0,0,0,0]);
 
-   const v2 = new SFQuaternion (2,3,4,5)
+   const v2 = new SFQuaternion (2,3,4,5);
 
-   expect (v2 .x) .toBe (2)
-   expect (v2 .y) .toBe (3)
-   expect (v2 .z) .toBe (4)
-   expect (v2 .w) .toBe (5)
-   expect (v2 [0]) .toBe (2)
-   expect (v2 [1]) .toBe (3)
-   expect (v2 [2]) .toBe (4)
-   expect (v2 [3]) .toBe (5)
-   expect ([...v2]) .toEqual ([2,3,4,5])
+   expect (v2 .x) .toBe (2);
+   expect (v2 .y) .toBe (3);
+   expect (v2 .z) .toBe (4);
+   expect (v2 .w) .toBe (5);
+   expect (v2 [0]) .toBe (2);
+   expect (v2 [1]) .toBe (3);
+   expect (v2 [2]) .toBe (4);
+   expect (v2 [3]) .toBe (5);
+   expect ([...v2]) .toEqual ([2,3,4,5]);
 
-   const v3 = new SFQuaternion (undefined,undefined,undefined,undefined)
+   const v3 = new SFQuaternion (undefined,undefined,undefined,undefined);
 
    expect (v3 .x) .toBe (0);
    expect (v3 .y) .toBe (0);
@@ -78,44 +78,44 @@ test ("enumerate", () =>
 
 test ("getter/setter", () =>
 {
-   const v1 = new SFQuaternion ()
+   const v1 = new SFQuaternion ();
 
-   v1 .x = 2
-   v1 .y = 3
-   v1 .z = 4
-   v1 .w = 5
+   v1 .x = 2;
+   v1 .y = 3;
+   v1 .z = 4;
+   v1 .w = 5;
 
-   expect (v1 .x) .toBe (2)
-   expect (v1 .y) .toBe (3)
-   expect (v1 .z) .toBe (4)
-   expect (v1 .w) .toBe (5)
-   expect (v1 [0]) .toBe (2)
-   expect (v1 [1]) .toBe (3)
-   expect (v1 [2]) .toBe (4)
-   expect (v1 [3]) .toBe (5)
-   expect ([...v1]) .toEqual ([2,3,4,5])
+   expect (v1 .x) .toBe (2);
+   expect (v1 .y) .toBe (3);
+   expect (v1 .z) .toBe (4);
+   expect (v1 .w) .toBe (5);
+   expect (v1 [0]) .toBe (2);
+   expect (v1 [1]) .toBe (3);
+   expect (v1 [2]) .toBe (4);
+   expect (v1 [3]) .toBe (5);
+   expect ([...v1]) .toEqual ([2,3,4,5]);
 
-   v1 [0] = 6
-   v1 [1] = 7
-   v1 [2] = 8
-   v1 [3] = 9
+   v1 [0] = 6;
+   v1 [1] = 7;
+   v1 [2] = 8;
+   v1 [3] = 9;
 
-   expect (v1 .x) .toBe (6)
-   expect (v1 .y) .toBe (7)
-   expect (v1 .z) .toBe (8)
-   expect (v1 .w) .toBe (9)
-   expect (v1 [0]) .toBe (6)
-   expect (v1 [1]) .toBe (7)
-   expect (v1 [2]) .toBe (8)
-   expect (v1 [3]) .toBe (9)
-   expect ([...v1]) .toEqual ([6,7,8,9])
+   expect (v1 .x) .toBe (6);
+   expect (v1 .y) .toBe (7);
+   expect (v1 .z) .toBe (8);
+   expect (v1 .w) .toBe (9);
+   expect (v1 [0]) .toBe (6);
+   expect (v1 [1]) .toBe (7);
+   expect (v1 [2]) .toBe (8);
+   expect (v1 [3]) .toBe (9);
+   expect ([...v1]) .toEqual ([6,7,8,9]);
 
    v1 [0] = undefined;
    v1 [1] = undefined;
    v1 [2] = undefined;
    v1 [3] = undefined;
 
-   expect ([...v1]) .toEqual ([NaN,NaN,NaN,NaN])
+   expect ([...v1]) .toEqual ([NaN,NaN,NaN,NaN]);
 
    v1 .assign (new SFQuaternion (1,2,3,4));
    v1 .x = undefined;
@@ -123,38 +123,38 @@ test ("getter/setter", () =>
    v1 .z = undefined;
    v1 .w = undefined;
    expect ([...v1]) .toEqual ([NaN,NaN,NaN,NaN]);
-})
+});
 
 test ("common", () =>
 {
-   const field = new SFQuaternion ()
+   const field = new SFQuaternion ();
 
-   expect (field .getType ()) .toBe (X3D .X3DConstants .SFQuaternion)
-   expect (field .getTypeName ()) .toBe ("SFQuaternion")
-   expect (Object .prototype .toString .call (field)) .toBe ("[object SFQuaternion]")
-})
+   expect (field .getType ()) .toBe (X3D .X3DConstants .SFQuaternion);
+   expect (field .getTypeName ()) .toBe ("SFQuaternion");
+   expect (Object .prototype .toString .call (field)) .toBe ("[object SFQuaternion]");
+});
 
 test ("copy", () =>
 {
    const
       v1 = new SFQuaternion (2,3,4,5),
-      v2 = v1 .copy ()
+      v2 = v1 .copy ();
 
-   expect (v2) .not .toBe (v1)
-   expect (v2 .getValue ()) .not .toBe (v1 .getValue ())
-   expect (v2 .equals (v1)) .toBe (true)
-})
+   expect (v2) .not .toBe (v1);
+   expect (v2 .getValue ()) .not .toBe (v1 .getValue ());
+   expect (v2 .equals (v1)) .toBe (true);
+});
 
 test ("equals", () =>
 {
    const
       a = new SFQuaternion (2,3,4,5),
-      b = new SFQuaternion (6,7,8,9)
+      b = new SFQuaternion (6,7,8,9);
 
-   expect (a .equals (a)) .toBe (true)
-   expect (b .equals (b)) .toBe (true)
-   expect (a .equals (b)) .toBe (false)
-})
+   expect (a .equals (a)) .toBe (true);
+   expect (b .equals (b)) .toBe (true);
+   expect (a .equals (b)) .toBe (false);
+});
 
 test ("isDefaultValue", () =>
 {
@@ -202,29 +202,29 @@ test ("get/setMatrix", () =>
    const a = new SFQuaternion (0,0,0,1);
    const b = new SFQuaternion ();
 
-   b .setMatrix (new SFMatrix3f (0,0,-1,0,1,0,1,0,0))
+   b .setMatrix (new SFMatrix3f (0,0,-1,0,1,0,1,0,0));
 
-   expect (b .getMatrix ()) .toBeInstanceOf (SFMatrix3f)
-   expect (b .getMatrix ()) .not .toBe (a .getMatrix ())
-   expect (b .getMatrix () [0]) .toBeCloseTo (0)
-   expect (b .getMatrix () [1]) .toBeCloseTo (0)
-   expect (b .getMatrix () [2]) .toBeCloseTo (-1)
-   expect (b .getMatrix () [3]) .toBeCloseTo (0)
-   expect (b .getMatrix () [4]) .toBeCloseTo (1)
-   expect (b .getMatrix () [5]) .toBeCloseTo (0)
-   expect (b .getMatrix () [6]) .toBeCloseTo (1)
-   expect (b .getMatrix () [7]) .toBeCloseTo (0)
-   expect (b .getMatrix () [8]) .toBeCloseTo (0)
+   expect (b .getMatrix ()) .toBeInstanceOf (SFMatrix3f);
+   expect (b .getMatrix ()) .not .toBe (a .getMatrix ());
+   expect (b .getMatrix () [0]) .toBeCloseTo (0);
+   expect (b .getMatrix () [1]) .toBeCloseTo (0);
+   expect (b .getMatrix () [2]) .toBeCloseTo (-1);
+   expect (b .getMatrix () [3]) .toBeCloseTo (0);
+   expect (b .getMatrix () [4]) .toBeCloseTo (1);
+   expect (b .getMatrix () [5]) .toBeCloseTo (0);
+   expect (b .getMatrix () [6]) .toBeCloseTo (1);
+   expect (b .getMatrix () [7]) .toBeCloseTo (0);
+   expect (b .getMatrix () [8]) .toBeCloseTo (0);
 
-   expect (b .x) .toBeCloseTo (0)
-   expect (b .y) .toBeCloseTo (Math .SQRT1_2)
-   expect (b .z) .toBeCloseTo (0)
-   expect (b .w) .toBeCloseTo (Math .SQRT1_2)
-   expect (b [0]) .toBeCloseTo (0)
-   expect (b [1]) .toBeCloseTo (Math .SQRT1_2)
-   expect (b [2]) .toBeCloseTo (0)
-   expect (b [3]) .toBeCloseTo (Math .SQRT1_2)
-})
+   expect (b .x) .toBeCloseTo (0);
+   expect (b .y) .toBeCloseTo (Math .SQRT1_2);
+   expect (b .z) .toBeCloseTo (0);
+   expect (b .w) .toBeCloseTo (Math .SQRT1_2);
+   expect (b [0]) .toBeCloseTo (0);
+   expect (b [1]) .toBeCloseTo (Math .SQRT1_2);
+   expect (b [2]) .toBeCloseTo (0);
+   expect (b [3]) .toBeCloseTo (Math .SQRT1_2);
+});
 
 test ("dot", () =>
 {
@@ -366,7 +366,7 @@ test ("multVecQuat:double", () =>
 {
    const
       r1 = new SFQuaternion (1, 2, 3, 4),
-      v1 = r1 .multVecQuat (SFVec3d .Z_AXIS)
+      v1 = r1 .multVecQuat (SFVec3d .Z_AXIS);
 
    expect (v1) .toBeInstanceOf (SFVec3d);
    expect (v1) .not .toBe (r1 .multVecQuat (SFVec3d .Z_AXIS));

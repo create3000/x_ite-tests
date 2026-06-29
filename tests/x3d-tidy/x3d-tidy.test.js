@@ -1,8 +1,8 @@
 const path = require ("node:path");
 const fs   = require ("node:fs");
 const { exec } = require ("node:child_process");
-const { sh, systemSync } = require ("shell-tools")
-const X3D = require ("../X3D")
+const { sh, systemSync } = require ("shell-tools");
+const X3D = require ("../X3D");
 
 systemSync (`npx --yes x3d-tidy -v`);
 

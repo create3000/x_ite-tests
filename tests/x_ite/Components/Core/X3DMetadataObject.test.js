@@ -1,8 +1,8 @@
-const X3D = require ("../../../X3D")
+const X3D = require ("../../../X3D");
 
 const
    canvas  = X3D .createBrowser (),
-   Browser = canvas .browser
+   Browser = canvas .browser;
 
 test ("containerField-3.3", async () =>
 {
