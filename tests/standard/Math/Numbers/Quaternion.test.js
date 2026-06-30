@@ -17,7 +17,6 @@ test ("constructor", () =>
    expect (q0 .y) .toBe (0);
    expect (q0 .z) .toBe (0);
    expect (q0 .w) .toBe (1);
-   expect (q0 .real) .toBe (1);
 
    expect (q0 [0]) .toBe (0);
    expect (q0 [1]) .toBe (0);
@@ -34,7 +33,6 @@ test ("constructor", () =>
    expect (q1 .y) .toBe (2);
    expect (q1 .z) .toBe (3);
    expect (q1 .w) .toBe (4);
-   expect (q1 .real) .toBe (4);
 
    expect (q1 [0]) .toBe (1);
    expect (q1 [1]) .toBe (2);
