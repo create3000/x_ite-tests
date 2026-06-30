@@ -23,7 +23,7 @@ test ("constructor", () =>
    expect (v1 .i) .toBe (0);
    expect (v1 .j) .toBe (0);
    expect (v1 .k) .toBe (0);
-   expect (v1 .r) .toBe (0);
+   expect (v1 .real) .toBe (0);
    expect (v1 [0]) .toBe (0);
    expect (v1 [1]) .toBe (0);
    expect (v1 [2]) .toBe (0);
@@ -39,7 +39,7 @@ test ("constructor", () =>
    expect (v2 .i) .toBe (2);
    expect (v2 .j) .toBe (3);
    expect (v2 .k) .toBe (4);
-   expect (v2 .r) .toBe (5);
+   expect (v2 .real) .toBe (5);
    expect (v2 [0]) .toBe (2);
    expect (v2 [1]) .toBe (3);
    expect (v2 [2]) .toBe (4);
@@ -55,7 +55,7 @@ test ("constructor", () =>
    expect (v3 .i) .toBe (0);
    expect (v3 .j) .toBe (0);
    expect (v3 .k) .toBe (0);
-   expect (v3 .r) .toBe (0);
+   expect (v3 .real) .toBe (0);
    expect (v3 [0]) .toBe (0);
    expect (v3 [1]) .toBe (0);
    expect (v3 [2]) .toBe (0);
@@ -104,7 +104,7 @@ test ("getter/setter", () =>
    expect (v1 .i) .toBe (2);
    expect (v1 .j) .toBe (3);
    expect (v1 .k) .toBe (4);
-   expect (v1 .r) .toBe (5);
+   expect (v1 .real) .toBe (5);
    expect (v1 [0]) .toBe (2);
    expect (v1 [1]) .toBe (3);
    expect (v1 [2]) .toBe (4);
@@ -123,7 +123,7 @@ test ("getter/setter", () =>
    expect (v1 .i) .toBe (6);
    expect (v1 .j) .toBe (7);
    expect (v1 .k) .toBe (8);
-   expect (v1 .r) .toBe (9);
+   expect (v1 .real) .toBe (9);
    expect (v1 [0]) .toBe (6);
    expect (v1 [1]) .toBe (7);
    expect (v1 [2]) .toBe (8);
@@ -133,7 +133,7 @@ test ("getter/setter", () =>
    v1 .i = 10;
    v1 .j = 11;
    v1 .k = 12;
-   v1 .r = 13;
+   v1 .real = 13;
 
    expect (v1 .x) .toBe (10);
    expect (v1 .y) .toBe (11);
@@ -142,7 +142,7 @@ test ("getter/setter", () =>
    expect (v1 .i) .toBe (10);
    expect (v1 .j) .toBe (11);
    expect (v1 .k) .toBe (12);
-   expect (v1 .r) .toBe (13);
+   expect (v1 .real) .toBe (13);
    expect (v1 [0]) .toBe (10);
    expect (v1 [1]) .toBe (11);
    expect (v1 [2]) .toBe (12);
