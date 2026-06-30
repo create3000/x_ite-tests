@@ -119,6 +119,17 @@ test ("equals", () =>
    expect (a .equals (c)) .toBe (false);
 });
 
+test ("add", () =>
+{
+   const a = new Quaternion (1, 2, 3, 4);
+   const b = new Quaternion (5, 6, 7, 8);
+   const c = a .add (b);
+   expect (c.x) .toBe (6);
+   expect (c.y) .toBe (8);
+   expect (c.z) .toBe (10);
+   expect (c.w) .toBe (12);
+});
+
 test ("conjugate", () =>
 {
    const a = new Quaternion (1, 2, 3, 4);
@@ -129,14 +140,41 @@ test ("conjugate", () =>
    expect (b .w) .toBe (4);
 });
 
-test ("negate", () =>
+test ("divide", () =>
+{
+   const a = new Quaternion (2, 4, 6, 8);
+   const b = a .divide (2);
+   expect (b.x) .toBe (1);
+   expect (b.y) .toBe (2);
+   expect (b.z) .toBe (3);
+   expect (b.w) .toBe (4);
+});
+
+test ("dot", () =>
+{
+   const a = new Quaternion (2, 3, 4, 5);
+   const b = new Quaternion (5, 6, 7, 8);
+
+   expect (a .dot (b)) .toEqual (2*5 + 3*6 + 4*7 + 5*8);
+});
+
+test ("exp", () =>
 {
    const a = new Quaternion (1, 2, 3, 4);
-   const b = a .negate ();
-   expect (b .x) .toBe (-1);
-   expect (b .y) .toBe (-2);
-   expect (b .z) .toBe (-3);
-   expect (b .w) .toBe (-4);
+   const b = new Quaternion (5, 6, 7, 8);
+
+   a .exp ();
+   b .exp ();
+
+   expect (a .x) .toBeCloseTo (-8.240025266756874);
+   expect (a .y) .toBeCloseTo (-16.480050533513747);
+   expect (a .z) .toBeCloseTo (-24.72007580027062);
+   expect (a .w) .toBeCloseTo (-45.05980201339819);
+
+   expect (b .x) .toBeCloseTo (-1242.0114657960858);
+   expect (b .y) .toBeCloseTo (-1490.413758955303);
+   expect (b .z) .toBeCloseTo (-1738.81605211452);
+   expect (b .w) .toBeCloseTo (-1448.6903062299164);
 });
 
 test ("inverse", () =>
@@ -157,26 +195,23 @@ test ("inverse", () =>
    expect (d .w) .toBeCloseTo (1);
 });
 
-test ("add", () =>
+test ("log", () =>
 {
    const a = new Quaternion (1, 2, 3, 4);
    const b = new Quaternion (5, 6, 7, 8);
-   const c = a .add (b);
-   expect (c.x) .toBe (6);
-   expect (c.y) .toBe (8);
-   expect (c.z) .toBe (10);
-   expect (c.w) .toBe (12);
-});
 
-test ("subtract", () =>
-{
-   const a = new Quaternion (5, 6, 7, 8);
-   const b = new Quaternion (1, 2, 3, 4);
-   const c = a .subtract (b);
-   expect (c.x) .toBe (4);
-   expect (c.y) .toBe (4);
-   expect (c.z) .toBe (4);
-   expect (c.w) .toBe (4);
+   a .log ();
+   b .log ();
+
+   expect (a .x) .toBeCloseTo (0.20099116820547408);
+   expect (a .y) .toBeCloseTo (0.40198233641094816);
+   expect (a .z) .toBeCloseTo (0.6029735046164222);
+   expect (a .w) .toBeCloseTo (1.7005986908310777);
+
+   expect (b .x) .toBeCloseTo (0.43819822073423786);
+   expect (b .y) .toBeCloseTo (0.5258378648810854);
+   expect (b .z) .toBeCloseTo (0.613477509027933);
+   expect (b .w) .toBeCloseTo (2.5795276496072646);
 });
 
 test ("multiply", () =>
@@ -230,16 +265,6 @@ test ("multRight", () => {
    expect (c1.w) .toBe (-20);
 });
 
-test ("divide", () =>
-{
-   const a = new Quaternion (2, 4, 6, 8);
-   const b = a .divide (2);
-   expect (b.x) .toBe (1);
-   expect (b.y) .toBe (2);
-   expect (b.z) .toBe (3);
-   expect (b.w) .toBe (4);
-});
-
 test ("multVecQuat", () =>
 {
    const a = new Quaternion (2, 4, 6, 8);
@@ -272,6 +297,16 @@ test ("multQuatVec", () =>
    expect (d [2]) .toBeCloseTo (c [2]);
 });
 
+test ("negate", () =>
+{
+   const a = new Quaternion (1, 2, 3, 4);
+   const b = a .negate ();
+   expect (b .x) .toBe (-1);
+   expect (b .y) .toBe (-2);
+   expect (b .z) .toBe (-3);
+   expect (b .w) .toBe (-4);
+});
+
 test ("norm (length)", () =>
 {
    const q = new Quaternion (3, 4, 5, 6);
@@ -286,12 +321,44 @@ test ("normalize", () =>
    expect ([... n]) .toEqual ([0.5, 0.5, 0.5, 0.5]);
 });
 
-test ("dot", () =>
+test ("pow", () =>
 {
-   const a = new Quaternion (2, 3, 4, 5);
+   const a = new Quaternion (1, 2, 3, 4);
    const b = new Quaternion (5, 6, 7, 8);
 
-   expect (a .dot (b)) .toEqual (2*5 + 3*6 + 4*7 + 5*8);
+   a .pow (2.3);
+   b .pow (2.3);
+
+   expect (a .x) .toBeCloseTo (13.18620084468108);
+   expect (a .y) .toBeCloseTo (26.37240168936216);
+   expect (a .z) .toBeCloseTo (39.55860253404324);
+   expect (a .w) .toBeCloseTo (-7.906295287757057);
+
+   expect (b .x) .toBeCloseTo (153.95109525465574);
+   expect (b .y) .toBeCloseTo (184.74131430558688);
+   expect (b .z) .toBeCloseTo (215.53153335651803);
+   expect (b .w) .toBeCloseTo (-195.02561928757083);
+
+   const c = new Quaternion (1, 2, 3, 4);
+   const d = new Quaternion (5, 6, 7, 8);
+
+   c .pow (d);
+
+   expect (c .x) .toBeCloseTo (-148.7236935874203);
+   expect (c .y) .toBeCloseTo (-240.13511773723667);
+   expect (c .z) .toBeCloseTo (-254.46318509663763);
+   expect (c .w) .toBeCloseTo (88.67240264348418);
+});
+
+test ("subtract", () =>
+{
+   const a = new Quaternion (5, 6, 7, 8);
+   const b = new Quaternion (1, 2, 3, 4);
+   const c = a .subtract (b);
+   expect (c.x) .toBe (4);
+   expect (c.y) .toBe (4);
+   expect (c.z) .toBe (4);
+   expect (c.w) .toBe (4);
 });
 
 test ("toString", () =>
