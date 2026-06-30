@@ -101,6 +101,10 @@ test ("getter/setter", () =>
    expect (v1 .y) .toBe (3);
    expect (v1 .z) .toBe (4);
    expect (v1 .w) .toBe (5);
+   expect (v1 .i) .toBe (2);
+   expect (v1 .j) .toBe (3);
+   expect (v1 .k) .toBe (4);
+   expect (v1 .r) .toBe (5);
    expect (v1 [0]) .toBe (2);
    expect (v1 [1]) .toBe (3);
    expect (v1 [2]) .toBe (4);
@@ -116,11 +120,34 @@ test ("getter/setter", () =>
    expect (v1 .y) .toBe (7);
    expect (v1 .z) .toBe (8);
    expect (v1 .w) .toBe (9);
+   expect (v1 .i) .toBe (6);
+   expect (v1 .j) .toBe (7);
+   expect (v1 .k) .toBe (8);
+   expect (v1 .r) .toBe (9);
    expect (v1 [0]) .toBe (6);
    expect (v1 [1]) .toBe (7);
    expect (v1 [2]) .toBe (8);
    expect (v1 [3]) .toBe (9);
    expect ([...v1]) .toEqual ([6,7,8,9]);
+
+   v1 .i = 10;
+   v1 .j = 11;
+   v1 .k = 12;
+   v1 .r = 13;
+
+   expect (v1 .x) .toBe (10);
+   expect (v1 .y) .toBe (11);
+   expect (v1 .z) .toBe (12);
+   expect (v1 .w) .toBe (13);
+   expect (v1 .i) .toBe (10);
+   expect (v1 .j) .toBe (11);
+   expect (v1 .k) .toBe (12);
+   expect (v1 .r) .toBe (13);
+   expect (v1 [0]) .toBe (10);
+   expect (v1 [1]) .toBe (11);
+   expect (v1 [2]) .toBe (12);
+   expect (v1 [3]) .toBe (13);
+   expect ([...v1]) .toEqual ([10,11,12,13]);
 
    v1 [0] = undefined;
    v1 [1] = undefined;
