@@ -17,6 +17,7 @@ test ("constructor", () =>
    expect (q0 .y) .toBe (0);
    expect (q0 .z) .toBe (0);
    expect (q0 .w) .toBe (1);
+   expect (q0 .real) .toBe (1);
 
    expect (q0 [0]) .toBe (0);
    expect (q0 [1]) .toBe (0);
@@ -33,6 +34,7 @@ test ("constructor", () =>
    expect (q1 .y) .toBe (2);
    expect (q1 .z) .toBe (3);
    expect (q1 .w) .toBe (4);
+   expect (q1 .real) .toBe (4);
 
    expect (q1 [0]) .toBe (1);
    expect (q1 [1]) .toBe (2);
@@ -117,6 +119,23 @@ test ("equals", () =>
 
    expect (a .equals (b)) .toBe (true);
    expect (a .equals (c)) .toBe (false);
+});
+
+test ("get/setImag", () =>
+{
+   const a = new Quaternion (4, 3, 2, 1);
+
+   expect (a .x) .toBe (4);
+   expect (a .y) .toBe (3);
+   expect (a .z) .toBe (2);
+   expect ([... a .getImag ()]) .toEqual ([4,3,2]);
+
+   a .setImag (new Vector3 (5,6,7));
+
+   expect (a .x) .toBe (5);
+   expect (a .y) .toBe (6);
+   expect (a .z) .toBe (7);
+   expect ([... a .getImag ()]) .toEqual ([5,6,7]);
 });
 
 test ("add", () =>
