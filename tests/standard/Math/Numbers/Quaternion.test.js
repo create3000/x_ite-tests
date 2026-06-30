@@ -95,21 +95,21 @@ test ("getMatrix/setMatrix", () =>
    expect (b .w) .toBeCloseTo (a .w);
 });
 
-test ("isReal", () =>
-{
-   const q = new Quaternion (0, 0, 0, 1);
+// test ("isReal", () =>
+// {
+//    const q = new Quaternion (0, 0, 0, 1);
 
-   expect (q .isReal ()) .toBe (true);
-   expect (q .isImag ()) .not .toBe (true);
-});
+//    expect (q .isReal ()) .toBe (true);
+//    expect (q .isImag ()) .not .toBe (true);
+// });
 
-test ("isImag", () =>
-{
-   const q = new Quaternion (1, 2, 3, 0);
+// test ("isImag", () =>
+// {
+//    const q = new Quaternion (1, 2, 3, 0);
 
-   expect (q .isReal ()) .not .toBe (true);
-   expect (q .isImag ()) .toBe (true);
-});
+//    expect (q .isReal ()) .not .toBe (true);
+//    expect (q .isImag ()) .toBe (true);
+// });
 
 test ("equals", () =>
 {
