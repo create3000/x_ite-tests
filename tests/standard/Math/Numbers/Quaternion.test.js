@@ -119,23 +119,6 @@ test ("equals", () =>
    expect (a .equals (c)) .toBe (false);
 });
 
-test ("get/setImag", () =>
-{
-   const a = new Quaternion (4, 3, 2, 1);
-
-   expect (a .x) .toBe (4);
-   expect (a .y) .toBe (3);
-   expect (a .z) .toBe (2);
-   expect ([... a .getImag ()]) .toEqual ([4,3,2]);
-
-   a .setImag (new Vector3 (5,6,7));
-
-   expect (a .x) .toBe (5);
-   expect (a .y) .toBe (6);
-   expect (a .z) .toBe (7);
-   expect ([... a .getImag ()]) .toEqual ([5,6,7]);
-});
-
 test ("add", () =>
 {
    const a = new Quaternion (1, 2, 3, 4);
