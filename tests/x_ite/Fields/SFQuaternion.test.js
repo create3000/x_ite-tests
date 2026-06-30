@@ -20,6 +20,10 @@ test ("constructor", () =>
    expect (v1 .y) .toBe (0);
    expect (v1 .z) .toBe (0);
    expect (v1 .w) .toBe (0);
+   expect (v1 .i) .toBe (0);
+   expect (v1 .j) .toBe (0);
+   expect (v1 .k) .toBe (0);
+   expect (v1 .r) .toBe (0);
    expect (v1 [0]) .toBe (0);
    expect (v1 [1]) .toBe (0);
    expect (v1 [2]) .toBe (0);
@@ -32,6 +36,10 @@ test ("constructor", () =>
    expect (v2 .y) .toBe (3);
    expect (v2 .z) .toBe (4);
    expect (v2 .w) .toBe (5);
+   expect (v2 .i) .toBe (2);
+   expect (v2 .j) .toBe (3);
+   expect (v2 .k) .toBe (4);
+   expect (v2 .r) .toBe (5);
    expect (v2 [0]) .toBe (2);
    expect (v2 [1]) .toBe (3);
    expect (v2 [2]) .toBe (4);
@@ -44,6 +52,10 @@ test ("constructor", () =>
    expect (v3 .y) .toBe (0);
    expect (v3 .z) .toBe (0);
    expect (v3 .w) .toBe (0);
+   expect (v3 .i) .toBe (0);
+   expect (v3 .j) .toBe (0);
+   expect (v3 .k) .toBe (0);
+   expect (v3 .r) .toBe (0);
    expect (v3 [0]) .toBe (0);
    expect (v3 [1]) .toBe (0);
    expect (v3 [2]) .toBe (0);
