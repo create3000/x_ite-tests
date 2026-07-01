@@ -243,9 +243,21 @@ test ("toString", () =>
    const
       c0 = new Complex (2, 0),
       c1 = new Complex (2, 3),
-      c2 = new Complex (2, -3);
+      c2 = new Complex (2, -3),
+      c3 = new Complex (-2, 0),
+      c4 = new Complex (-2, 3),
+      c5 = new Complex (-2, -3),
+      c6 = new Complex (0, 0),
+      c7 = new Complex (0, 3),
+      c8 = new Complex (0, -3);
 
    expect (c0 .toString ()) .toBe ("2");
    expect (c1 .toString ()) .toBe ("2+3i");
    expect (c2 .toString ()) .toBe ("2-3i");
+   expect (c3 .toString ()) .toBe ("-2");
+   expect (c4 .toString ()) .toBe ("-2+3i");
+   expect (c5 .toString ()) .toBe ("-2-3i");
+   expect (c6 .toString ()) .toBe ("0");
+   expect (c7 .toString ()) .toBe ("3i");
+   expect (c8 .toString ()) .toBe ("-3i");
 });
