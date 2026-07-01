@@ -6,6 +6,8 @@ test ("constructor", () =>
 {
    const c0 = new Complex ();
 
+   expect (c0 .x) .toBe (0);
+   expect (c0 .y) .toBe (0);
    expect (c0 .real) .toBe (0);
    expect (c0 .imag) .toBe (0);
    expect (c0 [0]) .toBe (0);
@@ -15,6 +17,8 @@ test ("constructor", () =>
 
    const c1 = new Complex (1,2);
 
+   expect (c1 .x) .toBe (1);
+   expect (c1 .y) .toBe (2);
    expect (c1 .real) .toBe (1);
    expect (c1 .imag) .toBe (2);
    expect (c1 [0]) .toBe (1);
@@ -22,9 +26,23 @@ test ("constructor", () =>
    expect ([... c1]) .toEqual ([1,2]);
    expect (c1) .toHaveLength (2);
 
+   c1 .x = 3;
+   c1 .y = 4;
+
+   expect (c1 .x) .toBe (3);
+   expect (c1 .y) .toBe (4);
+   expect (c1 .real) .toBe (3);
+   expect (c1 .imag) .toBe (4);
+   expect (c1 [0]) .toBe (3);
+   expect (c1 [1]) .toBe (4);
+   expect ([... c1]) .toEqual ([3,4]);
+   expect (c1) .toHaveLength (2);
+
    c1 .real = 5;
    c1 .imag = 6;
 
+   expect (c1 .x) .toBe (5);
+   expect (c1 .y) .toBe (6);
    expect (c1 .real) .toBe (5);
    expect (c1 .imag) .toBe (6);
    expect (c1 [0]) .toBe (5);
@@ -35,6 +53,8 @@ test ("constructor", () =>
    c1 [0] = 7;
    c1 [1] = 8;
 
+   expect (c1 .x) .toBe (7);
+   expect (c1 .y) .toBe (8);
    expect (c1 .real) .toBe (7);
    expect (c1 .imag) .toBe (8);
    expect (c1 [0]) .toBe (7);
@@ -46,8 +66,8 @@ test ("constructor", () =>
 test ("enumerate", () =>
 {
    const properties = [
-      "real",
-      "imag",
+      "x",
+      "y",
    ];
 
    enumerate (properties, new Complex ());
