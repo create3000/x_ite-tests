@@ -24,4 +24,14 @@ export default defineConfig ([
       globals: globals .jest,
     },
   },
+  {
+    files: ["**/*.js"],
+    languageOptions:
+    {
+      sourceType: "commonjs",
+      globals: {
+        enumerate: "readonly",
+      },
+    },
+  },
 ]);
