@@ -130,6 +130,20 @@ test ("inverse", () =>
    expect (r1 [1]) .toBe (r3 [1]);
    expect (r1 [2]) .toBe (r3 [2]);
    expect (r1 [3]) .toBe (r3 [3]);
+
+   const
+      i1 = r1 .copy () .multLeft (r2),
+      i2 = r1 .copy () .multRight (r2);
+
+   expect (i1 [0]) .toBeCloseTo (0);
+   expect (i1 [1]) .toBeCloseTo (0);
+   expect (i1 [2]) .toBeCloseTo (1);
+   expect (i1 [3]) .toBeCloseTo (0);
+
+   expect (i2 [0]) .toBeCloseTo (0);
+   expect (i2 [1]) .toBeCloseTo (0);
+   expect (i2 [2]) .toBeCloseTo (1);
+   expect (i2 [3]) .toBeCloseTo (0);
 });
 
 test ("multVecRot", () =>
