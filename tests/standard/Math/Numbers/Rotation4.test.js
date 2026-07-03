@@ -417,6 +417,31 @@ test ("getEuler", () =>
    }
 });
 
+test ("setAxis", () =>
+{
+   const r1 = new Rotation4 ();
+
+   r1 .angle = 6;
+   r1 .setAxis (new Vector3 (3, 4, 5));
+
+   expect (r1 .equals (new Rotation4 (3, 4, 5, 6))) .toBe (true);
+   expect (r1 .x) .toBe (3);
+   expect (r1 .y) .toBe (4);
+   expect (r1 .z) .toBe (5);
+   expect (r1 .angle) .toBe (6);
+
+   const r2 = new Rotation4 ();
+
+   r2 .setAxis (new Vector3 (3, 4, 5));
+   r2 .angle = 6;
+
+   expect (r2 .equals (new Rotation4 (3, 4, 5, 6))) .toBe (true);
+   expect (r2 .x) .toBe (3);
+   expect (r2 .y) .toBe (4);
+   expect (r2 .z) .toBe (5);
+   expect (r2 .angle) .toBe (6);
+});
+
 test ("toString", () =>
 {
    const r = new Rotation4 (3, 4, 5, 6);
