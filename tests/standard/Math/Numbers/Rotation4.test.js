@@ -132,8 +132,10 @@ test ("inverse", () =>
    expect (r1 [3]) .toBe (r3 [3]);
 
    const
-      i1 = r1 .copy () .multLeft (r2),
-      i2 = r1 .copy () .multRight (r2);
+      r4 = new Rotation4 (2,3,4,5),
+      r5 = r4 .copy () .inverse (),
+      i1 = r4 .copy () .multLeft (r5),
+      i2 = r4 .copy () .multRight (r5);
 
    expect (i1 [0]) .toBeCloseTo (0);
    expect (i1 [1]) .toBeCloseTo (0);
