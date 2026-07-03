@@ -67,6 +67,47 @@ test ("enumerate", () =>
    enumerate (properties, new Rotation4 (1, 2, 3, 4));
 });
 
+test ("properties", () =>
+{
+   const r1 = new Rotation4 (2,3,4,5);
+   const r2 = new Rotation4 (0,3,4,5);
+   const r3 = new Rotation4 (2,0,4,5);
+   const r4 = new Rotation4 (2,3,0,5);
+   const r5 = new Rotation4 (2,3,4,0);
+
+   r2 .x = 2;
+
+   expect (r2 .equals (r1)) .toBe (true);
+   expect (r2 .x) .toBe (2);
+   expect (r2 .y) .toBe (3);
+   expect (r2 .z) .toBe (4);
+   expect (r2 .angle) .toBe (5);
+
+   r3 .y = 3;
+
+   expect (r3 .equals (r1)) .toBe (true);
+   expect (r3 .x) .toBe (2);
+   expect (r3 .y) .toBe (3);
+   expect (r3 .z) .toBe (4);
+   expect (r3 .angle) .toBe (5);
+
+   r4 .z = 4;
+
+   expect (r4 .equals (r1)) .toBe (true);
+   expect (r4 .x) .toBe (2);
+   expect (r4 .y) .toBe (3);
+   expect (r4 .z) .toBe (4);
+   expect (r4 .angle) .toBe (5);
+
+   r5 .angle = 5;
+
+   expect (r5 .equals (r1)) .toBe (true);
+   expect (r5 .x) .toBe (2);
+   expect (r5 .y) .toBe (3);
+   expect (r5 .z) .toBe (4);
+   expect (r5 .angle) .toBe (5);
+});
+
 test ("copy", () =>
 {
    const v1 = new Rotation4 (1,2,3,4);
