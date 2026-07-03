@@ -456,6 +456,8 @@ test ("setAxis", () =>
    expect (r2 .y) .toBe (4);
    expect (r2 .z) .toBe (5);
    expect (r2 .angle) .toBe (6);
+
+   expect (r1 .equals (r2)) .toBe (true);
 });
 
 test ("toString", () =>
