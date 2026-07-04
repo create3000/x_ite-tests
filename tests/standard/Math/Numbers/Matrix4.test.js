@@ -687,6 +687,32 @@ test ("equals", () =>
    }
 });
 
+test ("fromRotation", () =>
+{
+   const r  = new Rotation4 (2,3,4,5);
+   const m1 = Matrix4 .fromRotation (r);
+   const m2 = Matrix4 .fromRotation (r .getQuaternion ());
+
+   expect (m1 .equals (m2)) .toBe (true);
+
+   expect (m1 [ 0]) .toBeCloseTo (0.382467401261402);
+   expect (m1 [ 1]) .toBeCloseTo (-0.564063246181759);
+   expect (m1 [ 2]) .toBeCloseTo (0.731813734005618);
+   expect (m1 [ 3]) .toBeCloseTo (0);
+   expect (m1 [ 4]) .toBeCloseTo (0.860478893576286);
+   expect (m1 [ 5]) .toBeCloseTo (0.505973921009121);
+   expect (m1 [ 6]) .toBeCloseTo (-0.0597198875449842);
+   expect (m1 [ 7]) .toBeCloseTo (0);
+   expect (m1 [ 8]) .toBeCloseTo (-0.336592870812916);
+   expect (m1 [ 9]) .toBeCloseTo (0.652551182334038);
+   expect (m1 [10]) .toBeCloseTo (0.678883048655929);
+   expect (m1 [11]) .toBeCloseTo (0);
+   expect (m1 [12]) .toBeCloseTo (0);
+   expect (m1 [13]) .toBeCloseTo (0);
+   expect (m1 [14]) .toBeCloseTo (0);
+   expect (m1 [15]) .toBeCloseTo (1);
+});
+
 test ("toString", () =>
 {
    const m = new Matrix4 (2,3,4,5, 6,7,8,9, 10,11,12,13, 14,15,16,17);
