@@ -96,19 +96,19 @@ test ("getMatrix/setMatrix", () =>
    const m3 = a .getMatrix (new Matrix3 ());
    const m4 = a .getMatrix (new Matrix4 ());
 
-   expect (m3 [0]) .toBeCloseTo (m4 [0]);
-   expect (m3 [1]) .toBeCloseTo (m4 [1]);
-   expect (m3 [2]) .toBeCloseTo (m4 [2]);
+   expect (m3 [0]) .toBe (m4 [0]);
+   expect (m3 [1]) .toBe (m4 [1]);
+   expect (m3 [2]) .toBe (m4 [2]);
    expect (m4 [3]) .toBe (0);
 
-   expect (m3 [3]) .toBeCloseTo (m4 [4]);
-   expect (m3 [4]) .toBeCloseTo (m4 [5]);
-   expect (m3 [5]) .toBeCloseTo (m4 [6]);
+   expect (m3 [3]) .toBe (m4 [4]);
+   expect (m3 [4]) .toBe (m4 [5]);
+   expect (m3 [5]) .toBe (m4 [6]);
    expect (m4 [7]) .toBe (0);
 
-   expect (m3 [6]) .toBeCloseTo (m4 [8]);
-   expect (m3 [7]) .toBeCloseTo (m4 [9]);
-   expect (m3 [8]) .toBeCloseTo (m4 [10]);
+   expect (m3 [6]) .toBe (m4 [8]);
+   expect (m3 [7]) .toBe (m4 [9]);
+   expect (m3 [8]) .toBe (m4 [10]);
    expect (m4 [11]) .toBe (0);
 
    expect (m4 [12]) .toBe (0);
