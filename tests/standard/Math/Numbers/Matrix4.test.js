@@ -1,5 +1,6 @@
 const
    X3D       = require ("../../../X3D"),
+   Matrix3   = X3D .Matrix3,
    Matrix4   = X3D .Matrix4,
    Vector3   = X3D .Vector3,
    Vector4   = X3D .Vector4,
@@ -711,6 +712,29 @@ test ("fromRotation", () =>
    expect (m1 [13]) .toBeCloseTo (0);
    expect (m1 [14]) .toBeCloseTo (0);
    expect (m1 [15]) .toBeCloseTo (1);
+});
+
+test ("fromMatrix3", () =>
+{
+   const m3 = new Matrix3 (2,3,4, 5,6,7, 8,9,10);
+   const m4 = Matrix4 .fromMatrix3 (m3);
+
+   expect (m4 [ 0]) .toBe (2);
+   expect (m4 [ 1]) .toBe (3);
+   expect (m4 [ 2]) .toBe (0);
+   expect (m4 [ 3]) .toBe (0);
+   expect (m4 [ 4]) .toBe (5);
+   expect (m4 [ 5]) .toBe (6);
+   expect (m4 [ 6]) .toBe (0);
+   expect (m4 [ 7]) .toBe (0);
+   expect (m4 [ 8]) .toBe (0);
+   expect (m4 [ 9]) .toBe (0);
+   expect (m4 [10]) .toBe (1);
+   expect (m4 [11]) .toBe (0);
+   expect (m4 [12]) .toBe (8);
+   expect (m4 [13]) .toBe (9);
+   expect (m4 [14]) .toBe (0);
+   expect (m4 [15]) .toBe (1);
 });
 
 test ("toString", () =>
