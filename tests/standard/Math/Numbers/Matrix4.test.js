@@ -189,6 +189,10 @@ test ("get/setTransform", () =>
    expect (v1 [0]) .toBeCloseTo (v2 [0]);
    expect (v1 [1]) .toBeCloseTo (v2 [1]);
    expect (v1 [2]) .toBeCloseTo (v2 [2]);
+
+   const m5 = Matrix4 .fromTransform (new Vector3 (1, 2, 3), new Rotation4 (1,2,3,4), new Vector3 (1,2,3), new Rotation4 (1,2,3,4), new Vector3 (1,2,3));
+
+   expect (m5 .equals (m3)) .toBe (true);
 });
 
 test ("set", () =>
