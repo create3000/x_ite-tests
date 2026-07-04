@@ -10,6 +10,9 @@ test ("constants", () =>
    for (let i = 0; i < 9; ++ i)
       expect (Matrix3 .ZERO [i]) .toBe (0);
 
+   for (let i = 0; i < 9; ++ i)
+      expect (Matrix3 .IDENTITY [i]) .toBe (i % 4 ? 0 : 1);
+
    expect (Matrix3 .IDENTITY .equals (new Matrix3 ())) .toBe (true);
 });
 

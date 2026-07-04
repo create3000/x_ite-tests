@@ -10,6 +10,9 @@ test ("constants", () =>
    for (let i = 0; i < 16; ++ i)
       expect (Matrix4 .ZERO [i]) .toBe (0);
 
+   for (let i = 0; i < 16; ++ i)
+      expect (Matrix4 .IDENTITY [i]) .toBe (i % 5 ? 0 : 1);
+
    expect (Matrix4 .IDENTITY .equals (new Matrix4 ())) .toBe (true);
 });
 
