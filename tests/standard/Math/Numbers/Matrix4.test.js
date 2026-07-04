@@ -737,6 +737,29 @@ test ("fromMatrix3", () =>
    expect (m4 [15]) .toBe (1);
 });
 
+test ("fromSubMatrix", () =>
+{
+   const m3 = new Matrix3 (2,3,4, 5,6,7, 8,9,10);
+   const m4 = Matrix4 .fromSubMatrix (m3);
+
+   expect (m4 [ 0]) .toBe (2);
+   expect (m4 [ 1]) .toBe (3);
+   expect (m4 [ 2]) .toBe (4);
+   expect (m4 [ 3]) .toBe (0);
+   expect (m4 [ 4]) .toBe (5);
+   expect (m4 [ 5]) .toBe (6);
+   expect (m4 [ 6]) .toBe (7);
+   expect (m4 [ 7]) .toBe (0);
+   expect (m4 [ 8]) .toBe (8);
+   expect (m4 [ 9]) .toBe (9);
+   expect (m4 [10]) .toBe (10);
+   expect (m4 [11]) .toBe (0);
+   expect (m4 [12]) .toBe (0);
+   expect (m4 [13]) .toBe (0);
+   expect (m4 [14]) .toBe (0);
+   expect (m4 [15]) .toBe (1);
+});
+
 test ("toString", () =>
 {
    const m = new Matrix4 (2,3,4,5, 6,7,8,9, 10,11,12,13, 14,15,16,17);
