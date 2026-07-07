@@ -1,0 +1,30 @@
+const X3D = require ("../../../X3D");
+
+const
+   canvas  = X3D .createBrowser (),
+   Browser = canvas .browser;
+
+test ("Dispose", async () =>
+{
+   const scene1 = await Browser .createX3DFromString (`
+Inline {
+   url "data:model/x3d+vrml,#X3D V3.3 utf8
+Group { }
+"
+}
+`);
+
+   const
+      inline     = scene1 .rootNodes [0],
+      inlineNode = inline .getValue ();
+
+   expect (inlineNode .checkLoadState ()) .toBe (X3D .X3DConstants .COMPLETE_STATE);
+   expect (inlineNode .getInternalScene () .rootNodes) .toHaveLength (1);
+   expect (inlineNode .getInternalScene () .rootNodes [0] .getNodeTypeName ()) .toBe ("Group");
+
+   expect (inlineNode .getInternalScene () .isLive ()) .toBe (true);
+
+   inline .dispose ();
+
+   expect (inlineNode .getInternalScene () .isLive ()) .toBe (false);
+});
