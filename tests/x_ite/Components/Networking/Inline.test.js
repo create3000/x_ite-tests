@@ -2,11 +2,11 @@ const X3D = require ("../../../X3D");
 
 const
    canvas  = X3D .createBrowser (),
-   Browser = canvas .browser;
+   browser = canvas .browser;
 
 test ("dispose", async () =>
 {
-   const scene1 = await Browser .createX3DFromString (`
+   const scene1 = await browser .createX3DFromString (`
 Inline {
    url "data:model/x3d+vrml,#X3D V3.3 utf8
 Group { }
