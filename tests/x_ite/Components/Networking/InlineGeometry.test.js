@@ -7,9 +7,9 @@ const
 test ("dispose", async () =>
 {
    const scene1 = await Browser .createX3DFromString (`
-Inline {
+InlineGeometry {
    url "data:model/x3d+vrml,#X3D V3.3 utf8
-Group { }
+Box { }
 "
 }
 `);
@@ -20,7 +20,7 @@ Group { }
 
    expect (inlineNode .checkLoadState ()) .toBe (X3D .X3DConstants .COMPLETE_STATE);
    expect (inlineNode .getInternalScene () .rootNodes) .toHaveLength (1);
-   expect (inlineNode .getInternalScene () .rootNodes [0] .getNodeTypeName ()) .toBe ("Group");
+   expect (inlineNode .getInternalScene () .rootNodes [0] .getNodeTypeName ()) .toBe ("Box");
 
    expect (inlineNode .getInternalScene () .isLive ()) .toBe (true);
 
