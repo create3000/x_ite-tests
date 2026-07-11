@@ -22,6 +22,16 @@ test ("attributes", () =>
    expect (browser .getBrowserOption ("Cache")) .toBe (false);
    canvas .attr ("cache", "true");
    expect (browser .getBrowserOption ("Cache")) .toBe (true);
+
+   expect (browser .getBrowserOption ("ColorSpace")) .toBe ("LINEAR_WHEN_PHYSICAL_MATERIAL");
+   canvas .attr ("colorspace", "LINEAR");
+   expect (browser .getBrowserOption ("ColorSpace")) .toBe ("LINEAR");
+
+   expect (browser .getBrowserOption ("ContentScale")) .toBe (1);
+   canvas .attr ("contentscale", "auto");
+   expect (browser .getBrowserOption ("ContentScale")) .toBe (-1);
+   canvas .attr ("contentscale", "2");
+   expect (browser .getBrowserOption ("ContentScale")) .toBe (2);
 });
 
 test ("onload-attribute", () => new Promise ((resolve, reject) =>
