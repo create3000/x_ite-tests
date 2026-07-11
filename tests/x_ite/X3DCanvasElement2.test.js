@@ -13,6 +13,8 @@ test ("attributes", () =>
    expect (browser .getBrowserOption ("Antialiased")) .toBe (false);
    canvas .attr ("antialiased", "true");
    expect (browser .getBrowserOption ("Antialiased")) .toBe (true);
+   canvas .attr ("antialiased", "foo");
+   expect (browser .getBrowserOption ("Antialiased")) .toBe (true);
 
    canvas .attr ("baseurl", "https://example.com/");
    expect (browser .baseURL) .toBe ("https://example.com/");
@@ -21,6 +23,8 @@ test ("attributes", () =>
    canvas .attr ("cache", "false");
    expect (browser .getBrowserOption ("Cache")) .toBe (false);
    canvas .attr ("cache", "true");
+   expect (browser .getBrowserOption ("Cache")) .toBe (true);
+   canvas .attr ("cache", "foo");
    expect (browser .getBrowserOption ("Cache")) .toBe (true);
 
    expect (browser .getBrowserOption ("ColorSpace")) .toBe ("LINEAR_WHEN_PHYSICAL_MATERIAL");
@@ -40,11 +44,15 @@ test ("attributes", () =>
    expect (browser .getBrowserOption ("ContextMenu")) .toBe (false);
    canvas .attr ("contextmenu", "true");
    expect (browser .getBrowserOption ("ContextMenu")) .toBe (true);
+   canvas .attr ("contextmenu", "foo");
+   expect (browser .getBrowserOption ("ContextMenu")) .toBe (true);
 
    expect (browser .getBrowserOption ("Debug")) .toBe (false);
    canvas .attr ("debug", "true");
    expect (browser .getBrowserOption ("Debug")) .toBe (true);
    canvas .attr ("debug", "false");
+   expect (browser .getBrowserOption ("Debug")) .toBe (false);
+   canvas .attr ("debug", "foo");
    expect (browser .getBrowserOption ("Debug")) .toBe (false);
 
    expect (browser .getBrowserOption ("DisplayColorSpace")) .toBe ("SRGB");
@@ -63,6 +71,8 @@ test ("attributes", () =>
    canvas .attr ("logarithmicdepthbuffer", "true");
    expect (browser .getBrowserOption ("LogarithmicDepthBuffer")) .toBe (true);
    canvas .attr ("logarithmicdepthbuffer", "false");
+   expect (browser .getBrowserOption ("LogarithmicDepthBuffer")) .toBe (false);
+   canvas .attr ("logarithmicdepthbuffer", "foo");
    expect (browser .getBrowserOption ("LogarithmicDepthBuffer")) .toBe (false);
 
    expect (browser .getBrowserOption ("MaximumFrameRate")) .toBe (80);
@@ -85,17 +95,23 @@ test ("attributes", () =>
    expect (browser .getBrowserOption ("Notifications")) .toBe (false);
    canvas .attr ("notifications", "true");
    expect (browser .getBrowserOption ("Notifications")) .toBe (true);
+   canvas .attr ("notifications", "foo");
+   expect (browser .getBrowserOption ("Notifications")) .toBe (true);
 
    expect (browser .getBrowserOption ("OrderIndependentTransparency")) .toBe (false);
    canvas .attr ("orderindependenttransparency", "true");
    expect (browser .getBrowserOption ("OrderIndependentTransparency")) .toBe (true);
    canvas .attr ("orderindependenttransparency", "false");
    expect (browser .getBrowserOption ("OrderIndependentTransparency")) .toBe (false);
+   canvas .attr ("orderindependenttransparency", "foo");
+   expect (browser .getBrowserOption ("OrderIndependentTransparency")) .toBe (false);
 
    expect (browser .getBrowserOption ("SplashScreen")) .toBe (true);
    canvas .attr ("splashscreen", "false");
    expect (browser .getBrowserOption ("SplashScreen")) .toBe (false);
    canvas .attr ("splashscreen", "true");
+   expect (browser .getBrowserOption ("SplashScreen")) .toBe (true);
+   canvas .attr ("splashscreen", "foo");
    expect (browser .getBrowserOption ("SplashScreen")) .toBe (true);
 
    // src is tested below.
@@ -111,6 +127,8 @@ test ("attributes", () =>
    expect (browser .getBrowserOption ("Timings")) .toBe (true);
    canvas .attr ("timings", "false");
    expect (browser .getBrowserOption ("Timings")) .toBe (false);
+   canvas .attr ("timings", "foo");
+   expect (browser .getBrowserOption ("Timings")) .toBe (false);
 
    expect (browser .getBrowserOption ("ToneMapping")) .toBe ("NONE");
    canvas .attr ("tonemapping", "KHR_PBR_NEUTRAL");
@@ -125,6 +143,8 @@ test ("attributes", () =>
    canvas .attr ("update", "false");
    expect (browser .isLive ()) .toBe (false);
    canvas .attr ("update", "true");
+   expect (browser .isLive ()) .toBe (true);
+   canvas .attr ("update", "foo");
    expect (browser .isLive ()) .toBe (true);
 
    // url is tested below.
