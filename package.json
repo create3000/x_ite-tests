@@ -27,6 +27,7 @@
     "@create3000/jest-electron-runner": "^29.15.2",
     "fast-xml-parser": "^5.7.2",
     "jquery": "^4.0.0",
+    "looks-same": "^10.0.1",
     "shell-tools": "^1.1.9"
   },
   "devDependencies": {
