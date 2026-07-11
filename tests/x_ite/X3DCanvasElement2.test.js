@@ -2,6 +2,28 @@ const
    X3D = require ("../X3D"),
    $   = require ("jquery");
 
+test ("attributes", () =>
+{
+   const
+      canvas  = $(`<x3d-canvas></x3d-canvas>`),
+      browser = canvas .prop ("browser");
+
+   expect (browser .getBrowserOption ("Antialiased")) .toBe (true);
+   canvas .attr ("antialiased", "false");
+   expect (browser .getBrowserOption ("Antialiased")) .toBe (false);
+   canvas .attr ("antialiased", "true");
+   expect (browser .getBrowserOption ("Antialiased")) .toBe (true);
+
+   canvas .attr ("baseurl", "https://example.com/");
+   expect (browser .baseURL) .toBe ("https://example.com/");
+
+   expect (browser .getBrowserOption ("Cache")) .toBe (true);
+   canvas .attr ("cache", "false");
+   expect (browser .getBrowserOption ("Cache")) .toBe (false);
+   canvas .attr ("cache", "true");
+   expect (browser .getBrowserOption ("Cache")) .toBe (true);
+});
+
 test ("onload-attribute", () => new Promise ((resolve, reject) =>
 {
    window .onload1 = undefined;
