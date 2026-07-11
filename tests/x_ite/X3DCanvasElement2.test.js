@@ -32,6 +32,20 @@ test ("attributes", () =>
    expect (browser .getBrowserOption ("ContentScale")) .toBe (-1);
    canvas .attr ("contentscale", "2");
    expect (browser .getBrowserOption ("ContentScale")) .toBe (2);
+
+   expect (browser .getBrowserOption ("ContextMenu")) .toBe (true);
+   canvas .attr ("contextmenu", "false");
+   expect (browser .getBrowserOption ("ContextMenu")) .toBe (false);
+   canvas .attr ("contextmenu", "true");
+   expect (browser .getBrowserOption ("ContextMenu")) .toBe (true);
+
+   expect (browser .getBrowserOption ("Debug")) .toBe (false);
+   canvas .attr ("debug", "true");
+   expect (browser .getBrowserOption ("Debug")) .toBe (true);
+   canvas .attr ("debug", "false");
+   expect (browser .getBrowserOption ("Debug")) .toBe (false);
+
+
 });
 
 test ("onload-attribute", () => new Promise ((resolve, reject) =>
