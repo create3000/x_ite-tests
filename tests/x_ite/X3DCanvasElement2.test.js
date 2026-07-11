@@ -45,7 +45,85 @@ test ("attributes", () =>
    canvas .attr ("debug", "false");
    expect (browser .getBrowserOption ("Debug")) .toBe (false);
 
+   expect (browser .getBrowserOption ("DisplayColorSpace")) .toBe ("SRGB");
+   canvas .attr ("displaycolorspace", "DISPLAY_P3");
+   expect (browser .getBrowserOption ("DisplayColorSpace")) .toBe ("DISPLAY_P3");
 
+   expect (browser .getBrowserOption ("Exposure")) .toBe (1);
+   canvas .attr ("exposure", "0.5");
+   expect (browser .getBrowserOption ("Exposure")) .toBe (0.5);
+   canvas .attr ("exposure", "2");
+   expect (browser .getBrowserOption ("Exposure")) .toBe (2);
+
+   expect (browser .getBrowserOption ("LogarithmicDepthBuffer")) .toBe (false);
+   canvas .attr ("logarithmicdepthbuffer", "true");
+   expect (browser .getBrowserOption ("LogarithmicDepthBuffer")) .toBe (true);
+   canvas .attr ("logarithmicdepthbuffer", "false");
+   expect (browser .getBrowserOption ("LogarithmicDepthBuffer")) .toBe (false);
+
+   expect (browser .getBrowserOption ("MaximumFrameRate")) .toBe (80);
+   canvas .attr ("maximumframerate", "120");
+   expect (browser .getBrowserOption ("MaximumFrameRate")) .toBe (120);
+   canvas .attr ("maximumframerate", "30");
+   expect (browser .getBrowserOption ("MaximumFrameRate")) .toBe (30);
+
+   expect (browser .getBrowserOption ("Multisampling")) .toBe (4);
+   canvas .attr ("multisampling", "1");
+   expect (browser .getBrowserOption ("Multisampling")) .toBe (1);
+   canvas .attr ("multisampling", "2");
+   expect (browser .getBrowserOption ("Multisampling")) .toBe (2);
+
+   // oninitialized is tested below.
+   // onshutdown is tested below.
+
+   expect (browser .getBrowserOption ("Notifications")) .toBe (true);
+   canvas .attr ("notifications", "false");
+   expect (browser .getBrowserOption ("Notifications")) .toBe (false);
+   canvas .attr ("notifications", "true");
+   expect (browser .getBrowserOption ("Notifications")) .toBe (true);
+
+   expect (browser .getBrowserOption ("OrderIndependentTransparency")) .toBe (false);
+   canvas .attr ("orderindependenttransparency", "true");
+   expect (browser .getBrowserOption ("OrderIndependentTransparency")) .toBe (true);
+   canvas .attr ("orderindependenttransparency", "false");
+   expect (browser .getBrowserOption ("OrderIndependentTransparency")) .toBe (false);
+
+   expect (browser .getBrowserOption ("SplashScreen")) .toBe (true);
+   canvas .attr ("splashscreen", "false");
+   expect (browser .getBrowserOption ("SplashScreen")) .toBe (false);
+   canvas .attr ("splashscreen", "true");
+   expect (browser .getBrowserOption ("SplashScreen")) .toBe (true);
+
+   // src is tested below.
+
+   expect (browser .getBrowserOption ("TextCompression")) .toBe ("CHAR_SPACING");
+   canvas .attr ("textcompression", "SCALING");
+   expect (browser .getBrowserOption ("TextCompression")) .toBe ("SCALING");
+
+   expect (browser .getBrowserOption ("Timings")) .toBe (false);
+   canvas .attr ("timings", "true");
+   expect (browser .getBrowserOption ("Timings")) .toBe (true);
+   canvas .attr ("timings", "false");
+   expect (browser .getBrowserOption ("Timings")) .toBe (false);
+
+   expect (browser .getBrowserOption ("ToneMapping")) .toBe ("NONE");
+   canvas .attr ("tonemapping", "KHR_PBR_NEUTRAL");
+   expect (browser .getBrowserOption ("ToneMapping")) .toBe ("KHR_PBR_NEUTRAL");
+
+   expect (browser .getBrowserOption ("AutoUpdate")) .toBe (false);
+   canvas .attr ("update", "auto");
+   expect (browser .getBrowserOption ("AutoUpdate")) .toBe (true);
+   expect (browser .isLive ()) .toBe (true);
+   canvas .attr ("update", "false");
+   expect (browser .isLive ()) .toBe (false);
+   canvas .attr ("update", "true");
+   expect (browser .isLive ()) .toBe (true);
+
+   // url is tested below.
+
+   expect (browser .getBrowserOption ("XRSessionMode")) .toBe ("IMMERSIVE_VR");
+   canvas .attr ("xrsessionmode", "IMMERSIVE_AR");
+   expect (browser .getBrowserOption ("XRSessionMode")) .toBe ("IMMERSIVE_AR");
 });
 
 test ("onload-attribute", () => new Promise ((resolve, reject) =>
