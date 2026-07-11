@@ -26,6 +26,8 @@ test ("attributes", () =>
    expect (browser .getBrowserOption ("ColorSpace")) .toBe ("LINEAR_WHEN_PHYSICAL_MATERIAL");
    canvas .attr ("colorspace", "LINEAR");
    expect (browser .getBrowserOption ("ColorSpace")) .toBe ("LINEAR");
+   canvas .attr ("colorspace", "");
+   expect (browser .getBrowserOption ("ColorSpace")) .toBe ("LINEAR_WHEN_PHYSICAL_MATERIAL");
 
    expect (browser .getBrowserOption ("ContentScale")) .toBe (1);
    canvas .attr ("contentscale", "auto");
@@ -48,6 +50,8 @@ test ("attributes", () =>
    expect (browser .getBrowserOption ("DisplayColorSpace")) .toBe ("SRGB");
    canvas .attr ("displaycolorspace", "DISPLAY_P3");
    expect (browser .getBrowserOption ("DisplayColorSpace")) .toBe ("DISPLAY_P3");
+   canvas .attr ("displaycolorspace", "");
+   expect (browser .getBrowserOption ("DisplayColorSpace")) .toBe ("SRGB");
 
    expect (browser .getBrowserOption ("Exposure")) .toBe (1);
    canvas .attr ("exposure", "0.5");
@@ -99,6 +103,8 @@ test ("attributes", () =>
    expect (browser .getBrowserOption ("TextCompression")) .toBe ("CHAR_SPACING");
    canvas .attr ("textcompression", "SCALING");
    expect (browser .getBrowserOption ("TextCompression")) .toBe ("SCALING");
+   canvas .attr ("textcompression", "");
+   expect (browser .getBrowserOption ("TextCompression")) .toBe ("CHAR_SPACING");
 
    expect (browser .getBrowserOption ("Timings")) .toBe (false);
    canvas .attr ("timings", "true");
@@ -109,6 +115,8 @@ test ("attributes", () =>
    expect (browser .getBrowserOption ("ToneMapping")) .toBe ("NONE");
    canvas .attr ("tonemapping", "KHR_PBR_NEUTRAL");
    expect (browser .getBrowserOption ("ToneMapping")) .toBe ("KHR_PBR_NEUTRAL");
+   canvas .attr ("tonemapping", "");
+   expect (browser .getBrowserOption ("ToneMapping")) .toBe ("NONE");
 
    expect (browser .getBrowserOption ("AutoUpdate")) .toBe (false);
    canvas .attr ("update", "auto");
@@ -124,6 +132,8 @@ test ("attributes", () =>
    expect (browser .getBrowserOption ("XRSessionMode")) .toBe ("IMMERSIVE_VR");
    canvas .attr ("xrsessionmode", "IMMERSIVE_AR");
    expect (browser .getBrowserOption ("XRSessionMode")) .toBe ("IMMERSIVE_AR");
+   canvas .attr ("xrsessionmode", "");
+   expect (browser .getBrowserOption ("XRSessionMode")) .toBe ("IMMERSIVE_VR");
 });
 
 test ("onload-attribute", () => new Promise ((resolve, reject) =>
