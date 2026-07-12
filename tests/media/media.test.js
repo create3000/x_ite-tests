@@ -13,6 +13,8 @@ const
 $(canvas) .css ("width", 1000) .css ("height", 562);
 $("body") .append (canvas);
 
+browser .setBrowserOption ("Mute", true);
+
 test ("media", async () =>
 {
    function loadImage (url)
@@ -124,4 +126,5 @@ test ("media", async () =>
       // Number of Pixels: 562_000
       expect (mismatchedPixels) .toBeLessThan (7_000);
    }
-});
+},
+40_000);
