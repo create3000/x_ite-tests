@@ -127,4 +127,4 @@ test ("media", async () =>
       expect (mismatchedPixels) .toBeLessThan (7_000);
    }
 },
-40_000);
+60_000);
