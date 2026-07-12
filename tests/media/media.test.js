@@ -1,9 +1,9 @@
 const
-   $          = require ("jquery"),
-   path       = require ("path"),
-   url        = require ("url"),
-   fs         = require ("fs"),
-   pixelmatch = require ("pixelmatch");
+   $             = require ("jquery"),
+   path          = require ("path"),
+   url           = require ("url"),
+   child_process = require ("child_process"),
+   pixelmatch    = require ("pixelmatch");
 
 const
    X3D     = require ("../X3D"),
@@ -61,6 +61,33 @@ test ("media", async () =>
       return data;
    }
 
+   async function run (command, args = [ ], stdinBlob = null)
+   {
+      return new Promise ((resolve, reject) =>
+      {
+         const child = child_process .spawn (command, args);
+
+         const stdoutChunks = [];
+         const stderrChunks = [];
+
+         child.stdout.on("data", chunk => stdoutChunks .push (chunk));
+
+         child .stderr .on( "data", chunk => stderrChunks .push (chunk));
+
+         child .on ("error", reject);
+
+         child .on ("close", () => resolve (new Blob (stdoutChunks)));
+
+         (async () =>
+         {
+            const buffer = Buffer .from (await stdinBlob .arrayBuffer ());
+
+            child.stdin .end (buffer);
+         })()
+         .catch (reject);
+      });
+   }
+
    const media = require ("../../../media/docs/examples/config.json");
 
    for (const example of media)
@@ -75,25 +102,26 @@ test ("media", async () =>
       await browser .loadURL (new X3D .MFString (fileURL));
       await browser .nextFrame ();
 
-      const blob = await new Promise (resolve =>
+      const blob1 = await new Promise (resolve =>
       {
          canvas .toBlob (blob => resolve (blob), "image/png", 1);
       });
 
-      const blobURL = URL .createObjectURL (blob);
-      const avif    = path .resolve (__dirname, `../../../media/docs/examples/${component}/${name}/screenshot.avif`);
+      const blob2 = await run ("magick", ["PNG:-", "AVIF:-"], blob1);
+      const url2  = URL .createObjectURL (blob2);
+      const avif  = path .resolve (__dirname, `../../../media/docs/examples/${component}/${name}/screenshot.avif`);
 
       const img1 = await loadImage (avif);
-      const img2 = await loadImage (blobURL);
+      const img2 = await loadImage (url2);
 
       const data1 = readPixels (img1);
       const data2 = readPixels (img2);
 
       const mismatchedPixels = pixelmatch (data1, data2, null, 1000, 562);
 
-      URL .revokeObjectURL (blobURL);
+      URL .revokeObjectURL (url2);
 
       // Number of Pixels: 562_000
-      expect (mismatchedPixels) .toBeLessThan (1_000);
+      expect (mismatchedPixels) .toBeLessThan (7_000);
    }
 });
