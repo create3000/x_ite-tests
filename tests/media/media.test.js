@@ -137,7 +137,7 @@ test ("media", async () =>
 
       console .log (`{component} ${name}`);
 
-      if (mismatchedPixels >= 7_000)
+      if (mismatchedPixels >= maxMismatchedPixels)
       {
          const out = fs .createWriteStream (path .resolve (__dirname, "diff.png"));
 
