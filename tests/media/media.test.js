@@ -3,14 +3,24 @@ const
    path          = require ("path"),
    url           = require ("url"),
    child_process = require ("child_process"),
-   pixelmatch    = require ("pixelmatch");
+   fs            = require ("fs"),
+   pixelmatch    = require ("pixelmatch"),
+   { PNG }       = require ("pngjs");
 
 const
    X3D     = require ("../X3D"),
    canvas  = X3D .createBrowser (),
    browser = canvas .browser;
 
-$(canvas) .css ("width", 1000) .css ("height", 562);
+const
+   width  = 1000,
+   height = 562;
+
+const
+   threshold           = 0.1,
+   maxMismatchedPixels = 7_000;
+
+$(canvas) .css ("width", width) .css ("height", height);
 $("body") .append (canvas);
 
 browser .setBrowserOption ("Mute", true);
@@ -119,14 +129,30 @@ test ("media", async () =>
       const data1 = readPixels (img1);
       const data2 = readPixels (img2);
 
-      const mismatchedPixels = pixelmatch (data1, data2, null, 1000, 562, { threshold: 0.1 });
+      const diff = new PNG ({ width, height });
+
+      const mismatchedPixels = pixelmatch (data1, data2, diff .data, width, height, { threshold });
 
       URL .revokeObjectURL (url2);
 
       console .log (`{component} ${name}`);
 
+      if (mismatchedPixels >= 7_000)
+      {
+         const out = fs .createWriteStream (path .resolve (__dirname, "diff.png"));
+
+         const finished = new Promise ((resolve, reject) =>
+         {
+            out .on ("finish", () => resolve ()) .on ("error", error => reject (error));
+         });
+
+         diff .pack () .pipe (out);
+
+         await finished;
+      }
+
       // Number of Pixels: 562_000
-      expect (mismatchedPixels) .toBeLessThan (7_000);
+      expect (mismatchedPixels) .toBeLessThan (maxMismatchedPixels);
    }
 },
 70_000);
