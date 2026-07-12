@@ -24,15 +24,18 @@
     "testSequencer": "./CustomTestSequencer.js"
   },
   "dependencies": {
-    "@create3000/jest-electron-runner": "^29.15.2",
-    "fast-xml-parser": "^5.7.2",
+    "@create3000/jest-electron-runner": "^29.15.3",
+    "fast-xml-parser": "^5.10.0",
+    "img-diff-js": "^0.5.4",
     "jquery": "^4.0.0",
-    "looks-same": "^10.0.1",
     "shell-tools": "^1.1.9"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
-    "eslint": "^10.4.1",
-    "globals": "^17.6.0"
+    "eslint": "^10.7.0",
+    "globals": "^17.7.0"
+  },
+  "allowScripts": {
+    "fsevents@2.3.3": true
   }
 }
