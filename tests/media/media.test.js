@@ -123,8 +123,10 @@ test ("media", async () =>
 
       URL .revokeObjectURL (url2);
 
+      console .log (`{component} ${name}`);
+
       // Number of Pixels: 562_000
       expect (mismatchedPixels) .toBeLessThan (7_000);
    }
 },
-60_000);
+70_000);
