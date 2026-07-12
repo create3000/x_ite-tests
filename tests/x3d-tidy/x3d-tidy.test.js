@@ -70,7 +70,10 @@ test ("nodes", async () =>
    for (const ConcreteNode of browser .concreteNodes)
       scene .rootNodes .push (scene .createNode (ConcreteNode .typeName));
 
-   fs .writeFileSync (file, scene .toVRMLString () .replace (/\s+X_ITE\s+V[\d\.]+/, ""));
+   const data = scene .toVRMLString () .replace (/\s+X_ITE\s+V[\d\.]+/, "");
+
+   if (data !== sh (`cat`, file))
+      fs .writeFileSync (file, data);
 
    // Test
 
