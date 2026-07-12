@@ -117,7 +117,7 @@ test ("media", async () =>
       const data1 = readPixels (img1);
       const data2 = readPixels (img2);
 
-      const mismatchedPixels = pixelmatch (data1, data2, null, 1000, 562);
+      const mismatchedPixels = pixelmatch (data1, data2, null, 1000, 562, { threshold: 0.1 });
 
       URL .revokeObjectURL (url2);
 
