@@ -1,6 +1,7 @@
 const path = require ("node:path");
 const fs   = require ("node:fs");
 const { exec } = require ("node:child_process");
+const { readFile }  = require ("node:fs/promises");
 const { sh, systemSync } = require ("shell-tools");
 const X3D = require ("../X3D");
 
@@ -72,7 +73,7 @@ test ("nodes", async () =>
 
    const data = scene .toVRMLString () .replace (/\s+X_ITE\s+V[\d\.]+/, "");
 
-   if (data !== sh (`cat`, file))
+   if (data !== await readFile (file))
       fs .writeFileSync (file, data);
 
    // Test
