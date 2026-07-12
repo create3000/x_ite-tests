@@ -26,8 +26,8 @@
   "dependencies": {
     "@create3000/jest-electron-runner": "^29.15.3",
     "fast-xml-parser": "^5.10.0",
-    "img-diff-js": "^0.5.4",
     "jquery": "^4.0.0",
+    "pixelmatch": "^5.3.0",
     "shell-tools": "^1.1.9"
   },
   "devDependencies": {

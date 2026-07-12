@@ -1,10 +1,9 @@
 const
-   $              = require ("jquery"),
-   path           = require ("path"),
-   url            = require ("url"),
-   fs             = require ("fs"),
-   { imgDiff }    = require ("img-diff-js"),
-   { systemSync } = require ("shell-tools");
+   $          = require ("jquery"),
+   path       = require ("path"),
+   url        = require ("url"),
+   fs         = require ("fs"),
+   pixelmatch = require ("pixelmatch");
 
 const
    X3D     = require ("../X3D"),
@@ -14,45 +13,87 @@ const
 $(canvas) .css ("width", 1000) .css ("height", 562);
 $("body") .append (canvas);
 
-// test ("media", async () =>
-// {
-//    const media = require ("../../../media/docs/examples/config.json");
+test ("media", async () =>
+{
+   function loadImage (url)
+   {
+      return new Promise ((resolve, reject) =>
+      {
+         const image = new Image ();
 
-//    for (const example of media)
-//    {
-//       if (!example .test)
-//          continue;
+         image .onload = () => resolve (image);
 
-//       const { name, component } = example;
+         image .onerror =
+         image .onabort = event => reject (new Error (`Couldn't load image '${url}': ${event .type}.`));
 
-//       const fileURL = url .pathToFileURL (path .resolve (__dirname, `../../../media/docs/examples/${component}/${name}/${name}.x3d`));
+         image .src = url;
+      });
+   }
 
-//       await browser .loadURL (new X3D .MFString (fileURL));
-//       await browser .nextFrame ();
+   function readPixels (image)
+   {
+      const
+         gl          = browser .getContext (),
+         texture     = gl .createTexture (),
+         framebuffer = gl .createFramebuffer (),
+         width       = image .width,
+         height      = image .height,
+         data        = new Uint8Array (width * height * 4);
 
-//       const blob = await new Promise (resolve =>
-//       {
-//          canvas .toBlob (blob => resolve (blob), "image/png", 1);
-//       });
+      // Create texture.
 
-//       const avif = path .resolve (__dirname, `../../../media/docs/examples/${component}/${name}/screenshot.avif`);
-//       const png1  = "/tmp/x_ite-tests.media.1.png";
-//       const png2  = "/tmp/x_ite-tests.media.2.png";
-//       const diff  = "/tmp/x_ite-tests.media.diff.png";
+      gl .bindTexture (gl .TEXTURE_2D, texture);
+      gl .pixelStorei (gl .UNPACK_COLORSPACE_CONVERSION_WEBGL, gl .NONE);
+      gl .texImage2D  (gl .TEXTURE_2D, 0, gl .RGBA, width, height, 0, gl .RGBA, gl .UNSIGNED_BYTE, image);
+      gl .pixelStorei (gl .UNPACK_COLORSPACE_CONVERSION_WEBGL, gl .BROWSER_DEFAULT_WEBGL);
 
-//       systemSync (`magick`, avif, png1);
+      // Read pixels from framebuffer.
 
-//       fs .writeFileSync (png2, new DataView (await blob .arrayBuffer ()));
+      gl .bindFramebuffer (gl .FRAMEBUFFER, framebuffer);
+      gl .framebufferTexture2D (gl .FRAMEBUFFER, gl .COLOR_ATTACHMENT0, gl .TEXTURE_2D, texture, 0);
+      gl .readPixels (0, 0, width, height, gl .RGBA, gl .UNSIGNED_BYTE, data);
 
-//       const result = await imgDiff ({
-//          actualFilename: png2,
-//          expectedFilename: png1,
-//          // diffFilename: diff,
-//          options: {
-//             threshold: 0.30, // default 0.1
-//          },
-//       });
+      // Clean up.
 
-//       expect (result .imagesAreSame) .toBe (true);
-//    }
-// });
+      gl .deleteFramebuffer (framebuffer);
+      gl .deleteTexture (texture);
+
+      return data;
+   }
+
+   const media = require ("../../../media/docs/examples/config.json");
+
+   for (const example of media)
+   {
+      if (!example .test)
+         continue;
+
+      const { name, component } = example;
+
+      const fileURL = url .pathToFileURL (path .resolve (__dirname, `../../../media/docs/examples/${component}/${name}/${name}.x3d`));
+
+      await browser .loadURL (new X3D .MFString (fileURL));
+      await browser .nextFrame ();
+
+      const blob = await new Promise (resolve =>
+      {
+         canvas .toBlob (blob => resolve (blob), "image/png", 1);
+      });
+
+      const blobURL = URL .createObjectURL (blob);
+      const avif    = path .resolve (__dirname, `../../../media/docs/examples/${component}/${name}/screenshot.avif`);
+
+      const img1 = await loadImage (avif);
+      const img2 = await loadImage (blobURL);
+
+      const data1 = readPixels (img1);
+      const data2 = readPixels (img2);
+
+      const mismatchedPixels = pixelmatch (data1, data2, null, 1000, 562);
+
+      URL .revokeObjectURL (blobURL);
+
+      // Number of Pixels: 562_000
+      expect (mismatchedPixels) .toBeLessThan (1_000);
+   }
+});
