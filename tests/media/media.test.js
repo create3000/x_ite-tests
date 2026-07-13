@@ -66,6 +66,8 @@ test ("media", async () =>
 
       if (mismatchedPixels >= maxMismatchedPixels)
       {
+         fs .writeFileSync (path .resolve (__dirname, "image.png"), Buffer .from (await blob2 .arrayBuffer ()));
+
          const out = fs .createWriteStream (path .resolve (__dirname, "diff.png"));
 
          const finished = new Promise ((resolve, reject) =>
