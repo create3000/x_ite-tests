@@ -39,13 +39,8 @@ test ("media", async () =>
       const fileURL = url .pathToFileURL (path .resolve (__dirname, `../../../media/docs/examples/${component}/${name}/${name}.x3d`));
 
       await browser .loadURL (new X3D .MFString (fileURL));
-      await browser .nextFrame ();
 
-      const blob1 = await new Promise (resolve =>
-      {
-         canvas .toBlob (blob => resolve (blob), "image/png", 1);
-      });
-
+      const blob1 = await new Promise (resolve => canvas .toBlob (resolve, "image/png", 1));
       const blob2 = await run ("magick", ["PNG:-", "AVIF:-"], blob1);
       const url2  = URL .createObjectURL (blob2);
       const avif  = path .resolve (__dirname, `../../../media/docs/examples/${component}/${name}/screenshot.avif`);
