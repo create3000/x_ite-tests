@@ -8,17 +8,17 @@ const
    { PNG }       = require ("pngjs");
 
 const
-   X3D     = require ("../X3D"),
-   canvas  = X3D .createBrowser (),
-   browser = canvas .browser;
-
-const
    width  = 1000,
    height = 562;
 
 const
    threshold           = 0.1,
    maxMismatchedPixels = 7_000;
+
+const
+   X3D     = require ("../X3D"),
+   canvas  = X3D .createBrowser (),
+   browser = canvas .browser;
 
 $(canvas) .css ("width", width) .css ("height", height);
 $("body") .append (canvas);
@@ -39,6 +39,7 @@ test ("media", async () =>
       const fileURL = url .pathToFileURL (path .resolve (__dirname, `../../../media/docs/examples/${component}/${name}/${name}.x3d`));
 
       await browser .loadURL (new X3D .MFString (fileURL));
+      await browser .nextFrame ();
 
       const blob1 = await new Promise (resolve => canvas .toBlob (resolve, "image/png", 1));
       const blob2 = await run ("magick", ["PNG:-", "AVIF:-"], blob1);
@@ -133,15 +134,13 @@ async function run (command, args = [ ], stdinBlob = null)
    {
       const child = child_process .spawn (command, args);
 
-      const stdoutChunks = [];
-      const stderrChunks = [];
+      const stdoutChunks = [ ];
+      const stderrChunks = [ ];
 
-      child.stdout.on("data", chunk => stdoutChunks .push (chunk));
-
+      child .stdout .on("data", chunk => stdoutChunks .push (chunk));
       child .stderr .on( "data", chunk => stderrChunks .push (chunk));
 
       child .on ("error", reject);
-
       child .on ("close", () => resolve (new Blob (stdoutChunks)));
 
       (async () =>
