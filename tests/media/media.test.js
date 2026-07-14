@@ -58,8 +58,6 @@ test ("media", async () =>
 
       URL .revokeObjectURL (url2);
 
-      console .log (`{component} ${name}`);
-
       if (mismatchedPixels >= maxMismatchedPixels)
       {
          fs .writeFileSync (path .resolve (__dirname, "image.png"), Buffer .from (await blob2 .arrayBuffer ()));
