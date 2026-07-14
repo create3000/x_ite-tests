@@ -91,7 +91,8 @@ function loadImage (url)
       image .onerror =
       image .onabort = event => reject (new Error (`Couldn't load image '${url}': ${event .type}.`));
 
-      image .src = url;
+      image .crossOrigin = "anonymous";
+      image .src         = url;
    });
 }
 
