@@ -37,7 +37,11 @@ export default defineConfig ([
     files: ["tests/node/**/*.js"],
     languageOptions:
     {
-      sourceType: "commonjs",
+      sourceType: "module",
+      globals:
+      {
+        ... globals .node,
+      },
     },
   },
 ]);
