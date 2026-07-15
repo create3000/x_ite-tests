@@ -1,6 +1,5 @@
-const
-   X3D    = require ("../../X3D"),
-   Fields = X3D .Fields;
+import { expect, test } from "vitest";
+import X3D from "../../X3D.js";
 
 const
    canvas           = X3D .createBrowser (),
@@ -36,15 +35,15 @@ test ("properties", () =>
    expect (fieldDefinitions [2] .name) .toBe ("info");
    expect (fieldDefinitions [2] .value) .toBeInstanceOf (X3D .MFString);
 
-   fieldDefinitions [0] .accessType = undefined;
-   fieldDefinitions [0] .dataType = undefined;
-   fieldDefinitions [0] .name = undefined;
-   fieldDefinitions [0] .value = undefined;
+   expect (() => fieldDefinitions [0] .accessType = undefined) .toThrow (Error);
+   expect (() => fieldDefinitions [0] .dataType   = undefined) .toThrow (Error);
+   expect (() => fieldDefinitions [0] .name       = undefined) .toThrow (Error);
+   expect (() => fieldDefinitions [0] .value      = undefined) .toThrow (Error);
 
    expect (fieldDefinitions [0] .accessType) .toBe (X3D .X3DConstants .inputOutput);
-   expect (fieldDefinitions [0] .dataType) .toBe (X3D .X3DConstants .SFNode);
-   expect (fieldDefinitions [0] .name) .toBe ("metadata");
-   expect (fieldDefinitions [0] .value) .toBe (null);
+   expect (fieldDefinitions [0] .dataType)   .toBe (X3D .X3DConstants .SFNode);
+   expect (fieldDefinitions [0] .name)       .toBe ("metadata");
+   expect (fieldDefinitions [0] .value)      .toBe (null);
 
    const properties = [
       "accessType",

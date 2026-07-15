@@ -1,6 +1,7 @@
-const
-   X3D       = require ("../../X3D"),
-   X3DObject = X3D .X3DObject;
+import { expect, test } from "vitest";
+import X3D from "../../X3D.js";
+
+const X3DObject = X3D .X3DObject;
 
 const
    canvas  = X3D .createBrowser (),
@@ -13,7 +14,7 @@ test ("getId", () =>
    expect (Browser .getId ()) .not .toBe (scene .getId ());
 });
 
-test ("addInterest", () => new Promise ((resolve, reject) =>
+test ("addInterest", () => new Promise (resolve =>
 {
    const node = Browser .currentScene .createNode ("Transform");
 

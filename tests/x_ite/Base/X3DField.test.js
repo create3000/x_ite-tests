@@ -1,11 +1,11 @@
-const
-   X3D    = require ("../../X3D"),
-   Fields = X3D .Fields;
+import { expect, test } from "vitest";
+import X3D from "../../X3D.js";
+
+const Fields = X3D .Fields;
 
 const
    canvas  = X3D .createBrowser (),
-   Browser = canvas .browser,
-   scene   = Browser .currentScene;
+   Browser = canvas .browser;
 
 test ("properties", () =>
 {
@@ -110,7 +110,7 @@ test ("add/removeFieldInterest", () => new Promise ((resolve, reject) =>
    node .translation = new X3D .SFVec3f (2,3,4);
 }));
 
-test ("add/removeFieldCallback", () => new Promise ((resolve, reject) =>
+test ("add/removeFieldCallback", () => new Promise (resolve =>
 {
    const node = Browser .currentScene .createNode ("Material");
 
@@ -130,7 +130,7 @@ test ("add/removeFieldCallback", () => new Promise ((resolve, reject) =>
    node .transparency = 0.5;
 }));
 
-test ("add/removeFieldCallback", () => new Promise ((resolve, reject) =>
+test ("add/removeFieldCallback", () => new Promise (resolve =>
 {
    const node = Browser .currentScene .createNode ("Transform");
 
