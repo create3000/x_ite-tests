@@ -3,7 +3,7 @@ import "https://weiputer/x_ite/dist/x_ite.js";
 
 test ("X3D", async () =>
 {
-   const Browser = X3D .createBrowser () .browser;
+   const browser = X3D .createBrowser () .browser;
 
    for (const key in X3D .Namespace)
       expect (X3D [key]) .toBe (X3D .Namespace [key]);
@@ -11,12 +11,12 @@ test ("X3D", async () =>
    for (const key in X3D .Fields)
       expect (X3D [key]) .toBe (X3D .Fields [key]);
 
-   for (const ConcreteNode of Browser .getConcreteNodes ())
+   for (const ConcreteNode of browser .getConcreteNodes ())
       expect (X3D [ConcreteNode .typeName]) .toBe (ConcreteNode);
 
    const values = new Set (Object .values (X3D));
 
-   for (const AbstractNode of Browser .getAbstractNodes ())
+   for (const AbstractNode of browser .getAbstractNodes ())
       expect (values .has (AbstractNode)) .toBe (true);
 
    expect (X3D .Namespace .hasOwnProperty ("call")) .toBe (false);
