@@ -15,6 +15,12 @@ export default defineConfig ([
         ... globals .node,
       },
     },
+    rules:
+    {
+      "no-async-promise-executor": "off",
+      "no-empty": ["error", { "allowEmptyCatch": true }],
+      "semi": "error",
+    },
   },
   {
     files: ["**/*.js"],
