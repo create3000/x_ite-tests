@@ -1,6 +1,7 @@
-const
-   X3D        = require ("../../X3D"),
-   FileLoader = X3D .FileLoader;
+import { expect, test } from "vitest";
+import X3D              from "../../X3D.js";
+
+const FileLoader = X3D .FileLoader;
 
 test ("data-url encoded", () => new Promise ((resolve, reject) =>
 {
