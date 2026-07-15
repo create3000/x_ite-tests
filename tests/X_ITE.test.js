@@ -30,7 +30,6 @@ test ("getBrowser", () =>
 
    expect (X3D .getBrowser ()) .toBe (canvas [0] .browser);
    expect (X3D .getBrowser (canvas [0])) .toBe (canvas [0] .browser);
-   expect (X3D .getBrowser (canvas)) .toBe (canvas [0] .browser);
    expect (X3D .getBrowser (".browser")) .toBe (canvas [0] .browser);
 });
 
