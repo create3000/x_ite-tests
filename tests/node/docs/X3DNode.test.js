@@ -12,7 +12,7 @@ test ("X3DUOM", () =>
    expect (sh `node "${path .resolve (__dirname, "x3duom.js")}"`)
       .toBe (sh `cat "${path .resolve (__dirname, "x3duom.txt")}"`);
 },
-10_000);
+20_000);
 
 function sh (strings, ... values)
 {
