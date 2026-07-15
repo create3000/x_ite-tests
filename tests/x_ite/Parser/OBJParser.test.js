@@ -1,15 +1,12 @@
-const
-   path = require ("path"),
-   url  = require ("url");
-
-const X3D = require ("../../X3D");
+import { expect, test } from "vitest";
+import X3D              from "../../X3D.js";
 
 test ("LibertyStatue.obj.gz", async () =>
 {
    const
       canvas  = X3D .createBrowser (),
       Browser = canvas .browser,
-      scene   = await Browser .createX3DFromURL (new X3D .MFString (url .pathToFileURL (path .join (__dirname, "files", "OBJ", "LibertyStatue", `LibertStatue.obj.gz`))));
+      scene   = await Browser .createX3DFromURL (new X3D .MFString (new URL ("files/OBJ/LibertyStatue/LibertStatue.obj.gz", import.meta.url)));
 
    expect (scene .encoding) .toBe ("OBJ");
    expect (scene .rootNodes) .toHaveLength (1);
@@ -20,7 +17,7 @@ test ("LibertyStatue.obj.gz", async () =>
    const
       canvas  = X3D .createBrowser (),
       Browser = canvas .browser,
-      scene   = await Browser .createX3DFromURL (new X3D .MFString (url .pathToFileURL (path .join (__dirname, "files", "OBJ", "minicooper.obj"))));
+      scene   = await Browser .createX3DFromURL (new X3D .MFString (new URL ("files/OBJ/minicooper.obj", import.meta.url)));
 
    expect (scene .encoding) .toBe ("OBJ");
    expect (scene .rootNodes) .toHaveLength (1);
