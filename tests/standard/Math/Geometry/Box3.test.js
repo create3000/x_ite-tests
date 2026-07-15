@@ -1,5 +1,7 @@
+import { expect, test } from "vitest";
+import X3D from "../../../X3D.js";
+
 const
-   X3D     = require ("../../../X3D"),
    Box3    = X3D .Box3,
    Vector3 = X3D .Vector3,
    Matrix4 = X3D .Matrix4;

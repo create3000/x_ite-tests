@@ -12,7 +12,8 @@ export default defineConfig ([
       globals:
       {
         ... globals .browser,
-        ... globals .node,
+        ... globals .vitest,
+        enumerate: "readonly",
       },
     },
     rules:
@@ -26,15 +27,7 @@ export default defineConfig ([
     files: ["**/*.js"],
     languageOptions:
     {
-      sourceType: "commonjs",
-      globals: globals .jest,
-    },
-  },
-  {
-    files: ["**/*.js"],
-    languageOptions:
-    {
-      sourceType: "commonjs",
+      sourceType: "module",
       globals: {
         enumerate: "readonly",
       },

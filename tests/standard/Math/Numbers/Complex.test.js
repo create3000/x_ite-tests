@@ -1,6 +1,7 @@
-const
-   X3D       = require ("../../../X3D"),
-   Complex = X3D .Complex;
+import { expect, test } from "vitest";
+import X3D from "../../../X3D.js";
+
+const Complex = X3D .Complex;
 
 test ("constructor", () =>
 {

@@ -1,6 +1,8 @@
+import { expect, test } from "vitest";
+import X3D              from "./X3D.js";
+import $                from "https://cdn.jsdelivr.net/npm/jquery@4.0.0/dist-module/jquery.slim.module.js";
+
 const
-   $                = require ("jquery"),
-   X3D              = require ("./X3D"),
    X3DCanvasElement = X3D .X3DCanvasElement,
    DEVELOPMENT      = X3D .DEVELOPMENT;
 

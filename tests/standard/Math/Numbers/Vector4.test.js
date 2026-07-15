@@ -1,6 +1,7 @@
-const
-   X3D     = require ("../../../X3D"),
-   Vector4 = X3D .Vector4;
+import { expect, test } from "vitest";
+import X3D from "../../../X3D.js";
+
+const Vector4 = X3D .Vector4;
 
 test ("constants", () =>
 {

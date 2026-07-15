@@ -1,6 +1,7 @@
-const
-   X3D       = require ("../../X3D"),
-   Algorithm = X3D .Algorithm;
+import { expect, test } from "vitest";
+import X3D from "../../X3D.js";
+
+const Algorithm = X3D .Algorithm;
 
 test ("radians", () =>
 {
