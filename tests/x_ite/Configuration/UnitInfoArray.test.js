@@ -1,8 +1,6 @@
-const
-   path = require ("path"),
-   url  = require ("url");
-
-const X3D = require ("../../X3D");
+import { expect, test } from "vitest";
+import X3D              from "../../X3D.js";
+import { meta } from "@eslint/js";
 
 test ("properties", () =>
 {
@@ -50,7 +48,7 @@ test ("spread", async () =>
    const
       canvas  = X3D .createBrowser (),
       Browser = canvas .browser,
-      scene   = await Browser .createX3DFromURL (new X3D .MFString (url .pathToFileURL (path .join (__dirname, "..", "Parser", "files", "X3D", `statements.x3d`))));
+      scene   = await Browser .createX3DFromURL (new X3D .MFString (new URL ("../Parser/files/X3D/statements.x3d", import.meta.url)));
 
    const units = scene .units;
 
@@ -70,7 +68,7 @@ test ("filter", async () =>
    const
       canvas  = X3D .createBrowser (),
       Browser = canvas .browser,
-      scene   = await Browser .createX3DFromURL (new X3D .MFString (url .pathToFileURL (path .join (__dirname, "..", "Parser", "files", "X3D", `statements.x3d`)))),
+      scene   = await Browser .createX3DFromURL (new X3D .MFString (new URL ("../Parser/files/X3D/statements.x3d", import.meta.url))),
       units   = scene .units;
 
    const a = units .filter (u => u .conversionFactor !== 1);
@@ -130,10 +128,10 @@ test ("proxy", () =>
 
    enumerate (properties2, units);
 
-   units [0] = undefined;
-   units [1] = undefined;
-   units [2] = undefined;
-   units [3] = undefined;
+   expect (() => units [0] = undefined) .toThrow (Error);
+   expect (() => units [1] = undefined) .toThrow (Error);
+   expect (() => units [2] = undefined) .toThrow (Error);
+   expect (() => units [3] = undefined) .toThrow (Error);
 
    delete units [0];
    delete units [1];

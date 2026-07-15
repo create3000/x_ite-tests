@@ -1,4 +1,5 @@
-const X3D = require ("../../X3D");
+import { expect, test } from "vitest";
+import X3D              from "../../X3D.js";
 
 const
    canvas  = X3D .createBrowser (),
@@ -15,10 +16,10 @@ test ("properties", () =>
    expect (unit .conversionFactor) .toBe (1);
    expect (unit .conversion_factor) .toBe (1);
 
-   unit .category          = undefined;
-   unit .name              = undefined;
-   unit .conversionFactor  = undefined;
-   unit .conversion_factor = undefined;
+   expect (() => unit .category          = undefined) .toThrow (Error);
+   expect (() => unit .name              = undefined) .toThrow (Error);
+   expect (() => unit .conversionFactor  = undefined) .toThrow (Error);
+   expect (() => unit .conversion_factor = undefined) .toThrow (Error);
 
    expect (unit) .toBeInstanceOf (X3D .UnitInfo);
    expect (unit .category) .toBe ("angle");

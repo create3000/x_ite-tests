@@ -1,4 +1,5 @@
-const X3D = require ("../../X3D");
+import { expect, test } from "vitest";
+import X3D              from "../../X3D.js";
 
 const
    canvas  = X3D .createBrowser (),
@@ -18,10 +19,10 @@ test ("properties", () =>
    expect (profile .components) .toHaveLength (1);
    expect (profile .components [0] .name) .toBe ("Core");
 
-   profile .name        = undefined;
-   profile .title       = undefined;
-   profile .providerURL = undefined;
-   profile .components  = undefined;
+   expect (() => profile .name        = undefined) .toThrow (Error);
+   expect (() => profile .title       = undefined) .toThrow (Error);
+   expect (() => profile .providerURL = undefined) .toThrow (Error);
+   expect (() => profile .components  = undefined) .toThrow (Error);
 
    expect (profile .name) .toBe ("Core");
    expect (profile .title) .toBe ("Core");
