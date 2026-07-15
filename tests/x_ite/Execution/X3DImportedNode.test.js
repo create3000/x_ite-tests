@@ -1,4 +1,5 @@
-const X3D = require ("../../X3D");
+import { expect, test } from "vitest";
+import X3D              from "../../X3D.js";
 
 const
    canvas  = X3D .createBrowser (),
@@ -47,10 +48,10 @@ IMPORT I.E2 AS I2 DESCRIPTION "Test Desc"
    expect (Object .prototype .toString .call (importedNode0)) .toBe (`[object X3DImportedNode]`);
    expect (importedNode0 .toString ()) .toBe (`[object ${importedNode0 .getTypeName ()}]`);
 
-   importedNode0 .inlineNode   = undefined;
-   importedNode0 .exportedName = undefined;
-   importedNode0 .exportedNode = undefined;
-   importedNode0 .importedName = undefined;
+   expect (() => importedNode0 .inlineNode   = undefined) .toThrow (Error);
+   expect (() => importedNode0 .exportedName = undefined) .toThrow (Error);
+   expect (() => importedNode0 .exportedNode = undefined) .toThrow (Error);
+   expect (() => importedNode0 .importedName = undefined) .toThrow (Error);
 
    expect (importedNode0) .toBeInstanceOf (X3D .X3DImportedNode);
    expect (importedNode0 .inlineNode) .toBe (scene .getNamedNode ("I"));

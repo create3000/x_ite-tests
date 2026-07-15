@@ -1,5 +1,7 @@
+import { expect, test } from "vitest";
+import X3D              from "../../X3D.js";
+
 const
-   X3D     = require ("../../X3D"),
    canvas  = X3D .createBrowser (),
    Browser = canvas .browser;
 
@@ -18,7 +20,7 @@ test ("properties1", async () =>
    expect (scene .profile) .toBe (profile);
    expect (scene .components) .toHaveLength (0);
    expect (scene .components) .toBeInstanceOf (X3D .ComponentInfoArray);
-   expect (scene .worldURL) .toMatch (/^file:\/\/\/.*$/);
+   expect (scene .worldURL) .toMatch (/^http:\/\/.*$/);
    expect (scene .namedNodes) .toHaveLength (0);
    expect (scene .namedNodes) .toBeInstanceOf (X3D .NamedNodesArray);
    expect (scene .importedNodes) .toHaveLength (0);
@@ -60,19 +62,20 @@ test ("properties2", async () =>
       externprotos         = scene .externprotos,
       routes               = scene .routes;
 
-   scene .isScene              = undefined;
-   scene .specificationVersion = undefined;
-   scene .encoding             = undefined;
-   scene .profile              = undefined;
-   scene .components           = undefined;
-   scene .worldURL             = undefined;
-   scene .namedNodes           = undefined;
-   scene .importedNodes        = undefined;
-   scene .exportedNodes        = undefined;
-   scene .rootNodes            = nodes;
-   scene .protos               = undefined;
-   scene .externprotos         = undefined;
-   scene .routes               = undefined;
+   expect (() => scene .isScene              = undefined) .toThrow (Error);
+   expect (() => scene .specificationVersion = undefined) .toThrow (Error);
+   expect (() => scene .encoding             = undefined) .toThrow (Error);
+   expect (() => scene .profile              = undefined) .toThrow (Error);
+   expect (() => scene .components           = undefined) .toThrow (Error);
+   expect (() => scene .worldURL             = undefined) .toThrow (Error);
+   expect (() => scene .namedNodes           = undefined) .toThrow (Error);
+   expect (() => scene .importedNodes        = undefined) .toThrow (Error);
+   expect (() => scene .exportedNodes        = undefined) .toThrow (Error);
+   expect (() => scene .protos               = undefined) .toThrow (Error);
+   expect (() => scene .externprotos         = undefined) .toThrow (Error);
+   expect (() => scene .routes               = undefined) .toThrow (Error);
+
+   scene .rootNodes = nodes;
 
    expect (scene) .toBeInstanceOf (X3D .X3DScene);
    expect (scene) .toBeInstanceOf (X3D .X3DExecutionContext);

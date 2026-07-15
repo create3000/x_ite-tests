@@ -1,4 +1,5 @@
-const X3D = require ("../../X3D");
+import { expect, test } from "vitest";
+import X3D              from "../../X3D.js";
 
 const
    canvas  = X3D .createBrowser (),
@@ -29,8 +30,8 @@ EXPORT N2 AS E2 DESCRIPTION "Test Desc"
    expect (exportedNode0 .getDescription ()) .toBe ("");
    expect (exportedNode0 .toString ()) .toBe (`[object ${exportedNode0 .getTypeName ()}]`);
 
-   exportedNode0 .exportedName = undefined;
-   exportedNode0 .localNode    = undefined;
+   expect (() => exportedNode0 .exportedName = undefined) .toThrow (Error);
+   expect (() => exportedNode0 .localNode    = undefined) .toThrow (Error);
 
    expect (exportedNode0) .toBeInstanceOf (X3D .X3DExportedNode);
    expect (exportedNode0 .exportedName) .toBe ("E1");
