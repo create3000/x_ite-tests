@@ -1,5 +1,5 @@
 import { expect, test } from "vitest";
-import X3D from "../../../X3D.js";
+import X3D              from "../../../X3D.js";
 
 const Complex = X3D .Complex;
 
