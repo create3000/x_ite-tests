@@ -1,8 +1,17 @@
 import { expect, test } from "vitest";
 import X3D              from "../X3D.js";
+import pixelmatch       from "https://cdn.jsdelivr.net/npm/pixelmatch@7.2.0/index.min.js";
 import $                from "https://cdn.jsdelivr.net/npm/jquery@4.0.0/dist-module/jquery.slim.module.js";
 
-test ("test", () =>
+const
+   width  = 1000,
+   height = 562;
+
+const
+   threshold           = 0.1,
+   maxMismatchedPixels = 7_000;
+
+test ("media", () =>
 {
 
 });

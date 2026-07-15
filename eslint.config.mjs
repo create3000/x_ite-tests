@@ -30,6 +30,7 @@ export default defineConfig ([
       globals:
       {
         enumerate: "readonly",
+        sleep: "readonly",
       },
     },
   },

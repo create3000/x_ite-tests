@@ -3,8 +3,6 @@ import X3D              from "../../X3D.js";
 
 const Lock = X3D .Lock;
 
-const sleep = ms => new Promise (resolve => setTimeout (resolve, ms));
-
 test ("acquire", async () =>
 {
    const r = [ ];
