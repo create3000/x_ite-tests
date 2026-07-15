@@ -682,7 +682,6 @@ Box { }
    expect (Browser .activeViewpoint) .toBeInstanceOf (X3D .SFNode);
    expect (Browser .activeViewpoint .getNodeType () .includes (X3D .X3DConstants .X3DViewpointNode)) .toBe (true);
 
-
    await Browser .loadURL (new X3D .MFString (new URL ("files/loadURL.x3d", import.meta.url)));
 
    expect (Browser .currentScene .rootNodes) .toHaveLength (3);

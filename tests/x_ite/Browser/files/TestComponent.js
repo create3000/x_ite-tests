@@ -1,5 +1,5 @@
 const
-   X3D                  = window .X3D,
+   X3D                  = window [Symbol .for ("X_ITE.X3D")],
    Components           = X3D .Components,
    X3DNode              = X3D .X3DNode,
    X3DConstants         = X3D .X3DConstants,

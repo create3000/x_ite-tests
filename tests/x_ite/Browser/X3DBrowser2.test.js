@@ -2,10 +2,6 @@ import { expect, test } from "vitest";
 import X3D              from "../../X3D.js";
 import $                from "https://cdn.jsdelivr.net/npm/jquery@4.0.0/dist-module/jquery.slim.module.js";
 
-const
-   path = require ("path"),
-   url  = require ("url");
-
 test ("getBrowserProperty", () =>
 {
    const
@@ -515,7 +511,7 @@ test ("Profile/Component Handling", async () =>
    const
       canvas  = X3D .createBrowser (),
       Browser = canvas .browser,
-      Test    = new X3D .ComponentInfo ("Test", 1, "Test Component", url .pathToFileURL (path .join (__dirname, "files", "TestComponent.js")), true, [ ]);
+      Test    = new X3D .ComponentInfo ("Test", 1, "Test Component", new URL ("files/TestComponent.js", import.meta.url), true, [ ]);
 
    expect (() => Browser .getSupportedComponent ("Test")) .toThrow (Error);
    expect (() => Browser .getComponent ("Test", 1))       .toThrow (Error);
@@ -547,7 +543,7 @@ test ("baseURL - createX3DFromURL", async () =>
       canvas  = X3D .createBrowser (),
       Browser = canvas .browser;
 
-   Browser .baseURL = url .pathToFileURL (path .join (__dirname, "files/"));
+   Browser .baseURL = new URL ("files/box.x3d", import.meta.url);
 
    const scene = await Browser .createX3DFromURL (new X3D .MFString (`data:model/x3d+vrml,
 PROFILE Core
@@ -577,7 +573,7 @@ test ("baseURL - createX3DFromString", async () =>
       canvas  = X3D .createBrowser (),
       Browser = canvas .browser;
 
-   Browser .baseURL = url .pathToFileURL (path .join (__dirname, "files/"));
+   Browser .baseURL = new URL ("files/box.x3d", import.meta.url);
 
    const scene = await Browser .createX3DFromString (`
 PROFILE Core
@@ -610,7 +606,7 @@ test ("baseURL - createVrmlFromString", () => new Promise (async (resolve, rejec
       canvas  = X3D .createBrowser (),
       Browser = canvas .browser;
 
-   Browser .baseURL = url .pathToFileURL (path .join (__dirname, "files/"));
+   Browser .baseURL = new URL ("files/box.x3d", import.meta.url);
 
    const rootNodes = Browser .createVrmlFromString (`
 DEF I Inline {
@@ -654,7 +650,7 @@ test ("baseURL - loadURL", async () =>
       canvas  = X3D .createBrowser (),
       Browser = canvas .browser;
 
-   Browser .baseURL = url .pathToFileURL (path .join (__dirname, "files/"));
+   Browser .baseURL = new URL ("files/box.x3d", import.meta.url);
 
    await Browser .loadURL (new X3D .MFString (`data:model/x3d+vrml,
 PROFILE Core
@@ -671,7 +667,7 @@ DEF L LoadSensor {
    const scene = Browser .currentScene;
 
    expect (scene .worldURL) .toMatch (/^data:/);
-   expect (scene .baseURL) .toMatch (/^file:\/\//);
+   expect (scene .baseURL) .toMatch (/^http:\/\//);
    expect (scene .rootNodes) .toHaveLength (2);
 
    const I = scene .getNamedNode ("I");
@@ -688,13 +684,13 @@ test ("blob URL", async () =>
       Browser = canvas .browser;
 
    const
-      response = await fetch (url .pathToFileURL (path .join (__dirname, "files", "box-with-wrong-texture.x3d"))),
+      response = await fetch (new URL ("files/box-with-wrong-texture.x3d", import.meta.url)),
       blob     = await response .blob ();
 
    await Browser .loadURL (new X3D .MFString (URL .createObjectURL (blob)));
 
    expect (Browser .currentScene .worldURL) .toMatch (/^blob:/);
-   expect (Browser .currentScene .baseURL) .toMatch (/^file:\/\//);
+   expect (Browser .currentScene .baseURL) .toMatch (/^http:\/\//);
    expect (Browser .currentScene .rootNodes) .toHaveLength (1);
    expect (Browser .currentScene .rootNodes [0] .getNodeTypeName ()) .toBe ("Transform");
 });
