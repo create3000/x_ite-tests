@@ -11,7 +11,7 @@ const
    threshold           = 0.1,
    maxMismatchedPixels = 7_000;
 
-test ("media", () =>
+test ("media", async () =>
 {
 
 });
