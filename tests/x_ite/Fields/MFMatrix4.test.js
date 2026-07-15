@@ -1,4 +1,5 @@
-const X3D  = require ("../../X3D");
+import { expect, test } from "vitest";
+import X3D              from "../../X3D.js";
 
 const arrays = [
    ["MFMatrix4d", X3D .MFMatrix4d, X3D .SFMatrix4d],

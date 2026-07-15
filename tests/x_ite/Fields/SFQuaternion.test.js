@@ -1,5 +1,7 @@
+import { expect, test } from "vitest";
+import X3D              from "../../X3D.js";
+
 const
-   X3D          = require ("../../X3D"),
    Browser      = X3D .createBrowser () .browser,
    SFQuaternion = X3D .SFQuaternion,
    SFVec3d      = X3D .SFVec3d,

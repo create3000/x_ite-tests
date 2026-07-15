@@ -1,6 +1,7 @@
-const
-   X3D     = require ("../../X3D"),
-   SFTime = X3D .SFTime;
+import { expect, test } from "vitest";
+import X3D              from "../../X3D.js";
+
+const SFTime = X3D .SFTime;
 
 test ("constructor", () =>
 {

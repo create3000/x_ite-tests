@@ -1,6 +1,7 @@
-const
-   X3D     = require ("../../X3D"),
-   SFColor = X3D .SFColor;
+import { expect, test } from "vitest";
+import X3D              from "../../X3D.js";
+
+const SFColor = X3D .SFColor;
 
 test ("constants", () =>
 {

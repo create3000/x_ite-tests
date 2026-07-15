@@ -1,6 +1,7 @@
-const
-   X3D     = require ("../../X3D"),
-   MFInt32 = X3D .MFInt32;
+import { expect, test } from "vitest";
+import X3D              from "../../X3D.js";
+
+const MFInt32 = X3D .MFInt32;
 
 test ("constructor", () =>
 {

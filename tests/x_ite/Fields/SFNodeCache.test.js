@@ -1,6 +1,7 @@
-const X3D = require ("../../X3D");
+import { expect, test } from "vitest";
+import X3D              from "../../X3D.js";
 
-const
+const 
    canvas  = X3D .createBrowser (),
    Browser = canvas .browser,
    scene   = Browser .currentScene,

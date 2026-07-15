@@ -1,6 +1,7 @@
-const
-   X3D     = require ("../../X3D"),
-   Browser = X3D .createBrowser () .browser;
+import { expect, test } from "vitest";
+import X3D              from "../../X3D.js";
+
+const Browser = X3D .createBrowser () .browser;
 
 const arrays = [
    ["MFVec2d", X3D .MFVec2d, X3D .SFVec2d],

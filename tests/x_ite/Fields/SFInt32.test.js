@@ -1,6 +1,7 @@
-const
-   X3D     = require ("../../X3D"),
-   SFInt32 = X3D .SFInt32;
+import { expect, test } from "vitest";
+import X3D              from "../../X3D.js";
+
+const SFInt32 = X3D .SFInt32;
 
 test ("constructor", () =>
 {

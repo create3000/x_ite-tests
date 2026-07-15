@@ -1,5 +1,7 @@
+import { expect, test } from "vitest";
+import X3D              from "../../X3D.js";
+
 const
-   X3D     = require ("../../X3D"),
    SFImage = X3D .SFImage,
    MFInt32 = X3D .MFInt32;
 

@@ -1,6 +1,7 @@
-const
-   X3D    = require ("../../X3D"),
-   MFBool = X3D .MFBool;
+import { expect, test } from "vitest";
+import X3D              from "../../X3D.js";
+
+const MFBool = X3D .MFBool;
 
 test ("constructor", () =>
 {
