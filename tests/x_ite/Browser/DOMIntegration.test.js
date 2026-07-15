@@ -1,6 +1,6 @@
-const
-   X3D = require ("../../X3D"),
-   $   = require ("jquery");
+import { expect, test } from "vitest";
+import X3D              from "../../X3D.js";
+import $                from "https://cdn.jsdelivr.net/npm/jquery@4.0.0/dist-module/jquery.slim.module.js";
 
 test ("simple-scene-direct", () => new Promise ((resolve, reject) =>
 {

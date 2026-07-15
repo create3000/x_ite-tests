@@ -1,9 +1,10 @@
+import { expect, test } from "vitest";
+import X3D              from "../../X3D.js";
+import $                from "https://cdn.jsdelivr.net/npm/jquery@4.0.0/dist-module/jquery.slim.module.js";
+
 const
    path = require ("path"),
-   url  = require ("url"),
-   $    = require ("jquery");
-
-const X3D = window .X3D = require ("../../X3D");
+   url  = require ("url");
 
 test ("getBrowserProperty", () =>
 {

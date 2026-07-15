@@ -1,8 +1,5 @@
-const
-   path = require ("path"),
-   url  = require ("url");
-
-const X3D = require ("../../X3D");
+import { expect, test } from "vitest";
+import X3D from "../../X3D.js";
 
 test ("properties", () =>
 {
@@ -33,18 +30,18 @@ test ("properties", () =>
 
    expect (Browser .browserProperties) .toBeInstanceOf;
 
-   Browser .name                 = undefined;
-   Browser .version              = undefined;
-   Browser .currentSpeed         = undefined;
-   Browser .currentFrameRate     = undefined;
-   Browser .description          = "test";
-   Browser .supportedProfiles    = undefined;
-   Browser .supportedComponents  = undefined;
-   Browser .currentScene         = undefined;
-   Browser .element              = undefined;
-   Browser .activeLayer          = undefined;
-   Browser .activeNavigationInfo = undefined;
-   Browser .activeViewpoint      = undefined;
+   expect (() => Browser .name                 = undefined) .toThrow (Error);
+   expect (() => Browser .version              = undefined) .toThrow (Error);
+   expect (() => Browser .currentSpeed         = undefined) .toThrow (Error);
+   expect (() => Browser .currentFrameRate     = undefined) .toThrow (Error);
+   expect (() => Browser .description          = "test")    .not .toThrow (Error);
+   expect (() => Browser .supportedProfiles    = undefined) .toThrow (Error);
+   expect (() => Browser .supportedComponents  = undefined) .toThrow (Error);
+   expect (() => Browser .currentScene         = undefined) .toThrow (Error);
+   expect (() => Browser .element              = undefined) .toThrow (Error);
+   expect (() => Browser .activeLayer          = undefined) .toThrow (Error);
+   expect (() => Browser .activeNavigationInfo = undefined) .toThrow (Error);
+   expect (() => Browser .activeViewpoint      = undefined) .toThrow (Error);
 
    expect (Browser .name) .toBe ("X_ITE");
    expect (Browser .version) .toMatch (/^\d+\.\d+\.\d+$/);
@@ -336,7 +333,7 @@ test ("createScene", async () =>
    expect (scene .profile) .toBe (null);
    expect (scene .components) .toHaveLength (0);
    expect (scene .components) .toBeInstanceOf (X3D .ComponentInfoArray);
-   expect (scene .worldURL) .toMatch (/^file:\/\/\/.*$/);
+   expect (scene .worldURL) .toMatch (/^http:\/\/.*$/);
    expect (scene .rootNodes) .toHaveLength (0);
    expect (scene .rootNodes) .toBeInstanceOf (X3D .MFNode);
    expect (scene .protos) .toHaveLength (0);
@@ -366,7 +363,7 @@ test ("createScene2", async () =>
    expect (scene .components [0] .name) .toBe ("HAnim");
    expect (scene .components [1]) .toBeInstanceOf (X3D .ComponentInfo);
    expect (scene .components [1] .name) .toBe ("Picking");
-   expect (scene .worldURL) .toMatch (/^file:\/\/\/.*$/);
+   expect (scene .worldURL) .toMatch (/^http:\/\/.*$/);
    expect (scene .rootNodes) .toHaveLength (0);
    expect (scene .rootNodes) .toBeInstanceOf (X3D .MFNode);
    expect (scene .protos) .toHaveLength (0);
@@ -438,7 +435,7 @@ Box { }
    expect (scene1 .rootNodes [1] .getNodeTypeName ()) .toBe ("Shape");
    expect (scene1 .rootNodes [2] .getNodeTypeName ()) .toBe ("Box");
 
-   const scene2 = await Browser .createX3DFromURL (new X3D .MFString (url .pathToFileURL (path .join (__dirname, "files", "loadURL.x3d"))));
+   const scene2 = await Browser .createX3DFromURL (new X3D .MFString (new URL ("files/loadURL.x3d", import.meta.url)));
 
    expect (scene2 .rootNodes) .toHaveLength (3);
    expect (scene1 .rootNodes [0] .getValue () .isInitialized ()) .toBe (true);
@@ -514,7 +511,7 @@ Transform {
    expect (scene .components) .toHaveLength (1);
    expect (scene .components) .toBeInstanceOf (X3D .ComponentInfoArray);
    expect (scene .components [0] .name) .toBe ("NURBS");
-   expect (scene .worldURL) .toMatch (/^file:\/\/\/.*$/);
+   expect (scene .worldURL) .toMatch (/^http:\/\/.*$/);
    expect (scene .rootNodes) .toHaveLength (1);
    expect (scene .rootNodes) .toBeInstanceOf (X3D .MFNode);
    expect (scene .rootNodes [0] .getValue () .isInitialized ()) .toBe (true);
@@ -539,7 +536,7 @@ Transform {
    expect (empty .profile .name) .toBe ("Full");
    expect (empty .components) .toHaveLength (0);
    expect (empty .components) .toBeInstanceOf (X3D .ComponentInfoArray);
-   expect (empty .worldURL) .toMatch (/^file:\/\/\/.*$/);
+   expect (empty .worldURL) .toMatch (/^http:\/\/.*$/);
    expect (empty .rootNodes) .toHaveLength (0);
    expect (empty .rootNodes) .toBeInstanceOf (X3D .MFNode);
    expect (empty .protos) .toHaveLength (0);
@@ -685,7 +682,8 @@ Box { }
    expect (Browser .activeViewpoint) .toBeInstanceOf (X3D .SFNode);
    expect (Browser .activeViewpoint .getNodeType () .includes (X3D .X3DConstants .X3DViewpointNode)) .toBe (true);
 
-   await Browser .loadURL (new X3D .MFString (url .pathToFileURL (path .join (__dirname, "files", "loadURL.x3d"))));
+
+   await Browser .loadURL (new X3D .MFString (new URL ("files/loadURL.x3d", import.meta.url)));
 
    expect (Browser .currentScene .rootNodes) .toHaveLength (3);
    expect (Browser .currentScene .rootNodes [0] .getNodeTypeName ()) .toBe ("Arc2D");
