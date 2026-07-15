@@ -1,0 +1,1111 @@
+import { expect, test } from "vitest";
+import X3D              from "../../X3D.js";
+
+const
+   canvas  = X3D .createBrowser (),
+   Browser = canvas .browser;
+
+test ("statements.x3d", async () =>
+{
+   const
+      latestVersion = (await Browser .createScene ()) .specificationVersion,
+      scene         = await Browser .createX3DFromURL (new X3D .MFString (new URL ("files/X3D/statements.x3d", import.meta.url)));
+
+   const orig = await fetch (new URL ("files/X3D/statements.x3d", import.meta.url)) .then (r => r .text ());
+
+   for (const style of ["TIDY", "COMPACT", "SMALL", "CLEAN"])
+   {
+      const
+         x3d  = scene .toXMLString  ({ style }),
+         x3dv = scene .toVRMLString ({ style }),
+         x3dj = scene .toJSONString ({ style }),
+         html = scene .toXMLString ({ style, closingTags: true });
+
+      const encodings = ["XML", "XML", "VRML", "JSON", "XML"];
+
+      Browser .baseURL = scene .worldURL;
+
+      for (const [i, file] of [orig, x3d, x3dv, x3dj, html] .entries ())
+      {
+         const scene = await Browser .createX3DFromURL (new X3D .MFString (`data:model/x3d,${file}`));
+
+         expect (scene .encoding) .toBe (encodings [i]);
+
+         if (i)
+            expect (scene .specificationVersion) .toBe (latestVersion);
+
+         expect (scene .getNamedNode ("Transform") .rotation .angle) .toBeCloseTo (Math .PI / 4);
+         expect (scene .getNamedNode ("Box") .size .x) .toBeCloseTo (4);
+         expect (scene .getNamedNode ("Box") .size .y) .toBeCloseTo (4);
+         expect (scene .getNamedNode ("Box") .size .z) .toBeCloseTo (4);
+         expect (scene .getNamedNode ("Emitter") .mass) .toBeCloseTo (2);
+         expect (scene .getNamedNode ("Force") .force .y) .toBeCloseTo (-10);
+
+         const externprotoInProto = scene .protos [0] .getBody () .rootNodes [1];
+
+         expect (externprotoInProto .getValue () .getProtoNode () .isExternProto) .toBe (true);
+         expect (externprotoInProto .getValue () .getProtoNode () .checkLoadState ()) .toBe (X3D .X3DConstants .COMPLETE_STATE);
+         expect (externprotoInProto .getNodeTypeName ()) .toBe ("Foo");
+         expect ([... externprotoInProto .translation]) .toEqual ([0, 3, 0]);
+
+         expect (scene .toXMLString ()) .toBe (orig);
+         expect (scene .toXMLString  ({ style })) .toBe (x3d);
+         expect (scene .toVRMLString ({ style })) .toBe (x3dv);
+         expect (scene .toJSONString ({ style })) .toBe (x3dj);
+      }
+   }
+});
+
+test ("fields.x3d", async () =>
+{
+   const
+      latestVersion = (await Browser .createScene ()) .specificationVersion,
+      scene         = await Browser .createX3DFromURL (new X3D .MFString (new URL ("files/X3D/fields.x3d", import.meta.url)));
+
+   const orig = await fetch (new URL ("files/X3D/fields.x3d", import.meta.url)) .then (r => r .text ());
+
+   for (const style of ["TIDY", "COMPACT", "SMALL", "CLEAN"])
+   {
+      const
+         x3d  = scene .toXMLString  ({ style }),
+         x3dv = scene .toVRMLString ({ style }),
+         x3dj = scene .toJSONString ({ style }),
+         html = scene .toXMLString ({ style, closingTags: true });
+
+      const encodings = ["XML", "XML", "VRML", "JSON", "XML"];
+
+      Browser .baseURL = scene .worldURL;
+
+      for (const [i, file] of [orig, x3d, x3dv, x3dj, html] .entries ())
+      {
+         const scene = await Browser .createX3DFromURL (new X3D .MFString (`data:model/x3d,${file}`));
+
+         expect (scene .encoding) .toBe (encodings [i]);
+
+         if (i)
+            expect (scene .specificationVersion) .toBe (latestVersion);
+
+         expect (scene .toXMLString ()) .toBe (orig);
+         expect (scene .toXMLString  ({ style })) .toBe (x3d);
+         expect (scene .toVRMLString ({ style })) .toBe (x3dv);
+         expect (scene .toJSONString ({ style })) .toBe (x3dj);
+         expect (scene .toXMLString ({ style, closingTags: true })) .toBe (html);
+      }
+   }
+});
+
+test ("appinfo.x3d", async () =>
+{
+   const
+      latestVersion = (await Browser .createScene ()) .specificationVersion,
+      scene         = await Browser .createX3DFromURL (new X3D .MFString (new URL ("files/X3D/appinfo.x3d", import.meta.url)));
+
+   const orig = await fetch (new URL ("files/X3D/appinfo.x3d", import.meta.url)) .then (r => r .text ());
+
+   for (const style of ["TIDY", "COMPACT", "SMALL", "CLEAN"])
+   {
+      const
+         x3d  = scene .toXMLString  ({ style }),
+         html = scene .toXMLString ({ style, closingTags: true }),
+         x3dj = scene .toJSONString  ({ style });
+
+      const encodings = ["XML", "XML", "XML", "JSON"];
+
+      Browser .baseURL = scene .worldURL;
+
+      for (const [i, file] of [orig, x3d, html, x3dj] .entries ())
+      {
+         const scene = await Browser .createX3DFromURL (new X3D .MFString (`data:model/x3d,${file}`));
+
+         expect (scene .encoding) .toBe (encodings [i]);
+
+         if (i)
+            expect (scene .specificationVersion) .toBe (latestVersion);
+
+         const externproto = scene .externprotos [0];
+
+         expect (externproto .appInfo) .toBe ("appinfo ExternProtoDeclare");
+         expect (externproto .documentation) .toBe ("doc ExternProtoDeclare");
+         expect (externproto .fields [1] .name) .toBe ("test1");
+         expect (externproto .fields [1] .appInfo) .toBe ("appinfo field1");
+         expect (externproto .fields [1] .documentation) .toBe ("doc field1");
+
+         const proto = scene .protos [0];
+
+         expect (proto .appInfo) .toBe ("appinfo ProtoDeclare");
+         expect (proto .documentation) .toBe ("doc ProtoDeclare");
+         expect (proto .fields [1] .name) .toBe ("test1");
+         expect (proto .fields [1] .appInfo) .toBe ("appinfo field1");
+         expect (proto .fields [1] .documentation) .toBe ("doc field1");
+         expect (proto .fields [2] .name) .toBe ("test2");
+         expect (proto .fields [2] .appInfo) .toBe ("appinfo field2");
+         expect (proto .fields [2] .documentation) .toBe ("doc field2");
+         expect (proto .fields [3] .name) .toBe ("test3");
+         expect (proto .fields [3] .appInfo) .toBe ("appinfo field3");
+         expect (proto .fields [3] .documentation) .toBe ("doc field3");
+
+         const script = scene .getNamedNode ("TestScript");
+         const first  = script .getFieldDefinitions () .findIndex (field => field .name === "test1");
+
+         expect (script .getFieldDefinitions () [first + 0] .name) .toBe ("test1");
+         expect (script .getFieldDefinitions () [first + 0] .appInfo) .toBe ("appinfo field1");
+         expect (script .getFieldDefinitions () [first + 0] .documentation) .toBe ("doc field1");
+         expect (script .getFieldDefinitions () [first + 1] .name) .toBe ("test2");
+         expect (script .getFieldDefinitions () [first + 1] .appInfo) .toBe ("appinfo field2");
+         expect (script .getFieldDefinitions () [first + 1] .documentation) .toBe ("doc field2");
+         expect (script .getFieldDefinitions () [first + 2] .name) .toBe ("test3");
+         expect (script .getFieldDefinitions () [first + 2] .appInfo) .toBe ("appinfo field3");
+         expect (script .getFieldDefinitions () [first + 2] .documentation) .toBe ("doc field3");
+
+         expect (scene .toXMLString ()) .toBe (orig);
+         expect (scene .toXMLString ({ style })) .toBe (x3d);
+         expect (scene .toJSONString ({ style })) .toBe (x3dj);
+         expect (scene .toXMLString ({ style, closingTags: true })) .toBe (html);
+      }
+   }
+});
+
+test ("USE-NULL.x3d", async () =>
+{
+   const
+      latestVersion = (await Browser .createScene ()) .specificationVersion,
+      scene         = await Browser .createX3DFromURL (new X3D .MFString (new URL ("files/X3D/USE-NULL.x3d", import.meta.url)));
+
+   const orig = await fetch (new URL ("files/X3D/USE-NULL.x3d", import.meta.url)) .then (r => r .text ());
+
+   for (const style of ["TIDY", "COMPACT", "SMALL", "CLEAN"])
+   {
+      const
+         x3d  = scene .toXMLString  ({ style }),
+         x3dv = scene .toVRMLString ({ style }),
+         x3dj = scene .toJSONString ({ style }),
+         html = scene .toXMLString ({ style, closingTags: true });
+
+      const encodings = ["XML", "XML", "VRML", "JSON", "XML"];
+
+      Browser .baseURL = scene .worldURL;
+
+      for (const [i, file] of [orig, x3d, x3dv, x3dj, html] .entries ())
+      {
+         const scene = await Browser .createX3DFromURL (new X3D .MFString (`data:model/x3d,${file}`));
+
+         expect (scene .encoding) .toBe (encodings [i]);
+
+         if (i)
+            expect (scene .specificationVersion) .toBe (latestVersion);
+
+         expect (scene .rootNodes) .toHaveLength (16);
+         expect (scene .rootNodes .at (-1) .metadata) .not .toBe (null);
+         expect (scene .rootNodes .at (-1) .children) .toHaveLength (10);
+      }
+   }
+});
+
+test ("empty.x3d", async () =>
+{
+   const
+      latestVersion = (await Browser .createScene ()) .specificationVersion,
+      scene         = await Browser .createX3DFromURL (new X3D .MFString (new URL ("files/X3D/empty.x3d", import.meta.url)));
+
+   const orig = await fetch (new URL ("files/X3D/empty.x3d", import.meta.url)) .then (r => r .text ());
+
+   for (const style of ["TIDY", "COMPACT", "SMALL", "CLEAN"])
+   {
+      const
+         x3d  = scene .toXMLString  ({ style }),
+         x3dv = scene .toVRMLString ({ style }),
+         x3dj = scene .toJSONString ({ style }),
+         html = scene .toXMLString ({ style, closingTags: true });
+
+      const encodings = ["XML", "XML", "VRML", "JSON", "XML"];
+
+      Browser .baseURL = scene .worldURL;
+
+      for (const [i, file] of [orig, x3d, x3dv, x3dj, html] .entries ())
+      {
+         const scene = await Browser .createX3DFromURL (new X3D .MFString (`data:model/x3d,${file}`));
+
+         expect (scene .encoding) .toBe (encodings [i]);
+
+         if (i)
+            expect (scene .specificationVersion) .toBe (latestVersion);
+
+         expect (scene .externprotos) .toHaveLength (0);
+         expect (scene .protos) .toHaveLength (0);
+         expect (scene .rootNodes) .toHaveLength (0);
+         expect (scene .importedNodes) .toHaveLength (0);
+         expect (scene .exportedNodes) .toHaveLength (0);
+         expect (scene .routes) .toHaveLength (0);
+      }
+   }
+});
+
+test ("scripts.x3d", async () =>
+{
+   const
+      latestVersion = (await Browser .createScene ()) .specificationVersion,
+      scene         = await Browser .createX3DFromURL (new X3D .MFString (new URL ("files/X3D/scripts.x3d", import.meta.url)));
+
+   const orig = await fetch (new URL ("files/X3D/scripts.x3d", import.meta.url)) .then (r => r .text ());
+
+   for (const style of ["TIDY", "COMPACT", "SMALL", "CLEAN"])
+   {
+      const
+         x3d  = scene .toXMLString  ({ style }),
+         html = scene .toXMLString ({ style, closingTags: true }),
+         x3dv = scene .toVRMLString  ({ style }),
+         x3dj = scene .toJSONString  ({ style });
+
+      const encodings = ["XML", "XML", "XML", "JSON"];
+
+      Browser .baseURL = scene .worldURL;
+
+      for (const [i, file] of [orig, x3d, html, x3dj] .entries ())
+      {
+         const scene = await Browser .createX3DFromURL (new X3D .MFString (`data:model/x3d,${file}`));
+
+         expect (scene .encoding) .toBe (encodings [i]);
+
+         if (i)
+            expect (scene .specificationVersion) .toBe (latestVersion);
+
+         expect (scene .toXMLString ()) .toBe (orig);
+         expect (scene .toXMLString ({ style })) .toBe (x3d);
+         expect (scene .toVRMLString ({ style })) .toBe (x3dv);
+         expect (scene .toJSONString ({ style })) .toBe (x3dj);
+         expect (scene .toXMLString ({ style, closingTags: true })) .toBe (html);
+      }
+   }
+});
+
+test ("scripts.x3dj", async () =>
+{
+   const
+      latestVersion = (await Browser .createScene ()) .specificationVersion,
+      scene         = await Browser .createX3DFromURL (new X3D .MFString (new URL ("files/X3D/scripts.x3dj", import.meta.url)));
+
+   const orig = await fetch (new URL ("files/X3D/scripts.x3dj", import.meta.url)) .then (r => r .text ());
+
+   for (const style of ["TIDY", "COMPACT", "SMALL", "CLEAN"])
+   {
+      const
+         x3d  = scene .toXMLString  ({ style }),
+         html = scene .toXMLString ({ style, closingTags: true }),
+         x3dv = scene .toVRMLString  ({ style }),
+         x3dj = scene .toJSONString  ({ style });
+
+      const encodings = ["JSON", "XML", "XML", "JSON"];
+
+      Browser .baseURL = scene .worldURL;
+
+      for (const [i, file] of [orig, x3d, html, x3dj] .entries ())
+      {
+         const scene = await Browser .createX3DFromURL (new X3D .MFString (`data:model/x3d,${file}`));
+
+         expect (scene .encoding) .toBe (encodings [i]);
+
+         if (i)
+            expect (scene .specificationVersion) .toBe (latestVersion);
+
+         expect (scene .toJSONString ()) .toBe (orig);
+         expect (scene .toXMLString ({ style })) .toBe (x3d);
+         expect (scene .toVRMLString ({ style })) .toBe (x3dv);
+         expect (scene .toJSONString ({ style })) .toBe (x3dj);
+         expect (scene .toXMLString ({ style, closingTags: true })) .toBe (html);
+      }
+   }
+});
+
+test ("nodes", async () =>
+{
+   await Browser .loadComponents (Browser .getProfile ("Full"));
+
+   const string = `PROFILE Full
+
+   ${[...Browser .getConcreteNodes ()] .map (ConcreteNode => ConcreteNode .typeName + "{ }") .join ("\n")}
+   `;
+
+   const
+      scene1 = await Browser .createX3DFromString (string),
+      scene2 = await Browser .createX3DFromString (scene1 .toXMLString ()),
+      scene3 = await Browser .createX3DFromString (scene1 .toJSONString ()),
+      scene4 = await Browser .createX3DFromString (scene1 .toXMLString ({ closingTags: true }));
+
+   expect (scene1 .rootNodes) .toHaveLength (Browser .getConcreteNodes () .length);
+   expect (scene2 .rootNodes) .toHaveLength (Browser .getConcreteNodes () .length);
+   expect (scene3 .rootNodes) .toHaveLength (Browser .getConcreteNodes () .length);
+   expect (scene4 .rootNodes) .toHaveLength (Browser .getConcreteNodes () .length);
+
+   for (const [i, node] of scene1 .rootNodes .entries ())
+      expect (node .getNodeTypeName ()) .toBe (Browser .getConcreteNodes () [i] .typeName);
+
+   for (const [i, node] of scene2 .rootNodes .entries ())
+      expect (node .getNodeTypeName ()) .toBe (Browser .getConcreteNodes () [i] .typeName);
+
+   for (const [i, node] of scene3 .rootNodes .entries ())
+      expect (node .getNodeTypeName ()) .toBe (Browser .getConcreteNodes () [i] .typeName);
+
+   for (const [i, node] of scene4 .rootNodes .entries ())
+      expect (node .getNodeTypeName ()) .toBe (Browser .getConcreteNodes () [i] .typeName);
+});
+
+test ("initializableReference.x3dv", async () =>
+{
+   const
+      orig  = await fetch (new URL ("files/X3D/initializableReference.x3dv", import.meta.url)) .then (r => r .text ()) .then (t => t .replace (/V\d+\.\d+\.\d+/, "V" + Browser .version)),
+      scene = await Browser .createX3DFromString (orig),
+      x3d   = await Browser .createX3DFromString (scene .toXMLString ()),
+      x3dj  = await Browser .createX3DFromString (scene .toJSONString ()),
+      x3dv  = await Browser .createX3DFromString (scene .toVRMLString ()),
+      html  = await Browser .createX3DFromString (scene .toXMLString ({ closingTags: true }));
+
+   expect (x3d  .toVRMLString ()) .toBe (orig);
+   expect (x3dj .toVRMLString ()) .toBe (orig);
+   expect (x3dv .toVRMLString ()) .toBe (orig);
+   expect (html .toVRMLString ()) .toBe (orig);
+});
+
+test ("doubleFields.x3d", async () =>
+{
+   const
+      orig  = await fetch (new URL ("files/X3D/doubleFields.x3d", import.meta.url)) .then (r => r .text ()),
+      scene = await Browser .createX3DFromString (orig),
+      x3d   = await Browser .createX3DFromString (scene .toXMLString ()),
+      x3dj  = await Browser .createX3DFromString (scene .toJSONString ()),
+      x3dv  = await Browser .createX3DFromString (scene .toVRMLString ()),
+      html  = await Browser .createX3DFromString (scene .toXMLString ({ closingTags: true }));
+
+   expect (x3d  .toXMLString ()) .toBe (orig);
+   expect (x3dj .toXMLString ()) .toBe (orig);
+   expect (x3dv .toXMLString ()) .toBe (orig);
+   expect (html .toXMLString ()) .toBe (orig);
+});
+
+test ("base64-with-bom", async () =>
+{
+   const
+      data  = await fetch (new URL ("files/X3D/base64-with-bom.url", import.meta.url)) .then (r => r .text ()),
+      scene = await Browser .createX3DFromURL (new X3D .MFString (data));
+
+   expect (scene .rootNodes) .toHaveLength (27);
+});
+
+test ("bom.txt", async () =>
+{
+   const
+      text  = await fetch (new URL ("files/X3D/bom.txt", import.meta.url)) .then (r => r .text ()),
+      scene = await Browser .createX3DFromURL (new X3D .MFString (`data:model/x3d+vrml,${atob (text)}`));
+
+   expect (scene .rootNodes) .toHaveLength (27);
+});
+
+test ("unknowns.x3dv", async () =>
+{
+   const scene = await Browser .createX3DFromURL (new X3D .MFString (new URL ("files/X3D/unknowns.x3dv", import.meta.url)));
+
+   expect (scene .rootNodes) .toHaveLength (2);
+});
+
+test ("proto-import-routes.x3dv", async () =>
+{
+   const scene1 = await Browser .createX3DFromURL (new X3D .MFString (new URL ("files/X3D/proto-import-routes.x3d", import.meta.url)));
+
+   const
+      scene2 = await Browser .createX3DFromString (scene1 .toXMLString ()),
+      scene3 = await Browser .createX3DFromString (scene1 .toVRMLString ()),
+      scene4 = await Browser .createX3DFromString (scene1 .toJSONString ()),
+      scene5 = await Browser .createX3DFromString (scene1 .toXMLString ({ closingTags: true }));
+
+   for (const scene of [scene1, scene2, scene3, scene4, scene5])
+   {
+      expect (scene .protos) .toHaveLength (1);
+      expect (scene .rootNodes) .toHaveLength (1);
+
+      const node = scene .rootNodes [0];
+
+      expect (node .getNodeTypeName ()) .toBe ("Test");
+
+      const body = node .getValue () .getBody ();
+
+      expect (body) .toBeInstanceOf (X3D .X3DExecutionContext);
+      expect (body .rootNodes) .toHaveLength (3);
+      expect (body .routes) .toHaveLength (2);
+
+      expect (body .routes [0] .sourceNode) .toBeInstanceOf (X3D .SFNode);
+      expect (typeof body .routes [0] .sourceField) .toBe ("string");
+      expect (body .routes [0] .destinationNode) .toBeInstanceOf (X3D .SFNode);
+      expect (typeof body .routes [0] .destinationField) .toBe ("string");
+
+      expect (body .routes [0] .getSourceNode ()) .toBeInstanceOf (X3D .X3DNode);
+      expect (typeof body .routes [0] .getSourceField ()) .toBe ("string");
+      expect (body .routes [0] .getDestinationNode ()) .toBeInstanceOf (X3D .X3DNode);
+      expect (typeof body .routes [0] .getDestinationField ()) .toBe ("string");
+
+      expect (body .routes [0] .getSourceNode ()) .toBe (body .routes [0] .sourceNode .getValue ());
+      expect (body .routes [0] .getSourceField ()) .toBe (body .routes [0] .sourceField);
+      expect (body .routes [0] .getDestinationNode ()) .toBe (body .routes [0] .destinationNode .getValue ());
+      expect (body .routes [0] .getDestinationField ()) .toBe (body .routes [0] .destinationField);
+
+      expect (body .routes [0] .sourceNode .getNodeTypeName ()) .toBe ("TimeSensor");
+      expect (body .routes [0] .sourceField) .toBe ("fraction_changed");
+      expect (body .routes [0] .destinationNode .getNodeTypeName ()) .toBe ("OrientationInterpolator");
+      expect (body .routes [0] .destinationField) .toBe ("set_fraction");
+
+      expect (body .routes [1] .sourceNode) .toBeInstanceOf (X3D .SFNode);
+      expect (typeof body .routes [1] .sourceField) .toBe ("string");
+      expect (body .routes [1] .destinationNode) .toBeInstanceOf (X3D .SFNode);
+      expect (typeof body .routes [1] .destinationField) .toBe ("string");
+
+      expect (body .routes [1] .getSourceNode ()) .toBeInstanceOf (X3D .X3DNode);
+      expect (typeof body .routes [1] .getSourceField ()) .toBe ("string");
+      expect (body .routes [1] .getDestinationNode ()) .toBeInstanceOf (X3D .X3DNode);
+      expect (typeof body .routes [1] .getDestinationField ()) .toBe ("string");
+
+      expect (body .routes [1] .getSourceNode ()) .toBe (body .routes [1] .sourceNode .getValue ());
+      expect (body .routes [1] .getSourceField ()) .toBe (body .routes [1] .sourceField);
+      expect (body .routes [1] .getDestinationNode ()) .toBe (body .routes [1] .destinationNode .getValue ());
+      expect (body .routes [1] .getDestinationField ()) .toBe (body .routes [1] .destinationField);
+
+      expect (body .routes [1] .sourceNode .getNodeTypeName ()) .toBe ("OrientationInterpolator");
+      expect (body .routes [1] .sourceField) .toBe ("value_changed");
+      expect (body .routes [1] .destinationNode .getNodeTypeName ()) .toBe ("Transform");
+      expect (body .routes [1] .destinationNode .getNodeName ()) .toBe ("ImportedBox");
+      expect (body .routes [1] .destinationField) .toBe ("set_rotation");
+   }
+});
+
+test ("double-import.x3dv", async () =>
+{
+   const scene1 = await Browser .createX3DFromURL (new X3D .MFString (new URL ("files/X3D/double-import.x3dv", import.meta.url)));
+
+   const
+      scene2 = await Browser .createX3DFromString (scene1 .toXMLString ()),
+      scene3 = await Browser .createX3DFromString (scene1 .toVRMLString ()),
+      scene4 = await Browser .createX3DFromString (scene1 .toJSONString ()),
+      scene5 = await Browser .createX3DFromString (scene1 .toXMLString ({ closingTags: true }));
+
+   for (const scene of [scene1, scene2, scene3, scene4, scene5])
+   {
+      expect (scene .rootNodes) .toHaveLength (5);
+      expect (scene .namedNodes) .toHaveLength (5);
+      expect (scene .importedNodes) .toHaveLength (2);
+      expect (scene .routes) .toHaveLength (4);
+
+      expect (scene .importedNodes [0]) .toBe (scene .getImportedNodes () .get (scene .importedNodes [0] .importedName));
+      expect (scene .importedNodes [1]) .toBe (scene .getImportedNodes () .get (scene .importedNodes [1] .importedName));
+
+      expect (scene .importedNodes [0] .importedName) .toMatch (/^Box_\d+$/);
+      expect (scene .importedNodes [1] .importedName) .toMatch (/^Box_\d+$/);
+
+      expect (scene .getNamedNode ("Box") .getNodeName ()) .toBe ("Box");
+      expect (scene .getNamedNode ("Box") .getNodeTypeName ()) .toBe ("Transform");
+
+      expect (scene .routes [0] .sourceNode) .toBe (scene .importedNodes [0] .exportedNode);
+      expect (scene .routes [1] .sourceNode) .toBe (scene .importedNodes [1] .exportedNode);
+      expect (scene .routes [2] .sourceNode) .toBeInstanceOf (X3D .SFNode);
+      expect (scene .routes [2] .sourceNode .getNodeName ()) .toMatch (/^Box_\d+$/);
+      expect (scene .routes [3] .sourceNode) .toBe (scene .getNamedNode ("Box"));
+
+      expect (scene .routes [0] .destinationNode) .toBe (scene .getNamedNode ("T"));
+      expect (scene .routes [1] .destinationNode) .toBe (scene .getNamedNode ("T"));
+      expect (scene .routes [2] .destinationNode) .toBe (scene .getNamedNode ("T"));
+      expect (scene .routes [3] .destinationNode) .toBe (scene .getNamedNode ("T"));
+   }
+});
+
+test ("proto-with-filled-node-fields.x3d", async () =>
+{
+   const
+      latestVersion = (await Browser .createScene ()) .specificationVersion,
+      scene         = await Browser .createX3DFromURL (new X3D .MFString (new URL ("files/X3D/proto-with-filled-node-fields.x3d", import.meta.url)));
+
+   const orig = await fetch (new URL ("files/X3D/proto-with-filled-node-fields.x3d", import.meta.url)) .then (r => r .text ());
+
+   for (const style of ["TIDY", "COMPACT", "SMALL", "CLEAN"])
+   {
+      const
+         x3d  = scene .toXMLString  ({ style }),
+         x3dv = scene .toVRMLString ({ style }),
+         x3dj = scene .toJSONString ({ style }),
+         html = scene .toXMLString ({ style, closingTags: true });
+
+      const encodings = ["XML", "XML", "VRML", "JSON", "XML"];
+
+      Browser .baseURL = scene .worldURL;
+
+      for (const [i, file] of [orig, x3d, x3dv, x3dj, html] .entries ())
+      {
+         const scene = await Browser .createX3DFromURL (new X3D .MFString (`data:model/x3d,${file}`));
+
+         expect (scene .encoding) .toBe (encodings [i]);
+
+         if (i)
+            expect (scene .specificationVersion) .toBe (latestVersion);
+
+         expect (scene .getNamedNode ("Default") .child) .not .toBe (null);
+         expect (scene .getNamedNode ("Default") .children) .not .toHaveLength (0);
+         expect (scene .getNamedNode ("NULL") .child) .toBe (null);
+         expect (scene .getNamedNode ("NULL") .children) .toHaveLength (0);
+
+         expect (scene .toXMLString ()) .toBe (orig);
+         expect (scene .toXMLString  ({ style })) .toBe (x3d);
+         expect (scene .toVRMLString ({ style })) .toBe (x3dv);
+         expect (scene .toJSONString ({ style })) .toBe (x3dj);
+         expect (scene .toXMLString ({ style, closingTags: true })) .toBe (html);
+      }
+   }
+});
+
+test ("comments", async () =>
+{
+   const scene = await Browser .createX3DFromString (`#X3D V4.0 utf8
+# comment 1
+# comment 2
+# comment 3
+
+# comment 4
+
+# comment 5
+
+# comment 6
+
+# comment
+PROFILE
+# comment
+Interchange
+# comment
+
+COMPONENT
+# comment
+Core
+# comment
+:
+# comment
+1
+
+# comment
+UNIT
+# comment
+angle
+# comment
+degree
+# comment
+0.017453292519943295
+
+# comment
+META
+# comment
+"key"
+# comment
+"value"
+
+# comment
+EXTERNPROTO
+# comment
+TestEx
+# comment
+[
+# comment
+]
+# comment
+[
+# comment
+]
+
+# comment
+PROTO
+# comment
+Test
+# comment
+[
+# comment
+]
+# comment
+{
+# comment
+}
+
+# comment
+Switch {
+# comment
+whichChoice
+# comment
+1
+# comment
+}
+
+# comment
+Transform
+# comment 2
+{
+# comment 3
+translation
+# comment 4
+1
+# comment 5
+2
+# comment 6
+3
+# comment 7
+}
+
+# comment 8
+DEF
+# comment 8
+Name
+# comment 8
+Transform { }
+
+#/* block comment */#
+
+# comment
+Coordinate
+# comment
+{
+# comment
+point
+# comment
+[
+# comment
+]
+# comment
+}
+
+#/* multi
+  * line
+  * comment
+  */##/* another multi
+  * line
+  * comment
+  */##/* yet another multi
+  * line
+  * comment
+  */#
+
+# comment
+Coordinate
+# comment
+{
+# comment
+point
+# comment
+0
+# comment
+0
+# comment
+0
+# comment
+}
+
+#/* block comment */##/* another block comment */##/* yet another block comment */#
+
+#/* block comment */##/* another block comment */##/* yet another block comment */#
+
+# comment
+Coordinate
+{
+# comment
+point
+# comment
+[
+# comment
+0
+# comment
+0
+# comment
+0
+# comment
+,
+# comment
+1
+# comment
+1
+# comment
+1
+# comment
+]
+# comment
+}
+
+#/* multi
+  * line
+  * comment
+  */#
+
+#/* multi
+  * line
+  * comment
+  */#
+
+#/* multi
+  * line
+  * comment
+  */#
+
+#/*
+# * block comment
+#*/# DEF NodeAfterBlockComment Transform { }
+
+# comment
+DEF
+# comment
+I
+# comment
+Inline
+# comment
+{
+# comment
+load
+# comment
+FALSE
+# comment
+}
+
+#/* multi
+  * line
+  * comment
+  */#
+
+# comment
+IMPORT
+# comment
+I
+# comment
+.
+# comment
+ExportName
+# comment
+AS
+# comment
+ImportName
+
+#/* multi
+  * line
+  * comment
+  */#
+
+# comment
+EXPORT
+# comment
+Name
+# comment
+AS
+# comment
+ExportName
+
+#/* multi
+  * line
+  * comment
+  */#
+
+# comment
+ROUTE
+# comment
+Name
+# comment
+.
+# comment
+translation
+# comment
+TO
+# comment
+Name
+# comment
+.
+# comment
+scale
+
+# comment
+
+# comment 9`);
+
+   expect (scene .getMetaDatas ()) .toHaveLength (1);
+   expect (scene .rootNodes) .toHaveLength (8);
+   expect (scene .importedNodes) .toHaveLength (1);
+   expect (scene .exportedNodes) .toHaveLength (1);
+   expect (scene .routes) .toHaveLength (1);
+});
+
+test ("string escape sequences", async () =>
+{
+   const scene = await Browser .createX3DFromURL (new X3D .MFString (new URL ("files/X3D/escape-sequences.x3dv", import.meta.url)));
+
+   expect (scene .rootNodes) .toHaveLength (1);
+   expect (scene .rootNodes [0] .string [0]) .toBe ("\\\"\\");
+   expect (scene .rootNodes [0] .string [1]) .toBe ("\\\\\\a\\\"\"");
+   expect (scene .rootNodes [0] .string [2]) .toBe ("\\\\\"\\\\");
+});
+
+test ("null", async () =>
+{
+   const scene1 = await Browser .createX3DFromString (`
+PROTO T [
+   inputOutput SFNode node DEF G Group { }
+   inputOutput MFNode nodes USE G
+] { }
+Group {
+   children [ NULL, NULL ]
+}
+NULL
+NULL
+T { }
+T {
+   node NULL
+   nodes [ NULL, NULL ]
+}
+   `);
+
+   const vrml = scene1 .toVRMLString ();
+
+   expect (vrml .match (/\bNULL\b/g)) .toHaveLength (7);
+
+   const
+      scene2 = await Browser .createX3DFromString (scene1 .toXMLString ()),
+      scene3 = await Browser .createX3DFromString (scene1 .toVRMLString ()),
+      scene4 = await Browser .createX3DFromString (scene1 .toJSONString ()),
+      scene5 = await Browser .createX3DFromString (scene1 .toXMLString ({ closingTags: true }));
+
+   for (const scene of [scene1, scene2, scene3, scene4, scene5])
+   {
+      expect (scene .rootNodes) .toHaveLength (5);
+      expect (scene .rootNodes [0] .getNodeTypeName ()) .toBe ("Group");
+      expect (scene .rootNodes [0] .children) .toHaveLength (2);
+      expect (scene .rootNodes [0] .children [0]) .toBe (null);
+      expect (scene .rootNodes [0] .children [1]) .toBe (null);
+      expect (scene .rootNodes [1]) .toBe (null);
+      expect (scene .rootNodes [2]) .toBe (null);
+      expect (scene .rootNodes [3] .getNodeTypeName ()) .toBe ("T");
+      expect (scene .rootNodes [3] .node .getNodeTypeName ()) .toBe ("Group");
+      expect (scene .rootNodes [3] .node) .toBe (scene .getNamedNode ("G"));
+      expect (scene .rootNodes [3] .nodes) .toHaveLength (1);
+      expect (scene .rootNodes [3] .nodes [0] .getNodeTypeName ()) .toBe ("Group");
+      expect (scene .rootNodes [3] .nodes [0]) .toBe (scene .getNamedNode ("G"));
+      expect (scene .rootNodes [4] .getNodeTypeName ()) .toBe ("T");
+      expect (scene .rootNodes [4] .node) .toBe (null);
+      expect (scene .rootNodes [4] .nodes) .toHaveLength (2);
+      expect (scene .rootNodes [4] .nodes [0]) .toBe (null);
+      expect (scene .rootNodes [4] .nodes [1]) .toBe (null);
+      expect (scene .toVRMLString ()) .toBe (vrml);
+   }
+});
+
+test ("parse value of inputOnly and outputOnly fields", async () =>
+{
+   const scene = await Browser .createX3DFromString (`#X3D V4.0 utf8
+
+PROFILE Interchange
+
+DEF Test Viewpoint {
+  # inputOnly with value, skip this
+  set_bind TRUE
+  # outputOnly with value, skip this
+  isBound TRUE
+  description "test"
+}
+   `);
+
+   expect (scene .rootNodes) .toHaveLength (1);
+   expect (scene .rootNodes [0] .getNodeName ()) .toBe ("Test");
+   expect (scene .rootNodes [0] .description) .toBe ("test");
+});
+
+// test ("parse proto with name of a build-in node not in profile", async () =>
+// {
+//    const scene = await Browser .createX3DFromString (`#X3D V4.0 utf8
+
+// PROFILE Interchange
+
+// # This proto should be used to create the node below.
+// PROTO ParticleSystem [ ] { }
+
+// DEF Test ParticleSystem { }
+//    `);
+
+//    expect (scene .rootNodes) .toHaveLength (1);
+//    expect (scene .rootNodes [0] .getNodeName ()) .toBe ("Test");
+//    expect (scene .rootNodes [0] .getNodeTypeName ()) .toBe ("ParticleSystem");
+//    expect (scene .rootNodes [0] .getNodeType () .includes (X3D .X3DConstants .X3DPrototypeInstance)) .toBe (true);
+// });
+
+test ("parse proto with name of a build-in node", async () =>
+{
+   const scene = await Browser .createX3DFromString (`#X3D V4.0 utf8
+
+PROFILE Interchange
+
+# This proto should not override the built-in Group node.
+PROTO Group [ ] { }
+
+DEF Test Group { }
+   `);
+
+   expect (scene .rootNodes) .toHaveLength (1);
+   expect (scene .rootNodes [0] .getNodeName ()) .toBe ("Test");
+   expect (scene .rootNodes [0] .getNodeTypeName ()) .toBe ("Group");
+
+   const Group = Browser .getConcreteNode ("Group");
+
+   expect (scene .rootNodes [0] .getValue ()) .toBeInstanceOf (Group);
+   expect (scene .rootNodes [0] .getNodeType () .includes (X3D .X3DConstants .Group)) .toBe (true);
+});
+
+test ("import-export-statements.x3d", async () =>
+{
+   const
+      latestVersion = (await Browser .createScene ()) .specificationVersion,
+      scene         = await Browser .createX3DFromURL (new X3D .MFString (new URL ("files/X3D/import-export-statements.x3d", import.meta.url)));
+
+   const orig = await fetch (new URL ("files/X3D/import-export-statements.x3d", import.meta.url)) .then (r => r .text ());
+
+   for (const style of ["TIDY", "COMPACT", "SMALL", "CLEAN"])
+   {
+      const
+         x3d  = scene .toXMLString  ({ style }),
+         x3dv = scene .toVRMLString ({ style }),
+         x3dj = scene .toJSONString ({ style }),
+         html = scene .toXMLString ({ style, closingTags: true });
+
+      const encodings = ["XML", "XML", "VRML", "JSON", "XML"];
+
+      Browser .baseURL = scene .worldURL;
+
+      for (const [i, file] of [orig, x3d, x3dv, x3dj, html] .entries ())
+      {
+         const scene = await Browser .createX3DFromURL (new X3D .MFString (`data:model/x3d,${file}`));
+
+         expect (scene .encoding) .toBe (encodings [i]);
+
+         if (i)
+            expect (scene .specificationVersion) .toBe (latestVersion);
+
+         expect (scene .importedNodes [0] .description) .toBe ("Import Test 1");
+         expect (scene .importedNodes [1] .description) .toBe ("Import Test 2");
+         expect (scene .exportedNodes [0] .description) .toBe ("Export Test 1");
+         expect (scene .exportedNodes [1] .description) .toBe ("Export Test 2");
+
+         expect (scene .toXMLString ()) .toBe (orig);
+         expect (scene .toXMLString  ({ style })) .toBe (x3d);
+         expect (scene .toVRMLString ({ style })) .toBe (x3dv);
+         expect (scene .toJSONString ({ style })) .toBe (x3dj);
+      }
+   }
+});
+
+test ("USE before DEF", async () =>
+{
+   const files = [
+      new URL ("files/X3D/use-before-def.x3d",  import.meta.url),
+      new URL ("files/X3D/use-before-def.x3dv", import.meta.url),
+   ];
+
+   for (const file of files)
+   {
+      const scene = await Browser .createX3DFromURL (new X3D .MFString (file));
+
+      const rootNodes = scene .rootNodes;
+
+      expect (rootNodes) .toHaveLength (8);
+
+      expect (rootNodes [0] .children [0] .getNodeTypeName ()) .toBe ("Test");
+      expect (rootNodes [1] .children [0]) .toBe (rootNodes [0] .children [0]);
+      expect (rootNodes [2] .children [0] .getNodeTypeName ()) .toBe ("Test");
+      expect (rootNodes [2] .children [0]) .toBe (rootNodes [0] .children [0]);
+
+      expect (rootNodes [3] .children [0] .getNodeTypeName ()) .toBe ("Shape");
+      expect (rootNodes [4] .children [0] .getNodeTypeName ()) .toBe ("Shape");
+      expect (rootNodes [4] .children [0]) .toBe (rootNodes [3] .children [0]);
+      expect (rootNodes [5] .children [0] .getNodeTypeName ()) .toBe ("Shape");
+      expect (rootNodes [5] .children [0]) .toBe (rootNodes [3] .children [0]);
+
+      expect (rootNodes [6] .children [0] .getNodeTypeName ()) .toBe ("Shape");
+      expect (rootNodes [6] .children [0]) .not .toBe (rootNodes [3] .children [0]);
+      expect (rootNodes [6] .children [0]) .not .toBe (rootNodes [4] .children [0]);
+      expect (rootNodes [6] .children [0]) .not .toBe (rootNodes [5] .children [0]);
+
+      expect (rootNodes [7] .children [0]) .not .toBe (rootNodes [3] .children [0]);
+      expect (rootNodes [7] .children [0]) .not .toBe (rootNodes [4] .children [0]);
+      expect (rootNodes [7] .children [0]) .not .toBe (rootNodes [5] .children [0]);
+      expect (rootNodes [7] .children [0] .getNodeTypeName ()) .toBe ("Shape");
+      // expect (rootNodes [7] .children [0]) .toBe (rootNodes [6] .children [0]);
+   }
+});
+
+test ("use-exported-node.x3d", async () =>
+{
+   const
+      latestVersion = (await Browser .createScene ()) .specificationVersion,
+      scene         = await Browser .createX3DFromURL (new X3D .MFString (new URL ("files/X3D/use-exported-node.x3d", import.meta.url)));
+
+   const orig = await fetch (new URL ("files/X3D/use-exported-node.x3d", import.meta.url)) .then (r => r .text ());
+
+   for (const style of ["TIDY", "COMPACT", "SMALL", "CLEAN"])
+   {
+      const
+         x3d  = scene .toXMLString  ({ style }),
+         x3dv = scene .toVRMLString ({ style }),
+         x3dj = scene .toJSONString ({ style }),
+         html = scene .toXMLString ({ style, closingTags: true });
+
+      const encodings = ["XML", "XML", "VRML", "JSON", "XML"];
+
+      Browser .baseURL = scene .worldURL;
+
+      for (const [i, file] of [orig, x3d, x3dv, x3dj, html] .entries ())
+      {
+         const scene = await Browser .createX3DFromURL (new X3D .MFString (`data:model/x3d,${file}`));
+
+         expect (scene .encoding) .toBe (encodings [i]);
+
+         if (i)
+            expect (scene .specificationVersion) .toBe (latestVersion);
+
+         expect (scene .rootNodes [0] .children [0] .getValue () .checkLoadState ()) .toBe (X3D .X3DConstants .COMPLETE_STATE);
+
+         expect (scene .toXMLString ()) .toBe (orig);
+         expect (scene .toXMLString  ({ style })) .toBe (x3d);
+         expect (scene .toVRMLString ({ style })) .toBe (x3dv);
+         expect (scene .toJSONString ({ style })) .toBe (x3dj);
+         expect (scene .toXMLString ({ style, closingTags: true })) .toBe (html);
+      }
+   }
+});
+
+test ("use-exported-node-script.x3dv", async () =>
+{
+   const files = [
+      new URL ("files/X3D/use-exported-node-script.x3dv", import.meta.url),
+   ];
+
+   for (const file of files)
+   {
+      const scene = await Browser .createX3DFromURL (new X3D .MFString (file));
+
+      expect (scene .rootNodes) .toHaveLength (2);
+
+      const S = scene .getNamedNode ("S");
+
+      // Script nodes are initialized very early, but this should be null.
+      expect (S .run)   .toBe (true);
+      expect (S .node1) .not .toBe (null);
+      expect (S .node2) .not .toBe (null);
+
+      // Scene is returned when all is loaded, so this should NOT be null.
+      expect (S .node) .not .toBe (null);
+      expect (S .script .node) .not .toBe (null);
+   }
+});
+
+test ("box1", async () =>
+{
+   const scene1 = await Browser .createX3DFromURL (new X3D .MFString (new URL ("files/X3D/box1.x3d", import.meta.url)));
+
+   expect (scene1 .rootNodes)     .toHaveLength (1);
+   expect (scene1 .namedNodes)    .toHaveLength (1);
+   expect (scene1 .exportedNodes) .toHaveLength (1);
+
+   const scene2 = await Browser .createX3DFromURL (new X3D .MFString (new URL ("files/X3D/box1.x3d.gz", import.meta.url)));
+
+   expect (scene2 .rootNodes)     .toHaveLength (1);
+   expect (scene2 .namedNodes)    .toHaveLength (1);
+   expect (scene2 .exportedNodes) .toHaveLength (1);
+});
