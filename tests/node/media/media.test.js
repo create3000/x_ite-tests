@@ -5,7 +5,7 @@ test ("test", () =>
 
 });
 
-/// const
+// const
 //    $             = require ("jquery"),
 //    path          = require ("path"),
 //    url           = require ("url"),

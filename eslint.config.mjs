@@ -13,7 +13,6 @@ export default defineConfig ([
       {
         ... globals .browser,
         ... globals .vitest,
-        enumerate: "readonly",
       },
     },
     rules:
@@ -24,13 +23,21 @@ export default defineConfig ([
     },
   },
   {
-    files: ["**/*.js"],
+    files: ["tests/browser/**/*.js"],
     languageOptions:
     {
       sourceType: "module",
-      globals: {
+      globals:
+      {
         enumerate: "readonly",
       },
+    },
+  },
+  {
+    files: ["tests/node/**/*.js"],
+    languageOptions:
+    {
+      sourceType: "commonjs",
     },
   },
 ]);
