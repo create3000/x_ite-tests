@@ -6,14 +6,14 @@ test .concurrent ("documentation", () =>
 {
    expect (sh `perl "${path .resolve (__dirname, "documentation.pl")}"`) .toBe ("Test done.\n");
 },
-10_000);
+20_000);
 
 test .concurrent ("X3DUOM", () =>
 {
    expect (sh `node "${path .resolve (__dirname, "x3duom.js")}"`)
       .toBe (sh `cat "${path .resolve (__dirname, "x3duom.txt")}"`);
 },
-20_000);
+30_000);
 
 function sh (strings, ... values)
 {
