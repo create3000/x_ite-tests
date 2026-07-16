@@ -40,9 +40,9 @@ test .concurrent ("media", async () =>
 
       const blob2 = await new Promise (resolve => canvas .toBlob (resolve, "image/png"));
       const url2  = URL .createObjectURL (blob2);
-      const avif  = new URL (`https://weiputer/media/docs/examples/${component}/${name}/screenshot.avif`);
+      const url1  = new URL (`https://weiputer/media/docs/examples/${component}/${name}/screenshot.avif`);
 
-      const img1 = await loadImage (avif);
+      const img1 = await loadImage (url1);
       const img2 = await loadImage (url2);
 
       const data1 = readPixels (img1);
