@@ -16,8 +16,9 @@ const
    canvas  = X3D .createBrowser (),
    browser = canvas .browser;
 
-canvas .setAttribute ("style", `width: ${width}px; height: ${height}px;`);
+canvas .setAttribute ("style", `width: ${width}px; height: ${height}px; transform: translate(-90px) scale(0.8);`);
 body .appendChild (canvas);
+browser .setBrowserOption ("SplashScreen", false);
 browser .setBrowserOption ("Mute", true);
 
 test ("media", async () =>
