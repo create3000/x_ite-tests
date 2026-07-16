@@ -297,6 +297,7 @@ ROUTE S1.appearance TO S2.appearance
       i  = scene .getNamedNode ("I");
 
    expect (scene .rootNodes) .toHaveLength (5);
+   expect (scene .rootNodes [0]) .not .toBe (shape3);
    expect (scene .rootNodes [0]) .toBe (shape4);
    expect (scene .rootNodes [1]) .toBe (t1);
    expect (scene .rootNodes [2]) .toBe (t2);
