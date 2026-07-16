@@ -15,6 +15,9 @@ test .concurrent ("X3D", async () =>
    for (const ConcreteNode of browser .getConcreteNodes ())
       expect (X3D [ConcreteNode .typeName]) .toBe (ConcreteNode);
 
+   for (const AbstractNode of browser .getAbstractNodes ())
+      expect (X3D [AbstractNode .typeName]) .toBe (AbstractNode);
+
    const values = new Set (Object .values (X3D));
 
    for (const AbstractNode of browser .getAbstractNodes ())
