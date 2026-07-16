@@ -7,7 +7,7 @@ for (const Type of Object .keys (X3D .SFVec4))
 {
    const SFVec4 = X3D .SFVec4 [Type];
 
-   test ("constants", () =>
+   test .concurrent ("constants", () =>
    {
       expect (SFVec4 .ZERO   .equals (new SFVec4 (0,0,0,0))) .toBe (true);
       expect (SFVec4 .ONE    .equals (new SFVec4 (1,1,1,1))) .toBe (true);
@@ -23,7 +23,7 @@ for (const Type of Object .keys (X3D .SFVec4))
       expect (SFVec4 .NEGATIVE_W_AXIS .equals (new SFVec4 (0,0,0,-1))) .toBe (true);
    });
 
-   test ("constructor", () =>
+   test .concurrent ("constructor", () =>
    {
       const v1 = new SFVec4 ();
 
@@ -61,7 +61,7 @@ for (const Type of Object .keys (X3D .SFVec4))
       expect (v3 [3]) .toBe (1);
    });
 
-   test ("enumerate", () =>
+   test .concurrent ("enumerate", () =>
    {
       const properties = [
          "x",
@@ -73,7 +73,7 @@ for (const Type of Object .keys (X3D .SFVec4))
       enumerate (properties, new SFVec4 ());
    });
 
-   test ("getter/setter", () =>
+   test .concurrent ("getter/setter", () =>
    {
       const v1 = new SFVec4 ();
 
@@ -121,7 +121,7 @@ for (const Type of Object .keys (X3D .SFVec4))
       expect ([...v1]) .toEqual ([NaN,NaN,NaN,NaN]);
    });
 
-   test ("common", () =>
+   test .concurrent ("common", () =>
    {
       const field = new SFVec4 ();
 
@@ -130,7 +130,7 @@ for (const Type of Object .keys (X3D .SFVec4))
       expect (Object .prototype .toString .call (field)) .toBe (`[object ${Type}]`);
    });
 
-   test ("copy", () =>
+   test .concurrent ("copy", () =>
    {
       const
          v1 = new SFVec4 (2,3,4,5),
@@ -141,7 +141,7 @@ for (const Type of Object .keys (X3D .SFVec4))
       expect (v2 .equals (v1)) .toBe (true);
    });
 
-   test ("equals", () =>
+   test .concurrent ("equals", () =>
    {
       const
          a = new SFVec4 (2,3,4,5),
@@ -152,7 +152,7 @@ for (const Type of Object .keys (X3D .SFVec4))
       expect (a .equals (b)) .toBe (false);
    });
 
-   test ("isDefaultValue", () =>
+   test .concurrent ("isDefaultValue", () =>
    {
       const
          a = new SFVec4 (0,0,0,1),
@@ -164,7 +164,7 @@ for (const Type of Object .keys (X3D .SFVec4))
       expect (b .isDefaultValue ()) .toBe (false);
    });
 
-   test ("abs", () =>
+   test .concurrent ("abs", () =>
    {
       const
          a = new SFVec4 (2,3,4,5),
@@ -179,7 +179,7 @@ for (const Type of Object .keys (X3D .SFVec4))
       expect (c .equals (a)) .toBe (true);
    });
 
-   test ("add", () =>
+   test .concurrent ("add", () =>
    {
       const
          a = new SFVec4 (2,3,4,5),
@@ -195,12 +195,12 @@ for (const Type of Object .keys (X3D .SFVec4))
       expect (c .equals (new SFVec4 (8,10,12,14))) .toBe (true);
    });
 
-   test ("distance", () =>
+   test .concurrent ("distance", () =>
    {
       expect (new SFVec4 (2,3,4,5) .distance (new SFVec4 (6,7,8,9))) .toBe (8);
    });
 
-   test ("divide", () =>
+   test .concurrent ("divide", () =>
    {
       const
          a = new SFVec4 (2,4,6,8),
@@ -213,7 +213,7 @@ for (const Type of Object .keys (X3D .SFVec4))
       expect (b .equals (new SFVec4 (1,2,3,4))) .toBe (true);
    });
 
-   test ("divVec", () =>
+   test .concurrent ("divVec", () =>
    {
       const
          a = new SFVec4 (4,9,16,25),
@@ -229,12 +229,12 @@ for (const Type of Object .keys (X3D .SFVec4))
       expect (c .equals (new SFVec4 (2,3,4,5))) .toBe (true);
    });
 
-   test ("dot", () =>
+   test .concurrent ("dot", () =>
    {
       expect (new SFVec4 (2,3,4,5) .dot (new SFVec4 (6,7,8,9))) .toBe (110);
    });
 
-   test ("inverse", () =>
+   test .concurrent ("inverse", () =>
    {
       const
          a = new SFVec4 (2,3,4,5),
@@ -247,12 +247,12 @@ for (const Type of Object .keys (X3D .SFVec4))
       expect (b .equals (new SFVec4 (1/2,1/3,1/4,1/5))) .toBe (true);
    });
 
-   test ("length", () =>
+   test .concurrent ("length", () =>
    {
       expect (new SFVec4 (2,3,4,5) .length ()) .toBe (Math .hypot (2,3,4,5));
    });
 
-   test ("lerp", () =>
+   test .concurrent ("lerp", () =>
    {
       const
          a = new SFVec4 (2,3,4,5),
@@ -268,7 +268,7 @@ for (const Type of Object .keys (X3D .SFVec4))
       expect (c .equals (new SFVec4 (3,4.5,6,7.5))) .toBe (true);
    });
 
-   test ("min", () =>
+   test .concurrent ("min", () =>
    {
       const
          a = new SFVec4 (2,3,4,5),
@@ -292,7 +292,7 @@ for (const Type of Object .keys (X3D .SFVec4))
       expect (d .equals (a)) .toBe (true);
    });
 
-   test ("max", () =>
+   test .concurrent ("max", () =>
    {
       const
          a = new SFVec4 (2,3,4,5),
@@ -316,7 +316,7 @@ for (const Type of Object .keys (X3D .SFVec4))
       expect (d .equals (b)) .toBe (true);
    });
 
-   test ("clamp", () =>
+   test .concurrent ("clamp", () =>
    {
       const
          a = new SFVec4 (2,3,4,5),
@@ -332,7 +332,7 @@ for (const Type of Object .keys (X3D .SFVec4))
       expect (c .getValue ()) .toEqual ({ x: 1, y: 4, z: 4, w: 5 });
    });
 
-   test ("multiply", () =>
+   test .concurrent ("multiply", () =>
    {
       const
          a = new SFVec4 (2,4,6,8),
@@ -345,7 +345,7 @@ for (const Type of Object .keys (X3D .SFVec4))
       expect (b .equals (new SFVec4 (4,8,12,16))) .toBe (true);
    });
 
-   test ("multVec", () =>
+   test .concurrent ("multVec", () =>
    {
       const
          a = new SFVec4 (4,9,16,25),
@@ -361,7 +361,7 @@ for (const Type of Object .keys (X3D .SFVec4))
       expect (c .equals (new SFVec4 (8,27,64,125))) .toBe (true);
    });
 
-   test ("negate", () =>
+   test .concurrent ("negate", () =>
    {
       const
          a = new SFVec4 (2,3,4,5),
@@ -382,7 +382,7 @@ for (const Type of Object .keys (X3D .SFVec4))
       expect (c .equals (a)) .toBe (true);
    });
 
-   test ("normalize", () =>
+   test .concurrent ("normalize", () =>
    {
       const
          a = new SFVec4 (4,9,16,25),
@@ -395,7 +395,7 @@ for (const Type of Object .keys (X3D .SFVec4))
       expect (b .length ()) .toBeCloseTo (1);
    });
 
-   test ("subtract", () =>
+   test .concurrent ("subtract", () =>
    {
       const
          a = new SFVec4 (8,10,12,14),
@@ -411,7 +411,7 @@ for (const Type of Object .keys (X3D .SFVec4))
       expect (c .equals (new SFVec4 (2,3,4,5))) .toBe (true);
    });
 
-   test ("reflect", () =>
+   test .concurrent ("reflect", () =>
    {
       const
          a = new SFVec4 (-1,-1,0,0),
@@ -427,7 +427,7 @@ for (const Type of Object .keys (X3D .SFVec4))
       expect (c .equals (new SFVec4 (-1,1,0,0))) .toBe (true);
    });
 
-   test ("fromString", () =>
+   test .concurrent ("fromString", () =>
    {
       const a = new SFVec4 ();
 
@@ -446,7 +446,7 @@ for (const Type of Object .keys (X3D .SFVec4))
       expect (() => a .fromString ("foo")) .toThrow (Error);
    });
 
-   test ("fromVRMLString", () =>
+   test .concurrent ("fromVRMLString", () =>
    {
       const a = new SFVec4 ();
 
@@ -465,7 +465,7 @@ for (const Type of Object .keys (X3D .SFVec4))
       expect (() => a .fromVRMLString ("foo")) .toThrow (Error);
    });
 
-   test ("fromXMLString", () =>
+   test .concurrent ("fromXMLString", () =>
    {
       const a = new SFVec4 ();
 
@@ -484,7 +484,7 @@ for (const Type of Object .keys (X3D .SFVec4))
       expect (() => a .fromXMLString ("foo")) .toThrow (Error);
    });
 
-   test ("toString", () =>
+   test .concurrent ("toString", () =>
    {
       const a = new SFVec4 (1,2,3,4);
       const b = new SFVec4 (5,6,7,8);

@@ -6,7 +6,7 @@ const
    Browser = canvas .browser,
    scene   = Browser .currentScene;
 
-test ("getType", () =>
+test .concurrent ("getType", () =>
 {
    const node = scene .createNode ("MetadataSet") .getValue ();
 
@@ -14,7 +14,7 @@ test ("getType", () =>
    expect (() => node .getType () .reverse ()) .toThrow (Error);
 });
 
-test ("concrete-nodes", async () =>
+test .concurrent ("concrete-nodes", async () =>
 {
    for (const specificationVersion of X3D .SUPPORTED_VERSIONS)
    {
@@ -96,7 +96,7 @@ test ("concrete-nodes", async () =>
    }
 });
 
-test ("abstract-nodes", async () =>
+test .concurrent ("abstract-nodes", async () =>
 {
    await Browser .loadComponents (Browser .getProfile ("Full"));
 
@@ -123,7 +123,7 @@ test ("abstract-nodes", async () =>
    }
 });
 
-test ("private/cloneCount", () =>
+test .concurrent ("private/cloneCount", () =>
 {
    const
       set1 = scene .createNode ("MetadataSet"),
@@ -165,7 +165,7 @@ test ("private/cloneCount", () =>
    expect (dbl .getValue () .getCloneCount ()) .toBe (0);
 });
 
-test ("parents_changed/sceneGraph_changed", async () =>
+test .concurrent ("parents_changed/sceneGraph_changed", async () =>
 {
    const
       scene1 = await Browser .createScene (),

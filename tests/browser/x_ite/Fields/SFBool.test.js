@@ -3,7 +3,7 @@ import X3D              from "../../X3D.js";
 
 const SFBool = X3D .SFBool;
 
-test ("constructor", () =>
+test .concurrent ("constructor", () =>
 {
    expect (new SFBool ()                .valueOf ()) .toBe (false);
    expect (new SFBool (NaN)             .valueOf ()) .toBe (false);
@@ -24,7 +24,7 @@ test ("constructor", () =>
    expect (new SFBool (-666)            .valueOf ()) .toBe (true);
 });
 
-test ("setValue", () =>
+test .concurrent ("setValue", () =>
 {
    const field = new SFBool ();
 
@@ -47,7 +47,7 @@ test ("setValue", () =>
    expect ((field .setValue (-666),            field .valueOf ())) .toBe (true);
 });
 
-test ("common", () =>
+test .concurrent ("common", () =>
 {
    const field = new SFBool ();
 
@@ -56,7 +56,7 @@ test ("common", () =>
    expect (Object .prototype .toString .call (field)) .toBe ("[object SFBool]");
 });
 
-test ("copy", () =>
+test .concurrent ("copy", () =>
 {
    const
       v1 = new SFBool (true),
@@ -72,7 +72,7 @@ test ("copy", () =>
    expect (v4 .equals (false)) .toBe (true);
 });
 
-test ("equals", () =>
+test .concurrent ("equals", () =>
 {
    const
       a = new SFBool (false),
@@ -83,7 +83,7 @@ test ("equals", () =>
    expect (a .equals (b)) .toBe (false);
 });
 
-test ("isDefaultValue", () =>
+test .concurrent ("isDefaultValue", () =>
 {
    const
       a = new SFBool (false),
@@ -95,7 +95,7 @@ test ("isDefaultValue", () =>
    expect (b .isDefaultValue ()) .toBe (false);
 });
 
-test ("fromString", () =>
+test .concurrent ("fromString", () =>
 {
    const a = new SFBool ();
 
@@ -118,7 +118,7 @@ test ("fromString", () =>
    expect (() => a .fromString ("foo")) .toThrow (Error);
 });
 
-test ("fromVRMLString", () =>
+test .concurrent ("fromVRMLString", () =>
 {
    const a = new SFBool ();
 
@@ -141,7 +141,7 @@ test ("fromVRMLString", () =>
    expect (() => a .fromVRMLString ("foo")) .toThrow (Error);
 });
 
-test ("fromXMLString", () =>
+test .concurrent ("fromXMLString", () =>
 {
    const a = new SFBool ();
 
@@ -164,7 +164,7 @@ test ("fromXMLString", () =>
    expect (() => a .fromXMLString ("foo")) .toThrow (Error);
 });
 
-test ("toString", () =>
+test .concurrent ("toString", () =>
 {
    const a = new SFBool (true);
    const b = new SFBool (false);

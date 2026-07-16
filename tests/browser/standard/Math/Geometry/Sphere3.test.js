@@ -6,7 +6,7 @@ const
    Line3   = X3D .Line3,
    Vector3 = X3D .Vector3;
 
-test ("constructor", () =>
+test .concurrent ("constructor", () =>
 {
    const s1 = new Sphere3 ();
 
@@ -22,7 +22,7 @@ test ("constructor", () =>
    expect (s2 .center) .not .toBe (c2);
 });
 
-test ("copy", () =>
+test .concurrent ("copy", () =>
 {
    const c1 = new Vector3 (1, 1, 1);
    const s1 = new Sphere3 (2, c1);
@@ -35,7 +35,7 @@ test ("copy", () =>
    expect (s2 .equals (s1)) .toBe (true);
 });
 
-test ("assign", () =>
+test .concurrent ("assign", () =>
 {
    const c1 = new Vector3 (1, 1, 1);
    const s1 = new Sphere3 (2, c1);
@@ -50,7 +50,7 @@ test ("assign", () =>
    expect (s2 .equals (s1)) .toBe (true);
 });
 
-test ("equals", () =>
+test .concurrent ("equals", () =>
 {
    const c1 = new Vector3 (1, 1, 1);
    const s1 = new Sphere3 (2, c1);
@@ -75,7 +75,7 @@ test ("equals", () =>
    expect (s4 .equals (s3)) .not .toBe (true);
 });
 
-test ("set", () =>
+test .concurrent ("set", () =>
 {
    const c1 = new Vector3 (1, 1, 1);
    const s1 = new Sphere3 ();
@@ -94,7 +94,7 @@ test ("set", () =>
    expect (s1 .equals (s1)) .toBe (true);
 });
 
-test ("intersectsLine", () =>
+test .concurrent ("intersectsLine", () =>
 {
    const s1 = new Sphere3 ();
    const en = new Vector3 ();
@@ -130,7 +130,7 @@ test ("intersectsLine", () =>
    expect (s1 .intersectsLine (oz, en, ex)) .toBe (false);
 });
 
-// test ("intersectsTriangle", () =>
+// test .concurrent ("intersectsTriangle", () =>
 // {
 //    const s1 = new Sphere3 ();
 //    const a1 = new Vector3 (-1, -1, 0);
@@ -146,7 +146,7 @@ test ("intersectsLine", () =>
 //    expect (s1 .intersectsTriangle (a2, b2, c2)) .toBe (false);
 // });
 
-test ("toString", () =>
+test .concurrent ("toString", () =>
 {
    const s1 = new Sphere3 ();
 

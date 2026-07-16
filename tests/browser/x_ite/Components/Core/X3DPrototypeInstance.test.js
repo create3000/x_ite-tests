@@ -5,7 +5,7 @@ const
    canvas  = X3D .createBrowser (),
    Browser = canvas .browser;
 
-test ("update", async () =>
+test .concurrent ("update", async () =>
 {
    const scene = await Browser .createX3DFromURL (new X3D .MFString (`data:model/x3d+vrml,
 PROFILE Interchange
@@ -50,7 +50,7 @@ Test { }`));
    expect (scene .rootNodes [0] .getFieldDefinitions () [1] .value) .toBe (true);
 });
 
-test ("setProtoNode", async () =>
+test .concurrent ("setProtoNode", async () =>
 {
    const scene = await Browser .createX3DFromString (`
 PROFILE Interchange
@@ -117,7 +117,7 @@ Test1 { }`);
    expect (instance .getBody () .rootNodes [0] .getNodeTypeName ()) .toBe ("Transform");
 });
 
-test ("static-properties", () =>
+test .concurrent ("static-properties", () =>
 {
    const X3DPrototypeInstance = Browser .getAbstractNode ("X3DPrototypeInstance");
 

@@ -5,7 +5,7 @@ const
    canvas  = X3D .createBrowser (),
    Browser = canvas .browser;
 
-test ("containerField-3.3", async () =>
+test .concurrent ("containerField-3.3", async () =>
 {
    const scene1 = await Browser .createX3DFromString (/* xml */ `<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE X3D PUBLIC "ISO//Web3D//DTD X3D 3.3//EN" "http://www.web3d.org/specifications/x3d-3.3.dtd">
@@ -69,7 +69,7 @@ test ("containerField-3.3", async () =>
    expect (scene2 .rootNodes [5] .metadata .getNodeTypeName ()) .toBe ("MetadataString");
 });
 
-test ("containerField-4.0", async () =>
+test .concurrent ("containerField-4.0", async () =>
 {
    const scene1 = await Browser .createX3DFromString (/* xml */ `<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE X3D PUBLIC "ISO//Web3D//DTD X3D 4.0//EN" "http://www.web3d.org/specifications/x3d-4.0.dtd">

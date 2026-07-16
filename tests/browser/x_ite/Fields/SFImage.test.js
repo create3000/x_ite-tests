@@ -5,7 +5,7 @@ const
    SFImage = X3D .SFImage,
    MFInt32 = X3D .MFInt32;
 
-test ("constructor", () =>
+test .concurrent ("constructor", () =>
 {
    const v1 = new SFImage ();
 
@@ -62,12 +62,12 @@ test ("constructor", () =>
 
 });
 
-test ("enumerate", () =>
+test .concurrent ("enumerate", () =>
 {
    enumerate (["width", "height", "comp", "array"], new SFImage ());
 });
 
-test ("getter/setter", () =>
+test .concurrent ("getter/setter", () =>
 {
    const
       v1 = new SFImage (),
@@ -125,7 +125,7 @@ test ("getter/setter", () =>
    expect (v1 .array) .toHaveLength (0);
 });
 
-test ("common", () =>
+test .concurrent ("common", () =>
 {
    const field = new SFImage ();
 
@@ -134,7 +134,7 @@ test ("common", () =>
    expect (Object .prototype .toString .call (field)) .toBe ("[object SFImage]");
 });
 
-test ("copy", () =>
+test .concurrent ("copy", () =>
 {
    const
       v1 = new SFImage (1,2,3,new MFInt32 (5,6)),
@@ -145,7 +145,7 @@ test ("copy", () =>
    expect (v2 .equals (v1)) .toBe (true);
 });
 
-test ("equals", () =>
+test .concurrent ("equals", () =>
 {
    const
       a = new SFImage (1,2,3),
@@ -156,7 +156,7 @@ test ("equals", () =>
    expect (a .equals (b)) .toBe (false);
 });
 
-test ("isDefaultValue", () =>
+test .concurrent ("isDefaultValue", () =>
 {
    const
       a = new SFImage (0,0,0,new MFInt32 ()),
@@ -168,7 +168,7 @@ test ("isDefaultValue", () =>
    expect (b .isDefaultValue ()) .toBe (false);
 });
 
-test ("fromString", () =>
+test .concurrent ("fromString", () =>
 {
    const a = new SFImage ();
 
@@ -179,7 +179,7 @@ test ("fromString", () =>
    expect (() => a .fromString ("foo")) .toThrow (Error);
 });
 
-test ("fromVRMLString", () =>
+test .concurrent ("fromVRMLString", () =>
 {
    const a = new SFImage ();
 
@@ -190,7 +190,7 @@ test ("fromVRMLString", () =>
    expect (() => a .fromVRMLString ("foo")) .toThrow (Error);
 });
 
-test ("fromXMLString", () =>
+test .concurrent ("fromXMLString", () =>
 {
    const a = new SFImage ();
 
@@ -201,7 +201,7 @@ test ("fromXMLString", () =>
    expect (() => a .fromXMLString ("foo")) .toThrow (Error);
 });
 
-test ("toString", () =>
+test .concurrent ("toString", () =>
 {
    const a = new SFImage (1, 2, 3, new MFInt32 (1, 2));
    const b = new SFImage (2, 3, 4, new MFInt32 (1, 2, 3, 4, 5, 6));

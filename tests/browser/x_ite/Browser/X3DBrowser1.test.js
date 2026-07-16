@@ -1,7 +1,7 @@
 import { expect, test } from "vitest";
 import X3D              from "../../X3D.js";
 
-test ("properties", () =>
+test .concurrent ("properties", () =>
 {
    const
       canvas  = X3D .createBrowser (),
@@ -89,7 +89,7 @@ test ("properties", () =>
    enumerate (properties, Browser);
 });
 
-test ("VRML properties", () =>
+test .concurrent ("VRML properties", () =>
 {
    const
       canvas  = X3D .createBrowser (),
@@ -109,7 +109,7 @@ test ("VRML properties", () =>
    expect (Browser .description) .toBe ("test-description");
 });
 
-test ("active* properties", async () =>
+test .concurrent ("active* properties", async () =>
 {
    const
       canvas  = X3D .createBrowser (),
@@ -242,7 +242,7 @@ LayerSet {
    expect (Browser .activeViewpoint) .toBe (null);
 });
 
-test ("getProfile", () =>
+test .concurrent ("getProfile", () =>
 {
    const
       canvas  = X3D .createBrowser (),
@@ -263,7 +263,7 @@ test ("getProfile", () =>
       expect (Browser .getProfile (name) .name) .toBe (name);
 });
 
-test ("getComponent", () =>
+test .concurrent ("getComponent", () =>
 {
    const
       canvas  = X3D .createBrowser (),
@@ -319,7 +319,7 @@ test ("getComponent", () =>
       expect (Browser .getComponent (name) .name) .toBe (value);
 });
 
-test ("createScene", async () =>
+test .concurrent ("createScene", async () =>
 {
    const
       canvas  = X3D .createBrowser (),
@@ -344,7 +344,7 @@ test ("createScene", async () =>
    expect (scene .routes) .toBeInstanceOf (X3D .RouteArray);
 });
 
-test ("createScene2", async () =>
+test .concurrent ("createScene2", async () =>
 {
    const
       canvas  = X3D .createBrowser (),
@@ -374,7 +374,7 @@ test ("createScene2", async () =>
    expect (scene .routes) .toBeInstanceOf (X3D .RouteArray);
 });
 
-test ("createX3DFromURL", async () =>
+test .concurrent ("createX3DFromURL", async () =>
 {
    const
       canvas  = X3D .createBrowser (),
@@ -414,7 +414,7 @@ Transform {
    expect (scene .getNamedNode ("R") .getNodeTypeName ()) .toBe ("Rectangle2D");
 });
 
-test ("createX3DFromURL2", async () =>
+test .concurrent ("createX3DFromURL2", async () =>
 {
    const
       canvas  = X3D .createBrowser (),
@@ -446,7 +446,7 @@ Box { }
    expect (scene2 .rootNodes [2] .getNodeTypeName ()) .toBe ("HAnimJoint");
 });
 
-test ("createVrmlFromURL", () => new Promise ((resolve, reject) =>
+test .concurrent ("createVrmlFromURL", () => new Promise ((resolve, reject) =>
 {
    const
       canvas    = X3D .createBrowser (),
@@ -488,7 +488,7 @@ Box { }`), transform, "children");
    });
 }));
 
-test ("createX3DFromString", async () =>
+test .concurrent ("createX3DFromString", async () =>
 {
    const
       canvas  = X3D .createBrowser (),
@@ -547,7 +547,7 @@ Transform {
    expect (empty .routes) .toBeInstanceOf (X3D .RouteArray);
 });
 
-test ("createX3DFromString2", async () =>
+test .concurrent ("createX3DFromString2", async () =>
 {
    const
       canvas  = X3D .createBrowser (),
@@ -570,7 +570,7 @@ Box { }
    expect (scene1 .rootNodes [2] .getNodeTypeName ()) .toBe ("Box");
 });
 
-test ("createVrmlFromString", () =>
+test .concurrent ("createVrmlFromString", () =>
 {
    const
       canvas  = X3D .createBrowser (),
@@ -603,7 +603,7 @@ Script { }`);
    expect (nodes [2]) .toBe (nodes [2]);
 });
 
-test ("replaceWorld", async () =>
+test .concurrent ("replaceWorld", async () =>
 {
    const
       canvas  = X3D .createBrowser (),
@@ -631,7 +631,7 @@ Box { }
    expect (Browser .currentScene .rootNodes) .toHaveLength (0);
 });
 
-test ("vrml-replaceWorld", async () =>
+test .concurrent ("vrml-replaceWorld", async () =>
 {
    const
       canvas  = X3D .createBrowser (),
@@ -656,7 +656,7 @@ Box { }
       expect (node) .toBe (scene .rootNodes [i]);
 });
 
-test ("loadURL", async () =>
+test .concurrent ("loadURL", async () =>
 {
    const
       canvas  = X3D .createBrowser (),
@@ -694,7 +694,7 @@ Box { }
    expect (Browser .activeViewpoint) .toBe (null);
 });
 
-test ("addRoute/deleteRoute", async () =>
+test .concurrent ("addRoute/deleteRoute", async () =>
 {
    const
       canvas  = X3D .createBrowser (),

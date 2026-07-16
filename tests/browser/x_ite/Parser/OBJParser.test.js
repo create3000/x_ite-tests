@@ -1,7 +1,7 @@
 import { expect, test } from "vitest";
 import X3D              from "../../X3D.js";
 
-test ("LibertyStatue.obj.gz", async () =>
+test .concurrent ("LibertyStatue.obj.gz", async () =>
 {
    const
       canvas  = X3D .createBrowser (),
@@ -12,7 +12,7 @@ test ("LibertyStatue.obj.gz", async () =>
    expect (scene .rootNodes) .toHaveLength (1);
 });
 
-test ("LibertyStatue.obj.gz", async () =>
+test .concurrent ("LibertyStatue.obj.gz", async () =>
 {
    const
       canvas  = X3D .createBrowser (),

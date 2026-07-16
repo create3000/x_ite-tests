@@ -5,7 +5,7 @@ const
    canvas  = X3D .createBrowser (),
    Browser = canvas .browser;
 
-test ("properties", () =>
+test .concurrent ("properties", () =>
 {
    const component = Browser .getComponent ("Core");
 
@@ -40,7 +40,7 @@ test ("properties", () =>
    enumerate (properties, component);
 });
 
-test ("legacy", () =>
+test .concurrent ("legacy", () =>
 {
    const component = Browser .getComponent ("Core");
 
@@ -49,7 +49,7 @@ test ("legacy", () =>
    expect (Browser .getComponent ("H-Anim") .name) .toBe ("HAnim");
 });
 
-test ("toString", () =>
+test .concurrent ("toString", () =>
 {
    const component = Browser .getComponent ("Core");
 

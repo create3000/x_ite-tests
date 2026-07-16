@@ -1,7 +1,7 @@
 import { expect, test } from "vitest";
 import X3D              from "../../X3D.js";
 
-test ("X3DScene.isLive", async () =>
+test .concurrent ("X3DScene.isLive", async () =>
 {
    const
       canvas = X3D .createBrowser (),
@@ -52,7 +52,7 @@ test ("X3DScene.isLive", async () =>
    expect (scene2 .getLive () .getValue ()) .toBe (false);
 });
 
-test ("blob URL", async () =>
+test .concurrent ("blob URL", async () =>
 {
    const
       canvas = X3D .createBrowser (),
@@ -70,7 +70,7 @@ test ("blob URL", async () =>
    expect (scene .rootNodes [0] .getNodeTypeName ()) .toBe ("Transform");
 });
 
-test ("replaceWorld", async () =>
+test .concurrent ("replaceWorld", async () =>
 {
    const
       canvas = X3D .createBrowser (),
@@ -89,7 +89,7 @@ test ("replaceWorld", async () =>
    expect (browser .currentScene .rootNodes [0] .getNodeTypeName ()) .toBe ("Transform");
 });
 
-test ("getBBox/replaceWorld", async () =>
+test .concurrent ("getBBox/replaceWorld", async () =>
 {
    const
       canvas  = X3D .createBrowser (),
@@ -114,7 +114,7 @@ test ("getBBox/replaceWorld", async () =>
    expect (bbox2 .size .equals (new X3D .Vector3 (4,4,4))) .toBe (true);
 });
 
-test ("dispose", () =>
+test .concurrent ("dispose", () =>
 {
    const
       canvas  = X3D .createBrowser (),
@@ -123,7 +123,7 @@ test ("dispose", () =>
    expect (() => browser .dispose ()) .not .toThrow (Error);
 });
 
-test ("createX3DFromString2", async () =>
+test .concurrent ("createX3DFromString2", async () =>
 {
    const
       canvas  = X3D .createBrowser (),
@@ -142,7 +142,7 @@ test ("createX3DFromString2", async () =>
    expect (scene2 .rootNodes [0] .getNodeTypeName ()) .toBe ("Transform");
 });
 
-test ("getClosestObject 1", async () =>
+test .concurrent ("getClosestObject 1", async () =>
 {
    const
       canvas  = X3D .createBrowser (),
@@ -215,7 +215,7 @@ Collision {
    }
 });
 
-test ("getClosestObject 2", async () =>
+test .concurrent ("getClosestObject 2", async () =>
 {
    const
       canvas  = X3D .createBrowser (),

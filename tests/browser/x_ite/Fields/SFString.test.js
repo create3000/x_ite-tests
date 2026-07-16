@@ -3,7 +3,7 @@ import X3D              from "../../X3D.js";
 
 const SFString = X3D .SFString;
 
-test ("constructor", () =>
+test .concurrent ("constructor", () =>
 {
    expect (new SFString ()                .valueOf ()) .toBe ("");
    expect (new SFString (NaN)             .valueOf ()) .toBe ("NaN");
@@ -24,12 +24,12 @@ test ("constructor", () =>
    expect (new SFString (-666)            .valueOf ()) .toBe ("-666");
 });
 
-test ("enumerate", () =>
+test .concurrent ("enumerate", () =>
 {
    enumerate ([ ], new SFString ());
 });
 
-test ("setValue", () =>
+test .concurrent ("setValue", () =>
 {
    const field = new SFString ();
 
@@ -52,7 +52,7 @@ test ("setValue", () =>
    expect ((field .setValue (-666),            field .valueOf ())) .toBe ("-666");
 });
 
-test ("common", () =>
+test .concurrent ("common", () =>
 {
    const field = new SFString ();
 
@@ -61,7 +61,7 @@ test ("common", () =>
    expect (Object .prototype .toString .call (field)) .toBe ("[object SFString]");
 });
 
-test ("copy", () =>
+test .concurrent ("copy", () =>
 {
    const
       v1 = new SFString ("2"),
@@ -72,7 +72,7 @@ test ("copy", () =>
    expect (v2 .equals ("2")) .toBe (true);
 });
 
-test ("equals", () =>
+test .concurrent ("equals", () =>
 {
    const
       a = new SFString (""),
@@ -83,7 +83,7 @@ test ("equals", () =>
    expect (a .equals (b)) .toBe (false);
 });
 
-test ("isDefaultValue", () =>
+test .concurrent ("isDefaultValue", () =>
 {
    const
       a = new SFString (""),
@@ -95,7 +95,7 @@ test ("isDefaultValue", () =>
    expect (b .isDefaultValue ()) .toBe (false);
 });
 
-test ("length", () =>
+test .concurrent ("length", () =>
 {
    expect (new SFString ("")) .toHaveLength (0);
    expect (new SFString ("1")) .toHaveLength (1);
@@ -103,7 +103,7 @@ test ("length", () =>
    expect (new SFString ("123")) .toHaveLength (3);
 });
 
-test ("fromString", () =>
+test .concurrent ("fromString", () =>
 {
    const a = new SFString ();
 
@@ -116,7 +116,7 @@ test ("fromString", () =>
    expect (a .equals (new SFString ())) .toBe (true);
 });
 
-test ("fromVRMLString", () =>
+test .concurrent ("fromVRMLString", () =>
 {
    const a = new SFString ();
 
@@ -133,7 +133,7 @@ test ("fromVRMLString", () =>
    expect (a .equals (new SFString ())) .toBe (true);
 });
 
-test ("fromXMLString", () =>
+test .concurrent ("fromXMLString", () =>
 {
    const a = new SFString ();
 
@@ -150,7 +150,7 @@ test ("fromXMLString", () =>
    expect (a .equals (new SFString ())) .toBe (true);
 });
 
-test ("toString", () =>
+test .concurrent ("toString", () =>
 {
    const a = new SFString ("a");
    const b = new SFString ("b");

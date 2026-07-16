@@ -5,7 +5,7 @@ const
    canvas  = X3D .createBrowser (),
    Browser = canvas .browser;
 
-test ("Removed fields", async () =>
+test .concurrent ("Removed fields", async () =>
 {
    const scene1 = await Browser .createX3DFromURL (new X3D .MFString (`data:model/x3d+vrml,#X3D V3.3 utf8
 ParticleSystem {

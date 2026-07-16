@@ -1,7 +1,7 @@
 import { expect, test } from "vitest";
 import X3D              from "../../X3D.js";
 
-test ("Garuda and Vishnu.ply", async () =>
+test .concurrent ("Garuda and Vishnu.ply", async () =>
 {
    const
       canvas  = X3D .createBrowser (),

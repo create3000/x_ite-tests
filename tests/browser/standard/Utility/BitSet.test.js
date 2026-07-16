@@ -1,7 +1,7 @@
 import { expect, test } from "vitest";
 import X3D              from "../../X3D.js";
 
-test ("constructor", () =>
+test .concurrent ("constructor", () =>
 {
    const b1 = new X3D .BitSet ();
 
@@ -14,7 +14,7 @@ test ("constructor", () =>
    expect (b2 .toString (2)) .toBe ("10101010");
 });
 
-test ("clear", () =>
+test .concurrent ("clear", () =>
 {
    const b = new X3D .BitSet (0xffffffff);
 
@@ -27,7 +27,7 @@ test ("clear", () =>
    expect (b .toString (16)) .toBe ("0");
 });
 
-test ("set", () =>
+test .concurrent ("set", () =>
 {
    const b = new X3D .BitSet ();
 
@@ -55,7 +55,7 @@ test ("set", () =>
    expect (b .toString (16)) .toBe ("0");
 });
 
-test ("add", () =>
+test .concurrent ("add", () =>
 {
    const b = new X3D .BitSet ();
 
@@ -100,7 +100,7 @@ test ("add", () =>
    expect (b .toString (16)) .toBe ("89fedcba");
 });
 
-test ("remove", () =>
+test .concurrent ("remove", () =>
 {
    const b = new X3D .BitSet (0xabcdef98);
 

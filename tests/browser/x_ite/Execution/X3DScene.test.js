@@ -5,7 +5,7 @@ const
    canvas  = X3D .createBrowser (),
    Browser = canvas .browser;
 
-test ("properties1", async () =>
+test .concurrent ("properties1", async () =>
 {
    const
       profile = Browser .getProfile ("Full"),
@@ -42,7 +42,7 @@ test ("properties1", async () =>
    expect (scene .toString ()) .toBe (`[object ${scene .getTypeName ()}]`);
 });
 
-test ("properties2", async () =>
+test .concurrent ("properties2", async () =>
 {
    const
       scene = await Browser .createScene (),
@@ -135,7 +135,7 @@ test ("properties2", async () =>
    enumerate (properties, scene);
 });
 
-test ("hasComponent", async () =>
+test .concurrent ("hasComponent", async () =>
 {
    const scene1 = await Browser .createX3DFromString (`#X3D V4.1 utf8
 COMPONENT X_ITE : 1
@@ -175,7 +175,7 @@ COMPONENT Geometry3D : 2
    expect (scene4 .hasComponent (Browser .getComponent ("Geometry3D", 3))) .toBe (false);
 });
 
-test ("addComponent", async () =>
+test .concurrent ("addComponent", async () =>
 {
    const scene1 = await Browser .createScene (Browser .getProfile ("Core"));
 
@@ -192,7 +192,7 @@ test ("addComponent", async () =>
    expect (() => scene1 .addComponent (Browser .getComponent ("Shape", 4))) .toThrow (Error);
 });
 
-test ("updateComponent", async () =>
+test .concurrent ("updateComponent", async () =>
 {
    const scene1 = await Browser .createScene (Browser .getProfile ("Core"));
 
@@ -244,7 +244,7 @@ test ("updateComponent", async () =>
    expect (scene2 .getComponents ()) .toHaveLength (0);
 });
 
-test ("updateUnit", async () =>
+test .concurrent ("updateUnit", async () =>
 {
    const scene = await Browser .createScene ();
 
@@ -318,7 +318,7 @@ test ("updateUnit", async () =>
    expect (mass .conversion_factor) .toBeCloseTo (456.789);
 });
 
-test ("metadata", async () =>
+test .concurrent ("metadata", async () =>
 {
    const scene = await Browser .createScene (Browser .getProfile ("Interchange"));
 

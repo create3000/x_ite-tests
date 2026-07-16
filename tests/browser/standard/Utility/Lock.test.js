@@ -3,7 +3,7 @@ import X3D              from "../../X3D.js";
 
 const Lock = X3D .Lock;
 
-test ("acquire", async () =>
+test .concurrent ("acquire", async () =>
 {
    const r = [ ];
 

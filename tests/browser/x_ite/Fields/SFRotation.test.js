@@ -10,12 +10,12 @@ const
    SFMatrix3d   = X3D .SFMatrix3d,
    SFMatrix3f   = X3D .SFMatrix3f;
 
-test ("constants", () =>
+test .concurrent ("constants", () =>
 {
    expect (SFRotation .IDENTITY .equals (new SFRotation (0,0,1,0))) .toBe (true);
 });
 
-test ("constructor", () =>
+test .concurrent ("constructor", () =>
 {
    const v1 = new SFRotation ();
 
@@ -121,7 +121,7 @@ test ("constructor", () =>
 
 });
 
-test ("fromQuaternion", () =>
+test .concurrent ("fromQuaternion", () =>
 {
    const v1 = SFRotation .fromQuaternion (new SFQuaternion (0.5, 0.5, 0.5, 0.5));
    const q1 = v1 .getQuaternion ();
@@ -132,7 +132,7 @@ test ("fromQuaternion", () =>
    expect (q1 [3]) .toEqual (0.5);
 });
 
-test ("enumerate", () =>
+test .concurrent ("enumerate", () =>
 {
    const properties = [
       "x",
@@ -144,7 +144,7 @@ test ("enumerate", () =>
    enumerate (properties, new SFRotation ());
 });
 
-test ("getter/setter", () =>
+test .concurrent ("getter/setter", () =>
 {
    const v1 = new SFRotation ();
 
@@ -193,7 +193,7 @@ test ("getter/setter", () =>
    expect ([...v1]) .toEqual ([NaN,NaN,NaN,NaN]);
 });
 
-test ("common", () =>
+test .concurrent ("common", () =>
 {
    const field = new SFRotation ();
 
@@ -202,7 +202,7 @@ test ("common", () =>
    expect (Object .prototype .toString .call (field)) .toBe ("[object SFRotation]");
 });
 
-test ("copy", () =>
+test .concurrent ("copy", () =>
 {
    const
       v1 = new SFRotation (2,3,4,5),
@@ -213,7 +213,7 @@ test ("copy", () =>
    expect (v2 .equals (v1)) .toBe (true);
 });
 
-test ("equals", () =>
+test .concurrent ("equals", () =>
 {
    const
       a = new SFRotation (2,3,4,5),
@@ -224,7 +224,7 @@ test ("equals", () =>
    expect (a .equals (b)) .toBe (false);
 });
 
-test ("isDefaultValue", () =>
+test .concurrent ("isDefaultValue", () =>
 {
    const
       a = new SFRotation (0,0,1,0),
@@ -236,7 +236,7 @@ test ("isDefaultValue", () =>
    expect (b .isDefaultValue ()) .toBe (false);
 });
 
-test ("get/setAxis", () =>
+test .concurrent ("get/setAxis", () =>
 {
    const a = new SFRotation (2,3,4,5);
 
@@ -250,7 +250,7 @@ test ("get/setAxis", () =>
    expect (a .getAxis () .equals (new SFVec3f (6,7,8))) .toBe (true);
 });
 
-test ("get/setMatrix", () =>
+test .concurrent ("get/setMatrix", () =>
 {
    const a = new SFRotation (new SFVec3f (0,0,1), new SFVec3f (1,0,0));
 
@@ -293,7 +293,7 @@ test ("get/setMatrix", () =>
    expect (b [3]) .toBeCloseTo (Math .PI / 2);
 });
 
-test ("get/setQuaternion", () =>
+test .concurrent ("get/setQuaternion", () =>
 {
    const r1 = new SFRotation (1, 0, 0, Math .PI/2);
 
@@ -377,7 +377,7 @@ test ("get/setQuaternion", () =>
    expect ([... r4 .getQuaternion ()]) .toEqual ([... v4]);
 });
 
-test ("inverse", () =>
+test .concurrent ("inverse", () =>
 {
    const
       a = new SFRotation (2,3,4,5),
@@ -415,7 +415,7 @@ test ("inverse", () =>
    expect (c [3]) .toBeCloseTo (d [3]);
 });
 
-test ("multiply", () =>
+test .concurrent ("multiply", () =>
 {
    const
       a = new SFRotation (new SFVec3f (1,2,3) .normalize (), 4),
@@ -463,7 +463,7 @@ test ("multiply", () =>
    expect (f [3]) .toBeCloseTo (e [3]);
 });
 
-test ("multVec", () =>
+test .concurrent ("multVec", () =>
 {
    const zAxis = new SFVec3f (0,0,1);
 
@@ -499,7 +499,7 @@ test ("multVec", () =>
    expect (v3 [2]) .toBeCloseTo (0);
 });
 
-test ("multVec-double", () =>
+test .concurrent ("multVec-double", () =>
 {
    const zAxis = new SFVec3d (0,0,1);
 
@@ -535,7 +535,7 @@ test ("multVec-double", () =>
    expect (v3 [2]) .toBeCloseTo (0);
 });
 
-test ("slerp", () =>
+test .concurrent ("slerp", () =>
 {
    const
       a = new SFRotation (),
@@ -558,7 +558,7 @@ test ("slerp", () =>
    expect (c [3]) .toBeCloseTo (Math .PI / 4);
 });
 
-test ("fromString", () =>
+test .concurrent ("fromString", () =>
 {
    const a = new SFRotation ();
 
@@ -580,7 +580,7 @@ test ("fromString", () =>
    expect (() => a .fromString ("foo")) .toThrow (Error);
 });
 
-test ("fromVRMLString", () =>
+test .concurrent ("fromVRMLString", () =>
 {
    const a = new SFRotation ();
 
@@ -602,7 +602,7 @@ test ("fromVRMLString", () =>
    expect (() => a .fromVRMLString ("foo")) .toThrow (Error);
 });
 
-test ("fromXMLString", () =>
+test .concurrent ("fromXMLString", () =>
 {
    const a = new SFRotation ();
 
@@ -624,7 +624,7 @@ test ("fromXMLString", () =>
    expect (() => a .fromXMLString ("foo")) .toThrow (Error);
 });
 
-test ("toString", () =>
+test .concurrent ("toString", () =>
 {
    const a = new SFRotation (1,2,3,4);
    const b = new SFRotation (5,6,7,8);

@@ -3,7 +3,7 @@ import X3D              from "../../X3D.js";
 
 const Algorithm = X3D .Algorithm;
 
-test ("radians", () =>
+test .concurrent ("radians", () =>
 {
    expect (Algorithm .radians (0))   .toBe (0);
    expect (Algorithm .radians (90))  .toBeCloseTo (Math .PI / 2);
@@ -17,7 +17,7 @@ test ("radians", () =>
    expect (Algorithm .radians (-720)) .toBeCloseTo (-Math .PI * 4);
 });
 
-test ("degrees", () =>
+test .concurrent ("degrees", () =>
 {
    expect (Algorithm .degrees (0))            .toBe (0);
    expect (Algorithm .degrees (Math .PI / 2)) .toBeCloseTo (90);
@@ -31,7 +31,7 @@ test ("degrees", () =>
    expect (Algorithm .degrees (-Math .PI * 4)) .toBeCloseTo (-720);
 });
 
-test ("random", () =>
+test .concurrent ("random", () =>
 {
    for (let i = 0; i < 10; ++ i)
    {
@@ -42,7 +42,7 @@ test ("random", () =>
    }
 });
 
-test ("clamp", () =>
+test .concurrent ("clamp", () =>
 {
    expect (Algorithm .clamp ( 1.5, -1, 1)) .toBe ( 1.0);
    expect (Algorithm .clamp ( 1.0, -1, 1)) .toBe ( 1.0);
@@ -53,7 +53,7 @@ test ("clamp", () =>
    expect (Algorithm .clamp (-1.5, -1, 1)) .toBe (-1.0);
 });
 
-test ("fract", () =>
+test .concurrent ("fract", () =>
 {
    expect (Algorithm .fract (0))    .toBe (0);
    expect (Algorithm .fract (1.5))  .toBeCloseTo (0.5);
@@ -62,7 +62,7 @@ test ("fract", () =>
    expect (Algorithm .fract (-0.5)) .toBeCloseTo (-0.5);
 });
 
-test ("roundToMultiple", () =>
+test .concurrent ("roundToMultiple", () =>
 {
    expect (Algorithm .roundToMultiple (0, 2)) .toBe (0);
    expect (Algorithm .roundToMultiple (1, 2)) .toBe (2);
@@ -89,7 +89,7 @@ test ("roundToMultiple", () =>
    expect (Algorithm .roundToMultiple (12, 4)) .toBe (12);
 });
 
-test ("isPowerOfTwo", () =>
+test .concurrent ("isPowerOfTwo", () =>
 {
    expect (Algorithm .isPowerOfTwo (0)) .toBe (true);
    expect (Algorithm .isPowerOfTwo (1)) .toBe (true);
@@ -102,7 +102,7 @@ test ("isPowerOfTwo", () =>
    expect (Algorithm .isPowerOfTwo (8)) .toBe (true);
 });
 
-test ("nextPowerOfTwo", () =>
+test .concurrent ("nextPowerOfTwo", () =>
 {
    expect (Algorithm .nextPowerOfTwo (0)) .toBe (0);
    expect (Algorithm .nextPowerOfTwo (1)) .toBe (1);
@@ -115,7 +115,7 @@ test ("nextPowerOfTwo", () =>
    expect (Algorithm .nextPowerOfTwo (8)) .toBe (8);
 });
 
-test ("bitCount", () =>
+test .concurrent ("bitCount", () =>
 {
    expect (Algorithm .bitCount (0)) .toBe (0);
    expect (Algorithm .bitCount (0xffffffff)) .toBe (32);
@@ -123,7 +123,7 @@ test ("bitCount", () =>
    expect (Algorithm .bitCount (0b1100110011)) .toBe (6);
 });
 
-test ("lowerBound", () =>
+test .concurrent ("lowerBound", () =>
 {
    const a = [0, 1, 2, 3, 4, 5];
 
@@ -142,7 +142,7 @@ test ("lowerBound", () =>
    expect (Algorithm .lowerBound (a, 0, a .length, 5.5)) .toBe (6);
 });
 
-test ("upperBound", () =>
+test .concurrent ("upperBound", () =>
 {
    const a = [0, 1, 2, 3, 4, 5];
 
@@ -161,7 +161,7 @@ test ("upperBound", () =>
    expect (Algorithm .upperBound (a, 0, a .length, 5.5)) .toBe (6);
 });
 
-test ("slerp", () =>
+test .concurrent ("slerp", () =>
 {
    const a = new X3D .Rotation4 (1, 2, 3, 3);
    const b = new X3D .Rotation4 (-1, -2, -3, -3);

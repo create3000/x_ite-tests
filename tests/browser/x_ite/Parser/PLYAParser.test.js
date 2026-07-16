@@ -1,7 +1,7 @@
 import { expect, test } from "vitest";
 import X3D              from "../../X3D.js";
 
-test ("cube.ply", async () =>
+test .concurrent ("cube.ply", async () =>
 {
    const
       canvas  = X3D .createBrowser (),
@@ -14,7 +14,7 @@ test ("cube.ply", async () =>
    expect (scene .rootNodes [1] .geometry .coord .point) .toHaveLength (8);
 });
 
-test ("cube32.ply", async () =>
+test .concurrent ("cube32.ply", async () =>
 {
    const
       canvas  = X3D .createBrowser (),

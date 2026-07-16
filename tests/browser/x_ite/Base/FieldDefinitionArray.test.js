@@ -8,13 +8,13 @@ const
    node             = scene .createNode ("WorldInfo"),
    fieldDefinitions = node .getFieldDefinitions ();
 
-test ("index", () =>
+test .concurrent ("index", () =>
 {
    for (let i = 0; i < fieldDefinitions .length; ++ i)
       expect (fieldDefinitions [i]) .toBeInstanceOf (X3D .X3DFieldDefinition);
 });
 
-test ("spread", () =>
+test .concurrent ("spread", () =>
 {
    expect (fieldDefinitions) .toBeInstanceOf (X3D .FieldDefinitionArray);
    expect (fieldDefinitions .constructor) .toBe (X3D .FieldDefinitionArray);
@@ -27,7 +27,7 @@ test ("spread", () =>
       expect (v) .toBe (fieldDefinitions [i]);
 });
 
-test ("filter", () =>
+test .concurrent ("filter", () =>
 {
    const a = fieldDefinitions .filter (f => f .name .includes ("i"));
 
@@ -36,7 +36,7 @@ test ("filter", () =>
    expect (a) .toHaveLength (2);
 });
 
-test ("toString", () =>
+test .concurrent ("toString", () =>
 {
    expect (X3D .FieldDefinitionArray .typeName) .toBe ("FieldDefinitionArray");
    expect (fieldDefinitions .getTypeName ()) .toBe ("FieldDefinitionArray");

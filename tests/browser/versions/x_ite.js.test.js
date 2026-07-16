@@ -1,6 +1,6 @@
 import { expect, test } from "vitest";
 
-test ("X3D", async () =>
+test .concurrent ("X3D", async () =>
 {
    await new Promise ((resolve, reject) =>
    {

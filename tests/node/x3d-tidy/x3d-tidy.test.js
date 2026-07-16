@@ -8,7 +8,7 @@ const { sh, systemSync } = require ("shell-tools");
 
 systemSync (`npx --yes x3d-tidy -v`);
 
-test ("help", () => new Promise ((resolve, reject) =>
+test .concurrent ("help", () => new Promise ((resolve, reject) =>
 {
    exec ("npx x3d-tidy -h", (error, stdout, stderr) =>
    {
@@ -37,7 +37,7 @@ test ("help", () => new Promise ((resolve, reject) =>
 }),
 20_000);
 
-test ("error", () => new Promise ((resolve, reject) =>
+test .concurrent ("error", () => new Promise ((resolve, reject) =>
 {
    exec ("npx x3d-tidy -i does/not/exist -o does/not/exist", (error, stdout, stderr) =>
    {
@@ -60,7 +60,7 @@ test ("error", () => new Promise ((resolve, reject) =>
 }),
 10_000);
 
-test ("nodes", async () =>
+test .concurrent ("nodes", async () =>
 {
 //    // Create test file.
 

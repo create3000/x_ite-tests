@@ -5,7 +5,7 @@ const
    canvas  = X3D .createBrowser (),
    Browser = canvas .browser;
 
-test ("constructor", () =>
+test .concurrent ("constructor", () =>
 {
    const profiles = Browser .supportedProfiles;
 
@@ -14,7 +14,7 @@ test ("constructor", () =>
    expect (profiles .constructor) .toBe (X3D .ProfileInfoArray);
 });
 
-test ("filter", () =>
+test .concurrent ("filter", () =>
 {
    const profiles = Browser .supportedProfiles;
 
@@ -28,7 +28,7 @@ test ("filter", () =>
    expect (a [1] .name) .toBe ("Interchange");
 });
 
-test ("toString", () =>
+test .concurrent ("toString", () =>
 {
    const profiles = Browser .supportedProfiles;
 

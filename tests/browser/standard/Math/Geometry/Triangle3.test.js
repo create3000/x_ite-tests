@@ -5,7 +5,7 @@ const
    Triangle3 = X3D .Triangle3,
    Vector3   = X3D .Vector3;
 
-test ("area", () =>
+test .concurrent ("area", () =>
 {
    const a = new Vector3 ();
    const b = new Vector3 (1, 0, 0);
@@ -14,7 +14,7 @@ test ("area", () =>
    expect (Triangle3 .area (a, b, c)) .toBeCloseTo (0.5);
 });
 
-test ("normal", () =>
+test .concurrent ("normal", () =>
 {
    const a = new Vector3 ();
    const b = new Vector3 (1, 0, 0);
@@ -24,7 +24,7 @@ test ("normal", () =>
    expect (Triangle3 .normal (a, b, c, n) .equals (Vector3 .Z_AXIS)) .toBe (true);
 });
 
-test ("quadNormal", () =>
+test .concurrent ("quadNormal", () =>
 {
    const a = new Vector3 ();
    const b = new Vector3 (1, 0, 0);
@@ -35,7 +35,7 @@ test ("quadNormal", () =>
    expect (Triangle3 .quadNormal (a, b, c, d, n) .equals (Vector3 .Z_AXIS)) .toBe (true);
 });
 
-test ("triangulatePolygon", () =>
+test .concurrent ("triangulatePolygon", () =>
 {
    const a = new Vector3 ();
    const b = new Vector3 (1, 0, 0);
@@ -51,7 +51,7 @@ test ("triangulatePolygon", () =>
    expect (triangles) .toEqual ([1, 3, 0, 3, 1, 2]);
 });
 
-test ("triangulateConvexPolygon", () =>
+test .concurrent ("triangulateConvexPolygon", () =>
 {
    const p1 = [ 0, 1, 2, 3 ];
    const p2 = [ 0, 1, 2, 3, 4 ];

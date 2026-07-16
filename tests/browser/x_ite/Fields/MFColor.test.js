@@ -7,12 +7,12 @@ const
 
 const comp = 3;
 
-test ("constructor", () =>
+test .concurrent ("constructor", () =>
 {
    expect ((new MFColor ()) [0]) .toBe (undefined);
 });
 
-test ("get1Value", () =>
+test .concurrent ("get1Value", () =>
 {
    const field = new MFColor ();
 
@@ -44,7 +44,7 @@ test ("get1Value", () =>
    expect (field [2]) .toBeInstanceOf (SFColor);
 });
 
-test ("length", () =>
+test .concurrent ("length", () =>
 {
    expect (new MFColor () .length) .toBe (0);
    expect (new MFColor (new SFColor (1,2,3), new SFColor (1,2,3)) .length) .toBe (2);
@@ -85,7 +85,7 @@ test ("length", () =>
       expect (m [i] .equals (new SFColor ())) .toBe (true);
 });
 
-test ("setValue", () =>
+test .concurrent ("setValue", () =>
 {
    const field = new MFColor ();
 
@@ -115,7 +115,7 @@ test ("setValue", () =>
    expect (field .equals (new MFColor ())) .toBe (true);
 });
 
-test ("assign", () =>
+test .concurrent ("assign", () =>
 {
    const
       field = new MFColor (),
@@ -132,7 +132,7 @@ test ("assign", () =>
    expect (field .equals (new MFColor ())) .toBe (true);
 });
 
-test ("fromString", () =>
+test .concurrent ("fromString", () =>
 {
    const a = new MFColor ();
 
@@ -154,7 +154,7 @@ test ("fromString", () =>
    expect (() => a .fromString ("[1.2 2.3 3.4, 2.3 --- 4.5]")) .toThrow (Error);
 });
 
-test ("fromVRMLString", () =>
+test .concurrent ("fromVRMLString", () =>
 {
    const a = new MFColor ();
 
@@ -176,7 +176,7 @@ test ("fromVRMLString", () =>
    expect (() => a .fromVRMLString ("[1.2 2.3 3.4, 2.3 --- 4.5]")) .toThrow (Error);
 });
 
-test ("fromXMLString", () =>
+test .concurrent ("fromXMLString", () =>
 {
    const a = new MFColor ();
 
@@ -193,12 +193,12 @@ test ("fromXMLString", () =>
    expect (() => a .fromXMLString ("")) .toThrow (Error);
 });
 
-test ("enumerate", () =>
+test .concurrent ("enumerate", () =>
 {
    enumerate (["0", "1", "2"], new MFColor (new SFColor (), new SFColor (), new SFColor ()));
 });
 
-test ("toString", () =>
+test .concurrent ("toString", () =>
 {
    const a = new MFColor ();
    const b = new MFColor (new SFColor (.1,.2,.3));

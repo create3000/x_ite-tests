@@ -22,13 +22,13 @@ for (const Type of Object .keys (X3D .SFMatrix4))
       SFVec3    = X3D .SFVec3 [SFVec3Type [Type]],
       SFVec4    = X3D .SFVec4 [SFVec4Type [Type]];
 
-   test ("constants", () =>
+   test .concurrent ("constants", () =>
    {
       expect (SFMatrix4 .ZERO     .equals (new SFMatrix4 (0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0))) .toBe (true);
       expect (SFMatrix4 .IDENTITY .equals (new SFMatrix4 (1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1))) .toBe (true);
    });
 
-   test ("constructor", () =>
+   test .concurrent ("constructor", () =>
    {
       const v1 = new SFMatrix4 ();
 
@@ -110,14 +110,14 @@ for (const Type of Object .keys (X3D .SFMatrix4))
       expect (v4 [15]) .toBe (1);
    });
 
-   test ("enumerate", () =>
+   test .concurrent ("enumerate", () =>
    {
       const properties = new Array (16) .keys ();
 
       enumerate (properties, new SFMatrix4 ());
    });
 
-   test ("getter/setter", () =>
+   test .concurrent ("getter/setter", () =>
    {
       const v1 = new SFMatrix4 ();
 
@@ -176,7 +176,7 @@ for (const Type of Object .keys (X3D .SFMatrix4))
       expect ([...v1]) .toEqual ([NaN,NaN,NaN,NaN, NaN,NaN,NaN,NaN, NaN,NaN,NaN,NaN, NaN,NaN,NaN,NaN]);
    });
 
-   test ("common", () =>
+   test .concurrent ("common", () =>
    {
       const field = new SFMatrix4 ();
 
@@ -185,7 +185,7 @@ for (const Type of Object .keys (X3D .SFMatrix4))
       expect (Object .prototype .toString .call (field)) .toBe (`[object ${Type}]`);
    });
 
-   test ("copy", () =>
+   test .concurrent ("copy", () =>
    {
       const
          v1 = new SFMatrix4 (2,3,4,5, 6,7,8,9, 10,11,12,13, 14,15,16,17),
@@ -196,7 +196,7 @@ for (const Type of Object .keys (X3D .SFMatrix4))
       expect (v2 .equals (v1)) .toBe (true);
    });
 
-   test ("equals", () =>
+   test .concurrent ("equals", () =>
    {
       const
          a = new SFMatrix4 (2,3,4,5, 6,7,8,9, 10,11,12,13, 14,15,16,17),
@@ -207,7 +207,7 @@ for (const Type of Object .keys (X3D .SFMatrix4))
       expect (a .equals (b)) .toBe (false);
    });
 
-   test ("isDefaultValue", () =>
+   test .concurrent ("isDefaultValue", () =>
    {
       const
          a = new SFMatrix4 (1,0,0,0, 0,1,0,0, 0,0,1,0, 0,0,0,1),
@@ -219,7 +219,7 @@ for (const Type of Object .keys (X3D .SFMatrix4))
       expect (b .isDefaultValue ()) .toBe (false);
    });
 
-   test ("get/setTransform", () =>
+   test .concurrent ("get/setTransform", () =>
    {
       let
          a = new SFMatrix4 (),
@@ -294,14 +294,14 @@ for (const Type of Object .keys (X3D .SFMatrix4))
       expect (n .center           .isTainted ()) .toBe (false);
    });
 
-   test ("determinant", () =>
+   test .concurrent ("determinant", () =>
    {
       const a = new SFMatrix4 (4,3,2,15, 5,6,7,16, 10,9,14,17, 11,12,13,18);
 
       expect (a .determinant ()) .toBe (-1008);
    });
 
-   test ("inverse", () =>
+   test .concurrent ("inverse", () =>
    {
       const a = new SFMatrix4 ();
 
@@ -359,7 +359,7 @@ for (const Type of Object .keys (X3D .SFMatrix4))
       expect (c [15]) .toBeCloseTo (1);
    });
 
-   test ("transpose", () =>
+   test .concurrent ("transpose", () =>
    {
       const
          a = new SFMatrix4 (2,3,4,5, 6,7,8,9, 10,11,12,13, 14,15,16,17),
@@ -410,7 +410,7 @@ for (const Type of Object .keys (X3D .SFMatrix4))
       expect (c [15]) .toBe (17);
    });
 
-   test ("multRight", () =>
+   test .concurrent ("multRight", () =>
    {
       const
          a = new SFMatrix4 (2,3,4,5, 6,7,8,9, 10,11,12,13, 14,15,16,17),
@@ -443,7 +443,7 @@ for (const Type of Object .keys (X3D .SFMatrix4))
       expect (c [15]) .toBe (1694);
    });
 
-   test ("multLeft", () =>
+   test .concurrent ("multLeft", () =>
    {
       const
          a = new SFMatrix4 (2,3,4,5, 6,7,8,9, 10,11,12,13, 14,15,16,17),
@@ -476,7 +476,7 @@ for (const Type of Object .keys (X3D .SFMatrix4))
       expect (c [15]) .toBe (1694);
    });
 
-   test ("multVecMatrix 3", () =>
+   test .concurrent ("multVecMatrix 3", () =>
    {
       const
          a = new SFMatrix4 (2,3,4,5, 6,7,8,9, 10,11,12,13, 14,15,16,17),
@@ -492,7 +492,7 @@ for (const Type of Object .keys (X3D .SFMatrix4))
       expect (c [2]) .toBe (642/874);
    });
 
-   test ("multVecMatrix 4", () =>
+   test .concurrent ("multVecMatrix 4", () =>
    {
       const
          a = new SFMatrix4 (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16),
@@ -509,7 +509,7 @@ for (const Type of Object .keys (X3D .SFMatrix4))
       expect (c [3]) .toBe (1078);
    });
 
-   test ("multMatrixVec 3", () =>
+   test .concurrent ("multMatrixVec 3", () =>
    {
       const
          a = new SFMatrix4 (2,3,4,5, 6,7,8,9, 10,11,12,13, 14,15,16,17),
@@ -525,7 +525,7 @@ for (const Type of Object .keys (X3D .SFMatrix4))
       expect (c [2]) .toBe (642/874);
    });
 
-   test ("multMatrixVec 4", () =>
+   test .concurrent ("multMatrixVec 4", () =>
    {
       const
          a = new SFMatrix4 (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16),
@@ -542,7 +542,7 @@ for (const Type of Object .keys (X3D .SFMatrix4))
       expect (c [3]) .toBe (1078);
    });
 
-   test ("multDirMatrix", () =>
+   test .concurrent ("multDirMatrix", () =>
    {
       const
          a = new SFMatrix4 (2,3,4,5, 6,7,8,9, 10,11,12,13, 14,15,16,17),
@@ -558,7 +558,7 @@ for (const Type of Object .keys (X3D .SFMatrix4))
       expect (c [2]) .toBe (629);
    });
 
-   test ("multMatrixDir", () =>
+   test .concurrent ("multMatrixDir", () =>
    {
       const
          a = new SFMatrix4 (2,3,4,5, 6,7,8,9, 10,11,12,13, 14,15,16,17),
@@ -574,7 +574,7 @@ for (const Type of Object .keys (X3D .SFMatrix4))
       expect (c [2]) .toBe (629);
    });
 
-   test ("translate", () =>
+   test .concurrent ("translate", () =>
    {
       const
          a = new SFMatrix4 (),
@@ -606,7 +606,7 @@ for (const Type of Object .keys (X3D .SFMatrix4))
       expect (c [15]) .toBe (1);
    });
 
-   test ("rotate", () =>
+   test .concurrent ("rotate", () =>
    {
       const
          a = new SFMatrix4 (),
@@ -638,7 +638,7 @@ for (const Type of Object .keys (X3D .SFMatrix4))
       expect (c [15]) .toBe (1);
    });
 
-   test ("scale", () =>
+   test .concurrent ("scale", () =>
    {
       const
          a = new SFMatrix4 (),
@@ -670,7 +670,7 @@ for (const Type of Object .keys (X3D .SFMatrix4))
       expect (c [15]) .toBe (1);
    });
 
-   test ("fromString", () =>
+   test .concurrent ("fromString", () =>
    {
       const a = new SFMatrix4 ();
 
@@ -681,7 +681,7 @@ for (const Type of Object .keys (X3D .SFMatrix4))
       expect (() => a .fromString ("foo")) .toThrow (Error);
    });
 
-   test ("fromVRMLString", () =>
+   test .concurrent ("fromVRMLString", () =>
    {
       const a = new SFMatrix4 ();
 
@@ -692,7 +692,7 @@ for (const Type of Object .keys (X3D .SFMatrix4))
       expect (() => a .fromVRMLString ("foo")) .toThrow (Error);
    });
 
-   test ("fromXMLString", () =>
+   test .concurrent ("fromXMLString", () =>
    {
       const a = new SFMatrix4 ();
 
@@ -703,7 +703,7 @@ for (const Type of Object .keys (X3D .SFMatrix4))
       expect (() => a .fromXMLString ("foo")) .toThrow (Error);
    });
 
-   test ("toString", () =>
+   test .concurrent ("toString", () =>
    {
       const a = new SFMatrix4 (1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16);
       const b = new SFMatrix4 (17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32);

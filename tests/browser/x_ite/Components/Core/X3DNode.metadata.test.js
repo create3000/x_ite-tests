@@ -8,7 +8,7 @@ const
 
 Browser .setBrowserOption ("MetadataReference", reference);
 
-test ("get/set/removeMetaData basic types", () =>
+test .concurrent ("get/set/removeMetaData basic types", () =>
 {
    const node = Browser .currentScene .createNode ("WorldInfo");
 
@@ -370,7 +370,7 @@ test ("get/set/removeMetaData basic types", () =>
    expect (node .metadata) .toBe (null);
 });
 
-test ("get/set/removeMetaData fields", () =>
+test .concurrent ("get/set/removeMetaData fields", () =>
 {
    const node = Browser .currentScene .createNode ("WorldInfo");
 
@@ -455,7 +455,7 @@ test ("get/set/removeMetaData fields", () =>
    expect (f .equals (new X3D .MFVec4d (dvec, dvec))) .toBe (true);
 });
 
-test ("get/set/removeMetaData numbers", () =>
+test .concurrent ("get/set/removeMetaData numbers", () =>
 {
    const node = Browser .currentScene .createNode ("WorldInfo");
 

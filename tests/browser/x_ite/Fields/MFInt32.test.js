@@ -3,7 +3,7 @@ import X3D              from "../../X3D.js";
 
 const MFInt32 = X3D .MFInt32;
 
-test ("constructor", () =>
+test .concurrent ("constructor", () =>
 {
    let field;
 
@@ -28,7 +28,7 @@ test ("constructor", () =>
    expect ((new MFInt32 ()) [0]) .toBe (undefined);
 });
 
-test ("get1Value", () =>
+test .concurrent ("get1Value", () =>
 {
    const field = new MFInt32 ();
 
@@ -60,7 +60,7 @@ test ("get1Value", () =>
    expect (typeof field [2]) .toBe ("number");
 });
 
-test ("set1Value", () =>
+test .concurrent ("set1Value", () =>
 {
    const field = new MFInt32 ();
 
@@ -82,7 +82,7 @@ test ("set1Value", () =>
    expect ((field [0] = -666,            field [0])) .toBe (-666);
 });
 
-test ("setValue", () =>
+test .concurrent ("setValue", () =>
 {
    const field = new MFInt32 ();
 
@@ -112,7 +112,7 @@ test ("setValue", () =>
    expect (field .equals (new MFInt32 ())) .toBe (true);
 });
 
-test ("assign", () =>
+test .concurrent ("assign", () =>
 {
    const field = new MFInt32 ();
 
@@ -132,7 +132,7 @@ test ("assign", () =>
    expect (field .equals (new MFInt32 ())) .toBe (true);
 });
 
-test ("shrinkToFit", () =>
+test .concurrent ("shrinkToFit", () =>
 {
    const field = new MFInt32 (1, 2, 3, 4);
 
@@ -140,7 +140,7 @@ test ("shrinkToFit", () =>
    expect (field .shrinkToFit ()) .toBe (field .shrinkToFit ());
 });
 
-test ("common", () =>
+test .concurrent ("common", () =>
 {
    const field = new MFInt32 ();
 
@@ -149,7 +149,7 @@ test ("common", () =>
    expect (Object .prototype .toString .call (field)) .toBe ("[object MFInt32]");
 });
 
-test ("copy", () =>
+test .concurrent ("copy", () =>
 {
    const
       a = new MFInt32 (1,2,3),
@@ -161,7 +161,7 @@ test ("copy", () =>
    expect (b .getValue ()) .not .toBe (a .getValue ());
 });
 
-test ("equals", () =>
+test .concurrent ("equals", () =>
 {
    const
       a = new MFInt32 (),
@@ -174,7 +174,7 @@ test ("equals", () =>
    expect (b .equals (c)) .toBe (true);
 });
 
-test ("isDefaultValue", () =>
+test .concurrent ("isDefaultValue", () =>
 {
    const
       a = new MFInt32 (),
@@ -184,7 +184,7 @@ test ("isDefaultValue", () =>
    expect (b .isDefaultValue ()) .toBe (false);
 });
 
-test ("constructor", () =>
+test .concurrent ("constructor", () =>
 {
    const a = new MFInt32 ();
 
@@ -209,7 +209,7 @@ test ("constructor", () =>
    expect (c [4]) .toBe (5);
 });
 
-test ("basic-functions", () =>
+test .concurrent ("basic-functions", () =>
 {
    const a = new MFInt32 (Infinity);
 
@@ -274,7 +274,7 @@ test ("basic-functions", () =>
    expect (a [4]) .toBe (5);
 });
 
-test ("at", () =>
+test .concurrent ("at", () =>
 {
    const
       N = 10,
@@ -293,7 +293,7 @@ test ("at", () =>
    }
 });
 
-test ("entries", () =>
+test .concurrent ("entries", () =>
 {
    const
       N = 10,
@@ -308,7 +308,7 @@ test ("entries", () =>
       expect (value) .toBe (a [i]);
 });
 
-test ("fill", () =>
+test .concurrent ("fill", () =>
 {
    const a = new MFInt32 (0, 0, 0, 0, 0, 0);
 
@@ -341,7 +341,7 @@ test ("fill", () =>
    expect (a [5]) .toBe (2);
 });
 
-test ("filter", () =>
+test .concurrent ("filter", () =>
 {
    const
       N = 10,
@@ -359,7 +359,7 @@ test ("filter", () =>
       expect (b [i]) .toBe (a [i * 2]);
 });
 
-test ("keys", () =>
+test .concurrent ("keys", () =>
 {
    const
       N = 10,
@@ -371,7 +371,7 @@ test ("keys", () =>
    expect (a .keys ()) .toEqual (new Array (N/2) .keys ());
 });
 
-test ("map", () =>
+test .concurrent ("map", () =>
 {
    const
       N = 10,
@@ -390,7 +390,7 @@ test ("map", () =>
       expect (b [i]) .toBe (a [i]);
 });
 
-test ("pop", () =>
+test .concurrent ("pop", () =>
 {
    const
       N = 10,
@@ -427,7 +427,7 @@ test ("pop", () =>
    }
 });
 
-test ("push", () =>
+test .concurrent ("push", () =>
 {
    const
       N = 1_000,
@@ -450,7 +450,7 @@ test ("push", () =>
    }
 });
 
-test ("shift", () =>
+test .concurrent ("shift", () =>
 {
    const
       N = 10,
@@ -485,7 +485,7 @@ test ("shift", () =>
    }
 });
 
-test ("slice", () =>
+test .concurrent ("slice", () =>
 {
    const
       N = 10,
@@ -513,7 +513,7 @@ test ("slice", () =>
       expect (c [i]) .toBe (a [j]);
 });
 
-test ("splice", () =>
+test .concurrent ("splice", () =>
 {
    const
       N = 10,
@@ -578,7 +578,7 @@ test ("splice", () =>
    expect (n .equals (new MFInt32 (1, 2))) .toBe (true);
 });
 
-test ("sort-reverse", () =>
+test .concurrent ("sort-reverse", () =>
 {
    const a = new MFInt32 (1, 2, 3, 4, 5, 6);
 
@@ -623,7 +623,7 @@ test ("sort-reverse", () =>
    expect (a [5]) .toBe (1);
 });
 
-test ("unshift", () =>
+test .concurrent ("unshift", () =>
 {
    const
       N = 1_000,
@@ -646,7 +646,7 @@ test ("unshift", () =>
    }
 });
 
-test ("concat", () =>
+test .concurrent ("concat", () =>
 {
    const
       a = new MFInt32 (111, 222),
@@ -677,7 +677,7 @@ test ("concat", () =>
    expect (d [5]) .toBe (666);
 });
 
-test ("flat", () =>
+test .concurrent ("flat", () =>
 {
    const
       a = new MFInt32 (),
@@ -689,7 +689,7 @@ test ("flat", () =>
    expect (b .flat ()) .toEqual ([1, 2, 3, 4]);
 });
 
-test ("flatMap", () =>
+test .concurrent ("flatMap", () =>
 {
    const
       a = new MFInt32 (),
@@ -701,7 +701,7 @@ test ("flatMap", () =>
    expect (b .flatMap (v => v * 2)) .toEqual ([2, 4, 6, 8]);
 });
 
-test ("length", () =>
+test .concurrent ("length", () =>
 {
    expect (new MFInt32 () .length) .toBe (0);
    expect (new MFInt32 (1, 2, 3) .length) .toBe (3);
@@ -742,7 +742,7 @@ test ("length", () =>
       expect (m [i]) .toBe (0);
 });
 
-test ("fromString", () =>
+test .concurrent ("fromString", () =>
 {
    const a = new MFInt32 ();
 
@@ -764,7 +764,7 @@ test ("fromString", () =>
    expect (() => a .fromString ("[1 2 3 4 foo 6 7 8]")) .toThrow (Error);
 });
 
-test ("fromVRMLString", () =>
+test .concurrent ("fromVRMLString", () =>
 {
    const a = new MFInt32 ();
 
@@ -786,7 +786,7 @@ test ("fromVRMLString", () =>
    expect (() => a .fromVRMLString ("[1 2 3 4 foo 6 7 8]")) .toThrow (Error);
 });
 
-test ("fromXMLString", () =>
+test .concurrent ("fromXMLString", () =>
 {
    const a = new MFInt32 ();
 
@@ -803,12 +803,12 @@ test ("fromXMLString", () =>
    expect (() => a .fromXMLString ("")) .toThrow (Error);
 });
 
-test ("enumerate", () =>
+test .concurrent ("enumerate", () =>
 {
    enumerate (["0", "1", "2"], new MFInt32 (1,2,3));
 });
 
-test ("toString", () =>
+test .concurrent ("toString", () =>
 {
    const a = new MFInt32 ();
    const b = new MFInt32 (1);
@@ -819,7 +819,7 @@ test ("toString", () =>
    expect (c .toString ({ style: "CLEAN" })) .toBe ("[1 2]");
 });
 
-test ("proxy", () =>
+test .concurrent ("proxy", () =>
 {
    const field = new MFInt32 (1,2,3);
 

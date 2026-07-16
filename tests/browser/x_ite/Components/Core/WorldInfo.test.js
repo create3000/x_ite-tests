@@ -5,7 +5,7 @@ const
    canvas  = X3D .createBrowser (),
    Browser = canvas .browser;
 
-test ("add/removeWorldInfo", () =>
+test .concurrent ("add/removeWorldInfo", () =>
 {
    expect (Browser .currentScene .getWorldInfos ()) .toHaveLength (0);
 

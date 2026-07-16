@@ -1,7 +1,7 @@
 import { expect, test } from "vitest";
 import X3D              from "../../X3D.js";
 
-test ("properties", () =>
+test .concurrent ("properties", () =>
 {
    const
       canvas  = X3D .createBrowser (),
@@ -42,7 +42,7 @@ test ("properties", () =>
    expect (units [-1]) .toBe (undefined);
 });
 
-test ("spread", async () =>
+test .concurrent ("spread", async () =>
 {
    const
       canvas  = X3D .createBrowser (),
@@ -62,7 +62,7 @@ test ("spread", async () =>
       expect (v) .toBe (units [i]);
 });
 
-test ("filter", async () =>
+test .concurrent ("filter", async () =>
 {
    const
       canvas  = X3D .createBrowser (),
@@ -80,7 +80,7 @@ test ("filter", async () =>
       expect (v) .toBe (units [i]);
 });
 
-test ("toString", () =>
+test .concurrent ("toString", () =>
 {
    const
       canvas  = X3D .createBrowser (),
@@ -93,7 +93,7 @@ test ("toString", () =>
    expect (units .toString ()) .toBe (`[object ${units .getTypeName ()}]`);
 });
 
-test ("proxy", () =>
+test .concurrent ("proxy", () =>
 {
    const
       canvas  = X3D .createBrowser (),

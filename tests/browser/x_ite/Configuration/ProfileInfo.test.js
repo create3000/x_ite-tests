@@ -5,7 +5,7 @@ const
    canvas  = X3D .createBrowser (),
    Browser = canvas .browser;
 
-test ("properties", () =>
+test .concurrent ("properties", () =>
 {
    const profile = Browser .getProfile ("Core");
 
@@ -43,14 +43,14 @@ test ("properties", () =>
    enumerate (properties, profile);
 });
 
-test ("legacy", () =>
+test .concurrent ("legacy", () =>
 {
    const profile = Browser .getProfile ("Core");
 
    expect (profile .providerUrl) .toBe (profile .providerURL);
 });
 
-test ("toString", () =>
+test .concurrent ("toString", () =>
 {
    const profile = Browser .getProfile ("Core");
 

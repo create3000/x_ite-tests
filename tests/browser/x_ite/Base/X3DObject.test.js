@@ -8,13 +8,13 @@ const
    Browser = canvas .browser,
    scene   = Browser .currentScene;
 
-test ("getId", () =>
+test .concurrent ("getId", () =>
 {
    expect (X3DObject .getId ({ })) .not .toBe ({ });
    expect (Browser .getId ()) .not .toBe (scene .getId ());
 });
 
-test ("addInterest", () => new Promise (resolve =>
+test .concurrent ("addInterest", () => new Promise (resolve =>
 {
    const node = Browser .currentScene .createNode ("Transform");
 
@@ -30,7 +30,7 @@ test ("addInterest", () => new Promise (resolve =>
    node .translation .addEvent ();
 }));
 
-test ("add/removeInterest", () => new Promise ((resolve, reject) =>
+test .concurrent ("add/removeInterest", () => new Promise ((resolve, reject) =>
 {
    const node = Browser .currentScene .createNode ("Transform");
 
@@ -67,7 +67,7 @@ test ("add/removeInterest", () => new Promise ((resolve, reject) =>
    node .translation .addEvent ();
 }));
 
-test ("get/setUserData", () =>
+test .concurrent ("get/setUserData", () =>
 {
    const s = Symbol (), o = { };
 

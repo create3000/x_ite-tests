@@ -5,7 +5,7 @@ const
    canvas  = X3D .createBrowser (),
    browser = canvas .browser; // Must be lowercase
 
-test ("environment", async () =>
+test .concurrent ("environment", async () =>
 {
    await browser .loadComponents (browser .getComponent ("Scripting"));
 
@@ -35,7 +35,7 @@ url "ecmascript:"
    expect (script .evaluate ("Browser .currentScene")) .toBe (scene);
 });
 
-test ("SFNode", async () =>
+test .concurrent ("SFNode", async () =>
 {
    {
       await browser .loadComponents (browser .getComponent ("Scripting"));
@@ -78,7 +78,7 @@ DEF Script Script {
    }
 });
 
-test ("fields", async () =>
+test .concurrent ("fields", async () =>
 {
    await browser .loadComponents (browser .getComponent ("Scripting"));
 
@@ -111,7 +111,7 @@ DEF Script Script {
    expect (script .evaluate ("vector4")) .toBeInstanceOf (X3D .SFVec3f);
 });
 
-test ("createVrmlFromURL", async () =>
+test .concurrent ("createVrmlFromURL", async () =>
 {
    const scene = await browser .createX3DFromString (`#VRML V2.0 utf8
 PROFILE Interchange
@@ -159,7 +159,7 @@ function set_nodes (nodes, time)
    expect (nodes [2] .getValue () .isInitialized ()) .toBe (true);
 });
 
-test ("this", async () =>
+test .concurrent ("this", async () =>
 {
    try
    {

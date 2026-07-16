@@ -6,7 +6,7 @@ const
    Vector3 = X3D .Vector3,
    Matrix4 = X3D .Matrix4;
 
-test ("constructor", () =>
+test .concurrent ("constructor", () =>
 {
    const b1 = new Box3 ();
 
@@ -33,7 +33,7 @@ test ("constructor", () =>
    expect (b4 .center .equals (new Vector3 (5, 6, 7))) .toBe (true);
 });
 
-test ("copy", () =>
+test .concurrent ("copy", () =>
 {
    const b1 = new Box3 ();
    const c1 = b1 .copy ();
@@ -54,7 +54,7 @@ test ("copy", () =>
    expect (c2 .center .equals (new Vector3 (5, 6, 7))) .toBe (true);
 });
 
-test ("assign", () =>
+test .concurrent ("assign", () =>
 {
    const b1 = new Box3 ();
    const b2 = new Box3 (new Vector3 (2, 3, 4), new Vector3 (5, 6, 7));
@@ -75,7 +75,7 @@ test ("assign", () =>
    expect (b2 .center .equals (Vector3 .ZERO)) .toBe (true);
 });
 
-test ("equals", () =>
+test .concurrent ("equals", () =>
 {
    const b1 = new Box3 ();
    const b2 = new Box3 (new Vector3 (2, 3, 4), new Vector3 (5, 6, 7));
@@ -86,7 +86,7 @@ test ("equals", () =>
    expect (b2 .equals (b1)) .toBe (false);
 });
 
-test ("set", () =>
+test .concurrent ("set", () =>
 {
    const b1 = new Box3 (new Vector3 (2, 3, 4), new Vector3 (5, 6, 7));
 
@@ -105,7 +105,7 @@ test ("set", () =>
    expect (b2 .center .equals (new Vector3 (5, 6, 7))) .toBe (true);
 });
 
-test ("getExtents", () =>
+test .concurrent ("getExtents", () =>
 {
    const b1 = new Box3 (new Vector3 (2, 3, 4), new Vector3 (5, 6, 7));
    const min = new Vector3 ();
@@ -117,7 +117,7 @@ test ("getExtents", () =>
    expect (max .equals (new Vector3 (6, 7.5, 9))) .toBe (true);
 });
 
-test ("setExtents", () =>
+test .concurrent ("setExtents", () =>
 {
    const b1 = new Box3 ();
    const min = new Vector3 (4, 4.5, 5);
@@ -129,7 +129,7 @@ test ("setExtents", () =>
    expect (b1 .center .equals (new Vector3 (5, 6, 7))) .toBe (true);
 });
 
-test ("getAbsoluteExtents", () =>
+test .concurrent ("getAbsoluteExtents", () =>
 {
    const b1 = new Box3 (new Vector3 (2, 3, 4), new Vector3 (5, 6, 7));
    const min = new Vector3 ();
@@ -141,7 +141,7 @@ test ("getAbsoluteExtents", () =>
    expect (max .equals (new Vector3 (1, 1.5, 2))) .toBe (true);
 });
 
-test ("getPoints", () =>
+test .concurrent ("getPoints", () =>
 {
    const b1 = new Box3 (new Vector3 (2, 3, 4), new Vector3 (5, 6, 7));
 
@@ -160,7 +160,7 @@ test ("getPoints", () =>
    expect ([... points [7]]) .toEqual ([6, 4.5, 5]);
 });
 
-test ("getAxes", () =>
+test .concurrent ("getAxes", () =>
 {
    const b1 = new Box3 (new Vector3 (2, 3, 4), new Vector3 (5, 6, 7));
 
@@ -173,7 +173,7 @@ test ("getAxes", () =>
    expect ([... axes [2]]) .toEqual ([0, 0, 2]);
 });
 
-test ("getNormals", () =>
+test .concurrent ("getNormals", () =>
 {
    const b1 = new Box3 (new Vector3 (2, 3, 4), new Vector3 (5, 6, 7));
 
@@ -186,7 +186,7 @@ test ("getNormals", () =>
    expect ([... normals [2]]) .toEqual ([0, 0, 1]);
 });
 
-test ("isEmpty", () =>
+test .concurrent ("isEmpty", () =>
 {
    const b1 = new Box3 ();
    const b2 = new Box3 (new Vector3 (2, 3, 4), new Vector3 (5, 6, 7));
@@ -195,7 +195,7 @@ test ("isEmpty", () =>
    expect (b2 .isEmpty ()) .toBe (false);
 });
 
-test ("add", () =>
+test .concurrent ("add", () =>
 {
    const b1 = new Box3 ();
    const b2 = new Box3 (new Vector3 (2, 3, 4), new Vector3 (5, 6, 7));
@@ -214,7 +214,7 @@ test ("add", () =>
    expect (b1 .center .equals (new Vector3 (5, 6, 7))) .toBe (true);
 });
 
-test ("multRight", () =>
+test .concurrent ("multRight", () =>
 {
    const b1 = new Box3 (new Vector3 (2, 3, 4), new Vector3 (5, 6, 7));
 
@@ -225,7 +225,7 @@ test ("multRight", () =>
    expect (b1 .center .equals (new Vector3 (11, 14, 17))) .toBe (true);
 });
 
-test ("multRight", () =>
+test .concurrent ("multRight", () =>
 {
    const b1 = new Box3 (new Vector3 (2, 3, 4), new Vector3 (5, 6, 7));
 
@@ -236,7 +236,7 @@ test ("multRight", () =>
    expect ([... b1 .center]) .toEqual ([6, 9, 13]);
 });
 
-test ("containsPoint", () =>
+test .concurrent ("containsPoint", () =>
 {
    const b1 = new Box3 (new Vector3 (2, 3, 4), new Vector3 (5, 6, 7));
 
@@ -248,7 +248,7 @@ test ("containsPoint", () =>
    expect (b1 .containsPoint (new Vector3 (7, 8, 10))) .toBe (false);
 });
 
-test ("intersectsBox", () =>
+test .concurrent ("intersectsBox", () =>
 {
    const b1 = new Box3 (new Vector3 (4, 4, 4), new Vector3 (0, 0, 0));
    const b2 = new Box3 (new Vector3 (4, 4, 4), new Vector3 (3, 3, 3));
@@ -258,7 +258,7 @@ test ("intersectsBox", () =>
    expect (b1 .intersectsBox (b3)) .toBe (false);
 });
 
-// test ("intersectsTriangle", () =>
+// test .concurrent ("intersectsTriangle", () =>
 // {
 //    const b1 = new Box3 (new Vector3 (4, 4, 4), new Vector3 (0, 0, 0));
 //    const t1 = new Vector3 (1, 1, 0);
@@ -272,7 +272,7 @@ test ("intersectsBox", () =>
 //    expect (b1 .intersectsTriangle (t4, t4, t6)) .toBe (false);
 // });
 
-test ("toString", () =>
+test .concurrent ("toString", () =>
 {
    const b1 = new Box3 (new Vector3 (4, 4, 4), new Vector3 (0, 0, 0));
 
@@ -280,7 +280,7 @@ test ("toString", () =>
    expect (b1 .toString () .length > 0) .toBe (true);
 });
 
-test ("fromArray", () =>
+test .concurrent ("fromArray", () =>
 {
    const b1 = Box3 .fromArray ([-1, -1, -1,  1, 1, 1], 3);
 

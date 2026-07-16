@@ -5,7 +5,7 @@ const canvas  = X3D .createBrowser ();
 const browser = canvas .browser;
 const scene   = browser .currentScene;
 
-test ("nodes", async () =>
+test .concurrent ("nodes", async () =>
 {
    await browser .loadComponents (browser .getProfile ("Full"), browser .getComponent ("X_ITE"));
 

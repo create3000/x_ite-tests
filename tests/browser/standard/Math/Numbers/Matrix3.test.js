@@ -7,7 +7,7 @@ const
    Vector3 = X3D .Vector3,
    Complex = X3D .Complex;
 
-test ("constants", () =>
+test .concurrent ("constants", () =>
 {
    for (let i = 0; i < 9; ++ i)
       expect (Matrix3 .ZERO [i]) .toBe (0);
@@ -18,7 +18,7 @@ test ("constants", () =>
    expect (Matrix3 .IDENTITY .equals (new Matrix3 ())) .toBe (true);
 });
 
-test ("constructor", () =>
+test .concurrent ("constructor", () =>
 {
    const m1 = new Matrix3 ();
 
@@ -53,7 +53,7 @@ test ("constructor", () =>
    expect (m2 .order) .toBe (3);
 });
 
-test ("enumerate", () =>
+test .concurrent ("enumerate", () =>
 {
    const properties = Array .from ({ length: 9 }, (_, i) => `${i}`);
 
@@ -61,7 +61,7 @@ test ("enumerate", () =>
    enumerate (properties, new Matrix3 (2,3,4, 5,6,7, 8,9,10));
 });
 
-test ("get1", () =>
+test .concurrent ("get1", () =>
 {
    const
       m1 = new Matrix3 (2,0,0, 0,6,0, 8,9,1),
@@ -172,7 +172,7 @@ test ("get1", () =>
    expect (v1 [1]) .toBeCloseTo (v2 [1]);
 });
 
-test ("set1", () =>
+test .concurrent ("set1", () =>
 {
    const m1 = new Matrix3 (2,3,4, 5,6,7, 8,9,10);
 
@@ -191,7 +191,7 @@ test ("set1", () =>
    ]);
 });
 
-test ("set2", () =>
+test .concurrent ("set2", () =>
 {
    const
       m1 = new Matrix3 (),
@@ -244,7 +244,7 @@ test ("set2", () =>
 
 });
 
-test ("inverse", () =>
+test .concurrent ("inverse", () =>
 {
    // https://www.wolframalpha.com/calculators/matrix-inverse-calculator
 
@@ -305,7 +305,7 @@ test ("inverse", () =>
    expect (m5 .equals (Matrix3 .ZERO)) .toBe (true);
 });
 
-test ("multRight", () =>
+test .concurrent ("multRight", () =>
 {
    // https://www.matopt.de/werkzeuge/grundlagen/matrixmultiplikation.html
 
@@ -325,7 +325,7 @@ test ("multRight", () =>
    expect (m [8]) .toBe (366);
 });
 
-test ("multLeft", () =>
+test .concurrent ("multLeft", () =>
 {
    // https://www.matopt.de/werkzeuge/grundlagen/matrixmultiplikation.html
 
@@ -345,7 +345,7 @@ test ("multLeft", () =>
    expect (m [8]) .toBe (366);
 });
 
-test ("transpose", () =>
+test .concurrent ("transpose", () =>
 {
    const m = new Matrix3 (1, 2, 3, 4, 5, 6, 7, 8, 9) .transpose ();
 
@@ -372,7 +372,7 @@ test ("transpose", () =>
    expect (m1 [8]) .toBe (9);
 });
 
-test ("determinant", () =>
+test .concurrent ("determinant", () =>
 {
    // https://www.wolframalpha.com/calculators/determinant-calculator
 
@@ -381,7 +381,7 @@ test ("determinant", () =>
    expect (d) .toBe (-12);
 });
 
-test ("determinant2", () =>
+test .concurrent ("determinant2", () =>
 {
    // https://www.wolframalpha.com/calculators/determinant-calculator
 
@@ -390,7 +390,7 @@ test ("determinant2", () =>
    expect (d) .toBe (-5);
 });
 
-test ("multVecMatrix2", () =>
+test .concurrent ("multVecMatrix2", () =>
 {
    // https://www.wolframalpha.com/calculators/determinant-calculator
 
@@ -405,7 +405,7 @@ test ("multVecMatrix2", () =>
    expect (v1 [1]) .toBeCloseTo (101 / 167);
 });
 
-test ("multVecMatrix3", () =>
+test .concurrent ("multVecMatrix3", () =>
 {
    // https://www.wolframalpha.com/calculators/determinant-calculator
 
@@ -422,7 +422,7 @@ test ("multVecMatrix3", () =>
    expect (v1 [2]) .toBe (266);
 });
 
-test ("multMatrixVec2", () =>
+test .concurrent ("multMatrixVec2", () =>
 {
    // https://www.wolframalpha.com/calculators/determinant-calculator
 
@@ -437,7 +437,7 @@ test ("multMatrixVec2", () =>
    expect (v1 [1]) .toBeCloseTo (83 / 105);
 });
 
-test ("multMatrixVec3", () =>
+test .concurrent ("multMatrixVec3", () =>
 {
    // https://www.wolframalpha.com/calculators/determinant-calculator
 
@@ -454,7 +454,7 @@ test ("multMatrixVec3", () =>
    expect (v1 [2]) .toBe (204);
 });
 
-test ("multDirMatrix", () =>
+test .concurrent ("multDirMatrix", () =>
 {
    // https://www.wolframalpha.com/calculators/determinant-calculator
 
@@ -469,7 +469,7 @@ test ("multDirMatrix", () =>
    expect (v1 [1]) .toBe (39);
 });
 
-test ("multMatrixDir", () =>
+test .concurrent ("multMatrixDir", () =>
 {
    // https://www.wolframalpha.com/calculators/determinant-calculator
 
@@ -484,7 +484,7 @@ test ("multMatrixDir", () =>
    expect (v1 [1]) .toBe (34);
 });
 
-test ("translate", () =>
+test .concurrent ("translate", () =>
 {
    // https://www.wolframalpha.com/calculators/determinant-calculator
 
@@ -501,7 +501,7 @@ test ("translate", () =>
    expect (m [8]) .toBe (1);
 });
 
-test ("rotate", () =>
+test .concurrent ("rotate", () =>
 {
    const m = new Matrix3 (1, 2, 0, 4, 5, 0, 7, 8, 1) .rotate (Math .PI / 4);
 
@@ -516,7 +516,7 @@ test ("rotate", () =>
    expect (m [8]) .toBeCloseTo (1);
 });
 
-test ("scale", () =>
+test .concurrent ("scale", () =>
 {
    // https://www.wolframalpha.com/calculators/determinant-calculator
 
@@ -533,7 +533,7 @@ test ("scale", () =>
    expect (m [8]) .toBe (1);
 });
 
-test ("skewX", () =>
+test .concurrent ("skewX", () =>
 {
    const m = new Matrix3 (1, 2, 0, 4, 5, 0, 7, 8, 1) .skewX (Math .PI / 2);
 
@@ -548,7 +548,7 @@ test ("skewX", () =>
    expect (m [8]) .toBeCloseTo (1);
 });
 
-test ("skewY", () =>
+test .concurrent ("skewY", () =>
 {
    const m = new Matrix3 (1, 2, 0, 4, 5, 0, 7, 8, 1) .skewY (Math .PI / 2);
 
@@ -563,7 +563,7 @@ test ("skewY", () =>
    expect (m [8]) .toBeCloseTo (1);
 });
 
-test ("copy", () =>
+test .concurrent ("copy", () =>
 {
    const m = new Matrix3 (2,3,4, 5,6,7, 8,9,10) .copy ();
 
@@ -578,7 +578,7 @@ test ("copy", () =>
    expect (m [8]) .toBe (10);
 });
 
-test ("assign", () =>
+test .concurrent ("assign", () =>
 {
    const m = new Matrix3 () .assign (new Matrix3 (2,3,4, 5,6,7, 8,9,10));
 
@@ -593,7 +593,7 @@ test ("assign", () =>
    expect (m [8]) .toBe (10);
 });
 
-test ("equals", () =>
+test .concurrent ("equals", () =>
 {
    const
       a = new Matrix3 (2,3,4, 5,6,7, 8,9,10),
@@ -611,7 +611,7 @@ test ("equals", () =>
    }
 });
 
-test ("toString", () =>
+test .concurrent ("toString", () =>
 {
    const m = new Matrix3 (2,3,4, 5,6,7, 8,9,10);
 

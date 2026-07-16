@@ -6,12 +6,12 @@ const
    X3DCanvasElement = X3D .X3DCanvasElement,
    DEVELOPMENT      = X3D .DEVELOPMENT;
 
-test ("noConflict", () =>
+test .concurrent ("noConflict", () =>
 {
    expect (X3D .noConflict ()) .toBe (X3D);
 });
 
-test ("createBrowser", () =>
+test .concurrent ("createBrowser", () =>
 {
    const canvas = X3D .createBrowser ();
 
@@ -20,7 +20,7 @@ test ("createBrowser", () =>
    expect (canvas .browser) .toBeInstanceOf (X3D .X3DBrowser);
 });
 
-test ("getBrowser", () =>
+test .concurrent ("getBrowser", () =>
 {
    const canvas = $(X3D .createBrowser ());
 
@@ -35,7 +35,7 @@ test ("getBrowser", () =>
    expect (X3D .getBrowser (".browser")) .toBe (canvas [0] .browser);
 });
 
-test ("X3D-classic", () => new Promise ((resolve, reject) =>
+test .concurrent ("X3D-classic", () => new Promise ((resolve, reject) =>
 {
    X3D (() =>
    {
@@ -47,17 +47,17 @@ test ("X3D-classic", () => new Promise ((resolve, reject) =>
    });
 }));
 
-test ("X3D-async", async () =>
+test .concurrent ("X3D-async", async () =>
 {
    await X3D ();
 });
 
-test ("DEVELOPMENT", () =>
+test .concurrent ("DEVELOPMENT", () =>
 {
    expect (DEVELOPMENT) .toBe (false);
 });
 
-test ("X3D", async () =>
+test .concurrent ("X3D", async () =>
 {
    const browser = X3D .createBrowser () .browser;
 

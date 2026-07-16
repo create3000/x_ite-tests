@@ -18,13 +18,13 @@ for (const Type of Object .keys (X3D .SFMatrix3))
       SFVec2    = X3D .SFVec2 [SFVec2Type [Type]],
       SFVec3    = X3D .SFVec3 [SFVec3Type [Type]];
 
-   test ("constants", () =>
+   test .concurrent ("constants", () =>
    {
       expect (SFMatrix3 .ZERO     .equals (new SFMatrix3 (0,0,0,0,0,0,0,0,0))) .toBe (true);
       expect (SFMatrix3 .IDENTITY .equals (new SFMatrix3 (1,0,0,0,1,0,0,0,1))) .toBe (true);
    });
 
-   test ("constructor", () =>
+   test .concurrent ("constructor", () =>
    {
       const v1 = new SFMatrix3 ();
 
@@ -78,14 +78,14 @@ for (const Type of Object .keys (X3D .SFMatrix3))
       expect (v4 [8]) .toBe (1);
    });
 
-   test ("enumerate", () =>
+   test .concurrent ("enumerate", () =>
    {
       const properties = new Array (9) .keys ();
 
       enumerate (properties, new SFMatrix3 ());
    });
 
-   test ("getter/setter", () =>
+   test .concurrent ("getter/setter", () =>
    {
       const v1 = new SFMatrix3 ();
 
@@ -123,7 +123,7 @@ for (const Type of Object .keys (X3D .SFMatrix3))
       expect ([...v1]) .toEqual ([NaN,NaN,NaN, NaN,NaN,NaN, NaN,NaN,NaN]);
    });
 
-   test ("common", () =>
+   test .concurrent ("common", () =>
    {
       const field = new SFMatrix3 ();
 
@@ -132,7 +132,7 @@ for (const Type of Object .keys (X3D .SFMatrix3))
       expect (Object .prototype .toString .call (field)) .toBe (`[object ${Type}]`);
    });
 
-   test ("copy", () =>
+   test .concurrent ("copy", () =>
    {
       const
          v1 = new SFMatrix3 (2,3,4, 5,6,7, 8,9,10),
@@ -143,7 +143,7 @@ for (const Type of Object .keys (X3D .SFMatrix3))
       expect (v2 .equals (v1)) .toBe (true);
    });
 
-   test ("equals", () =>
+   test .concurrent ("equals", () =>
    {
       const
          a = new SFMatrix3 (2,3,4, 5,6,7, 8,9,10),
@@ -154,7 +154,7 @@ for (const Type of Object .keys (X3D .SFMatrix3))
       expect (a .equals (b)) .toBe (false);
    });
 
-   test ("isDefaultValue", () =>
+   test .concurrent ("isDefaultValue", () =>
    {
       const
          a = new SFMatrix3 (1,0,0, 0,1,0, 0,0,1),
@@ -166,7 +166,7 @@ for (const Type of Object .keys (X3D .SFMatrix3))
       expect (b .isDefaultValue ()) .toBe (false);
    });
 
-   test ("get/setTransform", () =>
+   test .concurrent ("get/setTransform", () =>
    {
       let
          a = new SFMatrix3 (),
@@ -222,14 +222,14 @@ for (const Type of Object .keys (X3D .SFMatrix3))
       expect ([...a]) .toEqual ([1,0,0,0,1,0,0,0,1]);
    });
 
-   test ("determinant", () =>
+   test .concurrent ("determinant", () =>
    {
       const a = new SFMatrix3 (4,3,2, 5,6,7, 10,9,14);
 
       expect (a .determinant ()) .toBe (54);
    });
 
-   test ("inverse", () =>
+   test .concurrent ("inverse", () =>
    {
       const a = new SFMatrix3 ();
 
@@ -273,7 +273,7 @@ for (const Type of Object .keys (X3D .SFMatrix3))
       expect (c [8]) .toBeCloseTo (1);
    });
 
-   test ("transpose", () =>
+   test .concurrent ("transpose", () =>
    {
       const
          a = new SFMatrix3 (2,3,4, 5,6,7, 8,9,10),
@@ -310,7 +310,7 @@ for (const Type of Object .keys (X3D .SFMatrix3))
       expect (c [8]) .toBe (10);
    });
 
-   test ("multRight", () =>
+   test .concurrent ("multRight", () =>
    {
       const
          a = new SFMatrix3 (2,3,4, 5,6,7, 8,9,10),
@@ -336,7 +336,7 @@ for (const Type of Object .keys (X3D .SFMatrix3))
       expect (c [ 8]) .toBe (438);
    });
 
-   test ("multLeft", () =>
+   test .concurrent ("multLeft", () =>
    {
       const
          a = new SFMatrix3 (2,3,4, 5,6,7, 8,9,10),
@@ -362,7 +362,7 @@ for (const Type of Object .keys (X3D .SFMatrix3))
       expect (c [ 8]) .toBe (438);
    });
 
-   test ("multVecMatrix 2", () =>
+   test .concurrent ("multVecMatrix 2", () =>
    {
       const
          a = new SFMatrix3 (2,3,4, 5,6,7, 8,9,10),
@@ -377,7 +377,7 @@ for (const Type of Object .keys (X3D .SFMatrix3))
       expect (c [1]) .toBe (134/206);
    });
 
-   test ("multVecMatrix 3", () =>
+   test .concurrent ("multVecMatrix 3", () =>
    {
       const
          a = new SFMatrix3 (2,3,4, 6,7,8, 10,11,12),
@@ -393,7 +393,7 @@ for (const Type of Object .keys (X3D .SFMatrix3))
       expect (c [2]) .toBe (629);
    });
 
-   test ("multMatrixVec 2", () =>
+   test .concurrent ("multMatrixVec 2", () =>
    {
       const
          a = new SFMatrix3 (2,3,4, 5,6,7, 8,9,10),
@@ -408,7 +408,7 @@ for (const Type of Object .keys (X3D .SFMatrix3))
       expect (c [1]) .toBe (134/206);
    });
 
-   test ("multMatrixVec 3", () =>
+   test .concurrent ("multMatrixVec 3", () =>
    {
       const
          a = new SFMatrix3 (2,3,4, 6,7,8, 10,11,12),
@@ -424,7 +424,7 @@ for (const Type of Object .keys (X3D .SFMatrix3))
       expect (c [2]) .toBe (629);
    });
 
-   test ("multDirMatrix", () =>
+   test .concurrent ("multDirMatrix", () =>
    {
       const
          a = new SFMatrix3 (2,3,4, 5,6,7, 8,9,10),
@@ -439,7 +439,7 @@ for (const Type of Object .keys (X3D .SFMatrix3))
       expect (c [1]) .toBe (127);
    });
 
-   test ("multMatrixDir", () =>
+   test .concurrent ("multMatrixDir", () =>
    {
       const
          a = new SFMatrix3 (2,3,4, 5,6,7, 8,9,10),
@@ -454,7 +454,7 @@ for (const Type of Object .keys (X3D .SFMatrix3))
       expect (c [1]) .toBe (127);
    });
 
-   test ("translate", () =>
+   test .concurrent ("translate", () =>
    {
       const
          a = new SFMatrix3 (),
@@ -478,7 +478,7 @@ for (const Type of Object .keys (X3D .SFMatrix3))
       expect (c [8]) .toBe (1);
    });
 
-   test ("rotate", () =>
+   test .concurrent ("rotate", () =>
    {
       const
          a = new SFMatrix3 (),
@@ -501,7 +501,7 @@ for (const Type of Object .keys (X3D .SFMatrix3))
       expect (c [8]) .toBe (1);
    });
 
-   test ("scale", () =>
+   test .concurrent ("scale", () =>
    {
       const
          a = new SFMatrix3 (),
@@ -525,7 +525,7 @@ for (const Type of Object .keys (X3D .SFMatrix3))
       expect (c [8]) .toBe (1);
    });
 
-   test ("skewX", () =>
+   test .concurrent ("skewX", () =>
    {
       const
          a = new SFMatrix3 (),
@@ -548,7 +548,7 @@ for (const Type of Object .keys (X3D .SFMatrix3))
       expect (c [8]) .toBe (1);
    });
 
-   test ("skewY", () =>
+   test .concurrent ("skewY", () =>
    {
       const
          a = new SFMatrix3 (),
@@ -571,7 +571,7 @@ for (const Type of Object .keys (X3D .SFMatrix3))
       expect (c [8]) .toBe (1);
    });
 
-   test ("fromString", () =>
+   test .concurrent ("fromString", () =>
    {
       const a = new SFMatrix3 ();
 
@@ -582,7 +582,7 @@ for (const Type of Object .keys (X3D .SFMatrix3))
       expect (() => a .fromString ("foo")) .toThrow (Error);
    });
 
-   test ("fromVRMLString", () =>
+   test .concurrent ("fromVRMLString", () =>
    {
       const a = new SFMatrix3 ();
 
@@ -593,7 +593,7 @@ for (const Type of Object .keys (X3D .SFMatrix3))
       expect (() => a .fromVRMLString ("foo")) .toThrow (Error);
    });
 
-   test ("fromXMLString", () =>
+   test .concurrent ("fromXMLString", () =>
    {
       const a = new SFMatrix3 ();
 
@@ -604,7 +604,7 @@ for (const Type of Object .keys (X3D .SFMatrix3))
       expect (() => a .fromXMLString ("foo")) .toThrow (Error);
    });
 
-   test ("toString", () =>
+   test .concurrent ("toString", () =>
    {
       const a = new SFMatrix3 (1,2,3,4,5,6,7,8,9);
       const b = new SFMatrix3 (10,11,12,13,14,15,16,17,18);

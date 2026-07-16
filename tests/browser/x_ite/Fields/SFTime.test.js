@@ -3,7 +3,7 @@ import X3D              from "../../X3D.js";
 
 const SFTime = X3D .SFTime;
 
-test ("constructor", () =>
+test .concurrent ("constructor", () =>
 {
    expect (new SFTime ()                .valueOf ()) .toBe (-1);
    expect (new SFTime (NaN)             .valueOf ()) .toBe (NaN);
@@ -24,12 +24,12 @@ test ("constructor", () =>
    expect (new SFTime (-666)            .valueOf ()) .toBe (-666);
 });
 
-test ("enumerate", () =>
+test .concurrent ("enumerate", () =>
 {
    enumerate ([ ], new SFTime ());
 });
 
-test ("setValue", () =>
+test .concurrent ("setValue", () =>
 {
    const field = new SFTime ();
 
@@ -52,7 +52,7 @@ test ("setValue", () =>
    expect ((field .setValue (-666),            field .valueOf ())) .toBe (-666);
 });
 
-test ("common", () =>
+test .concurrent ("common", () =>
 {
    const field = new SFTime ();
 
@@ -61,7 +61,7 @@ test ("common", () =>
    expect (Object .prototype .toString .call (field)) .toBe ("[object SFTime]");
 });
 
-test ("copy", () =>
+test .concurrent ("copy", () =>
 {
    const
       v1 = new SFTime (2),
@@ -72,7 +72,7 @@ test ("copy", () =>
    expect (v2 .equals (2)) .toBe (true);
 });
 
-test ("equals", () =>
+test .concurrent ("equals", () =>
 {
    const
       a = new SFTime (0),
@@ -83,7 +83,7 @@ test ("equals", () =>
    expect (a .equals (b)) .toBe (false);
 });
 
-test ("isDefaultValue", () =>
+test .concurrent ("isDefaultValue", () =>
 {
    const
       a = new SFTime (-1),
@@ -95,7 +95,7 @@ test ("isDefaultValue", () =>
    expect (b .isDefaultValue ()) .toBe (false);
 });
 
-test ("fromString", () =>
+test .concurrent ("fromString", () =>
 {
    const a = new SFTime ();
 
@@ -116,7 +116,7 @@ test ("fromString", () =>
    expect (() => a .fromString ("foo")) .toThrow (Error);
 });
 
-test ("fromVRMLString", () =>
+test .concurrent ("fromVRMLString", () =>
 {
    const a = new SFTime ();
 
@@ -137,7 +137,7 @@ test ("fromVRMLString", () =>
    expect (() => a .fromVRMLString ("foo")) .toThrow (Error);
 });
 
-test ("fromXMLString", () =>
+test .concurrent ("fromXMLString", () =>
 {
    const a = new SFTime ();
 
@@ -158,7 +158,7 @@ test ("fromXMLString", () =>
    expect (() => a .fromXMLString ("foo")) .toThrow (Error);
 });
 
-test ("toString", () =>
+test .concurrent ("toString", () =>
 {
    const a = new SFTime (1);
    const b = new SFTime (2);

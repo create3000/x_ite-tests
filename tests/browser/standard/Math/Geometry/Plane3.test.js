@@ -7,7 +7,7 @@ const
    Vector3 = X3D .Vector3,
    Matrix4 = X3D .Matrix4;
 
-test ("constructor", () =>
+test .concurrent ("constructor", () =>
 {
    const p1 = new Plane3 ();
 
@@ -30,7 +30,7 @@ test ("constructor", () =>
    expect (pz .distanceFromOrigin) .toBe (1);
 });
 
-test ("copy", () =>
+test .concurrent ("copy", () =>
 {
    const p1 = new Plane3 (Vector3 .X_AXIS, Vector3 .X_AXIS);
    const p2 = p1 .copy ();
@@ -41,7 +41,7 @@ test ("copy", () =>
    expect (p2 .equals (p1)) .toBe (true);
 });
 
-test ("assign", () =>
+test .concurrent ("assign", () =>
 {
    const p1 = new Plane3 (Vector3 .X_AXIS, Vector3 .X_AXIS);
    const p2 = new Plane3 ();
@@ -54,7 +54,7 @@ test ("assign", () =>
    expect (p2 .equals (p1)) .toBe (true);
 });
 
-test ("equals", () =>
+test .concurrent ("equals", () =>
 {
    const p1 = new Plane3 (Vector3 .X_AXIS, Vector3 .X_AXIS);
    const p2 = new Plane3 ();
@@ -78,7 +78,7 @@ test ("equals", () =>
    expect (p4 .equals (p3)) .not .toBe (true);
 });
 
-test ("set", () =>
+test .concurrent ("set", () =>
 {
    const px = new Plane3 ();
 
@@ -107,7 +107,7 @@ test ("set", () =>
    expect (px .distanceFromOrigin) .toBe (0);
 });
 
-test ("multRight", () =>
+test .concurrent ("multRight", () =>
 {
    const px = new Plane3 (Vector3 .X_AXIS, Vector3 .X_AXIS);
    const m1 = new Matrix4 (0, 1, 0, 0,  -1, 0, 0, 0,  0, 0, 1, 0,  1, 1, 1, 1);
@@ -132,7 +132,7 @@ test ("multRight", () =>
    expect (pz .distanceFromOrigin) .toBe (2);
 });
 
-test ("multLeft", () =>
+test .concurrent ("multLeft", () =>
 {
    const px = new Plane3 (Vector3 .X_AXIS, Vector3 .X_AXIS);
    const m1 = new Matrix4 (0, 1, 0, 0,  -1, 0, 0, 0,  0, 0, 1, 0,  1, 1, 1, 1);
@@ -157,7 +157,7 @@ test ("multLeft", () =>
    expect (pz .distanceFromOrigin) .toBe (0.5);
 });
 
-test ("getDistanceToPoint", () =>
+test .concurrent ("getDistanceToPoint", () =>
 {
    const px = new Plane3 (Vector3 .X_AXIS, Vector3 .X_AXIS);
    const p1 = new Vector3 (2, 0, 0);
@@ -175,7 +175,7 @@ test ("getDistanceToPoint", () =>
    expect (pz .getDistanceToPoint (p3)) .toBe (1);
 });
 
-test ("getPerpendicularVectorToPoint", () =>
+test .concurrent ("getPerpendicularVectorToPoint", () =>
 {
    const px = new Plane3 (Vector3 .X_AXIS, Vector3 .X_AXIS);
    const p1 = new Vector3 (2, 0, 0);
@@ -193,7 +193,7 @@ test ("getPerpendicularVectorToPoint", () =>
    expect (pz .getPerpendicularVectorToPoint (p3) .equals (Vector3 .Z_AXIS .copy () .negate ())) .toBe (true);
 });
 
-test ("getClosestPointToPoint", () =>
+test .concurrent ("getClosestPointToPoint", () =>
 {
    const px = new Plane3 (Vector3 .X_AXIS, Vector3 .X_AXIS);
    const p1 = new Vector3 (2, 0, 0);
@@ -211,7 +211,7 @@ test ("getClosestPointToPoint", () =>
    expect (pz .getClosestPointToPoint (p3) .equals (Vector3 .Z_AXIS)) .toBe (true);
 });
 
-test ("intersectsLine", () =>
+test .concurrent ("intersectsLine", () =>
 {
    const px = new Plane3 (Vector3 .X_AXIS, Vector3 .X_AXIS);
    const l1 = new Line3 (Vector3 .ZERO, Vector3 .X_AXIS);
@@ -237,7 +237,7 @@ test ("intersectsLine", () =>
    expect (pz .intersectsLine (l1, is)) .toBe (false);
 });
 
-test ("toString", () =>
+test .concurrent ("toString", () =>
 {
    const p1 = new Plane3 (Vector3 .X_AXIS, Vector3 .X_AXIS);
 

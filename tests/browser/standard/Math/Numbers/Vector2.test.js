@@ -3,7 +3,7 @@ import X3D              from "../../../X3D.js";
 
 const Vector2 = X3D .Vector2;
 
-test ("constants", () =>
+test .concurrent ("constants", () =>
 {
    expect (Vector2 .ZERO .equals (new Vector2 (0))) .toBe (true);
 
@@ -16,7 +16,7 @@ test ("constants", () =>
    expect (Vector2 .NEGATIVE_Y_AXIS .equals (new Vector2 (0,-1))) .toBe (true);
 });
 
-test ("constructor", () =>
+test .concurrent ("constructor", () =>
 {
    const v0 = new Vector2 ();
 
@@ -59,7 +59,7 @@ test ("constructor", () =>
 });
 
 
-test ("enumerate", () =>
+test .concurrent ("enumerate", () =>
 {
    const properties = [
       "x",
@@ -70,14 +70,14 @@ test ("enumerate", () =>
    enumerate (properties, new Vector2 (1, 2));
 });
 
-test ("copy", () =>
+test .concurrent ("copy", () =>
 {
    const v1 = new Vector2 (2, 3);
 
    expect (v1 .copy ()) .toEqual ({ x:2, y:3 });
 });
 
-test ("assign", () =>
+test .concurrent ("assign", () =>
 {
    const
       v1 = new Vector2 (0, 0),
@@ -86,7 +86,7 @@ test ("assign", () =>
    expect (v1 .assign (v2)) .toEqual ({ x:2, y:3 });
 });
 
-test ("set", () =>
+test .concurrent ("set", () =>
 {
    const v1 = new Vector2 (0, 0);
 
@@ -95,7 +95,7 @@ test ("set", () =>
    expect ([... v1 .set (2)]) .toEqual ([2, 2]);
 });
 
-test ("negate", () =>
+test .concurrent ("negate", () =>
 {
    const v1 = new Vector2 (2, 3);
 
@@ -112,7 +112,7 @@ test ("negate", () =>
    expect (v2 [1]) .toBe (3);
 });
 
-test ("inverse", () =>
+test .concurrent ("inverse", () =>
 {
    const v1 = new Vector2 (2, 3);
 
@@ -122,7 +122,7 @@ test ("inverse", () =>
    expect (v1 [1]) .toBeCloseTo (1 / 3);
 });
 
-test ("add", () =>
+test .concurrent ("add", () =>
 {
    const
       v1 = new Vector2 (2, 3),
@@ -134,7 +134,7 @@ test ("add", () =>
    expect (v1 [1]) .toBe (3 + 7);
 });
 
-test ("subtract", () =>
+test .concurrent ("subtract", () =>
 {
    const
       v1 = new Vector2 (2, 3),
@@ -146,7 +146,7 @@ test ("subtract", () =>
    expect (v1 [1]) .toBe (3 - 7);
 });
 
-test ("multiply", () =>
+test .concurrent ("multiply", () =>
 {
    const v1 = new Vector2 (2, 3);
 
@@ -156,7 +156,7 @@ test ("multiply", () =>
    expect (v1 [1]) .toBe (3 * 6);
 });
 
-test ("multVec", () =>
+test .concurrent ("multVec", () =>
 {
    const
       v1 = new Vector2 (2, 3),
@@ -168,7 +168,7 @@ test ("multVec", () =>
    expect (v1 [1]) .toBe (3 * 7);
 });
 
-test ("divide", () =>
+test .concurrent ("divide", () =>
 {
    const v1 = new Vector2 (2, 3);
 
@@ -178,7 +178,7 @@ test ("divide", () =>
    expect (v1 [1]) .toBeCloseTo (3 / 6);
 });
 
-test ("divVec", () =>
+test .concurrent ("divVec", () =>
 {
    const
       v1 = new Vector2 (2, 3),
@@ -190,7 +190,7 @@ test ("divVec", () =>
    expect (v1 [1]) .toBeCloseTo (3 / 7);
 });
 
-test ("normalize", () =>
+test .concurrent ("normalize", () =>
 {
    const
       v1 = new Vector2 (2, 3),
@@ -208,7 +208,7 @@ test ("normalize", () =>
    expect (v2 .equals (Vector2 .ZERO)) .toBe (true);
 });
 
-test ("dot", () =>
+test .concurrent ("dot", () =>
 {
    const
       v1 = new Vector2 (2, 3),
@@ -217,21 +217,21 @@ test ("dot", () =>
    expect (v1 .dot (v2)) .toBe (2 * 6 + 3 * 7);
 });
 
-test ("squaredNorm", () =>
+test .concurrent ("squaredNorm", () =>
 {
    const v1 = new Vector2 (2, 3);
 
    expect (v1 .squaredNorm ()) .toBe (2 * 2 + 3 * 3);
 });
 
-test ("norm", () =>
+test .concurrent ("norm", () =>
 {
    const v1 = new Vector2 (2, 3);
 
    expect (v1 .norm ()) .toBeCloseTo (Math .hypot (2, 3));
 });
 
-test ("distance", () =>
+test .concurrent ("distance", () =>
 {
    const
       v1 = new Vector2 (2, 3),
@@ -240,7 +240,7 @@ test ("distance", () =>
    expect (v1 .distance (v2)) .toBeCloseTo (Math .hypot (2 - 6, 3 - 7));
 });
 
-test ("lerp", () =>
+test .concurrent ("lerp", () =>
 {
    const
       v1 = new Vector2 (2, 3),
@@ -252,7 +252,7 @@ test ("lerp", () =>
    expect (v1 [1]) .toBeCloseTo ((3 + 7) / 2);
 });
 
-test ("abs", () =>
+test .concurrent ("abs", () =>
 {
    const v1 = new Vector2 (2, 3);
 
@@ -269,7 +269,7 @@ test ("abs", () =>
    expect (v2 [1]) .toBe (3);
 });
 
-test ("min", () =>
+test .concurrent ("min", () =>
 {
    const
       v1 = new Vector2 (2, 3),
@@ -281,7 +281,7 @@ test ("min", () =>
    expect (v1 [1]) .toBe (3);
 });
 
-test ("max", () =>
+test .concurrent ("max", () =>
 {
    const
       v1 = new Vector2 (2, 3),
@@ -293,7 +293,7 @@ test ("max", () =>
    expect (v1 [1]) .toBe (7);
 });
 
-test ("equals", () =>
+test .concurrent ("equals", () =>
 {
    const
       a = new Vector2 (2,3),
@@ -311,7 +311,7 @@ test ("equals", () =>
    }
 });
 
-test ("reflect", () =>
+test .concurrent ("reflect", () =>
 {
    const
       v1 = new Vector2 (-1, 1),
@@ -323,7 +323,7 @@ test ("reflect", () =>
    expect (v1 [1]) .toBe (-1);
 });
 
-test ("toString", () =>
+test .concurrent ("toString", () =>
 {
    const v = new Vector2 (3, 4);
 

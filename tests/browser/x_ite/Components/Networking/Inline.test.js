@@ -5,7 +5,7 @@ const
    canvas  = X3D .createBrowser (),
    browser = canvas .browser;
 
-test ("dispose", async () =>
+test .concurrent ("dispose", async () =>
 {
    const scene1 = await browser .createX3DFromString (`
 Inline {

@@ -2,12 +2,13 @@ import { expect, test } from "vitest";
 
 const path = require ("path");
 
-test ("documentation", () =>
+test .concurrent ("documentation", () =>
 {
    expect (sh `perl "${path .resolve (__dirname, "documentation.pl")}"`) .toBe ("Test done.\n");
-});
+},
+10_000);
 
-test ("X3DUOM", () =>
+test .concurrent ("X3DUOM", () =>
 {
    expect (sh `node "${path .resolve (__dirname, "x3duom.js")}"`)
       .toBe (sh `cat "${path .resolve (__dirname, "x3duom.txt")}"`);

@@ -5,7 +5,7 @@ const
    canvas  = X3D .createBrowser (),
    Browser = canvas .browser;
 
-test ("properties", async () =>
+test .concurrent ("properties", async () =>
 {
    const scene = await Browser .createX3DFromString (`
 PROFILE Interchange

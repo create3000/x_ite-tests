@@ -8,12 +8,12 @@ const
 
 const comp = 4;
 
-test ("constructor", () =>
+test .concurrent ("constructor", () =>
 {
    expect ((new MFRotation ()) [0]) .toBe (undefined);
 });
 
-test ("get1Value", () =>
+test .concurrent ("get1Value", () =>
 {
    const field = new MFRotation ();
 
@@ -45,7 +45,7 @@ test ("get1Value", () =>
    expect (field [2]) .toBeInstanceOf (SFRotation);
 });
 
-test ("length", () =>
+test .concurrent ("length", () =>
 {
    expect (new MFRotation () .length) .toBe (0);
    expect (new MFRotation (new SFRotation (1,2,3,4), new SFRotation (1,2,3,4)) .length) .toBe (2);
@@ -86,7 +86,7 @@ test ("length", () =>
       expect (m [i] .equals (new SFRotation ())) .toBe (true);
 });
 
-test ("setValue", () =>
+test .concurrent ("setValue", () =>
 {
    const field = new MFRotation ();
 
@@ -116,7 +116,7 @@ test ("setValue", () =>
    expect (field .equals (new MFRotation ())) .toBe (true);
 });
 
-test ("assign", () =>
+test .concurrent ("assign", () =>
 {
    const
       field = new MFRotation (),
@@ -133,7 +133,7 @@ test ("assign", () =>
    expect (field .equals (new MFRotation ())) .toBe (true);
 });
 
-test ("fromString", () =>
+test .concurrent ("fromString", () =>
 {
    const a = new MFRotation ();
 
@@ -174,7 +174,7 @@ test ("fromString", () =>
    expect (a [1] .angle) .toBeCloseTo (Math .PI);
 });
 
-test ("fromVRMLString", () =>
+test .concurrent ("fromVRMLString", () =>
 {
    const a = new MFRotation ();
 
@@ -215,7 +215,7 @@ test ("fromVRMLString", () =>
    expect (a [1] .angle) .toBeCloseTo (Math .PI);
 });
 
-test ("fromXMLString", () =>
+test .concurrent ("fromXMLString", () =>
 {
    const a = new MFRotation ();
 
@@ -251,12 +251,12 @@ test ("fromXMLString", () =>
    expect (a [1] .angle) .toBeCloseTo (Math .PI);
 });
 
-test ("enumerate", () =>
+test .concurrent ("enumerate", () =>
 {
    enumerate (["0", "1", "2"], new MFRotation (new SFRotation (), new SFRotation (), new SFRotation ()));
 });
 
-test ("toString", () =>
+test .concurrent ("toString", () =>
 {
    const a = new MFRotation ();
    const b = new MFRotation (new SFRotation (1,2,3,4));

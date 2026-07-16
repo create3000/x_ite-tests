@@ -6,7 +6,7 @@ const Browser = X3D .createBrowser () .browser;
 Browser .setBrowserOption ("AutoUpdate", false);
 Browser .beginUpdate ();
 
-test ("events", () => new Promise (async (resolve, reject) =>
+test .concurrent ("events", () => new Promise (async (resolve, reject) =>
 {
    const
       scene     = await Browser .createScene (Browser .getProfile ("Interactive")),
@@ -111,7 +111,7 @@ test ("events", () => new Promise (async (resolve, reject) =>
 }),
 2_000);
 
-test ("timeOut 1s", () => new Promise (async (resolve, reject) =>
+test .concurrent ("timeOut 1s", () => new Promise (async (resolve, reject) =>
 {
    const
       scene    = await Browser .createScene (Browser .getProfile ("Interactive")),

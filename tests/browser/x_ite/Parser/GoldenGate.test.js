@@ -1,7 +1,7 @@
 import { expect, test } from "vitest";
 import X3D              from "../../X3D.js";
 
-test ("add/removeParser", () =>
+test .concurrent ("add/removeParser", () =>
 {
    const originalParsers = X3D .GoldenGate .getParsers ();
 

@@ -2,7 +2,7 @@ import { expect, test } from "vitest";
 import X3D              from "../../X3D.js";
 import $                from "https://cdn.jsdelivr.net/npm/jquery@4.0.0/dist-module/jquery.slim.module.js";
 
-test ("getBrowserProperty", () =>
+test .concurrent ("getBrowserProperty", () =>
 {
    const
       canvas = X3D .createBrowser (),
@@ -18,7 +18,7 @@ test ("getBrowserProperty", () =>
    expect (Browser .getBrowserProperty ("BINARY_ENCODING")) .toBe (false);
 });
 
-test ("getBrowserOption", () =>
+test .concurrent ("getBrowserOption", () =>
 {
    const
       canvas = X3D .createBrowser (),
@@ -126,7 +126,7 @@ test ("getBrowserOption", () =>
    // Browser .removeBrowserOptionCallback ("test", "XRSessionMode");
 });
 
-test ("getRenderingProperty", () =>
+test .concurrent ("getRenderingProperty", () =>
 {
    const
       canvas  = X3D .createBrowser (),
@@ -181,7 +181,7 @@ test ("getRenderingProperty", () =>
    // Browser .removeRenderingPropertyCallback ("test", "XRSession");
 });
 
-test ("INITIALIZED_EVENT 2", () => new Promise ((resolve, reject) =>
+test .concurrent ("INITIALIZED_EVENT 2", () => new Promise ((resolve, reject) =>
 {
    const
       canvas  = X3D .createBrowser (),
@@ -224,7 +224,7 @@ DEF X Transform { }
    expect (Browser .getBrowserCallbacks () .size) .toBe (1);
 }));
 
-test ("SHUTDOWN_EVENT 2", () => new Promise ((resolve, reject) =>
+test .concurrent ("SHUTDOWN_EVENT 2", () => new Promise ((resolve, reject) =>
 {
    const
       canvas = X3D .createBrowser (),
@@ -267,7 +267,7 @@ DEF X Transform { }
 }));
 
 
-test ("INITIALIZED_EVENT 3", () => new Promise ((resolve, reject) =>
+test .concurrent ("INITIALIZED_EVENT 3", () => new Promise ((resolve, reject) =>
 {
    const
       canvas  = X3D .createBrowser (),
@@ -307,7 +307,7 @@ DEF X Transform { }
    expect (Browser .getBrowserCallbacks (X3D .X3DConstants .INITIALIZED_EVENT) .size) .toBe (1);
 }));
 
-test ("SHUTDOWN_EVENT 3", () => new Promise ((resolve, reject) =>
+test .concurrent ("SHUTDOWN_EVENT 3", () => new Promise ((resolve, reject) =>
 {
    const
       canvas = X3D .createBrowser (),
@@ -347,7 +347,7 @@ DEF X Transform { }
 }));
 
 
-test ("importDocument", async () =>
+test .concurrent ("importDocument", async () =>
 {
    const
       canvas  = X3D .createBrowser (),
@@ -387,7 +387,7 @@ test ("importDocument", async () =>
    expect (scene3 .rootNodes [0] .getNodeTypeName ()) .toBe ("Transform");
 });
 
-test ("importJS", async () =>
+test .concurrent ("importJS", async () =>
 {
    const
       canvas  = X3D .createBrowser (),
@@ -430,7 +430,7 @@ test ("importJS", async () =>
    expect (scene2 .rootNodes [2] .getNodeTypeName ()) .toBe ("Box");
 });
 
-test ("VRML", async () =>
+test .concurrent ("VRML", async () =>
 {
    const typeNames = [
       "Anchor",
@@ -506,7 +506,7 @@ ${typeNames .map (n => `${n}{}`) .join ("\n")}
    }
 });
 
-test ("Profile/Component Handling", async () =>
+test .concurrent ("Profile/Component Handling", async () =>
 {
    const
       canvas  = X3D .createBrowser (),
@@ -537,7 +537,7 @@ TestNode { }
    expect (scene .rootNodes [0] .test) .toBe ("TestValue");
 });
 
-test ("baseURL - createX3DFromURL", async () =>
+test .concurrent ("baseURL - createX3DFromURL", async () =>
 {
    const
       canvas  = X3D .createBrowser (),
@@ -567,7 +567,7 @@ DEF L LoadSensor {
    expect (I .getValue () .getInternalScene () .rootNodes [0] .getNodeTypeName ()) .toBe ("Transform");
 });
 
-test ("baseURL - createX3DFromString", async () =>
+test .concurrent ("baseURL - createX3DFromString", async () =>
 {
    const
       canvas  = X3D .createBrowser (),
@@ -597,7 +597,7 @@ DEF L LoadSensor {
    expect (I .getValue () .getInternalScene () .rootNodes [0] .getNodeTypeName ()) .toBe ("Transform");
 });
 
-test ("baseURL - createVrmlFromString", () => new Promise (async (resolve, reject) =>
+test .concurrent ("baseURL - createVrmlFromString", () => new Promise (async (resolve, reject) =>
 {
    try
    {
@@ -644,7 +644,7 @@ catch (error)
 }
 }));
 
-test ("baseURL - loadURL", async () =>
+test .concurrent ("baseURL - loadURL", async () =>
 {
    const
       canvas  = X3D .createBrowser (),
@@ -677,7 +677,7 @@ DEF L LoadSensor {
    expect (I .getValue () .getInternalScene () .rootNodes [0] .getNodeTypeName ()) .toBe ("Transform");
 });
 
-test ("blob URL", async () =>
+test .concurrent ("blob URL", async () =>
 {
    const
       canvas  = X3D .createBrowser (),

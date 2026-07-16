@@ -5,7 +5,7 @@ const
    canvas  = X3D .createBrowser (),
    Browser = canvas .browser;
 
-test ("statements.x3d", async () =>
+test .concurrent ("statements.x3d", async () =>
 {
    const
       latestVersion = (await Browser .createScene ()) .specificationVersion,
@@ -56,7 +56,7 @@ test ("statements.x3d", async () =>
    }
 });
 
-test ("fields.x3d", async () =>
+test .concurrent ("fields.x3d", async () =>
 {
    const
       latestVersion = (await Browser .createScene ()) .specificationVersion,
@@ -94,7 +94,7 @@ test ("fields.x3d", async () =>
    }
 });
 
-test ("appinfo.x3d", async () =>
+test .concurrent ("appinfo.x3d", async () =>
 {
    const
       latestVersion = (await Browser .createScene ()) .specificationVersion,
@@ -165,7 +165,7 @@ test ("appinfo.x3d", async () =>
    }
 });
 
-test ("USE-NULL.x3d", async () =>
+test .concurrent ("USE-NULL.x3d", async () =>
 {
    const
       latestVersion = (await Browser .createScene ()) .specificationVersion,
@@ -201,7 +201,7 @@ test ("USE-NULL.x3d", async () =>
    }
 });
 
-test ("empty.x3d", async () =>
+test .concurrent ("empty.x3d", async () =>
 {
    const
       latestVersion = (await Browser .createScene ()) .specificationVersion,
@@ -240,7 +240,7 @@ test ("empty.x3d", async () =>
    }
 });
 
-test ("scripts.x3d", async () =>
+test .concurrent ("scripts.x3d", async () =>
 {
    const
       latestVersion = (await Browser .createScene ()) .specificationVersion,
@@ -278,7 +278,7 @@ test ("scripts.x3d", async () =>
    }
 });
 
-test ("scripts.x3dj", async () =>
+test .concurrent ("scripts.x3dj", async () =>
 {
    const
       latestVersion = (await Browser .createScene ()) .specificationVersion,
@@ -316,7 +316,7 @@ test ("scripts.x3dj", async () =>
    }
 });
 
-test ("nodes", async () =>
+test .concurrent ("nodes", async () =>
 {
    await Browser .loadComponents (Browser .getProfile ("Full"));
 
@@ -349,7 +349,7 @@ test ("nodes", async () =>
       expect (node .getNodeTypeName ()) .toBe (Browser .getConcreteNodes () [i] .typeName);
 });
 
-test ("initializableReference.x3dv", async () =>
+test .concurrent ("initializableReference.x3dv", async () =>
 {
    const
       orig  = await fetch (new URL ("files/X3D/initializableReference.x3dv", import.meta.url)) .then (r => r .text ()) .then (t => t .replace (/V\d+\.\d+\.\d+/, "V" + Browser .version)),
@@ -365,7 +365,7 @@ test ("initializableReference.x3dv", async () =>
    expect (html .toVRMLString ()) .toBe (orig);
 });
 
-test ("doubleFields.x3d", async () =>
+test .concurrent ("doubleFields.x3d", async () =>
 {
    const
       orig  = await fetch (new URL ("files/X3D/doubleFields.x3d", import.meta.url)) .then (r => r .text ()),
@@ -381,7 +381,7 @@ test ("doubleFields.x3d", async () =>
    expect (html .toXMLString ()) .toBe (orig);
 });
 
-test ("base64-with-bom", async () =>
+test .concurrent ("base64-with-bom", async () =>
 {
    const
       data  = await fetch (new URL ("files/X3D/base64-with-bom.url", import.meta.url)) .then (r => r .text ()),
@@ -390,7 +390,7 @@ test ("base64-with-bom", async () =>
    expect (scene .rootNodes) .toHaveLength (27);
 });
 
-test ("bom.txt", async () =>
+test .concurrent ("bom.txt", async () =>
 {
    const
       text  = await fetch (new URL ("files/X3D/bom.txt", import.meta.url)) .then (r => r .text ()),
@@ -399,14 +399,14 @@ test ("bom.txt", async () =>
    expect (scene .rootNodes) .toHaveLength (27);
 });
 
-test ("unknowns.x3dv", async () =>
+test .concurrent ("unknowns.x3dv", async () =>
 {
    const scene = await Browser .createX3DFromURL (new X3D .MFString (new URL ("files/X3D/unknowns.x3dv", import.meta.url)));
 
    expect (scene .rootNodes) .toHaveLength (2);
 });
 
-test ("proto-import-routes.x3dv", async () =>
+test .concurrent ("proto-import-routes.x3dv", async () =>
 {
    const scene1 = await Browser .createX3DFromURL (new X3D .MFString (new URL ("files/X3D/proto-import-routes.x3d", import.meta.url)));
 
@@ -474,7 +474,7 @@ test ("proto-import-routes.x3dv", async () =>
    }
 });
 
-test ("double-import.x3dv", async () =>
+test .concurrent ("double-import.x3dv", async () =>
 {
    const scene1 = await Browser .createX3DFromURL (new X3D .MFString (new URL ("files/X3D/double-import.x3dv", import.meta.url)));
 
@@ -513,7 +513,7 @@ test ("double-import.x3dv", async () =>
    }
 });
 
-test ("proto-with-filled-node-fields.x3d", async () =>
+test .concurrent ("proto-with-filled-node-fields.x3d", async () =>
 {
    const
       latestVersion = (await Browser .createScene ()) .specificationVersion,
@@ -556,7 +556,7 @@ test ("proto-with-filled-node-fields.x3d", async () =>
    }
 });
 
-test ("comments", async () =>
+test .concurrent ("comments", async () =>
 {
    const scene = await Browser .createX3DFromString (`#X3D V4.0 utf8
 # comment 1
@@ -826,7 +826,7 @@ scale
    expect (scene .routes) .toHaveLength (1);
 });
 
-test ("string escape sequences", async () =>
+test .concurrent ("string escape sequences", async () =>
 {
    const scene = await Browser .createX3DFromURL (new X3D .MFString (new URL ("files/X3D/escape-sequences.x3dv", import.meta.url)));
 
@@ -836,7 +836,7 @@ test ("string escape sequences", async () =>
    expect (scene .rootNodes [0] .string [2]) .toBe ("\\\\\"\\\\");
 });
 
-test ("null", async () =>
+test .concurrent ("null", async () =>
 {
    const scene1 = await Browser .createX3DFromString (`
 PROTO T [
@@ -889,7 +889,7 @@ T {
    }
 });
 
-test ("parse value of inputOnly and outputOnly fields", async () =>
+test .concurrent ("parse value of inputOnly and outputOnly fields", async () =>
 {
    const scene = await Browser .createX3DFromString (`#X3D V4.0 utf8
 
@@ -909,7 +909,7 @@ DEF Test Viewpoint {
    expect (scene .rootNodes [0] .description) .toBe ("test");
 });
 
-// test ("parse proto with name of a build-in node not in profile", async () =>
+// test .concurrent ("parse proto with name of a build-in node not in profile", async () =>
 // {
 //    const scene = await Browser .createX3DFromString (`#X3D V4.0 utf8
 
@@ -927,7 +927,7 @@ DEF Test Viewpoint {
 //    expect (scene .rootNodes [0] .getNodeType () .includes (X3D .X3DConstants .X3DPrototypeInstance)) .toBe (true);
 // });
 
-test ("parse proto with name of a build-in node", async () =>
+test .concurrent ("parse proto with name of a build-in node", async () =>
 {
    const scene = await Browser .createX3DFromString (`#X3D V4.0 utf8
 
@@ -949,7 +949,7 @@ DEF Test Group { }
    expect (scene .rootNodes [0] .getNodeType () .includes (X3D .X3DConstants .Group)) .toBe (true);
 });
 
-test ("import-export-statements.x3d", async () =>
+test .concurrent ("import-export-statements.x3d", async () =>
 {
    const
       latestVersion = (await Browser .createScene ()) .specificationVersion,
@@ -991,7 +991,7 @@ test ("import-export-statements.x3d", async () =>
    }
 });
 
-test ("USE before DEF", async () =>
+test .concurrent ("USE before DEF", async () =>
 {
    const files = [
       new URL ("files/X3D/use-before-def.x3d",  import.meta.url),
@@ -1030,7 +1030,7 @@ test ("USE before DEF", async () =>
    }
 });
 
-test ("use-exported-node.x3d", async () =>
+test .concurrent ("use-exported-node.x3d", async () =>
 {
    const
       latestVersion = (await Browser .createScene ()) .specificationVersion,
@@ -1070,7 +1070,7 @@ test ("use-exported-node.x3d", async () =>
    }
 });
 
-test ("use-exported-node-script.x3dv", async () =>
+test .concurrent ("use-exported-node-script.x3dv", async () =>
 {
    const files = [
       new URL ("files/X3D/use-exported-node-script.x3dv", import.meta.url),
@@ -1095,7 +1095,7 @@ test ("use-exported-node-script.x3dv", async () =>
    }
 });
 
-test ("box1", async () =>
+test .concurrent ("box1", async () =>
 {
    const scene1 = await Browser .createX3DFromURL (new X3D .MFString (new URL ("files/X3D/box1.x3d", import.meta.url)));
 

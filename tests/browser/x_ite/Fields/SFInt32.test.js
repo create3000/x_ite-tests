@@ -3,7 +3,7 @@ import X3D              from "../../X3D.js";
 
 const SFInt32 = X3D .SFInt32;
 
-test ("constructor", () =>
+test .concurrent ("constructor", () =>
 {
    expect (new SFInt32 ()                .valueOf ()) .toBe (0);
    expect (new SFInt32 (NaN)             .valueOf ()) .toBe (0);
@@ -24,12 +24,12 @@ test ("constructor", () =>
    expect (new SFInt32 (-666)            .valueOf ()) .toBe (-666);
 });
 
-test ("enumerate", () =>
+test .concurrent ("enumerate", () =>
 {
    enumerate ([ ], new SFInt32 ());
 });
 
-test ("setValue", () =>
+test .concurrent ("setValue", () =>
 {
    const field = new SFInt32 ();
 
@@ -52,7 +52,7 @@ test ("setValue", () =>
    expect ((field .setValue (-666),            field .valueOf ())) .toBe (-666);
 });
 
-test ("common", () =>
+test .concurrent ("common", () =>
 {
    const field = new SFInt32 ();
 
@@ -61,7 +61,7 @@ test ("common", () =>
    expect (Object .prototype .toString .call (field)) .toBe ("[object SFInt32]");
 });
 
-test ("copy", () =>
+test .concurrent ("copy", () =>
 {
    const
       v1 = new SFInt32 (2),
@@ -72,7 +72,7 @@ test ("copy", () =>
    expect (v2 .equals (2)) .toBe (true);
 });
 
-test ("equals", () =>
+test .concurrent ("equals", () =>
 {
    const
       a = new SFInt32 (0),
@@ -83,7 +83,7 @@ test ("equals", () =>
    expect (a .equals (b)) .toBe (false);
 });
 
-test ("isDefaultValue", () =>
+test .concurrent ("isDefaultValue", () =>
 {
    const
       a = new SFInt32 (0),
@@ -95,7 +95,7 @@ test ("isDefaultValue", () =>
    expect (b .isDefaultValue ()) .toBe (false);
 });
 
-test ("fromString", () =>
+test .concurrent ("fromString", () =>
 {
    const a = new SFInt32 ();
 
@@ -110,7 +110,7 @@ test ("fromString", () =>
    expect (() => a .fromString ("foo")) .toThrow (Error);
 });
 
-test ("fromVRMLString", () =>
+test .concurrent ("fromVRMLString", () =>
 {
    const a = new SFInt32 ();
 
@@ -125,7 +125,7 @@ test ("fromVRMLString", () =>
    expect (() => a .fromVRMLString ("foo")) .toThrow (Error);
 });
 
-test ("fromXMLString", () =>
+test .concurrent ("fromXMLString", () =>
 {
    const a = new SFInt32 ();
 
@@ -140,7 +140,7 @@ test ("fromXMLString", () =>
    expect (() => a .fromXMLString ("foo")) .toThrow (Error);
 });
 
-test ("toString", () =>
+test .concurrent ("toString", () =>
 {
    const a = new SFInt32 (1);
    const b = new SFInt32 (2);

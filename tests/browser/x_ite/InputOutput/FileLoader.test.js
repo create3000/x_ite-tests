@@ -3,7 +3,7 @@ import X3D              from "../../X3D.js";
 
 const FileLoader = X3D .FileLoader;
 
-test ("data-url encoded", () => new Promise ((resolve, reject) =>
+test .concurrent ("data-url encoded", () => new Promise ((resolve, reject) =>
 {
    const
       canvas  = X3D .createBrowser (),
@@ -34,7 +34,7 @@ main ()
    });
 }));
 
-test ("data-url not encoded", () => new Promise ((resolve, reject) =>
+test .concurrent ("data-url not encoded", () => new Promise ((resolve, reject) =>
 {
    const
       canvas  = X3D .createBrowser (),
@@ -79,7 +79,7 @@ test .each ([
    const text = `
 // Some percent % signs can cause to 100% an error.
 
-function test ()
+function test .concurrent ()
 {
    let i = 23 % 2; // Maybe as modulo.
 }

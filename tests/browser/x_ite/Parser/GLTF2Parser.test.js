@@ -1,7 +1,7 @@
 import { expect, test } from "vitest";
 import X3D              from "../../X3D.js";
 
-test ("glTF", async () =>
+test .concurrent ("glTF", async () =>
 {
    const
       canvas  = X3D .createBrowser (),
@@ -12,7 +12,7 @@ test ("glTF", async () =>
    expect (scene .rootNodes .length) .toBe (2);
 });
 
-test ("glTF-Binary", async () =>
+test .concurrent ("glTF-Binary", async () =>
 {
    const
       canvas  = X3D .createBrowser (),
@@ -23,7 +23,7 @@ test ("glTF-Binary", async () =>
    expect (scene .rootNodes .length) .toBe (2);
 });
 
-test ("glTF-Draco", async () =>
+test .concurrent ("glTF-Draco", async () =>
 {
    const
       canvas  = X3D .createBrowser (),
@@ -34,7 +34,7 @@ test ("glTF-Draco", async () =>
    expect (scene .rootNodes .length) .toBe (2);
 });
 
-test ("glTF-Embedded", async () =>
+test .concurrent ("glTF-Embedded", async () =>
 {
    const
       canvas  = X3D .createBrowser (),

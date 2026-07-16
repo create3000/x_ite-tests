@@ -5,14 +5,14 @@ const
    Color4    = X3D .Color4,
    Algorithm = X3D .Algorithm;
 
-test ("constants", () =>
+test .concurrent ("constants", () =>
 {
    expect (Color4 .BLACK .equals (new Color4 (0,0,0,1))) .toBe (true);
    expect (Color4 .WHITE .equals (new Color4 (1))) .toBe (true);
    expect (Color4 .TRANSPARENT .equals (new Color4 (0))) .toBe (true);
 });
 
-test ("constructor", () =>
+test .concurrent ("constructor", () =>
 {
    const c0 = new Color4 ();
 
@@ -164,7 +164,7 @@ test ("constructor", () =>
    expect (c9 .a) .toBe (0);
 });
 
-test ("enumerate", () =>
+test .concurrent ("enumerate", () =>
 {
    const properties = [
       "r",
@@ -177,14 +177,14 @@ test ("enumerate", () =>
    enumerate (properties, new Color4 (0.1, 0.2, 0.3, 0.4));
 });
 
-test ("copy", () =>
+test .concurrent ("copy", () =>
 {
    const v1 = new Color4 (0.1, 0.2, 0.3, 0.4);
 
    expect ([... v1 .copy ()]) .toEqual ([0.1, 0.2, 0.3, 0.4]);
 });
 
-test ("assign", () =>
+test .concurrent ("assign", () =>
 {
    const
       v1 = new Color4 (0, 0, 0, 0),
@@ -193,7 +193,7 @@ test ("assign", () =>
    expect ([... v1 .assign (v2)]) .toEqual ([0.1, 0.2, 0.3, 0.4]);
 });
 
-test ("set", () =>
+test .concurrent ("set", () =>
 {
    const v1 = new Color4 (0, 0, 0, 0);
 
@@ -206,7 +206,7 @@ test ("set", () =>
    expect ([... v1 .set (-1, -1, -1, -1)]) .toEqual ([0, 0, 0, 0]);
 });
 
-test ("equals", () =>
+test .concurrent ("equals", () =>
 {
    const
       a = new Color4 (0.1, 0.2, 0.3, 0.4),
@@ -224,7 +224,7 @@ test ("equals", () =>
    }
 });
 
-test ("getHSVA", () =>
+test .concurrent ("getHSVA", () =>
 {
    const c = new Color4 (0, 0, 0, 0);
 
@@ -293,7 +293,7 @@ test ("getHSVA", () =>
    expect (c .set (0.5, 0.5, 0.5, 1) .getHSVA ([ ]) [3]) .toBe (1);
 });
 
-test ("linearToSRGB", () =>
+test .concurrent ("linearToSRGB", () =>
 {
    const c = new Color4 (0, 0, 0, 0);
 
@@ -316,7 +316,7 @@ test ("linearToSRGB", () =>
    expect (c .linearToSRGB (c)) .toBe (c .linearToSRGB (c));
 });
 
-test ("sRGBToLinear", () =>
+test .concurrent ("sRGBToLinear", () =>
 {
    const c = new Color4 (0, 0, 0, 0);
 
@@ -339,7 +339,7 @@ test ("sRGBToLinear", () =>
    expect (c .sRGBToLinear (c)) .toBe (c .sRGBToLinear (c));
 });
 
-test ("toString", () =>
+test .concurrent ("toString", () =>
 {
    const c = new Color4 (0.1, 0.2, 0.3, 0.4);
 

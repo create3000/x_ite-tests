@@ -3,14 +3,14 @@ import X3D              from "../../X3D.js";
 
 const SFColorRGBA = X3D .SFColorRGBA;
 
-test ("constants", () =>
+test .concurrent ("constants", () =>
 {
    expect (SFColorRGBA .TRANSPARENT .equals (new SFColorRGBA (0,0,0,0))) .toBe (true);
    expect (SFColorRGBA .WHITE       .equals (new SFColorRGBA (1,1,1,1))) .toBe (true);
    expect (SFColorRGBA .BLACK       .equals (new SFColorRGBA (0,0,0,1))) .toBe (true);
 });
 
-test ("constructor", () =>
+test .concurrent ("constructor", () =>
 {
    const v1 = new SFColorRGBA ();
 
@@ -48,7 +48,7 @@ test ("constructor", () =>
    expect (v3 [3]) .toBe (0);
 });
 
-test ("enumerate", () =>
+test .concurrent ("enumerate", () =>
 {
    const properties = [
       "r",
@@ -60,7 +60,7 @@ test ("enumerate", () =>
    enumerate (properties, new SFColorRGBA ());
 });
 
-test ("getter/setter", () =>
+test .concurrent ("getter/setter", () =>
 {
    const v1 = new SFColorRGBA ();
 
@@ -108,7 +108,7 @@ test ("getter/setter", () =>
    expect ([...v1]) .toEqual ([NaN,NaN,NaN,NaN]);
 });
 
-test ("common", () =>
+test .concurrent ("common", () =>
 {
    const field = new SFColorRGBA ();
 
@@ -117,7 +117,7 @@ test ("common", () =>
    expect (Object .prototype .toString .call (field)) .toBe ("[object SFColorRGBA]");
 });
 
-test ("copy", () =>
+test .concurrent ("copy", () =>
 {
    const
       v1 = new SFColorRGBA (0.2,0.3,0.4,0.5),
@@ -128,7 +128,7 @@ test ("copy", () =>
    expect (v2 .equals (v1)) .toBe (true);
 });
 
-test ("equals", () =>
+test .concurrent ("equals", () =>
 {
    const
       a = new SFColorRGBA (0.2,0.3,0.4,0.5),
@@ -139,7 +139,7 @@ test ("equals", () =>
    expect (a .equals (b)) .toBe (false);
 });
 
-test ("isDefaultValue", () =>
+test .concurrent ("isDefaultValue", () =>
 {
    const
       a = new SFColorRGBA (0,0,0,0),
@@ -151,7 +151,7 @@ test ("isDefaultValue", () =>
    expect (b .isDefaultValue ()) .toBe (false);
 });
 
-test ("get/setHSVA", () =>
+test .concurrent ("get/setHSVA", () =>
 {
    const
       a = new SFColorRGBA (0.2,0.3,0.4,0.5),
@@ -188,7 +188,7 @@ test ("get/setHSVA", () =>
    }
 });
 
-test ("linearToSRGB", () =>
+test .concurrent ("linearToSRGB", () =>
 {
    const c1 = new SFColorRGBA (0, 0, 0, 0);
 
@@ -214,7 +214,7 @@ test ("linearToSRGB", () =>
    expect (c3 .linearToSRGB ()) .not .toBe (c3 .linearToSRGB ());
 });
 
-test ("sRGBToLinear", () =>
+test .concurrent ("sRGBToLinear", () =>
 {
    const c1 = new SFColorRGBA (0, 0, 0, 0);
 
@@ -240,7 +240,7 @@ test ("sRGBToLinear", () =>
    expect (c3 .sRGBToLinear ()) .not .toBe (c3 .sRGBToLinear ());
 });
 
-test ("lerp", () =>
+test .concurrent ("lerp", () =>
 {
    const
       a = new SFColorRGBA (0,0,0,0),
@@ -263,7 +263,7 @@ test ("lerp", () =>
    expect (c [3]) .toBeCloseTo (0.5);
 });
 
-test ("static fromString", () =>
+test .concurrent ("static fromString", () =>
 {
    expect (SFColorRGBA .fromString ("0.2 0.3 0.4 0.5") .equals (new SFColorRGBA (0.2, 0.3, 0.4, 0.5))) .toBe (true);
    expect (SFColorRGBA .fromString ("red") .equals (new SFColorRGBA (1, 0, 0, 1))) .toBe (true);
@@ -273,7 +273,7 @@ test ("static fromString", () =>
    expect (() => SFColorRGBA .fromString ("---")) .toThrow (Error);
 });
 
-test ("fromString", () =>
+test .concurrent ("fromString", () =>
 {
    const a = new SFColorRGBA ();
 
@@ -296,7 +296,7 @@ test ("fromString", () =>
    expect (() => a .fromString ("---")) .toThrow (Error);
 });
 
-test ("fromVRMLString", () =>
+test .concurrent ("fromVRMLString", () =>
 {
    const a = new SFColorRGBA ();
 
@@ -319,7 +319,7 @@ test ("fromVRMLString", () =>
    expect (() => a .fromVRMLString ("---")) .toThrow (Error);
 });
 
-test ("fromXMLString", () =>
+test .concurrent ("fromXMLString", () =>
 {
    const a = new SFColorRGBA ();
 
@@ -342,7 +342,7 @@ test ("fromXMLString", () =>
    expect (() => a .fromXMLString ("---")) .toThrow (Error);
 });
 
-test ("toString", () =>
+test .concurrent ("toString", () =>
 {
    const a = new SFColorRGBA (.1,.2,.3,.4);
    const b = new SFColorRGBA (.5,.6,.7,.8);

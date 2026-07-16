@@ -12,7 +12,7 @@ const comp = 4;
 
 for (const [typeName, MFVec4, SFVec4] of arrays)
 {
-   test ("get1Value", () =>
+   test .concurrent ("get1Value", () =>
    {
       const field = new MFVec4 ();
 
@@ -44,7 +44,7 @@ for (const [typeName, MFVec4, SFVec4] of arrays)
       expect (field [2]) .toBeInstanceOf (SFVec4);
    });
 
-   test ("setValue", () =>
+   test .concurrent ("setValue", () =>
    {
       const field = new MFVec4 ();
 
@@ -83,7 +83,7 @@ for (const [typeName, MFVec4, SFVec4] of arrays)
       expect (field .equals (new MFVec4 ())) .toBe (true);
    });
 
-   test ("assign", () =>
+   test .concurrent ("assign", () =>
    {
       const field = new MFVec4 ();
 
@@ -103,7 +103,7 @@ for (const [typeName, MFVec4, SFVec4] of arrays)
       expect (field .equals (new MFVec4 ())) .toBe (true);
    });
 
-   test ("shrinkToFit", () =>
+   test .concurrent ("shrinkToFit", () =>
    {
       const field = new MFVec4 (new SFVec4 (1, 2, 3, 4), new SFVec4 (5, 6, 7, 8));
 
@@ -111,7 +111,7 @@ for (const [typeName, MFVec4, SFVec4] of arrays)
       expect (field .shrinkToFit ()) .toBe (field .shrinkToFit ());
    });
 
-   test ("common", () =>
+   test .concurrent ("common", () =>
    {
       const field = new MFVec4 ();
 
@@ -120,7 +120,7 @@ for (const [typeName, MFVec4, SFVec4] of arrays)
       expect (Object .prototype .toString .call (field)) .toBe (`[object ${typeName}]`);
    });
 
-   test ("copy", () =>
+   test .concurrent ("copy", () =>
    {
       const
          a = new MFVec4 (new SFVec4 (1, 2, 3, 4),new SFVec4 (5, 6, 7, 8),new SFVec4 (9, 10, 11, 12)),
@@ -132,7 +132,7 @@ for (const [typeName, MFVec4, SFVec4] of arrays)
       expect (b .getValue ()) .not .toBe (a .getValue ());
    });
 
-   test ("equals", () =>
+   test .concurrent ("equals", () =>
    {
       const
          a = new MFVec4 (),
@@ -145,7 +145,7 @@ for (const [typeName, MFVec4, SFVec4] of arrays)
       expect (b .equals (c)) .toBe (true);
    });
 
-   test ("isDefaultValue", () =>
+   test .concurrent ("isDefaultValue", () =>
    {
       const
          a = new MFVec4 (),
@@ -155,7 +155,7 @@ for (const [typeName, MFVec4, SFVec4] of arrays)
       expect (b .isDefaultValue ()) .toBe (false);
    });
 
-   test ("constructor", () =>
+   test .concurrent ("constructor", () =>
    {
       const a = new MFVec4 ();
 
@@ -200,7 +200,7 @@ for (const [typeName, MFVec4, SFVec4] of arrays)
       expect ((new MFVec4 ()) [0]) .toBe (undefined);
    });
 
-   test ("basic-functions", () =>
+   test .concurrent ("basic-functions", () =>
    {
       const a = new MFVec4 (new SFVec4 (1, 2, 3, 4));
 
@@ -274,7 +274,7 @@ for (const [typeName, MFVec4, SFVec4] of arrays)
       expect (a [4] .equals (new SFVec4 (5, 6, 7, 8))) .toBe (true);
    });
 
-   test ("at", () =>
+   test .concurrent ("at", () =>
    {
       const
          N = 10,
@@ -293,7 +293,7 @@ for (const [typeName, MFVec4, SFVec4] of arrays)
       }
    });
 
-   test ("entries", () =>
+   test .concurrent ("entries", () =>
    {
       const
          N = 10,
@@ -308,7 +308,7 @@ for (const [typeName, MFVec4, SFVec4] of arrays)
          expect (value) .toBe (a [i]);
    });
 
-   test ("fill", () =>
+   test .concurrent ("fill", () =>
    {
       const a = new MFVec4 ();
 
@@ -343,7 +343,7 @@ for (const [typeName, MFVec4, SFVec4] of arrays)
       expect (a [5] .equals (new SFVec4 (5, 6, 7, 8))) .toBe (true);
    });
 
-   test ("filter", () =>
+   test .concurrent ("filter", () =>
    {
       const
          N = 10,
@@ -364,7 +364,7 @@ for (const [typeName, MFVec4, SFVec4] of arrays)
       }
    });
 
-   test ("find", () =>
+   test .concurrent ("find", () =>
    {
       const
          N = 10,
@@ -381,7 +381,7 @@ for (const [typeName, MFVec4, SFVec4] of arrays)
       expect (c) .toBe (undefined);
    });
 
-   test ("keys", () =>
+   test .concurrent ("keys", () =>
    {
       const
          N = 10,
@@ -393,7 +393,7 @@ for (const [typeName, MFVec4, SFVec4] of arrays)
       expect (a .keys ()) .toEqual (new Array (N/2) .keys ());
    });
 
-   test ("map", () =>
+   test .concurrent ("map", () =>
    {
       const
          N = 10,
@@ -415,7 +415,7 @@ for (const [typeName, MFVec4, SFVec4] of arrays)
       }
    });
 
-   test ("pop", () =>
+   test .concurrent ("pop", () =>
    {
       const
          N = 10,
@@ -452,7 +452,7 @@ for (const [typeName, MFVec4, SFVec4] of arrays)
       }
    });
 
-   test ("push", () =>
+   test .concurrent ("push", () =>
    {
       const
          N = 1_000,
@@ -475,7 +475,7 @@ for (const [typeName, MFVec4, SFVec4] of arrays)
       }
    });
 
-   test ("shift", () =>
+   test .concurrent ("shift", () =>
    {
       const
          N = 10,
@@ -510,7 +510,7 @@ for (const [typeName, MFVec4, SFVec4] of arrays)
       }
    });
 
-   test ("slice", () =>
+   test .concurrent ("slice", () =>
    {
       const
          N = 10,
@@ -544,7 +544,7 @@ for (const [typeName, MFVec4, SFVec4] of arrays)
       }
    });
 
-   test ("splice", () =>
+   test .concurrent ("splice", () =>
    {
       const
          N = 10,
@@ -610,7 +610,7 @@ for (const [typeName, MFVec4, SFVec4] of arrays)
       expect (n .equals (new MFVec4 (new SFVec4 (1, 2, 3, 4), new SFVec4 (5, 6, 7, 8)))) .toBe (true);
    });
 
-   test ("sort-reverse", () =>
+   test .concurrent ("sort-reverse", () =>
    {
       const a = new MFVec4 (new SFVec4 (1, 2, 3, 4),
                             new SFVec4 (2, 3, 4, 5),
@@ -660,7 +660,7 @@ for (const [typeName, MFVec4, SFVec4] of arrays)
       expect (a [5] .equals (new SFVec4 (1, 2, 3, 4))) .toBe (true);
    });
 
-   test ("unshift", () =>
+   test .concurrent ("unshift", () =>
    {
       const
          N = 1_000,
@@ -683,7 +683,7 @@ for (const [typeName, MFVec4, SFVec4] of arrays)
       }
    });
 
-   test ("enumerate", () =>
+   test .concurrent ("enumerate", () =>
    {
       const properties = [
          0,1,2
@@ -692,7 +692,7 @@ for (const [typeName, MFVec4, SFVec4] of arrays)
       enumerate (properties, new MFVec4 (new SFVec4 (1, 2, 3, 4), new SFVec4 (5, 6, 7, 8), new SFVec4 (9, 10, 11, 12)));
    });
 
-   test ("enumerate single", () =>
+   test .concurrent ("enumerate single", () =>
    {
       const properties = [
          "x",
@@ -704,7 +704,7 @@ for (const [typeName, MFVec4, SFVec4] of arrays)
       enumerate (properties, new MFVec4 (new SFVec4 ()) [0]);
    });
 
-   test ("concat", () =>
+   test .concurrent ("concat", () =>
    {
       const
          a = new MFVec4 (new SFVec4 (1, 2, 3, 4), new SFVec4 (5, 6, 7, 8)),
@@ -735,7 +735,7 @@ for (const [typeName, MFVec4, SFVec4] of arrays)
       expect (d [5] .equals (new SFVec4 (16, 17, 18, 19))) .toBe (true);
    });
 
-   test ("flat", () =>
+   test .concurrent ("flat", () =>
    {
       const
          a = new MFVec4 (),
@@ -747,7 +747,7 @@ for (const [typeName, MFVec4, SFVec4] of arrays)
       expect (b .flat ()) .toEqual ([1,2,3,4,5,6,7,8]);
    });
 
-   test ("flatMap", () =>
+   test .concurrent ("flatMap", () =>
    {
       const
          a = new MFVec4 (),
@@ -759,7 +759,7 @@ for (const [typeName, MFVec4, SFVec4] of arrays)
       expect (b .flatMap (v => v .multiply (2))) .toEqual ([2,4,6,8,10,12,14,16]);
    });
 
-   test ("length", () =>
+   test .concurrent ("length", () =>
    {
       expect (new MFVec4 () .length) .toBe (0);
       expect (new MFVec4 (new SFVec4 (1,2,3,4), new SFVec4 (1,2,3,4)) .length) .toBe (2);
@@ -800,7 +800,7 @@ for (const [typeName, MFVec4, SFVec4] of arrays)
          expect (m [i] .equals (new SFVec4 ())) .toBe (true);
    });
 
-   test ("fromString", () =>
+   test .concurrent ("fromString", () =>
    {
       const a = new MFVec4 ();
 
@@ -832,7 +832,7 @@ for (const [typeName, MFVec4, SFVec4] of arrays)
       expect (a .equals (new MFVec4 (new SFVec4 (1000, 2000, 3000, 4000), new SFVec4 (2000, 3000, 4000, 5000)))) .toBe (true);
    });
 
-   test ("fromVRMLString", () =>
+   test .concurrent ("fromVRMLString", () =>
    {
       const a = new MFVec4 ();
 
@@ -864,7 +864,7 @@ for (const [typeName, MFVec4, SFVec4] of arrays)
       expect (a .equals (new MFVec4 (new SFVec4 (1000, 2000, 3000, 4000), new SFVec4 (2000, 3000, 4000, 5000)))) .toBe (true);
    });
 
-   test ("fromXMLString", () =>
+   test .concurrent ("fromXMLString", () =>
    {
       const a = new MFVec4 ();
 
@@ -891,12 +891,12 @@ for (const [typeName, MFVec4, SFVec4] of arrays)
       expect (a .equals (new MFVec4 (new SFVec4 (1000, 2000, 3000, 4000), new SFVec4 (2000, 3000, 4000, 5000)))) .toBe (true);
    });
 
-   test ("enumerate", () =>
+   test .concurrent ("enumerate", () =>
    {
       enumerate (["0", "1", "2"], new MFVec4 (new SFVec4 (), new SFVec4 (), new SFVec4 ()));
    });
 
-   test ("toString", () =>
+   test .concurrent ("toString", () =>
    {
       const a = new MFVec4 ();
       const b = new MFVec4 (new SFVec4 (1,2,3,4));

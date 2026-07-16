@@ -2,7 +2,7 @@ import { vi, expect, test } from "vitest";
 import X3D                  from "../X3D.js";
 import $                    from "https://cdn.jsdelivr.net/npm/jquery@4.0.0/dist-module/jquery.slim.module.js";
 
-test ("attributes", () =>
+test .concurrent ("attributes", () =>
 {
    const
       canvas  = $(`<x3d-canvas></x3d-canvas>`),
@@ -176,7 +176,7 @@ test ("attributes", () =>
    expect (browser .getBrowserOption ("XRSessionMode")) .toBe ("IMMERSIVE_VR");
 });
 
-test ("onload-attribute", () => new Promise ((resolve, reject) =>
+test .concurrent ("onload-attribute", () => new Promise ((resolve, reject) =>
 {
    window .onload1 = undefined;
    window .onload2 = vi .fn ();
@@ -209,7 +209,7 @@ test ("onload-attribute", () => new Promise ((resolve, reject) =>
    canvas [0] .addEventListener ("error", () => reject ("onerror"));
 }));
 
-test ("oninitialized-attribute", () => new Promise ((resolve, reject) =>
+test .concurrent ("oninitialized-attribute", () => new Promise ((resolve, reject) =>
 {
    window .oninitialized1 = undefined;
    window .oninitialized2 = vi .fn ();
@@ -242,7 +242,7 @@ test ("oninitialized-attribute", () => new Promise ((resolve, reject) =>
    canvas [0] .addEventListener ("error", () => reject ("onerror"));
 }));
 
-test ("onshutdown-attribute", () => new Promise ((resolve, reject) =>
+test .concurrent ("onshutdown-attribute", () => new Promise ((resolve, reject) =>
 {
    window .onshutdown1 = undefined;
    window .onshutdown2 = vi .fn ();
@@ -275,7 +275,7 @@ test ("onshutdown-attribute", () => new Promise ((resolve, reject) =>
    canvas [0] .addEventListener ("error", () => reject ("onerror"));
 }));
 
-test ("onerror-attribute", () => new Promise ((resolve, reject) =>
+test .concurrent ("onerror-attribute", () => new Promise ((resolve, reject) =>
 {
    window .onerror1 = undefined;
    window .onerror2 = vi .fn ();
@@ -307,7 +307,7 @@ test ("onerror-attribute", () => new Promise ((resolve, reject) =>
    });
 }));
 
-test ("src-property", () => new Promise ((resolve, reject) =>
+test .concurrent ("src-property", () => new Promise ((resolve, reject) =>
 {
    const
       canvas  = $(`<x3d-canvas></x3d-canvas>`),
@@ -352,7 +352,7 @@ test ("src-property", () => new Promise ((resolve, reject) =>
    canvas .on ("error", () => reject ("onerror"));
 }));
 
-test ("url-property", () => new Promise ((resolve, reject) =>
+test .concurrent ("url-property", () => new Promise ((resolve, reject) =>
 {
    const
       canvas  = $(`<x3d-canvas></x3d-canvas>`),
@@ -398,7 +398,7 @@ test ("url-property", () => new Promise ((resolve, reject) =>
    canvas .on ("error", () => reject ("onerror"));
 }));
 
-test ("multi-url-property", () => new Promise ((resolve, reject) =>
+test .concurrent ("multi-url-property", () => new Promise ((resolve, reject) =>
 {
    const
       canvas  = $(`<x3d-canvas></x3d-canvas>`),
@@ -444,7 +444,7 @@ test ("multi-url-property", () => new Promise ((resolve, reject) =>
    canvas .on ("error", () => reject ("onerror"));
 }));
 
-test ("src-attribute", () => new Promise ((resolve, reject) =>
+test .concurrent ("src-attribute", () => new Promise ((resolve, reject) =>
 {
    const
       canvas  = $(`<x3d-canvas></x3d-canvas>`),
@@ -486,7 +486,7 @@ test ("src-attribute", () => new Promise ((resolve, reject) =>
    canvas .on ("error", () => reject ("onerror"));
 }));
 
-test ("url-attribute", () => new Promise ((resolve, reject) =>
+test .concurrent ("url-attribute", () => new Promise ((resolve, reject) =>
 {
    const
       canvas  = $(`<x3d-canvas></x3d-canvas>`),

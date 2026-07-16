@@ -5,7 +5,7 @@ const
    Browser = X3D .createBrowser () .browser,
    MFDouble = X3D .MFDouble;
 
-test ("constructor", () =>
+test .concurrent ("constructor", () =>
 {
    let field;
 
@@ -30,7 +30,7 @@ test ("constructor", () =>
    expect ((new MFDouble ()) [0]) .toBe (undefined);
 });
 
-test ("get1Value", () =>
+test .concurrent ("get1Value", () =>
 {
    const field = new MFDouble ();
 
@@ -62,7 +62,7 @@ test ("get1Value", () =>
    expect (typeof field [2]) .toBe ("number");
 });
 
-test ("set1Value", () =>
+test .concurrent ("set1Value", () =>
 {
    const field = new MFDouble ();
 
@@ -84,7 +84,7 @@ test ("set1Value", () =>
    expect ((field [0] = -666,            field [0])) .toBe (-666);
 });
 
-test ("setValue", () =>
+test .concurrent ("setValue", () =>
 {
    const field = new MFDouble ();
 
@@ -114,7 +114,7 @@ test ("setValue", () =>
    expect (field .equals (new MFDouble ())) .toBe (true);
 });
 
-test ("assign", () =>
+test .concurrent ("assign", () =>
 {
    const field = new MFDouble ();
 
@@ -134,7 +134,7 @@ test ("assign", () =>
    expect (field .equals (new MFDouble ())) .toBe (true);
 });
 
-test ("shrinkToFit", () =>
+test .concurrent ("shrinkToFit", () =>
 {
    const field = new MFDouble (1, 2, 3, 4);
 
@@ -142,7 +142,7 @@ test ("shrinkToFit", () =>
    expect (field .shrinkToFit ()) .toBe (field .shrinkToFit ());
 });
 
-test ("common", () =>
+test .concurrent ("common", () =>
 {
    const field = new MFDouble ();
 
@@ -151,7 +151,7 @@ test ("common", () =>
    expect (Object .prototype .toString .call (field)) .toBe ("[object MFDouble]");
 });
 
-test ("copy", () =>
+test .concurrent ("copy", () =>
 {
    const
       a = new MFDouble (1,2,3),
@@ -163,7 +163,7 @@ test ("copy", () =>
    expect (b .getValue ()) .not .toBe (a .getValue ());
 });
 
-test ("equals", () =>
+test .concurrent ("equals", () =>
 {
    const
       a = new MFDouble (),
@@ -176,7 +176,7 @@ test ("equals", () =>
    expect (b .equals (c)) .toBe (true);
 });
 
-test ("isDefaultValue", () =>
+test .concurrent ("isDefaultValue", () =>
 {
    const
       a = new MFDouble (),
@@ -186,7 +186,7 @@ test ("isDefaultValue", () =>
    expect (b .isDefaultValue ()) .toBe (false);
 });
 
-test ("constructor", () =>
+test .concurrent ("constructor", () =>
 {
    const a = new MFDouble ();
 
@@ -211,7 +211,7 @@ test ("constructor", () =>
    expect (c [4]) .toBe (5);
 });
 
-test ("basic-functions", () =>
+test .concurrent ("basic-functions", () =>
 {
    const a = new MFDouble (Infinity);
 
@@ -276,7 +276,7 @@ test ("basic-functions", () =>
    expect (a [4]) .toBe (Infinity);
 });
 
-test ("at", () =>
+test .concurrent ("at", () =>
 {
    const
       N = 10,
@@ -295,7 +295,7 @@ test ("at", () =>
    }
 });
 
-test ("entries", () =>
+test .concurrent ("entries", () =>
 {
    const
       N = 10,
@@ -310,7 +310,7 @@ test ("entries", () =>
       expect (value) .toBe (a [i]);
 });
 
-test ("fill", () =>
+test .concurrent ("fill", () =>
 {
    const a = new MFDouble (0, 0, 0, 0, 0, 0);
 
@@ -343,7 +343,7 @@ test ("fill", () =>
    expect (a [5]) .toBe (2);
 });
 
-test ("filter", () =>
+test .concurrent ("filter", () =>
 {
    const
       N = 10,
@@ -361,7 +361,7 @@ test ("filter", () =>
       expect (b [i]) .toBe (a [i * 2]);
 });
 
-test ("keys", () =>
+test .concurrent ("keys", () =>
 {
    const
       N = 10,
@@ -373,7 +373,7 @@ test ("keys", () =>
    expect (a .keys ()) .toEqual (new Array (N/2) .keys ());
 });
 
-test ("map", () =>
+test .concurrent ("map", () =>
 {
    const
       N = 10,
@@ -392,7 +392,7 @@ test ("map", () =>
       expect (b [i]) .toBe (a [i]);
 });
 
-test ("pop", () =>
+test .concurrent ("pop", () =>
 {
    const
       N = 10,
@@ -429,7 +429,7 @@ test ("pop", () =>
    }
 });
 
-test ("push", () =>
+test .concurrent ("push", () =>
 {
    const
       N = 1_000,
@@ -452,7 +452,7 @@ test ("push", () =>
    }
 });
 
-test ("shift", () =>
+test .concurrent ("shift", () =>
 {
    const
       N = 10,
@@ -487,7 +487,7 @@ test ("shift", () =>
    }
 });
 
-test ("slice", () =>
+test .concurrent ("slice", () =>
 {
    const
       N = 10,
@@ -515,7 +515,7 @@ test ("slice", () =>
       expect (c [i]) .toBe (a [j]);
 });
 
-test ("splice", () =>
+test .concurrent ("splice", () =>
 {
    const
       N = 10,
@@ -580,7 +580,7 @@ test ("splice", () =>
    expect (n .equals (new MFDouble (1, 2))) .toBe (true);
 });
 
-test ("sort-reverse", () =>
+test .concurrent ("sort-reverse", () =>
 {
    const a = new MFDouble (1, 2, 3, 4, 5, 6);
 
@@ -625,7 +625,7 @@ test ("sort-reverse", () =>
    expect (a [5]) .toBe (1);
 });
 
-test ("unshift", () =>
+test .concurrent ("unshift", () =>
 {
    const
       N = 1_000,
@@ -648,7 +648,7 @@ test ("unshift", () =>
    }
 });
 
-test ("concat", () =>
+test .concurrent ("concat", () =>
 {
    const
       a = new MFDouble (111, 222),
@@ -679,7 +679,7 @@ test ("concat", () =>
    expect (d [5]) .toBe (666);
 });
 
-test ("flat", () =>
+test .concurrent ("flat", () =>
 {
    const
       a = new MFDouble (),
@@ -691,7 +691,7 @@ test ("flat", () =>
    expect (b .flat ()) .toEqual ([1.1, 2.2, 3.3, 4.4]);
 });
 
-test ("flatMap", () =>
+test .concurrent ("flatMap", () =>
 {
    const
       a = new MFDouble (),
@@ -703,7 +703,7 @@ test ("flatMap", () =>
    expect (b .flatMap (v => v * 2)) .toEqual ([2.2, 4.4, 6.6, 8.8]);
 });
 
-test ("length", () =>
+test .concurrent ("length", () =>
 {
    expect (new MFDouble () .length) .toBe (0);
    expect (new MFDouble (1, 2, 3) .length) .toBe (3);
@@ -744,7 +744,7 @@ test ("length", () =>
       expect (m [i]) .toBe (0);
 });
 
-test ("fromString", () =>
+test .concurrent ("fromString", () =>
 {
    const a = new MFDouble ();
 
@@ -776,7 +776,7 @@ test ("fromString", () =>
    expect (a .equals (new MFDouble (1000, 2000, 3000))) .toBe (true);
 });
 
-test ("fromVRMLString", () =>
+test .concurrent ("fromVRMLString", () =>
 {
    const a = new MFDouble ();
 
@@ -808,7 +808,7 @@ test ("fromVRMLString", () =>
    expect (a .equals (new MFDouble (1000, 2000, 3000))) .toBe (true);
 });
 
-test ("fromXMLString", () =>
+test .concurrent ("fromXMLString", () =>
 {
    const a = new MFDouble ();
 
@@ -835,12 +835,12 @@ test ("fromXMLString", () =>
    expect (a .equals (new MFDouble (1000, 2000, 3000))) .toBe (true);
 });
 
-test ("enumerate", () =>
+test .concurrent ("enumerate", () =>
 {
    enumerate (["0", "1", "2"], new MFDouble (1,2,3));
 });
 
-test ("toString", () =>
+test .concurrent ("toString", () =>
 {
    const a = new MFDouble ();
    const b = new MFDouble (1);

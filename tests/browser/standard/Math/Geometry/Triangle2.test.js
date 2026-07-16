@@ -6,7 +6,7 @@ const
    Browser = canvas .browser,
    Vector2 = X3D .Vector2;
 
-test ("area", async () =>
+test .concurrent ("area", async () =>
 {
    await Browser .loadComponents (Browser .getComponent ("NURBS"));
    const Triangle2 = X3D .Triangle2;
@@ -18,7 +18,7 @@ test ("area", async () =>
    expect (Triangle2 .area (a, b, c)) .toBeCloseTo (0.5);
 });
 
-test ("isPointInTriangle", async () =>
+test .concurrent ("isPointInTriangle", async () =>
 {
    await Browser .loadComponents (Browser .getComponent ("NURBS"));
    const Triangle2 = X3D .Triangle2;
@@ -40,7 +40,7 @@ test ("isPointInTriangle", async () =>
    expect (Triangle2 .isPointInTriangle (p5, a, b, c)) .toBe (false);
 });
 
-test ("toBarycentric", async () =>
+test .concurrent ("toBarycentric", async () =>
 {
    await Browser .loadComponents (Browser .getComponent ("NURBS"));
    const Triangle2 = X3D .Triangle2;

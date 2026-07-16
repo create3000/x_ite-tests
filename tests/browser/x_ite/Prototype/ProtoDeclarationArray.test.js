@@ -5,7 +5,7 @@ const
    canvas  = X3D .createBrowser (),
    Browser = canvas .browser;
 
-test ("constructor", () =>
+test .concurrent ("constructor", () =>
 {
    const
       scene  = Browser .currentScene,
@@ -16,7 +16,7 @@ test ("constructor", () =>
    expect (protos .constructor) .toBe (X3D .ProtoDeclarationArray);
 });
 
-test ("filter", async () =>
+test .concurrent ("filter", async () =>
 {
    const scene = await Browser .createX3DFromString (`
 PROFILE Interchange
@@ -39,7 +39,7 @@ PROTO P3 [ ] { }
    expect (a [1] .name) .toBe ("P1");
 });
 
-test ("toString", () =>
+test .concurrent ("toString", () =>
 {
    const
       scene  = Browser .currentScene,

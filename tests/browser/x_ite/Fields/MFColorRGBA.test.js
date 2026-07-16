@@ -7,12 +7,12 @@ const
 
 const comp = 4;
 
-test ("constructor", () =>
+test .concurrent ("constructor", () =>
 {
    expect ((new MFColorRGBA ()) [0]) .toBe (undefined);
 });
 
-test ("get1Value", () =>
+test .concurrent ("get1Value", () =>
 {
    const field = new MFColorRGBA ();
 
@@ -44,7 +44,7 @@ test ("get1Value", () =>
    expect (field [2]) .toBeInstanceOf (SFColorRGBA);
 });
 
-test ("length", () =>
+test .concurrent ("length", () =>
 {
    expect (new MFColorRGBA () .length) .toBe (0);
    expect (new MFColorRGBA (new SFColorRGBA (1,2,3,4), new SFColorRGBA (1,2,3,4)) .length) .toBe (2);
@@ -85,7 +85,7 @@ test ("length", () =>
       expect (m [i] .equals (new SFColorRGBA ())) .toBe (true);
 });
 
-test ("setValue", () =>
+test .concurrent ("setValue", () =>
 {
    const field = new MFColorRGBA ();
 
@@ -115,7 +115,7 @@ test ("setValue", () =>
    expect (field .equals (new MFColorRGBA ())) .toBe (true);
 });
 
-test ("assign", () =>
+test .concurrent ("assign", () =>
 {
    const
       field = new MFColorRGBA (),
@@ -132,7 +132,7 @@ test ("assign", () =>
    expect (field .equals (new MFColorRGBA ())) .toBe (true);
 });
 
-test ("fromString", () =>
+test .concurrent ("fromString", () =>
 {
    const a = new MFColorRGBA ();
 
@@ -154,7 +154,7 @@ test ("fromString", () =>
    expect (() => a .fromString ("[1.2 2.3 3.4, 2.3 --- 4.5]")) .toThrow (Error);
 });
 
-test ("fromVRMLString", () =>
+test .concurrent ("fromVRMLString", () =>
 {
    const a = new MFColorRGBA ();
 
@@ -176,7 +176,7 @@ test ("fromVRMLString", () =>
    expect (() => a .fromVRMLString ("[1.2 2.3 3.4, 2.3 --- 4.5]")) .toThrow (Error);
 });
 
-test ("fromXMLString", () =>
+test .concurrent ("fromXMLString", () =>
 {
    const a = new MFColorRGBA ();
 
@@ -193,12 +193,12 @@ test ("fromXMLString", () =>
    expect (() => a .fromXMLString ("")) .toThrow (Error);
 });
 
-test ("enumerate", () =>
+test .concurrent ("enumerate", () =>
 {
    enumerate (["0", "1", "2"], new MFColorRGBA (new SFColorRGBA (), new SFColorRGBA (), new SFColorRGBA ()));
 });
 
-test ("toString", () =>
+test .concurrent ("toString", () =>
 {
    const a = new MFColorRGBA ();
    const b = new MFColorRGBA (new SFColorRGBA (.1,.2,.3,.4));

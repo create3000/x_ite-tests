@@ -1,7 +1,7 @@
 import { expect, test } from "vitest";
 import X3D              from "../../X3D.js";
 
-test ("Primitives.svg", async () =>
+test .concurrent ("Primitives.svg", async () =>
 {
    const
       canvas  = X3D .createBrowser (),
@@ -12,7 +12,7 @@ test ("Primitives.svg", async () =>
    expect (scene .rootNodes) .toHaveLength (3);
 });
 
-test ("design.svg", async () =>
+test .concurrent ("design.svg", async () =>
 {
    const
       canvas  = X3D .createBrowser (),

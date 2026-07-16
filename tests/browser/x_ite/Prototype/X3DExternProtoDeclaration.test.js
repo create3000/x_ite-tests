@@ -5,7 +5,7 @@ const
    canvas  = X3D .createBrowser (),
    Browser = canvas .browser;
 
-test ("properties", async () =>
+test .concurrent ("properties", async () =>
 {
    const scene = await Browser .createX3DFromURL (new X3D .MFString (`data:model/x3d+vrml,
 PROFILE Interactive
@@ -130,7 +130,7 @@ Test { size 4 4 4 }
    enumerate (properties, externproto);
 });
 
-test ("toString", () =>
+test .concurrent ("toString", () =>
 {
    const
       scene  = Browser .currentScene,
@@ -139,7 +139,7 @@ test ("toString", () =>
    expect (protos .toString ()) .toBe (`[object ${protos .getTypeName ()}]`);
 });
 
-test ("load-not-started", async () =>
+test .concurrent ("load-not-started", async () =>
 {
    const scene = await Browser .createX3DFromString (`
 PROFILE Core
@@ -155,7 +155,7 @@ EXTERNPROTO Test [
    expect (scene .externprotos [0] .checkLoadState ()) .toBe (X3D .X3DConstants .NOT_STARTED_STATE);
 });
 
-test ("load-complete", async () =>
+test .concurrent ("load-complete", async () =>
 {
    const scene = await Browser .createX3DFromString (`
 PROFILE Core
@@ -174,7 +174,7 @@ Test { }
    expect (scene .externprotos [0] .checkLoadState ()) .toBe (X3D .X3DConstants .COMPLETE_STATE);
 });
 
-test ("load-failed", async () =>
+test .concurrent ("load-failed", async () =>
 {
    const scene = await Browser .createX3DFromString (`
 PROFILE Core

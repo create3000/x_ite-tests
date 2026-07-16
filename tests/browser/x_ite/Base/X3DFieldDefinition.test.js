@@ -8,7 +8,7 @@ const
    node             = scene .createNode ("WorldInfo"),
    fieldDefinitions = node .getFieldDefinitions ();
 
-test ("properties", () =>
+test .concurrent ("properties", () =>
 {
    expect (fieldDefinitions) .toBeInstanceOf (X3D .FieldDefinitionArray);
    expect (fieldDefinitions .constructor) .toBe (X3D .FieldDefinitionArray);
@@ -57,7 +57,7 @@ test ("properties", () =>
    enumerate (properties, fieldDefinitions [0]);
 });
 
-test ("SAI", () =>
+test .concurrent ("SAI", () =>
 {
    expect (fieldDefinitions [0] .getAccessType ()) .toBe (X3D .X3DConstants .inputOutput);
    expect (fieldDefinitions [0] .getDataType ()) .toBe (X3D .X3DConstants .SFNode);
@@ -75,7 +75,7 @@ test ("SAI", () =>
    expect (fieldDefinitions [2] .getValue ()) .toBeInstanceOf (X3D .MFString);
 });
 
-test ("toString", () =>
+test .concurrent ("toString", () =>
 {
    expect (X3D .X3DFieldDefinition .typeName) .toBe ("X3DFieldDefinition");
    expect (fieldDefinitions [0] .getTypeName ()) .toBe ("X3DFieldDefinition");

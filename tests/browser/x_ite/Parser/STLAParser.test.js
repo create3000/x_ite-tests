@@ -1,7 +1,7 @@
 import { expect, test } from "vitest";
 import X3D              from "../../X3D.js";
 
-test ("Menger_sponge-ASCII.stl", async () =>
+test .concurrent ("Menger_sponge-ASCII.stl", async () =>
 {
    const
       canvas  = X3D .createBrowser (),

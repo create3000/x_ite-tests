@@ -5,7 +5,7 @@ const
    canvas  = X3D .createBrowser (),
    Browser = canvas .browser;
 
-test ("properties", async () =>
+test .concurrent ("properties", async () =>
 {
    const scene = await Browser .createX3DFromString (`
 PROFILE Interchange
@@ -27,7 +27,7 @@ DEF N3 Transform { }
    expect (namedNodes [3]) .toBeInstanceOf (X3D .SFNode);
 });
 
-test ("spread", async () =>
+test .concurrent ("spread", async () =>
 {
    const scene = await Browser .createX3DFromString (`
 PROFILE Interchange
@@ -51,7 +51,7 @@ DEF N3 Transform { }
       expect (v) .toBe (namedNodes [i]);
 });
 
-test ("filter", async () =>
+test .concurrent ("filter", async () =>
 {
    const scene = await Browser .createX3DFromString (`
 PROFILE Interchange
@@ -74,7 +74,7 @@ DEF N3 Transform { }
    expect (a [1]) .toBe (namedNodes [2]);
 });
 
-test ("toString", () =>
+test .concurrent ("toString", () =>
 {
    const namedNodes = Browser .currentScene .namedNodes;
 

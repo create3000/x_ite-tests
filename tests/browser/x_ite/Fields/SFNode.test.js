@@ -7,7 +7,7 @@ const
    scene   = Browser .currentScene,
    node    = scene .createNode ("WorldInfo");
 
-test ("common", () =>
+test .concurrent ("common", () =>
 {
    expect (node .getType ()) .toBe (X3D .X3DConstants .SFNode);
    expect (node .getTypeName ()) .toBe ("SFNode");
@@ -35,7 +35,7 @@ test ("common", () =>
    expect (node .valueOf ()) .toBe (node .valueOf ());
 });
 
-test ("copy", () =>
+test .concurrent ("copy", () =>
 {
    const
       a = new X3D .SFNode (),
@@ -45,7 +45,7 @@ test ("copy", () =>
    expect (b .copy () .equals (b)) .toBe (true);
 });
 
-test ("equals", () =>
+test .concurrent ("equals", () =>
 {
    const
       a = new X3D .SFNode (),
@@ -56,7 +56,7 @@ test ("equals", () =>
    expect (a .equals (b)) .toBe (false);
 });
 
-test ("isDefaultValue", () =>
+test .concurrent ("isDefaultValue", () =>
 {
    const
       a = new X3D .SFNode (),
@@ -69,7 +69,7 @@ test ("isDefaultValue", () =>
    expect (b .isDefaultValue ()) .toBe (false);
 });
 
-test ("properties", () =>
+test .concurrent ("properties", () =>
 {
    expect (node .metadata) .toBe (null);
    expect (node .title) .toBe ("");
@@ -99,7 +99,7 @@ test ("properties", () =>
    expect (() => node .foo = 123) .not .toThrow (Error);
 });
 
-test ("getFieldDefinition", () =>
+test .concurrent ("getFieldDefinition", () =>
 {
    expect (node .getFieldDefinition ("metadata") .name) .toBe ("metadata");
    expect (node .getFieldDefinition ("title") .name) .toBe ("title");
@@ -108,7 +108,7 @@ test ("getFieldDefinition", () =>
    expect (() => node .getFieldDefinition ("foo")) .toThrow (Error);
 });
 
-test ("getFieldDefinitions", () =>
+test .concurrent ("getFieldDefinitions", () =>
 {
    const fieldDefinitions = node .getFieldDefinitions ();
 
@@ -119,7 +119,7 @@ test ("getFieldDefinitions", () =>
    expect (fieldDefinitions [2] .name) .toBe ("info");
 });
 
-test ("getField", () =>
+test .concurrent ("getField", () =>
 {
    expect (node .getField ("metadata") .getName ()) .toBe ("metadata");
    expect (node .getField ("title") .getName ()) .toBe ("title");
@@ -128,7 +128,7 @@ test ("getField", () =>
    expect (() => node .getField ("foo")) .toThrow (Error);
 });
 
-test ("toString", () =>
+test .concurrent ("toString", () =>
 {
    expect (node .toXMLString ()) .toMatch (/^<\w+\/>$/);
    expect (node .toXMLString ()) .toMatch (/^<\w+\/>$/);
@@ -137,7 +137,7 @@ test ("toString", () =>
    expect (new X3D .SFNode () .toString ()) .toBe ("NULL");
 });
 
-test ("user-data", () =>
+test .concurrent ("user-data", () =>
 {
    const
       field = node,
@@ -160,7 +160,7 @@ test ("user-data", () =>
    expect (field .getNodeUserData (sym)) .toBe (undefined);
 });
 
-test ("toString", () =>
+test .concurrent ("toString", () =>
 {
    const
       n1 = scene .createNode ("MetadataSet"),
@@ -172,7 +172,7 @@ test ("toString", () =>
    expect (n2 .toString ()) .toBe ("MetadataBoolean { }");
 });
 
-test ("toXMLString", () =>
+test .concurrent ("toXMLString", () =>
 {
    const
       n1 = scene .createNode ("MetadataSet"),
@@ -186,7 +186,7 @@ test ("toXMLString", () =>
    expect (n2 .toXMLString ()) .toBe ("<MetadataBoolean/>");
 });
 
-test ("toVRMLString", () =>
+test .concurrent ("toVRMLString", () =>
 {
    const
       n1 = scene .createNode ("MetadataSet"),
@@ -200,7 +200,7 @@ test ("toVRMLString", () =>
    expect (n2 .toVRMLString ()) .toBe ("MetadataBoolean { }");
 });
 
-test ("toJSONString", () =>
+test .concurrent ("toJSONString", () =>
 {
    const
       n1 = scene .createNode ("MetadataSet"),
@@ -214,7 +214,7 @@ test ("toJSONString", () =>
    expect (n2 .toJSONString ({ style: "CLEAN" })) .toBe (`{"MetadataBoolean":{}}`);
 });
 
-test ("parents", () =>
+test .concurrent ("parents", () =>
 {
    const
       n1 = scene .createNode ("MetadataSet"),
@@ -242,7 +242,7 @@ test ("parents", () =>
    expect (n2 .getNodeTypeName ()) .toBe ("MetadataBoolean");
 });
 
-test ("dispose1", async () =>
+test .concurrent ("dispose1", async () =>
 {
    const scene = await Browser .createX3DFromString (`
 PROFILE Interchange
@@ -364,7 +364,7 @@ ROUTE S1.appearance TO S2.appearance
    expect (shape4) .not .toBe (X3D .SFNodeCache .get (sv4));
 });
 
-test ("dispose2", async () =>
+test .concurrent ("dispose2", async () =>
 {
    const
       scene = await Browser .createScene (),
@@ -482,7 +482,7 @@ test ("dispose2", async () =>
    expect (scene .rootNodes [0]) .toBe (null);
 });
 
-test ("UserData", async () =>
+test .concurrent ("UserData", async () =>
 {
    const
       scene = await Browser .createScene (),
@@ -498,7 +498,7 @@ test ("UserData", async () =>
    expect (n .getUserData ("key")) .toBe (undefined);
 });
 
-test ("NodeUserData", async () =>
+test .concurrent ("NodeUserData", async () =>
 {
    const
       scene = await Browser .createScene (),
@@ -521,7 +521,7 @@ test ("NodeUserData", async () =>
    expect (() => n .removeNodeUserData ("key")) .toThrow (Error);
 });
 
-test ("add/removeFieldCallback", () => new Promise ((resolve, reject) =>
+test .concurrent ("add/removeFieldCallback", () => new Promise ((resolve, reject) =>
 {
    const node = Browser .currentScene .createNode ("Transform");
 
@@ -541,7 +541,7 @@ test ("add/removeFieldCallback", () => new Promise ((resolve, reject) =>
    node .translation = new X3D .SFVec3f (2,3,4);
 }));
 
-test ("fromString", () =>
+test .concurrent ("fromString", () =>
 {
    const a = new X3D .SFNode ();
 
@@ -568,7 +568,7 @@ test ("fromString", () =>
    expect (() => a .fromString ("foo")) .toThrow (Error);
 });
 
-test ("fromVRMLString", () =>
+test .concurrent ("fromVRMLString", () =>
 {
    const a = new X3D .SFNode ();
 
@@ -595,7 +595,7 @@ test ("fromVRMLString", () =>
    expect (() => a .fromVRMLString ("foo")) .toThrow (Error);
 });
 
-test ("toString", () =>
+test .concurrent ("toString", () =>
 {
    const a = scene .createNode ("MetadataBoolean");
    const b = scene .createNode ("MetadataDouble");
@@ -610,7 +610,7 @@ test ("toString", () =>
    expect (n .toString ({ style: "CLEAN" })) .toBe ("NULL");
 });
 
-test ("proxy", () =>
+test .concurrent ("proxy", () =>
 {
    const node = scene .createNode ("WorldInfo");
 

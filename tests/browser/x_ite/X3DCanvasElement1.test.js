@@ -2,7 +2,7 @@ import { expect, test } from "vitest";
 import X3D              from "../X3D.js";
 import $                from "https://cdn.jsdelivr.net/npm/jquery@4.0.0/dist-module/jquery.slim.module.js";
 
-test ("construction", () =>
+test .concurrent ("construction", () =>
 {
    const canvas = document .createElement ("x3d-canvas");
 
@@ -31,7 +31,7 @@ test ("construction", () =>
    expect (scene .routes) .toBeInstanceOf (X3D .RouteArray);
 });
 
-test ("construction-jquery", () =>
+test .concurrent ("construction-jquery", () =>
 {
    const
       elements = $("<x3d-canvas></x3d-canvas>"),
@@ -43,7 +43,7 @@ test ("construction-jquery", () =>
    expect (canvas .browser) .toBeInstanceOf (X3D .X3DBrowser);
 });
 
-test ("onload-listener", () => new Promise ((resolve, reject) =>
+test .concurrent ("onload-listener", () => new Promise ((resolve, reject) =>
 {
    const canvas = $(`<x3d-canvas></x3d-canvas>`);
 
@@ -67,7 +67,7 @@ test ("onload-listener", () => new Promise ((resolve, reject) =>
    canvas [0] .addEventListener ("error", () => reject ("onerror"));
 }));
 
-test ("onload-event", () => new Promise ((resolve, reject) =>
+test .concurrent ("onload-event", () => new Promise ((resolve, reject) =>
 {
    const canvas = $(`<x3d-canvas></x3d-canvas>`);
 
@@ -91,7 +91,7 @@ test ("onload-event", () => new Promise ((resolve, reject) =>
    canvas .on ("error", () => reject ("onerror"));
 }));
 
-test ("onload-property", () => new Promise ((resolve, reject) =>
+test .concurrent ("onload-property", () => new Promise ((resolve, reject) =>
 {
    const canvas = $(`<x3d-canvas></x3d-canvas>`);
 
@@ -115,7 +115,7 @@ test ("onload-property", () => new Promise ((resolve, reject) =>
    canvas [0] .onerror = reject;
 }));
 
-test ("oninitialized-listener", () => new Promise ((resolve, reject) =>
+test .concurrent ("oninitialized-listener", () => new Promise ((resolve, reject) =>
 {
    const canvas = $(`<x3d-canvas></x3d-canvas>`);
 
@@ -139,7 +139,7 @@ test ("oninitialized-listener", () => new Promise ((resolve, reject) =>
    canvas [0] .addEventListener ("error", () => reject ("onerror"));
 }));
 
-test ("oninitialized-event", () => new Promise ((resolve, reject) =>
+test .concurrent ("oninitialized-event", () => new Promise ((resolve, reject) =>
 {
    const canvas = $(`<x3d-canvas></x3d-canvas>`);
 
@@ -163,7 +163,7 @@ test ("oninitialized-event", () => new Promise ((resolve, reject) =>
    canvas .on ("error", () => reject ("onerror"));
 }));
 
-test ("oninitialized-property", () => new Promise ((resolve, reject) =>
+test .concurrent ("oninitialized-property", () => new Promise ((resolve, reject) =>
 {
    const canvas = $(`<x3d-canvas></x3d-canvas>`);
 
@@ -187,7 +187,7 @@ test ("oninitialized-property", () => new Promise ((resolve, reject) =>
    canvas [0] .onerror = reject;
 }));
 
-test ("onshutdown-listener", () => new Promise ((resolve, reject) =>
+test .concurrent ("onshutdown-listener", () => new Promise ((resolve, reject) =>
 {
    const canvas = $(`<x3d-canvas></x3d-canvas>`);
 
@@ -211,7 +211,7 @@ test ("onshutdown-listener", () => new Promise ((resolve, reject) =>
    canvas [0] .addEventListener ("error", () => reject ("onerror"));
 }));
 
-test ("onshutdown-event", () => new Promise ((resolve, reject) =>
+test .concurrent ("onshutdown-event", () => new Promise ((resolve, reject) =>
 {
    const canvas = $(`<x3d-canvas></x3d-canvas>`);
 
@@ -235,7 +235,7 @@ test ("onshutdown-event", () => new Promise ((resolve, reject) =>
    canvas .on ("error", () => reject ("onerror"));
 }));
 
-test ("onshutdown-property", () => new Promise ((resolve, reject) =>
+test .concurrent ("onshutdown-property", () => new Promise ((resolve, reject) =>
 {
    const canvas = $(`<x3d-canvas></x3d-canvas>`);
 
@@ -259,7 +259,7 @@ test ("onshutdown-property", () => new Promise ((resolve, reject) =>
    canvas [0] .onerror = reject;
 }));
 
-test ("onerror-listener", () => new Promise ((resolve, reject) =>
+test .concurrent ("onerror-listener", () => new Promise ((resolve, reject) =>
 {
    const canvas = $(`<x3d-canvas></x3d-canvas>`);
 
@@ -282,7 +282,7 @@ test ("onerror-listener", () => new Promise ((resolve, reject) =>
    });
 }));
 
-test ("onerror-event", () => new Promise ((resolve, reject) =>
+test .concurrent ("onerror-event", () => new Promise ((resolve, reject) =>
 {
    const canvas = $(`<x3d-canvas></x3d-canvas>`);
 
@@ -305,7 +305,7 @@ test ("onerror-event", () => new Promise ((resolve, reject) =>
    });
 }));
 
-test ("onerror-property", () => new Promise ((resolve, reject) =>
+test .concurrent ("onerror-property", () => new Promise ((resolve, reject) =>
 {
    const canvas = $(`<x3d-canvas></x3d-canvas>`);
 

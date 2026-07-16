@@ -5,7 +5,7 @@ const
    canvas  = X3D .createBrowser (),
    Browser = canvas .browser;
 
-test ("constructor", () =>
+test .concurrent ("constructor", () =>
 {
    const
       scene         = Browser .currentScene,
@@ -16,7 +16,7 @@ test ("constructor", () =>
    expect (exportedNodes .constructor) .toBe (X3D .ExportedNodesArray);
 });
 
-test ("filter", async () =>
+test .concurrent ("filter", async () =>
 {
    const scene = await Browser .createX3DFromString (`
 PROFILE Interchange
@@ -39,7 +39,7 @@ EXPORT E2
    expect (a [0] .exportedName) .toBe ("E1");
 });
 
-test ("toString", () =>
+test .concurrent ("toString", () =>
 {
    const
       scene         = Browser .currentScene,

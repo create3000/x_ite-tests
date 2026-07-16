@@ -5,7 +5,7 @@ const
    canvas  = X3D .createBrowser (),
    Browser = canvas .browser;
 
-test ("constructor", async () =>
+test .concurrent ("constructor", async () =>
 {
    await Browser .loadComponents (Browser .getComponent ("Geospatial"));
    const Spheroid3 = X3D .Spheroid3;
@@ -26,7 +26,7 @@ test ("constructor", async () =>
    expect (s3 .semiMinorAxis) .toBeCloseTo (123044.48);
 });
 
-test ("copy", async () =>
+test .concurrent ("copy", async () =>
 {
    await Browser .loadComponents (Browser .getComponent ("Geospatial"));
    const Spheroid3 = X3D .Spheroid3;
@@ -38,7 +38,7 @@ test ("copy", async () =>
    expect (s2 .semiMinorAxis) .toBe (456);
 });
 
-test ("assign", async () =>
+test .concurrent ("assign", async () =>
 {
    await Browser .loadComponents (Browser .getComponent ("Geospatial"));
    const Spheroid3 = X3D .Spheroid3;
@@ -52,7 +52,7 @@ test ("assign", async () =>
    expect (s2 .semiMinorAxis) .toBe (456);
 });
 
-test ("equals", async () =>
+test .concurrent ("equals", async () =>
 {
    await Browser .loadComponents (Browser .getComponent ("Geospatial"));
    const Spheroid3 = X3D .Spheroid3;
@@ -79,7 +79,7 @@ test ("equals", async () =>
    expect (s4 .equals (s3)) .not .toBe (true);
 });
 
-test ("set", async () =>
+test .concurrent ("set", async () =>
 {
    await Browser .loadComponents (Browser .getComponent ("Geospatial"));
    const Spheroid3 = X3D .Spheroid3;
@@ -106,7 +106,7 @@ test ("set", async () =>
    expect (s3 .semiMinorAxis) .toBeCloseTo (123044.48);
 });
 
-test ("toString", async () =>
+test .concurrent ("toString", async () =>
 {
    await Browser .loadComponents (Browser .getComponent ("Geospatial"));
    const Spheroid3 = X3D .Spheroid3;

@@ -5,7 +5,7 @@ const
    canvas  = X3D .createBrowser (),
    Browser = canvas .browser;
 
-test ("properties", async () =>
+test .concurrent ("properties", async () =>
 {
    const scene = await Browser .createX3DFromURL (new X3D .MFString (`data:model/x3d+vrml,
 PROFILE Interactive
@@ -123,7 +123,7 @@ Test { }
    enumerate (properties, executionContext);
 });
 
-test ("createNode", async () =>
+test .concurrent ("createNode", async () =>
 {
    const scene = await Browser .createX3DFromString (`
 PROFILE Full
@@ -165,7 +165,7 @@ PROTO Foo [
    expect (scene .createNode ("TimeSensor") .enabled) .toBe (true);
 });
 
-test ("createProto", async () =>
+test .concurrent ("createProto", async () =>
 {
    const scene = await Browser .createX3DFromString (`
 PROFILE Interchange
@@ -208,7 +208,7 @@ PROTO Foo [
    expect (() => scene .createProto ("WorldInfo")) .toThrow (Error);
 });
 
-test ("addNamedNode", async () =>
+test .concurrent ("addNamedNode", async () =>
 {
    const
       scene = await Browser .createX3DFromString (`PROFILE Full`),
@@ -240,7 +240,7 @@ test ("addNamedNode", async () =>
    expect (() => scene .addNamedNode ("FooBee", otherNode1)) .toThrow (Error);
 });
 
-test ("updateNamedNode", async () =>
+test .concurrent ("updateNamedNode", async () =>
 {
    const
       scene = await Browser .createX3DFromString (`PROFILE Full`),
@@ -272,7 +272,7 @@ test ("updateNamedNode", async () =>
    expect (() => scene .updateNamedNode ("FooBee", otherNode1)) .toThrow (Error);
 });
 
-test ("removeNamedNode", async () =>
+test .concurrent ("removeNamedNode", async () =>
 {
    const
       scene = await Browser .createX3DFromString (`PROFILE Full`),
@@ -301,7 +301,7 @@ test ("removeNamedNode", async () =>
    expect (() => scene .removeNamedNode ("Bah")) .not .toThrow (Error);
 });
 
-test ("getNamedNodes", async () =>
+test .concurrent ("getNamedNodes", async () =>
 {
    const
       scene = await Browser .createX3DFromString (`PROFILE Full`),
@@ -332,7 +332,7 @@ test ("getNamedNodes", async () =>
    expect (scene .getNamedNodes () [1]) .toBe (node2);
 });
 
-test ("getUniqueName 1", async () =>
+test .concurrent ("getUniqueName 1", async () =>
 {
    const scene = await Browser .createX3DFromString (`
 PROFILE Interchange
@@ -368,7 +368,7 @@ DEF S Shape {
    expect (scene .getNamedNodes ()) .toHaveLength (102);
 });
 
-test ("getUniqueName 2", async () =>
+test .concurrent ("getUniqueName 2", async () =>
 {
    const scene = await Browser .createX3DFromString (``);
 
@@ -391,7 +391,7 @@ test ("getUniqueName 2", async () =>
    }
 });
 
-test ("addImportedNode", async () =>
+test .concurrent ("addImportedNode", async () =>
 {
    const scene = await Browser .createX3DFromString (`
 PROFILE Interchange
@@ -463,7 +463,7 @@ EXPORT B
    expect (() => scene .addImportedNode (otherInlineNode, "S", "FooBee")) .toThrow (Error);
 });
 
-test ("updateImportedNode", async () =>
+test .concurrent ("updateImportedNode", async () =>
 {
    const scene = await Browser .createX3DFromString (`
 PROFILE Interchange
@@ -519,7 +519,7 @@ EXPORT B
    expect (() => scene .updateImportedNode (otherInlineNode, "S", "FooBee")) .toThrow (Error);
 });
 
-test ("removeImportedNode", async () =>
+test .concurrent ("removeImportedNode", async () =>
 {
    const scene = await Browser .createX3DFromString (`
 PROFILE Interchange
@@ -559,7 +559,7 @@ EXPORT B
    expect (() => scene .removeImportedNode ("Bah")) .not .toThrow (Error);
 });
 
-test ("getImportedNodes", async () =>
+test .concurrent ("getImportedNodes", async () =>
 {
    const scene = await Browser .createX3DFromString (`
 PROFILE Interchange
@@ -616,7 +616,7 @@ IMPORT I.BE AS B
    expect (scene .getImportedNodes () [1] .importedName) .toBe ("Bah");
 });
 
-test ("get/setRootNodes", async () =>
+test .concurrent ("get/setRootNodes", async () =>
 {
    const scene = await Browser .createX3DFromString (`
 PROFILE Interchange
@@ -653,7 +653,7 @@ Foo { }
    expect (executionContext .getRootNodes () [1] .getNodeName ()) .toBe ("B");
 });
 
-test ("getLocalNode 1", async () =>
+test .concurrent ("getLocalNode 1", async () =>
 {
    const scene = await Browser .createX3DFromString (`
 DEF I Inline {
@@ -683,7 +683,7 @@ IMPORT I.T AS TT
    expect (scene .getLocalNode ("TT") .importedName) .toBe ("TT");
 });
 
-test ("getLocalNode 2", async () =>
+test .concurrent ("getLocalNode 2", async () =>
 {
    const scene = await Browser .createX3DFromString (`
 DEF I Inline {
@@ -712,7 +712,7 @@ DEF T Transform { }
    expect (scene .getLocalNode ("TT") .importedName) .toBe ("TT");
 });
 
-test ("ProtoDeclarationHandling", async () =>
+test .concurrent ("ProtoDeclarationHandling", async () =>
 {
    const scene = await Browser .createX3DFromString (`
 PROFILE Interchange
@@ -789,7 +789,7 @@ Foo { }
    expect (() => scene .updateProtoDeclaration ("FooBee", otherProto)) .toThrow (Error);
 });
 
-test ("ExternProtoDeclarationHandling", async () =>
+test .concurrent ("ExternProtoDeclarationHandling", async () =>
 {
    const scene = await Browser .createX3DFromString (`
 PROFILE Interchange
@@ -856,7 +856,7 @@ Foo { }
    expect (() => scene .updateExternProtoDeclaration ("FooBee", otherProto)) .toThrow (Error);
 });
 
-test ("RouteHandling", async () =>
+test .concurrent ("RouteHandling", async () =>
 {
    const scene = await Browser .createX3DFromString (`
 PROFILE Interchange

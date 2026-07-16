@@ -5,7 +5,7 @@ const
    canvas  = X3D .createBrowser (),
    Browser = canvas .browser;
 
-test ("constructor", () =>
+test .concurrent ("constructor", () =>
 {
    const components = Browser .supportedComponents;
 
@@ -14,7 +14,7 @@ test ("constructor", () =>
    expect (components .constructor) .toBe (X3D .ComponentInfoArray);
 });
 
-test ("filter", () =>
+test .concurrent ("filter", () =>
 {
    const components = Browser .supportedComponents;
 
@@ -29,7 +29,7 @@ test ("filter", () =>
    expect (a [2] .name) .toBe ("Texturing3D");
 });
 
-test ("toString", () =>
+test .concurrent ("toString", () =>
 {
    const components = Browser .supportedComponents;
 

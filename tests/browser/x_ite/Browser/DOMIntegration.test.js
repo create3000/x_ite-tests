@@ -2,7 +2,7 @@ import { expect, test } from "vitest";
 import X3D              from "../../X3D.js";
 import $                from "https://cdn.jsdelivr.net/npm/jquery@4.0.0/dist-module/jquery.slim.module.js";
 
-test ("simple-scene-direct", () => new Promise ((resolve, reject) =>
+test .concurrent ("simple-scene-direct", () => new Promise ((resolve, reject) =>
 {
    const canvas = $(`<x3d-canvas>
 <X3D profile='Interchange' version='4.0'>
@@ -51,7 +51,7 @@ test ("simple-scene-direct", () => new Promise ((resolve, reject) =>
    canvas .on ("error", () => reject ("onerror"));
 }));
 
-test ("simple-scene-injected", () => new Promise ((resolve, reject) =>
+test .concurrent ("simple-scene-injected", () => new Promise ((resolve, reject) =>
 {
    const
       canvas  = $(`<x3d-canvas></x3d-canvas>`),

@@ -6,7 +6,7 @@ const
    canvas  = X3D .createBrowser (),
    Browser = canvas .browser;
 
-test ("addConcreteNode", async () =>
+test .concurrent ("addConcreteNode", async () =>
 {
    // Add custom component.
 

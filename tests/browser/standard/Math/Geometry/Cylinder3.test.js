@@ -6,7 +6,7 @@ const
    Line3     = X3D .Line3,
    Vector3   = X3D .Vector3;
 
-test ("constructor", () =>
+test .concurrent ("constructor", () =>
 {
    const c1 = new Cylinder3 ();
 
@@ -19,7 +19,7 @@ test ("constructor", () =>
    expect (c2 .radius) .toBe (2);
 });
 
-test ("copy", () =>
+test .concurrent ("copy", () =>
 {
    const c1 = new Cylinder3 (new Line3 (Vector3 .ZERO, Vector3 .X_AXIS), 2);
    const c2 = c1 .copy ();
@@ -28,7 +28,7 @@ test ("copy", () =>
    expect (c2 .radius) .toBe (2);
 });
 
-test ("assign", () =>
+test .concurrent ("assign", () =>
 {
    const c1 = new Cylinder3 (new Line3 (Vector3 .ZERO, Vector3 .X_AXIS), 2);
    const c2 = new Cylinder3 ();
@@ -39,7 +39,7 @@ test ("assign", () =>
    expect (c2 .radius) .toBe (2);
 });
 
-test ("equals", () =>
+test .concurrent ("equals", () =>
 {
    const c1 = new Cylinder3 (new Line3 (Vector3 .ZERO, Vector3 .X_AXIS), 2);
    const c2 = new Cylinder3 ();
@@ -63,7 +63,7 @@ test ("equals", () =>
    expect (c4 .equals (c3)) .not .toBe (true);
 });
 
-test ("set", () =>
+test .concurrent ("set", () =>
 {
    const c1 = new Cylinder3 ();
 
@@ -78,7 +78,7 @@ test ("set", () =>
    expect (c1 .radius) .toBe (1);
 });
 
-test ("intersectsLine", () =>
+test .concurrent ("intersectsLine", () =>
 {
    const en = new Vector3 ();
    const ex = new Vector3 ();
@@ -131,7 +131,7 @@ test ("intersectsLine", () =>
    // expect (c1 .intersectsLine (oz, en, ex)) .toBe (false);
 });
 
-test ("toString", () =>
+test .concurrent ("toString", () =>
 {
    const c1 = new Cylinder3 ();
 

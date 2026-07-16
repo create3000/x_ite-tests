@@ -5,7 +5,7 @@ const
    canvas = X3D .createBrowser (),
    Browser = canvas .browser;
 
-test ("KelpForestMain.x3d", async () =>
+test .concurrent ("KelpForestMain.x3d", async () =>
 {
    const kelp = "https://www.web3d.org/x3d/content/examples/X3dForWebAuthors/KelpForestExhibit/KelpForestMain.x3d";
 

@@ -7,12 +7,12 @@ const
    Matrix4    = X3D .Matrix4,
    Vector3    = X3D .Vector3;
 
-test ("constants", () =>
+test .concurrent ("constants", () =>
 {
    expect (Quaternion .IDENTITY .equals (new Quaternion ())) .toBe (true);
 });
 
-test ("constructor", () =>
+test .concurrent ("constructor", () =>
 {
    const q0 = new Quaternion ();
 
@@ -47,7 +47,7 @@ test ("constructor", () =>
    expect ([... q1]) .toEqual ([1,2,3,4]);
 });
 
-test ("enumerate", () =>
+test .concurrent ("enumerate", () =>
 {
    const properties = [
       "x",
@@ -60,7 +60,7 @@ test ("enumerate", () =>
    enumerate (properties, new Quaternion (1, 2, 3, 4));
 });
 
-test ("copy", () =>
+test .concurrent ("copy", () =>
 {
    const q = new Quaternion (1, 2, 3, 4);
    const b = q .copy ();
@@ -68,7 +68,7 @@ test ("copy", () =>
    expect (b .equals (q)) .toBe (true);
 });
 
-test ("assign", () =>
+test .concurrent ("assign", () =>
 {
    const q = new Quaternion (1, 2, 3, 4);
    const b = new Quaternion () .assign (q);
@@ -76,7 +76,7 @@ test ("assign", () =>
    expect (b .equals (q)) .toBe (true);
 });
 
-test ("set", () =>
+test .concurrent ("set", () =>
 {
    const q = new Quaternion () .set (2, 3, 4, 5);
 
@@ -84,7 +84,7 @@ test ("set", () =>
    expect ([... q .set ()]) .toEqual ([0,0,0,1]);
 });
 
-test ("getMatrix/setMatrix", () =>
+test .concurrent ("getMatrix/setMatrix", () =>
 {
    const m = new Matrix3 (1, 2, 3, 4, 5, 6, 7, 8, 9);
    const a = new Quaternion () .setMatrix (m) .normalize ();
@@ -119,7 +119,7 @@ test ("getMatrix/setMatrix", () =>
    expect (m4 [15]) .toBe (1);
 });
 
-// test ("isReal", () =>
+// test .concurrent ("isReal", () =>
 // {
 //    const q = new Quaternion (0, 0, 0, 1);
 
@@ -127,7 +127,7 @@ test ("getMatrix/setMatrix", () =>
 //    expect (q .isImag ()) .not .toBe (true);
 // });
 
-// test ("isImag", () =>
+// test .concurrent ("isImag", () =>
 // {
 //    const q = new Quaternion (1, 2, 3, 0);
 
@@ -135,7 +135,7 @@ test ("getMatrix/setMatrix", () =>
 //    expect (q .isImag ()) .toBe (true);
 // });
 
-test ("equals", () =>
+test .concurrent ("equals", () =>
 {
    const a = new Quaternion (1, 2, 3, 4);
    const b = new Quaternion (1, 2, 3, 4);
@@ -145,7 +145,7 @@ test ("equals", () =>
    expect (a .equals (c)) .toBe (false);
 });
 
-test ("add", () =>
+test .concurrent ("add", () =>
 {
    const a = new Quaternion (1, 2, 3, 4);
    const b = new Quaternion (5, 6, 7, 8);
@@ -156,7 +156,7 @@ test ("add", () =>
    expect (c.w) .toBe (12);
 });
 
-test ("conjugate", () =>
+test .concurrent ("conjugate", () =>
 {
    const a = new Quaternion (1, 2, 3, 4);
    const b = a .conjugate ();
@@ -166,7 +166,7 @@ test ("conjugate", () =>
    expect (b .w) .toBe (4);
 });
 
-test ("divide", () =>
+test .concurrent ("divide", () =>
 {
    const a = new Quaternion (2, 4, 6, 8);
    const b = a .divide (2);
@@ -176,7 +176,7 @@ test ("divide", () =>
    expect (b.w) .toBe (4);
 });
 
-test ("dot", () =>
+test .concurrent ("dot", () =>
 {
    const a = new Quaternion (2, 3, 4, 5);
    const b = new Quaternion (5, 6, 7, 8);
@@ -184,7 +184,7 @@ test ("dot", () =>
    expect (a .dot (b)) .toEqual (2*5 + 3*6 + 4*7 + 5*8);
 });
 
-test ("exp", () =>
+test .concurrent ("exp", () =>
 {
    const a = new Quaternion (1, 2, 3, 4);
    const b = new Quaternion (5, 6, 7, 8);
@@ -203,7 +203,7 @@ test ("exp", () =>
    expect (b .w) .toBeCloseTo (-1448.6903062299164);
 });
 
-test ("inverse", () =>
+test .concurrent ("inverse", () =>
 {
    const a = new Quaternion (1, 2, 3, 4);
    const b = a .copy () .inverse ();
@@ -221,7 +221,7 @@ test ("inverse", () =>
    expect (d .w) .toBeCloseTo (1);
 });
 
-test ("log", () =>
+test .concurrent ("log", () =>
 {
    const a = new Quaternion (1, 2, 3, 4);
    const b = new Quaternion (5, 6, 7, 8);
@@ -240,7 +240,7 @@ test ("log", () =>
    expect (b .w) .toBeCloseTo (2.5795276496072646);
 });
 
-test ("multiply", () =>
+test .concurrent ("multiply", () =>
 {
    const a = new Quaternion (1, 2, 3, 4);
    const b = a .multiply (5);
@@ -250,7 +250,7 @@ test ("multiply", () =>
    expect (b.w) .toBe (20);
  });
 
- test ("multLeft", () =>
+ test .concurrent ("multLeft", () =>
 {
    const a = new Quaternion (2, 3, 4, 5);
    const b = new Quaternion (6, 7, 8, 9);
@@ -271,7 +271,7 @@ test ("multiply", () =>
    expect (c1.w) .toBe (-20);
 });
 
-test ("multRight", () => {
+test .concurrent ("multRight", () => {
    const a = new Quaternion (2, 3, 4, 5);
    const b = new Quaternion (6, 7, 8, 9);
    const c = a .multRight (b);
@@ -291,7 +291,7 @@ test ("multRight", () => {
    expect (c1.w) .toBe (-20);
 });
 
-test ("multVecQuat", () =>
+test .concurrent ("multVecQuat", () =>
 {
    const a = new Quaternion (2, 4, 6, 8);
    const b = new Vector3 (3, 4, 5);
@@ -307,7 +307,7 @@ test ("multVecQuat", () =>
    expect (d [2]) .toBeCloseTo (c [2]);
 });
 
-test ("multQuatVec", () =>
+test .concurrent ("multQuatVec", () =>
 {
    const a = new Quaternion (2, 4, 6, 8);
    const b = new Vector3 (3, 4, 5);
@@ -323,7 +323,7 @@ test ("multQuatVec", () =>
    expect (d [2]) .toBeCloseTo (c [2]);
 });
 
-test ("negate", () =>
+test .concurrent ("negate", () =>
 {
    const a = new Quaternion (1, 2, 3, 4);
    const b = a .negate ();
@@ -333,21 +333,21 @@ test ("negate", () =>
    expect (b .w) .toBe (-4);
 });
 
-test ("norm (length)", () =>
+test .concurrent ("norm (length)", () =>
 {
    const q = new Quaternion (3, 4, 5, 6);
    const m = q .norm ();
    expect (m) .toBeCloseTo (9.273618495495704);
 });
 
-test ("normalize", () =>
+test .concurrent ("normalize", () =>
 {
    const q = new Quaternion (2, 2, 2, 2);
    const n = q .normalize ();
    expect ([... n]) .toEqual ([0.5, 0.5, 0.5, 0.5]);
 });
 
-test ("pow", () =>
+test .concurrent ("pow", () =>
 {
    const a = new Quaternion (1, 2, 3, 4);
    const b = new Quaternion (5, 6, 7, 8);
@@ -376,7 +376,7 @@ test ("pow", () =>
    expect (c .w) .toBeCloseTo (88.67240264348418);
 });
 
-test ("subtract", () =>
+test .concurrent ("subtract", () =>
 {
    const a = new Quaternion (5, 6, 7, 8);
    const b = new Quaternion (1, 2, 3, 4);
@@ -387,7 +387,7 @@ test ("subtract", () =>
    expect (c.w) .toBe (4);
 });
 
-test ("toString", () =>
+test .concurrent ("toString", () =>
 {
    const q = new Quaternion (3, 4, 5, 6);
 

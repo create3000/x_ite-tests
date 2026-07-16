@@ -6,12 +6,12 @@ const
    Matrix4   = X3D .Matrix4,
    Vector3   = X3D .Vector3;
 
-test ("constants", () =>
+test .concurrent ("constants", () =>
 {
    expect (Rotation4 .IDENTITY .equals (new Rotation4 ())) .toBe (true);
 });
 
-test ("constructor", () =>
+test .concurrent ("constructor", () =>
 {
    const r1 = new Rotation4 (1,2,3,4);
 
@@ -56,7 +56,7 @@ test ("constructor", () =>
    expect ([... r2]) .toEqual ([0,0,1,0]);
 });
 
-test ("enumerate", () =>
+test .concurrent ("enumerate", () =>
 {
    const properties = [
       "x",
@@ -69,7 +69,7 @@ test ("enumerate", () =>
    enumerate (properties, new Rotation4 (1, 2, 3, 4));
 });
 
-test ("properties", () =>
+test .concurrent ("properties", () =>
 {
    const r1 = new Rotation4 (2,3,4,5);
    const r2 = new Rotation4 (0,3,4,5);
@@ -110,14 +110,14 @@ test ("properties", () =>
    expect (r5 .angle) .toBe (5);
 });
 
-test ("copy", () =>
+test .concurrent ("copy", () =>
 {
    const v1 = new Rotation4 (1,2,3,4);
 
    expect ([... v1 .copy ()]) .toEqual ([1,2,3,4]);
 });
 
-test ("assign", () =>
+test .concurrent ("assign", () =>
 {
    const
       v1 = new Rotation4 (0, 0, 0, 0),
@@ -126,7 +126,7 @@ test ("assign", () =>
    expect ([... v1 .assign (v2)]) .toEqual ([1,2,3,4]);
 });
 
-test ("set", () =>
+test .concurrent ("set", () =>
 {
    const v1 = new Rotation4 (0, 0, 0, 0);
 
@@ -134,7 +134,7 @@ test ("set", () =>
    expect ([... v1 .set ()]) .toEqual ([0,0,1,0]);
 });
 
-test ("equals", () =>
+test .concurrent ("equals", () =>
 {
    const
       a = new Rotation4 (1,2,3,4),
@@ -152,7 +152,7 @@ test ("equals", () =>
    }
 });
 
-test ("inverse", () =>
+test .concurrent ("inverse", () =>
 {
    const
       r1 = new Rotation4 (2,3,4,5) .inverse (),
@@ -191,7 +191,7 @@ test ("inverse", () =>
    expect (i2 [3]) .toBeCloseTo (0);
 });
 
-test ("multVecRot", () =>
+test .concurrent ("multVecRot", () =>
 {
    const
       r1 = new Rotation4 (0,0,1, Math.PI / 4),
@@ -261,7 +261,7 @@ test ("multVecRot", () =>
    expect (w6 [2]) .toBeCloseTo (0.619047619);
 });
 
-test ("multRotVec", () =>
+test .concurrent ("multRotVec", () =>
 {
    const
       r1 = new Rotation4 (0,0,1, Math.PI / 4),
@@ -323,7 +323,7 @@ test ("multRotVec", () =>
    expect (v5 [2]) .toBeCloseTo (w5 [2]);
 });
 
-test ("multLeft", () =>
+test .concurrent ("multLeft", () =>
 {
    const
       r  = new Rotation4 (),
@@ -345,7 +345,7 @@ test ("multLeft", () =>
    expect (r1 [3]) .toBeCloseTo (r [3]);
 });
 
-test ("multRight", () =>
+test .concurrent ("multRight", () =>
 {
    const
       r  = new Rotation4 (),
@@ -367,7 +367,7 @@ test ("multRight", () =>
    expect (r1 [3]) .toBeCloseTo (r [3]);
 });
 
-test ("getAxis", () =>
+test .concurrent ("getAxis", () =>
 {
    const
       r1 = new Rotation4 (1,2,3,4),
@@ -382,7 +382,7 @@ test ("getAxis", () =>
    expect (a [2]) .toBeCloseTo (r1 [2]);
 });
 
-test ("getMatrix", () =>
+test .concurrent ("getMatrix", () =>
 {
    const
       r1 = new Rotation4 (1,2,3,4) .normalize (),
@@ -411,7 +411,7 @@ test ("getMatrix", () =>
    expect (r2 [3]) .toBeCloseTo (r1 [3]);
 });
 
-test ("getEuler", () =>
+test .concurrent ("getEuler", () =>
 {
    const r1 = Rotation4 .fromEuler (2,3,4);
 
@@ -476,7 +476,7 @@ test ("getEuler", () =>
    }
 });
 
-test ("setAxis", () =>
+test .concurrent ("setAxis", () =>
 {
    const r1 = new Rotation4 ();
 
@@ -503,7 +503,7 @@ test ("setAxis", () =>
    expect (r1 .equals (r2)) .toBe (true);
 });
 
-test ("toString", () =>
+test .concurrent ("toString", () =>
 {
    const r = new Rotation4 (3, 4, 5, 6);
 

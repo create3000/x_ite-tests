@@ -8,12 +8,12 @@ const
 
 const comp = 4;
 
-test ("constructor", () =>
+test .concurrent ("constructor", () =>
 {
    expect ((new MFQuaternion ()) [0]) .toBe (undefined);
 });
 
-test ("get1Value", () =>
+test .concurrent ("get1Value", () =>
 {
    const field = new MFQuaternion ();
 
@@ -45,7 +45,7 @@ test ("get1Value", () =>
    expect (field [2]) .toBeInstanceOf (SFQuaternion);
 });
 
-test ("length", () =>
+test .concurrent ("length", () =>
 {
    expect (new MFQuaternion () .length) .toBe (0);
    expect (new MFQuaternion (new SFQuaternion (1,2,3,4), new SFQuaternion (1,2,3,4)) .length) .toBe (2);
@@ -86,7 +86,7 @@ test ("length", () =>
       expect (m [i] .equals (new SFQuaternion ())) .toBe (true);
 });
 
-test ("setValue", () =>
+test .concurrent ("setValue", () =>
 {
    const field = new MFQuaternion ();
 
@@ -116,7 +116,7 @@ test ("setValue", () =>
    expect (field .equals (new MFQuaternion ())) .toBe (true);
 });
 
-test ("assign", () =>
+test .concurrent ("assign", () =>
 {
    const
       field = new MFQuaternion (),
@@ -133,7 +133,7 @@ test ("assign", () =>
    expect (field .equals (new MFQuaternion ())) .toBe (true);
 });
 
-test ("fromString", () =>
+test .concurrent ("fromString", () =>
 {
    const a = new MFQuaternion ();
 
@@ -171,7 +171,7 @@ test ("fromString", () =>
    expect (a [1] .w) .toBe (180);
 });
 
-test ("fromVRMLString", () =>
+test .concurrent ("fromVRMLString", () =>
 {
    const a = new MFQuaternion ();
 
@@ -209,7 +209,7 @@ test ("fromVRMLString", () =>
    expect (a [1] .w) .toBe (180);
 });
 
-test ("fromXMLString", () =>
+test .concurrent ("fromXMLString", () =>
 {
    const a = new MFQuaternion ();
 
@@ -242,12 +242,12 @@ test ("fromXMLString", () =>
    expect (a [1] .w) .toBe (180);
 });
 
-test ("enumerate", () =>
+test .concurrent ("enumerate", () =>
 {
    enumerate (["0", "1", "2"], new MFQuaternion (new SFQuaternion (), new SFQuaternion (), new SFQuaternion ()));
 });
 
-test ("toString", () =>
+test .concurrent ("toString", () =>
 {
    const a = new MFQuaternion ();
    const b = new MFQuaternion (new SFQuaternion (1,2,3,4));

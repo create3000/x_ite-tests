@@ -57,7 +57,7 @@ const values = [
    [-123456789012.123, "-1.234568e11"],
 ];
 
-test ("FloatFormat", () =>
+test .concurrent ("FloatFormat", () =>
 {
    const generator = new VRMLGenerator ({ });
 
@@ -65,7 +65,7 @@ test ("FloatFormat", () =>
       expect (generator .FloatFormat (first)) .toBe (second);
 });
 
-test ("DoubleFormat", () =>
+test .concurrent ("DoubleFormat", () =>
 {
    const generator = new VRMLGenerator ({ doublePrecision: 7 });
 
@@ -73,7 +73,7 @@ test ("DoubleFormat", () =>
       expect (generator .DoubleFormat (first)) .toBe (second);
 });
 
-test ("names 1", async () =>
+test .concurrent ("names 1", async () =>
 {
    const input = `<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE X3D PUBLIC "ISO//Web3D//DTD X3D ${latestVersion}//EN" "https://www.web3d.org/specifications/x3d-${latestVersion}.dtd">
@@ -100,7 +100,7 @@ test ("names 1", async () =>
    expect (json .toXMLString ()) .toBe (input);
 });
 
-test ("names 2", async () =>
+test .concurrent ("names 2", async () =>
 {
    const input = `<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE X3D PUBLIC "ISO//Web3D//DTD X3D ${latestVersion}//EN" "https://www.web3d.org/specifications/x3d-${latestVersion}.dtd">
@@ -146,7 +146,7 @@ const output = `<?xml version="1.0" encoding="UTF-8"?>
    expect (json .toXMLString ()) .toBe (output);
 });
 
-test ("names 3", async () =>
+test .concurrent ("names 3", async () =>
 {
    const scene = await Browser .createScene (Browser .getProfile ("Interchange"));
 
@@ -186,7 +186,7 @@ test ("names 3", async () =>
    expect (json) .toBe (output);
 });
 
-test ("exported node without name", async () =>
+test .concurrent ("exported node without name", async () =>
 {
    const
       scene1 = await Browser .createScene (Browser .getProfile ("Full")),
@@ -204,7 +204,7 @@ test ("exported node without name", async () =>
    expect (scene2 .exportedNodes) .toHaveLength (1);
 });
 
-test ("imported names", async () =>
+test .concurrent ("imported names", async () =>
 {
    const scene1 = await Browser .createX3DFromString (`
 DEF I Inline {
@@ -237,7 +237,7 @@ IMPORT I.T
 });
 
 
-test ("hidden routes", async () =>
+test .concurrent ("hidden routes", async () =>
 {
    const scene = await Browser .createX3DFromString (`
 DEF T1 Transform { }

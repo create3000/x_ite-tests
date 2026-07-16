@@ -7,7 +7,7 @@ const
    canvas  = X3D .createBrowser (),
    Browser = canvas .browser;
 
-test ("properties", () =>
+test .concurrent ("properties", () =>
 {
    for (const typeName of Object .keys (Fields))
    {
@@ -68,7 +68,7 @@ test ("properties", () =>
    }
 });
 
-test ("add/removeFieldInterest", () => new Promise ((resolve, reject) =>
+test .concurrent ("add/removeFieldInterest", () => new Promise ((resolve, reject) =>
 {
    const node = Browser .currentScene .createNode ("Transform");
 
@@ -110,7 +110,7 @@ test ("add/removeFieldInterest", () => new Promise ((resolve, reject) =>
    node .translation = new X3D .SFVec3f (2,3,4);
 }));
 
-test ("add/removeFieldCallback", () => new Promise (resolve =>
+test .concurrent ("add/removeFieldCallback", () => new Promise (resolve =>
 {
    const node = Browser .currentScene .createNode ("Material");
 
@@ -130,7 +130,7 @@ test ("add/removeFieldCallback", () => new Promise (resolve =>
    node .transparency = 0.5;
 }));
 
-test ("add/removeFieldCallback", () => new Promise (resolve =>
+test .concurrent ("add/removeFieldCallback", () => new Promise (resolve =>
 {
    const node = Browser .currentScene .createNode ("Transform");
 
@@ -150,7 +150,7 @@ test ("add/removeFieldCallback", () => new Promise (resolve =>
    node .translation = new X3D .SFVec3f (2,3,4);
 }));
 
-test ("user-data", () =>
+test .concurrent ("user-data", () =>
 {
    const
       field = new X3D .SFBool (),

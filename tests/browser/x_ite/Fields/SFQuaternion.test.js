@@ -8,13 +8,13 @@ const
    SFVec3f      = X3D .SFVec3f,
    SFMatrix3f   = X3D .SFMatrix3f;
 
-test ("constants", () =>
+test .concurrent ("constants", () =>
 {
    expect (SFQuaternion .ZERO     .equals (new SFQuaternion (0,0,0,0))) .toBe (true);
    expect (SFQuaternion .IDENTITY .equals (new SFQuaternion (0,0,0,1))) .toBe (true);
 });
 
-test ("constructor", () =>
+test .concurrent ("constructor", () =>
 {
    const v1 = new SFQuaternion ();
 
@@ -64,7 +64,7 @@ test ("constructor", () =>
    expect (v3 [3]) .toBe (0);
 });
 
-test ("fromMatrix", () =>
+test .concurrent ("fromMatrix", () =>
 {
    const v1 = SFQuaternion .fromMatrix (new SFMatrix3f (0,0,-1,0,1,0,1,0,0));
 
@@ -78,7 +78,7 @@ test ("fromMatrix", () =>
    expect (v1 [3]) .toBeCloseTo (Math .SQRT1_2);
 });
 
-test ("enumerate", () =>
+test .concurrent ("enumerate", () =>
 {
    const properties = [
       "x",
@@ -90,7 +90,7 @@ test ("enumerate", () =>
    enumerate (properties, new SFQuaternion ());
 });
 
-test ("getter/setter", () =>
+test .concurrent ("getter/setter", () =>
 {
    const v1 = new SFQuaternion ();
 
@@ -166,7 +166,7 @@ test ("getter/setter", () =>
    expect ([...v1]) .toEqual ([NaN,NaN,NaN,NaN]);
 });
 
-test ("common", () =>
+test .concurrent ("common", () =>
 {
    const field = new SFQuaternion ();
 
@@ -175,7 +175,7 @@ test ("common", () =>
    expect (Object .prototype .toString .call (field)) .toBe ("[object SFQuaternion]");
 });
 
-test ("copy", () =>
+test .concurrent ("copy", () =>
 {
    const
       v1 = new SFQuaternion (2,3,4,5),
@@ -186,7 +186,7 @@ test ("copy", () =>
    expect (v2 .equals (v1)) .toBe (true);
 });
 
-test ("equals", () =>
+test .concurrent ("equals", () =>
 {
    const
       a = new SFQuaternion (2,3,4,5),
@@ -197,7 +197,7 @@ test ("equals", () =>
    expect (a .equals (b)) .toBe (false);
 });
 
-test ("isDefaultValue", () =>
+test .concurrent ("isDefaultValue", () =>
 {
    const
       a = new SFQuaternion (0,0,0,0),
@@ -209,7 +209,7 @@ test ("isDefaultValue", () =>
    expect (b .isDefaultValue ()) .toBe (false);
 });
 
-test ("add", () =>
+test .concurrent ("add", () =>
 {
    const
       a = new SFQuaternion (2,3,4,5),
@@ -225,7 +225,7 @@ test ("add", () =>
    expect (c .equals (new SFQuaternion (8,10,12,14))) .toBe (true);
 });
 
-test ("conjugate", () =>
+test .concurrent ("conjugate", () =>
 {
    const
       a = new SFQuaternion (2,3,4,5),
@@ -241,7 +241,7 @@ test ("conjugate", () =>
    expect (b [3]) .toBe (a [3]);
 });
 
-test ("divide", () =>
+test .concurrent ("divide", () =>
 {
    const
       a = new SFQuaternion (2,4,6,8),
@@ -254,7 +254,7 @@ test ("divide", () =>
    expect (b .equals (new SFQuaternion (1,2,3,4))) .toBe (true);
 });
 
-test ("get/setMatrix", () =>
+test .concurrent ("get/setMatrix", () =>
 {
    const a = new SFQuaternion (0,0,0,1);
    const b = new SFQuaternion ();
@@ -283,12 +283,12 @@ test ("get/setMatrix", () =>
    expect (b [3]) .toBeCloseTo (Math .SQRT1_2);
 });
 
-test ("dot", () =>
+test .concurrent ("dot", () =>
 {
    expect (new SFQuaternion (2,3,4,5) .dot (new SFQuaternion (6,7,8,9))) .toBe (110);
 });
 
-test ("inverse", () =>
+test .concurrent ("inverse", () =>
 {
    const
       a = new SFQuaternion (2,3,4,5),
@@ -326,12 +326,12 @@ test ("inverse", () =>
    expect (c [3]) .toBeCloseTo (d [3]);
 });
 
-test ("length", () =>
+test .concurrent ("length", () =>
 {
    expect (new SFQuaternion (2,3,4,5) .length ()) .toBe (Math .hypot (2,3,4,5));
 });
 
-test ("multiply", () =>
+test .concurrent ("multiply", () =>
 {
    const
       a = new SFQuaternion (2,4,6,8),
@@ -344,7 +344,7 @@ test ("multiply", () =>
    expect (b .equals (new SFQuaternion (4,8,12,16))) .toBe (true);
 });
 
-test ("multLeft", () =>
+test .concurrent ("multLeft", () =>
 {
    const
       a = new SFQuaternion (1, 2, 3, 4),
@@ -362,7 +362,7 @@ test ("multLeft", () =>
    expect ([... d]) .toEqual ([28, 56, 30, -20]);
 });
 
-test ("multQuatVec", () =>
+test .concurrent ("multQuatVec", () =>
 {
    const
       r1 = new SFQuaternion (1, 2, 3, 4),
@@ -395,7 +395,7 @@ test ("multQuatVec", () =>
    }
 });
 
-test ("multVecQuat:double", () =>
+test .concurrent ("multVecQuat:double", () =>
 {
    const
       r1 = new SFQuaternion (1, 2, 3, 4),
@@ -428,7 +428,7 @@ test ("multVecQuat:double", () =>
    }
 });
 
-test ("multRight", () =>
+test .concurrent ("multRight", () =>
 {
    const
       a = new SFQuaternion (1, 2, 3, 4),
@@ -446,7 +446,7 @@ test ("multRight", () =>
    expect ([... d]) .toEqual ([28, 56, 30, -20]);
 });
 
-test ("multVecQuat", () =>
+test .concurrent ("multVecQuat", () =>
 {
    const
       r1 = new SFQuaternion (1, 2, 3, 4),
@@ -479,7 +479,7 @@ test ("multVecQuat", () =>
    }
 });
 
-test ("multVecQuat:double", () =>
+test .concurrent ("multVecQuat:double", () =>
 {
    const
       r1 = new SFQuaternion (1, 2, 3, 4),
@@ -512,7 +512,7 @@ test ("multVecQuat:double", () =>
    }
 });
 
-test ("negate", () =>
+test .concurrent ("negate", () =>
 {
    const
       a = new SFQuaternion (2,3,4,5),
@@ -533,7 +533,7 @@ test ("negate", () =>
    expect (c .equals (a)) .toBe (true);
 });
 
-test ("normalize", () =>
+test .concurrent ("normalize", () =>
 {
    const
       a = new SFQuaternion (4,9,16,25),
@@ -546,7 +546,7 @@ test ("normalize", () =>
    expect (b .length ()) .toBeCloseTo (1);
 });
 
-test ("slerp", () =>
+test .concurrent ("slerp", () =>
 {
    const
       a = new SFQuaternion (8, -4, -9 ,2) .normalize (),
@@ -565,7 +565,7 @@ test ("slerp", () =>
    expect (c [3]) .toBeCloseTo (0.51865067825748);
 });
 
-test ("subtract", () =>
+test .concurrent ("subtract", () =>
 {
    const
       a = new SFQuaternion (8,10,12,14),
@@ -581,7 +581,7 @@ test ("subtract", () =>
    expect (c .equals (new SFQuaternion (2,3,4,5))) .toBe (true);
 });
 
-test ("fromString", () =>
+test .concurrent ("fromString", () =>
 {
    const a = new SFQuaternion ();
 
@@ -600,7 +600,7 @@ test ("fromString", () =>
    expect (() => a .fromString ("foo")) .toThrow (Error);
 });
 
-test ("fromVRMLString", () =>
+test .concurrent ("fromVRMLString", () =>
 {
    const a = new SFQuaternion ();
 
@@ -619,7 +619,7 @@ test ("fromVRMLString", () =>
    expect (() => a .fromVRMLString ("foo")) .toThrow (Error);
 });
 
-test ("fromXMLString", () =>
+test .concurrent ("fromXMLString", () =>
 {
    const a = new SFQuaternion ();
 
@@ -638,7 +638,7 @@ test ("fromXMLString", () =>
    expect (() => a .fromXMLString ("foo")) .toThrow (Error);
 });
 
-test ("toString", () =>
+test .concurrent ("toString", () =>
 {
    const a = new SFQuaternion (1,2,3,4);
    const b = new SFQuaternion (5,6,7,8);

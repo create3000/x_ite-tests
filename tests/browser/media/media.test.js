@@ -21,7 +21,7 @@ body .appendChild (canvas);
 browser .setBrowserOption ("SplashScreen", false);
 browser .setBrowserOption ("Mute", true);
 
-test ("media", async () =>
+test .concurrent ("media", async () =>
 {
    const media = JSON .parse (await get ("https://weiputer/media/docs/examples/config.json"));
 

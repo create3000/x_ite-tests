@@ -1,13 +1,13 @@
 import { expect, test } from "vitest";
 import X3D              from "../../X3D.js";
 
-const 
+const
    canvas  = X3D .createBrowser (),
    Browser = canvas .browser,
    scene   = Browser .currentScene,
    node    = scene .createNode ("WorldInfo");
 
-test ("get", () =>
+test .concurrent ("get", () =>
 {
    const n = X3D .SFNodeCache .get (node .getValue ());
 
@@ -16,7 +16,7 @@ test ("get", () =>
    expect (n) .toBe (X3D .SFNodeCache .get (node .getValue ()));
 });
 
-test ("delete", () =>
+test .concurrent ("delete", () =>
 {
    X3D .SFNodeCache .delete (node .getValue ());
 
@@ -28,7 +28,7 @@ test ("delete", () =>
    expect (n) .toBe (X3D .SFNodeCache .get (node .getValue ()));
 });
 
-test ("add", () =>
+test .concurrent ("add", () =>
 {
    X3D .SFNodeCache .delete (node .getValue ());
    X3D .SFNodeCache .set (node .getValue (), node);

@@ -3,7 +3,7 @@ import X3D              from "../../X3D.js";
 
 const MFBool = X3D .MFBool;
 
-test ("constructor", () =>
+test .concurrent ("constructor", () =>
 {
    let field;
 
@@ -28,7 +28,7 @@ test ("constructor", () =>
    expect ((new MFBool ()) [0]) .toBe (undefined);
 });
 
-test ("get1Value", () =>
+test .concurrent ("get1Value", () =>
 {
    const field = new MFBool ();
 
@@ -60,7 +60,7 @@ test ("get1Value", () =>
    expect (typeof field [2]) .toBe ("boolean");
 });
 
-test ("set1Value", () =>
+test .concurrent ("set1Value", () =>
 {
    const field = new MFBool ();
 
@@ -82,7 +82,7 @@ test ("set1Value", () =>
    expect ((field [0] = -666,            field [0])) .toBe (true);
 });
 
-test ("setValue", () =>
+test .concurrent ("setValue", () =>
 {
    const field = new MFBool ();
 
@@ -112,7 +112,7 @@ test ("setValue", () =>
    expect (field .equals (new MFBool ())) .toBe (true);
 });
 
-test ("assign", () =>
+test .concurrent ("assign", () =>
 {
    const field = new MFBool ();
 
@@ -127,7 +127,7 @@ test ("assign", () =>
    expect (field .equals (new MFBool ())) .toBe (true);
 });
 
-test ("shrinkToFit", () =>
+test .concurrent ("shrinkToFit", () =>
 {
    const field = new MFBool (true, false, true, false);
 
@@ -135,7 +135,7 @@ test ("shrinkToFit", () =>
    expect (field .shrinkToFit ()) .toBe (field .shrinkToFit ());
 });
 
-test ("common", () =>
+test .concurrent ("common", () =>
 {
    const field = new MFBool ();
 
@@ -144,7 +144,7 @@ test ("common", () =>
    expect (Object .prototype .toString .call (field)) .toBe ("[object MFBool]");
 });
 
-test ("copy", () =>
+test .concurrent ("copy", () =>
 {
    const
       a = new MFBool (true,false,true),
@@ -156,7 +156,7 @@ test ("copy", () =>
    expect (b .getValue ()) .not .toBe (a .getValue ());
 });
 
-test ("equals", () =>
+test .concurrent ("equals", () =>
 {
    const
       a = new MFBool (),
@@ -169,7 +169,7 @@ test ("equals", () =>
    expect (b .equals (c)) .toBe (true);
 });
 
-test ("isDefaultValue", () =>
+test .concurrent ("isDefaultValue", () =>
 {
    const
       a = new MFBool (),
@@ -179,7 +179,7 @@ test ("isDefaultValue", () =>
    expect (b .isDefaultValue ()) .toBe (false);
 });
 
-test ("constructor", () =>
+test .concurrent ("constructor", () =>
 {
    const a = new MFBool ();
 
@@ -204,7 +204,7 @@ test ("constructor", () =>
    expect (c [4]) .toBe (true);
 });
 
-test ("special-values", () =>
+test .concurrent ("special-values", () =>
 {
    const a = new MFBool (Infinity);
 
@@ -269,7 +269,7 @@ test ("special-values", () =>
    expect (a [4]) .toBe (true);
 });
 
-test ("at", () =>
+test .concurrent ("at", () =>
 {
    const
       N = 10,
@@ -288,7 +288,7 @@ test ("at", () =>
    }
 });
 
-test ("entries", () =>
+test .concurrent ("entries", () =>
 {
    const
       N = 10,
@@ -303,7 +303,7 @@ test ("entries", () =>
       expect (value) .toBe (a [i]);
 });
 
-test ("fill", () =>
+test .concurrent ("fill", () =>
 {
    const a = new MFBool (false, false, false, false, false, false);
 
@@ -336,7 +336,7 @@ test ("fill", () =>
    expect (a [5]) .toBe (false);
 });
 
-test ("filter", () =>
+test .concurrent ("filter", () =>
 {
    const
       N = 10,
@@ -354,7 +354,7 @@ test ("filter", () =>
       expect (b [i]) .toBe (a [i * 2]);
 });
 
-test ("keys", () =>
+test .concurrent ("keys", () =>
 {
    const
       N = 10,
@@ -366,7 +366,7 @@ test ("keys", () =>
    expect (a .keys ()) .toEqual (new Array (N/2) .keys ());
 });
 
-test ("map", () =>
+test .concurrent ("map", () =>
 {
    const
       N = 10,
@@ -385,7 +385,7 @@ test ("map", () =>
       expect (b [i]) .toBe (a [i]);
 });
 
-test ("pop", () =>
+test .concurrent ("pop", () =>
 {
    const
       N = 10,
@@ -422,7 +422,7 @@ test ("pop", () =>
    }
 });
 
-test ("push", () =>
+test .concurrent ("push", () =>
 {
    const
       N = 1_000,
@@ -445,7 +445,7 @@ test ("push", () =>
    }
 });
 
-test ("shift", () =>
+test .concurrent ("shift", () =>
 {
    const
       N = 10,
@@ -480,7 +480,7 @@ test ("shift", () =>
    }
 });
 
-test ("slice", () =>
+test .concurrent ("slice", () =>
 {
    const
       N = 10,
@@ -508,7 +508,7 @@ test ("slice", () =>
       expect (c [i]) .toBe (a [j]);
 });
 
-test ("splice", () =>
+test .concurrent ("splice", () =>
 {
    const
       N = 10,
@@ -573,7 +573,7 @@ test ("splice", () =>
    expect (n .equals (new MFBool (true, false))) .toBe (true);
 });
 
-test ("sort-reverse", () =>
+test .concurrent ("sort-reverse", () =>
 {
    const a = new MFBool (true, false, true, false, true, false);
 
@@ -618,7 +618,7 @@ test ("sort-reverse", () =>
    expect (a [5]) .toBe (false);
 });
 
-test ("unshift", () =>
+test .concurrent ("unshift", () =>
 {
    const
       N = 1_000,
@@ -641,7 +641,7 @@ test ("unshift", () =>
    }
 });
 
-test ("concat", () =>
+test .concurrent ("concat", () =>
 {
    const
       a = new MFBool (true, true),
@@ -672,7 +672,7 @@ test ("concat", () =>
    expect (d [5]) .toBe (true);
 });
 
-test ("flat", () =>
+test .concurrent ("flat", () =>
 {
    const
       a = new MFBool (),
@@ -684,7 +684,7 @@ test ("flat", () =>
    expect (b .flat ()) .toEqual ([true, true, false, false]);
 });
 
-test ("flatMap", () =>
+test .concurrent ("flatMap", () =>
 {
    const
       a = new MFBool (),
@@ -696,7 +696,7 @@ test ("flatMap", () =>
    expect (b .flatMap (v => !v)) .toEqual ([false, false, true, true]);
 });
 
-test ("length", () =>
+test .concurrent ("length", () =>
 {
    expect (new MFBool () .length) .toBe (0);
    expect (new MFBool (true, false, true) .length) .toBe (3);
@@ -737,7 +737,7 @@ test ("length", () =>
       expect (m [i]) .toBe (false);
 });
 
-test ("fromString", () =>
+test .concurrent ("fromString", () =>
 {
    const a = new MFBool ();
 
@@ -764,7 +764,7 @@ test ("fromString", () =>
    expect (() => a .fromString ("[TRUE foo]")) .toThrow (Error);
 });
 
-test ("fromVRMLString", () =>
+test .concurrent ("fromVRMLString", () =>
 {
    const a = new MFBool ();
 
@@ -791,7 +791,7 @@ test ("fromVRMLString", () =>
    expect (() => a .fromVRMLString ("[TRUE foo]")) .toThrow (Error);
 });
 
-test ("fromXMLString", () =>
+test .concurrent ("fromXMLString", () =>
 {
    const a = new MFBool ();
 
@@ -813,12 +813,12 @@ test ("fromXMLString", () =>
    expect (a .equals (new MFBool (true, false, true, false, true, true, false, false))) .toBe (true);
 });
 
-test ("enumerate", () =>
+test .concurrent ("enumerate", () =>
 {
    enumerate (["0", "1", "2"], new MFBool (true, false, true));
 });
 
-test ("toString", () =>
+test .concurrent ("toString", () =>
 {
    const a = new MFBool ();
    const b = new MFBool (true);

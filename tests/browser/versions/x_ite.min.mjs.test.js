@@ -1,7 +1,7 @@
 import { expect, test } from "vitest";
 import X3D from "https://weiputer/x_ite/dist/x_ite.min.mjs";
 
-test ("X3D", async () =>
+test .concurrent ("X3D", async () =>
 {
    const browser = X3D .createBrowser () .browser;
 

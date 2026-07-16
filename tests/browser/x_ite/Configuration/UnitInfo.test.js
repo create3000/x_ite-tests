@@ -5,7 +5,7 @@ const
    canvas  = X3D .createBrowser (),
    Browser = canvas .browser;
 
-test ("properties", () =>
+test .concurrent ("properties", () =>
 {
    const unit = Browser .currentScene .getUnit ("angle");
 
@@ -36,7 +36,7 @@ test ("properties", () =>
    enumerate (properties, unit);
 });
 
-test ("toString", () =>
+test .concurrent ("toString", () =>
 {
    const unit = Browser .currentScene .getUnit ("angle");
 

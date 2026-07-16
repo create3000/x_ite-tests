@@ -25,7 +25,7 @@ scene .addNamedNode ("5", node5);
 scene .addNamedNode ("6", node6);
 scene .addNamedNode ("7", node7);
 
-test ("constructor", () =>
+test .concurrent ("constructor", () =>
 {
    const
       field1 = new MFNode (),
@@ -46,7 +46,7 @@ test ("constructor", () =>
    expect ((new MFNode ()) [0]) .toBe (undefined);
 });
 
-test ("get1Value", () =>
+test .concurrent ("get1Value", () =>
 {
    const field = new MFNode ();
 
@@ -77,7 +77,7 @@ test ("get1Value", () =>
    expect (field [2]) .toBeInstanceOf (SFNode);
 });
 
-test ("set1Value", () =>
+test .concurrent ("set1Value", () =>
 {
    const field = new MFNode ();
 
@@ -97,7 +97,7 @@ test ("set1Value", () =>
    expect (field) .toHaveLength (0);
 });
 
-test ("setValue", () =>
+test .concurrent ("setValue", () =>
 {
    const field = new MFNode ();
 
@@ -123,7 +123,7 @@ test ("setValue", () =>
    expect (field [1]) .toBe (node2);
 });
 
-test ("assign", () =>
+test .concurrent ("assign", () =>
 {
    const field = new MFNode ();
 
@@ -143,7 +143,7 @@ test ("assign", () =>
    expect (field) .toHaveLength (0);
 });
 
-test ("shrinkToFit", () =>
+test .concurrent ("shrinkToFit", () =>
 {
    const field = new MFNode (node1);
 
@@ -151,7 +151,7 @@ test ("shrinkToFit", () =>
    expect (field .shrinkToFit ()) .toBe (field .shrinkToFit ());
 });
 
-test ("common", () =>
+test .concurrent ("common", () =>
 {
    const field = new MFNode ();
 
@@ -160,7 +160,7 @@ test ("common", () =>
    expect (Object .prototype .toString .call (field)) .toBe ("[object MFNode]");
 });
 
-test ("copy", () =>
+test .concurrent ("copy", () =>
 {
    const
       a = new MFNode (node1, node2),
@@ -172,7 +172,7 @@ test ("copy", () =>
    expect (b .getValue ()) .not .toBe (a .getValue ());
 });
 
-test ("equals", () =>
+test .concurrent ("equals", () =>
 {
    const
       a = new MFNode (),
@@ -185,7 +185,7 @@ test ("equals", () =>
    expect (b .equals (c)) .toBe (true);
 });
 
-test ("isDefaultValue", () =>
+test .concurrent ("isDefaultValue", () =>
 {
    const
       a = new MFNode (),
@@ -195,7 +195,7 @@ test ("isDefaultValue", () =>
    expect (b .isDefaultValue ()) .toBe (false);
 });
 
-test ("constructor", () =>
+test .concurrent ("constructor", () =>
 {
    const a = new MFNode ();
 
@@ -220,7 +220,7 @@ test ("constructor", () =>
    expect (c [4]) .toBe (node5);
 });
 
-test ("basic-functions", () =>
+test .concurrent ("basic-functions", () =>
 {
    const a = new MFNode (node1);
 
@@ -285,7 +285,7 @@ test ("basic-functions", () =>
    expect (a [4]) .toBe (node1);
 });
 
-test ("at", () =>
+test .concurrent ("at", () =>
 {
    const
       N = 10,
@@ -305,7 +305,7 @@ test ("at", () =>
    }
 });
 
-test ("entries", () =>
+test .concurrent ("entries", () =>
 {
    const
       N = 10,
@@ -320,7 +320,7 @@ test ("entries", () =>
       expect (value) .toBe (a [i]);
 });
 
-test ("fill", () =>
+test .concurrent ("fill", () =>
 {
    const a = new MFNode (node1, node2, node3, node4, node5, node6);
 
@@ -353,7 +353,7 @@ test ("fill", () =>
    expect (a [5]) .toBe (node2);
 });
 
-test ("filter", () =>
+test .concurrent ("filter", () =>
 {
    const
       N = 10,
@@ -372,7 +372,7 @@ test ("filter", () =>
    expect (b [1]) .toBe (x [1]);
 });
 
-test ("keys", () =>
+test .concurrent ("keys", () =>
 {
    const
       N = 10,
@@ -384,7 +384,7 @@ test ("keys", () =>
    expect (a .keys ()) .toEqual (new Array (N/2) .keys ());
 });
 
-test ("map", () =>
+test .concurrent ("map", () =>
 {
    const
       N = 10,
@@ -403,7 +403,7 @@ test ("map", () =>
       expect (b [i]) .toBe (a [i]);
 });
 
-test ("pop", () =>
+test .concurrent ("pop", () =>
 {
    const
       N = 10,
@@ -442,7 +442,7 @@ test ("pop", () =>
    }
 });
 
-test ("push", () =>
+test .concurrent ("push", () =>
 {
    const
       N = 1_000,
@@ -466,7 +466,7 @@ test ("push", () =>
    }
 });
 
-test ("shift", () =>
+test .concurrent ("shift", () =>
 {
    const
       N = 10,
@@ -506,7 +506,7 @@ test ("shift", () =>
    }
 });
 
-test ("slice", () =>
+test .concurrent ("slice", () =>
 {
    const
       N = 10,
@@ -542,7 +542,7 @@ test ("slice", () =>
    }
 });
 
-test ("splice", () =>
+test .concurrent ("splice", () =>
 {
    const
       N = 10,
@@ -616,7 +616,7 @@ test ("splice", () =>
    expect (n .equals (new MFNode (node1, node2))) .toBe (true);
 });
 
-test ("sort-reverse", () =>
+test .concurrent ("sort-reverse", () =>
 {
    const a = new MFNode (node1, node2, node3, node4, node5, node6);
 
@@ -662,7 +662,7 @@ test ("sort-reverse", () =>
    expect (a [5]) .toBe (node1);
 });
 
-test ("unshift", () =>
+test .concurrent ("unshift", () =>
 {
    const
       N = 1_000,
@@ -686,7 +686,7 @@ test ("unshift", () =>
    }
 });
 
-test ("parents", () =>
+test .concurrent ("parents", () =>
 {
    const n1 = scene .createNode ("MetadataBoolean");
 
@@ -731,7 +731,7 @@ test ("parents", () =>
    expect (a2 [0] .getValue () .getParents () .size) .toBe (2);
 });
 
-test ("dispose", () =>
+test .concurrent ("dispose", () =>
 {
    const a = new MFNode (
       scene .createNode ("MetadataBoolean"),
@@ -756,7 +756,7 @@ test ("dispose", () =>
       expect (b [i] .getValue () .getParents () .size) .toBe (1);
 });
 
-test ("concat", () =>
+test .concurrent ("concat", () =>
 {
    const
       a = new MFNode (node1, node2),
@@ -787,7 +787,7 @@ test ("concat", () =>
    expect (d [5]) .toBe (node6);
 });
 
-test ("flat", () =>
+test .concurrent ("flat", () =>
 {
    const
       a = new MFNode (),
@@ -801,7 +801,7 @@ test ("flat", () =>
    expect (b .flat () [1]) .toBe (node2);
 });
 
-test ("flatMap", () =>
+test .concurrent ("flatMap", () =>
 {
    const
       a = new MFNode (),
@@ -815,7 +815,7 @@ test ("flatMap", () =>
    expect (b .flatMap (n => n .getNodeTypeName ()) [1]) .toBe (node2 .getNodeTypeName ());
 });
 
-test ("length", () =>
+test .concurrent ("length", () =>
 {
    expect (new MFNode () .length) .toBe (0);
    expect (new MFNode (null, null) .length) .toBe (2);
@@ -837,7 +837,7 @@ test ("length", () =>
       expect (m [i]) .toBe (null);
 });
 
-test ("fromString", () =>
+test .concurrent ("fromString", () =>
 {
    const a = new MFNode ();
 
@@ -877,7 +877,7 @@ test ("fromString", () =>
    expect (() => a .fromString ("[ Switch { }, foo ]")) .toThrow (Error);
 });
 
-test ("fromVRMLString", () =>
+test .concurrent ("fromVRMLString", () =>
 {
    const a = new MFNode ();
 
@@ -917,12 +917,12 @@ test ("fromVRMLString", () =>
    expect (() => a .fromVRMLString ("[ Switch { }, foo ]")) .toThrow (Error);
 });
 
-test ("enumerate", () =>
+test .concurrent ("enumerate", () =>
 {
    enumerate (["0", "1", "2"], new MFNode (node1, node2, node3));
 });
 
-test ("toString", () =>
+test .concurrent ("toString", () =>
 {
    const a = new MFNode ();
    const b = new MFNode (scene .createNode ("WorldInfo"));
@@ -933,7 +933,7 @@ test ("toString", () =>
    expect (c .toString ({ style: "CLEAN" })) .toBe ("[MetadataBoolean{}MetadataDouble{}]");
 });
 
-test ("proxy", () =>
+test .concurrent ("proxy", () =>
 {
    const field = new MFNode (node1,node2,node3);
 

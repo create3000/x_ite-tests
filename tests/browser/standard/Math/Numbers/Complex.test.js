@@ -3,7 +3,7 @@ import X3D              from "../../../X3D.js";
 
 const Complex = X3D .Complex;
 
-test ("constructor", () =>
+test .concurrent ("constructor", () =>
 {
    const c0 = new Complex ();
 
@@ -64,7 +64,7 @@ test ("constructor", () =>
    expect (c1) .toHaveLength (2);
 });
 
-test ("enumerate", () =>
+test .concurrent ("enumerate", () =>
 {
    const properties = [
       "x",
@@ -75,14 +75,14 @@ test ("enumerate", () =>
    enumerate (properties, new Complex (1,2));
 });
 
-test ("copy", () =>
+test .concurrent ("copy", () =>
 {
    const c1 = new Complex (1,2);
 
    expect ([... c1 .copy ()]) .toEqual ([1,2]);
 });
 
-test ("assign", () =>
+test .concurrent ("assign", () =>
 {
    const
       c1 = new Complex (0, 0),
@@ -91,14 +91,14 @@ test ("assign", () =>
    expect ([... c1 .assign (v2)]) .toEqual ([1,2]);
 });
 
-test ("set", () =>
+test .concurrent ("set", () =>
 {
    const c1 = new Complex (0, 0);
 
    expect ([... c1 .set (1,2)]) .toEqual ([1,2]);
 });
 
-test ("setPolar", () =>
+test .concurrent ("setPolar", () =>
 {
    const c1 = Complex .fromPolar (1, Math .PI / 4);
 
@@ -111,7 +111,7 @@ test ("setPolar", () =>
    expect (c1 .imag) .toBeCloseTo (-Math .SQRT1_2);
 });
 
-test ("equals", () =>
+test .concurrent ("equals", () =>
 {
    const
       a = new Complex (1,2),
@@ -129,7 +129,7 @@ test ("equals", () =>
    }
 });
 
-test ("conjugate", () =>
+test .concurrent ("conjugate", () =>
 {
    const c1 = new Complex (1, 2);
 
@@ -138,7 +138,7 @@ test ("conjugate", () =>
    expect ([... c1]) .toEqual ([1,-2]);
 });
 
-test ("negate", () =>
+test .concurrent ("negate", () =>
 {
    const c1 = new Complex (1, 2);
 
@@ -147,21 +147,21 @@ test ("negate", () =>
    expect ([... c1]) .toEqual ([-1,-2]);
 });
 
-test ("magnitude", () =>
+test .concurrent ("magnitude", () =>
 {
    const c1 = new Complex (2, 3);
 
    expect (c1 .magnitude) .toBeCloseTo (Math .sqrt (13));
 });
 
-test ("angle", () =>
+test .concurrent ("angle", () =>
 {
    const c1 = new Complex (2, 3);
 
    expect (c1 .angle) .toBeCloseTo (Math .atan (3/2));
 });
 
-test ("inverse", () =>
+test .concurrent ("inverse", () =>
 {
    const c1 = new Complex (2,3);
 
@@ -171,7 +171,7 @@ test ("inverse", () =>
    expect (c1 .imag) .toBeCloseTo (-3/13);
 });
 
-test ("add", () =>
+test .concurrent ("add", () =>
 {
    const
       c1 = new Complex (2,3),
@@ -183,7 +183,7 @@ test ("add", () =>
    expect (c1 .imag) .toBe (7);
 });
 
-test ("subtract", () =>
+test .concurrent ("subtract", () =>
 {
    const
       c1 = new Complex (2,3),
@@ -195,7 +195,7 @@ test ("subtract", () =>
    expect (c1 .imag) .toBe (-1);
 });
 
-test ("multiply", () =>
+test .concurrent ("multiply", () =>
 {
    const c1 = new Complex (2,3);
 
@@ -205,7 +205,7 @@ test ("multiply", () =>
    expect (c1 .imag) .toBe (15);
 });
 
-test ("multComp", () =>
+test .concurrent ("multComp", () =>
 {
    const
       c1 = new Complex (2,3),
@@ -217,7 +217,7 @@ test ("multComp", () =>
    expect (c1 .imag) .toBe (17);
 });
 
-test ("divide", () =>
+test .concurrent ("divide", () =>
 {
    const c1 = new Complex (10,15);
 
@@ -227,7 +227,7 @@ test ("divide", () =>
    expect (c1 .imag) .toBe (3);
 });
 
-test ("divComp", () =>
+test .concurrent ("divComp", () =>
 {
    const
       c1 = new Complex (2,3),
@@ -239,7 +239,7 @@ test ("divComp", () =>
    expect (c1 .imag) .toBeCloseTo (1/25);
 });
 
-test ("toString", () =>
+test .concurrent ("toString", () =>
 {
    const
       c0 = new Complex (2, 0),

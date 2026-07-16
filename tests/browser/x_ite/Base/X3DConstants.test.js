@@ -3,7 +3,7 @@ import X3D              from "../../X3D.js";
 
 const Fields = X3D .Fields;
 
-test ("events", () =>
+test .concurrent ("events", () =>
 {
    expect (Number .isInteger (X3D .X3DConstants .CONNECTION_ERROR)) .toBe (true);
    expect (Number .isInteger (X3D .X3DConstants .BROWSER_EVENT)) .toBe (true);
@@ -12,7 +12,7 @@ test ("events", () =>
    expect (Number .isInteger (X3D .X3DConstants .INITIALIZED_ERROR)) .toBe (true);
 });
 
-test ("load-state", () =>
+test .concurrent ("load-state", () =>
 {
    expect (Number .isInteger (X3D .X3DConstants .NOT_STARTED_STATE)) .toBe (true);
    expect (Number .isInteger (X3D .X3DConstants .IN_PROGRESS_STATE)) .toBe (true);
@@ -20,7 +20,7 @@ test ("load-state", () =>
    expect (Number .isInteger (X3D .X3DConstants .FAILED_STATE)) .toBe (true);
 });
 
-test ("access-types", () =>
+test .concurrent ("access-types", () =>
 {
    expect (Number .isInteger (X3D .X3DConstants .initializeOnly)) .toBe (true);
    expect (Number .isInteger (X3D .X3DConstants .inputOnly)) .toBe (true);
@@ -33,7 +33,7 @@ test ("access-types", () =>
    expect (X3D .X3DConstants .inputOutput)    .toBe (0b111);
 });
 
-test ("fields", () =>
+test .concurrent ("fields", () =>
 {
    for (const Field of Object .keys (Fields))
       expect (Number .isInteger (X3D .X3DConstants [Field])) .toBe (true);
@@ -45,7 +45,7 @@ test ("fields", () =>
       .toBe (Object .keys (Fields) .length);
 });
 
-test ("internal-nodes", () =>
+test .concurrent ("internal-nodes", () =>
 {
    const InternalNodes = [
       "X3DBrowser",
@@ -61,7 +61,7 @@ test ("internal-nodes", () =>
       expect (Number .isInteger (X3D .X3DConstants [InternalNode])) .toBe (true);
 });
 
-test ("concrete-nodes", async () =>
+test .concurrent ("concrete-nodes", async () =>
 {
    const
       canvas  = X3D .createBrowser (),
@@ -73,13 +73,13 @@ test ("concrete-nodes", async () =>
       expect (Number .isInteger (X3D .X3DConstants [ConcreteNode .typeName])) .toBe (true);
 });
 
-test ("abstract-nodes", async () =>
+test .concurrent ("abstract-nodes", async () =>
 {
    for (const AbstractType of Object .keys (X3D .X3DConstants) .filter (f => f .startsWith ("X3D")))
       expect (Number .isInteger (X3D .X3DConstants [AbstractType])) .toBe (true);
 });
 
-test ("reverse mapping", async () =>
+test .concurrent ("reverse mapping", async () =>
 {
    for (const [key, value] of Object .entries (X3D .X3DConstants))
    {
@@ -88,7 +88,7 @@ test ("reverse mapping", async () =>
    }
 });
 
-test ("toString", () =>
+test .concurrent ("toString", () =>
 {
    expect (Object .prototype .toString .call (X3D .X3DConstants)) .toBe (`[object X3DConstants]`);
    expect (X3D .X3DConstants .toString ()) .toBe (`[object X3DConstants]`);

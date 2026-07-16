@@ -5,7 +5,7 @@ const
    canvas  = X3D .createBrowser (),
    Browser = canvas .browser;
 
-test ("getBBox", async () =>
+test .concurrent ("getBBox", async () =>
 {
    await Browser .loadComponents (Browser .getProfile ("Full"), Browser .getComponent ("X_ITE"));
 

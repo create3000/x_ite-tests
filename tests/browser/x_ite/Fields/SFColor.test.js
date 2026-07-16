@@ -3,13 +3,13 @@ import X3D              from "../../X3D.js";
 
 const SFColor = X3D .SFColor;
 
-test ("constants", () =>
+test .concurrent ("constants", () =>
 {
    expect (SFColor .WHITE .equals (new SFColor (1,1,1))) .toBe (true);
    expect (SFColor .BLACK .equals (new SFColor (0,0,0))) .toBe (true);
 });
 
-test ("constructor", () =>
+test .concurrent ("constructor", () =>
 {
    const v1 = new SFColor ();
 
@@ -41,7 +41,7 @@ test ("constructor", () =>
    expect (v3 [2]) .toBe (0);
 });
 
-test ("enumerate", () =>
+test .concurrent ("enumerate", () =>
 {
    const properties = [
       "r",
@@ -52,7 +52,7 @@ test ("enumerate", () =>
    enumerate (properties, new SFColor ());
 });
 
-test ("getter/setter", () =>
+test .concurrent ("getter/setter", () =>
 {
    const v1 = new SFColor ();
 
@@ -93,7 +93,7 @@ test ("getter/setter", () =>
    expect ([...v1]) .toEqual ([NaN,NaN,NaN]);
 });
 
-test ("common", () =>
+test .concurrent ("common", () =>
 {
    const field = new SFColor ();
 
@@ -102,7 +102,7 @@ test ("common", () =>
    expect (Object .prototype .toString .call (field)) .toBe ("[object SFColor]");
 });
 
-test ("copy", () =>
+test .concurrent ("copy", () =>
 {
    const
       v1 = new SFColor (0.2,0.3,0.4),
@@ -113,7 +113,7 @@ test ("copy", () =>
    expect (v2 .equals (v1)) .toBe (true);
 });
 
-test ("equals", () =>
+test .concurrent ("equals", () =>
 {
    const
       a = new SFColor (0.2,0.3,0.4),
@@ -124,7 +124,7 @@ test ("equals", () =>
    expect (a .equals (b)) .toBe (false);
 });
 
-test ("isDefaultValue", () =>
+test .concurrent ("isDefaultValue", () =>
 {
    const
       a = new SFColor (0,0,0),
@@ -136,7 +136,7 @@ test ("isDefaultValue", () =>
    expect (b .isDefaultValue ()) .toBe (false);
 });
 
-test ("get/setHSVA", () =>
+test .concurrent ("get/setHSVA", () =>
 {
    const
       a = new SFColor (0.2,0.3,0.4),
@@ -169,7 +169,7 @@ test ("get/setHSVA", () =>
    }
 });
 
-test ("linearToSRGB", () =>
+test .concurrent ("linearToSRGB", () =>
 {
    const c1 = new SFColor (0, 0, 0);
 
@@ -192,7 +192,7 @@ test ("linearToSRGB", () =>
    expect (c3 .linearToSRGB ()) .not .toBe (c3 .linearToSRGB ());
 });
 
-test ("sRGBToLinear", () =>
+test .concurrent ("sRGBToLinear", () =>
 {
    const c1 = new SFColor (0, 0, 0);
 
@@ -215,7 +215,7 @@ test ("sRGBToLinear", () =>
    expect (c3 .sRGBToLinear ()) .not .toBe (c3 .sRGBToLinear ());
 });
 
-test ("lerp", () =>
+test .concurrent ("lerp", () =>
 {
    const
       a = new SFColor (0,0,0),
@@ -236,7 +236,7 @@ test ("lerp", () =>
    expect (c [2]) .toBeCloseTo (0.5);
 });
 
-test ("static fromString", () =>
+test .concurrent ("static fromString", () =>
 {
    expect (SFColor .fromString ("0.2 0.3 0.4") .equals (new SFColor (0.2, 0.3, 0.4))) .toBe (true);
    expect (SFColor .fromString ("red") .equals (new SFColor (1, 0, 0))) .toBe (true);
@@ -246,7 +246,7 @@ test ("static fromString", () =>
    expect (() => SFColor .fromString ("---")) .toThrow (Error);
 });
 
-test ("fromString", () =>
+test .concurrent ("fromString", () =>
 {
    const a = new SFColor ();
 
@@ -269,7 +269,7 @@ test ("fromString", () =>
    expect (() => a .fromString ("---")) .toThrow (Error);
 });
 
-test ("fromVRMLString", () =>
+test .concurrent ("fromVRMLString", () =>
 {
    const a = new SFColor ();
 
@@ -292,7 +292,7 @@ test ("fromVRMLString", () =>
    expect (() => a .fromVRMLString ("---")) .toThrow (Error);
 });
 
-test ("fromXMLString", () =>
+test .concurrent ("fromXMLString", () =>
 {
    const a = new SFColor ();
 
@@ -315,7 +315,7 @@ test ("fromXMLString", () =>
    expect (() => a .fromXMLString ("---")) .toThrow (Error);
 });
 
-test ("toString", () =>
+test .concurrent ("toString", () =>
 {
    const a = new SFColor (.1,.2,.3);
    const b = new SFColor (.5,.6,.7);

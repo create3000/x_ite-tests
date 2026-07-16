@@ -3,7 +3,7 @@ import X3D              from "../../../X3D.js";
 
 const Browser = X3D .createBrowser () .browser;
 
-test ("use", async () =>
+test .concurrent ("use", async () =>
 {
    const input = `#X3D V4.0 utf8
 PROFILE Interchange

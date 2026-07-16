@@ -6,7 +6,7 @@ const
    Vector3 = X3D .Vector3,
    Matrix4 = X3D .Matrix4;
 
-test ("constructor", () =>
+test .concurrent ("constructor", () =>
 {
    const p1 = new Vector3 (1, 1, 1);
    const d1 = new Vector3 (0, 1, 0);
@@ -35,7 +35,7 @@ test ("constructor", () =>
    expect (l3 .direction .equals (Vector3 .Z_AXIS)) .toBe (true);
 });
 
-test ("copy", () =>
+test .concurrent ("copy", () =>
 {
    const p1 = new Vector3 (1, 1, 1);
    const d1 = new Vector3 (0, 1, 0);
@@ -51,7 +51,7 @@ test ("copy", () =>
    expect (l2 .equals (l1)) .toBe (true);
 });
 
-test ("assign", () =>
+test .concurrent ("assign", () =>
 {
    const p1 = new Vector3 (1, 1, 1);
    const d1 = new Vector3 (0, 1, 0);
@@ -69,7 +69,7 @@ test ("assign", () =>
    expect (l2 .equals (l1)) .toBe (true);
 });
 
-test ("equals", () =>
+test .concurrent ("equals", () =>
 {
    const p1 = new Vector3 (1, 1, 1);
    const d1 = new Vector3 (0, 1, 0);
@@ -85,7 +85,7 @@ test ("equals", () =>
    expect (l3 .equals (l1)) .toBe (true);
 });
 
-test ("set", () =>
+test .concurrent ("set", () =>
 {
    const p1 = new Vector3 (1, 1, 1);
    const d1 = new Vector3 (0, 1, 0);
@@ -105,7 +105,7 @@ test ("set", () =>
    expect (l1 .direction .equals (Vector3 .Z_AXIS)) .toBe (true);
 });
 
-test ("setPoints", () =>
+test .concurrent ("setPoints", () =>
 {
    const p1 = new Vector3 (1, 1, 1);
    const p2 = new Vector3 (1, 2, 1);
@@ -120,7 +120,7 @@ test ("setPoints", () =>
    expect (l1 .direction .equals (d1)) .toBe (true);
 });
 
-test ("multLineMatrix", () =>
+test .concurrent ("multLineMatrix", () =>
 {
    const p1 = Vector3 .ZERO;
    const d1 = Vector3 .X_AXIS;
@@ -133,7 +133,7 @@ test ("multLineMatrix", () =>
    expect (l1 .direction .equals (Vector3 .Y_AXIS)) .toBe (true);
 });
 
-test ("multMatrixLine", () =>
+test .concurrent ("multMatrixLine", () =>
 {
    const p1 = Vector3 .ZERO;
    const d1 = Vector3 .X_AXIS;
@@ -146,7 +146,7 @@ test ("multMatrixLine", () =>
    expect (l1 .direction .equals (Vector3 .Y_AXIS .copy () .negate ())) .toBe (true);
 });
 
-test ("getClosestPointToPoint", () =>
+test .concurrent ("getClosestPointToPoint", () =>
 {
    const p1 = new Vector3 (0, 0, 0);
    const d1 = new Vector3 (1, 0, 0);
@@ -158,7 +158,7 @@ test ("getClosestPointToPoint", () =>
    expect (cp .equals (new Vector3 (1, 0, 0))) .toEqual (true);
 });
 
-test ("getClosestPointToLine", () =>
+test .concurrent ("getClosestPointToLine", () =>
 {
    const p1 = new Vector3 (0, 0, 0);
    const d1 = new Vector3 (1, 0, 0);
@@ -179,7 +179,7 @@ test ("getClosestPointToLine", () =>
    expect (l1 .getClosestPointToLine (l3, cp)) .toBe (false);
 });
 
-test ("getPerpendicularVectorToPoint", () =>
+test .concurrent ("getPerpendicularVectorToPoint", () =>
 {
    const p1 = new Vector3 (0, 0, 0);
    const d1 = new Vector3 (1, 0, 0);
@@ -191,7 +191,7 @@ test ("getPerpendicularVectorToPoint", () =>
    expect (pv .equals (new Vector3 (0, -1, 0))) .toEqual (true);
 });
 
-test ("getPerpendicularVectorToLine", () =>
+test .concurrent ("getPerpendicularVectorToLine", () =>
 {
    const p1 = new Vector3 (0, 0, 0);
    const d1 = new Vector3 (1, 0, 0);
@@ -213,7 +213,7 @@ test ("getPerpendicularVectorToLine", () =>
    expect (pv2 .equals (new Vector3 (0, -1, 0))) .toBe (true);
 });
 
-test ("intersectsTriangle", () =>
+test .concurrent ("intersectsTriangle", () =>
 {
    const p1 = new Vector3 (0, 0, 0);
    const d1 = new Vector3 (0, 0, 1);
@@ -236,7 +236,7 @@ test ("intersectsTriangle", () =>
    expect (l1 .intersectsTriangle (a2, b2, c2, uvt)) .toBe (false);
 });
 
-test ("toString", () =>
+test .concurrent ("toString", () =>
 {
    const p1 = new Vector3 (0, 0, 0);
    const d1 = new Vector3 (0, 0, 1);

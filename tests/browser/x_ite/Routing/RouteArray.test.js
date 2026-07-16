@@ -5,7 +5,7 @@ const
    canvas  = X3D .createBrowser (),
    Browser = canvas .browser;
 
-test ("properties", () =>
+test .concurrent ("properties", () =>
 {
    const
       scene  = Browser .currentScene,
@@ -16,7 +16,7 @@ test ("properties", () =>
    expect (routes .constructor) .toBe (X3D .RouteArray);
 });
 
-test ("filter", async () =>
+test .concurrent ("filter", async () =>
 {
    const scene = await Browser .createX3DFromString (`
 PROFILE Interchange
@@ -43,7 +43,7 @@ ROUTE N3.translation TO N4.translation
    expect (a [1] .sourceNode .getNodeName ()) .toBe ("N2");
 });
 
-test ("toString", () =>
+test .concurrent ("toString", () =>
 {
    const
       scene  = Browser .currentScene,

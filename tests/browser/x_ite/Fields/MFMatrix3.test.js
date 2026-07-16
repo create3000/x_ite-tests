@@ -10,12 +10,12 @@ const comp = 9;
 
 for (const [typeName, MFMatrix3, SFMatrix3] of arrays)
 {
-   test ("constructor", () =>
+   test .concurrent ("constructor", () =>
    {
       expect ((new MFMatrix3 ()) [0]) .toBe (undefined);
    });
 
-   test ("get1Value", () =>
+   test .concurrent ("get1Value", () =>
    {
       const field = new MFMatrix3 ();
 
@@ -47,7 +47,7 @@ for (const [typeName, MFMatrix3, SFMatrix3] of arrays)
       expect (field [2]) .toBeInstanceOf (SFMatrix3);
    });
 
-   test ("length", () =>
+   test .concurrent ("length", () =>
    {
       expect (new MFMatrix3 () .length) .toBe (0);
       expect (new MFMatrix3 (new SFMatrix3 (1,2,3,4,5,6,7,8,9), new SFMatrix3 (1,2,3,4,5,6,7,8,9)) .length) .toBe (2);
@@ -88,7 +88,7 @@ for (const [typeName, MFMatrix3, SFMatrix3] of arrays)
          expect (m [i] .equals (new SFMatrix3 ())) .toBe (true);
    });
 
-   test ("setValue", () =>
+   test .concurrent ("setValue", () =>
    {
       const field = new MFMatrix3 ();
 
@@ -118,7 +118,7 @@ for (const [typeName, MFMatrix3, SFMatrix3] of arrays)
       expect (field .equals (new MFMatrix3 ())) .toBe (true);
    });
 
-   test ("assign", () =>
+   test .concurrent ("assign", () =>
    {
       const
          field = new MFMatrix3 (),
@@ -135,7 +135,7 @@ for (const [typeName, MFMatrix3, SFMatrix3] of arrays)
       expect (field .equals (new MFMatrix3 ())) .toBe (true);
    });
 
-   test ("fromString", () =>
+   test .concurrent ("fromString", () =>
    {
       const a = new MFMatrix3 ();
 
@@ -157,7 +157,7 @@ for (const [typeName, MFMatrix3, SFMatrix3] of arrays)
       expect (() => a .fromString ("[1 2 3 4 foo 6 7 8 9]")) .toThrow (Error);
    });
 
-   test ("fromVRMLString", () =>
+   test .concurrent ("fromVRMLString", () =>
    {
       const a = new MFMatrix3 ();
 
@@ -179,7 +179,7 @@ for (const [typeName, MFMatrix3, SFMatrix3] of arrays)
       expect (() => a .fromVRMLString ("[1 2 3 4 foo 6 7 8 9]")) .toThrow (Error);
    });
 
-   test ("fromXMLString", () =>
+   test .concurrent ("fromXMLString", () =>
    {
       const a = new MFMatrix3 ();
 
@@ -196,12 +196,12 @@ for (const [typeName, MFMatrix3, SFMatrix3] of arrays)
       expect (() => a .fromXMLString ("")) .toThrow (Error);
    });
 
-   test ("enumerate", () =>
+   test .concurrent ("enumerate", () =>
    {
       enumerate (["0", "1", "2"], new MFMatrix3 (new SFMatrix3 (), new SFMatrix3 (), new SFMatrix3 ()));
    });
 
-   test ("toString", () =>
+   test .concurrent ("toString", () =>
    {
       const a = new MFMatrix3 ();
       const b = new MFMatrix3 (new SFMatrix3 (1,2,3,4,5,6,7,8,9));
