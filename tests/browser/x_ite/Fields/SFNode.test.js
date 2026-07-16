@@ -523,7 +523,7 @@ test .concurrent ("NodeUserData", async () =>
    expect (() => n .removeNodeUserData ("key")) .toThrow (Error);
 });
 
-test .concurrent ("add/removeFieldCallback", () => new Promise ((resolve, reject) =>
+test .concurrent ("add/removeFieldCallback", () => new Promise (resolve =>
 {
    const node1 = Browser .currentScene .createNode ("Transform");
 
