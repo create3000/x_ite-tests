@@ -45,4 +45,14 @@ export default defineConfig ([
       },
     },
   },
+  {
+    files: ["tests/browser/versions/*.js.test.js"],
+    languageOptions:
+    {
+      globals:
+      {
+        X3D: "readonly",
+      },
+    },
+  },
 ]);
