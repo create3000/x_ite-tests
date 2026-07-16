@@ -6,7 +6,7 @@
   "type": "commonjs",
   "scripts": {
     "test": "vitest",
-    "test:run": "vitest --run --bail=1",
+    "test:release": "vitest --run --bail=1",
     "test:docs": "perl tests/node/docs/documentation.pl",
     "test:x3duom": "node tests/node/docs/x3duom.js > tests/node/docs/x3duom.txt"
   },
