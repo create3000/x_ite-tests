@@ -15,8 +15,7 @@ test .concurrent ("X3D", async () =>
    });
 
    const browser = X3D .createBrowser () .browser;
-
-   await browser .loadComponents (browser .getProfile ("Full"), browser .getComponent ("X_ITE"));
+   const scene   = await browser .createScene (browser .getProfile ("Full"), browser .getComponent ("X_ITE"));
 
    for (const key in X3D .Namespace)
       expect (X3D [key]) .toBe (X3D .Namespace [key]);
@@ -49,4 +48,7 @@ test .concurrent ("X3D", async () =>
    expect (X3D .hasOwnProperty ("keys")) .toBe (false);
    expect (X3D .hasOwnProperty ("values")) .toBe (false);
    expect (X3D .hasOwnProperty ("toString")) .toBe (true);
+
+   for (const { typeName } of browser .getConcreteNodes ())
+      expect (scene .createNode (typeName) .getNodeTypeName ()) .toBe (typeName);
 });
