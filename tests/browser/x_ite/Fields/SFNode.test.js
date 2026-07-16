@@ -5,41 +5,42 @@ const
    canvas  = X3D .createBrowser (),
    Browser = canvas .browser,
    scene   = Browser .currentScene,
-   node    = scene .createNode ("WorldInfo");
+   node1   = scene .createNode ("WorldInfo"),
+   node2   = scene .createNode ("WorldInfo");
 
 test .concurrent ("common", () =>
 {
-   expect (node .getType ()) .toBe (X3D .X3DConstants .SFNode);
-   expect (node .getTypeName ()) .toBe ("SFNode");
-   expect (Object .prototype .toString .call (node)) .toBe ("[object SFNode]");
+   expect (node1 .getType ()) .toBe (X3D .X3DConstants .SFNode);
+   expect (node1 .getTypeName ()) .toBe ("SFNode");
+   expect (Object .prototype .toString .call (node1)) .toBe ("[object SFNode]");
 
-   expect (node .getNodeTypeName ()) .toBe ("WorldInfo");
-   expect (node .getNodeName ()) .toBe ("");
-   expect (node .getNodeDisplayName ()) .toBe ("");
+   expect (node1 .getNodeTypeName ()) .toBe ("WorldInfo");
+   expect (node1 .getNodeName ()) .toBe ("");
+   expect (node1 .getNodeDisplayName ()) .toBe ("");
 
-   scene .addNamedNode ("NodeName_123", node);
+   scene .addNamedNode ("NodeName_123", node1);
 
-   expect (node .getNodeName ()) .toBe ("NodeName_123");
-   expect (node .getNodeDisplayName ()) .toBe ("NodeName");
+   expect (node1 .getNodeName ()) .toBe ("NodeName_123");
+   expect (node1 .getNodeDisplayName ()) .toBe ("NodeName");
 
    scene .removeNamedNode ("NodeName_123");
 
-   expect (node .getNodeType ()) .not .toBe (node .getNodeType ());
-   expect (node .getNodeType ()) .toEqual ([
+   expect (node1 .getNodeType ()) .not .toBe (node1 .getNodeType ());
+   expect (node1 .getNodeType ()) .toEqual ([
       X3D .X3DConstants .X3DNode,
       X3D .X3DConstants .X3DChildNode,
       X3D .X3DConstants .X3DInfoNode,
       X3D .X3DConstants .WorldInfo,
    ]);
 
-   expect (node .valueOf ()) .toBe (node .valueOf ());
+   expect (node1 .valueOf ()) .toBe (node1 .valueOf ());
 });
 
 test .concurrent ("copy", () =>
 {
    const
       a = new X3D .SFNode (),
-      b = node;
+      b = node1;
 
    expect (a .copy () .equals (a)) .toBe (true);
    expect (b .copy () .equals (b)) .toBe (true);
@@ -49,7 +50,7 @@ test .concurrent ("equals", () =>
 {
    const
       a = new X3D .SFNode (),
-      b = node;
+      b = node1;
 
    expect (a .equals (a)) .toBe (true);
    expect (b .equals (b)) .toBe (true);
@@ -60,7 +61,7 @@ test .concurrent ("isDefaultValue", () =>
 {
    const
       a = new X3D .SFNode (),
-      b = node,
+      b = node1,
       c = new X3D .SFNode (null);
 
    expect (c .isDefaultValue ()) .toBe (true);
@@ -71,21 +72,21 @@ test .concurrent ("isDefaultValue", () =>
 
 test .concurrent ("properties", () =>
 {
-   expect (node .metadata) .toBe (null);
-   expect (node .title) .toBe ("");
-   expect (node .info) .toBeInstanceOf (X3D .MFString);
+   expect (node1 .metadata) .toBe (null);
+   expect (node1 .title) .toBe ("");
+   expect (node1 .info) .toBeInstanceOf (X3D .MFString);
 
-   expect ("metadata" in node) .toBe (true);
-   expect ("title"    in node) .toBe (true);
-   expect ("info"     in node) .toBe (true);
-   expect ("toString" in node) .toBe (true);
-   expect ("foo"      in node) .toBe (false);
+   expect ("metadata" in node1) .toBe (true);
+   expect ("title"    in node1) .toBe (true);
+   expect ("info"     in node1) .toBe (true);
+   expect ("toString" in node1) .toBe (true);
+   expect ("foo"      in node1) .toBe (false);
 
-   expect (node .hasOwnProperty ("metadata")) .toBe (true);
-   expect (node .hasOwnProperty ("title"))    .toBe (true);
-   expect (node .hasOwnProperty ("info"))     .toBe (true);
-   expect (node .hasOwnProperty ("toString")) .toBe (false);
-   expect (node .hasOwnProperty ("foo"))      .toBe (false);
+   expect (node1 .hasOwnProperty ("metadata")) .toBe (true);
+   expect (node1 .hasOwnProperty ("title"))    .toBe (true);
+   expect (node1 .hasOwnProperty ("info"))     .toBe (true);
+   expect (node1 .hasOwnProperty ("toString")) .toBe (false);
+   expect (node1 .hasOwnProperty ("foo"))      .toBe (false);
 
    const properties = [
       "metadata",
@@ -93,24 +94,24 @@ test .concurrent ("properties", () =>
       "info",
    ];
 
-   enumerate (properties, node);
+   enumerate (properties, node1);
 
-   expect (() => node .foo) .not .toThrow (Error);
-   expect (() => node .foo = 123) .not .toThrow (Error);
+   expect (() => node1 .foo) .not .toThrow (Error);
+   expect (() => node1 .foo = 123) .not .toThrow (Error);
 });
 
 test .concurrent ("getFieldDefinition", () =>
 {
-   expect (node .getFieldDefinition ("metadata") .name) .toBe ("metadata");
-   expect (node .getFieldDefinition ("title") .name) .toBe ("title");
-   expect (node .getFieldDefinition ("info") .name) .toBe ("info");
+   expect (node1 .getFieldDefinition ("metadata") .name) .toBe ("metadata");
+   expect (node1 .getFieldDefinition ("title") .name) .toBe ("title");
+   expect (node1 .getFieldDefinition ("info") .name) .toBe ("info");
 
-   expect (() => node .getFieldDefinition ("foo")) .toThrow (Error);
+   expect (() => node1 .getFieldDefinition ("foo")) .toThrow (Error);
 });
 
 test .concurrent ("getFieldDefinitions", () =>
 {
-   const fieldDefinitions = node .getFieldDefinitions ();
+   const fieldDefinitions = node1 .getFieldDefinitions ();
 
    expect (fieldDefinitions) .toBeInstanceOf (X3D .FieldDefinitionArray);
    expect (fieldDefinitions) .toHaveLength (3);
@@ -121,26 +122,26 @@ test .concurrent ("getFieldDefinitions", () =>
 
 test .concurrent ("getField", () =>
 {
-   expect (node .getField ("metadata") .getName ()) .toBe ("metadata");
-   expect (node .getField ("title") .getName ()) .toBe ("title");
-   expect (node .getField ("info") .getName ()) .toBe ("info");
+   expect (node1 .getField ("metadata") .getName ()) .toBe ("metadata");
+   expect (node1 .getField ("title") .getName ()) .toBe ("title");
+   expect (node1 .getField ("info") .getName ()) .toBe ("info");
 
-   expect (() => node .getField ("foo")) .toThrow (Error);
+   expect (() => node1 .getField ("foo")) .toThrow (Error);
 });
 
 test .concurrent ("toString", () =>
 {
-   expect (node .toXMLString ()) .toMatch (/^<\w+\/>$/);
-   expect (node .toXMLString ()) .toMatch (/^<\w+\/>$/);
-   expect (node .toString ()) .toMatch (/^\w+ { }$/);
-   expect (node .toString ()) .toMatch (/^\w+ { }$/);
+   expect (node1 .toXMLString ()) .toMatch (/^<\w+\/>$/);
+   expect (node1 .toXMLString ()) .toMatch (/^<\w+\/>$/);
+   expect (node1 .toString ()) .toMatch (/^\w+ { }$/);
+   expect (node1 .toString ()) .toMatch (/^\w+ { }$/);
    expect (new X3D .SFNode () .toString ()) .toBe ("NULL");
 });
 
 test .concurrent ("user-data", () =>
 {
    const
-      field = node,
+      field = node1,
       sym   = Symbol ();
 
    field .setNodeUserData ("foo", 123);
@@ -524,22 +525,22 @@ test .concurrent ("NodeUserData", async () =>
 
 test .concurrent ("add/removeFieldCallback", () => new Promise ((resolve, reject) =>
 {
-   const node = Browser .currentScene .createNode ("Transform");
+   const node1 = Browser .currentScene .createNode ("Transform");
 
-   expect (node .translation .getFieldCallbacks () .size) .toBe (0);
+   expect (node1 .translation .getFieldCallbacks () .size) .toBe (0);
 
-   node .addFieldCallback ("test", "translation", value =>
+   node1 .addFieldCallback ("test", "translation", value =>
    {
-      node .removeFieldCallback ("test", "translation");
-      expect (node .translation .getFieldCallbacks () .size) .toBe (0);
+      node1 .removeFieldCallback ("test", "translation");
+      expect (node1 .translation .getFieldCallbacks () .size) .toBe (0);
 
       expect (value .equals (new X3D .SFVec3f (2,3,4))) .toBe (true);
       resolve ();
    });
 
-   expect (node .translation .getFieldCallbacks () .size) .toBe (1);
+   expect (node1 .translation .getFieldCallbacks () .size) .toBe (1);
 
-   node .translation = new X3D .SFVec3f (2,3,4);
+   node1 .translation = new X3D .SFVec3f (2,3,4);
 }));
 
 test .concurrent ("fromString", () =>
@@ -613,7 +614,7 @@ test .concurrent ("toString", () =>
 
 test .concurrent ("proxy", () =>
 {
-   const node = scene .createNode ("WorldInfo");
+   const node1 = scene .createNode ("WorldInfo");
 
    const properties1 = [
       "metadata",
@@ -621,11 +622,11 @@ test .concurrent ("proxy", () =>
       "info",
    ];
 
-   expect (node .foo) .toBe (undefined);
-   enumerate (properties1, node);
+   expect (node1 .foo) .toBe (undefined);
+   enumerate (properties1, node1);
 
-   node .foo = 123;
-   expect (node .foo) .toBe (123);
+   node1 .foo = 123;
+   expect (node1 .foo) .toBe (123);
 
    const properties2 = [
       "metadata",
@@ -634,10 +635,25 @@ test .concurrent ("proxy", () =>
       "foo",
    ];
 
-   enumerate (properties2, node);
+   enumerate (properties2, node1);
 
-   delete node .foo;
+   delete node1 .foo;
 
-   expect (node .foo) .toBe (undefined);
-   enumerate (properties1, node);
+   expect (node1 .foo) .toBe (undefined);
+   enumerate (properties1, node1);
+});
+
+test .concurrent ("equality", () =>
+{
+   expect (node1) .toBe (node1);
+   expect (node2) .not .toBe (node1);
+
+   expect (node1 === node1) .toBe (true);
+   expect (node2 === node1) .toBe (false);
+
+   expect (node1 !== node1) .toBe (false);
+   expect (node2 !== node1) .toBe (true);
+
+   expect (Object .is (node1, node1)) .toBe (true);
+   expect (Object .is (node2, node1)) .toBe (false);
 });
