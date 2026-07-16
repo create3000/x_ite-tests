@@ -47,12 +47,54 @@ test .concurrent ("media", async () =>
 
       const data1 = readPixels (img1);
       const data2 = readPixels (img2);
+      const diff  = new Uint8Array (data1 .length);
 
-      const mismatchedPixels = pixelmatch (data1, data2, null, width, height, { threshold });
+      const mismatchedPixels = pixelmatch (data1, data2, diff, width, height, { threshold });
 
       if (mismatchedPixels >= maxMismatchedPixels)
       {
          console .log (mismatchedPixels);
+
+         const
+            canvas  = X3D .createBrowser (),
+            browser = canvas .browser;
+
+         canvas .setAttribute ("style", `width: ${width}px; height: ${height}px; transform: scale(0.8); transform-origin: top left;`);
+         body .appendChild (canvas);
+         browser .setBrowserOption ("SplashScreen", false);
+
+         const scene = await browser .createX3DFromString (`#X3D V4.1 utf8 X_ITE V15.1.12
+
+PROFILE Interchange
+
+COMPONENT Geometry2D : 1
+COMPONENT Layering : 1
+COMPONENT Layout : 1
+
+LayerSet {
+  activeLayer -1
+  order 1
+  layers LayoutLayer {
+    layout Layout { }
+    children DEF Rectangle2D_1 Transform {
+      rotation 0 1 0 3.14159265358979
+      scale -1 -1 -1
+      children Shape {
+        appearance Appearance {
+            texture PixelTexture {
+               image ${width} ${height} 4 ${new Uint32Array (diff .buffer) .join (" ")}
+            }
+        }
+        geometry Rectangle2D {
+          size 1 1
+        }
+      }
+    }
+  }
+}
+`);
+
+         await browser .replaceWorld (scene);
       }
 
       // Number of Pixels: 562_000
