@@ -9,7 +9,7 @@ const
 
 const
    threshold           = 0.1,
-   maxMismatchedPixels = 20_000;
+   maxMismatchedPixels = 18_000;
 
 const
    body    = document .querySelector ("body"),
