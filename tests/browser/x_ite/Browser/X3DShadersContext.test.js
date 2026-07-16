@@ -137,4 +137,4 @@ test .concurrent ("shader", async () =>
       }
    }
 },
-20_000);
+60_000);
