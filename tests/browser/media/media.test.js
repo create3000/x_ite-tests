@@ -13,10 +13,16 @@ const
 const
    body    = document .querySelector ("body"),
    canvas  = X3D .createBrowser (),
-   browser = canvas .browser,
-   style   = `width: ${width}px; height: ${height}px; transform: scale(0.8); transform-origin: top left;`;
+   browser = canvas .browser;
 
-canvas .setAttribute ("style", style);
+const style = {
+   width: `${width}px`,
+   height: `${height}px`,
+   transform: "scale(0.8)",
+   transformOrigin: "top left",
+};
+
+Object .assign (canvas .style, style);
 body .appendChild (canvas);
 browser .setBrowserOption ("SplashScreen", false);
 browser .setBrowserOption ("Mute", true);
@@ -60,7 +66,7 @@ test .concurrent ("media", async () =>
             canvas  = X3D .createBrowser (),
             browser = canvas .browser;
 
-         canvas .setAttribute ("style", style);
+         Object .assign (canvas .style, style);
          body .appendChild (canvas);
          browser .setBrowserOption ("SplashScreen", false);
 
