@@ -36,10 +36,17 @@ test .concurrent ("resize", async () =>
 
    Browser .setBrowserOption ("ContentScale", 2);
 
+   await Browser .resize (1234, 123);
+
+   expect (Browser .getViewport () [2]) .toBe (1234 * 2);
+   expect (Browser .getViewport () [3]) .toBe (123 * 2);
+
+   Browser .setBrowserOption ("ContentScale", 1.5);
+
    await Browser .resize (1000, 500);
 
-   expect (Browser .getViewport () [2]) .toBe (1000 * 2);
-   expect (Browser .getViewport () [3]) .toBe (500 * 2);
+   expect (Browser .getViewport () [2]) .toBe (1000 * 1.5);
+   expect (Browser .getViewport () [3]) .toBe (500 * 1.5);
 
    Browser .dispose ();
 });
