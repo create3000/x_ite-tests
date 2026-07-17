@@ -16,3 +16,20 @@ test .concurrent ("KelpForestMain.x3d", async () =>
    expect (scene .externprotos) .toHaveLength (2);
    expect (scene .rootNodes) .toHaveLength (7);
 });
+
+test .concurrent ("resize", async () =>
+{
+   const
+      body    = document .querySelector ("body"),
+      canvas  = X3D .createBrowser (),
+      Browser = canvas .browser;
+
+   body .append (canvas);
+
+   await Browser .resize (1234, 123);
+
+   expect (Browser .getViewport () [2]) .toBe (1234);
+   expect (Browser .getViewport () [3]) .toBe (123);
+
+   Browser .dispose ();
+});
