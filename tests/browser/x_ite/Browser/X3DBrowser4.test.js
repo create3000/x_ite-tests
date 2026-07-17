@@ -26,6 +26,9 @@ test .concurrent ("resize", async () =>
 
    body .append (canvas);
 
+   expect (Browser .getViewport () [2]) .not .toBe (1234);
+   expect (Browser .getViewport () [3]) .not .toBe (123);
+
    await Browser .resize (1234, 123);
 
    expect (Browser .getViewport () [2]) .toBe (1234);
