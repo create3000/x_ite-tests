@@ -23,7 +23,7 @@ const style = {
 };
 
 Object .assign (canvas .style, style);
-body .appendChild (canvas);
+body .append (canvas);
 browser .setBrowserOption ("SplashScreen", false);
 browser .setBrowserOption ("Mute", true);
 
@@ -67,7 +67,7 @@ test .concurrent ("media", async () =>
             browser = canvas .browser;
 
          Object .assign (canvas .style, style);
-         body .appendChild (canvas);
+         body .append (canvas);
          browser .setBrowserOption ("SplashScreen", false);
 
          const scene = await browser .createX3DFromString (`#X3D V4.1 utf8 X_ITE V15.1.12

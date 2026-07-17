@@ -7,7 +7,7 @@ test .concurrent ("X3D", async () =>
       const body   = document .querySelector ("body");
       const script = document .createElement ("script");
 
-      body .appendChild (script);
+      body .append (script);
 
       script .onload  = resolve;
       script .onerror = reject;
