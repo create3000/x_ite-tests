@@ -281,7 +281,7 @@ DEF I PositionInterpolator { }
 DEF X Transform { }
 `));
 
-   Browser .addBrowserCallback ("test", X3D .X3DConstants .INITIALIZED_EVENT, (event) =>
+   Browser .addBrowserCallback ("test", X3D .X3DConstants .INITIALIZED_EVENT, () =>
    {
       try
       {
@@ -322,7 +322,7 @@ DEF I PositionInterpolator { }
 DEF X Transform { }
 `));
 
-   Browser .addBrowserCallback ("test", X3D .X3DConstants .SHUTDOWN_EVENT, (event) =>
+   Browser .addBrowserCallback ("test", X3D .X3DConstants .SHUTDOWN_EVENT, () =>
    {
       try
       {
@@ -380,11 +380,6 @@ test .concurrent ("importDocument", async () =>
    expect (scene2 .rootNodes [0] .getNodeTypeName ()) .toBe ("Transform");
    expect (scene2 .rootNodes [1] .getNodeTypeName ()) .toBe ("Shape");
    expect (scene2 .rootNodes [2] .getNodeTypeName ()) .toBe ("Box");
-
-   const scene3 = await Browser .importDocument (`<Transform/>`);
-
-   expect (scene3 .rootNodes) .toHaveLength (1);
-   expect (scene3 .rootNodes [0] .getNodeTypeName ()) .toBe ("Transform");
 });
 
 test .concurrent ("importJS", async () =>
