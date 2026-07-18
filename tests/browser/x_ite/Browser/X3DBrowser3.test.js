@@ -134,6 +134,12 @@ test .concurrent ("createX3DFromString2", async () =>
    expect (scene1 .rootNodes) .toHaveLength (1);
    expect (scene1 .rootNodes [0] .getValue () .isInitialized ()) .toBe (true);
    expect (scene1 .rootNodes [0] .getNodeTypeName ()) .toBe ("Transform");
+
+   const scene2 = await Browser .createX3DFromString (`<X3D><Scene><Transform/></Scene></X3D>`);
+
+   expect (scene2 .rootNodes) .toHaveLength (1);
+   expect (scene2 .rootNodes [0] .getValue () .isInitialized ()) .toBe (true);
+   expect (scene2 .rootNodes [0] .getNodeTypeName ()) .toBe ("Transform");
 });
 
 test .concurrent ("getClosestObject 1", async () =>

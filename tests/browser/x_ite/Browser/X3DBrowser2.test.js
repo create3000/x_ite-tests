@@ -380,6 +380,11 @@ test .concurrent ("importDocument", async () =>
    expect (scene2 .rootNodes [0] .getNodeTypeName ()) .toBe ("Transform");
    expect (scene2 .rootNodes [1] .getNodeTypeName ()) .toBe ("Shape");
    expect (scene2 .rootNodes [2] .getNodeTypeName ()) .toBe ("Box");
+
+   const scene3 = await Browser .importDocument (`<X3D><Scene><Transform/></Scene></X3D>`);
+
+   expect (scene3 .rootNodes) .toHaveLength (1);
+   expect (scene3 .rootNodes [0] .getNodeTypeName ()) .toBe ("Transform");
 });
 
 test .concurrent ("importJS", async () =>
