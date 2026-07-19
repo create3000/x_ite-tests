@@ -527,24 +527,27 @@ Transform {
    expect (scene .getNamedNode ("R") .getValue () .isInitialized ()) .toBe (true);
    expect (scene .getNamedNode ("R") .getNodeTypeName ()) .toBe ("NurbsCurve");
 
-   const empty = await Browser .createX3DFromString ("");
+   for (const string of ["", " ", "\n", " \r\n "])
+   {
+      const empty = await Browser .createX3DFromString (string);
 
-   expect (empty) .toBeInstanceOf (X3D .X3DScene);
-   expect (empty) .toBeInstanceOf (X3D .X3DExecutionContext);
-   expect (empty .specificationVersion) .toMatch (/^\d+\.\d+$/);
-   expect (empty .encoding) .toBe ("XML");
-   expect (empty .profile .name) .toBe ("Full");
-   expect (empty .components) .toHaveLength (0);
-   expect (empty .components) .toBeInstanceOf (X3D .ComponentInfoArray);
-   expect (empty .worldURL) .toMatch (/^http:\/\/.*$/);
-   expect (empty .rootNodes) .toHaveLength (0);
-   expect (empty .rootNodes) .toBeInstanceOf (X3D .MFNode);
-   expect (empty .protos) .toHaveLength (0);
-   expect (empty .protos) .toBeInstanceOf (X3D .ProtoDeclarationArray);
-   expect (empty .externprotos) .toHaveLength (0);
-   expect (empty .externprotos) .toBeInstanceOf (X3D .ExternProtoDeclarationArray);
-   expect (empty .routes) .toHaveLength (0);
-   expect (empty .routes) .toBeInstanceOf (X3D .RouteArray);
+      expect (empty) .toBeInstanceOf (X3D .X3DScene);
+      expect (empty) .toBeInstanceOf (X3D .X3DExecutionContext);
+      expect (empty .specificationVersion) .toMatch (/^\d+\.\d+$/);
+      expect (empty .encoding) .toBe ("XML");
+      expect (empty .profile .name) .toBe ("Full");
+      expect (empty .components) .toHaveLength (0);
+      expect (empty .components) .toBeInstanceOf (X3D .ComponentInfoArray);
+      expect (empty .worldURL) .toMatch (/^http:\/\/.*$/);
+      expect (empty .rootNodes) .toHaveLength (0);
+      expect (empty .rootNodes) .toBeInstanceOf (X3D .MFNode);
+      expect (empty .protos) .toHaveLength (0);
+      expect (empty .protos) .toBeInstanceOf (X3D .ProtoDeclarationArray);
+      expect (empty .externprotos) .toHaveLength (0);
+      expect (empty .externprotos) .toBeInstanceOf (X3D .ExternProtoDeclarationArray);
+      expect (empty .routes) .toHaveLength (0);
+      expect (empty .routes) .toBeInstanceOf (X3D .RouteArray);
+   }
 });
 
 test .concurrent ("createX3DFromString2", async () =>
