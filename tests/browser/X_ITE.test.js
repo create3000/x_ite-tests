@@ -1,6 +1,5 @@
 import { expect, test } from "vitest";
 import X3D              from "./X3D.js";
-import $                from "https://cdn.jsdelivr.net/npm/jquery@4.0.0/dist-module/jquery.slim.module.js";
 
 const
    X3DCanvasElement = X3D .X3DCanvasElement,
@@ -22,17 +21,17 @@ test .concurrent ("createBrowser", () =>
 
 test .concurrent ("getBrowser", () =>
 {
-   const canvas = $(X3D .createBrowser ());
+   const canvas = X3D .createBrowser ();
 
-   canvas .addClass ("browser");
+   canvas .classList .add ("browser");
 
    expect (X3D .getBrowser ()) .toBe (undefined);
 
-   $("body") .append (canvas);
+   document .querySelector ("body") .append (canvas);
 
-   expect (X3D .getBrowser ()) .toBe (canvas [0] .browser);
-   expect (X3D .getBrowser (canvas [0])) .toBe (canvas [0] .browser);
-   expect (X3D .getBrowser (".browser")) .toBe (canvas [0] .browser);
+   expect (X3D .getBrowser ()) .toBe (canvas .browser);
+   expect (X3D .getBrowser (canvas)) .toBe (canvas .browser);
+   expect (X3D .getBrowser (".browser")) .toBe (canvas .browser);
 });
 
 test .concurrent ("X3D-classic", () => new Promise ((resolve, reject) =>
