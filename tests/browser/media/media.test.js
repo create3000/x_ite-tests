@@ -2,6 +2,9 @@ import { expect, test } from "vitest";
 import X3D              from "../X3D.js";
 import pixelmatch       from "https://cdn.jsdelivr.net/npm/pixelmatch@7.2.0/index.min.js";
 
+import "https://cdn.jsdelivr.net/npm/x_ite-sog-parser@latest/dist/x_ite-sog-parser-2.min.js";
+import "https://cdn.jsdelivr.net/npm/x_ite-spz-parser@latest/dist/x_ite-spz-parser-4.min.js";
+
 const
    width  = 1000,
    height = 562;
