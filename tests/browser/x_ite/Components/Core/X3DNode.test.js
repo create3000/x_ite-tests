@@ -20,6 +20,8 @@ test .concurrent ("nodes", async () =>
 
       for (const type of node .getNodeType ())
          expect (typeof type) .toBe ("number");
+
+      expect (node .getNodeType ()) .toHaveLength (new Set (node .getNodeType ()) .size);
    }
 
    scene .dispose ();
