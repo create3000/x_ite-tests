@@ -432,14 +432,14 @@ test .concurrent ("proto-import-routes.x3dv", async () =>
       expect (body .routes) .toHaveLength (2);
 
       expect (body .routes [0] .sourceNode) .toBeInstanceOf (X3D .SFNode);
-      expect (typeof body .routes [0] .sourceField) .toBe ("string");
+      expect (body .routes [0] .sourceField) .toBeTypeOf ("string");
       expect (body .routes [0] .destinationNode) .toBeInstanceOf (X3D .SFNode);
-      expect (typeof body .routes [0] .destinationField) .toBe ("string");
+      expect (body .routes [0] .destinationField) .toBeTypeOf ("string");
 
       expect (body .routes [0] .getSourceNode ()) .toBeInstanceOf (X3D .X3DNode);
-      expect (typeof body .routes [0] .getSourceField ()) .toBe ("string");
+      expect (body .routes [0] .getSourceField ()) .toBeTypeOf ("string");
       expect (body .routes [0] .getDestinationNode ()) .toBeInstanceOf (X3D .X3DNode);
-      expect (typeof body .routes [0] .getDestinationField ()) .toBe ("string");
+      expect (body .routes [0] .getDestinationField ()) .toBeTypeOf ("string");
 
       expect (body .routes [0] .getSourceNode ()) .toBe (body .routes [0] .sourceNode .getValue ());
       expect (body .routes [0] .getSourceField ()) .toBe (body .routes [0] .sourceField);
@@ -452,14 +452,14 @@ test .concurrent ("proto-import-routes.x3dv", async () =>
       expect (body .routes [0] .destinationField) .toBe ("set_fraction");
 
       expect (body .routes [1] .sourceNode) .toBeInstanceOf (X3D .SFNode);
-      expect (typeof body .routes [1] .sourceField) .toBe ("string");
+      expect (body .routes [1] .sourceField) .toBeTypeOf ("string");
       expect (body .routes [1] .destinationNode) .toBeInstanceOf (X3D .SFNode);
-      expect (typeof body .routes [1] .destinationField) .toBe ("string");
+      expect (body .routes [1] .destinationField) .toBeTypeOf ("string");
 
       expect (body .routes [1] .getSourceNode ()) .toBeInstanceOf (X3D .X3DNode);
-      expect (typeof body .routes [1] .getSourceField ()) .toBe ("string");
+      expect (body .routes [1] .getSourceField ()) .toBeTypeOf ("string");
       expect (body .routes [1] .getDestinationNode ()) .toBeInstanceOf (X3D .X3DNode);
-      expect (typeof body .routes [1] .getDestinationField ()) .toBe ("string");
+      expect (body .routes [1] .getDestinationField ()) .toBeTypeOf ("string");
 
       expect (body .routes [1] .getSourceNode ()) .toBe (body .routes [1] .sourceNode .getValue ());
       expect (body .routes [1] .getSourceField ()) .toBe (body .routes [1] .sourceField);

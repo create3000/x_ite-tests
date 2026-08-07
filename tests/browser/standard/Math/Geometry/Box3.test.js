@@ -276,7 +276,7 @@ test .concurrent ("toString", () =>
 {
    const b1 = new Box3 (new Vector3 (4, 4, 4), new Vector3 (0, 0, 0));
 
-   expect (typeof b1 .toString ()) .toBe ("string");
+   expect (b1 .toString ()) .toBeTypeOf ("string");
    expect (b1 .toString () .length > 0) .toBe (true);
 });
 

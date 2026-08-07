@@ -135,6 +135,6 @@ test .concurrent ("toString", () =>
 {
    const c1 = new Cylinder3 ();
 
-   expect (typeof c1 .toString ()) .toBe ("string");
+   expect (c1 .toString ()) .toBeTypeOf ("string");
    expect (c1 .toString () .length > 0) .toBe (true);
 });

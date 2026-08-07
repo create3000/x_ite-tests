@@ -242,6 +242,6 @@ test .concurrent ("toString", () =>
    const d1 = new Vector3 (0, 0, 1);
    const l1 = new Line3 (p1, d1);
 
-   expect (typeof l1 .toString ()) .toBe ("string");
+   expect (l1 .toString ()) .toBeTypeOf ("string");
    expect (l1 .toString () .length > 0) .toBe (true);
 });

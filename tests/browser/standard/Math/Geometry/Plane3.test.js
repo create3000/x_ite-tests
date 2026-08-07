@@ -241,6 +241,6 @@ test .concurrent ("toString", () =>
 {
    const p1 = new Plane3 (Vector3 .X_AXIS, Vector3 .X_AXIS);
 
-   expect (typeof p1 .toString ()) .toBe ("string");
+   expect (p1 .toString ()) .toBeTypeOf ("string");
    expect (p1 .toString () .length > 0) .toBe (true);
 });

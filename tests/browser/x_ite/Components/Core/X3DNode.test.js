@@ -19,7 +19,7 @@ test .concurrent ("nodes", async () =>
       expect (node .getNodeTypeName ()) .toBe (ConcreteNode .typeName);
 
       for (const type of node .getNodeType ())
-         expect (typeof type) .toBe ("number");
+         expect (type) .toBeTypeOf ("number");
 
       expect (node .getNodeType ()) .toHaveLength (new Set (node .getNodeType ()) .size);
    }

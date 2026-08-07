@@ -113,6 +113,6 @@ test .concurrent ("toString", async () =>
 
    const s1 = new Spheroid3 ();
 
-   expect (typeof s1 .toString ()) .toBe ("string");
+   expect (s1 .toString ()) .toBeTypeOf ("string");
    expect (s1 .toString () .length > 0) .toBe (true);
 });

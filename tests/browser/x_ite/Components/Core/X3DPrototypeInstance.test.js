@@ -127,7 +127,7 @@ test .concurrent ("static-properties", () =>
    expect (X3DPrototypeInstance .componentInfo .level) .toBe (2);
    expect (X3DPrototypeInstance .containerField) .toBe ("children");
    expect (X3DPrototypeInstance .specificationRange) .toBeInstanceOf (Object);
-   expect (typeof X3DPrototypeInstance .specificationRange .from) .toBe ("string");
-   expect (typeof X3DPrototypeInstance .specificationRange .to) .toBe ("string");
+   expect (X3DPrototypeInstance .specificationRange .from) .toBeTypeOf ("string");
+   expect (X3DPrototypeInstance .specificationRange .to) .toBeTypeOf ("string");
    expect (X3DPrototypeInstance .fieldDefinitions) .toBe (undefined);
 });

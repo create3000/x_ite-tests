@@ -48,8 +48,8 @@ test .concurrent ("get1Value", () =>
    field .push (false);
 
    expect (field) .toHaveLength (2);
-   expect (typeof field [0]) .toBe ("boolean");
-   expect (typeof field [1]) .toBe ("boolean");
+   expect (field [0]) .toBeTypeOf ("boolean");
+   expect (field [1]) .toBeTypeOf ("boolean");
 
    expect (field [field .length]) .toBe (undefined);
    expect (field [-1]) .toBe (undefined);
@@ -57,7 +57,7 @@ test .concurrent ("get1Value", () =>
 
    field [2] = true;
    expect (field) .toHaveLength (3);
-   expect (typeof field [2]) .toBe ("boolean");
+   expect (field [2]) .toBeTypeOf ("boolean");
 });
 
 test .concurrent ("set1Value", () =>

@@ -32,14 +32,14 @@ test .concurrent ("concrete-nodes", async () =>
 
          const node = scene .createNode (ConcreteNode .typeName);
 
-         expect (typeof ConcreteNode .typeName) .toBe ("string");
+         expect (ConcreteNode .typeName) .toBeTypeOf ("string");
          expect (ConcreteNode .componentInfo) .toBeInstanceOf (Object);
-         expect (typeof ConcreteNode .componentInfo .name) .toBe ("string");
+         expect (ConcreteNode .componentInfo .name) .toBeTypeOf ("string");
          expect (Number .isInteger (ConcreteNode .componentInfo .level)) .toBe (true);
-         expect (typeof ConcreteNode .containerField) .toBe ("string");
+         expect (ConcreteNode .containerField) .toBeTypeOf ("string");
          expect (ConcreteNode .specificationRange) .toBeInstanceOf (Object);
-         expect (typeof ConcreteNode .specificationRange .from) .toBe ("string");
-         expect (typeof ConcreteNode .specificationRange .to) .toBe ("string");
+         expect (ConcreteNode .specificationRange .from) .toBeTypeOf ("string");
+         expect (ConcreteNode .specificationRange .to) .toBeTypeOf ("string");
          expect (ConcreteNode .fieldDefinitions) .toBeInstanceOf (X3D .FieldDefinitionArray);
          expect (node .getValue ()) .toBeInstanceOf (ConcreteNode);
          expect (node .getNodeType () .length) .toBeGreaterThan (1);
@@ -102,20 +102,20 @@ test .concurrent ("abstract-nodes", async () =>
 
    for (const AbstractNode of Browser .getAbstractNodes ())
    {
-      expect (typeof AbstractNode .typeName) .toBe ("string");
+      expect (AbstractNode .typeName) .toBeTypeOf ("string");
 
       switch (AbstractNode .typeName)
       {
          case "X3DPrototypeInstance":
          case "X3DImportedNodeProxy":
          {
-            expect (typeof AbstractNode .componentInfo .name) .toBe ("string");
+            expect (AbstractNode .componentInfo .name) .toBeTypeOf ("string");
             enumerate (["typeName", "componentInfo", "containerField", "specificationRange"], AbstractNode);
             break;
          }
          default:
          {
-            expect (typeof AbstractNode .componentInfo .name) .toBe ("string");
+            expect (AbstractNode .componentInfo .name) .toBeTypeOf ("string");
             enumerate (["typeName", "componentInfo"], AbstractNode);
             break;
          }
