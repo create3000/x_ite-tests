@@ -161,16 +161,9 @@ function set_nodes (nodes, time)
 
 test .concurrent ("this", async () =>
 {
-   try
-   {
-      await browser .loadComponents (browser .getComponent ("Scripting"));
+   await browser .loadComponents (browser .getComponent ("Scripting"));
 
-      const script = browser .currentScene .createNode ("Script");
+   const script = browser .currentScene .createNode ("Script");
 
-      expect (script .getValue () .evaluate ("this")) .toBe (script);
-   }
-   catch (error)
-   {
-      throw new Error (error .message);
-   }
+   expect (script .getValue () .evaluate ("this")) .toBe (script);
 });
