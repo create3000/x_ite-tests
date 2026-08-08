@@ -1,3 +1,5 @@
+Field SFBool 'pointerEvents' in node GaussianSplats has different value (Spec <=> X3DUOM): false !== true.
+Field SFBool 'castShadow' in node GaussianSplats has different value (Spec <=> X3DUOM): false !== true.
 Field SFFloat 'fieldOfView' in node GeoViewpoint has different value (Spec <=> X3DUOM): 0.785398 !== 0.7854.
 Field SFString 'version' in node HAnimHumanoid has different value (Spec <=> X3DUOM): 2.1 !== .
 HAnimJoint number of fields differ (Spec <=> X3DUOM): 24 <=> 22.
