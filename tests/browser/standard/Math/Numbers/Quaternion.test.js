@@ -124,14 +124,14 @@ test .concurrent ("getMatrix/setMatrix", () =>
 //    const q = new Quaternion (0, 0, 0, 1);
 
 //    expect (q .isReal ()) .toBe (true);
-//    expect (q .isImag ()) .not .toBe (true);
+//    expect (q .isImag ()) .toBe (false);
 // });
 
 // test .concurrent ("isImag", () =>
 // {
 //    const q = new Quaternion (1, 2, 3, 0);
 
-//    expect (q .isReal ()) .not .toBe (true);
+//    expect (q .isReal ()) .toBe (false);
 //    expect (q .isImag ()) .toBe (true);
 // });
 

@@ -69,13 +69,13 @@ test .concurrent ("equals", () =>
    expect (p4 .distanceFromOrigin) .toBe (p2 .distanceFromOrigin);
    expect (p4 .equals (p2)) .toBe (true);
 
-   expect (p3 .normal .equals (p2 .normal)) .not .toBe (true);
+   expect (p3 .normal .equals (p2 .normal)) .toBe (false);
    expect (p3 .distanceFromOrigin) .not .toBe (p2 .distanceFromOrigin);
-   expect (p3 .equals (p2)) .not .toBe (true);
+   expect (p3 .equals (p2)) .toBe (false);
 
-   expect (p4 .normal .equals (p3 .normal)) .not .toBe (true);
+   expect (p4 .normal .equals (p3 .normal)) .toBe (false);
    expect (p4 .distanceFromOrigin) .not .toBe (p3 .distanceFromOrigin);
-   expect (p4 .equals (p3)) .not .toBe (true);
+   expect (p4 .equals (p3)) .toBe (false);
 });
 
 test .concurrent ("set", () =>

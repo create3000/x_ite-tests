@@ -54,13 +54,13 @@ test .concurrent ("equals", () =>
    expect (c4 .radius) .toBe (c2 .radius);
    expect (c4 .equals (c2)) .toBe (true);
 
-   expect (c3 .axis .equals (c2 .axis)) .not .toBe (true);
+   expect (c3 .axis .equals (c2 .axis)) .toBe (false);
    expect (c3 .radius) .not .toBe (c2 .radius);
-   expect (c3 .equals (c2)) .not .toBe (true);
+   expect (c3 .equals (c2)) .toBe (false);
 
-   expect (c4 .axis .equals (c3 .axis)) .not .toBe (true);
+   expect (c4 .axis .equals (c3 .axis)) .toBe (false);
    expect (c4 .radius) .not .toBe (c3 .radius);
-   expect (c4 .equals (c3)) .not .toBe (true);
+   expect (c4 .equals (c3)) .toBe (false);
 });
 
 test .concurrent ("set", () =>

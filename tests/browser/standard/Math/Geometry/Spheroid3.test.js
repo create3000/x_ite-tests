@@ -72,11 +72,11 @@ test .concurrent ("equals", async () =>
 
    expect (s3 .semiMajorAxis) .not .toBe (s2 .semiMajorAxis);
    expect (s3 .semiMinorAxis) .not .toBe (s2 .semiMinorAxis);
-   expect (s3 .equals (s2)) .not .toBe (true);
+   expect (s3 .equals (s2)) .toBe (false);
 
    expect (s4 .semiMajorAxis) .not .toBe (s3 .semiMajorAxis);
    expect (s4 .semiMinorAxis) .not .toBe (s3 .semiMinorAxis);
-   expect (s4 .equals (s3)) .not .toBe (true);
+   expect (s4 .equals (s3)) .toBe (false);
 });
 
 test .concurrent ("set", async () =>

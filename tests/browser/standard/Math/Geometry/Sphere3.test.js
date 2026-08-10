@@ -67,12 +67,12 @@ test .concurrent ("equals", () =>
    expect (s4 .equals (s2)) .toBe (true);
 
    expect (s3 .radius) .not .toBe (s2 .radius);
-   expect (s3 .center .equals (s2 .center)) .not .toBe (true);
-   expect (s3 .equals (s2)) .not .toBe (true);
+   expect (s3 .center .equals (s2 .center)) .toBe (false);
+   expect (s3 .equals (s2)) .toBe (false);
 
    expect (s4 .radius) .not .toBe (s3 .radius);
-   expect (s4 .center .equals (s3 .center)) .not .toBe (true);
-   expect (s4 .equals (s3)) .not .toBe (true);
+   expect (s4 .center .equals (s3 .center)) .toBe (false);
+   expect (s4 .equals (s3)) .toBe (false);
 });
 
 test .concurrent ("set", () =>
