@@ -685,7 +685,7 @@ for (const [typeName, MFVec3, SFVec3] of arrays)
 
       expect (Reflect .ownKeys (a) .includes ("length")) .toBe (true);
       expect (a) .toHaveLength (3);
-      expect (Object .keys (a)) .toEqual (Array .from (Array (3) .keys (), k => String (k)));
+      expect (Object .keys (a)) .toEqual (Array .from (Array (3) .keys (), String));
 
       const s = Symbol ();
 

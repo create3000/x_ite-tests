@@ -161,7 +161,7 @@ test .concurrent ("enumerate", () =>
 
    expect (Reflect .ownKeys (a) .includes ("length")) .toBe (true);
    expect (a) .toHaveLength (4);
-   expect (Object .keys (a)) .toEqual (Array .from (Array (4) .keys (), k => String (k)));
+   expect (Object .keys (a)) .toEqual (Array .from (Array (4) .keys (), String));
 
    const s = Symbol ();
 
