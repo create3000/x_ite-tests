@@ -185,4 +185,6 @@ test .concurrent ("enumerate", () =>
    expect (Object .keys (a) .includes ("length")) .toBe (false);
    expect (Object .keys (a) .includes (s)) .toBe (false);
    expect (Object .keys (a) .includes ("abc")) .toBe (true);
+
+   expect (Object .keys (a)) .toEqual (Array .from (Array (4) .keys (), String) .concat ("abc"));
 });

@@ -93,4 +93,6 @@ EXPORT E2
    expect (Object .keys (a) .includes ("length")) .toBe (false);
    expect (Object .keys (a) .includes (s)) .toBe (false);
    expect (Object .keys (a) .includes ("abc")) .toBe (true);
+
+   expect (Object .keys (a)) .toEqual (Array .from (Array (2) .keys (), String) .concat ("abc"));
 });
