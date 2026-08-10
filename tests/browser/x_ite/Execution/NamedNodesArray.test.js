@@ -102,6 +102,7 @@ DEF N3 Transform { }
    expect (Reflect .ownKeys (a) .includes ("length")) .toBe (true);
    expect (a) .toHaveLength (4);
    expect (Object .keys (a)) .toEqual (Array .from (Array (4) .keys (), String));
+   expect (Array .from (a .keys ())) .toEqual (Array .from (Array (4) .keys ()));
 
    const s = Symbol ();
 

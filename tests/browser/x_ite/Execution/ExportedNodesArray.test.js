@@ -70,6 +70,7 @@ EXPORT E2
    expect (Reflect .ownKeys (a) .includes ("length")) .toBe (true);
    expect (a) .toHaveLength (2);
    expect (Object .keys (a)) .toEqual (Array .from (Array (2) .keys (), String));
+   expect (Array .from (a .keys ())) .toEqual (Array .from (Array (2) .keys ()));
 
    const s = Symbol ();
 
