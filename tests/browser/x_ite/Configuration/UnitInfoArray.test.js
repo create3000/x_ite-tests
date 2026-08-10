@@ -9,6 +9,8 @@ test .concurrent ("properties", () =>
       units   = Browser .currentScene .units;
 
    expect (units) .toHaveLength (4);
+   expect (units) .toBe (units);
+   expect (units) .not .toBe (Browser .currentScene .importedNodes);
 
    expect (units [0]) .toBeInstanceOf (X3D .UnitInfo);
    expect (units [0] .constructor) .toBe (X3D .UnitInfo);

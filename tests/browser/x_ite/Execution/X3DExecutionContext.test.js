@@ -413,6 +413,7 @@ EXPORT B
       node2      = inlineNode .getValue () .getInternalScene () .getNamedNode ("B");
 
    expect (() => scene .addImportedNode (inlineNode, "S")) .not .toThrow (Error);
+   expect (scene .getImportedNode ("S") !== node1) .toBe (true);
    expect (scene .getImportedNode ("S")) .not .toBe (node1);
    expect (scene .getImportedNode ("S") .getNodeName ()) .toBe ("S");
    expect (scene .getImportedNode ("S") .getNodeTypeName ()) .toBe ("Shape");
@@ -584,6 +585,9 @@ IMPORT I.BE AS B
 
    expect (scene .getImportedNodes ()) .toHaveLength (2);
    expect (scene .getImportedNodes () [0] .inlineNode) .toBe (inlineNode);
+   expect (node1) .toBeInstanceOf (X3D .SFNode);
+   expect (scene .getImportedNodes () [0] .exportedNode) .toBeInstanceOf (X3D .SFNode);
+   expect (scene .getImportedNodes () [0] .exportedNode !== node1) .toBe (true);
    expect (scene .getImportedNodes () [0] .exportedNode) .not .toBe (node1);
    expect (scene .getImportedNodes () [0] .exportedName) .toBe ("SE");
    expect (scene .getImportedNodes () [0] .importedName) .toBe ("S");
