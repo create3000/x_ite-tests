@@ -12,8 +12,6 @@ test .concurrent ("constructor", () =>
    expect (components) .toHaveLength (37 + 2); // WebXR + X_ITE
    expect (components) .toBeInstanceOf (X3D .ComponentInfoArray);
    expect (components .constructor) .toBe (X3D .ComponentInfoArray);
-
-   expect (Reflect .ownKeys (components) .includes ("length")) .toBe (true);
 });
 
 test .concurrent ("filter", () =>
@@ -39,4 +37,9 @@ test .concurrent ("toString", () =>
    expect (components .getTypeName ()) .toBe ("ComponentInfoArray");
    expect (Object .prototype .toString .call (components)) .toBe (`[object ComponentInfoArray]`);
    expect (components .toString ()) .toBe (`[object ${components .getTypeName ()}]`);
+});
+
+test .concurrent ("enumerate", () =>
+{
+   expect (Reflect .ownKeys (Browser .supportedComponents) .includes ("length")) .toBe (true);
 });

@@ -14,8 +14,6 @@ test .concurrent ("properties", () =>
    expect (routes) .toHaveLength (0);
    expect (routes) .toBeInstanceOf (X3D .RouteArray);
    expect (routes .constructor) .toBe (X3D .RouteArray);
-
-   expect (Reflect .ownKeys (routes) .includes ("length")) .toBe (true);
 });
 
 test .concurrent ("filter", async () =>
@@ -55,4 +53,9 @@ test .concurrent ("toString", () =>
    expect (routes .getTypeName ()) .toBe ("RouteArray");
    expect (Object .prototype .toString .call (routes)) .toBe (`[object RouteArray]`);
    expect (routes .toString ()) .toBe (`[object ${routes .getTypeName ()}]`);
+});
+
+test .concurrent ("enumerate", () =>
+{
+   expect (Reflect .ownKeys (Browser .currentScene .routes) .includes ("length")) .toBe (true);
 });

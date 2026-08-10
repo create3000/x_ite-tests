@@ -14,8 +14,6 @@ test .concurrent ("constructor", () =>
    expect (exportedNodes) .toHaveLength (0);
    expect (exportedNodes) .toBeInstanceOf (X3D .ExportedNodesArray);
    expect (exportedNodes .constructor) .toBe (X3D .ExportedNodesArray);
-
-   expect (Reflect .ownKeys (exportedNodes) .includes ("length")) .toBe (true);
 });
 
 test .concurrent ("filter", async () =>
@@ -51,4 +49,9 @@ test .concurrent ("toString", () =>
    expect (exportedNodes .getTypeName ()) .toBe ("ExportedNodesArray");
    expect (Object .prototype .toString .call (exportedNodes)) .toBe (`[object ExportedNodesArray]`);
    expect (exportedNodes .toString ()) .toBe (`[object ${exportedNodes .getTypeName ()}]`);
+});
+
+test .concurrent ("enumerate", () =>
+{
+   expect (Reflect .ownKeys (Browser .currentScene .exportedNodes) .includes ("length")) .toBe (true);
 });
