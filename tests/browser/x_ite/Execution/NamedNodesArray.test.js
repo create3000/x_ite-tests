@@ -84,9 +84,18 @@ test .concurrent ("toString", () =>
    expect (namedNodes .toString ()) .toBe (`[object ${namedNodes .getTypeName ()}]`);
 });
 
-test .concurrent ("enumerate", () =>
+test .concurrent ("enumerate", async () =>
 {
-   const a = Browser .currentScene .namedNodes;
+   const scene = await Browser .createX3DFromString (`
+PROFILE Interchange
+
+DEF N0 Group { }
+DEF N1 Switch { }
+DEF N2 StaticGroup { }
+DEF N3 Transform { }
+   `);
+
+   const a = scene .namedNodes;
 
    expect (Reflect .ownKeys (a) .includes ("length")) .toBe (true);
 
@@ -107,6 +116,7 @@ test .concurrent ("enumerate", () =>
    expect (s in a) .toBe (true);
    expect ("abc" in a) .toBe (true);
 
+   expect (Object .keys (a) .includes ("0")) .toBe (true);
    expect (Object .keys (a) .includes ("length")) .toBe (false);
    expect (Object .keys (a) .includes (s)) .toBe (false);
    expect (Object .keys (a) .includes ("abc")) .toBe (true);

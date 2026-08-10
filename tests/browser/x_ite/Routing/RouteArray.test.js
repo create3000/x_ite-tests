@@ -55,9 +55,22 @@ test .concurrent ("toString", () =>
    expect (routes .toString ()) .toBe (`[object ${routes .getTypeName ()}]`);
 });
 
-test .concurrent ("enumerate", () =>
+test .concurrent ("enumerate", async () =>
 {
-   const a = Browser .currentScene .routes;
+   const scene = await Browser .createX3DFromString (`
+PROFILE Interchange
+
+DEF N1 Transform { }
+DEF N2 Transform { }
+DEF N3 Transform { }
+DEF N4 Transform { }
+
+ROUTE N1.translation TO N2.translation
+ROUTE N2.translation TO N3.translation
+ROUTE N3.translation TO N4.translation
+   `);
+
+   const a = scene .routes;
 
    expect (Reflect .ownKeys (a) .includes ("length")) .toBe (true);
 
@@ -78,6 +91,7 @@ test .concurrent ("enumerate", () =>
    expect (s in a) .toBe (true);
    expect ("abc" in a) .toBe (true);
 
+   expect (Object .keys (a) .includes ("0")) .toBe (true);
    expect (Object .keys (a) .includes ("length")) .toBe (false);
    expect (Object .keys (a) .includes (s)) .toBe (false);
    expect (Object .keys (a) .includes ("abc")) .toBe (true);

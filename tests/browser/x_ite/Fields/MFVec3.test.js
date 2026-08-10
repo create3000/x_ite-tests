@@ -698,6 +698,7 @@ for (const [typeName, MFVec3, SFVec3] of arrays)
       expect (s in a) .toBe (true);
       expect ("abc" in a) .toBe (true);
 
+      expect (Object .keys (a) .includes ("0")) .toBe (true);
       expect (Object .keys (a) .includes ("length")) .toBe (false);
       expect (Object .keys (a) .includes (s)) .toBe (false);
       expect (Object .keys (a) .includes ("abc")) .toBe (true);

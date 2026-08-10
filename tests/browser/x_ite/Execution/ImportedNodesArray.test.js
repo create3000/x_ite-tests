@@ -60,9 +60,28 @@ test .concurrent ("toString", () =>
    expect (importedNodes .toString ()) .toBe (`[object ${importedNodes .getTypeName ()}]`);
 });
 
-test .concurrent ("enumerate", () =>
+test .concurrent ("enumerate", async () =>
 {
-   const a = Browser .currentScene .importedNodes;
+   const scene = await Browser .createX3DFromString (`
+PROFILE Interchange
+
+DEF I Inline {
+   url "data:model/x3d+vrml,
+PROFILE Interchange
+
+DEF E1 Group { }
+DEF E2 Switch { }
+
+EXPORT E1
+EXPORT E2
+   "
+}
+
+IMPORT I.E1 AS I1
+IMPORT I.E2 AS I2
+      `);
+
+   const a = scene .importedNodes;
 
    expect (Reflect .ownKeys (a) .includes ("length")) .toBe (true);
 
@@ -83,6 +102,7 @@ test .concurrent ("enumerate", () =>
    expect (s in a) .toBe (true);
    expect ("abc" in a) .toBe (true);
 
+   expect (Object .keys (a) .includes ("0")) .toBe (true);
    expect (Object .keys (a) .includes ("length")) .toBe (false);
    expect (Object .keys (a) .includes (s)) .toBe (false);
    expect (Object .keys (a) .includes ("abc")) .toBe (true);
