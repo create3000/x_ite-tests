@@ -689,6 +689,10 @@ for (const [typeName, MFVec2, SFVec2] of arrays)
       expect ("length" in a) .toBe (true);
       expect (s in a) .toBe (true);
       expect ("abc" in a) .toBe (true);
+
+      expect (Object .keys (a) .includes ("length")) .not .toBe (true);
+      expect (Object .keys (a) .includes (s)) .not .toBe (true);
+      expect (Object .keys (a) .includes ("abc")) .toBe (true);
    });
 
    test .concurrent ("enumerate single", () =>
