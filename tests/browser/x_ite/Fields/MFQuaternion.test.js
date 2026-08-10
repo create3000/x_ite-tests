@@ -6,8 +6,6 @@ const
    MFQuaternion = X3D .MFQuaternion,
    SFQuaternion = X3D .SFQuaternion;
 
-const comp = 4;
-
 test .concurrent ("constructor", () =>
 {
    expect ((new MFQuaternion ()) [0]) .toBe (undefined);

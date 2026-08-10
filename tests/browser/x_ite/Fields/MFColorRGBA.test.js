@@ -5,8 +5,6 @@ const
    SFColorRGBA = X3D .SFColorRGBA,
    MFColorRGBA = X3D .MFColorRGBA;
 
-const comp = 4;
-
 test .concurrent ("constructor", () =>
 {
    expect ((new MFColorRGBA ()) [0]) .toBe (undefined);

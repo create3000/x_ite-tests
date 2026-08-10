@@ -6,8 +6,6 @@ const
    MFRotation = X3D .MFRotation,
    SFRotation = X3D .SFRotation;
 
-const comp = 4;
-
 test .concurrent ("constructor", () =>
 {
    expect ((new MFRotation ()) [0]) .toBe (undefined);

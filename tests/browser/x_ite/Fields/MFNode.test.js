@@ -412,7 +412,7 @@ test .concurrent ("pop", () =>
 
    expect (a) .toHaveLength (0);
 
-   for (let i = 0, n = 0; i < N; ++ i)
+   for (let i = 0; i < N; ++ i)
    {
       x [i] = scene .createNode ("WorldInfo");
       a .push (x [i]);

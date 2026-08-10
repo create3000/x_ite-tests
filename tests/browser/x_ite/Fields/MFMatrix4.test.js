@@ -6,9 +6,7 @@ const arrays = [
    ["MFMatrix4f", X3D .MFMatrix4f, X3D .SFMatrix4f],
 ];
 
-const comp = 16;
-
-for (const [typeName, MFMatrix4, SFMatrix4] of arrays)
+for (const [, MFMatrix4, SFMatrix4] of arrays)
 {
    test .concurrent ("constructor", () =>
    {
