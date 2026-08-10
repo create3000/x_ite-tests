@@ -43,3 +43,8 @@ test .concurrent ("toString", () =>
    expect (Object .prototype .toString .call (fieldDefinitions)) .toBe (`[object FieldDefinitionArray]`);
    expect (fieldDefinitions .toString ()) .toBe (`[object ${fieldDefinitions .getTypeName ()}]`);
 });
+
+test .concurrent ("enumerate", () =>
+{
+   expect (Reflect .ownKeys (fieldDefinitions) .includes ("length")) .toBe (true);
+});
