@@ -69,8 +69,11 @@ test .concurrent ("enumerate", () =>
    const s = Symbol ();
 
    a [s]     = "symbol";
-   a ["abc"] = "abc";
+   a ["abc"] = "string";
 
-   expect (Reflect .ownKeys (a) .includes (s)) .   toBe (true);
+   expect (a [s])     .toBe ("symbol");
+   expect (a ["abc"]) .toBe ("string");
+
+   expect (Reflect .ownKeys (a) .includes (s))     .toBe (true);
    expect (Reflect .ownKeys (a) .includes ("abc")) .toBe (true);
 });

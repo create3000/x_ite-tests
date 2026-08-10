@@ -678,9 +678,12 @@ for (const [typeName, MFVec2, SFVec2] of arrays)
       const s = Symbol ();
 
       a [s]     = "symbol";
-      a ["abc"] = "abc";
+      a ["abc"] = "string";
 
-      expect (Reflect .ownKeys (a) .includes (s)) .   toBe (true);
+      expect (a [s])     .toBe ("symbol");
+      expect (a ["abc"]) .toBe ("string");
+
+      expect (Reflect .ownKeys (a) .includes (s))     .toBe (true);
       expect (Reflect .ownKeys (a) .includes ("abc")) .toBe (true);
    });
 
