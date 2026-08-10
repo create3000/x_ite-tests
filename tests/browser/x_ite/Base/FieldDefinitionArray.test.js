@@ -49,6 +49,7 @@ test .concurrent ("enumerate", () =>
    const a = fieldDefinitions;
 
    expect (Reflect .ownKeys (a) .includes ("length")) .toBe (true);
+   expect (a) .toHaveLength (3);
 
    const s = Symbol ();
 

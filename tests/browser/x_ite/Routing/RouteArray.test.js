@@ -73,6 +73,7 @@ ROUTE N3.translation TO N4.translation
    const a = scene .routes;
 
    expect (Reflect .ownKeys (a) .includes ("length")) .toBe (true);
+   expect (a) .toHaveLength (3);
 
    const s = Symbol ();
 

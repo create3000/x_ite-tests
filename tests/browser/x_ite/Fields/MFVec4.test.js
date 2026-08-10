@@ -690,6 +690,7 @@ for (const [typeName, MFVec4, SFVec4] of arrays)
       enumerate (["0", "1", "2"], a);
 
       expect (Reflect .ownKeys (a) .includes ("length")) .toBe (true);
+      expect (a) .toHaveLength (3);
 
       const s = Symbol ();
 

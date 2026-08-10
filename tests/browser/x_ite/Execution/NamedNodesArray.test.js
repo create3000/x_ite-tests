@@ -98,6 +98,7 @@ DEF N3 Transform { }
    const a = scene .namedNodes;
 
    expect (Reflect .ownKeys (a) .includes ("length")) .toBe (true);
+   expect (a) .toHaveLength (4);
 
    const s = Symbol ();
 

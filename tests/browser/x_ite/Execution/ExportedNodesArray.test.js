@@ -66,6 +66,7 @@ EXPORT E2
    const a = scene .exportedNodes;
 
    expect (Reflect .ownKeys (a) .includes ("length")) .toBe (true);
+   expect (a) .toHaveLength (2);
 
    const s = Symbol ();
 

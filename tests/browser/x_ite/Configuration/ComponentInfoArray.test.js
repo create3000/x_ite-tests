@@ -44,6 +44,7 @@ test .concurrent ("enumerate", () =>
    const a = Browser .supportedComponents;
 
    expect (Reflect .ownKeys (a) .includes ("length")) .toBe (true);
+   expect (a) .toHaveLength (39);
 
    const s = Symbol ();
 

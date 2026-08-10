@@ -84,6 +84,7 @@ IMPORT I.E2 AS I2
    const a = scene .importedNodes;
 
    expect (Reflect .ownKeys (a) .includes ("length")) .toBe (true);
+   expect (a) .toHaveLength (2);
 
    const s = Symbol ();
 
