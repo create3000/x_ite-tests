@@ -69,8 +69,8 @@ EXPORT E2
 
    expect (Reflect .ownKeys (a) .includes ("length")) .toBe (true);
    expect (a) .toHaveLength (2);
-   expect (Object .keys (a)) .toEqual (Array .from (Array (2) .keys (), String));
-   expect (Array .from (a .keys ())) .toEqual (Array .from (Array (2) .keys ()));
+   expect (Object .keys (a)) .toEqual (Array .from (Array (a .length) .keys (), String));
+   expect (Array .from (a .keys ())) .toEqual (Array .from (Array (a .length) .keys ()));
 
    const s = Symbol ();
 
@@ -94,5 +94,5 @@ EXPORT E2
    expect (Object .keys (a) .includes (s)) .toBe (false);
    expect (Object .keys (a) .includes ("abc")) .toBe (true);
 
-   expect (Object .keys (a)) .toEqual (Array .from (Array (2) .keys (), String) .concat ("abc"));
+   expect (Object .keys (a)) .toEqual (Array .from (Array (a .length) .keys (), String) .concat ("abc"));
 });

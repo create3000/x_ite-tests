@@ -801,8 +801,8 @@ test .concurrent ("enumerate", () =>
 
    expect (Reflect .ownKeys (a) .includes ("length")) .toBe (true);
    expect (a) .toHaveLength (3);
-   expect (Object .keys (a)) .toEqual (Array .from (Array (3) .keys (), String));
-   expect (Array .from (a .keys ())) .toEqual (Array .from (Array (3) .keys ()));
+   expect (Object .keys (a)) .toEqual (Array .from (Array (a .length) .keys (), String));
+   expect (Array .from (a .keys ())) .toEqual (Array .from (Array (a .length) .keys ()));
 
    const s = Symbol ();
 
@@ -824,7 +824,7 @@ test .concurrent ("enumerate", () =>
    expect (Object .keys (a) .includes (s)) .toBe (false);
    expect (Object .keys (a) .includes ("abc")) .toBe (true);
 
-   expect (Object .keys (a)) .toEqual (Array .from (Array (3) .keys (), String) .concat ("abc"));
+   expect (Object .keys (a)) .toEqual (Array .from (Array (a .length) .keys (), String) .concat ("abc"));
 });
 
 test .concurrent ("toString", () =>
