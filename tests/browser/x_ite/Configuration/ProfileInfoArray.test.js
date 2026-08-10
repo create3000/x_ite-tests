@@ -42,6 +42,8 @@ test .concurrent ("enumerate", () =>
 {
    const a = Browser .supportedProfiles;
 
+   expect (a) .toBe (a);
+
    expect (Reflect .ownKeys (a) .includes ("length")) .toBe (true);
    expect (a) .toHaveLength (8);
 

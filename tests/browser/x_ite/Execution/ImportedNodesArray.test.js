@@ -83,6 +83,8 @@ IMPORT I.E2 AS I2
 
    const a = scene .importedNodes;
 
+   expect (a) .toBe (a);
+
    expect (Reflect .ownKeys (a) .includes ("length")) .toBe (true);
    expect (a) .toHaveLength (2);
 

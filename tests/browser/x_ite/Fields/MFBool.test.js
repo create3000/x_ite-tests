@@ -817,6 +817,8 @@ test .concurrent ("enumerate", () =>
 {
    const a = new MFBool (true, false, true);
 
+   expect (a) .toBe (a);
+
    enumerate (["0", "1", "2"], a);
 
    expect (Reflect .ownKeys (a) .includes ("length")) .toBe (true);

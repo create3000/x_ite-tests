@@ -246,6 +246,8 @@ test .concurrent ("enumerate", () =>
 {
    const a = new MFQuaternion (new SFQuaternion (), new SFQuaternion (), new SFQuaternion ());
 
+   expect (a) .toBe (a);
+
    enumerate (["0", "1", "2"], a);
 
    expect (Reflect .ownKeys (a) .includes ("length")) .toBe (true);

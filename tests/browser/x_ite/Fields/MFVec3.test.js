@@ -679,6 +679,8 @@ for (const [typeName, MFVec3, SFVec3] of arrays)
    {
       const a = new MFVec3 (new SFVec3 (1,2,3), new SFVec3 (4,5,6), new SFVec3 (7,8,9));
 
+      expect (a) .toBe (a);
+
       enumerate (["0", "1", "2"], a);
 
       expect (Reflect .ownKeys (a) .includes ("length")) .toBe (true);

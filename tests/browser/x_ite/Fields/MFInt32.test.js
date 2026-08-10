@@ -807,6 +807,8 @@ test .concurrent ("enumerate", () =>
 {
    const a = new MFInt32 (1,2,3);
 
+   expect (a) .toBe (a);
+   
    enumerate (["0", "1", "2"], a);
 
    expect (Reflect .ownKeys (a) .includes ("length")) .toBe (true);

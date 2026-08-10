@@ -200,6 +200,8 @@ for (const [typeName, MFMatrix4, SFMatrix4] of arrays)
    {
       const a = new MFMatrix4 (new SFMatrix4 (), new SFMatrix4 (), new SFMatrix4 ());
 
+      expect (a) .toBe (a);
+
       enumerate (["0", "1", "2"], a);
 
       expect (Reflect .ownKeys (a) .includes ("length")) .toBe (true);

@@ -921,6 +921,8 @@ test .concurrent ("enumerate", () =>
 {
    const a = new MFNode (node1, node2, node3);
 
+   expect (a) .toBe (a);
+
    enumerate (["0", "1", "2"], a);
 
    expect (Reflect .ownKeys (a) .includes ("length")) .toBe (true);

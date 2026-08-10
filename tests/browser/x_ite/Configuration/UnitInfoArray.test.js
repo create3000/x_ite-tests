@@ -157,6 +157,8 @@ test .concurrent ("enumerate", () =>
 {
    const a = Browser .currentScene .units;
 
+   expect (a) .toBe (a);
+
    expect (Reflect .ownKeys (a) .includes ("length")) .toBe (true);
    expect (a) .toHaveLength (4);
 
