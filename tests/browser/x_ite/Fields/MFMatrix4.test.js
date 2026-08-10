@@ -214,6 +214,10 @@ for (const [typeName, MFMatrix4, SFMatrix4] of arrays)
 
       expect (Reflect .ownKeys (a) .includes (s))     .toBe (true);
       expect (Reflect .ownKeys (a) .includes ("abc")) .toBe (true);
+
+      expect ("length" in a) .toBe (true);
+      expect (s in a) .toBe (true);
+      expect ("abc" in a) .toBe (true);
    });
 
    test .concurrent ("toString", () =>
