@@ -71,4 +71,6 @@ test .concurrent ("enumerate", () =>
 
    expect (Reflect .ownKeys (a) .includes (s))     .toBe (true);
    expect (Reflect .ownKeys (a) .includes ("abc")) .toBe (true);
+
+   expect (() => a [123] = "number") .toThrow (Error);
 });
