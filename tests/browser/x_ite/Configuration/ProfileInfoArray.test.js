@@ -46,6 +46,7 @@ test .concurrent ("enumerate", () =>
 
    expect (Reflect .ownKeys (a) .includes ("length")) .toBe (true);
    expect (a) .toHaveLength (8);
+   expect (Object .keys (a)) .toEqual (Array .from (Array (8) .keys (), k => String (k)));
 
    const s = Symbol ();
 
