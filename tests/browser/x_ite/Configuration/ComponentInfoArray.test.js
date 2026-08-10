@@ -41,5 +41,15 @@ test .concurrent ("toString", () =>
 
 test .concurrent ("enumerate", () =>
 {
-   expect (Reflect .ownKeys (Browser .supportedComponents) .includes ("length")) .toBe (true);
+   const a = Browser .supportedComponents;
+
+   expect (Reflect .ownKeys (a) .includes ("length")) .toBe (true);
+
+   const s = Symbol ();
+
+   a [s]     = "symbol";
+   a ["abc"] = "abc";
+
+   expect (Reflect .ownKeys (a) .includes (s)) .   toBe (true);
+   expect (Reflect .ownKeys (a) .includes ("abc")) .toBe (true);
 });

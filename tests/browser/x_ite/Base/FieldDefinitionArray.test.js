@@ -46,5 +46,15 @@ test .concurrent ("toString", () =>
 
 test .concurrent ("enumerate", () =>
 {
-   expect (Reflect .ownKeys (fieldDefinitions) .includes ("length")) .toBe (true);
+   const a = fieldDefinitions;
+
+   expect (Reflect .ownKeys (a) .includes ("length")) .toBe (true);
+
+   const s = Symbol ();
+
+   a [s]     = "symbol";
+   a ["abc"] = "abc";
+
+   expect (Reflect .ownKeys (a) .includes (s)) .   toBe (true);
+   expect (Reflect .ownKeys (a) .includes ("abc")) .toBe (true);
 });

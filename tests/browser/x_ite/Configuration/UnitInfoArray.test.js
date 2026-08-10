@@ -1,6 +1,10 @@
 import { expect, test } from "vitest";
 import X3D              from "../../X3D.js";
 
+const
+   canvas  = X3D .createBrowser (),
+   Browser = canvas .browser;
+
 test .concurrent ("properties", () =>
 {
    const
@@ -147,6 +151,19 @@ test .concurrent ("proxy", () =>
    expect (units [3]) .toBeInstanceOf (X3D .UnitInfo);
    expect (units .foo) .toBe (undefined);
    enumerate (properties1, units);
+});
 
-   expect (Reflect .ownKeys (units) .includes ("length")) .toBe (true);
+test .concurrent ("enumerate", () =>
+{
+   const a = Browser .currentScene .units;
+
+   expect (Reflect .ownKeys (a) .includes ("length")) .toBe (true);
+
+   const s = Symbol ();
+
+   a [s]     = "symbol";
+   a ["abc"] = "abc";
+
+   expect (Reflect .ownKeys (a) .includes (s)) .   toBe (true);
+   expect (Reflect .ownKeys (a) .includes ("abc")) .toBe (true);
 });
