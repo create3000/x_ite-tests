@@ -147,4 +147,6 @@ test .concurrent ("proxy", () =>
    expect (units [3]) .toBeInstanceOf (X3D .UnitInfo);
    expect (units .foo) .toBe (undefined);
    enumerate (properties1, units);
+
+   expect (Reflect .ownKeys (units) .includes ("length")) .toBe (true);
 });

@@ -919,7 +919,11 @@ test .concurrent ("fromVRMLString", () =>
 
 test .concurrent ("enumerate", () =>
 {
-   enumerate (["0", "1", "2"], new MFNode (node1, node2, node3));
+   const a = new MFNode (node1, node2, node3);
+
+   enumerate (["0", "1", "2"], a);
+
+   expect (Reflect .ownKeys (a) .includes ("length")) .toBe (true);
 });
 
 test .concurrent ("toString", () =>

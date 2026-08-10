@@ -195,7 +195,11 @@ test .concurrent ("fromXMLString", () =>
 
 test .concurrent ("enumerate", () =>
 {
-   enumerate (["0", "1", "2"], new MFColor (new SFColor (), new SFColor (), new SFColor ()));
+   const a = new MFColor (new SFColor (), new SFColor (), new SFColor ());
+
+   enumerate (["0", "1", "2"], a);
+
+   expect (Reflect .ownKeys (a) .includes ("length")) .toBe (true);
 });
 
 test .concurrent ("toString", () =>

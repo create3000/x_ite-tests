@@ -14,6 +14,8 @@ test .concurrent ("constructor", () =>
    expect (exportedNodes) .toHaveLength (0);
    expect (exportedNodes) .toBeInstanceOf (X3D .ExportedNodesArray);
    expect (exportedNodes .constructor) .toBe (X3D .ExportedNodesArray);
+
+   expect (Reflect .ownKeys (exportedNodes) .includes ("length")) .toBe (true);
 });
 
 test .concurrent ("filter", async () =>

@@ -837,7 +837,11 @@ test .concurrent ("fromXMLString", () =>
 
 test .concurrent ("enumerate", () =>
 {
-   enumerate (["0", "1", "2"], new MFFloat (1,2,3));
+   const a = new MFFloat (1,2,3);
+
+   enumerate (["0", "1", "2"], a);
+
+   expect (Reflect .ownKeys (a) .includes ("length")) .toBe (true);
 });
 
 test .concurrent ("toString", () =>

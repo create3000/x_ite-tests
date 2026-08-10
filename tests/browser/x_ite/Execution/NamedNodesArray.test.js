@@ -25,6 +25,8 @@ DEF N3 Transform { }
    expect (namedNodes [1]) .toBeInstanceOf (X3D .SFNode);
    expect (namedNodes [2]) .toBeInstanceOf (X3D .SFNode);
    expect (namedNodes [3]) .toBeInstanceOf (X3D .SFNode);
+
+   expect (Reflect .ownKeys (namedNodes) .includes ("length")) .toBe (true);
 });
 
 test .concurrent ("spread", async () =>

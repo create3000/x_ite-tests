@@ -677,11 +677,11 @@ for (const [typeName, MFVec3, SFVec3] of arrays)
 
    test .concurrent ("enumerate", () =>
    {
-      const properties = [
-         0,1,2
-      ];
+      const a = new MFVec3 (new SFVec3 (1,2,3), new SFVec3 (4,5,6), new SFVec3 (7,8,9));
 
-      enumerate (properties, new MFVec3 (new SFVec3 (1,2,3), new SFVec3 (4,5,6), new SFVec3 (7,8,9)));
+      enumerate (["0", "1", "2"], a);
+
+      expect (Reflect .ownKeys (a) .includes ("length")) .toBe (true);
    });
 
    test .concurrent ("enumerate single", () =>

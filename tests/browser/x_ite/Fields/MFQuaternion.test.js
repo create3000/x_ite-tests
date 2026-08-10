@@ -244,7 +244,11 @@ test .concurrent ("fromXMLString", () =>
 
 test .concurrent ("enumerate", () =>
 {
-   enumerate (["0", "1", "2"], new MFQuaternion (new SFQuaternion (), new SFQuaternion (), new SFQuaternion ()));
+   const a = new MFQuaternion (new SFQuaternion (), new SFQuaternion (), new SFQuaternion ());
+
+   enumerate (["0", "1", "2"], a);
+
+   expect (Reflect .ownKeys (a) .includes ("length")) .toBe (true);
 });
 
 test .concurrent ("toString", () =>

@@ -648,11 +648,11 @@ test .concurrent ("unshift", () =>
 
 test .concurrent ("enumerate", () =>
 {
-   const properties = [
-      0,1,2
-   ];
+   const a = new MFString ("a", "b", "c");
 
-   enumerate (properties, new MFString ("a", "b", "c"));
+   enumerate (["0", "1", "2"], a);
+
+   expect (Reflect .ownKeys (a) .includes ("length")) .toBe (true);
 });
 
 test .concurrent ("enumerate single", () =>

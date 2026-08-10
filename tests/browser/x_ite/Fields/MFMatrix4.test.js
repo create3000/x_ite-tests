@@ -198,7 +198,11 @@ for (const [typeName, MFMatrix4, SFMatrix4] of arrays)
 
    test .concurrent ("enumerate", () =>
    {
-      enumerate (["0", "1", "2"], new MFMatrix4 (new SFMatrix4 (), new SFMatrix4 (), new SFMatrix4 ()));
+      const a = new MFMatrix4 (new SFMatrix4 (), new SFMatrix4 (), new SFMatrix4 ());
+
+      enumerate (["0", "1", "2"], a);
+
+      expect (Reflect .ownKeys (a) .includes ("length")) .toBe (true);
    });
 
    test .concurrent ("toString", () =>

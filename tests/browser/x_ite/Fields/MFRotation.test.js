@@ -253,7 +253,11 @@ test .concurrent ("fromXMLString", () =>
 
 test .concurrent ("enumerate", () =>
 {
-   enumerate (["0", "1", "2"], new MFRotation (new SFRotation (), new SFRotation (), new SFRotation ()));
+   const a = new MFRotation (new SFRotation (), new SFRotation (), new SFRotation ());
+
+   enumerate (["0", "1", "2"], a);
+
+   expect (Reflect .ownKeys (a) .includes ("length")) .toBe (true);
 });
 
 test .concurrent ("toString", () =>

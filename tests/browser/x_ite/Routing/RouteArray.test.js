@@ -14,6 +14,8 @@ test .concurrent ("properties", () =>
    expect (routes) .toHaveLength (0);
    expect (routes) .toBeInstanceOf (X3D .RouteArray);
    expect (routes .constructor) .toBe (X3D .RouteArray);
+
+   expect (Reflect .ownKeys (routes) .includes ("length")) .toBe (true);
 });
 
 test .concurrent ("filter", async () =>

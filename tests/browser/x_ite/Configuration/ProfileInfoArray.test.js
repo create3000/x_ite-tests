@@ -12,6 +12,8 @@ test .concurrent ("constructor", () =>
    expect (profiles) .toHaveLength (8);
    expect (profiles) .toBeInstanceOf (X3D .ProfileInfoArray);
    expect (profiles .constructor) .toBe (X3D .ProfileInfoArray);
+
+   expect (Reflect .ownKeys (profiles) .includes ("length")) .toBe (true);
 });
 
 test .concurrent ("filter", () =>
