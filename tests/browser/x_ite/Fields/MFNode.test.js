@@ -25,6 +25,13 @@ scene .addNamedNode ("5", node5);
 scene .addNamedNode ("6", node6);
 scene .addNamedNode ("7", node7);
 
+test .concurrent ("constructor static methods", () =>
+{
+   const a = new MFNode (scene .createNode ("MetadataBoolean"), scene .createNode ("MetadataDouble"));
+
+   expect (MFNode .from (a) .equals (a)) .toBe (true);
+});
+
 test .concurrent ("constructor", () =>
 {
    const

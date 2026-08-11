@@ -5,6 +5,13 @@ const
    SFColor = X3D .SFColor,
    MFColor = X3D .MFColor;
 
+test .concurrent ("constructor static methods", () =>
+{
+   const a = new MFColor (new SFColor (.1,.2,.3), new SFColor (.5,.6,.7));
+
+   expect (MFColor .from (a) .equals (a)) .toBe (true);
+});
+
 test .concurrent ("constructor", () =>
 {
    expect ((new MFColor ()) [0]) .toBe (undefined);

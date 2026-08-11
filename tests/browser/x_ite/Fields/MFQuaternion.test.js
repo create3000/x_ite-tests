@@ -6,6 +6,13 @@ const
    MFQuaternion = X3D .MFQuaternion,
    SFQuaternion = X3D .SFQuaternion;
 
+test .concurrent ("constructor static methods", () =>
+{
+   const a = new MFQuaternion (new SFQuaternion (1,2,3,4), new SFQuaternion (5,6,7,8));
+
+   expect (MFQuaternion .from (a) .equals (a)) .toBe (true);
+});
+
 test .concurrent ("constructor", () =>
 {
    expect ((new MFQuaternion ()) [0]) .toBe (undefined);

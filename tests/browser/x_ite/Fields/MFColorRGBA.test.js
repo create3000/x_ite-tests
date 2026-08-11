@@ -5,6 +5,13 @@ const
    SFColorRGBA = X3D .SFColorRGBA,
    MFColorRGBA = X3D .MFColorRGBA;
 
+test .concurrent ("constructor static methods", () =>
+{
+   const a = new MFColorRGBA (new SFColorRGBA (.1,.2,.3,.4), new SFColorRGBA (.5,.6,.7,.8));
+
+   expect (MFColorRGBA .from (a) .equals (a)) .toBe (true);
+});
+
 test .concurrent ("constructor", () =>
 {
    expect ((new MFColorRGBA ()) [0]) .toBe (undefined);

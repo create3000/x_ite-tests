@@ -12,6 +12,13 @@ const comp = 3;
 
 for (const [typeName, MFVec3, SFVec3] of arrays)
 {
+   test .concurrent ("constructor static methods", () =>
+   {
+      const a = new MFVec3 (new SFVec3 (1,2,3), new SFVec3 (5,6,7));
+
+      expect (MFVec3 .from (a) .equals (a)) .toBe (true);
+   });
+
    test .concurrent ("get1Value", () =>
    {
       const field = new MFVec3 ();

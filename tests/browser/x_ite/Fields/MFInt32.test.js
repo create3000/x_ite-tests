@@ -3,6 +3,13 @@ import X3D              from "../../X3D.js";
 
 const MFInt32 = X3D .MFInt32;
 
+test .concurrent ("constructor static methods", () =>
+{
+   const a = new MFInt32 (1,2,3);
+
+   expect (MFInt32 .from (a) .equals (a)) .toBe (true);
+});
+
 test .concurrent ("constructor", () =>
 {
    let field;

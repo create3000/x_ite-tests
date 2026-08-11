@@ -3,6 +3,13 @@ import X3D              from "../../X3D.js";
 
 const MFBool = X3D .MFBool;
 
+test .concurrent ("constructor static methods", () =>
+{
+   const a = new MFBool (true,false,true);
+
+   expect (MFBool .from (a) .equals (a)) .toBe (true);
+});
+
 test .concurrent ("constructor", () =>
 {
    let field;

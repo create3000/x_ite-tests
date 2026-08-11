@@ -5,6 +5,13 @@ const
    Browser = X3D .createBrowser () .browser,
    MFDouble = X3D .MFDouble;
 
+test .concurrent ("constructor static methods", () =>
+{
+   const a = new MFDouble (1,2,3);
+
+   expect (MFDouble .from (a) .equals (a)) .toBe (true);
+});
+
 test .concurrent ("constructor", () =>
 {
    let field;

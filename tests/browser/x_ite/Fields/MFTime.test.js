@@ -3,6 +3,13 @@ import X3D              from "../../X3D.js";
 
 const MFTime = X3D .MFTime;
 
+test .concurrent ("constructor static methods", () =>
+{
+   const a = new MFTime (1,2,3);
+
+   expect (MFTime .from (a) .equals (a)) .toBe (true);
+});
+
 test .concurrent ("constructor", () =>
 {
    let field;
