@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 
-const
-   path   = require ("path"),
-   { sh } = require ("shell-tools");
+import path          from "node:path";
+import { sh }        from "shell-tools";
+import { XMLParser } from "fast-xml-parser";
 
 // https://www.web3d.org/specifications/X3dUnifiedObjectModel-4.0.xml
 
@@ -287,8 +287,6 @@ function field (typeName, fieldDefinition, fields)
 
 function xml (string)
 {
-   const { XMLParser } = require ("fast-xml-parser");
-
    const parser = new XMLParser ({
       ignoreAttributes: false,
       attributeNamePrefix: "",

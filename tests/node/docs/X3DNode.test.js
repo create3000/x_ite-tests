@@ -1,6 +1,5 @@
 import { expect, test } from "vitest";
-
-const path = require ("path");
+import path from "node:path";
 
 test .concurrent ("documentation", () =>
 {
