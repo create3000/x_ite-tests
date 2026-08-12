@@ -9,9 +9,7 @@ const
    width  = 1000,
    height = 562;
 
-const
-   threshold           = 0.1,
-   maxMismatchedPixels = 18_000;
+const threshold = 0.1;
 
 const
    body    = document .querySelector ("body"),
@@ -30,8 +28,53 @@ body .append (canvas);
 browser .setBrowserOption ("SplashScreen", false);
 browser .setBrowserOption ("Mute", true);
 
-test .concurrent ("media", async () =>
+test ("glTF", async () =>
 {
+   const maxMismatchedPixels = 1_800;
+
+   const media = JSON .parse (await get ("https://weiputer/media/docs/glTF/config.json"));
+
+   for (const example of media)
+   {
+      const { name, basename } = example;
+
+      console .log (name);
+
+      const fileURL = new URL (`https://weiputer/media/docs/glTF/${name}/${basename}`);
+
+      await browser .loadURL (new X3D .MFString (fileURL));
+
+      browser .viewAll (0);
+      await browser .nextFrame ();
+
+      const blob2 = await new Promise (resolve => canvas .toBlob (resolve, "image/png"));
+      const url2  = URL .createObjectURL (blob2);
+      const url1  = new URL (`https://weiputer/media/docs/glTF//${name}/screenshots/screenshot.avif`);
+
+      const img1 = await loadImage (url1);
+      const img2 = await loadImage (url2);
+
+      const data1 = readPixels (img1);
+      const data2 = readPixels (img2);
+      const diff  = new Uint8Array (data1 .length);
+
+      const mismatchedPixels = pixelmatch (data1, data2, diff, width, height, { threshold });
+
+      if (mismatchedPixels >= maxMismatchedPixels)
+         await showDiff (diff, mismatchedPixels);
+
+      // Number of Pixels: 562_000
+      expect (mismatchedPixels) .toBeLessThan (maxMismatchedPixels);
+
+      URL .revokeObjectURL (url2);
+   }
+},
+70_000);
+
+test ("media", async () =>
+{
+   const maxMismatchedPixels = 18_000;
+
    const media = JSON .parse (await get ("https://weiputer/media/docs/examples/config.json"));
 
    for (const example of media)
@@ -62,52 +105,7 @@ test .concurrent ("media", async () =>
       const mismatchedPixels = pixelmatch (data1, data2, diff, width, height, { threshold });
 
       if (mismatchedPixels >= maxMismatchedPixels)
-      {
-         console .log (mismatchedPixels);
-
-         const
-            canvas  = X3D .createBrowser (),
-            browser = canvas .browser;
-
-         Object .assign (canvas .style, style);
-         body .append (canvas);
-         browser .setBrowserOption ("SplashScreen", false);
-
-         const scene = await browser .createX3DFromString (`#X3D V4.1 utf8 X_ITE V15.1.12
-
-         PROFILE Interchange
-
-         COMPONENT Geometry2D : 1
-         COMPONENT Layering : 1
-         COMPONENT Layout : 1
-
-         UNIT angle degree 0.017453292519943295
-
-         LayerSet {
-            activeLayer -1
-            order 1
-            layers LayoutLayer {
-               layout Layout { }
-               children DEF Rectangle2D_1 Transform {
-                  rotation 0 1 0 180
-                  scale -1 -1 -1
-                  children Shape {
-                     appearance Appearance {
-                        texture PixelTexture {
-                           image ${width} ${height} 4
-                              ${new Uint32Array (diff .buffer) .join (" ")}
-                        }
-                     }
-                     geometry Rectangle2D {
-                        size 1 1
-                     }
-                  }
-               }
-            }
-         }`);
-
-         await browser .replaceWorld (scene);
-      }
+         await showDiff (diff, mismatchedPixels);
 
       // Number of Pixels: 562_000
       expect (mismatchedPixels) .toBeLessThan (maxMismatchedPixels);
@@ -170,4 +168,52 @@ function readPixels (image)
    gl .deleteTexture (texture);
 
    return data;
+}
+
+async function showDiff (diff, mismatchedPixels)
+{
+   console .log (mismatchedPixels);
+
+   const
+      canvas  = X3D .createBrowser (),
+      browser = canvas .browser;
+
+   Object .assign (canvas .style, style);
+   body .append (canvas);
+   browser .setBrowserOption ("SplashScreen", false);
+
+   const scene = await browser .createX3DFromString (`#X3D V4.1 utf8 X_ITE V15.1.12
+
+   PROFILE Interchange
+
+   COMPONENT Geometry2D : 1
+   COMPONENT Layering : 1
+   COMPONENT Layout : 1
+
+   UNIT angle degree 0.017453292519943295
+
+   LayerSet {
+      activeLayer -1
+      order 1
+      layers LayoutLayer {
+         layout Layout { }
+         children DEF Rectangle2D_1 Transform {
+            rotation 0 1 0 180
+            scale -1 -1 -1
+            children Shape {
+               appearance Appearance {
+                  texture PixelTexture {
+                     image ${width} ${height} 4
+                        ${new Uint32Array (diff .buffer) .join (" ")}
+                  }
+               }
+               geometry Rectangle2D {
+                  size 1 1
+               }
+            }
+         }
+      }
+   }`);
+
+   await browser .replaceWorld (scene);
 }
