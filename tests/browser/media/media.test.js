@@ -25,31 +25,34 @@ const style = {
 
 Object .assign (canvas .style, style);
 body .append (canvas);
-browser .setBrowserOption ("SplashScreen", false);
-browser .setBrowserOption ("Mute", true);
 
-test ("glTF", async () =>
+test ("media", async () =>
 {
-   const maxMismatchedPixels = 1_800;
+   const maxMismatchedPixels = 17_000;
 
-   const media = JSON .parse (await get ("https://weiputer/media/docs/glTF/config.json"));
+   const media = JSON .parse (await get ("https://weiputer/media/docs/examples/config.json"));
 
    for (const example of media)
    {
-      const { name, basename } = example;
+      if (!example .test)
+         continue;
 
-      console .log (name);
+      const { name, component } = example;
 
-      const fileURL = new URL (`https://weiputer/media/docs/glTF/${name}/${basename}`);
+      console .log (component, name);
+
+      const fileURL = new URL (`https://weiputer/media/docs/examples/${component}/${name}/${name}.x3d`);
+
+      browser .getBrowserOptions () .reset ();
+      browser .setBrowserOption ("SplashScreen", false);
+      browser .setBrowserOption ("Mute", true);
 
       await browser .loadURL (new X3D .MFString (fileURL));
-
-      browser .viewAll (0);
       await browser .nextFrame ();
 
       const blob2 = await new Promise (resolve => canvas .toBlob (resolve, "image/png"));
       const url2  = URL .createObjectURL (blob2);
-      const url1  = new URL (`https://weiputer/media/docs/glTF//${name}/screenshots/screenshot.avif`);
+      const url1  = new URL (`https://weiputer/media/docs/examples/${component}/${name}/screenshot.avif`);
 
       const img1 = await loadImage (url1);
       const img2 = await loadImage (url2);
@@ -71,29 +74,32 @@ test ("glTF", async () =>
 },
 70_000);
 
-test ("media", async () =>
+test ("glTF", async () =>
 {
-   const maxMismatchedPixels = 18_000;
+   const maxMismatchedPixels = 1_800;
 
-   const media = JSON .parse (await get ("https://weiputer/media/docs/examples/config.json"));
+   const media = JSON .parse (await get ("https://weiputer/media/docs/glTF/config.json"));
 
    for (const example of media)
    {
-      if (!example .test)
-         continue;
+      const { name, basename } = example;
 
-      const { name, component } = example;
+      console .log (name);
 
-      console .log (component, name);
+      const fileURL = new URL (`https://weiputer/media/docs/glTF/${name}/${basename}`);
 
-      const fileURL = new URL (`https://weiputer/media/docs/examples/${component}/${name}/${name}.x3d`);
+      browser .getBrowserOptions () .reset ();
+      browser .setBrowserOption ("SplashScreen", false);
+      browser .setBrowserOption ("Mute", true);
 
       await browser .loadURL (new X3D .MFString (fileURL));
+
+      browser .viewAll (0);
       await browser .nextFrame ();
 
       const blob2 = await new Promise (resolve => canvas .toBlob (resolve, "image/png"));
       const url2  = URL .createObjectURL (blob2);
-      const url1  = new URL (`https://weiputer/media/docs/examples/${component}/${name}/screenshot.avif`);
+      const url1  = new URL (`https://weiputer/media/docs/glTF//${name}/screenshots/screenshot.avif`);
 
       const img1 = await loadImage (url1);
       const img2 = await loadImage (url2);
