@@ -90,6 +90,16 @@ for (const [typeName, MFVec3, SFVec3] of arrays)
       expect (field .equals (new MFVec3 ())) .toBe (true);
    });
 
+   test .concurrent ("set1Value", () =>
+   {
+      const field = new MFVec3();
+
+      field [0] = new SFVec3 (1,2,3);
+      field [2] = new SFVec3 (5,6,7);
+      expect (field) .toHaveLength (3);
+      expect (field .equals (new MFVec3 (new SFVec3 (1,2,3), new SFVec3 (), new SFVec3 (5,6,7)))) .toBe (true);
+   });
+
    test .concurrent ("assign", () =>
    {
       const field = new MFVec3 ();

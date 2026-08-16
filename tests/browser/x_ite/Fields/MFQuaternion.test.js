@@ -50,6 +50,16 @@ test .concurrent ("get1Value", () =>
    expect (field [2]) .toBeInstanceOf (SFQuaternion);
 });
 
+test .concurrent ("set1Value", () =>
+{
+   const field = new MFQuaternion ();
+
+   field [0] = new SFQuaternion (1,2,3,4);
+   field [2] = new SFQuaternion (5,6,7,8);
+   expect (field) .toHaveLength (3);
+   expect (field .equals (new MFQuaternion (new SFQuaternion (1,2,3,4), new SFQuaternion (), new SFQuaternion (5,6,7,8)))) .toBe (true);
+});
+
 test .concurrent ("length", () =>
 {
    expect (new MFQuaternion () .length) .toBe (0);

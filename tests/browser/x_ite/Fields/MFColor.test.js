@@ -49,6 +49,16 @@ test .concurrent ("get1Value", () =>
    expect (field [2]) .toBeInstanceOf (SFColor);
 });
 
+test .concurrent ("set1Value", () =>
+{
+   const field = new MFColor ();
+
+   field [0] = new SFColor (.1,.2,.3);
+   field [2] = new SFColor (.5,.6,.7);
+   expect (field) .toHaveLength (3);
+   expect (field .equals (new MFColor (new SFColor (.1,.2,.3), new SFColor (), new SFColor (.5,.6,.7)))) .toBe (true);
+});
+
 test .concurrent ("length", () =>
 {
    expect (new MFColor () .length) .toBe (0);

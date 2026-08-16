@@ -51,6 +51,16 @@ for (const [typeName, MFVec4, SFVec4] of arrays)
       expect (field [2]) .toBeInstanceOf (SFVec4);
    });
 
+   test .concurrent ("set1Value", () =>
+   {
+      const field = new MFVec4 ();
+
+      field [0] = new SFVec4 (1,2,3,4);
+      field [2] = new SFVec4 (5,6,7,8);
+      expect (field) .toHaveLength (3);
+      expect (field .equals (new MFVec4 (new SFVec4 (1,2,3,4), new SFVec4 (), new SFVec4 (5,6,7,8)))) .toBe (true);
+   });
+
    test .concurrent ("setValue", () =>
    {
       const field = new MFVec4 ();

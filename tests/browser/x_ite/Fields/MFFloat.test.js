@@ -89,6 +89,11 @@ test .concurrent ("set1Value", () =>
    expect ((field [0] = 0xffffffff,      field [0])) .toBe (Math .fround (4294967295));
    expect ((field [0] = 666,             field [0])) .toBe (666);
    expect ((field [0] = -666,            field [0])) .toBe (-666);
+
+   field [0] = 1;
+   field [2] = 2;
+   expect (field) .toHaveLength (3);
+   expect (field .equals (new MFFloat (1, 0, 2))) .toBe (true);
 });
 
 test .concurrent ("setValue", () =>

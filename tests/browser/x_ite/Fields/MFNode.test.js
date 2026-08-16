@@ -104,6 +104,16 @@ test .concurrent ("set1Value", () =>
    expect (field) .toHaveLength (0);
 });
 
+test .concurrent ("set1Value", () =>
+{
+   const field = new MFNode ();
+
+   field [0] = node1;
+   field [2] = node2;
+   expect (field) .toHaveLength (3);
+   expect (field .equals (new MFNode (node1, null, node2))) .toBe (true);
+});
+
 test .concurrent ("setValue", () =>
 {
    const field = new MFNode ();

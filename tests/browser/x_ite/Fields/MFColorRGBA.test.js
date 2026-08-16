@@ -49,6 +49,16 @@ test .concurrent ("get1Value", () =>
    expect (field [2]) .toBeInstanceOf (SFColorRGBA);
 });
 
+test .concurrent ("set1Value", () =>
+{
+   const field = new MFColorRGBA ();
+
+   field [0] = new SFColorRGBA (.1,.2,.3,.4);
+   field [2] = new SFColorRGBA (.5,.6,.7,.8);
+   expect (field) .toHaveLength (3);
+   expect (field .equals (new MFColorRGBA (new SFColorRGBA (.1,.2,.3,.4), new SFColorRGBA (), new SFColorRGBA (.5,.6,.7,.8)))) .toBe (true);
+});
+
 test .concurrent ("length", () =>
 {
    expect (new MFColorRGBA () .length) .toBe (0);

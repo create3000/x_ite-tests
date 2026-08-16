@@ -50,6 +50,16 @@ test .concurrent ("get1Value", () =>
    expect (field [2]) .toBeInstanceOf (SFRotation);
 });
 
+test .concurrent ("set1Value", () =>
+{
+   const field = new MFRotation ();
+
+   field [0] = new SFRotation (1,2,3,4);
+   field [2] = new SFRotation (5,6,7,8);
+   expect (field) .toHaveLength (3);
+   expect (field .equals (new MFRotation (new SFRotation (1,2,3,4), new SFRotation (), new SFRotation (5,6,7,8)))) .toBe (true);
+});
+
 test .concurrent ("length", () =>
 {
    expect (new MFRotation () .length) .toBe (0);

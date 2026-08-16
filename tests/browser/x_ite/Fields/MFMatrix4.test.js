@@ -52,6 +52,16 @@ for (const [, MFMatrix4, SFMatrix4] of arrays)
       expect (field [2]) .toBeInstanceOf (SFMatrix4);
    });
 
+   test .concurrent ("set1Value", () =>
+   {
+      const field = new MFMatrix4 ();
+
+      field [0] = new SFMatrix4 (1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16);
+      field [2] = new SFMatrix4 (17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32);
+      expect (field) .toHaveLength (3);
+      expect (field .equals (new MFMatrix4 (new SFMatrix4 (1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16), new SFMatrix4 (), new SFMatrix4 (17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32)))) .toBe (true);
+   });
+
    test .concurrent ("length", () =>
    {
       expect (new MFMatrix4 () .length) .toBe (0);

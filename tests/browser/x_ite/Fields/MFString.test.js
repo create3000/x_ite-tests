@@ -87,6 +87,11 @@ test .concurrent ("set1Value", () =>
    expect ((field [0] = 0xffffffff,      field [0])) .toBe ("4294967295");
    expect ((field [0] = 666,             field [0])) .toBe ("666");
    expect ((field [0] = -666,            field [0])) .toBe ("-666");
+
+   field [0] = "a";
+   field [2] = "b";
+   expect (field) .toHaveLength (3);
+   expect (field .equals (new MFString ("a", "", "b"))) .toBe (true);
 });
 
 test .concurrent ("setValue", () =>

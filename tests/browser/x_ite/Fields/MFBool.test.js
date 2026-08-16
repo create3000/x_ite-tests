@@ -87,6 +87,11 @@ test .concurrent ("set1Value", () =>
    expect ((field [0] = 0xffffffff,      field [0])) .toBe (true);
    expect ((field [0] = 666,             field [0])) .toBe (true);
    expect ((field [0] = -666,            field [0])) .toBe (true);
+
+   field [0] = true;
+   field [2] = true;
+   expect (field) .toHaveLength (3);
+   expect (field .equals (new MFBool (true, false, true))) .toBe (true);
 });
 
 test .concurrent ("setValue", () =>
