@@ -138,6 +138,22 @@ test .concurrent ("assign", () =>
    expect (field .equals (new MFRotation ())) .toBe (true);
 });
 
+test .concurrent ("shrinkToFit", () =>
+{
+   const field = new MFRotation (new SFRotation (.1, .2, .3, .4), new SFRotation (.5, .6, .7, .8));
+
+   expect (field .shrinkToFit ()) .toHaveLength (8);
+   expect (field .shrinkToFit ()) .toBe (field .shrinkToFit ());
+
+   field .length = 1;
+   expect (field .shrinkToFit ()) .toHaveLength (4);
+   expect (field .equals (new MFRotation (new SFRotation (.1, .2, .3, .4))));
+
+   field .length = 2;
+   expect (field .shrinkToFit ()) .toHaveLength (8);
+   expect (field .equals (new MFRotation (new SFRotation (.1, .2, .3, .4), new SFRotation ())));
+});
+
 test .concurrent ("fromString", () =>
 {
    const a = new MFRotation ();

@@ -124,7 +124,7 @@ test .concurrent ("assign", () =>
 {
    const
       field = new MFColor (),
-      value = new SFColor (1, 2, 3);
+      value = new SFColor (.1, .2, .3);
 
    field .assign (new MFColor (value, value, value, value));
 
@@ -135,6 +135,22 @@ test .concurrent ("assign", () =>
 
    expect (field) .toHaveLength (0);
    expect (field .equals (new MFColor ())) .toBe (true);
+});
+
+test .concurrent ("shrinkToFit", () =>
+{
+   const field = new MFColor (new SFColor (.1, .2, .3), new SFColor (.5, .6, .7));
+
+   expect (field .shrinkToFit ()) .toHaveLength (6);
+   expect (field .shrinkToFit ()) .toBe (field .shrinkToFit ());
+
+   field .length = 1;
+   expect (field .shrinkToFit ()) .toHaveLength (3);
+   expect (field .equals (new MFColor (new SFColor (.1, .2, .3))));
+
+   field .length = 2;
+   expect (field .shrinkToFit ()) .toHaveLength (6);
+   expect (field .equals (new MFColor (new SFColor (.1, .2, .3), new SFColor ())));
 });
 
 test .concurrent ("fromString", () =>

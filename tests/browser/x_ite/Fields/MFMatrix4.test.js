@@ -140,6 +140,22 @@ for (const [, MFMatrix4, SFMatrix4] of arrays)
       expect (field .equals (new MFMatrix4 ())) .toBe (true);
    });
 
+   test .concurrent ("shrinkToFit", () =>
+   {
+      const field = new MFMatrix4 (new SFMatrix4 (1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16), new SFMatrix4 (17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32));
+
+      expect (field .shrinkToFit ()) .toHaveLength (32);
+      expect (field .shrinkToFit ()) .toBe (field .shrinkToFit ());
+
+      field .length = 1;
+      expect (field .shrinkToFit ()) .toHaveLength (16);
+      expect (field .equals (new MFMatrix4 (new SFMatrix4 (1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16))));
+
+      field .length = 2;
+      expect (field .shrinkToFit ()) .toHaveLength (32);
+      expect (field .equals (new MFMatrix4 (new SFMatrix4 (1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16), new SFMatrix4 ())));
+   });
+
    test .concurrent ("fromString", () =>
    {
       const a = new MFMatrix4 ();

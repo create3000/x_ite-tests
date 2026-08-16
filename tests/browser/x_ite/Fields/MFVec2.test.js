@@ -116,6 +116,14 @@ for (const [typeName, MFVec2, SFVec2] of arrays)
 
       expect (field .shrinkToFit ()) .toHaveLength (4);
       expect (field .shrinkToFit ()) .toBe (field .shrinkToFit ());
+
+      field .length = 1;
+      expect (field .shrinkToFit ()) .toHaveLength (2);
+      expect (field .equals (new MFVec2 (new SFVec2 (1, 2))));
+
+      field .length = 2;
+      expect (field .shrinkToFit ()) .toHaveLength (4);
+      expect (field .equals (new MFVec2 (new SFVec2 (1, 2), new SFVec2 ())));
    });
 
    test .concurrent ("common", () =>

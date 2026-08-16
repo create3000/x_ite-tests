@@ -124,7 +124,7 @@ test .concurrent ("assign", () =>
 {
    const
       field = new MFColorRGBA (),
-      value = new SFColorRGBA (1, 2, 3, 4);
+      value = new SFColorRGBA (.1, .2, .3, .4);
 
    field .assign (new MFColorRGBA (value, value, value, value));
 
@@ -135,6 +135,22 @@ test .concurrent ("assign", () =>
 
    expect (field) .toHaveLength (0);
    expect (field .equals (new MFColorRGBA ())) .toBe (true);
+});
+
+test .concurrent ("shrinkToFit", () =>
+{
+   const field = new MFColorRGBA (new SFColorRGBA (.1, .2, .3, .4), new SFColorRGBA (.5, .6, .7, .8));
+
+   expect (field .shrinkToFit ()) .toHaveLength (8);
+   expect (field .shrinkToFit ()) .toBe (field .shrinkToFit ());
+
+   field .length = 1;
+   expect (field .shrinkToFit ()) .toHaveLength (4);
+   expect (field .equals (new MFColorRGBA (new SFColorRGBA (.1, .2, .3, .4))));
+
+   field .length = 2;
+   expect (field .shrinkToFit ()) .toHaveLength (8);
+   expect (field .equals (new MFColorRGBA (new SFColorRGBA (.1, .2, .3, .4), new SFColorRGBA ())));
 });
 
 test .concurrent ("fromString", () =>

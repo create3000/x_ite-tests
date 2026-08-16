@@ -140,6 +140,14 @@ test .concurrent ("shrinkToFit", () =>
 
    expect (field .shrinkToFit ()) .toHaveLength (4);
    expect (field .shrinkToFit ()) .toBe (field .shrinkToFit ());
+
+   field .length = 2;
+   expect (field .shrinkToFit ()) .toHaveLength (2);
+   expect (field .equals (new MFBool (true, false)));
+
+   field .length = 4;
+   expect (field .shrinkToFit ()) .toHaveLength (4);
+   expect (field .equals (new MFBool (true, false, false, false)));
 });
 
 test .concurrent ("common", () =>

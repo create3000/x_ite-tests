@@ -138,6 +138,22 @@ test .concurrent ("assign", () =>
    expect (field .equals (new MFQuaternion ())) .toBe (true);
 });
 
+test .concurrent ("shrinkToFit", () =>
+{
+   const field = new MFQuaternion (new SFQuaternion (.1, .2, .3, .4), new SFQuaternion (.5, .6, .7, .8));
+
+   expect (field .shrinkToFit ()) .toHaveLength (8);
+   expect (field .shrinkToFit ()) .toBe (field .shrinkToFit ());
+
+   field .length = 1;
+   expect (field .shrinkToFit ()) .toHaveLength (4);
+   expect (field .equals (new MFQuaternion (new SFQuaternion (.1, .2, .3, .4))));
+
+   field .length = 2;
+   expect (field .shrinkToFit ()) .toHaveLength (8);
+   expect (field .equals (new MFQuaternion (new SFQuaternion (.1, .2, .3, .4), new SFQuaternion ())));
+});
+
 test .concurrent ("fromString", () =>
 {
    const a = new MFQuaternion ();
