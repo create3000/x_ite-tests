@@ -142,14 +142,17 @@ test .concurrent ("shrinkToFit", () =>
    const field = new MFColor (new SFColor (.1, .2, .3), new SFColor (.5, .6, .7));
 
    expect (field .shrinkToFit ()) .toHaveLength (6);
+   expect (field) .toHaveLength (2);
    expect (field .shrinkToFit ()) .toBe (field .shrinkToFit ());
 
    field .length = 1;
    expect (field .shrinkToFit ()) .toHaveLength (3);
+   expect (field) .toHaveLength (1);
    expect (field .equals (new MFColor (new SFColor (.1, .2, .3))));
 
    field .length = 2;
    expect (field .shrinkToFit ()) .toHaveLength (6);
+   expect (field) .toHaveLength (2);
    expect (field .equals (new MFColor (new SFColor (.1, .2, .3), new SFColor ())));
 });
 

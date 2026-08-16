@@ -144,14 +144,17 @@ test .concurrent ("shrinkToFit", () =>
    const field = new MFTime (5, 6, 7, 8);
 
    expect (field .shrinkToFit ()) .toHaveLength (4);
+   expect (field) .toHaveLength (4);
    expect (field .shrinkToFit ()) .toBe (field .shrinkToFit ());
 
    field .length = 2;
    expect (field .shrinkToFit ()) .toHaveLength (2);
+   expect (field) .toHaveLength (2);
    expect (field .equals (new MFTime (5, 6)));
 
    field .length = 4;
    expect (field .shrinkToFit ()) .toHaveLength (4);
+   expect (field) .toHaveLength (4);
    expect (field .equals (new MFTime (5, 6, 0, 0)));
 });
 

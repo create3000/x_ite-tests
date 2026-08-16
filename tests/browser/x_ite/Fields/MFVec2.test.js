@@ -115,14 +115,17 @@ for (const [typeName, MFVec2, SFVec2] of arrays)
       const field = new MFVec2 (new SFVec2 (1, 2), new SFVec2 (5, 6));
 
       expect (field .shrinkToFit ()) .toHaveLength (4);
+      expect (field) .toHaveLength (2);
       expect (field .shrinkToFit ()) .toBe (field .shrinkToFit ());
 
       field .length = 1;
       expect (field .shrinkToFit ()) .toHaveLength (2);
+      expect (field) .toHaveLength (1);
       expect (field .equals (new MFVec2 (new SFVec2 (1, 2))));
 
       field .length = 2;
       expect (field .shrinkToFit ()) .toHaveLength (4);
+      expect (field) .toHaveLength (2);
       expect (field .equals (new MFVec2 (new SFVec2 (1, 2), new SFVec2 ())));
    });
 

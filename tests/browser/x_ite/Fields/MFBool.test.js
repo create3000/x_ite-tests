@@ -139,14 +139,17 @@ test .concurrent ("shrinkToFit", () =>
    const field = new MFBool (true, false, true, false);
 
    expect (field .shrinkToFit ()) .toHaveLength (4);
+   expect (field) .toHaveLength (4);
    expect (field .shrinkToFit ()) .toBe (field .shrinkToFit ());
 
    field .length = 2;
    expect (field .shrinkToFit ()) .toHaveLength (2);
+   expect (field) .toHaveLength (2);
    expect (field .equals (new MFBool (true, false)));
 
    field .length = 4;
    expect (field .shrinkToFit ()) .toHaveLength (4);
+   expect (field) .toHaveLength (4);
    expect (field .equals (new MFBool (true, false, false, false)));
 });
 
