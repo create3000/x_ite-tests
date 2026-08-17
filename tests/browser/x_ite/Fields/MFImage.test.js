@@ -52,6 +52,48 @@ test .concurrent ("constructor", () =>
    expect ((new MFImage ()) [0]) .toBe (undefined);
 });
 
+test .concurrent ("get1Value", () =>
+{
+   const field = new MFImage ();
+
+   expect (field) .toHaveLength (0);
+
+   for (let i = -10; i < 10; ++ i)
+   {
+      expect (field [i]) .toBe (undefined);
+      expect (field) .toHaveLength (0);
+   }
+
+   expect (field [field .length]) .toBe (undefined);
+   expect (field [-1]) .toBe (undefined);
+   expect (field) .toHaveLength (0);
+
+   field .push (new SFImage ());
+   field .push (new SFImage ());
+
+   expect (field) .toHaveLength (2);
+   expect (field [0]) .toBeInstanceOf (SFImage);
+   expect (field [1]) .toBeInstanceOf (SFImage);
+
+   expect (field [field .length]) .toBe (undefined);
+   expect (field [-1]) .toBe (undefined);
+   expect (field) .toHaveLength (2);
+
+   field [2] = new SFImage ();
+   expect (field) .toHaveLength (3);
+   expect (field [2]) .toBeInstanceOf (SFImage);
+});
+
+test .concurrent ("set1Value", () =>
+{
+   const field = new MFImage ();
+
+   field [0] = new SFImage (1,2,3,new MFInt32(0xa,0xb));
+   field [2] = new SFImage (2,1,4,new MFInt32(0xc,0xd));
+   expect (field) .toHaveLength (3);
+   expect (field .equals (new MFImage (new SFImage (1,2,3,new MFInt32(0xa,0xb)), new SFImage(), new SFImage (2,1,4,new MFInt32(0xc,0xd))))) .toBe (true);
+});
+
 test .concurrent ("setValue", () =>
 {
    const field = new MFImage ();
