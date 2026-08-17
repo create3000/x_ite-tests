@@ -290,3 +290,47 @@ test .concurrent ("flatMap", () =>
    expect (b .flatMap (v => [... v])) .toBeInstanceOf (Array);
    expect (b .flatMap (v => [... v])) .toEqual ([1,2,3,0xa,0xb,2,1,4,0xc,0xd]);
 });
+
+test .concurrent ("fromString", () =>
+{
+   const a = new MFImage ();
+
+   a .fromString ("[1,2,3,0xa,0xb,2,1,4,0xc,0xd]");
+
+   expect (a) .toHaveLength (2);
+   expect (a .equals (new MFImage (new SFImage (1,2,3,new MFInt32(0xa,0xb)), new SFImage (2,1,4,new MFInt32(0xc,0xd))))) .toBe (true);
+
+   a .fromString ("[1,2,3,4,5]");
+
+   expect (a) .toHaveLength (1);
+   expect (a .equals (new MFImage (new SFImage (1, 2, 3, new MFInt32 (4,5))))) .toBe (true);
+
+   a .fromString ("[ ]");
+
+   expect (a) .toHaveLength (0);
+   expect (a .equals (new MFImage ())) .toBe (true);
+
+   expect (() => a .fromString ("[1 2 3 4 foo 6 7 8]")) .toThrow (Error);
+});
+
+test .concurrent ("fromVRMLString", () =>
+{
+   const a = new MFImage ();
+
+   a .fromVRMLString ("[1,2,3,0xa,0xb,2,1,4,0xc,0xd]");
+
+   expect (a) .toHaveLength (2);
+   expect (a .equals (new MFImage (new SFImage (1,2,3,new MFInt32(0xa,0xb)), new SFImage (2,1,4,new MFInt32(0xc,0xd))))) .toBe (true);
+
+   a .fromVRMLString ("[1,2,3,4,5]");
+
+   expect (a) .toHaveLength (1);
+   expect (a .equals (new MFImage (new SFImage (1, 2, 3, new MFInt32 (4,5))))) .toBe (true);
+
+   a .fromVRMLString ("[ ]");
+
+   expect (a) .toHaveLength (0);
+   expect (a .equals (new MFImage ())) .toBe (true);
+
+   expect (() => a .fromVRMLString ("[1 2 3 4 foo 6 7 8]")) .toThrow (Error);
+});
