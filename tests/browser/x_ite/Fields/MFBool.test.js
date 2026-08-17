@@ -151,12 +151,12 @@ test .concurrent ("shrinkToFit", () =>
    field .length = 2;
    expect (field .shrinkToFit ()) .toHaveLength (2);
    expect (field) .toHaveLength (2);
-   expect (field .equals (new MFBool (true, false)));
+   expect (field .equals (new MFBool (true, false))) .toBe (true);
 
    field .length = 4;
    expect (field .shrinkToFit ()) .toHaveLength (4);
    expect (field) .toHaveLength (4);
-   expect (field .equals (new MFBool (true, false, false, false)));
+   expect (field .equals (new MFBool (true, false, false, false))) .toBe (true);
 });
 
 test .concurrent ("common", () =>

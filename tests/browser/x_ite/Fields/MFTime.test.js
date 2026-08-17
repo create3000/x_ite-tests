@@ -156,12 +156,12 @@ test .concurrent ("shrinkToFit", () =>
    field .length = 2;
    expect (field .shrinkToFit ()) .toHaveLength (2);
    expect (field) .toHaveLength (2);
-   expect (field .equals (new MFTime (5, 6)));
+   expect (field .equals (new MFTime (5, 6))) .toBe (true);
 
    field .length = 4;
    expect (field .shrinkToFit ()) .toHaveLength (4);
    expect (field) .toHaveLength (4);
-   expect (field .equals (new MFTime (5, 6, 0, 0)));
+   expect (field .equals (new MFTime (5, 6, -1, -1))) .toBe (true);
 });
 
 test .concurrent ("common", () =>

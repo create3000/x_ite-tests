@@ -52,6 +52,25 @@ test .concurrent ("constructor", () =>
    expect ((new MFImage ()) [0]) .toBe (undefined);
 });
 
+test .concurrent ("shrinkToFit", () =>
+{
+   const field = new MFImage (new SFImage (1,2,3,new MFInt32(0xa,0xb)), new SFImage (2,1,4,new MFInt32(0xc,0xd)));
+
+   expect (field .shrinkToFit ()) .toHaveLength (2);
+   expect (field) .toHaveLength (2);
+   expect (field .shrinkToFit ()) .toBe (field .shrinkToFit ());
+
+   field .length = 1;
+   expect (field .shrinkToFit ()) .toHaveLength (1);
+   expect (field) .toHaveLength (1);
+   expect (field .equals (new MFImage (new SFImage (1,2,3,new MFInt32(0xa,0xb))))) .toBe (true);
+
+   field .length = 2;
+   expect (field .shrinkToFit ()) .toHaveLength (2);
+   expect (field) .toHaveLength (2);
+   expect (field .equals (new MFImage (new SFImage (1,2,3,new MFInt32(0xa,0xb)),new SFImage()))) .toBe (true);
+});
+
 test .concurrent ("common", () =>
 {
    const field = new MFImage ();

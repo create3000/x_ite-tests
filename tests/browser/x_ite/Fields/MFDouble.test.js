@@ -158,12 +158,12 @@ test .concurrent ("shrinkToFit", () =>
    field .length = 2;
    expect (field .shrinkToFit ()) .toHaveLength (2);
    expect (field) .toHaveLength (2);
-   expect (field .equals (new MFDouble (1, 2)));
+   expect (field .equals (new MFDouble (1, 2))) .toBe (true);
 
    field .length = 4;
    expect (field .shrinkToFit ()) .toHaveLength (4);
    expect (field) .toHaveLength (4);
-   expect (field .equals (new MFDouble (1, 2, 0, 0)));
+   expect (field .equals (new MFDouble (1, 2, 0, 0))) .toBe (true);
 });
 
 test .concurrent ("common", () =>

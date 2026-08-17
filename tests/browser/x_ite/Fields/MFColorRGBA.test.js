@@ -159,12 +159,12 @@ test .concurrent ("shrinkToFit", () =>
    field .length = 1;
    expect (field .shrinkToFit ()) .toHaveLength (4);
    expect (field) .toHaveLength (1);
-   expect (field .equals (new MFColorRGBA (new SFColorRGBA (.1, .2, .3, .4))));
+   expect (field .equals (new MFColorRGBA (new SFColorRGBA (.1, .2, .3, .4)))) .toBe (true);
 
    field .length = 2;
    expect (field .shrinkToFit ()) .toHaveLength (8);
    expect (field) .toHaveLength (2);
-   expect (field .equals (new MFColorRGBA (new SFColorRGBA (.1, .2, .3, .4), new SFColorRGBA ())));
+   expect (field .equals (new MFColorRGBA (new SFColorRGBA (.1, .2, .3, .4), new SFColorRGBA ()))) .toBe (true);
 });
 
 test .concurrent ("fromString", () =>

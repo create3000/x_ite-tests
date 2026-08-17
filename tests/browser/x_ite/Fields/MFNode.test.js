@@ -172,12 +172,12 @@ test .concurrent ("shrinkToFit", () =>
    field .length = 1;
    expect (field .shrinkToFit ()) .toHaveLength (1);
    expect (field) .toHaveLength (1);
-   expect (field .equals (new MFNode (node1)));
+   expect (field .equals (new MFNode (node1))) .toBe (true);
 
    field .length = 2;
    expect (field .shrinkToFit ()) .toHaveLength (2);
    expect (field) .toHaveLength (2);
-   expect (field .equals (new MFNode (node1, null)));
+   expect (field .equals (new MFNode (node1, null))) .toBe (true);
 });
 
 test .concurrent ("common", () =>
