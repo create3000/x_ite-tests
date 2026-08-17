@@ -65,6 +65,16 @@ test .concurrent ("equals", () =>
    expect (b .equals (c)) .toBe (true);
 });
 
+test .concurrent ("isDefaultValue", () =>
+{
+   const
+      a = new MFImage (),
+      b = new MFImage (new SFImage ());
+
+   expect (a .isDefaultValue ()) .toBe (true);
+   expect (b .isDefaultValue ()) .toBe (false);
+});
+
 test .concurrent ("flat", () =>
 {
    const
