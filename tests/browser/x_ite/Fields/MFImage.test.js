@@ -240,6 +240,21 @@ test .concurrent ("at", () =>
    }
 });
 
+test .concurrent ("entries", () =>
+{
+   const
+      N = 10,
+      a = new MFImage ();
+
+   for (let i = 0, n = 0; i < N; ++ i)
+      expect (a .push (new SFImage (1,1,3,++n))) .toBe (i + 1);
+
+   expect ([... a .entries ()]) .toHaveLength (N);
+
+   for (const [i, value] of a .entries ())
+      expect (value) .toBe (a [i]);
+});
+
 test .concurrent ("flat", () =>
 {
    const
