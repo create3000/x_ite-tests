@@ -52,6 +52,18 @@ test .concurrent ("constructor", () =>
    expect ((new MFImage ()) [0]) .toBe (undefined);
 });
 
+test .concurrent ("copy", () =>
+{
+   const
+      a = new MFImage (new SFImage (1,2,3,new MFInt32(0xa,0xb)), new SFImage (2,1,4,new MFInt32(0xc,0xd))),
+      b = a .copy ();
+
+   expect (b) .toBeInstanceOf (MFImage);
+   expect (b) .toHaveLength (a .length);
+   expect (b .equals (a)) .toBe (true);
+   expect (b .getValue ()) .not .toBe (a .getValue ());
+});
+
 test .concurrent ("equals", () =>
 {
    const
