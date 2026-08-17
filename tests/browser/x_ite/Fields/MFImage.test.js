@@ -144,5 +144,8 @@ test .concurrent ("flat", () =>
    expect (a .flat ()) .toBeInstanceOf (Array);
    expect (a .flat ()) .toEqual ([ ]);
    expect (b .flat ()) .toBeInstanceOf (Array);
-   expect (b .flat ()) .toEqual ([1,2,3,0xa,0xb,2,1,4,0xc,0xd]);
+   expect (b .flat ()) .toHaveLength (2);
+   expect (b .flat () [0] .equals (new SFImage (1,2,3,new MFInt32(0xa,0xb)))) .toBe (true);
+   expect (b .flat () [1] .equals (new SFImage (2,1,4,new MFInt32(0xc,0xd)))) .toBe (true);
+   expect (b .flatMap (i => [... i])) .toEqual ([1,2,3,0xa,0xb,2,1,4,0xc,0xd]);
 });
