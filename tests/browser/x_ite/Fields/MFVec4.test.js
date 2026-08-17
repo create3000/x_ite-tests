@@ -17,6 +17,7 @@ for (const [typeName, MFVec4, SFVec4] of arrays)
       const a = new MFVec4 (new SFVec4 (1,2,3,4), new SFVec4 (5,6,7,8));
 
       expect (MFVec4 .from (a) .equals (a)) .toBe (true);
+      expect (MFVec4 .fromArray (a .flat ()) .equals (a)) .toBe (true);
    });
 
    test .concurrent ("get1Value", () =>

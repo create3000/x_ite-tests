@@ -10,6 +10,7 @@ test .concurrent ("constructor static methods", () =>
    const a = new MFFloat (1,2,3);
 
    expect (MFFloat .from (a) .equals (a)) .toBe (true);
+   expect (MFFloat .fromArray (a .flat ()) .equals (a)) .toBe (true);
 });
 
 test .concurrent ("constructor", () =>

@@ -30,6 +30,7 @@ test .concurrent ("constructor static methods", () =>
    const a = new MFNode (scene .createNode ("MetadataBoolean"), scene .createNode ("MetadataDouble"));
 
    expect (MFNode .from (a) .equals (a)) .toBe (true);
+   expect (MFNode .fromArray (a .flat ()) .equals (a)) .toBe (true);
 });
 
 test .concurrent ("constructor", () =>

@@ -13,6 +13,7 @@ for (const [, MFMatrix4, SFMatrix4] of arrays)
       const a = new MFMatrix4 (new SFMatrix4 (1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16), new SFMatrix4 (17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32));
 
       expect (MFMatrix4 .from (a) .equals (a)) .toBe (true);
+      expect (MFMatrix4 .fromArray (a .flat ()) .equals (a)) .toBe (true);
    });
 
    test .concurrent ("constructor", () =>

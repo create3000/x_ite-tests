@@ -8,6 +8,7 @@ test .concurrent ("constructor static methods", () =>
    const a = new MFTime (1,2,3);
 
    expect (MFTime .from (a) .equals (a)) .toBe (true);
+   expect (MFTime .fromArray (a .flat ()) .equals (a)) .toBe (true);
 });
 
 test .concurrent ("constructor", () =>

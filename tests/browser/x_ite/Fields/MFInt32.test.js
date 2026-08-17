@@ -8,6 +8,7 @@ test .concurrent ("constructor static methods", () =>
    const a = new MFInt32 (1,2,3);
 
    expect (MFInt32 .from (a) .equals (a)) .toBe (true);
+   expect (MFInt32 .fromArray (a .flat ()) .equals (a)) .toBe (true);
 });
 
 test .concurrent ("constructor", () =>

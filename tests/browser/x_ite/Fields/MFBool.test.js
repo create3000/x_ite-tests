@@ -8,6 +8,7 @@ test .concurrent ("constructor static methods", () =>
    const a = new MFBool (true,false,true);
 
    expect (MFBool .from (a) .equals (a)) .toBe (true);
+   expect (MFBool .fromArray (a .flat ()) .equals (a)) .toBe (true);
 });
 
 test .concurrent ("constructor", () =>

@@ -10,6 +10,7 @@ test .concurrent ("constructor static methods", () =>
    const a = new MFColor (new SFColor (.1,.2,.3), new SFColor (.5,.6,.7));
 
    expect (MFColor .from (a) .equals (a)) .toBe (true);
+   expect (MFColor .fromArray (a .flat ()) .equals (a)) .toBe (true);
 });
 
 test .concurrent ("constructor", () =>

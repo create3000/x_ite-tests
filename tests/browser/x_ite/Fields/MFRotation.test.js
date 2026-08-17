@@ -11,6 +11,7 @@ test .concurrent ("constructor static methods", () =>
    const a = new MFRotation (new SFRotation (1,2,3,4), new SFRotation (5,6,7,8));
 
    expect (MFRotation .from (a) .equals (a)) .toBe (true);
+   expect (MFRotation .fromArray (a .flat ()) .equals (a)) .toBe (true);
 });
 
 test .concurrent ("constructor", () =>
