@@ -147,5 +147,16 @@ test .concurrent ("flat", () =>
    expect (b .flat ()) .toHaveLength (2);
    expect (b .flat () [0] .equals (new SFImage (1,2,3,new MFInt32(0xa,0xb)))) .toBe (true);
    expect (b .flat () [1] .equals (new SFImage (2,1,4,new MFInt32(0xc,0xd)))) .toBe (true);
-   expect (b .flatMap (i => [... i])) .toEqual ([1,2,3,0xa,0xb,2,1,4,0xc,0xd]);
+});
+
+test .concurrent ("flatMap", () =>
+{
+   const
+      a = new MFImage (),
+      b = new MFImage (new SFImage (1,2,3,new MFInt32(0xa,0xb)), new SFImage (2,1,4,new MFInt32(0xc,0xd)));
+
+   expect (a .flatMap (v => [... v])) .toBeInstanceOf (Array);
+   expect (a .flatMap (v => [... v])) .toEqual ([ ]);
+   expect (b .flatMap (v => [... v])) .toBeInstanceOf (Array);
+   expect (b .flatMap (v => [... v])) .toEqual ([1,2,3,0xa,0xb,2,1,4,0xc,0xd]);
 });
