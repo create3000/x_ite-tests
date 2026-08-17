@@ -228,11 +228,11 @@ test .concurrent ("at", () =>
       a = new MFImage ();
 
    for (let i = 0, n = 0; i < N; ++ i)
-      expect (a .push (new SFImage (1,1,2,++n))) .toBe (i + 1);
+      expect (a .push (new SFImage (1,1,3,++n))) .toBe (i + 1);
 
    for (let i = 0, n = 0; i < N; ++ i)
    {
-      const v = new SFImage (1,1,2,++n);
+      const v = new SFImage (1,1,3,++n);
       expect (a .at (i)) .toBe (a [i]);
       expect (a .at (i) .equals (v)) .toBe (true);
       expect (a .at (i - N) .equals (a [i])) .toBe (true);
