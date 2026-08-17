@@ -221,6 +221,25 @@ test .concurrent ("isDefaultValue", () =>
    expect (b .isDefaultValue ()) .toBe (false);
 });
 
+test .concurrent ("at", () =>
+{
+   const
+      N = 10,
+      a = new MFImage ();
+
+   for (let i = 0, n = 0; i < N; ++ i)
+      expect (a .push (new SFImage (1,1,2,++n))) .toBe (i + 1);
+
+   for (let i = 0, n = 0; i < N; ++ i)
+   {
+      const v = new SFImage (1,1,2,++n);
+      expect (a .at (i)) .toBe (a [i]);
+      expect (a .at (i) .equals (v)) .toBe (true);
+      expect (a .at (i - N) .equals (a [i])) .toBe (true);
+      expect (a .at (i - N) .equals (v)) .toBe (true);
+   }
+});
+
 test .concurrent ("flat", () =>
 {
    const
