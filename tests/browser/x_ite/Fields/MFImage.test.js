@@ -52,6 +52,50 @@ test .concurrent ("constructor", () =>
    expect ((new MFImage ()) [0]) .toBe (undefined);
 });
 
+test .concurrent ("setValue", () =>
+{
+   const field = new MFImage ();
+
+   field .setValue ([1,2,3,0xa,0xb,2,1,4,0xc,0xd]);
+
+   expect (field) .toHaveLength (2);
+   expect (field .equals (new MFImage (new SFImage (1,2,3,new MFInt32(0xa,0xb)), new SFImage (2,1,4,new MFInt32(0xc,0xd))))) .toBe (true);
+   expect (field [0] .equals (new SFImage (1,2,3,new MFInt32(0xa,0xb)))) .toBe (true);
+   expect (field [1] .equals (new SFImage (2,1,4,new MFInt32(0xc,0xd)))) .toBe (true);
+
+   field .setValue ([2,1,4,0xc,0xd,1,2,3,0xa,0xb]);
+
+   expect (field) .toHaveLength (2);
+   expect (field .equals (new MFImage (new SFImage (2,1,4,new MFInt32(0xc,0xd)), new SFImage (1,2,3,new MFInt32(0xa,0xb))))) .toBe (true);
+   expect (field [0] .equals (new SFImage (2,1,4,new MFInt32(0xc,0xd)))) .toBe (true);
+   expect (field [1] .equals (new SFImage (1,2,3,new MFInt32(0xa,0xb)))) .toBe (true);
+
+   field .setValue ([ ]);
+
+   expect (field) .toHaveLength (0);
+   expect (field .equals (new MFImage ())) .toBe (true);
+
+   field .setValue ([1,2,3,0xa,0xb,2,1,4,0xc,0xd]);
+
+   expect (field) .toHaveLength (2);
+   expect (field .equals (new MFImage (new SFImage (1,2,3,new MFInt32(0xa,0xb)), new SFImage (2,1,4,new MFInt32(0xc,0xd))))) .toBe (true);
+
+   field .setValue ([2,1,4,0xc,0xd,1,2,3,0xa,0xb]);
+
+   expect (field) .toHaveLength (2);
+   expect (field .equals (new MFImage (new SFImage (2,1,4,new MFInt32(0xc,0xd)), new SFImage (1,2,3,new MFInt32(0xa,0xb))))) .toBe (true);
+
+   field .setValue ([ ]);
+
+   expect (field) .toHaveLength (0);
+   expect (field .equals (new MFImage ())) .toBe (true);
+
+   field .setValue ([new SFImage (1,2,3,new MFInt32(0xa,0xb)), new SFImage (2,1,4,new MFInt32(0xc,0xd))]);
+
+   expect (field) .toHaveLength (2);
+   expect (field .equals (new MFImage (new SFImage (1,2,3,new MFInt32(0xa,0xb)), new SFImage (2,1,4,new MFInt32(0xc,0xd))))) .toBe (true);
+});
+
 test .concurrent ("assign", () =>
 {
    const field = new MFImage ();
@@ -144,9 +188,7 @@ test .concurrent ("flat", () =>
    expect (a .flat ()) .toBeInstanceOf (Array);
    expect (a .flat ()) .toEqual ([ ]);
    expect (b .flat ()) .toBeInstanceOf (Array);
-   expect (b .flat ()) .toHaveLength (2);
-   expect (b .flat () [0] .equals (new SFImage (1,2,3,new MFInt32(0xa,0xb)))) .toBe (true);
-   expect (b .flat () [1] .equals (new SFImage (2,1,4,new MFInt32(0xc,0xd)))) .toBe (true);
+   expect (b .flat ()) .toEqual ([1,2,3,0xa,0xb,2,1,4,0xc,0xd]);
 });
 
 test .concurrent ("flatMap", () =>
