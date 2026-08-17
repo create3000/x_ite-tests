@@ -255,6 +255,18 @@ test .concurrent ("entries", () =>
       expect (value) .toBe (a [i]);
 });
 
+test .concurrent ("keys", () =>
+{
+   const
+      N = 10,
+      a = new MFImage ();
+
+   a .length = N;
+   expect (a .keys ()) .toEqual (new Array (N) .keys ());
+   a .length = N/2;
+   expect (a .keys ()) .toEqual (new Array (N/2) .keys ());
+});
+
 test .concurrent ("flat", () =>
 {
    const
