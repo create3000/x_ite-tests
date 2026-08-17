@@ -52,6 +52,15 @@ test .concurrent ("constructor", () =>
    expect ((new MFImage ()) [0]) .toBe (undefined);
 });
 
+test .concurrent ("common", () =>
+{
+   const field = new MFImage ();
+
+   expect (field .getType ()) .toBe (X3D .X3DConstants ["MFImage"]);
+   expect (field .getTypeName ()) .toBe ("MFImage");
+   expect (Object .prototype .toString .call (field)) .toBe (`[object ${"MFImage"}]`);
+});
+
 test .concurrent ("copy", () =>
 {
    const
