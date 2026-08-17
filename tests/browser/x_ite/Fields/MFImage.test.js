@@ -334,3 +334,22 @@ test .concurrent ("fromVRMLString", () =>
 
    expect (() => a .fromVRMLString ("[1 2 3 4 foo 6 7 8]")) .toThrow (Error);
 });
+
+test .concurrent ("fromXMLString", () =>
+{
+   const a = new MFImage ();
+
+   a .fromXMLString ("1,2,3,0xa,0xb,2,1,4,0xc,0xd");
+
+   expect (a) .toHaveLength (2);
+   expect (a .equals (new MFImage (new SFImage (1,2,3,new MFInt32(0xa,0xb)), new SFImage (2,1,4,new MFInt32(0xc,0xd))))) .toBe (true);
+
+   a .fromXMLString ("1,2,3,4,5");
+
+   expect (a) .toHaveLength (1);
+   expect (a .equals (new MFImage (new SFImage (1, 2, 3, new MFInt32 (4,5))))) .toBe (true);
+
+   expect (() => a .fromXMLString ("")) .toThrow (Error);
+
+   expect (() => a .fromXMLString ("1 2 3 4 foo 6 7 8")) .toThrow (Error);
+});
