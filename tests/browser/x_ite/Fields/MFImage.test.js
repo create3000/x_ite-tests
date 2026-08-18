@@ -267,6 +267,18 @@ test .concurrent ("keys", () =>
    expect (a .keys ()) .toEqual (new Array (N/2) .keys ());
 });
 
+test .concurrent ("enumerate single", () =>
+{
+   const properties = [
+      "width",
+      "height",
+      "comp",
+      "array",
+   ];
+
+   enumerate (properties, new MFImage (new SFImage ()) [0]);
+});
+
 test .concurrent ("concat", () =>
 {
    const
