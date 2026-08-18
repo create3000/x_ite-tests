@@ -267,6 +267,40 @@ test .concurrent ("keys", () =>
    expect (a .keys ()) .toEqual (new Array (N/2) .keys ());
 });
 
+test .concurrent ("slice", () =>
+{
+   const
+      N = 10,
+      a = new MFImage ();
+
+   for (let i = 0, n = 0; i < N; ++ i)
+      expect (a .push (new SFImage (1,1,3,[++n]))) .toBe (i + 1);
+
+   expect (a) .toHaveLength (N);
+
+   const b = a .slice ();
+
+   expect (b) .toHaveLength (N);
+   expect (b) .toBeInstanceOf (MFImage);
+
+   for (let i = 0; i < N; ++ i)
+   {
+      expect (b [i]) .not .toBe (a [i]);
+      expect (b [i] .equals (a [i])) .toBe (true);
+   }
+
+   const c = a .slice (1, N - 1);
+
+   expect (c) .toHaveLength (N - 2);
+   expect (c) .toBeInstanceOf (MFImage);
+
+   for (let i = 0, j = 1; i < N - 2; ++ i, ++ j)
+   {
+      expect (c [i]) .not .toBe (a [j]);
+      expect (c [i] .equals (a [j])) .toBe (true);
+   }
+});
+
 test .concurrent ("splice", () =>
 {
    const
