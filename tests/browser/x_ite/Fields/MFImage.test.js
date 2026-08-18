@@ -267,6 +267,29 @@ test .concurrent ("keys", () =>
    expect (a .keys ()) .toEqual (new Array (N/2) .keys ());
 });
 
+test .concurrent ("push", () =>
+{
+   const
+      N = 1_000,
+      a = new MFImage ();
+
+   expect (a) .toHaveLength (0);
+
+   for (let i = 0, n = 0; i < N; ++ i)
+   {
+      const v = new SFImage (1,1,3,[++n]);
+      expect (a .push (v)) .toBe (i + 1);
+      expect (a [i] .equals (v)) .toBe (true);
+      expect (a) .toHaveLength (i + 1);
+   }
+
+   for (let i = 0, n = 0; i < N; ++ i)
+   {
+      const v = new SFImage (1,1,3,[++n]);
+      expect (a [i] .equals (v)) .toBe (true);
+   }
+});
+
 test .concurrent ("shift", () =>
 {
    const
