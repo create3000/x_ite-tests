@@ -255,6 +255,23 @@ test .concurrent ("entries", () =>
       expect (value) .toBe (a [i]);
 });
 
+test .concurrent ("find", () =>
+{
+   const
+      N = 10,
+      a = new MFImage ();
+
+   for (let i = 0, n = 0; i < N; ++ i)
+      expect (a .push (new SFImage (1,1,3,[++n]))) .toBe (i + 1);
+
+   const
+      b = a .find (v => v .equals (new SFImage (1,1,3,[1]))),
+      c = a .find (v => v .equals (new SFImage ()));
+
+   expect (b) .toBe (a [0]);
+   expect (c) .toBe (undefined);
+});
+
 test .concurrent ("keys", () =>
 {
    const
