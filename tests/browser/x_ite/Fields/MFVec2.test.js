@@ -707,7 +707,7 @@ for (const [typeName, MFVec2, SFVec2] of arrays)
       expect (Reflect .ownKeys (a) .includes ("length")) .toBe (true);
       expect (a) .toHaveLength (3);
       expect (Object .keys (a)) .toEqual (Array .from (Array (a .length) .keys (), String));
-   expect (Array .from (a .keys ())) .toEqual (Array .from (Array (a .length) .keys ()));
+      expect (Array .from (a .keys ())) .toEqual (Array .from (Array (a .length) .keys ()));
 
       const s = Symbol ();
 
@@ -730,6 +730,8 @@ for (const [typeName, MFVec2, SFVec2] of arrays)
       expect (Object .keys (a) .includes ("abc")) .toBe (true);
 
       expect (Object .keys (a)) .toEqual (Array .from (Array (a .length) .keys (), String) .concat ("abc"));
+
+      enumerate (["0", "1", "2"], new MFVec2 (new SFVec2 (), new SFVec2 (), new SFVec2 ()));
    });
 
    test .concurrent ("enumerate single", () =>
@@ -927,11 +929,6 @@ for (const [typeName, MFVec2, SFVec2] of arrays)
 
       expect (a) .toHaveLength (2);
       expect (a .equals (new MFVec2 (new SFVec2 (1000, 2000), new SFVec2 (2000, 3000)))) .toBe (true);
-   });
-
-   test .concurrent ("enumerate", () =>
-   {
-      enumerate (["0", "1", "2"], new MFVec2 (new SFVec2 (), new SFVec2 (), new SFVec2 ()));
    });
 
    test .concurrent ("toString", () =>

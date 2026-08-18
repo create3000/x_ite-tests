@@ -664,6 +664,8 @@ test .concurrent ("enumerate", () =>
    expect (Object .keys (a) .includes ("abc")) .toBe (true);
 
    expect (Object .keys (a)) .toEqual (Array .from (Array (a .length) .keys (), String) .concat ("abc"));
+
+   enumerate (["0", "1", "2"], new MFImage (new SFImage (), new SFImage (), new SFImage ()));
 });
 
 test .concurrent ("enumerate single", () =>
@@ -846,9 +848,4 @@ test .concurrent ("toString", () =>
    expect (a .toString ({ style: "CLEAN" })) .toBe ("[]");
    expect (b .toString ({ style: "CLEAN" })) .toBe ("1 2 3 0xa 0xb");
    expect (c .toString ({ style: "CLEAN" })) .toBe ("[1 2 3 0xa 0xb 2 1 4 0xc 0xd]");
-});
-
-test .concurrent ("enumerate", () =>
-{
-   enumerate (["0", "1", "2"], new MFImage (new SFImage (), new SFImage (), new SFImage ()));
 });

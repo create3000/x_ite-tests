@@ -704,6 +704,8 @@ test .concurrent ("enumerate", () =>
    expect (Object .keys (a) .includes ("abc")) .toBe (true);
 
    expect (Object .keys (a)) .toEqual (Array .from (Array (a .length) .keys (), String) .concat ("abc"));
+
+   enumerate (["0", "1", "2"], new MFString ("a", "b", "c"));
 });
 
 test .concurrent ("enumerate single", () =>
@@ -862,11 +864,6 @@ test .concurrent ("fromXMLString", () =>
    expect (a .equals (new MFString ("123"))) .toBe (true);
 
    expect (() => a .fromXMLString ("")) .toThrow (Error);
-});
-
-test .concurrent ("enumerate", () =>
-{
-   enumerate (["0", "1", "2"], new MFString ("a", "b", "c"));
 });
 
 test .concurrent ("toString", () =>

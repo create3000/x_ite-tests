@@ -746,6 +746,8 @@ for (const [typeName, MFVec4, SFVec4] of arrays)
       expect (Object .keys (a) .includes ("abc")) .toBe (true);
 
       expect (Object .keys (a)) .toEqual (Array .from (Array (a .length) .keys (), String) .concat ("abc"));
+
+      enumerate (["0", "1", "2"], new MFVec4 (new SFVec4 (), new SFVec4 (), new SFVec4 ()));
    });
 
    test .concurrent ("enumerate single", () =>
@@ -945,11 +947,6 @@ for (const [typeName, MFVec4, SFVec4] of arrays)
 
       expect (a) .toHaveLength (2);
       expect (a .equals (new MFVec4 (new SFVec4 (1000, 2000, 3000, 4000), new SFVec4 (2000, 3000, 4000, 5000)))) .toBe (true);
-   });
-
-   test .concurrent ("enumerate", () =>
-   {
-      enumerate (["0", "1", "2"], new MFVec4 (new SFVec4 (), new SFVec4 (), new SFVec4 ()));
    });
 
    test .concurrent ("toString", () =>
