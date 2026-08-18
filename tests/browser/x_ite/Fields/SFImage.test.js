@@ -60,6 +60,8 @@ test .concurrent ("constructor", () =>
    expect (v5 .array [0]) .toBe (0);
    expect (v5 .array [1]) .toBe (0);
 
+   for (let i = 0; i < 10; ++ i)
+      expect (new SFImage (1,1,3,[i]) .array [0]) .toBe (i);
 });
 
 test .concurrent ("enumerate", () =>
