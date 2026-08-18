@@ -267,6 +267,72 @@ test .concurrent ("keys", () =>
    expect (a .keys ()) .toEqual (new Array (N/2) .keys ());
 });
 
+test .concurrent ("splice", () =>
+{
+   const
+      N = 10,
+      a = new MFImage ();
+
+   for (let i = 0, n = 0; i < N; ++ i)
+      expect (a .push (new SFImage (1,1,3,++n))) .toBe (i + 1);
+
+   const
+      v0 = a [0] .copy (),
+      v1 = a .at (-1) .copy ();
+
+   expect (a) .toHaveLength (N);
+
+   const b = a .splice (1,N-2);
+
+   expect (a) .toHaveLength (2);
+   expect (b) .toHaveLength (N-2);
+   expect (b) .toBeInstanceOf (MFImage);
+   expect (a [0] .equals (v0)) .toBe (true);
+   expect (a [1] .equals (v1)) .toBe (true);
+
+   for (let i = 0, n = 1; i < N-2; ++ i)
+      expect (b [i] .equals (new SFImage (1,1,3,++n))) .toBe (true);
+
+   const c = a .splice (1,0,...b);
+
+   expect (a) .toHaveLength (N);
+   expect (c) .toHaveLength (0);
+   expect (c) .toBeInstanceOf (MFImage);
+
+   for (let i = 0, n = 0; i < N; ++ i)
+      expect (a [i] .equals (new SFImage (1,1,3,++n))) .toBe (true);
+
+   const d = a .splice (1,N-2,...b);
+
+   expect (a) .toHaveLength (N);
+   expect (d) .toHaveLength (N-2);
+   expect (d) .toBeInstanceOf (MFImage);
+
+   for (let i = 0, n = 1; i < N-2; ++ i)
+   {
+      const v = new SFImage (1,1,3,++n);
+      expect (d [i] .equals (v)) .toBe (true);
+      expect (b [i] .equals (v)) .toBe (true);
+      expect (d [i]) .not .toBe (b [i]);
+   }
+
+   for (let i = 0, n = 0; i < N; ++ i)
+      expect (a [i] .equals (new SFImage (1,1,3,++n))) .toBe (true);
+
+   const e = new MFImage (new SFImage (1, 2, 1), new SFImage (5, 6, 2), new SFImage (9, 10, 3), new SFImage (13, 14, 4));
+
+   expect (e .splice (2) .equals (new MFImage (new SFImage (9, 10, 3), new SFImage (13, 14, 4)))) .toBe (true);
+   expect (e .equals (new MFImage (new SFImage (1, 2, 1), new SFImage (5, 6, 2)))) .toBe (true);
+
+   expect (e .splice () .equals (new MFImage ())) .toBe (true);
+   expect (e .equals (new MFImage (new SFImage (1, 2, 1), new SFImage (5, 6, 2)))) .toBe (true);
+
+   const n = new MFImage (new SFImage (1, 2, 1), new SFImage (5, 6, 2), new SFImage (9, 10, 3), new SFImage (13, 14, 4));
+
+   expect (n .splice (-2) .equals (new MFImage(new SFImage (9, 10, 3), new SFImage (13, 14, 4)))) .toBe (true);
+   expect (n .equals (new MFImage (new SFImage (1, 2, 1), new SFImage (5, 6, 2)))) .toBe (true);
+});
+
 test .concurrent ("sort-reverse", () =>
 {
    const a = new MFImage (new SFImage (1, 1, 3, [4]),
