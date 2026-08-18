@@ -255,6 +255,41 @@ test .concurrent ("entries", () =>
       expect (value) .toBe (a [i]);
 });
 
+test .concurrent ("fill", () =>
+{
+   const a = new MFImage ();
+
+   a .length = 6;
+
+   expect (a) .toHaveLength (6);
+   expect (a [0] .equals (new SFImage ())) .toBe (true);
+   expect (a [1] .equals (new SFImage ())) .toBe (true);
+   expect (a [2] .equals (new SFImage ())) .toBe (true);
+   expect (a [3] .equals (new SFImage ())) .toBe (true);
+   expect (a [4] .equals (new SFImage ())) .toBe (true);
+   expect (a [5] .equals (new SFImage ())) .toBe (true);
+
+   expect (a .fill (new SFImage (1,2,3,[4]))) .toBe (a);
+
+   expect (a) .toHaveLength (6);
+   expect (a [0] .equals (new SFImage (1,2,3,[4]))) .toBe (true);
+   expect (a [1] .equals (new SFImage (1,2,3,[4]))) .toBe (true);
+   expect (a [2] .equals (new SFImage (1,2,3,[4]))) .toBe (true);
+   expect (a [3] .equals (new SFImage (1,2,3,[4]))) .toBe (true);
+   expect (a [4] .equals (new SFImage (1,2,3,[4]))) .toBe (true);
+   expect (a [5] .equals (new SFImage (1,2,3,[4]))) .toBe (true);
+
+   expect (a .fill (new SFImage (5,6,4,[8]))) .toBe (a);
+
+   expect (a) .toHaveLength (6);
+   expect (a [0] .equals (new SFImage (5,6,4,[8]))) .toBe (true);
+   expect (a [1] .equals (new SFImage (5,6,4,[8]))) .toBe (true);
+   expect (a [2] .equals (new SFImage (5,6,4,[8]))) .toBe (true);
+   expect (a [3] .equals (new SFImage (5,6,4,[8]))) .toBe (true);
+   expect (a [4] .equals (new SFImage (5,6,4,[8]))) .toBe (true);
+   expect (a [5] .equals (new SFImage (5,6,4,[8]))) .toBe (true);
+});
+
 test .concurrent ("filter", () =>
 {
    const
