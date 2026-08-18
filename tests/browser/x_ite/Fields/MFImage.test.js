@@ -255,6 +255,27 @@ test .concurrent ("entries", () =>
       expect (value) .toBe (a [i]);
 });
 
+test .concurrent ("filter", () =>
+{
+   const
+      N = 10,
+      a = new MFImage ();
+
+   for (let i = 0, n = 0; i < N; ++ i)
+      expect (a .push (new SFImage (1,1,3,[++n]))) .toBe (i + 1);
+
+   const b = a .filter (v => v.array[0] % 2);
+
+   expect (b) .toBeInstanceOf (MFImage);
+   expect (b) .toHaveLength (N / 2);
+
+   for (let i = 0; i < N / 2; ++ i)
+   {
+      expect (b [i]) .not .toBe (a [i * 2]);
+      expect (b [i] .equals (a [i * 2])) .toBe (true);
+   }
+});
+
 test .concurrent ("find", () =>
 {
    const
