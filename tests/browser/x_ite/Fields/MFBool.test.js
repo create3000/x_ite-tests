@@ -629,9 +629,7 @@ test .concurrent ("sort-reverse", () =>
    expect (a [4]) .toBe (true);
    expect (a [5]) .toBe (true);
 
-   const Algorithm = X3D .Algorithm;
-
-   expect (a .sort ((a, b) => Algorithm .cmp (b, a))) .toBe (a);
+   expect (a .sort ((a, b) => b - a)) .toBe (a);
 
    expect (a) .toHaveLength (6);
    expect (a [0]) .toBe (true);

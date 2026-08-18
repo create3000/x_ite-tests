@@ -677,10 +677,8 @@ test .concurrent ("sort-reverse", () =>
    expect (a [4]) .toBe (node2);
    expect (a [5]) .toBe (node1);
 
-   const Algorithm = X3D .Algorithm;
-
    expect (a .reverse ()) .toBe (a);
-   expect (a .sort ((a, b) => Algorithm .cmp (b .getNodeName (), a .getNodeName ()))) .toBe (a);
+   expect (a .sort ((a, b) => b .getNodeName () .localeCompare (a .getNodeName (), "en"))) .toBe (a);
 
    expect (a) .toHaveLength (6);
    expect (a [0]) .toBe (node6);

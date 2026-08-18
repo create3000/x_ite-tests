@@ -668,9 +668,7 @@ for (const [typeName, MFVec3, SFVec3] of arrays)
       expect (a [4] .equals (new SFVec3 (5,6,7))) .toBe (true);
       expect (a [5] .equals (new SFVec3 (5,6,8))) .toBe (true);
 
-      const Algorithm = X3D .Algorithm;
-
-      a .sort ((a, b) => Algorithm .cmp (b .z, a .z));
+      a .sort ((a, b) => b.z - a.z);
 
       expect (a) .toHaveLength (6);
       expect (a [0] .equals (new SFVec3 (5,6,8))) .toBe (true);

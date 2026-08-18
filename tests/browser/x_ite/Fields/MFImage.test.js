@@ -594,9 +594,7 @@ test .concurrent ("sort-reverse", () =>
    expect (a [4] .equals (new SFImage (1, 1, 3, [8]))) .toBe (true);
    expect (a [5] .equals (new SFImage (1, 1, 3, [9]))) .toBe (true);
 
-   const Algorithm = X3D .Algorithm;
-
-   a .sort ((a, b) => Algorithm .cmp (b .array [0], a .array [0]));
+   a .sort ((a, b) => b .array [0] - a .array [0]);
 
    expect (a) .toHaveLength (6);
    expect (a [0] .equals (new SFImage (1, 1, 3, [9]))) .toBe (true);
