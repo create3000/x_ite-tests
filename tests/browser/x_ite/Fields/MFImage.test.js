@@ -267,6 +267,37 @@ test .concurrent ("keys", () =>
    expect (a .keys ()) .toEqual (new Array (N/2) .keys ());
 });
 
+test .concurrent ("concat", () =>
+{
+   const
+      a = new MFImage (new SFImage (1, 2, 3), new SFImage (2, 3, 4)),
+      b = a .concat (),
+      c = a .concat (new MFImage (new SFImage (5, 6, 1), new SFImage (7, 8, 2))),
+      d = a .concat (new MFImage (new SFImage (5, 6, 1), new SFImage (7, 8, 2)), new MFImage (new SFImage (9, 10, 3), new SFImage (11, 12, 1)));
+
+   expect (a) .toHaveLength (2);
+   expect (a [0] .equals (new SFImage (1, 2, 3))) .toBe (true);
+   expect (a [1] .equals (new SFImage (2, 3, 4))) .toBe (true);
+
+   expect (b) .toHaveLength (2);
+   expect (b [0] .equals (new SFImage (1, 2, 3))) .toBe (true);
+   expect (b [1] .equals (new SFImage (2, 3, 4))) .toBe (true);
+
+   expect (c) .toHaveLength (4);
+   expect (c [0] .equals (new SFImage (1, 2, 3))) .toBe (true);
+   expect (c [1] .equals (new SFImage (2, 3, 4))) .toBe (true);
+   expect (c [2] .equals (new SFImage (5, 6, 1))) .toBe (true);
+   expect (c [3] .equals (new SFImage (7, 8, 2))) .toBe (true);
+
+   expect (d) .toHaveLength (6);
+   expect (d [0] .equals (new SFImage (1, 2, 3))) .toBe (true);
+   expect (d [1] .equals (new SFImage (2, 3, 4))) .toBe (true);
+   expect (d [2] .equals (new SFImage (5, 6, 1))) .toBe (true);
+   expect (d [3] .equals (new SFImage (7, 8, 2))) .toBe (true);
+   expect (d [4] .equals (new SFImage (9, 10, 3))) .toBe (true);
+   expect (d [5] .equals (new SFImage (11, 12, 1))) .toBe (true);
+});
+
 test .concurrent ("flat", () =>
 {
    const
