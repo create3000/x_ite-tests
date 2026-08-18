@@ -353,3 +353,14 @@ test .concurrent ("fromXMLString", () =>
 
    expect (() => a .fromXMLString ("1 2 3 4 foo 6 7 8")) .toThrow (Error);
 });
+
+test .concurrent ("toString", () =>
+{
+   const a = new MFImage ();
+   const b = new MFImage (new SFImage (1,2,3,new MFInt32(0xa,0xb)));
+   const c = new MFImage (new SFImage (1,2,3,new MFInt32(0xa,0xb)), new SFImage (2,1,4,new MFInt32(0xc,0xd)));
+
+   expect (a .toString ({ style: "CLEAN" })) .toBe ("[]");
+   expect (b .toString ({ style: "CLEAN" })) .toBe ("1 2 3 0xa 0xb");
+   expect (c .toString ({ style: "CLEAN" })) .toBe ("[1 2 3 0xa 0xb 2 1 4 0xc 0xd]");
+});
