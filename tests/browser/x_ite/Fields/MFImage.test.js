@@ -267,6 +267,42 @@ test .concurrent ("keys", () =>
    expect (a .keys ()) .toEqual (new Array (N/2) .keys ());
 });
 
+test .concurrent ("enumerate", () =>
+{
+   const a = new MFImage (new SFImage (1, 2, 3), new SFImage (5, 6, 4), new SFImage (9, 10, 1));
+
+   expect (a) .toBe (a);
+
+   enumerate (["0", "1", "2"], a);
+
+   expect (Reflect .ownKeys (a) .includes ("length")) .toBe (true);
+   expect (a) .toHaveLength (3);
+   expect (Object .keys (a)) .toEqual (Array .from (Array (a .length) .keys (), String));
+   expect (Array .from (a .keys ())) .toEqual (Array .from (Array (a .length) .keys ()));
+
+   const s = Symbol ();
+
+   a [s]     = "symbol";
+   a ["abc"] = "string";
+
+   expect (a [s])     .toBe ("symbol");
+   expect (a ["abc"]) .toBe ("string");
+
+   expect (Reflect .ownKeys (a) .includes (s))     .toBe (true);
+   expect (Reflect .ownKeys (a) .includes ("abc")) .toBe (true);
+
+   expect ("length" in a) .toBe (true);
+   expect (s in a) .toBe (true);
+   expect ("abc" in a) .toBe (true);
+
+   expect (Object .keys (a) .includes ("0")) .toBe (true);
+   expect (Object .keys (a) .includes ("length")) .toBe (false);
+   expect (Object .keys (a) .includes (s)) .toBe (false);
+   expect (Object .keys (a) .includes ("abc")) .toBe (true);
+
+   expect (Object .keys (a)) .toEqual (Array .from (Array (a .length) .keys (), String) .concat ("abc"));
+});
+
 test .concurrent ("enumerate single", () =>
 {
    const properties = [
