@@ -267,6 +267,56 @@ test .concurrent ("keys", () =>
    expect (a .keys ()) .toEqual (new Array (N/2) .keys ());
 });
 
+test .concurrent ("sort-reverse", () =>
+{
+   const a = new MFImage (new SFImage (1, 1, 3, [4]),
+                          new SFImage (1, 1, 3, [5]),
+                          new SFImage (1, 1, 3, [6]),
+                          new SFImage (1, 1, 3, [7]),
+                          new SFImage (1, 1, 3, [8]),
+                          new SFImage (1, 1, 3, [9]));
+
+   expect (a) .toHaveLength (6);
+   expect (a [0] .equals (new SFImage (1, 1, 3, [4]))) .toBe (true);
+   expect (a [1] .equals (new SFImage (1, 1, 3, [5]))) .toBe (true);
+   expect (a [2] .equals (new SFImage (1, 1, 3, [6]))) .toBe (true);
+   expect (a [3] .equals (new SFImage (1, 1, 3, [7]))) .toBe (true);
+   expect (a [4] .equals (new SFImage (1, 1, 3, [8]))) .toBe (true);
+   expect (a [5] .equals (new SFImage (1, 1, 3, [9]))) .toBe (true);
+
+   expect (a .reverse ()) .toBe (a);
+
+   expect (a) .toHaveLength (6);
+   expect (a [0] .equals (new SFImage (1, 1, 3, [9]))) .toBe (true);
+   expect (a [1] .equals (new SFImage (1, 1, 3, [8]))) .toBe (true);
+   expect (a [2] .equals (new SFImage (1, 1, 3, [7]))) .toBe (true);
+   expect (a [3] .equals (new SFImage (1, 1, 3, [6]))) .toBe (true);
+   expect (a [4] .equals (new SFImage (1, 1, 3, [5]))) .toBe (true);
+   expect (a [5] .equals (new SFImage (1, 1, 3, [4]))) .toBe (true);
+
+   expect (a .sort ()) .toBe (a);
+
+   expect (a) .toHaveLength (6);
+   expect (a [0] .equals (new SFImage (1, 1, 3, [4]))) .toBe (true);
+   expect (a [1] .equals (new SFImage (1, 1, 3, [5]))) .toBe (true);
+   expect (a [2] .equals (new SFImage (1, 1, 3, [6]))) .toBe (true);
+   expect (a [3] .equals (new SFImage (1, 1, 3, [7]))) .toBe (true);
+   expect (a [4] .equals (new SFImage (1, 1, 3, [8]))) .toBe (true);
+   expect (a [5] .equals (new SFImage (1, 1, 3, [9]))) .toBe (true);
+
+   const Algorithm = X3D .Algorithm;
+
+   a .sort ((a, b) => Algorithm .cmp (b .array [0], a .array [0]));
+
+   expect (a) .toHaveLength (6);
+   expect (a [0] .equals (new SFImage (1, 1, 3, [9]))) .toBe (true);
+   expect (a [1] .equals (new SFImage (1, 1, 3, [8]))) .toBe (true);
+   expect (a [2] .equals (new SFImage (1, 1, 3, [7]))) .toBe (true);
+   expect (a [3] .equals (new SFImage (1, 1, 3, [6]))) .toBe (true);
+   expect (a [4] .equals (new SFImage (1, 1, 3, [5]))) .toBe (true);
+   expect (a [5] .equals (new SFImage (1, 1, 3, [4]))) .toBe (true);
+});
+
 test .concurrent ("unshift", () =>
 {
    const
