@@ -291,6 +291,47 @@ test .concurrent ("flatMap", () =>
    expect (b .flatMap (v => [... v])) .toEqual ([1,2,3,0xa,0xb,2,1,4,0xc,0xd]);
 });
 
+test .concurrent ("length", () =>
+{
+   expect (new MFImage () .length) .toBe (0);
+   expect (new MFImage (new SFImage (2,3,4), new SFImage (2,3,4)) .length) .toBe (2);
+
+   const m = new MFImage ();
+
+   m .length = 10;
+
+   expect (m) .toHaveLength (10);
+
+   for (let i = 0; i < 10; ++ i)
+      expect (m [i] .equals (new SFImage ())) .toBe (true);
+
+   m .length = 20;
+
+   expect (m) .toHaveLength (20);
+
+   for (let i = 0; i < 20; ++ i)
+      expect (m [i] .equals (new SFImage ())) .toBe (true);
+
+   // Test shrinking the array and then growing it again.
+
+   for (let i = 0; i < 20; ++ i)
+      m [i] = new SFImage (1,2,3);
+
+   m .length = 10;
+
+   expect (m) .toHaveLength (10);
+
+   m .length = 20;
+
+   expect (m) .toHaveLength (20);
+
+   for (let i = 0; i < 10; ++ i)
+      expect (m [i] .equals (new SFImage (1,2,3))) .toBe (true);
+
+   for (let i = 10; i < 20; ++ i)
+      expect (m [i] .equals (new SFImage ())) .toBe (true);
+});
+
 test .concurrent ("fromString", () =>
 {
    const a = new MFImage ();
@@ -363,4 +404,9 @@ test .concurrent ("toString", () =>
    expect (a .toString ({ style: "CLEAN" })) .toBe ("[]");
    expect (b .toString ({ style: "CLEAN" })) .toBe ("1 2 3 0xa 0xb");
    expect (c .toString ({ style: "CLEAN" })) .toBe ("[1 2 3 0xa 0xb 2 1 4 0xc 0xd]");
+});
+
+test .concurrent ("enumerate", () =>
+{
+   enumerate (["0", "1", "2"], new MFImage (new SFImage (), new SFImage (), new SFImage ()));
 });
