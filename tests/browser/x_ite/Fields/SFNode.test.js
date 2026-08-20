@@ -55,6 +55,8 @@ test .concurrent ("equals", () =>
    expect (a .equals (a)) .toBe (true);
    expect (b .equals (b)) .toBe (true);
    expect (a .equals (b)) .toBe (false);
+   expect (a .equals (null)) .toBe (true);
+   expect (b .equals (null)) .toBe (false);
 });
 
 test .concurrent ("isDefaultValue", () =>
