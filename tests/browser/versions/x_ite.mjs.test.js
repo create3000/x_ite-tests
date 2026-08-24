@@ -23,23 +23,23 @@ test .concurrent ("X3D", async () =>
    for (const AbstractNode of browser .getAbstractNodes ())
       expect (values .has (AbstractNode)) .toBe (true);
 
-   expect (X3D .Namespace .hasOwnProperty ("call")) .toBe (false);
-   expect (X3D .Namespace .hasOwnProperty ("apply")) .toBe (false);
-   expect (X3D .Namespace .hasOwnProperty ("bind")) .toBe (false);
-   expect (X3D .Namespace .hasOwnProperty ("toString")) .toBe (false);
+   expect (Object .hasOwn (X3D .Namespace, "call")) .toBe (false);
+   expect (Object .hasOwn (X3D .Namespace, "apply")) .toBe (false);
+   expect (Object .hasOwn (X3D .Namespace, "bind")) .toBe (false);
+   expect (Object .hasOwn (X3D .Namespace, "toString")) .toBe (false);
 
-   expect (X3D .hasOwnProperty ("add")) .toBe (false);
-   expect (X3D .hasOwnProperty ("has")) .toBe (false);
-   expect (X3D .hasOwnProperty ("set")) .toBe (false);
-   expect (X3D .hasOwnProperty ("get")) .toBe (false);
-   expect (X3D .hasOwnProperty ("delete")) .toBe (false);
-   expect (X3D .hasOwnProperty ("clear")) .toBe (false);
-   expect (X3D .hasOwnProperty ("size")) .toBe (false);
-   expect (X3D .hasOwnProperty ("forEach")) .toBe (false);
-   expect (X3D .hasOwnProperty ("entries")) .toBe (false);
-   expect (X3D .hasOwnProperty ("keys")) .toBe (false);
-   expect (X3D .hasOwnProperty ("values")) .toBe (false);
-   expect (X3D .hasOwnProperty ("toString")) .toBe (true);
+   expect (Object .hasOwn (X3D, "add")) .toBe (false);
+   expect (Object .hasOwn (X3D, "has")) .toBe (false);
+   expect (Object .hasOwn (X3D, "set")) .toBe (false);
+   expect (Object .hasOwn (X3D, "get")) .toBe (false);
+   expect (Object .hasOwn (X3D, "delete")) .toBe (false);
+   expect (Object .hasOwn (X3D, "clear")) .toBe (false);
+   expect (Object .hasOwn (X3D, "size")) .toBe (false);
+   expect (Object .hasOwn (X3D, "forEach")) .toBe (false);
+   expect (Object .hasOwn (X3D, "entries")) .toBe (false);
+   expect (Object .hasOwn (X3D, "keys")) .toBe (false);
+   expect (Object .hasOwn (X3D, "values")) .toBe (false);
+   expect (Object .hasOwn (X3D, "toString")) .toBe (true);
 
    for (const { typeName } of browser .getConcreteNodes ())
       expect (scene .createNode (typeName) .getNodeTypeName ()) .toBe (typeName);

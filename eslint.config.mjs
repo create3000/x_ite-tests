@@ -18,7 +18,6 @@ export default defineConfig ([
     rules:
     {
       "no-async-promise-executor": "off",
-      "no-prototype-builtins": "off",
       "no-empty": ["error", { "allowEmptyCatch": true }],
       "semi": "error",
     },

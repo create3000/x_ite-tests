@@ -84,11 +84,11 @@ test .concurrent ("properties", () =>
    expect ("toString" in node1) .toBe (true);
    expect ("foo"      in node1) .toBe (false);
 
-   expect (node1 .hasOwnProperty ("metadata")) .toBe (true);
-   expect (node1 .hasOwnProperty ("title"))    .toBe (true);
-   expect (node1 .hasOwnProperty ("info"))     .toBe (true);
-   expect (node1 .hasOwnProperty ("toString")) .toBe (false);
-   expect (node1 .hasOwnProperty ("foo"))      .toBe (false);
+   expect (Object .hasOwn (node1, "metadata")) .toBe (true);
+   expect (Object .hasOwn (node1, "title"))    .toBe (true);
+   expect (Object .hasOwn (node1, "info"))     .toBe (true);
+   expect (Object .hasOwn (node1, "toString")) .toBe (false);
+   expect (Object .hasOwn (node1, "foo"))      .toBe (false);
 
    const properties = [
       "metadata",
