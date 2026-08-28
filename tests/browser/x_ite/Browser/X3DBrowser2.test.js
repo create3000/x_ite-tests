@@ -147,7 +147,7 @@ test .concurrent ("getRenderingProperty", () =>
    expect (Browser .getRenderingProperty ("MaxSamples")) .toBeGreaterThanOrEqual (0);
    expect (Browser .getRenderingProperty ("Multisampling")) .toBeGreaterThanOrEqual (1);
    expect (Browser .getRenderingProperty ("PixelsPerPoint")) .toBeGreaterThanOrEqual (1);
-   expect (Browser .getRenderingProperty ("SoundDestination")) .toBe (0);
+   expect (Browser .getRenderingProperty ("SoundDestinations")) .toBe (0);
    expect (Browser .getRenderingProperty ("XRSession")) .toBe (false);
 });
 
