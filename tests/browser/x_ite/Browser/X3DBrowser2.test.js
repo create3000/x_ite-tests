@@ -53,6 +53,7 @@ test .concurrent ("getBrowserOption", () =>
    expect (Browser .getBrowserOption ("Notifications")) .toBe (true);
    expect (Browser .getBrowserOption ("OrderIndependentTransparency")) .toBe (false);
    expect (Browser .getBrowserOption ("StraightenHorizon")) .toBe (true);
+   expect (Browser .getBrowserOption ("SoundIntensity")) .toBe (1);
    expect (Browser .getBrowserOption ("TextCompression")) .toBe ("CHAR_SPACING");
    expect (Browser .getBrowserOption ("Timings")) .toBe (false);
    expect (Browser .getBrowserOption ("ToneMapping")) .toBe ("NONE");
@@ -146,39 +147,8 @@ test .concurrent ("getRenderingProperty", () =>
    expect (Browser .getRenderingProperty ("MaxSamples")) .toBeGreaterThanOrEqual (0);
    expect (Browser .getRenderingProperty ("Multisampling")) .toBeGreaterThanOrEqual (1);
    expect (Browser .getRenderingProperty ("PixelsPerPoint")) .toBeGreaterThanOrEqual (1);
+   expect (Browser .getRenderingProperty ("SoundDestination")) .toBe (0);
    expect (Browser .getRenderingProperty ("XRSession")) .toBe (false);
-
-   // Browser .addRenderingPropertyCallback ("test", "Shading", () => { });
-   // Browser .addRenderingPropertyCallback ("test", "MaxTextureSize", () => { });
-   // Browser .addRenderingPropertyCallback ("test", "TextureUnits", () => { });
-   // Browser .addRenderingPropertyCallback ("test", "MaxLights", () => { });
-   // Browser .addRenderingPropertyCallback ("test", "Antialiased", () => { });
-   // Browser .addRenderingPropertyCallback ("test", "ColorDepth", () => { });
-   // Browser .addRenderingPropertyCallback ("test", "TextureMemory", () => { });
-
-   // Browser .addRenderingPropertyCallback ("test", "ContentScale", () => { });
-   // Browser .addRenderingPropertyCallback ("test", "LogarithmicDepthBuffer", () => { });
-   // Browser .addRenderingPropertyCallback ("test", "MaxAnisotropicDegree", () => { });
-   // Browser .addRenderingPropertyCallback ("test", "MaxSamples", () => { });
-   // Browser .addRenderingPropertyCallback ("test", "Multisampling", () => { });
-   // Browser .addRenderingPropertyCallback ("test", "PixelsPerPoint", () => { });
-   // Browser .addRenderingPropertyCallback ("test", "XRSession", () => { });
-
-   // Browser .removeRenderingPropertyCallback ("test", "Shading");
-   // Browser .removeRenderingPropertyCallback ("test", "MaxTextureSize");
-   // Browser .removeRenderingPropertyCallback ("test", "TextureUnits");
-   // Browser .removeRenderingPropertyCallback ("test", "MaxLights");
-   // Browser .removeRenderingPropertyCallback ("test", "Antialiased");
-   // Browser .removeRenderingPropertyCallback ("test", "ColorDepth");
-   // Browser .removeRenderingPropertyCallback ("test", "TextureMemory");
-
-   // Browser .removeRenderingPropertyCallback ("test", "ContentScale");
-   // Browser .removeRenderingPropertyCallback ("test", "LogarithmicDepthBuffer");
-   // Browser .removeRenderingPropertyCallback ("test", "MaxAnisotropicDegree");
-   // Browser .removeRenderingPropertyCallback ("test", "MaxSamples");
-   // Browser .removeRenderingPropertyCallback ("test", "Multisampling");
-   // Browser .removeRenderingPropertyCallback ("test", "PixelsPerPoint");
-   // Browser .removeRenderingPropertyCallback ("test", "XRSession");
 });
 
 test .concurrent ("INITIALIZED_EVENT 2", () => new Promise ((resolve, reject) =>
