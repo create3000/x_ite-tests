@@ -59,4 +59,6 @@ RenderedTexture number of fields differ (Spec <=> X3DUOM): 17 <=> 15.
 Field SFString 'minificationFilter' in node TextureProperties has different value (Spec <=> X3DUOM): DEFAULT !== FASTEST.
 Field SFString 'magnificationFilter' in node TextureProperties has different value (Spec <=> X3DUOM): DEFAULT !== FASTEST.
 Field SFString 'textureCompression' in node TextureProperties has different value (Spec <=> X3DUOM): DEFAULT !== FASTEST.
+TimeSensor number of fields differ (Spec <=> X3DUOM): 16 <=> 15.
+  Where [cycleComplete] not in X3DUOM.
 Test done.
