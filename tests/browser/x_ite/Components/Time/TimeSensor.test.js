@@ -14,10 +14,11 @@ test .concurrent ("events", () => new Promise (async (resolve, reject) =>
       numCycles = 4;
 
    let
-      cycles      = 0,
-      fraction    = 0,
-      elapsedTime = -1,
-      time        = -1;
+      cycles        = 0,
+      cycleComplete = 0,
+      fraction      = 0,
+      elapsedTime   = -1,
+      time          = -1;
 
    timer .addFieldCallback ("test", "isActive", value =>
    {
@@ -45,7 +46,7 @@ test .concurrent ("events", () => new Promise (async (resolve, reject) =>
       }
    });
 
-   timer .addFieldCallback ("test", "cycleTime", value =>
+   timer .addFieldCallback ("test", "cycleTime", () =>
    {
       try
       {
@@ -62,12 +63,19 @@ test .concurrent ("events", () => new Promise (async (resolve, reject) =>
          if (cycles < numCycles)
             return;
 
+         expect (cycleComplete) .toBe (numCycles - 1);
+
          timer .stopTime = Date .now () / 1_000;
       }
       catch (error)
       {
          reject (error);
       }
+   });
+
+   timer .addFieldCallback ("test", "cycleComplete", () =>
+   {
+      ++ cycleComplete;
    });
 
    timer .addFieldCallback ("test", "fraction_changed", value =>
