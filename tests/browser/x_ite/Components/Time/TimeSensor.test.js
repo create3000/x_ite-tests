@@ -73,7 +73,7 @@ test .concurrent ("events", () => new Promise (async (resolve, reject) =>
       }
    });
 
-   timer .addFieldCallback ("test", "cycleComplete", () =>
+   timer .addFieldCallback ("test", "cycleCompleteTime", () =>
    {
       ++ cycleComplete;
    });
