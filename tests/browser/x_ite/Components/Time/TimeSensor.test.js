@@ -15,6 +15,7 @@ test .concurrent ("events", () => new Promise (async (resolve, reject) =>
 
    let
       cycles            = 0,
+      cycleComplete     = 0,
       cycleCompleteTime = 0,
       fraction          = 0,
       elapsedTime       = -1,
@@ -50,6 +51,10 @@ test .concurrent ("events", () => new Promise (async (resolve, reject) =>
    {
       try
       {
+         expect (cycleComplete)     .toBe (cycles);
+         expect (cycleCompleteTime) .toBe (cycles);
+         expect (timer .cycleCount) .toBe (cycles);
+
          ++ cycles;
 
          if (cycles === 1)
@@ -63,6 +68,7 @@ test .concurrent ("events", () => new Promise (async (resolve, reject) =>
          if (cycles < numCycles)
             return;
 
+         expect (cycleComplete)     .toBe (numCycles - 1);
          expect (cycleCompleteTime) .toBe (numCycles - 1);
          expect (timer .cycleCount) .toBe (numCycles - 1);
 
@@ -72,6 +78,13 @@ test .concurrent ("events", () => new Promise (async (resolve, reject) =>
       {
          reject (error);
       }
+   });
+
+   timer .addFieldCallback ("test", "cycleComplete", () =>
+   {
+      ++ cycleComplete;
+
+      expect (timer .cycleCount) .toBe (cycleComplete);
    });
 
    timer .addFieldCallback ("test", "cycleCompleteTime", () =>
