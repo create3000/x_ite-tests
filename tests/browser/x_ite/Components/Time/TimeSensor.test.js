@@ -100,6 +100,9 @@ test .concurrent ("events", () => new Promise (async (resolve, reject) =>
 
    timer .addFieldCallback ("test", "cycleCount", value =>
    {
+      if (value === 0)
+         expect (cycleComplete) .toBe (0);
+
       cycleCount = value;
 
       cycleCounts .push (value);
