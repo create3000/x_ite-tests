@@ -102,6 +102,8 @@ test .concurrent ("events", () => new Promise (async (resolve, reject) =>
    {
       if (value === 0)
          expect (cycleComplete) .toBe (0);
+      else
+         expect (value) .toBe (cycleComplete + 1); // event comes before cycleComplete
 
       cycleCount = value;
 
