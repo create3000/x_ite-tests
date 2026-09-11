@@ -63,7 +63,8 @@ test .concurrent ("events", () => new Promise (async (resolve, reject) =>
          if (cycles < numCycles)
             return;
 
-         expect (cycleComplete) .toBe (numCycles - 1);
+         expect (cycleComplete)     .toBe (numCycles - 1);
+         expect (timer .cycleCount) .toBe (numCycles - 1);
 
          timer .stopTime = Date .now () / 1_000;
       }
