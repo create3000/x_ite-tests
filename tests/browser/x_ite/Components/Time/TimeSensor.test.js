@@ -17,6 +17,8 @@ test .concurrent ("events", () => new Promise (async (resolve, reject) =>
       cycles            = 0,
       cycleComplete     = 0,
       cycleCompleteTime = 0,
+      cycleCount        = 0,
+      cycleCounts       = [ ],
       fraction          = 0,
       elapsedTime       = -1,
       time              = -1;
@@ -53,7 +55,7 @@ test .concurrent ("events", () => new Promise (async (resolve, reject) =>
       {
          expect (cycleComplete)     .toBe (cycles);
          expect (cycleCompleteTime) .toBe (cycles);
-         expect (timer .cycleCount) .toBe (cycles);
+         expect (cycleCount)        .toBe (cycles);
 
          ++ cycles;
 
@@ -70,7 +72,9 @@ test .concurrent ("events", () => new Promise (async (resolve, reject) =>
 
          expect (cycleComplete)     .toBe (numCycles - 1);
          expect (cycleCompleteTime) .toBe (numCycles - 1);
-         expect (timer .cycleCount) .toBe (numCycles - 1);
+         expect (cycleCount)        .toBe (numCycles - 1);
+
+         expect (cycleCounts) .toEqual ([... Array (numCycles) .keys ()]);
 
          timer .stopTime = Date .now () / 1_000;
       }
@@ -84,14 +88,21 @@ test .concurrent ("events", () => new Promise (async (resolve, reject) =>
    {
       ++ cycleComplete;
 
-      expect (timer .cycleCount) .toBe (cycleComplete);
+      expect (cycleCount) .toBe (cycleComplete);
    });
 
    timer .addFieldCallback ("test", "cycleCompleteTime", () =>
    {
       ++ cycleCompleteTime;
 
-      expect (timer .cycleCount) .toBe (cycleCompleteTime);
+      expect (cycleCount) .toBe (cycleCompleteTime);
+   });
+
+   timer .addFieldCallback ("test", "cycleCount", value =>
+   {
+      cycleCount = value;
+
+      cycleCounts .push (value);
    });
 
    timer .addFieldCallback ("test", "fraction_changed", value =>
