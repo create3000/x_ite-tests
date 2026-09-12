@@ -54,7 +54,7 @@ test .concurrent ("events", () => new Promise (async (resolve, reject) =>
       try
       {
          expect (time)        .toBe (value);
-         expect (elapsedTime) .toBeGreaterThan (-1);
+         expect (elapsedTime) .toBeGreaterThanOrEqual (0);
 
          expect (cycleComplete)     .toBe (cycles);
          expect (cycleCompleteTime) .toBe (cycles);
