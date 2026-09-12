@@ -945,11 +945,9 @@ DEF T4 Transform { }
    expect (scene .routes) .toHaveLength (0);
 
    const tRoute = scene .addRoute (t1, "translation", t2, "translation");
-
    expect (scene .routes) .toHaveLength (1);
 
    scene .deleteRoute (tRoute);
-
    expect (scene .routes) .toHaveLength (0);
 
    expect (() => scene .addRoute (t1, "translation", t2, "rotation")) .toThrow (Error);
