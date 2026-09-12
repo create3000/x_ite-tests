@@ -127,7 +127,7 @@ test .concurrent ("valid route json", async () =>
         },
         { "Transform":
           {
-            "@DEF": "T_1",
+            "@DEF": "T",
             "-children": [
               { "Shape":
                 {
@@ -144,7 +144,7 @@ test .concurrent ("valid route json", async () =>
           {
             "@fromNode": "I",
             "@fromField": "value_changed",
-            "@toNode": "T_1",
+            "@toNode": "T",
             "@toField": "set_translation"
           }
         }
@@ -303,7 +303,7 @@ test .concurrent ("invalid route json", async () =>
         },
         { "Transform":
           {
-            "@DEF": "T_1",
+            "@DEF": "T",
             "-children": [
               { "Shape":
                 {
@@ -346,7 +346,7 @@ test .concurrent ("invalid route json", async () =>
         },
         { "Transform":
           {
-            "@DEF": "T_1",
+            "@DEF": "T",
             "-children": [
               { "Shape":
                 {
@@ -389,7 +389,7 @@ test .concurrent ("invalid route json", async () =>
         },
         { "Transform":
           {
-            "@DEF": "T_1",
+            "@DEF": "T",
             "-children": [
               { "Shape":
                 {
@@ -432,7 +432,7 @@ test .concurrent ("invalid route json", async () =>
         },
         { "Transform":
           {
-            "@DEF": "T_1",
+            "@DEF": "T",
             "-children": [
               { "Shape":
                 {
