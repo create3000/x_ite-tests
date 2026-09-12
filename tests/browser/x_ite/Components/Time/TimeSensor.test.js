@@ -19,7 +19,7 @@ test .concurrent ("events", () => new Promise (async (resolve, reject) =>
       cycleCompleteTime = 0,
       cycleCount        = 0,
       cycleCounts       = [ ],
-      fraction          = 0,
+      fraction          = -1,
       elapsedTime       = -1,
       time              = -1;
 
@@ -30,7 +30,7 @@ test .concurrent ("events", () => new Promise (async (resolve, reject) =>
          if (value)
          {
             expect (cycles) .toBe (0);
-            expect (fraction) .toBe (0);
+            expect (fraction) .toBe (-1);
             expect (elapsedTime) .toBe (-1);
             expect (time) .toBe (-1);
          }
@@ -63,7 +63,7 @@ test .concurrent ("events", () => new Promise (async (resolve, reject) =>
          ++ cycles;
 
          if (cycles === 1)
-            expect (fraction) .toBe (0);
+            expect (fraction) .toBe (-1);
          else
             expect (fraction) .toBeGreaterThan (0.6);
 
