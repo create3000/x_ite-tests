@@ -944,4 +944,15 @@ DEF T4 Transform { }
    scene .deleteRoute (tRoute);
 
    expect (scene .routes) .toHaveLength (0);
+
+   expect (() => scene .addRoute (t1, "translation", t2, "rotation")) .toThrow (Error);
+   expect (scene .routes) .toHaveLength (0);
+
+   const n = scene .createNode ("Viewpoint");
+
+   expect (() => scene .addRoute (n, "viewAll", n, "isBound")) .toThrow (Error);
+   expect (scene .routes) .toHaveLength (0);
+
+   expect (() => scene .addRoute (n, "set_bind", n, "viewAll")) .toThrow (Error);
+   expect (scene .routes) .toHaveLength (0);
 });
