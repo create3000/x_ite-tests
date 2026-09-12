@@ -88,14 +88,16 @@ test .concurrent ("events", () => new Promise (async (resolve, reject) =>
    {
       ++ cycleComplete;
 
-      expect (cycleCount) .toBe (cycleComplete);
+      expect (cycleComplete) .toBe (cycleCount);
+      expect (cycleComplete) .toBe (cycles);
    });
 
    timer .addFieldCallback ("test", "cycleCompleteTime", () =>
    {
       ++ cycleCompleteTime;
 
-      expect (cycleCount) .toBe (cycleCompleteTime);
+      expect (cycleCompleteTime) .toBe (cycleCount);
+      expect (cycleCompleteTime) .toBe (cycles);
    });
 
    timer .addFieldCallback ("test", "cycleCount", value =>
