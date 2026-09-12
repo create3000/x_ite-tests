@@ -111,6 +111,52 @@ test .concurrent ("valid route xml", async () =>
    expect (scene1 .routes) .toHaveLength (1);
 });
 
+test .concurrent ("valid route json", async () =>
+{
+   const scene1 = await Browser .createX3DFromURL (new X3D .MFString (`data:model/x3d+json,
+{ "X3D":
+  {
+    "encoding": "UTF-8",
+    "@profile": "Interchange",
+    "Scene": {
+      "-children": [
+        { "PositionInterpolator":
+          {
+            "@DEF": "I"
+          }
+        },
+        { "Transform":
+          {
+            "@DEF": "T_1",
+            "-children": [
+              { "Shape":
+                {
+                  "-geometry": { "Box":
+                    {
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        { "ROUTE":
+          {
+            "@fromNode": "I",
+            "@fromField": "value_changed",
+            "@toNode": "T_1",
+            "@toField": "set_translation"
+          }
+        }
+      ]
+    }
+  }
+}
+`));
+
+   expect (scene1 .routes) .toHaveLength (1);
+});
+
 test .concurrent ("invalid route vrml", async () =>
 {
    const scene1 = await Browser .createX3DFromURL (new X3D .MFString (`data:model/x3d+vrml,
@@ -233,9 +279,184 @@ test .concurrent ("invalid route xml", async () =>
         <Box/>
       </Shape>
     </Transform>
-    <ROUTE fromNode='T' fromField='value_changed' toNode='DoesNotExists' toField='translation'/>
+    <ROUTE fromNode='I' fromField='value_changed' toNode='DoesNotExists' toField='translation'/>
   </Scene>
 </X3D>
+`));
+
+   expect (scene4 .routes) .toHaveLength (0);
+});
+
+test .concurrent ("invalid route json", async () =>
+{
+   const scene1 = await Browser .createX3DFromURL (new X3D .MFString (`data:model/x3d+json,
+{ "X3D":
+  {
+    "encoding": "UTF-8",
+    "@profile": "Interchange",
+    "Scene": {
+      "-children": [
+        { "PositionInterpolator":
+          {
+            "@DEF": "I"
+          }
+        },
+        { "Transform":
+          {
+            "@DEF": "T_1",
+            "-children": [
+              { "Shape":
+                {
+                  "-geometry": { "Box":
+                    {
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        { "ROUTE":
+          {
+            "@fromNode": "I",
+            "@fromField": "does_not_exists",
+            "@toNode": "T",
+            "@toField": "set_translation"
+          }
+        }
+      ]
+    }
+  }
+}
+`));
+
+   expect (scene1 .routes) .toHaveLength (0);
+
+   const scene2 = await Browser .createX3DFromURL (new X3D .MFString (`data:model/x3d+json,
+{ "X3D":
+  {
+    "encoding": "UTF-8",
+    "@profile": "Interchange",
+    "Scene": {
+      "-children": [
+        { "PositionInterpolator":
+          {
+            "@DEF": "I"
+          }
+        },
+        { "Transform":
+          {
+            "@DEF": "T_1",
+            "-children": [
+              { "Shape":
+                {
+                  "-geometry": { "Box":
+                    {
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        { "ROUTE":
+          {
+            "@fromNode": "I",
+            "@fromField": "value_changed",
+            "@toNode": "T",
+            "@toField": "does_not_exists"
+          }
+        }
+      ]
+    }
+  }
+}
+`));
+
+   expect (scene2 .routes) .toHaveLength (0);
+
+   const scene3 = await Browser .createX3DFromURL (new X3D .MFString (`data:model/x3d+json,
+{ "X3D":
+  {
+    "encoding": "UTF-8",
+    "@profile": "Interchange",
+    "Scene": {
+      "-children": [
+        { "PositionInterpolator":
+          {
+            "@DEF": "I"
+          }
+        },
+        { "Transform":
+          {
+            "@DEF": "T_1",
+            "-children": [
+              { "Shape":
+                {
+                  "-geometry": { "Box":
+                    {
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        { "ROUTE":
+          {
+            "@fromNode": "DoesNotExists",
+            "@fromField": "value_changed",
+            "@toNode": "T",
+            "@toField": "translation"
+          }
+        }
+      ]
+    }
+  }
+}
+`));
+
+   expect (scene3 .routes) .toHaveLength (0);
+
+   const scene4 = await Browser .createX3DFromURL (new X3D .MFString (`data:model/x3d+json,
+{ "X3D":
+  {
+    "encoding": "UTF-8",
+    "@profile": "Interchange",
+    "Scene": {
+      "-children": [
+        { "PositionInterpolator":
+          {
+            "@DEF": "I"
+          }
+        },
+        { "Transform":
+          {
+            "@DEF": "T_1",
+            "-children": [
+              { "Shape":
+                {
+                  "-geometry": { "Box":
+                    {
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        { "ROUTE":
+          {
+            "@fromNode": "I",
+            "@fromField": "value_changed",
+            "@toNode": "DoesNotExists",
+            "@toField": "translation"
+          }
+        }
+      ]
+    }
+  }
+}
 `));
 
    expect (scene4 .routes) .toHaveLength (0);
@@ -345,6 +566,144 @@ test .concurrent ("imported node xml", async () =>
     <ROUTE fromNode='IM' fromField='some_filed' toNode='IM' toField='some_filed'/>
   </Scene>
 </X3D>
+`));
+
+   expect (scene3 .routes) .toHaveLength (1);
+});
+
+test .concurrent ("imported node json", async () =>
+{
+   const scene1 = await Browser .createX3DFromURL (new X3D .MFString (`data:model/x3d+json,
+{ "X3D":
+  {
+    "encoding": "UTF-8",
+    "@profile": "Interchange",
+    "Scene": {
+      "-children": [
+        { "Inline":
+          {
+            "@DEF": "I",
+            "@load": false
+          }
+        },
+        { "Transform":
+          {
+            "@DEF": "T",
+            "-children": [
+              { "Shape":
+                {
+                  "-geometry": { "Box":
+                    {
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        { "IMPORT":
+          {
+            "@inlineDEF": "I",
+            "@importedDEF": "IM"
+          }
+        },
+        { "ROUTE":
+          {
+            "@fromNode": "IM",
+            "@fromField": "some_filed",
+            "@toNode": "T",
+            "@toField": "set_translation"
+          }
+        }
+      ]
+    }
+  }
+}
+`));
+
+   expect (scene1 .routes) .toHaveLength (1);
+
+   const scene2 = await Browser .createX3DFromURL (new X3D .MFString (`data:model/x3d+json,
+{ "X3D":
+  {
+    "encoding": "UTF-8",
+    "@profile": "Interchange",
+    "Scene": {
+      "-children": [
+        { "Inline":
+          {
+            "@DEF": "I",
+            "@load": false
+          }
+        },
+        { "Transform":
+          {
+            "@DEF": "T",
+            "-children": [
+              { "Shape":
+                {
+                  "-geometry": { "Box":
+                    {
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        { "IMPORT":
+          {
+            "@inlineDEF": "I",
+            "@importedDEF": "IM"
+          }
+        },
+        { "ROUTE":
+          {
+            "@fromNode": "T",
+            "@fromField": "translation",
+            "@toNode": "IM",
+            "@toField": "some_filed"
+          }
+        }
+      ]
+    }
+  }
+}
+`));
+
+   expect (scene2 .routes) .toHaveLength (1);
+
+   const scene3 = await Browser .createX3DFromURL (new X3D .MFString (`data:model/x3d+json,
+{ "X3D":
+  {
+    "encoding": "UTF-8",
+    "@profile": "Interchange",
+    "Scene": {
+      "-children": [
+        { "Inline":
+          {
+            "@DEF": "I",
+            "@load": false
+          }
+        },
+        { "IMPORT":
+          {
+            "@inlineDEF": "I",
+            "@importedDEF": "IM"
+          }
+        },
+        { "ROUTE":
+          {
+            "@fromNode": "IM",
+            "@fromField": "some_filed",
+            "@toNode": "IM",
+            "@toField": "some_filed"
+          }
+        }
+      ]
+    }
+  }
+}
 `));
 
    expect (scene3 .routes) .toHaveLength (1);
