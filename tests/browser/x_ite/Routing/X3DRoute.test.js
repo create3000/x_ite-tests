@@ -106,6 +106,34 @@ ROUTE I.value_changed TO T.does_not_exists
 `));
 
    expect (scene2 .routes) .toHaveLength (0);
+
+   const scene3 = await Browser .createX3DFromURL (new X3D .MFString (`data:model/x3d+vrml,
+PROFILE Interactive
+
+DEF T Transform {
+   children Shape {
+      geometry Box { }
+   }
+}
+
+ROUTE DoesNotExists.value_changed TO T.translation
+`));
+
+   expect (scene3 .routes) .toHaveLength (0);
+
+   const scene4 = await Browser .createX3DFromURL (new X3D .MFString (`data:model/x3d+vrml,
+PROFILE Interactive
+
+DEF T Transform {
+   children Shape {
+      geometry Box { }
+   }
+}
+
+ROUTE T.translation TO DoesNotExists.value_changed
+`));
+
+   expect (scene4 .routes) .toHaveLength (0);
 });
 
 test .concurrent ("imported node", async () =>
