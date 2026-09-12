@@ -73,7 +73,45 @@ ROUTE I.value_changed TO T.set_translation
    enumerate (properties, route);
 });
 
-test .concurrent ("invalid route", async () =>
+test .concurrent ("valid route vrml", async () =>
+{
+   const scene1 = await Browser .createX3DFromURL (new X3D .MFString (`data:model/x3d+vrml,
+PROFILE Interactive
+
+DEF I PositionInterpolator { }
+
+DEF T Transform {
+   children Shape {
+      geometry Box { }
+   }
+}
+
+ROUTE I.value_changed TO T.set_translation
+`));
+
+   expect (scene1 .routes) .toHaveLength (1);
+});
+
+test .concurrent ("valid route xml", async () =>
+{
+   const scene1 = await Browser .createX3DFromURL (new X3D .MFString (`data:model/x3d+xml,
+<X3D profile='Interchange'>
+  <Scene>
+    <PositionInterpolator DEF='I'/>
+    <Transform DEF='T'>
+      <Shape>
+        <Box/>
+      </Shape>
+    </Transform>
+    <ROUTE fromNode='I' fromField='value_changed' toNode='T' toField='set_translation'/>
+  </Scene>
+</X3D>
+`));
+
+   expect (scene1 .routes) .toHaveLength (1);
+});
+
+test .concurrent ("invalid route vrml", async () =>
 {
    const scene1 = await Browser .createX3DFromURL (new X3D .MFString (`data:model/x3d+vrml,
 PROFILE Interactive
@@ -136,7 +174,74 @@ ROUTE T.translation TO DoesNotExists.value_changed
    expect (scene4 .routes) .toHaveLength (0);
 });
 
-test .concurrent ("imported node", async () =>
+test .concurrent ("invalid route xml", async () =>
+{
+   const scene1 = await Browser .createX3DFromURL (new X3D .MFString (`data:model/x3d+xml,
+<X3D profile='Interchange'>
+  <Scene>
+    <PositionInterpolator DEF='I'/>
+    <Transform DEF='T'>
+      <Shape>
+        <Box/>
+      </Shape>
+    </Transform>
+    <ROUTE fromNode='I' fromField='does_not_exists' toNode='T' toField='set_translation'/>
+  </Scene>
+</X3D>
+`));
+
+   expect (scene1 .routes) .toHaveLength (0);
+
+   const scene2 = await Browser .createX3DFromURL (new X3D .MFString (`data:model/x3d+vrml,
+<X3D profile='Interchange'>
+  <Scene>
+    <PositionInterpolator DEF='I'/>
+    <Transform DEF='T'>
+      <Shape>
+        <Box/>
+      </Shape>
+    </Transform>
+    <ROUTE fromNode='I' fromField='value_changed' toNode='T' toField='does_not_exists'/>
+  </Scene>
+</X3D>
+`));
+
+   expect (scene2 .routes) .toHaveLength (0);
+
+   const scene3 = await Browser .createX3DFromURL (new X3D .MFString (`data:model/x3d+vrml,
+<X3D profile='Interchange'>
+  <Scene>
+    <PositionInterpolator DEF='I'/>
+    <Transform DEF='T'>
+      <Shape>
+        <Box/>
+      </Shape>
+    </Transform>
+    <ROUTE fromNode='DoesNotExists' fromField='value_changed' toNode='T' toField='translation'/>
+  </Scene>
+</X3D>
+`));
+
+   expect (scene3 .routes) .toHaveLength (0);
+
+   const scene4 = await Browser .createX3DFromURL (new X3D .MFString (`data:model/x3d+vrml,
+<X3D profile='Interchange'>
+  <Scene>
+    <PositionInterpolator DEF='I'/>
+    <Transform DEF='T'>
+      <Shape>
+        <Box/>
+      </Shape>
+    </Transform>
+    <ROUTE fromNode='T' fromField='value_changed' toNode='DoesNotExists' toField='translation'/>
+  </Scene>
+</X3D>
+`));
+
+   expect (scene4 .routes) .toHaveLength (0);
+});
+
+test .concurrent ("imported node vrml", async () =>
 {
    const scene1 = await Browser .createX3DFromURL (new X3D .MFString (`data:model/x3d+vrml,
 PROFILE Interactive
@@ -188,6 +293,58 @@ DEF I Inline {
 IMPORT I.IM
 
 ROUTE IM.some_filed TO IM.some_filed
+`));
+
+   expect (scene3 .routes) .toHaveLength (1);
+});
+
+test .concurrent ("imported node xml", async () =>
+{
+   const scene1 = await Browser .createX3DFromURL (new X3D .MFString (`data:model/x3d+vrml,
+<X3D profile='Interchange'>
+  <Scene>
+    <Inline DEF='I'
+        load='false'/>
+    <Transform DEF='T'>
+      <Shape>
+        <Box/>
+      </Shape>
+    </Transform>
+    <IMPORT inlineDEF='I' importedDEF='IM'/>
+    <ROUTE fromNode='IM' fromField='some_filed' toNode='T' toField='set_translation'/>
+  </Scene>
+</X3D>
+`));
+
+   expect (scene1 .routes) .toHaveLength (1);
+
+   const scene2 = await Browser .createX3DFromURL (new X3D .MFString (`data:model/x3d+vrml,
+<X3D profile='Interchange'>
+  <Scene>
+    <Inline DEF='I'
+        load='false'/>
+    <Transform DEF='T'>
+      <Shape>
+        <Box/>
+      </Shape>
+    </Transform>
+    <IMPORT inlineDEF='I' importedDEF='IM'/>
+    <ROUTE fromNode='T' fromField='translation' toNode='IM' toField='some_filed'/>
+  </Scene>
+</X3D>
+`));
+
+   expect (scene2 .routes) .toHaveLength (1);
+
+   const scene3 = await Browser .createX3DFromURL (new X3D .MFString (`data:model/x3d+vrml,
+<X3D profile='Interchange'>
+  <Scene>
+    <Inline DEF='I'
+        load='false'/>
+    <IMPORT inlineDEF='I' importedDEF='IM'/>
+    <ROUTE fromNode='IM' fromField='some_filed' toNode='IM' toField='some_filed'/>
+  </Scene>
+</X3D>
 `));
 
    expect (scene3 .routes) .toHaveLength (1);
