@@ -49,10 +49,13 @@ test .concurrent ("events", () => new Promise (async (resolve, reject) =>
       }
    });
 
-   timer .addFieldCallback ("test", "cycleTime", () =>
+   timer .addFieldCallback ("test", "cycleTime", value =>
    {
       try
       {
+         expect (time)        .toBe (value);
+         expect (elapsedTime) .toBeGreaterThan (-1);
+
          expect (cycleComplete)     .toBe (cycles);
          expect (cycleCompleteTime) .toBe (cycles);
          expect (cycleCount)        .toBe (cycles);
