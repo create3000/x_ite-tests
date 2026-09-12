@@ -865,16 +865,16 @@ test .concurrent ("RouteHandling", async () =>
    const scene = await Browser .createX3DFromString (`
 PROFILE Interchange
 
+DEF T1 Transform { }
+DEF T2 Transform { }
+DEF T3 Transform { }
+DEF T4 Transform { }
+
 DEF I Inline {
    load FALSE
 }
 
 IMPORT I.IM
-
-DEF T1 Transform { }
-DEF T2 Transform { }
-DEF T3 Transform { }
-DEF T4 Transform { }
    `);
 
    expect (scene .importedNodes) .toHaveLength (1);
