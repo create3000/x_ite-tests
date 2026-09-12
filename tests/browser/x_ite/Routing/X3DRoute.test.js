@@ -192,7 +192,7 @@ test .concurrent ("invalid route xml", async () =>
 
    expect (scene1 .routes) .toHaveLength (0);
 
-   const scene2 = await Browser .createX3DFromURL (new X3D .MFString (`data:model/x3d+vrml,
+   const scene2 = await Browser .createX3DFromURL (new X3D .MFString (`data:model/x3d+xml,
 <X3D profile='Interchange'>
   <Scene>
     <PositionInterpolator DEF='I'/>
@@ -208,7 +208,7 @@ test .concurrent ("invalid route xml", async () =>
 
    expect (scene2 .routes) .toHaveLength (0);
 
-   const scene3 = await Browser .createX3DFromURL (new X3D .MFString (`data:model/x3d+vrml,
+   const scene3 = await Browser .createX3DFromURL (new X3D .MFString (`data:model/x3d+xml,
 <X3D profile='Interchange'>
   <Scene>
     <PositionInterpolator DEF='I'/>
@@ -224,7 +224,7 @@ test .concurrent ("invalid route xml", async () =>
 
    expect (scene3 .routes) .toHaveLength (0);
 
-   const scene4 = await Browser .createX3DFromURL (new X3D .MFString (`data:model/x3d+vrml,
+   const scene4 = await Browser .createX3DFromURL (new X3D .MFString (`data:model/x3d+xml,
 <X3D profile='Interchange'>
   <Scene>
     <PositionInterpolator DEF='I'/>
@@ -300,7 +300,7 @@ ROUTE IM.some_filed TO IM.some_filed
 
 test .concurrent ("imported node xml", async () =>
 {
-   const scene1 = await Browser .createX3DFromURL (new X3D .MFString (`data:model/x3d+vrml,
+   const scene1 = await Browser .createX3DFromURL (new X3D .MFString (`data:model/x3d+xml,
 <X3D profile='Interchange'>
   <Scene>
     <Inline DEF='I'
@@ -318,7 +318,7 @@ test .concurrent ("imported node xml", async () =>
 
    expect (scene1 .routes) .toHaveLength (1);
 
-   const scene2 = await Browser .createX3DFromURL (new X3D .MFString (`data:model/x3d+vrml,
+   const scene2 = await Browser .createX3DFromURL (new X3D .MFString (`data:model/x3d+xml,
 <X3D profile='Interchange'>
   <Scene>
     <Inline DEF='I'
@@ -336,7 +336,7 @@ test .concurrent ("imported node xml", async () =>
 
    expect (scene2 .routes) .toHaveLength (1);
 
-   const scene3 = await Browser .createX3DFromURL (new X3D .MFString (`data:model/x3d+vrml,
+   const scene3 = await Browser .createX3DFromURL (new X3D .MFString (`data:model/x3d+xml,
 <X3D profile='Interchange'>
   <Scene>
     <Inline DEF='I'
