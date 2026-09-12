@@ -968,4 +968,10 @@ DEF T4 Transform { }
 
    expect (() => scene .addRoute (n, "set_bind", im, "some_field")) .toThrow (Error);
    expect (scene .routes) .toHaveLength (0);
+
+   const imRoute = scene .addRoute (im, "some_field", im, "some_field");
+   expect (scene .routes) .toHaveLength (1);
+
+   scene .deleteRoute (imRoute);
+   expect (scene .routes) .toHaveLength (0);
 });
