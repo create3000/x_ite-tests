@@ -865,12 +865,19 @@ test .concurrent ("RouteHandling", async () =>
    const scene = await Browser .createX3DFromString (`
 PROFILE Interchange
 
+DEF I Inline {
+   load FALSE
+}
+
+IMPORT I.IM
+
 DEF T1 Transform { }
 DEF T2 Transform { }
 DEF T3 Transform { }
 DEF T4 Transform { }
    `);
 
+   expect (scene .importedNodes) .toHaveLength (1);
    expect (scene .routes) .toHaveLength (0);
 
    const
@@ -954,5 +961,13 @@ DEF T4 Transform { }
    expect (scene .routes) .toHaveLength (0);
 
    expect (() => scene .addRoute (n, "set_bind", n, "viewAll")) .toThrow (Error);
+   expect (scene .routes) .toHaveLength (0);
+
+   const im = scene .importedNodes [0];
+
+   expect (() => scene .addRoute (im, "some_field", n, "isBound")) .toThrow (Error);
+   expect (scene .routes) .toHaveLength (0);
+
+   expect (() => scene .addRoute (n, "set_bind", im, "some_field")) .toThrow (Error);
    expect (scene .routes) .toHaveLength (0);
 });
