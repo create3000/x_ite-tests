@@ -101,9 +101,16 @@ test .concurrent ("events", () => new Promise (async (resolve, reject) =>
    timer .addFieldCallback ("test", "cycleCount", value =>
    {
       if (value === 0)
-         expect (cycleComplete) .toBe (0);
+      {
+         expect (cycleComplete)     .toBe (0);
+         expect (cycleCompleteTime) .toBe (0);
+      }
       else
-         expect (value) .toBe (cycleComplete + 1); // event comes before cycleComplete
+      {
+         // event comes before cycleComplete and cycleCompleteTime
+         expect (value) .toBe (cycleComplete + 1);
+         expect (value) .toBe (cycleCompleteTime + 1);
+      }
 
       cycleCount = value;
 
