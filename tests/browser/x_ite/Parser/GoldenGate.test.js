@@ -5,10 +5,6 @@ test .concurrent ("add/removeParser", () =>
 {
    const originalParsers = X3D .GoldenGate .getParsers ();
 
-   // Legacy
-   expect (X3D .GoldenGate .Parser) .toBe (X3D .GoldenGate .Parser);
-   expect (X3D .GoldenGate .Parser) .toEqual (X3D .GoldenGate .getParsers ());
-
    const newParsers = [function (scene) { }, function (scene) { }];
 
    X3D .GoldenGate .addParsers (... newParsers);

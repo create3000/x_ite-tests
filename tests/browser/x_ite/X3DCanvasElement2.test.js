@@ -179,15 +179,17 @@ test .concurrent ("attributes", () =>
 test .concurrent ("onload-attribute", () => new Promise ((resolve, reject) =>
 {
    window .onload1 = undefined;
-   window .onload2 = vi .fn ();
+   window .onload2 = 0;
 
    expect (window .onload1) .toBe (undefined);
 
-   const canvas = $(`<x3d-canvas onload="window.onload1=this;window.onload2()"></x3d-canvas>`);
+   const canvas = $(`<x3d-canvas onload="window.onload1=this;++window.onload2;"></x3d-canvas>`);
 
-   expect (window .onload2) .toHaveBeenCalledTimes (1);
+   expect (canvas [0] .onload) .toBeInstanceOf (Function);
 
-   canvas .html (`<X3D profile='Interchange' version='4.0'><Scene></Scene></X3D>`);
+   expect (window .onload2) .toBe (1);
+
+   canvas .html (`<X3D profile='Interchange'><Scene></Scene></X3D>`);
 
    canvas [0] .addEventListener ("load", function (event)
    {
@@ -197,7 +199,7 @@ test .concurrent ("onload-attribute", () => new Promise ((resolve, reject) =>
          expect (event) .toBeInstanceOf (CustomEvent);
          expect (this) .toBe (canvas [0]);
          expect (window .onload1) .toBe (canvas [0]);
-         expect (window .onload2) .toHaveBeenCalledTimes (2);
+         expect (window .onload2) .toBe (2);
          resolve ();
       }
       catch (error)
@@ -205,6 +207,8 @@ test .concurrent ("onload-attribute", () => new Promise ((resolve, reject) =>
          reject (error .message);
       }
    });
+
+   expect (canvas [0] .onload) .toBeInstanceOf (Function);
 
    canvas [0] .addEventListener ("error", () => reject ("onerror"));
 }));
