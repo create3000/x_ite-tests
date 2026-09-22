@@ -28,14 +28,14 @@ body .append (canvas);
 
 test ("media", async () =>
 {
-   const maxMismatchedPixels = 17_000;
-
    const media = JSON .parse (await get ("https://weiputer/media/docs/examples/config.json"));
 
    for (const example of media)
    {
-      if (!example .test)
+      if (!example .pixelmatch)
          continue;
+
+      const maxMismatchedPixels = Number .isInteger (example .pixelmatch) ? example .pixelmatch : 1_800;
 
       const { name, component } = example;
 
