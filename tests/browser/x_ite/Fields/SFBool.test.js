@@ -66,10 +66,14 @@ test .concurrent ("copy", () =>
 
    expect (v2) .not .toBe (v1);
    expect (v2 .equals (v1)) .toBe (true);
+   expect (v2 .equals (v3)) .toBe (false);
    expect (v2 .equals (true)) .toBe (true);
+   expect (v2 .equals (false)) .toBe (false);
    expect (v4) .not .toBe (v3);
    expect (v4 .equals (v3)) .toBe (true);
+   expect (v4 .equals (v1)) .toBe (false);
    expect (v4 .equals (false)) .toBe (true);
+   expect (v4 .equals (true)) .toBe (false);
 });
 
 test .concurrent ("equals", () =>
