@@ -67,11 +67,14 @@ test .concurrent ("copy", () =>
 {
    const
       v1 = new SFDouble (2),
-      v2 = v1 .copy ();
+      v2 = v1 .copy (),
+      v3 = new SFDouble (3);
 
    expect (v2) .not .toBe (v1);
    expect (v2 .equals (v1)) .toBe (true);
+   expect (v2 .equals (v3)) .toBe (false);
    expect (v2 .equals (2)) .toBe (true);
+   expect (v2 .equals (4)) .toBe (false);
 });
 
 test .concurrent ("equals", () =>
