@@ -129,7 +129,7 @@ test .concurrent ("fromVRMLString", () =>
 
    a .fromVRMLString (`"\\"\\""`);
 
-   expect (a .equals (new SFString (`\"\"`))) .toBe (true);
+   expect (a .equals (new SFString (`""`))) .toBe (true);
 
    a .fromVRMLString (`""`);
 
