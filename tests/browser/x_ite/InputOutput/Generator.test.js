@@ -221,8 +221,8 @@ IMPORT I.T
    expect (scene1 .namedNodes)    .toHaveLength (2);
    expect (scene1 .importedNodes) .toHaveLength (1);
 
-   expect (scene1 .getLocalNode ("T")) .toBe (scene1 .importedNodes [0]);
-   expect (scene1 .getLocalNode ("T")) .toBeInstanceOf (X3D .X3DImportedNode);
+   expect (scene1 .getLocalNode ("T")) .toBe (scene1 .importedNodes [0] .instance);
+   expect (scene1 .getLocalNode ("T")) .toBeInstanceOf (X3D .SFNode);
    expect (scene1 .importedNodes [0] .importedName) .toBe ("T");
 
    const scene2 = await Browser .createX3DFromString (scene1 .toXMLString ());
@@ -231,8 +231,8 @@ IMPORT I.T
    expect (scene2 .namedNodes)    .toHaveLength (2);
    expect (scene2 .importedNodes) .toHaveLength (1);
 
-   expect (scene2 .getLocalNode ("T")) .toBe (scene2 .importedNodes [0]);
-   expect (scene2 .getLocalNode ("T")) .toBeInstanceOf (X3D .X3DImportedNode);
+   expect (scene2 .getLocalNode ("T")) .toBe (scene2 .importedNodes [0] .instance);
+   expect (scene2 .getLocalNode ("T")) .toBeInstanceOf (X3D .SFNode);
    expect (scene2 .importedNodes [0] .importedName) .toBe ("T");
 });
 

@@ -681,17 +681,13 @@ IMPORT I.T AS TT
    expect (scene .namedNodes)    .toHaveLength (2);
    expect (scene .importedNodes) .toHaveLength (2);
 
-   expect (scene .getLocalNode ("T")) .toBe (scene .importedNodes [0]);
-   expect (scene .getLocalNode ("T")) .toBeInstanceOf (X3D .X3DImportedNode);
-   expect (scene .getLocalNode ("T") .inlineNode) .toBe (scene .getNamedNode ("I"));
-   expect (scene .getLocalNode ("T") .exportedName) .toBe ("T");
-   expect (scene .getLocalNode ("T") .importedName) .toBe ("T");
+   expect (scene .getLocalNode ("T")) .toBe (scene .importedNodes [0] .instance);
+   expect (scene .getLocalNode ("T")) .toBeInstanceOf (X3D .SFNode);
+   expect (scene .getLocalNode ("T")) .toBe (scene .getImportedNode ("T"));
 
-   expect (scene .getLocalNode ("TT")) .toBe (scene .importedNodes [1]);
-   expect (scene .getLocalNode ("TT")) .toBeInstanceOf (X3D .X3DImportedNode);
-   expect (scene .getLocalNode ("TT") .inlineNode) .toBe (scene .getNamedNode ("I"));
-   expect (scene .getLocalNode ("TT") .exportedName) .toBe ("T");
-   expect (scene .getLocalNode ("TT") .importedName) .toBe ("TT");
+   expect (scene .getLocalNode ("TT")) .toBe (scene .importedNodes [1] .instance);
+   expect (scene .getLocalNode ("TT")) .toBeInstanceOf (X3D .SFNode);
+   expect (scene .getLocalNode ("TT")) .toBe (scene .getImportedNode ("TT"));
 });
 
 test .concurrent ("getLocalNode 2", async () =>
@@ -716,11 +712,9 @@ DEF T Transform { }
    expect (scene .getLocalNode ("T") .getNodeName ()) .toBe ("T");
    expect (scene .getLocalNode ("T")) .toBe (scene .getNamedNode ("T"));
 
-   expect (scene .getLocalNode ("TT")) .toBe (scene .importedNodes [1]);
-   expect (scene .getLocalNode ("TT")) .toBeInstanceOf (X3D .X3DImportedNode);
-   expect (scene .getLocalNode ("TT") .inlineNode) .toBe (scene .getNamedNode ("I"));
-   expect (scene .getLocalNode ("TT") .exportedName) .toBe ("T");
-   expect (scene .getLocalNode ("TT") .importedName) .toBe ("TT");
+   expect (scene .getLocalNode ("TT")) .toBe (scene .importedNodes [1] .instance);
+   expect (scene .getLocalNode ("TT")) .toBeInstanceOf (X3D .SFNode);
+   expect (scene .getLocalNode ("TT")) .toBe (scene .getImportedNode ("TT"));
 });
 
 test .concurrent ("ProtoDeclarationHandling", async () =>
@@ -968,7 +962,7 @@ IMPORT I.IM
    expect (() => scene .addRoute (n, "set_bind", n, "viewAll")) .toThrow (Error);
    expect (scene .routes) .toHaveLength (0);
 
-   const im = scene .importedNodes [0];
+   const im = scene .importedNodes [0] .instance;
 
    expect (() => scene .addRoute (im, "some_field", n, "isBound")) .toThrow (Error);
    expect (scene .routes) .toHaveLength (0);
