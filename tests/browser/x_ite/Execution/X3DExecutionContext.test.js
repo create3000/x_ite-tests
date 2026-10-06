@@ -587,21 +587,26 @@ IMPORT I.BE AS B
    expect (scene .getImportedNodes () [0] .inlineNode) .toBe (inlineNode);
    expect (node1) .toBeInstanceOf (X3D .SFNode);
    expect (scene .getImportedNodes () [0] .exportedNode) .toBeInstanceOf (X3D .SFNode);
-   expect (scene .getImportedNodes () [0] .exportedNode !== node1) .toBe (true);
-   expect (scene .getImportedNodes () [0] .exportedNode) .not .toBe (node1);
+   expect (scene .getImportedNodes () [0] .exportedNode === node1) .toBe (true);
+   expect (scene .getImportedNodes () [0] .exportedNode) .toBe (node1);
    expect (scene .getImportedNodes () [0] .exportedName) .toBe ("SE");
    expect (scene .getImportedNodes () [0] .importedName) .toBe ("S");
+   expect (scene .getImportedNodes () [0] .instance) .toBeInstanceOf (X3D .SFNode);
+   expect (scene .getImportedNodes () [0] .instance !== node1) .toBe (true);
+   expect (scene .getImportedNodes () [0] .instance) .not .toBe (node1);
    expect (scene .getImportedNodes () [1] .inlineNode) .toBe (inlineNode);
-   expect (scene .getImportedNodes () [1] .exportedNode) .not .toBe (node2);
+   expect (scene .getImportedNodes () [1] .exportedNode) .toBe (node2);
    expect (scene .getImportedNodes () [1] .exportedName) .toBe ("BE");
    expect (scene .getImportedNodes () [1] .importedName) .toBe ("B");
+   expect (scene .getImportedNodes () [1] .instance) .not .toBe (node2);
 
    expect (() => scene .removeImportedNode ("S")) .not .toThrow (Error);
    expect (scene .getImportedNodes ()) .toHaveLength (1);
    expect (scene .getImportedNodes () [0] .inlineNode) .toBe (inlineNode);
-   expect (scene .getImportedNodes () [0] .exportedNode) .not .toBe (node2);
+   expect (scene .getImportedNodes () [0] .exportedNode) .toBe (node2);
    expect (scene .getImportedNodes () [0] .exportedName) .toBe ("BE");
    expect (scene .getImportedNodes () [0] .importedName) .toBe ("B");
+   expect (scene .getImportedNodes () [0] .instance) .not .toBe (node2);
 
    expect (() => scene .removeImportedNode ("B")) .not .toThrow (Error);
    expect (scene .getImportedNodes ()) .toHaveLength (0);
@@ -611,13 +616,15 @@ IMPORT I.BE AS B
 
    expect (scene .getImportedNodes ()) .toHaveLength (2);
    expect (scene .getImportedNodes () [0] .inlineNode) .toBe (inlineNode);
-   expect (scene .getImportedNodes () [0] .exportedNode) .not .toBe (node1);
+   expect (scene .getImportedNodes () [0] .exportedNode) .toBe (node1);
    expect (scene .getImportedNodes () [0] .exportedName) .toBe ("SE");
    expect (scene .getImportedNodes () [0] .importedName) .toBe ("Foo");
+   expect (scene .getImportedNodes () [0] .instance) .not .toBe (node1);
    expect (scene .getImportedNodes () [1] .inlineNode) .toBe (inlineNode);
-   expect (scene .getImportedNodes () [1] .exportedNode) .not .toBe (node2);
+   expect (scene .getImportedNodes () [1] .exportedNode) .toBe (node2);
    expect (scene .getImportedNodes () [1] .exportedName) .toBe ("BE");
    expect (scene .getImportedNodes () [1] .importedName) .toBe ("Bah");
+   expect (scene .getImportedNodes () [1] .instance) .not .toBe (node2);
 });
 
 test .concurrent ("get/setRootNodes", async () =>

@@ -107,7 +107,7 @@ test .concurrent ("abstract-nodes", async () =>
       switch (AbstractNode .typeName)
       {
          case "X3DPrototypeInstance":
-         case "X3DImportedNodeProxy":
+         case "X3DImportedNodeInstance":
          {
             expect (AbstractNode .componentInfo .name) .toBeTypeOf ("string");
             enumerate (["typeName", "componentInfo", "containerField", "specificationRange"], AbstractNode);

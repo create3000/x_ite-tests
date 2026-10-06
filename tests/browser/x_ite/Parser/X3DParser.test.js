@@ -500,8 +500,8 @@ test .concurrent ("double-import.x3dv", async () =>
       expect (scene .getNamedNode ("Box") .getNodeName ()) .toBe ("Box");
       expect (scene .getNamedNode ("Box") .getNodeTypeName ()) .toBe ("Transform");
 
-      expect (scene .routes [0] .sourceNode) .toBe (scene .importedNodes [0] .exportedNode);
-      expect (scene .routes [1] .sourceNode) .toBe (scene .importedNodes [1] .exportedNode);
+      expect (scene .routes [0] .sourceNode) .toBe (scene .importedNodes [0] .instance);
+      expect (scene .routes [1] .sourceNode) .toBe (scene .importedNodes [1] .instance);
       expect (scene .routes [2] .sourceNode) .toBeInstanceOf (X3D .SFNode);
       expect (scene .routes [2] .sourceNode .getNodeName ()) .toMatch (/^Box_\d+$/);
       expect (scene .routes [3] .sourceNode) .toBe (scene .getNamedNode ("Box"));

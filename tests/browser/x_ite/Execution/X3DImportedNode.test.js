@@ -34,13 +34,17 @@ IMPORT I.E2 AS I2 DESCRIPTION "Test Desc"
    expect (importedNode0 .exportedName) .toBe ("E1");
    expect (importedNode0 .exportedNode) .toBeInstanceOf (X3D .SFNode);
    expect (importedNode0 .exportedNode .getNodeTypeName ()) .toBe ("Group");
-   expect (importedNode0 .exportedNode .getNodeName ()) .toBe ("I1");
+   expect (importedNode0 .exportedNode .getNodeName ()) .toBe ("E1");
    expect (importedNode0 .importedName) .toBe ("I1");
+   expect (importedNode0 .instance) .toBeInstanceOf (X3D .SFNode);
+   expect (importedNode0 .instance .getNodeTypeName ()) .toBe ("Group");
+   expect (importedNode0 .instance .getNodeName ()) .toBe ("I1");
    expect (importedNode0 .description) .toBe ("");
    expect (importedNode0 .getInlineNode ()) .toBe (importedNode0 .inlineNode .getValue ());
    expect (importedNode0 .getExportedName ()) .toBe (importedNode0 .exportedName);
-   expect (importedNode0 .getExportedNode ()) .toBeInstanceOf (X3D .X3DImportedNodeProxy);
+   expect (importedNode0 .getExportedNode ()) .toBeInstanceOf (X3D .Group);
    expect (importedNode0 .getImportedName ()) .toBe (importedNode0 .importedName);
+   expect (importedNode0 .getInstance ()) .toBeInstanceOf (X3D .X3DImportedNodeInstance);
    expect (importedNode0 .getDescription ()) .toBe ("");
 
    expect (X3D .X3DImportedNode .typeName) .toBe ("X3DImportedNode");
@@ -52,6 +56,7 @@ IMPORT I.E2 AS I2 DESCRIPTION "Test Desc"
    expect (() => importedNode0 .exportedName = undefined) .toThrow (Error);
    expect (() => importedNode0 .exportedNode = undefined) .toThrow (Error);
    expect (() => importedNode0 .importedName = undefined) .toThrow (Error);
+   expect (() => importedNode0 .instance     = undefined) .toThrow (Error);
 
    expect (importedNode0) .toBeInstanceOf (X3D .X3DImportedNode);
    expect (importedNode0 .inlineNode) .toBe (scene .getNamedNode ("I"));
@@ -59,12 +64,15 @@ IMPORT I.E2 AS I2 DESCRIPTION "Test Desc"
    expect (importedNode0 .exportedNode) .toBeInstanceOf (X3D .SFNode);
    expect (importedNode0 .exportedNode .getNodeTypeName ()) .toBe ("Group");
    expect (importedNode0 .importedName) .toBe ("I1");
+   expect (importedNode0 .instance) .toBeInstanceOf (X3D .SFNode);
+   expect (importedNode0 .instance .getNodeTypeName ()) .toBe ("Group");
 
    const properties = [
       "inlineNode",
       "exportedName",
       "exportedNode",
       "importedName",
+      "instance",
       "description",
    ];
 
@@ -79,10 +87,13 @@ IMPORT I.E2 AS I2 DESCRIPTION "Test Desc"
    expect (importedNode1 .exportedNode) .toBeInstanceOf (X3D .SFNode);
    expect (importedNode1 .exportedNode .getNodeTypeName ()) .toBe ("Switch");
    expect (importedNode1 .importedName) .toBe ("I2");
+   expect (importedNode1 .instance) .toBeInstanceOf (X3D .SFNode);
+   expect (importedNode1 .instance .getNodeTypeName ()) .toBe ("Switch");
    expect (importedNode1 .description) .toBe ("Test Desc");
    expect (importedNode1 .getInlineNode ()) .toBe (importedNode1 .inlineNode .getValue ());
    expect (importedNode1 .getExportedName ()) .toBe (importedNode1 .exportedName);
    expect (importedNode1 .getExportedNode ()) .toBe (importedNode1 .exportedNode .getValue ());
    expect (importedNode1 .getImportedName ()) .toBe (importedNode1 .importedName);
+   expect (importedNode1 .getInstance ()) .toBe (importedNode1 .instance .getValue ());
    expect (importedNode1 .getDescription ()) .toBe ("Test Desc");
 });
