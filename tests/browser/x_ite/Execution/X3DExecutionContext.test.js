@@ -560,6 +560,37 @@ EXPORT B
    expect (() => scene .removeImportedNode ("Bah")) .not .toThrow (Error);
 });
 
+test .concurrent ("removeImportedNode 2", async () =>
+{
+   const scene = await Browser .createX3DFromString (`
+PROFILE Interchange
+
+DEF I Inline {
+   url "data:model/x3d+vrml,
+
+DEF T1 Transform { }
+
+EXPORT T1
+"
+}
+
+DEF T2 Transform { }
+
+IMPORT I.T1
+
+ROUTE T1.translation TO T2.translation
+ROUTE T2.scale TO T1.scale
+   `);
+
+   expect (scene .namedNodes) .toHaveLength (2);
+   expect (scene .importedNodes) .toHaveLength (1);
+   expect (scene .routes) .toHaveLength (2);
+   expect (() => scene .removeImportedNode ("T1")) .not .toThrow (Error);
+   expect (scene .namedNodes) .toHaveLength (2);
+   expect (scene .importedNodes) .toHaveLength (0);
+   expect (scene .routes) .toHaveLength (0);
+});
+
 test .concurrent ("getImportedNodes", async () =>
 {
    const scene = await Browser .createX3DFromString (`

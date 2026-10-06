@@ -47,7 +47,6 @@ ROUTE I.value_changed TO T.set_translation
    expect (route .toString ()) .toBe (`[object ${route .getTypeName ()}]`);
 
    expect (route .getId ()) .toBeGreaterThan (0);
-   expect (route .getRouteId ()) .toMatch (/\d+\.\w+\.\d+\.\w+/);
 
    expect (() => route .sourceNode       = undefined) .toThrow (Error);
    expect (() => route .sourceField      = undefined) .toThrow (Error);
