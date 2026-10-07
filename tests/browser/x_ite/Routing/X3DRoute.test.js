@@ -707,3 +707,31 @@ test .concurrent ("imported node json", async () =>
 
    expect (scene3 .routes) .toHaveLength (1);
 });
+
+test .concurrent ("double route", async () =>
+{
+   const scene1 = await Browser .createX3DFromURL (new X3D .MFString (`data:model/x3d+vrml,
+PROFILE Interactive
+
+DEF T1 Transform { }
+DEF T2 Transform { }
+
+ROUTE T1.translation TO T2.translation
+ROUTE T1.translation_changed TO T2.set_translation
+ROUTE T1.set_translation TO T2.translation_changed
+
+ROUTE T1.scale TO T2.scale
+ROUTE T1.scale_changed TO T2.set_scale
+ROUTE T1.set_scale TO T2.scale_changed
+`));
+
+   expect (scene1 .routes) .toHaveLength (2);
+   expect (scene1 .routes [0] .sourceNode) .toBe (scene1 .getNamedNode ("T1"));
+   expect (scene1 .routes [0] .destinationNode) .toBe (scene1 .getNamedNode ("T2"));
+   expect (scene1 .routes [0] .sourceField) .toBe ("translation_changed");
+   expect (scene1 .routes [0] .destinationField) .toBe ("set_translation");
+   expect (scene1 .routes [1] .sourceNode) .toBe (scene1 .getNamedNode ("T1"));
+   expect (scene1 .routes [1] .destinationNode) .toBe (scene1 .getNamedNode ("T2"));
+   expect (scene1 .routes [1] .sourceField) .toBe ("scale_changed");
+   expect (scene1 .routes [1] .destinationField) .toBe ("set_scale");
+});
