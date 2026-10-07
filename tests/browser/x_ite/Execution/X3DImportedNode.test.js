@@ -265,6 +265,7 @@ ROUTE IM2.some_field TO T.set_translation
    expect (scene .rootNodes) .toHaveLength (4);
    expect (scene .routes) .toHaveLength (2);
    expect (scene .importedNodes [0] .getImportedName ()) .toBe ("IM1");
+   expect (scene .importedNodes [1] .getImportedName ()) .toBe ("IM2");
 
    scene .importedNodes [0] .dispose ();
 
