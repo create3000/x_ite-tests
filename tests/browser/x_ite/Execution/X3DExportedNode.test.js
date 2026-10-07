@@ -64,3 +64,65 @@ EXPORT N2 AS E2 DESCRIPTION "Test Desc"
    expect (exportedNode1 .getDescription ()) .toBe ("Test Desc");
    expect (exportedNode1 .toString ()) .toBe (`[object ${exportedNode1 .getTypeName ()}]`);
 });
+
+test .concurrent ("dispose 1", async () =>
+{
+   const scene = await Browser .createX3DFromString (`
+#X3D V4.1 utf8 X_ITE V16.1.0
+
+PROFILE Interactive
+
+DEF T1 Transform { }
+DEF T2 Transform { }
+
+EXPORT T1
+EXPORT T2
+   `);
+
+   expect (scene .namedNodes) .toHaveLength (2);
+   expect (scene .exportedNodes) .toHaveLength (2);
+   expect (scene .rootNodes) .toHaveLength (2);
+
+   scene .exportedNodes [0] .dispose ();
+
+   expect (scene .namedNodes) .toHaveLength (2);
+   expect (scene .exportedNodes) .toHaveLength (1);
+   expect (scene .rootNodes) .toHaveLength (2);
+
+   scene .exportedNodes [0] .dispose ();
+
+   expect (scene .namedNodes) .toHaveLength (2);
+   expect (scene .exportedNodes) .toHaveLength (0);
+   expect (scene .rootNodes) .toHaveLength (2);
+});
+
+test .concurrent ("dispose 2", async () =>
+{
+   const scene = await Browser .createX3DFromString (`
+#X3D V4.1 utf8 X_ITE V16.1.0
+
+PROFILE Interactive
+
+DEF T1 Transform { }
+DEF T2 Transform { }
+
+EXPORT T1
+EXPORT T2
+   `);
+
+   expect (scene .namedNodes) .toHaveLength (2);
+   expect (scene .exportedNodes) .toHaveLength (2);
+   expect (scene .rootNodes) .toHaveLength (2);
+
+   scene .rootNodes [0] .dispose ();
+
+   expect (scene .namedNodes) .toHaveLength (1);
+   expect (scene .exportedNodes) .toHaveLength (1);
+   expect (scene .rootNodes) .toHaveLength (1);
+
+   scene .rootNodes [0] .dispose ();
+
+   expect (scene .namedNodes) .toHaveLength (0);
+   expect (scene .exportedNodes) .toHaveLength (0);
+   expect (scene .rootNodes) .toHaveLength (0);
+});
