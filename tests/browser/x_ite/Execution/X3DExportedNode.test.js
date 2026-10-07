@@ -126,3 +126,42 @@ EXPORT T2
    expect (scene .exportedNodes) .toHaveLength (0);
    expect (scene .rootNodes) .toHaveLength (0);
 });
+
+test .concurrent ("dispose 3", async () =>
+{
+   const scene = await Browser .createX3DFromString (`
+DEF I Inline {
+   url "data:model/x3d+vrml,
+#X3D V4.1 utf8 X_ITE V16.1.0
+
+PROFILE Interactive
+
+DEF T1 Transform { }
+
+EXPORT T1
+   "
+}
+
+DEF T Transform { }
+
+USE T1
+
+IMPORT I.T1
+
+ROUTE T.translation TO T1.translation
+   `);
+
+   expect (scene .namedNodes) .toHaveLength (2);
+   expect (scene .rootNodes) .toHaveLength (3);
+   expect (scene .importedNodes) .toHaveLength (1);
+   expect (scene .routes) .toHaveLength (1);
+   expect (() => scene .rootNodes [2] .getValue () .getInnerNode ()) .not .toThrow (Error);
+
+   scene .getNamedNode ("I") .getValue () .getInternalScene () .getNamedNode ("T1") .dispose ();
+
+   expect (scene .namedNodes) .toHaveLength (2);
+   expect (scene .rootNodes) .toHaveLength (3);
+   expect (scene .importedNodes) .toHaveLength (1);
+   expect (scene .routes) .toHaveLength (1);
+   expect (() => scene .rootNodes [2] .getValue () .getInnerNode ()) .toThrow (Error);
+});
