@@ -115,7 +115,7 @@ USE IM
 
 IMPORT I.IM
 
-ROUTE IM.some_filed TO T.set_translation
+ROUTE IM.some_field TO T.set_translation
    `);
 
    expect (scene .namedNodes) .toHaveLength (2);
