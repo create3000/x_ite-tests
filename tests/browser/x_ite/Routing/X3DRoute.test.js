@@ -478,7 +478,7 @@ DEF T Transform {
 
 IMPORT I.IM
 
-ROUTE IM.some_filed TO T.set_translation
+ROUTE IM.some_field TO T.set_translation
 `));
 
    expect (scene1 .routes) .toHaveLength (1);
@@ -498,7 +498,7 @@ DEF T Transform {
 
 IMPORT I.IM
 
-ROUTE T.translation TO IM.some_filed
+ROUTE T.translation TO IM.some_field
 `));
 
    expect (scene2 .routes) .toHaveLength (1);
@@ -512,7 +512,7 @@ DEF I Inline {
 
 IMPORT I.IM
 
-ROUTE IM.some_filed TO IM.some_filed
+ROUTE IM.some_field TO IM.some_field
 `));
 
    expect (scene3 .routes) .toHaveLength (1);
@@ -531,7 +531,7 @@ test .concurrent ("imported node xml", async () =>
       </Shape>
     </Transform>
     <IMPORT inlineDEF='I' importedDEF='IM'/>
-    <ROUTE fromNode='IM' fromField='some_filed' toNode='T' toField='set_translation'/>
+    <ROUTE fromNode='IM' fromField='some_field' toNode='T' toField='set_translation'/>
   </Scene>
 </X3D>
 `));
@@ -549,7 +549,7 @@ test .concurrent ("imported node xml", async () =>
       </Shape>
     </Transform>
     <IMPORT inlineDEF='I' importedDEF='IM'/>
-    <ROUTE fromNode='T' fromField='translation' toNode='IM' toField='some_filed'/>
+    <ROUTE fromNode='T' fromField='translation' toNode='IM' toField='some_field'/>
   </Scene>
 </X3D>
 `));
@@ -562,7 +562,7 @@ test .concurrent ("imported node xml", async () =>
     <Inline DEF='I'
         load='false'/>
     <IMPORT inlineDEF='I' importedDEF='IM'/>
-    <ROUTE fromNode='IM' fromField='some_filed' toNode='IM' toField='some_filed'/>
+    <ROUTE fromNode='IM' fromField='some_field' toNode='IM' toField='some_field'/>
   </Scene>
 </X3D>
 `));
@@ -609,7 +609,7 @@ test .concurrent ("imported node json", async () =>
         { "ROUTE":
           {
             "@fromNode": "IM",
-            "@fromField": "some_filed",
+            "@fromField": "some_field",
             "@toNode": "T",
             "@toField": "set_translation"
           }
@@ -661,7 +661,7 @@ test .concurrent ("imported node json", async () =>
             "@fromNode": "T",
             "@fromField": "translation",
             "@toNode": "IM",
-            "@toField": "some_filed"
+            "@toField": "some_field"
           }
         }
       ]
@@ -694,9 +694,9 @@ test .concurrent ("imported node json", async () =>
         { "ROUTE":
           {
             "@fromNode": "IM",
-            "@fromField": "some_filed",
+            "@fromField": "some_field",
             "@toNode": "IM",
-            "@toField": "some_filed"
+            "@toField": "some_field"
           }
         }
       ]
