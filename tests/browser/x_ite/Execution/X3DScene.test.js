@@ -5,6 +5,20 @@ const
    canvas  = X3D .createBrowser (),
    Browser = canvas .browser;
 
+test .concurrent ("constructor", async () =>
+{
+   const
+      scene1 = await Browser .createScene (),
+      scene2 = new X3D .X3DScene (Browser);
+
+   scene2 .setup ();
+
+   expect (scene1 .isLive ()) .toBe (true);
+   expect (scene2 .isLive ()) .toBe (false);
+   expect (scene1 .getExecutionContext ()) .toBe (null);
+   expect (scene2 .getExecutionContext ()) .toBe (null);
+});
+
 test .concurrent ("properties1", async () =>
 {
    const
@@ -38,6 +52,7 @@ test .concurrent ("properties1", async () =>
 
    expect (X3D .X3DScene .typeName) .toBe ("X3DScene");
    expect (scene .getTypeName ()) .toBe ("X3DScene");
+   expect (scene .isLive ()) .toBe (true);
    expect (Object .prototype .toString .call (scene)) .toBe (`[object X3DScene]`);
    expect (scene .toString ()) .toBe (`[object ${scene .getTypeName ()}]`);
 });
