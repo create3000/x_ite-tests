@@ -192,7 +192,7 @@ ROUTE IM.some_field TO T.set_translation
    scene .rootNodes [2] .dispose ();
 
    expect (scene .namedNodes) .toHaveLength (2);
-   expect (scene .importedNodes) .toHaveLength (0);
+   expect (scene .importedNodes) .toHaveLength (1);
    expect (scene .rootNodes) .toHaveLength (2);
    expect (scene .rootNodes [0] .getNodeTypeName ()) .toBe ("Inline");
    expect (scene .rootNodes [1] .getNodeTypeName ()) .toBe ("Transform");

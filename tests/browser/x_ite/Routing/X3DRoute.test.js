@@ -734,4 +734,9 @@ ROUTE T1.set_scale TO T2.scale_changed
    expect (scene1 .routes [1] .destinationNode) .toBe (scene1 .getNamedNode ("T2"));
    expect (scene1 .routes [1] .sourceField) .toBe ("scale_changed");
    expect (scene1 .routes [1] .destinationField) .toBe ("set_scale");
+
+   scene1 .routes [0] .dispose ();
+   expect (scene1 .routes) .toHaveLength (1);
+   scene1 .routes [0] .dispose ();
+   expect (scene1 .routes) .toHaveLength (0);
 });

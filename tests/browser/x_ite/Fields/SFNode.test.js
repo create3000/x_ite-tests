@@ -355,7 +355,7 @@ ROUTE S1.appearance TO S2.appearance
    expect (scene .rootNodes [3] .getValue ()) .not .toBe (null);
    expect (scene .routes) .toHaveLength (0);
    expect (scene .getNamedNodes ()) .toHaveLength (6);
-   expect (scene .getImportedNodes ()) .toHaveLength (0);
+   expect (scene .getImportedNodes ()) .toHaveLength (1);
    expect (scene .getExportedNodes ()) .toHaveLength (0);
    expect (shape1 .getValue ()) .toBe (null);
    expect (shape3 .getValue ()) .toBe (null);
