@@ -98,6 +98,44 @@ IMPORT I.E2 AS I2 DESCRIPTION "Test Desc"
    expect (importedNode1 .getDescription ()) .toBe ("Test Desc");
 });
 
+test .concurrent ("proto", async () =>
+{
+   const scene = await Browser .createX3DFromString (`
+#X3D V4.1 utf8
+
+PROFILE Interchange
+
+COMPONENT Core : 2
+COMPONENT Networking : 2
+
+PROTO Test [ ]
+{
+  DEF I Inline {
+    load FALSE
+  }
+
+  DEF T Transform { }
+
+  USE IM
+
+  IMPORT I.IM
+
+  ROUTE IM.some_field TO T.set_translation
+}
+
+Test { }
+   `);
+
+   expect (scene .rootNodes) .toHaveLength (1);
+
+   const body = scene .rootNodes [0] .getValue () .getBody ();
+
+   expect (body .namedNodes) .toHaveLength (2);
+   expect (body .rootNodes) .toHaveLength (3);
+   expect (body .importedNodes) .toHaveLength (1);
+   expect (body .routes) .toHaveLength (1);
+});
+
 test .concurrent ("dispose 1", async () =>
 {
    const scene = await Browser .createX3DFromString (`
