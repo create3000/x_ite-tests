@@ -98,8 +98,7 @@ IMPORT I.E2 AS I2 DESCRIPTION "Test Desc"
    expect (importedNode1 .getDescription ()) .toBe ("Test Desc");
 });
 
-
-test .concurrent ("dispose", async () =>
+test .concurrent ("dispose 1", async () =>
 {
    const scene = await Browser .createX3DFromString (`
 #X3D V4.1 utf8 X_ITE V16.1.0
@@ -129,5 +128,73 @@ ROUTE IM.some_field TO T.set_translation
    expect (scene .importedNodes) .toHaveLength (0);
    expect (scene .rootNodes) .toHaveLength (1);
    expect (scene .rootNodes [0] .getNodeTypeName ()) .toBe ("Transform");
+   expect (scene .routes) .toHaveLength (0);
+});
+
+test .concurrent ("dispose 2", async () =>
+{
+   const scene = await Browser .createX3DFromString (`
+#X3D V4.1 utf8 X_ITE V16.1.0
+
+PROFILE Interactive
+
+DEF I Inline {
+  load FALSE
+}
+
+DEF T Transform { }
+USE IM
+
+IMPORT I.IM
+
+ROUTE IM.some_field TO T.set_translation
+   `);
+
+   expect (scene .namedNodes) .toHaveLength (2);
+   expect (scene .importedNodes) .toHaveLength (1);
+   expect (scene .rootNodes) .toHaveLength (3);
+   expect (scene .routes) .toHaveLength (1);
+
+   scene .removeImportedNode ("IM");
+
+   expect (scene .namedNodes) .toHaveLength (2);
+   expect (scene .importedNodes) .toHaveLength (0);
+   expect (scene .rootNodes) .toHaveLength (2);
+   expect (scene .rootNodes [0] .getNodeTypeName ()) .toBe ("Inline");
+   expect (scene .rootNodes [1] .getNodeTypeName ()) .toBe ("Transform");
+   expect (scene .routes) .toHaveLength (0);
+});
+
+test .concurrent ("dispose 3", async () =>
+{
+   const scene = await Browser .createX3DFromString (`
+#X3D V4.1 utf8 X_ITE V16.1.0
+
+PROFILE Interactive
+
+DEF I Inline {
+  load FALSE
+}
+
+DEF T Transform { }
+USE IM
+
+IMPORT I.IM
+
+ROUTE IM.some_field TO T.set_translation
+   `);
+
+   expect (scene .namedNodes) .toHaveLength (2);
+   expect (scene .importedNodes) .toHaveLength (1);
+   expect (scene .rootNodes) .toHaveLength (3);
+   expect (scene .routes) .toHaveLength (1);
+
+   scene .rootNodes [2] .dispose ();
+
+   expect (scene .namedNodes) .toHaveLength (2);
+   expect (scene .importedNodes) .toHaveLength (0);
+   expect (scene .rootNodes) .toHaveLength (2);
+   expect (scene .rootNodes [0] .getNodeTypeName ()) .toBe ("Inline");
+   expect (scene .rootNodes [1] .getNodeTypeName ()) .toBe ("Transform");
    expect (scene .routes) .toHaveLength (0);
 });
