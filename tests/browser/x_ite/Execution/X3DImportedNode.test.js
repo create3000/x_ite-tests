@@ -249,17 +249,32 @@ DEF I Inline {
 }
 
 DEF T Transform { }
-USE IM
 
-IMPORT I.IM
+USE IM1
+USE IM2
 
-ROUTE IM.some_field TO T.set_translation
+IMPORT I.IM1
+IMPORT I.IM2
+
+ROUTE IM1.some_field TO T.set_translation
+ROUTE IM2.some_field TO T.set_translation
    `);
+
+   expect (scene .namedNodes) .toHaveLength (2);
+   expect (scene .importedNodes) .toHaveLength (2);
+   expect (scene .rootNodes) .toHaveLength (4);
+   expect (scene .routes) .toHaveLength (2);
+   expect (scene .importedNodes [0] .getImportedName ()) .toBe ("IM1");
+
+   scene .importedNodes [0] .dispose ();
 
    expect (scene .namedNodes) .toHaveLength (2);
    expect (scene .importedNodes) .toHaveLength (1);
    expect (scene .rootNodes) .toHaveLength (3);
+   expect (scene .rootNodes [0] .getNodeTypeName ()) .toBe ("Inline");
+   expect (scene .rootNodes [1] .getNodeTypeName ()) .toBe ("Transform");
    expect (scene .routes) .toHaveLength (1);
+   expect (scene .importedNodes [0] .getImportedName ()) .toBe ("IM2");
 
    scene .importedNodes [0] .dispose ();
 

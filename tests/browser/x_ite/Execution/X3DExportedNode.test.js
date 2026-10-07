@@ -82,12 +82,14 @@ EXPORT T2
    expect (scene .namedNodes) .toHaveLength (2);
    expect (scene .exportedNodes) .toHaveLength (2);
    expect (scene .rootNodes) .toHaveLength (2);
+   expect (scene .exportedNodes [0] .getExportedName ()) .toBe ("T1");
 
    scene .exportedNodes [0] .dispose ();
 
    expect (scene .namedNodes) .toHaveLength (2);
    expect (scene .exportedNodes) .toHaveLength (1);
    expect (scene .rootNodes) .toHaveLength (2);
+   expect (scene .exportedNodes [0] .getExportedName ()) .toBe ("T2");
 
    scene .exportedNodes [0] .dispose ();
 
