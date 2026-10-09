@@ -188,6 +188,11 @@ test .concurrent ("fromString", () =>
 
    expect (() => a .fromString ("[1.2 2.3 3.4, 2.3 --- 4.5]")) .toThrow (Error);
 
+   a .fromString ("white");
+
+   expect (a) .toHaveLength (1);
+   expect (a .equals (new MFColor (new SFColor (1,1,1)))) .toBe (true);
+
    a .fromString ("[ black 0.1 0.2 0.3 white ]");
 
    expect (a) .toHaveLength (3);
