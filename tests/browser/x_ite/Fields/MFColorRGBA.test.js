@@ -187,6 +187,11 @@ test .concurrent ("fromString", () =>
    expect (a .equals (new MFColorRGBA ())) .toBe (true);
 
    expect (() => a .fromString ("[1.2 2.3 3.4, 2.3 --- 4.5]")) .toThrow (Error);
+
+   a .fromString ("[ black 0.1 0.2 0.3 0.4 white ]");
+
+   expect (a) .toHaveLength (3);
+   expect (a .equals (new MFColorRGBA (new SFColorRGBA (0,0,0,1), new SFColorRGBA (.1,.2,.3,.4), new SFColorRGBA (1,1,1,1)))) .toBe (true);
 });
 
 test .concurrent ("fromVRMLString", () =>
