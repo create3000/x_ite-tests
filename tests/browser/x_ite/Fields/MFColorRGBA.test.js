@@ -191,17 +191,17 @@ test .concurrent ("fromString", () =>
    a .fromString ("white");
 
    expect (a) .toHaveLength (1);
-   expect (a .equals (new MFColorRGBA (new SFColorRGBA (1,1,1,1)))) .toBe (true);
+   expect (a .equals (new MFColorRGBA (SFColorRGBA .WHITE))) .toBe (true);
 
    a .fromString ("black");
 
    expect (a) .toHaveLength (1);
-   expect (a .equals (new MFColorRGBA (new SFColorRGBA (0,0,0,1)))) .toBe (true);
+   expect (a .equals (new MFColorRGBA (SFColorRGBA .BLACK))) .toBe (true);
 
    a .fromString ("[ black 0.1 0.2 0.3 0.4 white ]");
 
    expect (a) .toHaveLength (3);
-   expect (a .equals (new MFColorRGBA (new SFColorRGBA (0,0,0,1), new SFColorRGBA (.1,.2,.3,.4), new SFColorRGBA (1,1,1,1)))) .toBe (true);
+   expect (a .equals (new MFColorRGBA (SFColorRGBA .BLACK, new SFColorRGBA (.1,.2,.3,.4), SFColorRGBA .WHITE))) .toBe (true);
 
    expect (() => a .fromString ("ro")) .toThrow (Error);
    expect (() => a .fromString ("[ro]")) .toThrow (Error);
@@ -215,12 +215,12 @@ test .concurrent ("fromString", () =>
    a .fromString ("0x000");
 
    expect (a) .toHaveLength (1);
-   expect (a .equals (new MFColorRGBA (new SFColorRGBA (0,0,0,1)))) .toBe (true);
+   expect (a .equals (new MFColorRGBA (SFColorRGBA .BLACK))) .toBe (true);
 
    a .fromString ("[ 0x000 0.1 0.2 0.3 0.4 0xfff ]");
 
    expect (a) .toHaveLength (3);
-   expect (a .equals (new MFColorRGBA (new SFColorRGBA (0,0,0,1), new SFColorRGBA (.1,.2,.3,.4), new SFColorRGBA (1,1,1,1)))) .toBe (true);
+   expect (a .equals (new MFColorRGBA (SFColorRGBA .BLACK, new SFColorRGBA (.1,.2,.3,.4), SFColorRGBA .WHITE))) .toBe (true);
 });
 
 test .concurrent ("fromVRMLString", () =>
