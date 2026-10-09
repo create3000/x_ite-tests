@@ -203,6 +203,10 @@ test .concurrent ("fromString", () =>
    expect (a) .toHaveLength (3);
    expect (a .equals (new MFColor (new SFColor (0,0,0), new SFColor (.1,.2,.3), new SFColor (1,1,1)))) .toBe (true);
 
+   expect (() => a .fromString ("ro")) .toThrow (Error);
+   expect (() => a .fromString ("[ro]")) .toThrow (Error);
+   expect (() => a .fromString ("[ro sa]")) .toThrow (Error);
+
    a .fromString ("0xfff");
 
    expect (a) .toHaveLength (1);
