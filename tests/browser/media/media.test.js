@@ -28,7 +28,7 @@ body .append (canvas);
 
 test ("media", async () =>
 {
-   const media = JSON .parse (await get ("https://weiputer/media/docs/examples/config.json"));
+   const media = JSON .parse (await get ("https://localhost/media/docs/examples/config.json"));
 
    for (const example of media)
    {
@@ -41,7 +41,7 @@ test ("media", async () =>
 
       console .log (component, name);
 
-      const fileURL = new URL (`https://weiputer/media/docs/examples/${component}/${name}/${name}.x3d`);
+      const fileURL = new URL (`https://localhost/media/docs/examples/${component}/${name}/${name}.x3d`);
 
       browser .getBrowserOptions () .reset ();
       browser .setBrowserOption ("SplashScreen", false);
@@ -52,7 +52,7 @@ test ("media", async () =>
 
       const blob2 = await new Promise (resolve => canvas .toBlob (resolve, "image/png"));
       const url2  = URL .createObjectURL (blob2);
-      const url1  = new URL (`https://weiputer/media/docs/examples/${component}/${name}/screenshot.avif`);
+      const url1  = new URL (`https://localhost/media/docs/examples/${component}/${name}/screenshot.avif`);
 
       const img1 = await loadImage (url1);
       const img2 = await loadImage (url2);
@@ -78,7 +78,7 @@ test ("glTF", async () =>
 {
    const maxMismatchedPixels = 1_800;
 
-   const media = JSON .parse (await get ("https://weiputer/media/docs/glTF/config.json"));
+   const media = JSON .parse (await get ("https://localhost/media/docs/glTF/config.json"));
 
    for (const example of media)
    {
@@ -86,7 +86,7 @@ test ("glTF", async () =>
 
       console .log (name);
 
-      const fileURL = new URL (`https://weiputer/media/docs/glTF/${name}/${basename}`);
+      const fileURL = new URL (`https://localhost/media/docs/glTF/${name}/${basename}`);
 
       browser .getBrowserOptions () .reset ();
       browser .setBrowserOption ("SplashScreen", false);
@@ -99,7 +99,7 @@ test ("glTF", async () =>
 
       const blob2 = await new Promise (resolve => canvas .toBlob (resolve, "image/png"));
       const url2  = URL .createObjectURL (blob2);
-      const url1  = new URL (`https://weiputer/media/docs/glTF//${name}/screenshots/screenshot.avif`);
+      const url1  = new URL (`https://localhost/media/docs/glTF//${name}/screenshots/screenshot.avif`);
 
       const img1 = await loadImage (url1);
       const img2 = await loadImage (url2);

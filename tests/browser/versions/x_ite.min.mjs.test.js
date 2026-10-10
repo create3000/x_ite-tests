@@ -1,5 +1,5 @@
 import { expect, test } from "vitest";
-import X3D from "https://weiputer/x_ite/dist/x_ite.min.mjs";
+import X3D from "https://localhost/x_ite/dist/x_ite.min.mjs";
 
 test .concurrent ("X3D", async () =>
 {

@@ -11,7 +11,7 @@ test .concurrent ("X3D", async () =>
 
       script .onload  = resolve;
       script .onerror = reject;
-      script .src     = "https://weiputer/x_ite/dist/x_ite.js";
+      script .src     = "https://localhost/x_ite/dist/x_ite.js";
    });
 
    const browser = X3D .createBrowser () .browser;
