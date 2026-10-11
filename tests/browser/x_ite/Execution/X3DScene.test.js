@@ -459,3 +459,35 @@ test .concurrent ("metadata", async () =>
       ["foo6", "666"],
    ]);
 });
+
+test .concurrent ("add/removeRootNode", async () =>
+{
+   const
+      scene = await Browser .createScene (Browser .getProfile ("Interchange")),
+      node1 = scene .createNode ("Group"),
+      node2 = scene .createNode ("Group");
+
+   expect (scene .rootNodes) .toHaveLength (0);
+
+   scene .addRootNode (node1);
+   expect (scene .rootNodes) .toHaveLength (1);
+
+   scene .addRootNode (node1);
+   expect (scene .rootNodes) .toHaveLength (1);
+
+   scene .addRootNode (node2);
+   expect (scene .rootNodes) .toHaveLength (2);
+
+   scene .addRootNode (node2);
+   expect (scene .rootNodes) .toHaveLength (2);
+
+   scene .rootNodes .push (node1, node2);
+   expect (scene .rootNodes) .toHaveLength (4);
+
+   scene .removeRootNode (node1);
+   expect (scene .rootNodes) .toHaveLength (2);
+   expect (scene .rootNodes .every (node => node === node2)) .toBe (true);
+
+   scene .removeRootNode (node2);
+   expect (scene .rootNodes) .toHaveLength (0);
+});
