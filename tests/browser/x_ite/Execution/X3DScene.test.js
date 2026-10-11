@@ -490,4 +490,14 @@ test .concurrent ("add/removeRootNode", async () =>
 
    scene .removeRootNode (node2);
    expect (scene .rootNodes) .toHaveLength (0);
+
+   expect (() => scene .addRootNode (null)) .toThrow (Error);
+   expect (scene .rootNodes) .toHaveLength (0);
+
+   scene .rootNodes .push (null, null);
+   expect (scene .rootNodes) .toHaveLength (2);
+   expect (scene .rootNodes .every (node => node === null)) .toBe (true);
+
+   scene .removeRootNode (null);
+   expect (scene .rootNodes) .toHaveLength (0);
 });
