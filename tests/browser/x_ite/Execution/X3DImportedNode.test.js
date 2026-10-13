@@ -39,6 +39,14 @@ IMPORT I.E2 AS I2 DESCRIPTION "Test Desc"
    expect (importedNode0 .instance) .toBeInstanceOf (X3D .SFNode);
    expect (importedNode0 .instance .getNodeTypeName ()) .toBe ("Group");
    expect (importedNode0 .instance .getNodeName ()) .toBe ("I1");
+   expect (importedNode0 .instance .getValue () ._metadata) .toBeInstanceOf (X3D .SFNode);
+   expect (importedNode0 .instance .getValue () ._visible) .toBeInstanceOf (X3D .SFBool);
+   expect (importedNode0 .instance .getValue () ._bboxDisplay) .toBeInstanceOf (X3D .SFBool);
+   expect (importedNode0 .instance .getValue () ._bboxSize) .toBeInstanceOf (X3D .SFVec3f);
+   expect (importedNode0 .instance .getValue () ._bboxCenter) .toBeInstanceOf (X3D .SFVec3f);
+   expect (importedNode0 .instance .getValue () ._addChildren) .toBeInstanceOf (X3D .MFNode);
+   expect (importedNode0 .instance .getValue () ._removeChildren) .toBeInstanceOf (X3D .MFNode);
+   expect (importedNode0 .instance .getValue () ._children) .toBeInstanceOf (X3D .MFNode);
    expect (importedNode0 .description) .toBe ("");
    expect (importedNode0 .getInlineNode ()) .toBe (importedNode0 .inlineNode .getValue ());
    expect (importedNode0 .getExportedName ()) .toBe (importedNode0 .exportedName);
