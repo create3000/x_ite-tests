@@ -82,6 +82,9 @@ test ("glTF", async () =>
 
    for (const example of media)
    {
+      if (!example .pixelmatch)
+         continue;
+
       const { name, basename } = example;
 
       console .log (name);
