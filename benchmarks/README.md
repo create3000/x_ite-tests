@@ -1,1 +1,1 @@
-Node Performance Test   2026-10-26  Safari   16 fps
+Node Performance Test   2026-10-26  Safari, MacBook Air M3   16 fps
