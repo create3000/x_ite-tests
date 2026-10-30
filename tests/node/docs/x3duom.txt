@@ -6,8 +6,8 @@ HAnimJoint number of fields differ (Spec <=> X3DUOM): 24 <=> 22.
   Where [minAngle,maxAngle] not in X3DUOM.
 HAnimPose: component level differs (Spec <=> X3DUOM): 3 <=> 2.
 Field 'set_fraction' in node HAnimPose has different type (Spec <=> X3DUOM): SFFloat !== SFTime.
-HAnimSite number of fields differ (Spec <=> X3DUOM): 19 <=> 15.
-  Where [purpose,meshVertexIndex,displacers,coord] not in X3DUOM.
+HAnimSite number of fields differ (Spec <=> X3DUOM): 19 <=> 17.
+  Where [purpose,meshVertexIndex] not in X3DUOM.
 SquadOrientationInterpolator number of fields differ (Spec <=> X3DUOM): 7 <=> 6.
   Where [closed] not in X3DUOM.
 EnvironmentLight: component level differs (Spec <=> X3DUOM): 3 <=> 1.
