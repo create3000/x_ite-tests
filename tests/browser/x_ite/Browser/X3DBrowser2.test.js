@@ -47,7 +47,6 @@ test .concurrent ("getBrowserOption", () =>
    expect (Browser .getBrowserOption ("LoadUrlObjects")) .toBe (true);
    expect (Browser .getBrowserOption ("LogarithmicDepthBuffer")) .toBe (false);
    expect (Browser .getBrowserOption ("MaximumFrameRate")) .toBe (80);
-   expect (Browser .getBrowserOption ("MetadataReference")) .toBe ("");
    expect (Browser .getBrowserOption ("Multisampling")) .toBe (4);
    expect (Browser .getBrowserOption ("Mute")) .toBe (false);
    expect (Browser .getBrowserOption ("Notifications")) .toBe (true);
