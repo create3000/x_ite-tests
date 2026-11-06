@@ -85,11 +85,11 @@ test ("glTF", async () =>
       if (!example .pixelmatch)
          continue;
 
-      const { name, basename } = example;
+      const { name, filePath } = example;
 
       console .log (name);
 
-      const fileURL = new URL (`https://localhost/media/docs/glTF/${name}/${basename}`);
+      const fileURL = new URL (`https://localhost/media/docs/glTF/${filePath}`);
 
       browser .getBrowserOptions () .reset ();
       browser .setBrowserOption ("SplashScreen", false);
