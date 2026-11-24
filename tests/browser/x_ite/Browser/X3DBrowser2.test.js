@@ -132,17 +132,18 @@ test .concurrent ("getRenderingProperty", () =>
       canvas  = X3D .createBrowser (),
       Browser = canvas .browser;
 
-   expect (Browser .getRenderingProperty ("Shading")) .toBe ("GOURAUD");
-   expect (Browser .getRenderingProperty ("MaxTextureSize")) .toBeGreaterThanOrEqual (128);
-   expect (Browser .getRenderingProperty ("TextureUnits")) .toBeGreaterThanOrEqual (8);
-   expect (Browser .getRenderingProperty ("MaxLights")) .toBeGreaterThanOrEqual (8);
    expect (Browser .getRenderingProperty ("Antialiased")) .toBe (true);
    expect (Browser .getRenderingProperty ("ColorDepth")) .toBeGreaterThanOrEqual (32);
+   expect (Browser .getRenderingProperty ("MaxLights")) .toBeGreaterThanOrEqual (8);
+   expect (Browser .getRenderingProperty ("MaxTextureSize")) .toBeGreaterThanOrEqual (128);
+   expect (Browser .getRenderingProperty ("Shading")) .toBe ("GOURAUD");
    expect (Browser .getRenderingProperty ("TextureMemory")) .toBe (NaN);
+   expect (Browser .getRenderingProperty ("TextureUnits")) .toBeGreaterThanOrEqual (8);
 
    expect (Browser .getRenderingProperty ("ContentScale")) .toBe (1);
    expect (Browser .getRenderingProperty ("LogarithmicDepthBuffer")) .toBe (false);
    expect (Browser .getRenderingProperty ("MaxAnisotropicDegree")) .toBeGreaterThanOrEqual (1);
+   expect (Browser .getRenderingProperty ("MaxRenderbufferSize")) .toBeGreaterThanOrEqual (1);
    expect (Browser .getRenderingProperty ("MaxSamples")) .toBeGreaterThanOrEqual (0);
    expect (Browser .getRenderingProperty ("Multisampling")) .toBeGreaterThanOrEqual (1);
    expect (Browser .getRenderingProperty ("PixelsPerPoint")) .toBeGreaterThanOrEqual (1);
