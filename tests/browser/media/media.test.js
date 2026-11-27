@@ -76,14 +76,14 @@ test ("media", async () =>
 
 test ("glTF", async () =>
 {
-   const maxMismatchedPixels = 1_800;
-
    const media = JSON .parse (await get ("https://localhost/media/docs/glTF/config.json"));
 
    for (const example of media)
    {
       if (!example .pixelmatch)
          continue;
+
+      const maxMismatchedPixels = Number .isInteger (example .pixelmatch) ? example .pixelmatch : 1_800;
 
       const { name, filePath } = example;
 
